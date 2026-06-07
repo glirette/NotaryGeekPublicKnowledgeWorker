@@ -8,6 +8,7 @@ The first Function App has already been created:
 - Hostname: `ng-public-knowledge-func-2026.azurewebsites.net`
 - Runtime: Azure Functions v4, .NET isolated, Windows Consumption
 - .NET stack: `netFrameworkVersion = v10.0`
+- Public corpus manifest: `https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json`
 
 ## Existing App Check
 
@@ -33,6 +34,7 @@ az functionapp config appsettings set \
     PublicKnowledge__Enabled=false \
     PublicKnowledge__TimerEnabled=false \
     PublicKnowledge__PublicBaseUrl=https://notary.cx \
+    PublicKnowledge__PublicCorpusManifestUrl=https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json \
     OpenAI__BaseUrl=https://api.openai.com \
     OpenAI__EndpointPath=/v1/responses \
     OpenAI__Model=gpt-5-mini

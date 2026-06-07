@@ -26,7 +26,7 @@ The worker can point to the raw GitHub manifest:
 az functionapp config appsettings set \
   --resource-group NG-PUBLIC-KNOWLEDGE \
   --name ng-public-knowledge-func-2026 \
-  --settings PublicKnowledge__PublicCorpusManifestUrl=https://raw.githubusercontent.com/glirette/<repo>/main/public-knowledge-manifest.json
+  --settings PublicKnowledge__PublicCorpusManifestUrl=https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json
 ```
 
 ## Rule
