@@ -7,7 +7,8 @@ param(
     [switch] $Execute,
     [int] $DelaySeconds = 0,
     [string] $OutDir = "",
-    [switch] $SkipCaseMetadataAssert
+    [switch] $SkipCaseMetadataAssert,
+    [switch] $PassThru
 )
 
 $ErrorActionPreference = "Stop"
@@ -137,7 +138,23 @@ foreach ($case in $cases) {
     }
 }
 
-$results
+if ($PassThru) {
+    $results
+}
+else {
+    $results |
+        Select-Object `
+            Case,
+            Ok,
+            Status,
+            @{ Name = "AI"; Expression = { $_.OpenAiCalled } },
+            @{ Name = "Meta"; Expression = { $_.CaseMetadata } },
+            @{ Name = "Src"; Expression = { $_.SourceCount } },
+            @{ Name = "Warn"; Expression = { $_.WarningCount } },
+            @{ Name = "Err"; Expression = { $_.ErrorCount } },
+            @{ Name = "Tokens"; Expression = { $_.TotalTokens } } |
+        Format-Table -AutoSize
+}
 
 if ($metadataFailures.Count -gt 0) {
     throw "Regression case metadata check failed: $([string]::Join(' ', $metadataFailures))"
