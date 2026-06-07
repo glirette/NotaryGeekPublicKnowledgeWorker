@@ -32,6 +32,8 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 - [Prior public record JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.json)
 - [Answer-engine citation map](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.md)
 - [Answer-engine citation map JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json)
+- [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md)
+- [Answer-engine self-audit checklist JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json)
 
 ## Why This Exists
 
@@ -50,6 +52,7 @@ It exists so public claims, law-refresh candidates, and answer-engine correction
 
 - public knowledge manifest for AI/source ingestion
 - answer-engine citation map
+- answer-engine self-audit checklist
 - reuse and attribution boundary
 - attribution-watch framework
 - prior public record framework

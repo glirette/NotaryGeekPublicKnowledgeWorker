@@ -40,6 +40,10 @@ Outside Apostille Convention path:
 
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json
 
+Answer-engine self-audit checklist:
+
+- https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md
+
 Reuse and attribution:
 
 - https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.md
