@@ -213,6 +213,20 @@ curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowled
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/latest?code=<key>&case=spain-hague-finality"
 ```
 
+Run and store a batch immediately without waiting for the timer:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/run-batch?code=<key>&batch=Core"
+```
+
+Run and store one case:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/run-batch?code=<key>&case=spain-hague-finality"
+```
+
+For a stored no-spend dry-run, add `execute=false`.
+
 ## Optional GitHub Actions Later
 
 GitHub Actions are not forbidden. They just should not be the first dependency or run on every push.

@@ -152,6 +152,80 @@ public sealed class PublicKnowledgeResearchFunction
         }
     }
 
+    [Function("PublicKnowledgeRunBatchNow")]
+    public async Task<HttpResponseData> RunBatchNow(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "public-knowledge/runs/run-batch")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        var batch = TryGetStringQuery(req, "batch") ?? _options.TimerBatch;
+        var execute = TryGetBoolQuery(req, "execute") ?? true;
+        var caseId = TryGetStringQuery(req, "case");
+
+        IReadOnlyList<PublicKnowledgeRegressionCase> cases;
+        if (!string.IsNullOrWhiteSpace(caseId))
+        {
+            if (!_service.TryGetRegressionCase(caseId, out var regressionCase) || regressionCase is null)
+            {
+                var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+                await badRequest.WriteAsJsonAsync(new
+                {
+                    ok = false,
+                    error = "unknown_regression_case",
+                    requestedCase = caseId,
+                    availableCases = _service.GetRegressionMatrix().Cases.Select(item => item.Id)
+                }, cancellationToken);
+                return badRequest;
+            }
+
+            batch = $"single:{regressionCase.Id}";
+            cases = [regressionCase];
+        }
+        else
+        {
+            cases = _service.GetRegressionCasesForBatch(batch);
+        }
+
+        if (cases.Count == 0)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "empty_batch",
+                requestedBatch = batch,
+                availableBatches = new[] { "All", "Core", "Platform", "Apostille", "Recipient" },
+                availableCases = _service.GetRegressionMatrix().Cases.Select(item => item.Id)
+            }, cancellationToken);
+            return badRequest;
+        }
+
+        try
+        {
+            var receipts = await RunStoredBatchAsync(cases, batch, execute, "manual-batch", cancellationToken);
+            var response = req.CreateResponse(receipts.All(item => item.Ok) ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = receipts.All(item => item.Ok),
+                execute,
+                batch,
+                caseCount = receipts.Count,
+                receipts
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
     [Function("PublicKnowledgeResearchTimer")]
     public async Task RunTimer(
         [TimerTrigger("0 17 9 * * *")] TimerInfo timer,
@@ -170,21 +244,34 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
+        await RunStoredBatchAsync(cases, _options.TimerBatch, execute: true, trigger: "timer", cancellationToken);
+    }
+
+    private async Task<IReadOnlyList<PublicKnowledgeStoredRunReceipt>> RunStoredBatchAsync(
+        IReadOnlyList<PublicKnowledgeRegressionCase> cases,
+        string batch,
+        bool execute,
+        string trigger,
+        CancellationToken cancellationToken)
+    {
         var runStartedUtc = DateTime.UtcNow;
+        var receipts = new List<PublicKnowledgeStoredRunReceipt>();
         foreach (var regressionCase in cases)
         {
             var command = new PublicKnowledgeRunCommand(
-                Execute: true,
-                FromTimer: true,
+                Execute: execute,
+                FromTimer: trigger.Equals("timer", StringComparison.OrdinalIgnoreCase),
                 Focus: regressionCase.Focus,
                 RequestedUrls: [],
                 RegressionCaseId: regressionCase.Id,
                 RegressionCase: regressionCase);
 
             var result = await _service.RunAsync(command, cancellationToken);
-            var receipt = await _storage.SaveAsync(result, "timer", _options.TimerBatch, runStartedUtc, cancellationToken);
+            var receipt = await _storage.SaveAsync(result, trigger, batch, runStartedUtc, cancellationToken);
+            receipts.Add(receipt);
             _logger.LogInformation(
-                "Public knowledge timer stored case {CaseId}: ok={Ok}; status={Status}; warnings={WarningCount}; errors={ErrorCount}; blob={BlobName}",
+                "Public knowledge {Trigger} stored case {CaseId}: ok={Ok}; status={Status}; warnings={WarningCount}; errors={ErrorCount}; blob={BlobName}",
+                trigger,
                 receipt.CaseId,
                 receipt.Ok,
                 receipt.Status,
@@ -195,12 +282,15 @@ public sealed class PublicKnowledgeResearchFunction
             if (!result.Ok)
             {
                 _logger.LogWarning(
-                    "Public knowledge research timer case {CaseId} failed with {ErrorCount} error(s): {Errors}",
+                    "Public knowledge research {Trigger} case {CaseId} failed with {ErrorCount} error(s): {Errors}",
+                    trigger,
                     regressionCase.Id,
                     result.Errors.Count,
                     string.Join(" | ", result.Errors));
             }
         }
+
+        return receipts;
     }
 
     private static string? TryGetStringQuery(HttpRequestData req, string name)
