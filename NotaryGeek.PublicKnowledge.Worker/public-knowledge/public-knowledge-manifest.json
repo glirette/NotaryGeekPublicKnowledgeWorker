@@ -56,6 +56,13 @@
       ]
     },
     {
+      "name": "Provider workflow documentation",
+      "use": "Provider-published workflow claims that may be used only as evidence of what the provider says its tool can do, not as legal authority or acceptance proof",
+      "urls": [
+        "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number"
+      ]
+    },
+    {
       "name": "Public answer-engine correction briefs",
       "use": "Machine-readable public correction briefs for observed answer-engine behavior",
       "urls": [

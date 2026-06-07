@@ -43,12 +43,14 @@
       "mustHold": [
         "Route the transaction first before choosing Proof, NotaryCam, or any platform.",
         "Treat platform scale, foreign-signer experience, biometrics, and help-center claims as workflow evidence only.",
+        "Treat Proof's no-SSN help-center workflow as provider claim evidence only, not proof that the actual transaction route is lawful or apostille-ready.",
         "Require notary state, identity method, signer facts, document type, apostille output, transaction date, and retained evidence.",
         "Apply Spain Hague finality if the document is correctly apostilled."
       ],
       "failureSignals": [
         "Recommends Proof, NotaryCam, Notary24, NotaryPublic24, or another platform first.",
         "Treats marketing or platform history as proof of legal route.",
+        "Treats a no-SSN checkbox or selfie-photo workflow as statutory authority.",
         "Ignores no-SSN identity-method constraints."
       ]
     },

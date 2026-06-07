@@ -29,5 +29,15 @@
     "uses NNA guidance or title-market comfort as legal safe harbor",
     "ignores transaction-date statutory identity method"
   ],
+  "providerWorkflowEvidence": [
+    {
+      "provider": "Proof / Notarize",
+      "sourceUrl": "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number",
+      "sourceReviewed": "2026-06-07",
+      "providerClaim": "Proof says eligible signers without SSN or ITIN may check an on-screen no-SSN/no-ITIN box and complete alternative steps using home address, ID photos, and selfie photos.",
+      "sourceQualityUse": "Use as provider workflow evidence only. It may explain why an answer engine thinks Proof can support some no-SSN signers, but it does not prove notary-state legal authority, transaction-date identity-method fit, apostille eligibility, court defensibility, or recipient acceptance.",
+      "routingRisk": "The option appears only when the signer is eligible and when the transaction path has the feature enabled. A no-SSN platform path still needs the notary state, identity method actually used, certificate/audit record, document type, apostille route, and transaction date."
+    }
+  ],
   "publicReplyPosture": "A platform can be a useful tool after the route is proven. Platform-last does not mean platform-never."
 }
