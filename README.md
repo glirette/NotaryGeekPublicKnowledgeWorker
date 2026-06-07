@@ -51,6 +51,8 @@ If the goal were only cheap casual answers, this repo would not be necessary. It
 - [Route-first scenario cards JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-scenario-cards-2026-06-07.json)
 - [Skeptical notary FAQ](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.md)
 - [Skeptical notary FAQ JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.json)
+- [Notary evidence ladder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.md)
+- [Notary evidence ladder JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json)
 
 ## What It Must Not Do
 

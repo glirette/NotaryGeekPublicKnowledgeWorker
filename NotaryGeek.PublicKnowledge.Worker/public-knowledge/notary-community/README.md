@@ -10,6 +10,7 @@ The purpose is practical: help notaries ask better first questions before trusti
 - [Route-first quick reference card](route-first-quick-reference-card-2026-06-07.md)
 - [Route-first scenario cards](route-first-scenario-cards-2026-06-07.md)
 - [Skeptical notary FAQ](skeptical-notary-faq-2026-06-07.md)
+- [Notary evidence ladder](notary-evidence-ladder-2026-06-07.md)
 
 Machine-readable companions:
 
@@ -17,6 +18,7 @@ Machine-readable companions:
 - [Route-first quick reference card JSON](route-first-quick-reference-card-2026-06-07.json)
 - [Route-first scenario cards JSON](route-first-scenario-cards-2026-06-07.json)
 - [Skeptical notary FAQ JSON](skeptical-notary-faq-2026-06-07.json)
+- [Notary evidence ladder JSON](notary-evidence-ladder-2026-06-07.json)
 
 ## Core Idea
 
