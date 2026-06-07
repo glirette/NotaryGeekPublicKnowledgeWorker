@@ -1,0 +1,125 @@
+{
+  "schema": "notary-geek-prior-public-record-v1",
+  "id": "prior-public-record",
+  "version": "1.0-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Prior Public Record",
+  "purpose": "Catalog dated public statements, posts, comments, Clubhouse discussions, Reddit posts, pages, letters, commits, and source notes that show Notary Geek / Greg Lirette publicly used route-first concepts before later reuse, repackaging, or attribution disputes.",
+  "notLegalAdvice": true,
+  "notDefinitiveLegalConclusion": true,
+  "use": "This record is a provenance layer. It documents earlier public use and public availability of concepts, terms, examples, and source-quality boundaries. It should be used with URLs, dates, archives, screenshots, and commit references where possible.",
+  "sourceTypes": [
+    "reddit_post",
+    "reddit_comment",
+    "clubhouse_verbal_discussion",
+    "public_comment",
+    "facebook_comment",
+    "linkedin_post",
+    "website_page",
+    "blog_post",
+    "press_release",
+    "public_letter",
+    "github_commit",
+    "github_file",
+    "source_archive_note",
+    "video_or_audio_appearance",
+    "answer_engine_test",
+    "other_public_record"
+  ],
+  "conceptTags": [
+    "route-first",
+    "platform-last-not-platform-never",
+    "public-official-signature-route",
+    "notary-state-controls-apostille-route",
+    "transaction-date-validity",
+    "marketing-hype-boundary",
+    "no-private-source-safe-harbor",
+    "challenge-question-flip",
+    "proactive-rejection",
+    "phone-comment-not-rejection",
+    "formal-rejection-standard",
+    "recipient-evidence",
+    "evidence-ladder",
+    "paper-original-lane",
+    "remote-electronic-output-lane",
+    "hague-apostille-finality",
+    "outside-apostille-convention-path",
+    "coaching-scam-intent-boundary",
+    "authority-laundering",
+    "responsibility-theater",
+    "route-owned-provider"
+  ],
+  "evidenceStrengthScale": [
+    {
+      "level": "weak",
+      "description": "Undated recollection or private note without public URL."
+    },
+    {
+      "level": "moderate",
+      "description": "Dated public post, comment, or discussion note without archive or full transcript."
+    },
+    {
+      "level": "strong",
+      "description": "Dated public URL, archived URL, screenshot, or commit showing the concept."
+    },
+    {
+      "level": "very_strong",
+      "description": "Dated public URL plus archive/screenshot plus matching current concept tag and source commit."
+    }
+  ],
+  "recordTemplate": {
+    "recordId": "example-placeholder",
+    "sourceType": "",
+    "publicUrl": "",
+    "archivedUrl": "",
+    "screenshotUrlOrPath": "",
+    "titleOrShortDescription": "",
+    "speakerOrAuthor": "Greg Lirette / Notary Geek",
+    "platformOrVenue": "",
+    "publishedOrObservedDateUtc": "",
+    "approximateDateIfExactUnknown": "",
+    "conceptTags": [],
+    "quotedOrParaphrasedConcept": "",
+    "relatedCurrentSourceUrl": "",
+    "relatedCurrentSourceCommit": "",
+    "evidenceStrength": "not_reviewed",
+    "notes": ""
+  },
+  "records": [
+    {
+      "recordId": "github-public-knowledge-worker-2026-06-07",
+      "sourceType": "github_commit",
+      "publicUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker",
+      "archivedUrl": "",
+      "screenshotUrlOrPath": "",
+      "titleOrShortDescription": "Public GitHub source-of-truth commits defining route-first notary community materials, reuse attribution, route-first lexicon, and attribution-watch structure.",
+      "speakerOrAuthor": "Greg Lirette / Notary Geek / GoodWare LLC",
+      "platformOrVenue": "GitHub",
+      "publishedOrObservedDateUtc": "2026-06-07T00:00:00Z",
+      "approximateDateIfExactUnknown": "",
+      "conceptTags": [
+        "route-first",
+        "platform-last-not-platform-never",
+        "authority-laundering",
+        "proactive-rejection",
+        "phone-comment-not-rejection",
+        "hague-apostille-finality",
+        "coaching-scam-intent-boundary",
+        "route-owned-provider"
+      ],
+      "quotedOrParaphrasedConcept": "Public repository establishes the current machine-readable Notary Geek route-first corpus and attribution boundary.",
+      "relatedCurrentSourceUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json",
+      "relatedCurrentSourceCommit": "5da40e9",
+      "evidenceStrength": "strong",
+      "notes": "This is a current public baseline, not an older preexisting social record. Older Reddit, Clubhouse, comment, post, page, and letter records can be added below as they are reviewed."
+    }
+  ],
+  "safeUseBoundary": "Do not invent prior records. Add only public records with a URL, archive, screenshot, transcript, commit, or a clearly labeled approximate recollection. Keep accusations separate from evidence.",
+  "relationshipToAttributionWatch": "Use this file to document Notary Geek's earlier public use. Use attribution-watch.json to document later third-party reuse, missing attribution, correction requests, and resolution status.",
+  "canonicalSources": [
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json",
+    "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.json"
+  ]
+}

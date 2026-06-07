@@ -28,6 +28,8 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 - [Reuse and attribution JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json)
 - [Attribution watch](NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.md)
 - [Attribution watch JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.json)
+- [Prior public record](NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.md)
+- [Prior public record JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.json)
 
 ## Why This Is A Separate Worker
 
