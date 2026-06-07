@@ -44,15 +44,50 @@ public sealed class PublicKnowledgeResearchFunction
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "public-knowledge/research")] HttpRequestData req,
         CancellationToken cancellationToken)
     {
+        var caseId = TryGetStringQuery(req, "case") ?? TryGetStringQuery(req, "profile");
+        var focus = TryGetStringQuery(req, "focus") ?? "public notary, apostille, identity, platform, and source-quality research";
+
+        if (!string.IsNullOrWhiteSpace(caseId))
+        {
+            if (!_service.TryGetRegressionCase(caseId, out var regressionCase) || regressionCase is null)
+            {
+                var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+                await badRequest.WriteAsJsonAsync(new
+                {
+                    ok = false,
+                    error = "unknown_regression_case",
+                    requestedCase = caseId,
+                    availableCases = _service.GetRegressionMatrix().Cases.Select(item => item.Id)
+                }, cancellationToken);
+                return badRequest;
+            }
+
+            focus = regressionCase.Focus;
+        }
+
         var command = new PublicKnowledgeRunCommand(
             Execute: TryGetBoolQuery(req, "execute") ?? false,
             FromTimer: false,
-            Focus: TryGetStringQuery(req, "focus") ?? "public notary, apostille, identity, platform, and source-quality research",
+            Focus: focus,
             RequestedUrls: GetRepeatedQuery(req, "url"));
 
         var result = await _service.RunAsync(command, cancellationToken);
         var response = req.CreateResponse(result.Ok ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         await response.WriteAsJsonAsync(result, cancellationToken);
+        return response;
+    }
+
+    [Function("PublicKnowledgeRegressionMatrix")]
+    public async Task<HttpResponseData> RegressionMatrix(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/regression-matrix")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        await response.WriteAsJsonAsync(new
+        {
+            ok = true,
+            matrix = _service.GetRegressionMatrix()
+        }, cancellationToken);
         return response;
     }
 

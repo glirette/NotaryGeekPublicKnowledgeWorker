@@ -7,6 +7,7 @@ public sealed class PublicKnowledgeOptions
     public string PublicBaseUrl { get; set; } = "https://notary.cx";
     public string PublicCorpusManifestUrl { get; set; } = string.Empty;
     public string LocalManifestPath { get; set; } = "public-knowledge/public-knowledge-manifest.json";
+    public string LocalRegressionMatrixPath { get; set; } = "public-knowledge/public-knowledge-regression-matrix.json";
     public string AllowedSourceHosts { get; set; } =
         "notary.cx;www.notary.cx;raw.githubusercontent.com;github.com;www.hcch.net;travel.state.gov;dos.fl.gov;dos.myflorida.com;dos.ny.gov;www.sos.state.tx.us;law.justia.com;leginfo.legislature.ca.gov";
     public string DefaultSourcePaths { get; set; } =

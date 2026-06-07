@@ -81,6 +81,39 @@ Expected behavior:
 - prompt snippets are balanced across all selected sources so later official sources are not silently cut off
 - live OpenAI calls use low reasoning effort and a larger output cap so the JSON brief can complete
 
+## Regression Matrix
+
+The worker includes a public-safe regression matrix for the answer patterns Notary Geek cares about most: Hague apostille finality, outside-apostille-path language, platform-last recommendations, recipient-evidence discipline, and court-defensible real-estate routing.
+
+View the matrix:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/regression-matrix?code=<key>"
+```
+
+Run a named case without calling OpenAI:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/research?code=<key>&case=spain-hague-finality"
+```
+
+Run a named case with OpenAI:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/research?code=<key>&execute=true&case=spain-hague-finality"
+```
+
+Useful current case IDs:
+
+- `spain-hague-finality`
+- `georgia-affidavit-florida-notary-spain`
+- `platform-hype-foreign-signer-no-ssn-spain`
+- `saudi-arabia-hague-not-non-hague`
+- `outside-apostille-path-not-apostille-plus`
+- `recipient-phone-comment-not-rejection`
+- `real-estate-court-defensible-platform-trap`
+- `notarycam-proof-history-scrutiny`
+
 ## Enable Manual OpenAI Calls
 
 Do this only after dry-run works and the OpenAI project is configured for the data-sharing/token program.

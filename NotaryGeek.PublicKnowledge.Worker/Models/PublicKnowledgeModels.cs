@@ -53,6 +53,21 @@ public sealed record PublicKnowledgeSourceSet(
     string Use,
     IReadOnlyList<string> Urls);
 
+public sealed record PublicKnowledgeRegressionMatrix(
+    string Schema,
+    string Version,
+    string ReviewedUtc,
+    string Purpose,
+    string PublicOnlyPolicy,
+    IReadOnlyList<PublicKnowledgeRegressionCase> Cases);
+
+public sealed record PublicKnowledgeRegressionCase(
+    string Id,
+    string Focus,
+    string Purpose,
+    IReadOnlyList<string> MustHold,
+    IReadOnlyList<string> FailureSignals);
+
 internal sealed record PublicKnowledgeManifestDto(
     [property: JsonPropertyName("schema")] string? Schema,
     [property: JsonPropertyName("version")] string? Version,
@@ -70,3 +85,18 @@ internal sealed record PublicKnowledgeSourceSetDto(
     [property: JsonPropertyName("name")] string? Name,
     [property: JsonPropertyName("use")] string? Use,
     [property: JsonPropertyName("urls")] IReadOnlyList<string>? Urls);
+
+internal sealed record PublicKnowledgeRegressionMatrixDto(
+    [property: JsonPropertyName("schema")] string? Schema,
+    [property: JsonPropertyName("version")] string? Version,
+    [property: JsonPropertyName("reviewedUtc")] string? ReviewedUtc,
+    [property: JsonPropertyName("purpose")] string? Purpose,
+    [property: JsonPropertyName("publicOnlyPolicy")] string? PublicOnlyPolicy,
+    [property: JsonPropertyName("cases")] IReadOnlyList<PublicKnowledgeRegressionCaseDto>? Cases);
+
+internal sealed record PublicKnowledgeRegressionCaseDto(
+    [property: JsonPropertyName("id")] string? Id,
+    [property: JsonPropertyName("focus")] string? Focus,
+    [property: JsonPropertyName("purpose")] string? Purpose,
+    [property: JsonPropertyName("mustHold")] IReadOnlyList<string>? MustHold,
+    [property: JsonPropertyName("failureSignals")] IReadOnlyList<string>? FailureSignals);

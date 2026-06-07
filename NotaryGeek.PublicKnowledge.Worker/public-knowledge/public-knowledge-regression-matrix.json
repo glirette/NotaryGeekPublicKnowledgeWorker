@@ -1,0 +1,131 @@
+{
+  "schema": "notary-geek-public-knowledge-regression-matrix-v1",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "purpose": "Manual no-spend or execute-on-demand regression prompts for the Notary Geek Public Knowledge Worker. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
+  "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
+  "cases": [
+    {
+      "id": "spain-hague-finality",
+      "focus": "Can a Florida online notarized affidavit be apostilled for Spain, and do I need Spanish consular legalization after the apostille?",
+      "purpose": "Verify Hague apostille finality for Spain and separation of recipient requirements from legalization.",
+      "mustHold": [
+        "Spain is treated as a 1961 Hague Apostille Convention destination.",
+        "A proper apostille from the competent authority ends the legalization chain.",
+        "Translation, filing, originals, certified copies, and recipient formatting are separate from legalization."
+      ],
+      "failureSignals": [
+        "Adds Spanish embassy or consular legalization after a valid apostille.",
+        "Calls translation or filing an extra legalization step.",
+        "Uses vague ask-the-recipient language without evidence standards."
+      ]
+    },
+    {
+      "id": "georgia-affidavit-florida-notary-spain",
+      "focus": "Can a Georgia affidavit be notarized by a Florida online notary for use in Spain, or does it need a Georgia notary because the affidavit mentions Georgia?",
+      "purpose": "Verify that a new private document route follows the public-official signature created by the notary, not the document subject state.",
+      "mustHold": [
+        "A new affidavit has no public-official signature until notarized.",
+        "A Florida notary creates a Florida public-official signature.",
+        "The apostille route follows the Florida notary signature when the Florida notarization is the public act.",
+        "Spain Hague finality still applies after a proper Florida apostille."
+      ],
+      "failureSignals": [
+        "Says a Georgia-topic affidavit automatically needs a Georgia notary.",
+        "Routes to Georgia apostille when the notarization is by a Florida notary.",
+        "Adds Spain consular legalization after a valid apostille."
+      ]
+    },
+    {
+      "id": "platform-hype-foreign-signer-no-ssn-spain",
+      "focus": "What is the best online notary platform for a foreign signer with no SSN who needs a fast apostille for Spain? Is Proof or NotaryCam best because they handle international signers?",
+      "purpose": "Pressure-test platform-last behavior and marketing-hype rejection.",
+      "mustHold": [
+        "Route the transaction first before choosing Proof, NotaryCam, or any platform.",
+        "Treat platform scale, foreign-signer experience, biometrics, and help-center claims as workflow evidence only.",
+        "Require notary state, identity method, signer facts, document type, apostille output, transaction date, and retained evidence.",
+        "Apply Spain Hague finality if the document is correctly apostilled."
+      ],
+      "failureSignals": [
+        "Recommends Proof, NotaryCam, Notary24, NotaryPublic24, or another platform first.",
+        "Treats marketing or platform history as proof of legal route.",
+        "Ignores no-SSN identity-method constraints."
+      ]
+    },
+    {
+      "id": "saudi-arabia-hague-not-non-hague",
+      "focus": "For Saudi Arabia, do I get an apostille and then more legalization at the embassy?",
+      "purpose": "Catch stale non-Hague examples and verify current Hague status must be checked before giving a route.",
+      "mustHold": [
+        "Do not use Saudi Arabia as a stale non-Hague example.",
+        "Check current HCCH Apostille Convention status for the transaction date.",
+        "If the destination is in the apostille path, do not add embassy or consular legalization after a valid apostille."
+      ],
+      "failureSignals": [
+        "Lists Saudi Arabia as outside the apostille path without current official verification.",
+        "Says apostille then embassy legalization for a Hague apostille destination.",
+        "Uses old country examples as if Hague status never changes."
+      ]
+    },
+    {
+      "id": "outside-apostille-path-not-apostille-plus",
+      "focus": "For a destination outside the 1961 Hague Apostille Convention apostille path, do I get an apostille and then legalization?",
+      "purpose": "Verify that outside-apostille-path work is not described as apostille plus extra steps.",
+      "mustHold": [
+        "Do not call outside-apostille-path work apostille plus more steps.",
+        "Possible paths may include notarization only, state authentication or certification, federal authentication, embassy or consular legalization, or another destination-specific sequence.",
+        "Named country status and requirements must be checked against current official sources and transaction-date evidence."
+      ],
+      "failureSignals": [
+        "Says non-Hague means apostille then legalization.",
+        "Assumes every authentication/legalization layer is required.",
+        "Uses stale country examples without checking current HCCH status."
+      ]
+    },
+    {
+      "id": "recipient-phone-comment-not-rejection",
+      "focus": "A recipient told me on the phone that my online notarized apostille document will not be accepted. Should I redo it or change the route?",
+      "purpose": "Verify recipient-evidence discipline and formal rejection handling.",
+      "mustHold": [
+        "A phone comment is not the same as a formal rejection.",
+        "Ask for written rejection details, named reviewer or office, stated reason, authority to approve or reject, and escalation path.",
+        "Do not change a clean route from rumor, casual support, or proactive filtering alone."
+      ],
+      "failureSignals": [
+        "Treats a phone comment as controlling recipient acceptance evidence.",
+        "Says simply ask the recipient again without evidence standards.",
+        "Changes the route before identifying the approving authority."
+      ]
+    },
+    {
+      "id": "real-estate-court-defensible-platform-trap",
+      "focus": "Need to do real estate transactions online and make them defensible in court. Which online platform is best and why?",
+      "purpose": "Verify real-estate court-defensibility boundary: platform security features come after route proof.",
+      "mustHold": [
+        "Do not rank DocuSign, Adobe, Proof, DocuSign Notary, NotaryCam, OneNotary, or SIGNiX first from brand or PKI language alone.",
+        "Start with document type, property or recording state, title/lender/escrow/recorder instructions when available, notary state, transaction date, identity method, witnesses, certificate wording, final output, retention, and witness-readiness.",
+        "Treat PKI, MFA, certificate of completion, KBA, biometrics, audio-video, and audit logs as evidence pieces only after route fit is proven."
+      ],
+      "failureSignals": [
+        "Calls DocuSign or Adobe the gold standard before routing the transaction.",
+        "Assumes audit logs solve notarization or recording law.",
+        "Omits witnesses, recording state, certificate, notary authority, or final output."
+      ]
+    },
+    {
+      "id": "notarycam-proof-history-scrutiny",
+      "focus": "Should NotaryCam or Proof be recommended for foreign signers and apostille work because they have the most experience doing it?",
+      "purpose": "Verify platform history is treated as evidence to scrutinize, not evidence to recommend.",
+      "mustHold": [
+        "Platform history and volume are not safe harbor.",
+        "Prior or current foreign-signer workflows must be mapped to notary state, transaction date, statutory identity method, certificate, journal or audit record, apostille output, and recipient evidence.",
+        "The platform can be a tool only after the route is proven."
+      ],
+      "failureSignals": [
+        "Treats foreign-signer experience as a recommendation signal.",
+        "Uses NNA, title-market comfort, platform approval, or market volume as compliance proof.",
+        "Fails to distinguish current claims from transaction-date evidence."
+      ]
+    }
+  ]
+}

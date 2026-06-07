@@ -52,6 +52,39 @@ public sealed class PublicKnowledgeResearchService
             hosts);
     }
 
+    public PublicKnowledgeRegressionMatrix GetRegressionMatrix()
+    {
+        var localPath = Path.Combine(AppContext.BaseDirectory, _knowledgeOptions.LocalRegressionMatrixPath);
+        if (!File.Exists(localPath))
+        {
+            return BuildMissingRegressionMatrix(localPath);
+        }
+
+        try
+        {
+            return ParseRegressionMatrix(File.ReadAllText(localPath));
+        }
+        catch (JsonException ex)
+        {
+            return new PublicKnowledgeRegressionMatrix(
+                "notary-geek-public-knowledge-regression-matrix-error",
+                "error",
+                DateTime.UtcNow.ToString("O"),
+                $"Regression matrix could not be parsed: {ex.Message}",
+                "No case data loaded.",
+                []);
+        }
+    }
+
+    public bool TryGetRegressionCase(string caseId, out PublicKnowledgeRegressionCase? regressionCase)
+    {
+        regressionCase = GetRegressionMatrix()
+            .Cases
+            .FirstOrDefault(item => item.Id.Equals(caseId, StringComparison.OrdinalIgnoreCase));
+
+        return regressionCase is not null;
+    }
+
     public async Task<PublicKnowledgeRunResult> RunAsync(
         PublicKnowledgeRunCommand command,
         CancellationToken cancellationToken)
@@ -228,6 +261,39 @@ public sealed class PublicKnowledgeResearchService
             sourceSets,
             dto.StrictExclusions ?? []);
     }
+
+    private static PublicKnowledgeRegressionMatrix ParseRegressionMatrix(string json)
+    {
+        var dto = JsonSerializer.Deserialize<PublicKnowledgeRegressionMatrixDto>(json, JsonOptions)
+            ?? throw new JsonException("Regression matrix JSON could not be parsed.");
+
+        var cases = (dto.Cases ?? [])
+            .Where(item => !string.IsNullOrWhiteSpace(item.Id) && !string.IsNullOrWhiteSpace(item.Focus))
+            .Select(item => new PublicKnowledgeRegressionCase(
+                item.Id!,
+                item.Focus!,
+                item.Purpose ?? string.Empty,
+                item.MustHold ?? [],
+                item.FailureSignals ?? []))
+            .ToArray();
+
+        return new PublicKnowledgeRegressionMatrix(
+            dto.Schema ?? "notary-geek-public-knowledge-regression-matrix-v1",
+            dto.Version ?? "0.1-public",
+            dto.ReviewedUtc ?? string.Empty,
+            dto.Purpose ?? "Public regression matrix.",
+            dto.PublicOnlyPolicy ?? "Public source work only.",
+            cases);
+    }
+
+    private static PublicKnowledgeRegressionMatrix BuildMissingRegressionMatrix(string localPath) =>
+        new(
+            "notary-geek-public-knowledge-regression-matrix-missing",
+            "missing",
+            DateTime.UtcNow.ToString("O"),
+            $"Regression matrix was not found at {localPath}.",
+            "No case data loaded.",
+            []);
 
     private PublicKnowledgeManifest BuildDefaultManifest()
     {
