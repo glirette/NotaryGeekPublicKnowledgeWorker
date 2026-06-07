@@ -42,8 +42,11 @@ If the goal were only cheap casual answers, this repo would not be necessary. It
 
 ## Public Briefings
 
+- [Notary community briefing folder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md)
 - [Route-first notary briefing](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.md)
 - [Route-first notary briefing JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json)
+- [Route-first quick reference card](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-quick-reference-card-2026-06-07.md)
+- [Route-first quick reference card JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-quick-reference-card-2026-06-07.json)
 
 ## What It Must Not Do
 
