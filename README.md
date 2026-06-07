@@ -137,4 +137,6 @@ See [Azure Cloud Shell setup](docs/azure-cloud-shell-setup.md) and [Public GitHu
 
 Deployment notes live in [Deploy and Test](docs/deploy-and-test.md).
 
+Live operating notes live in [Operator Runbook](docs/operator-runbook.md).
+
 If Cloud Shell logs out and `$key` is empty, use the reconnect shortcut in [Deploy and Test](docs/deploy-and-test.md#get-function-keys) before running status or stored-run curl commands.
