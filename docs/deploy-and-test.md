@@ -196,11 +196,11 @@ curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowled
 
 ## Timer Output
 
-The timer is intentionally off until there is a deliberate cadence. When enabled, it runs the configured regression batch, calls OpenAI, and stores each result in the Function App storage container.
+The safest default is timer-off until there is a deliberate cadence. Production may be intentionally enabled for a small batch such as `Core`; when enabled, the timer runs the configured regression batch, calls OpenAI, and stores each result in the Function App storage container.
 
 Current timer schedule in code: daily at `09:17 UTC`.
 
-Keep the timer hard-disabled:
+Use this when you want to hard-disable the timer and pause scheduled spend:
 
 ```bash
 az functionapp config appsettings set \
