@@ -1,0 +1,25 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "apostille-hague-finality",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Hague apostille finality",
+  "purpose": "Prevent mixing Hague apostille routes with non-apostille authentication and legalization chains.",
+  "coreRule": "For destinations in the 1961 Hague Apostille Convention path, a proper apostille from the competent authority is the legalization certificate and ends the legalization chain.",
+  "spainExample": "Spain is a Hague apostille destination. If a Florida-commissioned notary notarizes a new private document and Florida issues the apostille, no Spanish embassy or consular legalization should be added after that valid apostille.",
+  "separateFromLegalization": [
+    "translation",
+    "certified translation",
+    "filing formalities",
+    "original or certified-copy requirements",
+    "recipient document formatting",
+    "shipping and delivery logistics"
+  ],
+  "failureSignals": [
+    "says Florida apostille then Spanish consular legalization",
+    "calls translation an extra legalization step",
+    "uses stale country status without checking the current apostille path",
+    "treats platform international support as proof of apostille finality"
+  ],
+  "sourceQualityRule": "Check current Hague apostille status from official sources for the transaction date. Do not rely on stale lists or generic platform claims."
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "recipient-evidence-and-rejections",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Recipient evidence and rejection discipline",
+  "purpose": "Avoid treating casual comments, support scripts, or proactive filters as final rejection authority.",
+  "coreRule": "Recipient acceptance should be evaluated from known written instructions, official route requirements, published recipient rules, or documented rejection/acceptance evidence. A phone comment, email request, or informal support answer is not automatically a final rejection.",
+  "formalRejectionEvidence": [
+    "named reviewer or office",
+    "written rejection reason",
+    "authority to approve or reject",
+    "document version actually submitted",
+    "route evidence reviewed",
+    "appeal or escalation path"
+  ],
+  "proactiveRejectionDefinition": "A proactive rejection is an earlier filter saying a document will not be accepted before the actual approving authority reviews a submitted document.",
+  "failureSignals": [
+    "changes a clean route based only on a phone comment",
+    "uses ask the recipient as a vague escape hatch",
+    "does not identify whether the person rejecting has approval authority",
+    "treats platform queue filtering as recipient law"
+  ],
+  "publicReplyPosture": "Ask for written rejection evidence and escalation details. Do not fight shadows; identify the authority and the actual reason."
+}

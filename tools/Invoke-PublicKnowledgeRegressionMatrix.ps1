@@ -2,6 +2,8 @@ param(
     [string] $BaseUrl = "https://ng-public-knowledge-func-2026.azurewebsites.net",
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
     [string[]] $CaseId = @(),
+    [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
+    [string] $Batch = "All",
     [switch] $Execute,
     [int] $DelaySeconds = 0,
     [string] $OutDir = "",
@@ -58,6 +60,18 @@ if (-not [string]::IsNullOrWhiteSpace($OutDir)) {
 $matrixUri = New-PublicKnowledgeUri -Path "/api/public-knowledge/regression-matrix" -Query @{ code = $FunctionKey }
 $matrixResponse = Invoke-RestMethod -Uri $matrixUri -Method Get
 $cases = @($matrixResponse.matrix.cases)
+
+$batchCaseIds = switch ($Batch) {
+    "Core" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "platform-hype-foreign-signer-no-ssn-spain", "outside-apostille-path-not-apostille-plus") }
+    "Platform" { @("platform-hype-foreign-signer-no-ssn-spain", "notarycam-proof-history-scrutiny", "real-estate-court-defensible-platform-trap") }
+    "Apostille" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "saudi-arabia-hague-not-non-hague", "outside-apostille-path-not-apostille-plus") }
+    "Recipient" { @("recipient-phone-comment-not-rejection", "real-estate-court-defensible-platform-trap") }
+    default { @() }
+}
+
+if ($CaseId.Count -eq 0 -and $batchCaseIds.Count -gt 0) {
+    $CaseId = $batchCaseIds
+}
 
 if ($CaseId.Count -gt 0) {
     $wanted = New-Object "System.Collections.Generic.HashSet[string]" ([StringComparer]::OrdinalIgnoreCase)

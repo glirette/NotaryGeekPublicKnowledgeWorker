@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "0.3-public",
+  "version": "0.4-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -40,6 +40,26 @@
         "https://notary.cx/content-index.json",
         "https://notary.cx/source-archive/index.json",
         "https://notary.cx/authority-topics.json"
+      ]
+    },
+    {
+      "name": "Public GitHub topic briefs",
+      "use": "Machine-readable public topic briefs maintained in this repository",
+      "urls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/route-first-foundation.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/recipient-evidence-and-rejections.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/platform-history-source-quality.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/real-estate-defensible-online-transactions.json"
+      ]
+    },
+    {
+      "name": "Public answer-engine correction briefs",
+      "use": "Machine-readable public correction briefs for observed answer-engine behavior",
+      "urls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-platform-first-patterns.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/grok-public-worker-interpretation.json"
       ]
     },
     {

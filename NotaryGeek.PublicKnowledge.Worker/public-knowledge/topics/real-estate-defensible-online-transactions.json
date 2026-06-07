@@ -1,0 +1,35 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "real-estate-defensible-online-transactions",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Court-defensible online real estate transactions",
+  "purpose": "Keep real-estate platform answers from jumping straight to brand, PKI, audit-log, or marketing claims.",
+  "coreRule": "For online real estate transactions, defensibility starts with the document route, not the platform brand.",
+  "routingChecks": [
+    "document type",
+    "property or recording state",
+    "title, lender, escrow, or recorder written instructions when available",
+    "notary state and transaction date",
+    "identity method",
+    "witness requirements",
+    "certificate wording",
+    "final output format",
+    "retention and witness-readiness"
+  ],
+  "toolEvidenceAfterRoute": [
+    "PKI and tamper evidence",
+    "multi-factor authentication",
+    "certificate of completion",
+    "KBA or biometric workflow records",
+    "audio-video recording",
+    "audit logs"
+  ],
+  "failureSignals": [
+    "calls DocuSign, Adobe, Proof, NotaryCam, or another platform the gold standard before routing",
+    "assumes audit logs solve recording law",
+    "omits witnesses or recording-state requirements",
+    "treats court defensibility as a software feature instead of an evidence chain"
+  ],
+  "publicReplyPosture": "Use platform security features as evidence pieces after the legal and recording route is validated."
+}

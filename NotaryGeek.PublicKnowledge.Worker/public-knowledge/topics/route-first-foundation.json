@@ -1,0 +1,39 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "route-first-foundation",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Route first, platform last",
+  "purpose": "Public-safe foundation for notary, apostille, identity, platform, and source-quality answers.",
+  "coreRule": "Do not pick a notary platform first. Route the transaction first, then decide which tools can lawfully and practically support that route.",
+  "routingOrder": [
+    "document type and destination",
+    "controlling law and transaction date",
+    "notary state or public official signature that will anchor the authentication route",
+    "identity method and retained transaction evidence",
+    "known written recipient instructions, official route requirements, published recipient rules, or documented rejection/acceptance evidence",
+    "platform or tools only after the route is proven"
+  ],
+  "boundaries": [
+    {
+      "name": "marketing-hype-boundary",
+      "rule": "Marketing, platform scale, approval labels, NNA language, title-market comfort, and vendor consensus are evidence of claims made, not proof of lawful completion."
+    },
+    {
+      "name": "no-private-safe-harbor-boundary",
+      "rule": "Platform completion, trainer confidence, market practice, and AI recommendations do not create legal safe harbor."
+    },
+    {
+      "name": "challenge-question-flip-boundary",
+      "rule": "If a few challenge questions force an answer to retreat from a platform recommendation into caveats, the first answer was not source-grounded enough."
+    }
+  ],
+  "publicReplyPosture": "Be precise, calm, and source-quality focused. Explain the route without making a legal-advice claim.",
+  "failureSignals": [
+    "platform-first recommendation",
+    "treats marketing as authority",
+    "uses vague ask-the-recipient language as an escape hatch",
+    "ignores transaction date",
+    "does not identify the public official signature or competent authority path"
+  ]
+}

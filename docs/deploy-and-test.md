@@ -127,6 +127,14 @@ That default run is dry-run only. To call OpenAI for the selected cases:
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -Execute -DelaySeconds 2 -OutDir .\artifacts\regression-runs
 ```
 
+To run a focused execute batch:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -Batch Core -Execute -DelaySeconds 2 -OutDir .\artifacts\regression-runs
+```
+
+Available batches are `All`, `Core`, `Platform`, `Apostille`, and `Recipient`.
+
 To run one case:
 
 ```powershell
@@ -165,7 +173,16 @@ Then:
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/research?code=<key>&execute=true&focus=Spain%20apostille%20routing"
 ```
 
-Keep `PublicKnowledge__TimerEnabled=false` until manual runs are reliable.
+Keep the timer hard-disabled until there is a deliberate cadence:
+
+```bash
+az functionapp config appsettings set \
+  --resource-group NG-PUBLIC-KNOWLEDGE \
+  --name ng-public-knowledge-func-2026 \
+  --settings PublicKnowledge__TimerEnabled=false AzureWebJobs.PublicKnowledgeResearchTimer.Disabled=true
+```
+
+This keeps both the code-level timer gate and the Azure Functions timer trigger disabled. Manual dry-runs and manual `execute=true` calls still work.
 
 ## Optional GitHub Actions Later
 

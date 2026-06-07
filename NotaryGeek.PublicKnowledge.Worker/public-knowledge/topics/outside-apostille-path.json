@@ -1,0 +1,24 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "outside-apostille-path",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Outside the apostille path is not apostille plus more steps",
+  "purpose": "Keep non-apostille authentication and legalization language precise.",
+  "coreRule": "For destinations outside the 1961 Hague Apostille Convention apostille path, do not describe the route as an apostille plus more steps. It is a separate authentication, certification, and legalization path whose exact sequence depends on the destination and document facts.",
+  "possibleRouteElements": [
+    "notarization only",
+    "state authentication or certification",
+    "U.S. Department of State authentication",
+    "embassy or consular legalization",
+    "destination-specific in-country requirements"
+  ],
+  "importantNuance": "A country can participate in other Hague conventions but not be in the 1961 Apostille Convention path for the relevant transaction. Always check the specific apostille convention status and transaction-date requirements.",
+  "failureSignals": [
+    "says non-Hague means apostille then legalization",
+    "assumes every possible authentication layer is always required",
+    "uses stale examples such as Saudi Arabia as outside the apostille path without current verification",
+    "confuses Hague generally with the 1961 Apostille Convention specifically"
+  ],
+  "publicReplyPosture": "Do not overpromise online notarization acceptance outside the apostille path. Explain that destination-country practice can control more of the route."
+}

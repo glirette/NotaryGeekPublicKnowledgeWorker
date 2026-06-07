@@ -48,6 +48,7 @@ public sealed class PublicKnowledgeResearchService
             _openAiOptions.Model,
             !string.IsNullOrWhiteSpace(_openAiOptions.ApiKey),
             _knowledgeOptions.MaxSourcesPerRun,
+            _knowledgeOptions.SourceFetchConcurrency,
             _knowledgeOptions.MaxEstimatedInputTokens,
             hosts);
     }
@@ -97,21 +98,48 @@ public sealed class PublicKnowledgeResearchService
         var manifest = await LoadManifestAsync(warnings, cancellationToken);
         var urls = SelectSourceUrls(manifest, command.RequestedUrls, warnings);
         var client = CreateFetchClient();
+        var selectedUrls = urls.Take(_knowledgeOptions.MaxSourcesPerRun).ToArray();
+        var sourceFetchConcurrency = Math.Clamp(
+            _knowledgeOptions.SourceFetchConcurrency,
+            1,
+            Math.Max(1, selectedUrls.Length));
 
-        foreach (var url in urls.Take(_knowledgeOptions.MaxSourcesPerRun))
+        using var fetchLimiter = new SemaphoreSlim(sourceFetchConcurrency);
+        var fetchTasks = selectedUrls.Select(async (url, index) =>
         {
             if (!IsAllowedPublicUrl(url, out var reason))
             {
-                sourceResults.Add(new PublicKnowledgeSourceResult(url, false, 0, null, 0, reason));
-                warnings.Add($"Skipped {url}: {reason}");
-                continue;
+                return new SourceFetchWorkItem(
+                    index,
+                    new PublicKnowledgeSourceResult(url, false, 0, null, 0, reason),
+                    null,
+                    $"Skipped {url}: {reason}");
             }
 
-            var fetched = await FetchSourceAsync(client, url, cancellationToken);
+            await fetchLimiter.WaitAsync(cancellationToken);
+            try
+            {
+                var fetched = await FetchSourceAsync(client, url, cancellationToken);
+                return new SourceFetchWorkItem(index, fetched.Result, fetched.Body, null);
+            }
+            finally
+            {
+                fetchLimiter.Release();
+            }
+        }).ToArray();
+
+        var fetchedSources = await Task.WhenAll(fetchTasks);
+        foreach (var fetched in fetchedSources.OrderBy(item => item.Index))
+        {
             sourceResults.Add(fetched.Result);
             if (fetched.Body is not null)
             {
                 sourceBodies.Add(fetched.Body);
+            }
+
+            if (!string.IsNullOrWhiteSpace(fetched.Warning))
+            {
+                warnings.Add(fetched.Warning);
             }
         }
 
@@ -678,6 +706,12 @@ public sealed class PublicKnowledgeResearchService
 
     private sealed record SourceBody(string Url, string Content);
 
+    private sealed record SourceFetchWorkItem(
+        int Index,
+        PublicKnowledgeSourceResult Result,
+        SourceBody? Body,
+        string? Warning);
+
     private sealed record OpenAiProviderResult(
         bool Ok,
         string? ResponseText,
@@ -697,5 +731,6 @@ public sealed record PublicKnowledgeStatus(
     string Model,
     bool HasOpenAiApiKey,
     int MaxSourcesPerRun,
+    int SourceFetchConcurrency,
     int MaxEstimatedInputTokens,
     IReadOnlyList<string> AllowedSourceHosts);
