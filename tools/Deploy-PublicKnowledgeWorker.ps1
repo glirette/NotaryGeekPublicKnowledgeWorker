@@ -56,7 +56,7 @@ if (-not [string]::IsNullOrWhiteSpace($PublishProfileXml)) {
         $scmHost = ($scmHost -split ":")[0]
     }
 
-    if ([string]::IsNullOrWhiteSpace($scmHost) -or -not $scmHost.Contains(".scm.", [StringComparison]::OrdinalIgnoreCase)) {
+    if ([string]::IsNullOrWhiteSpace($scmHost) -or $scmHost.IndexOf(".scm.", [StringComparison]::OrdinalIgnoreCase) -lt 0) {
         throw "Could not determine SCM host from publishUrl '$publishUrl'."
     }
 
@@ -68,13 +68,27 @@ if (-not [string]::IsNullOrWhiteSpace($PublishProfileXml)) {
 
     $basicAuth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("${username}:$password"))
     Write-Host "Deploying package to $scmHost with Kudu ZIP Deploy."
-    Invoke-RestMethod `
-        -Uri "https://$scmHost/api/zipdeploy" `
-        -Method Post `
-        -Headers @{ Authorization = "Basic $basicAuth" } `
-        -ContentType "application/zip" `
-        -InFile $zipPath `
-        -TimeoutSec 300 | Out-Null
+    try {
+        Invoke-RestMethod `
+            -Uri "https://$scmHost/api/zipdeploy" `
+            -Method Post `
+            -Headers @{ Authorization = "Basic $basicAuth" } `
+            -ContentType "application/zip" `
+            -InFile $zipPath `
+            -TimeoutSec 300 | Out-Null
+    }
+    catch {
+        $statusCode = $null
+        if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+            $statusCode = [int] $_.Exception.Response.StatusCode
+        }
+
+        if ($statusCode -eq 401) {
+            throw "Kudu ZIP Deploy returned 401 Unauthorized. Enable SCM basic publishing credentials for the Function App or download a fresh publish profile, then rerun this script."
+        }
+
+        throw
+    }
 }
 else {
     $az = Get-Command az -ErrorAction SilentlyContinue

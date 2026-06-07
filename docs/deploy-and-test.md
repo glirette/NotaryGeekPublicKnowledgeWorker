@@ -20,6 +20,18 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Deploy-PublicKnowled
 
 Do not commit publish profiles. They contain deployment credentials.
 
+If Kudu ZIP Deploy returns `401 Unauthorized`, enable SCM basic publishing credentials in Cloud Shell and then download a fresh publish profile:
+
+```bash
+az resource update \
+  --resource-group NG-PUBLIC-KNOWLEDGE \
+  --namespace Microsoft.Web \
+  --resource-type basicPublishingCredentialsPolicies \
+  --parent sites/ng-public-knowledge-func-2026 \
+  --name scm \
+  --set properties.allow=true
+```
+
 That publishes the Function App, zips the output, and deploys it to:
 
 ```text
