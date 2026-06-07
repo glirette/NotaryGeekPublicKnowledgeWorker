@@ -340,16 +340,31 @@ public sealed class PublicKnowledgeResearchService
             builder.AppendLine($"- {exclusion}");
         }
 
-        builder.AppendLine();
-        builder.AppendLine("Sources:");
+        var header = builder.ToString();
+        var sourceBuilder = new StringBuilder();
+        sourceBuilder.AppendLine();
+        sourceBuilder.AppendLine("Sources:");
+        var sourceBudget = Math.Max(1_000, _knowledgeOptions.MaxInputCharacters - header.Length - 1_000);
+        var perSourceBudget = sources.Count == 0
+            ? sourceBudget
+            : Math.Max(1_000, sourceBudget / sources.Count);
+
         foreach (var source in sources)
         {
-            builder.AppendLine();
-            builder.AppendLine($"--- SOURCE: {source.Url}");
-            builder.AppendLine(source.Content);
+            sourceBuilder.AppendLine();
+            sourceBuilder.AppendLine($"--- SOURCE: {source.Url}");
+            if (source.Content.Length > perSourceBudget)
+            {
+                sourceBuilder.AppendLine($"[prompt-snippet-truncated:{source.Content.Length}->{perSourceBudget}]");
+                sourceBuilder.AppendLine(source.Content[..perSourceBudget]);
+            }
+            else
+            {
+                sourceBuilder.AppendLine(source.Content);
+            }
         }
 
-        var prompt = builder.ToString();
+        var prompt = header + sourceBuilder;
         if (prompt.Length <= _knowledgeOptions.MaxInputCharacters)
         {
             return prompt;

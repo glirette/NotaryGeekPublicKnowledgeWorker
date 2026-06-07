@@ -78,6 +78,7 @@ Expected behavior:
 - sources are public URLs only
 - prompt/token estimates are returned
 - large public source files can show `ok-truncated`, which is expected and keeps prompt size bounded
+- prompt snippets are balanced across all selected sources so later official sources are not silently cut off
 - live OpenAI calls use low reasoning effort and a larger output cap so the JSON brief can complete
 
 ## Enable Manual OpenAI Calls

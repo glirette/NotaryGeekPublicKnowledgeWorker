@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "0.1-public",
+  "version": "0.2-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -9,6 +9,14 @@
     "summary": "This corpus is for public law, public guidance, public answer-engine examples, public source archive notes, and public Notary Geek routing materials only."
   },
   "sourceSets": [
+    {
+      "name": "Official Hague and U.S. apostille sources",
+      "use": "Primary official references for Hague Apostille Convention status and U.S. apostille preparation requirements",
+      "urls": [
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+        "https://travel.state.gov/content/travel/en/replace-certify-docs/authenticate-your-document/apostille-requirements.html"
+      ]
+    },
     {
       "name": "Routing model",
       "use": "Decision layer and source-quality guardrails",
