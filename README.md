@@ -38,6 +38,7 @@ If the goal were only cheap casual answers, this repo would not be necessary. It
 - Calls OpenAI only when `execute=true`, `PublicKnowledge__Enabled=true`, and an API key is configured.
 - Returns a JSON brief that can help with reply drafts, page briefs, law-refresh candidates, and source-quality notes.
 - Provides a public-safe regression matrix for route-first answer patterns such as Hague apostille finality, Georgia-affidavit routing, no-SSN platform hype, Saudi Arabia Hague status, outside-apostille-path wording, informal rejection claims, and court-defensible real-estate platform traps.
+- Stores manual or timer-run regression outputs in private Azure Blob Storage when the stored-run endpoints are used, with a compact latest-run index for downstream review and future public publishing.
 
 ## What It Must Not Do
 
@@ -94,6 +95,30 @@ From local PowerShell, the runner can execute the matrix without putting the fun
 $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY = "<key-for-this-shell-only>"
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1
 ```
+
+## Stored Runs
+
+The stored-run lane writes outputs to the configured private blob container, currently `public-knowledge-runs` in Function storage.
+
+Run and store the Core batch immediately:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/run-batch?code=<key>&batch=Core"
+```
+
+List latest stored outputs:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/latest?code=<key>"
+```
+
+Build and save the compact latest-run index:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/export-index?code=<key>"
+```
+
+Manual stored batches and the daily timer both refresh `runs/latest-index.json`. The blob container remains private by default; publish only intentional, public-safe extracts through GitHub or Notary Geek pages.
 
 See [Azure Cloud Shell setup](docs/azure-cloud-shell-setup.md) and [Public GitHub SSOT](docs/public-github-ssot.md).
 
