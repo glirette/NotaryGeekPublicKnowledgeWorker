@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+local.settings.json
+*.publishsettings
+*.zip
+artifacts/
+App_Data/

@@ -1,0 +1,46 @@
+{
+  "schema": "notary-geek-public-knowledge-manifest-v1",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
+  "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
+  "publicOnlyPolicy": {
+    "publicOnly": true,
+    "summary": "This corpus is for public law, public guidance, public answer-engine examples, public source archive notes, and public Notary Geek routing materials only."
+  },
+  "sourceSets": [
+    {
+      "name": "Routing model",
+      "use": "Decision layer and source-quality guardrails",
+      "urls": [
+        "https://notary.cx/notarial-routing-model.json",
+        "https://notary.cx/notary-geek-routing-model-release.html",
+        "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "name": "Public discovery and archive",
+      "use": "Reusable public evidence and answer-engine correction examples",
+      "urls": [
+        "https://notary.cx/content-index.json",
+        "https://notary.cx/source-archive/index.json",
+        "https://notary.cx/authority-topics.json"
+      ]
+    },
+    {
+      "name": "Law source feeds",
+      "use": "Published law-source cache and official-source index",
+      "urls": [
+        "https://notary.cx/notary-law-sources.json",
+        "https://notary.cx/law-source-cache/source-cache-manifest.json"
+      ]
+    }
+  ],
+  "strictExclusions": [
+    "Customer documents",
+    "Customer names, emails, phone numbers, addresses, or WhatsApp message contents",
+    "Persona inquiry data, selfies, IDs, status details, or webhook payloads",
+    "Payment data, Stripe payloads, Jotform payloads, private SQL rows, and internal secrets",
+    "Private correspondence unless it has already been intentionally converted into a public-safe source archive note"
+  ]
+}

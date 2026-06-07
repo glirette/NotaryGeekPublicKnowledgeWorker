@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "PublicKnowledge__Enabled": "false",
+    "PublicKnowledge__TimerEnabled": "false",
+    "PublicKnowledge__PublicCorpusManifestUrl": "",
+    "PublicKnowledge__PublicBaseUrl": "https://notary.cx",
+    "OpenAI__BaseUrl": "https://api.openai.com",
+    "OpenAI__EndpointPath": "/v1/responses",
+    "OpenAI__Model": "gpt-5-mini",
+    "OpenAI__ApiKey": ""
+  }
+}
