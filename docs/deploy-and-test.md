@@ -40,6 +40,24 @@ ng-public-knowledge-func-2026.azurewebsites.net
 
 ## Get Function Keys
 
+If Cloud Shell logs out or `$key` is empty, rehydrate it before running `curl`:
+
+```bash
+key=$(az functionapp keys list \
+  --resource-group NG-PUBLIC-KNOWLEDGE \
+  --name ng-public-knowledge-func-2026 \
+  --query "functionKeys.default" \
+  -o tsv)
+
+if [ -z "$key" ]; then
+  key=$(az functionapp keys list \
+    --resource-group NG-PUBLIC-KNOWLEDGE \
+    --name ng-public-knowledge-func-2026 \
+    --query "masterKey" \
+    -o tsv)
+fi
+```
+
 ```bash
 az functionapp function keys list \
   --resource-group NG-PUBLIC-KNOWLEDGE \

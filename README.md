@@ -123,3 +123,5 @@ Manual stored batches and the daily timer both refresh `runs/latest-index.json`.
 See [Azure Cloud Shell setup](docs/azure-cloud-shell-setup.md) and [Public GitHub SSOT](docs/public-github-ssot.md).
 
 Deployment notes live in [Deploy and Test](docs/deploy-and-test.md).
+
+If Cloud Shell logs out and `$key` is empty, use the reconnect shortcut in [Deploy and Test](docs/deploy-and-test.md#get-function-keys) before running status or stored-run curl commands.
