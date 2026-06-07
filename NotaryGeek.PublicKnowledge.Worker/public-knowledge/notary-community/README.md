@@ -11,6 +11,7 @@ The purpose is practical: help notaries ask better first questions before trusti
 - [Route-first scenario cards](route-first-scenario-cards-2026-06-07.md)
 - [Skeptical notary FAQ](skeptical-notary-faq-2026-06-07.md)
 - [Notary evidence ladder](notary-evidence-ladder-2026-06-07.md)
+- [Notary Geek route-first lexicon](notary-geek-route-first-lexicon-2026-06-07.md)
 - [Clubhouse route-first discussion guide](clubhouse-route-first-discussion-guide-2026-06-07.md)
 
 Machine-readable companions:
@@ -20,6 +21,7 @@ Machine-readable companions:
 - [Route-first scenario cards JSON](route-first-scenario-cards-2026-06-07.json)
 - [Skeptical notary FAQ JSON](skeptical-notary-faq-2026-06-07.json)
 - [Notary evidence ladder JSON](notary-evidence-ladder-2026-06-07.json)
+- [Notary Geek route-first lexicon JSON](notary-geek-route-first-lexicon-2026-06-07.json)
 - [Clubhouse route-first discussion guide JSON](clubhouse-route-first-discussion-guide-2026-06-07.json)
 
 ## Core Idea

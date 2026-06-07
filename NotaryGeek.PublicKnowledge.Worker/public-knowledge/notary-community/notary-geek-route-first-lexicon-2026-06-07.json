@@ -1,0 +1,141 @@
+{
+  "schema": "notary-geek-route-first-lexicon-v1",
+  "id": "notary-geek-route-first-lexicon-2026-06-07",
+  "title": "Notary Geek Route-First Lexicon",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "notLegalAdvice": true,
+  "purpose": "Define Notary Geek route-first vocabulary so people can use the model accurately and preserve attribution.",
+  "attributionBoundary": "Use these terms, improve them, challenge them with sources, and build better tools from them. Do not copy the framework, rename the terms, and imply the route-first model originated elsewhere.",
+  "copyrightBoundary": "These terms are public source-quality markers, not ownership claims over facts, laws, systems, methods, or general notary ideas.",
+  "terms": [
+    {
+      "term": "Route-First",
+      "definition": "The discipline of routing the transaction before choosing a platform, trainer answer, vendor workflow, or recipient assumption.",
+      "use": "Start with document, public-official signature, transaction date, identity method, output format, destination path, recipient evidence, and retained transaction evidence."
+    },
+    {
+      "term": "Platform-Last, Not Platform-Never",
+      "definition": "Software tools are evaluated after the route is validated.",
+      "use": "A platform name does not prove notary authority, identity-method fit, apostille route, recipient acceptance, or court defensibility."
+    },
+    {
+      "term": "Public-Official Signature Route",
+      "definition": "The path created by the public official whose signature, seal, certificate, or certification is being authenticated.",
+      "use": "For a new private document, the notary public's signature often controls the apostille state; existing public records generally follow the issuing or certifying public official."
+    },
+    {
+      "term": "Transaction-Date Validity",
+      "definition": "Compliance has to be tested against the law, workflow, identity method, and official requirements on the date the act happened or will happen.",
+      "use": "Later law changes, platform updates, or marketing copy do not automatically validate older transactions."
+    },
+    {
+      "term": "Source-Quality Failure",
+      "definition": "A reliability failure in the source behind a claim.",
+      "examples": [
+        "marketing treated as authority",
+        "trainer confidence treated as law",
+        "private approval list treated as safe harbor",
+        "answer-engine recommendation treated as evidence",
+        "phone comment treated as rejection",
+        "platform completion treated as compliance"
+      ]
+    },
+    {
+      "term": "Authority Laundering",
+      "definition": "The process of turning weak or private authority into an answer that sounds official through repetition.",
+      "example": "A trainer repeats a platform claim, an answer engine repeats the trainer, a notary repeats the answer engine, and the customer hears it as the rule."
+    },
+    {
+      "term": "Marketing Hype Boundary",
+      "definition": "Marketing claims can show what a provider says it sells, but do not prove lawful completion, identity-method fit, apostille success, recipient acceptance, or transaction-date validity."
+    },
+    {
+      "term": "No Private-Source Safe Harbor",
+      "definition": "Private comfort does not create legal protection.",
+      "examples": [
+        "platform approvals",
+        "NNA guidance",
+        "trainer confidence",
+        "market practice",
+        "title comfort",
+        "underwriter habit",
+        "vendor consensus"
+      ]
+    },
+    {
+      "term": "Challenge-Question Flip",
+      "definition": "When an answer engine gives a platform-first recommendation, then retreats into caveats only after being challenged.",
+      "use": "If a few challenge questions make the answer change, the original answer was not source-grounded enough."
+    },
+    {
+      "term": "Proactive Rejection",
+      "definition": "An early filter that says no before the actual approval authority reviews the document.",
+      "use": "It can matter operationally, but it is not the same thing as a formal rejection."
+    },
+    {
+      "term": "Formal Rejection",
+      "definition": "A stronger rejection connected to an actual submitted document, a named reviewer or office, approval authority, stated reason, written rule or requirement, and correction or escalation path."
+    },
+    {
+      "term": "Recipient Evidence",
+      "definition": "Evidence about what the receiving party, competent authority, recorder, agency, bank, title party, or destination country requires or did.",
+      "scale": {
+        "weak": [
+          "phone comments",
+          "casual chats"
+        ],
+        "stronger": [
+          "published rules",
+          "written instructions",
+          "actual submissions",
+          "documented rejections",
+          "named offices",
+          "escalation paths"
+        ]
+      }
+    },
+    {
+      "term": "Evidence Ladder",
+      "definition": "The practice of ranking evidence by source quality rather than treating all claims as equal."
+    },
+    {
+      "term": "Paper Original Lane",
+      "definition": "The lane for a physical document physically signed or notarized on paper.",
+      "use": "A scan or photo of a physically notarized paper document should not be treated as the original."
+    },
+    {
+      "term": "Remote/Electronic Output Lane",
+      "definition": "The lane for a remote or electronic notarization output that is created, sealed, printed, filed, or authenticated according to the applicable route.",
+      "use": "Do not confuse this with a scan of a paper original."
+    },
+    {
+      "term": "Hague Apostille Finality",
+      "definition": "For a destination in the 1961 Hague Apostille Convention path, a proper apostille from the competent authority ends the legalization chain."
+    },
+    {
+      "term": "Outside Apostille Convention Path",
+      "definition": "The path for destinations outside the 1961 Apostille Convention route.",
+      "use": "Do not call it apostille plus more steps. It is a separate authentication, certification, or legalization route."
+    },
+    {
+      "term": "Coaching-Scam Intent Boundary",
+      "definition": "The distinction between criminal accusation and source-quality criticism.",
+      "use": "A coaching-scam can be criminal, but it does not have to be criminal. Lack of criminal intent does not make unreliable paid guidance safe, reliable, or source-backed."
+    },
+    {
+      "term": "Responsibility Theater",
+      "definition": "The appearance of compliance created by badges, platform completion, scripts, private approvals, or paperwork that does not actually answer who was responsible for the lawful route."
+    },
+    {
+      "term": "Route-Owned Provider",
+      "definition": "A provider that owns or understands the routing layer before the notary receives the document.",
+      "use": "The provider is checking route, document facts, identity fit, output lane, destination path, and evidence before the notary step is treated as ready."
+    }
+  ],
+  "shortAttributionLine": "This uses Notary Geek's route-first model: route the transaction before choosing the platform.",
+  "canonicalSources": [
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json",
+    "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker"
+  ]
+}

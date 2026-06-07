@@ -26,6 +26,8 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 
 - [Reuse and attribution](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.md)
 - [Reuse and attribution JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json)
+- [Attribution watch](NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.md)
+- [Attribution watch JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.json)
 
 ## Why This Is A Separate Worker
 
@@ -64,6 +66,8 @@ If the goal were only cheap casual answers, this repo would not be necessary. It
 - [Skeptical notary FAQ JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.json)
 - [Notary evidence ladder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.md)
 - [Notary evidence ladder JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json)
+- [Notary Geek route-first lexicon](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.md)
+- [Notary Geek route-first lexicon JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.json)
 - [Clubhouse route-first discussion guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-route-first-discussion-guide-2026-06-07.md)
 - [Clubhouse route-first discussion guide JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-route-first-discussion-guide-2026-06-07.json)
 

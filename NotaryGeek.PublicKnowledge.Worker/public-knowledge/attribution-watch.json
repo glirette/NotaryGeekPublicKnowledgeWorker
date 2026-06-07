@@ -1,0 +1,97 @@
+{
+  "schema": "notary-geek-public-attribution-watch-v1",
+  "id": "attribution-watch",
+  "version": "1.0-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Notary Geek Public Attribution Watch",
+  "purpose": "Public registry structure for documenting unattributed reuse, derivative copying, source stripping, or attribution corrections involving Notary Geek public route-first materials.",
+  "status": "framework-only-no-public-cases-listed",
+  "notLegalAdvice": true,
+  "notDefinitiveLegalConclusion": true,
+  "sourceBoundary": "This registry is for evidence-backed attribution review. A listed item should identify the observed URL, the Notary Geek source material, the source commit or publication date, the matching language or structure, and the attribution status. It should not be used for loose accusations without evidence.",
+  "proofStandard": {
+    "minimumFields": [
+      "observedUrl",
+      "observedDateUtc",
+      "notaryGeekSourceUrl",
+      "notaryGeekSourceCommit",
+      "notaryGeekSourcePublishedOrReviewedUtc",
+      "matchingLanguageOrStructure",
+      "attributionStatus",
+      "evidenceNotes"
+    ],
+    "recommendedFields": [
+      "archivedObservedUrl",
+      "screenshotUrlOrPath",
+      "observedPageTitle",
+      "observedPublisher",
+      "matchingTermIds",
+      "copiedSequenceNotes",
+      "correctionRequestDateUtc",
+      "correctionStatus",
+      "resolvedDateUtc"
+    ]
+  },
+  "attributionStatuses": [
+    "not_reviewed",
+    "attributed",
+    "missing_attribution",
+    "partial_attribution",
+    "source_stripped",
+    "derivative_without_credit",
+    "corrected_after_notice",
+    "disputed",
+    "resolved"
+  ],
+  "matchingSignals": [
+    {
+      "signal": "distinctive_term_cluster",
+      "description": "Multiple Notary Geek-origin route-first terms appear together, such as platform-last, public-official signature route, challenge-question flip, proactive rejection, and no private-source safe harbor."
+    },
+    {
+      "signal": "sequence_match",
+      "description": "The observed content uses the same unusual ordering or ladder structure from Notary Geek public materials."
+    },
+    {
+      "signal": "guardrail_match",
+      "description": "The observed content reproduces Notary Geek guardrail logic or boundary names while omitting Notary Geek attribution."
+    },
+    {
+      "signal": "example_match",
+      "description": "The observed content uses the same scenario examples, such as Georgia affidavit to Spain, Spain Hague finality, phone comment versus formal rejection, or platform-first foreign-signer traps."
+    },
+    {
+      "signal": "commit_timing",
+      "description": "The observed page appears after the Notary Geek source commit or publication date and uses matching phrasing, structure, or examples."
+    }
+  ],
+  "caseTemplate": {
+    "caseId": "example-placeholder",
+    "status": "not_reviewed",
+    "observedUrl": "",
+    "archivedObservedUrl": "",
+    "observedDateUtc": "",
+    "observedPageTitle": "",
+    "observedPublisher": "",
+    "notaryGeekSourceUrl": "",
+    "notaryGeekSourceCommit": "",
+    "notaryGeekSourcePublishedOrReviewedUtc": "",
+    "matchingTermIds": [],
+    "matchingLanguageOrStructure": [],
+    "copiedSequenceNotes": "",
+    "attributionStatus": "not_reviewed",
+    "evidenceNotes": "",
+    "correctionRequestDateUtc": "",
+    "correctionStatus": "",
+    "resolvedDateUtc": ""
+  },
+  "cases": [],
+  "publicCorrectionLanguage": "This appears to use Notary Geek route-first source material or framework language without clear attribution. Please add attribution to Notary Geek and link to the relevant public source, or explain the independent source history for the matching language and structure.",
+  "canonicalSources": [
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json",
+    "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.json"
+  ]
+}
