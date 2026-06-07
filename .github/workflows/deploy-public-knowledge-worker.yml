@@ -55,16 +55,22 @@ jobs:
         shell: pwsh
         env:
           PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+          PUBLIC_KNOWLEDGE_STATUS_URL: ${{ secrets.PUBLIC_KNOWLEDGE_STATUS_URL }}
         run: |
           if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
             Write-Host "PUBLIC_KNOWLEDGE_FUNCTION_KEY is not configured. Skipping protected status check."
             exit 0
           }
 
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_STATUS_URL)) {
+            Write-Host "PUBLIC_KNOWLEDGE_STATUS_URL is not configured. Skipping protected status check."
+            exit 0
+          }
+
           $encodedKey = [System.Uri]::EscapeDataString($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)
           $status = Invoke-RestMethod `
             -Method Get `
-            -Uri "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/status?code=$encodedKey" `
+            -Uri "$($env:PUBLIC_KNOWLEDGE_STATUS_URL)?code=$encodedKey" `
             -TimeoutSec 60
 
           if (-not $status.ok) {

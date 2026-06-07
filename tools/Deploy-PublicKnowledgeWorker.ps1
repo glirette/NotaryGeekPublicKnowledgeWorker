@@ -1,6 +1,6 @@
 param(
-    [string] $ResourceGroup = "NG-PUBLIC-KNOWLEDGE",
-    [string] $FunctionAppName = "ng-public-knowledge-func-2026",
+    [string] $ResourceGroup = $env:PUBLIC_KNOWLEDGE_RESOURCE_GROUP,
+    [string] $FunctionAppName = $env:PUBLIC_KNOWLEDGE_FUNCTION_APP_NAME,
     [string] $Configuration = "Release",
     [string] $PublishProfilePath = "",
     [string] $PublishProfileXml = $env:PUBLIC_KNOWLEDGE_PUBLISH_PROFILE,
@@ -158,6 +158,10 @@ if (-not [string]::IsNullOrWhiteSpace($PublishProfileXml)) {
     }
 }
 else {
+    if ([string]::IsNullOrWhiteSpace($ResourceGroup) -or [string]::IsNullOrWhiteSpace($FunctionAppName)) {
+        throw "Provide -ResourceGroup and -FunctionAppName, or set PUBLIC_KNOWLEDGE_RESOURCE_GROUP and PUBLIC_KNOWLEDGE_FUNCTION_APP_NAME, or use a publish profile."
+    }
+
     $az = Get-Command az -ErrorAction SilentlyContinue
     if ($null -eq $az) {
         throw "Azure CLI was not found. Install Azure CLI, or pass -PublishProfilePath, or set PUBLIC_KNOWLEDGE_PUBLISH_PROFILE."
@@ -169,5 +173,10 @@ else {
         --src $zipPath
 }
 
-Write-Host "Deployment completed for $FunctionAppName."
+if ([string]::IsNullOrWhiteSpace($FunctionAppName)) {
+    Write-Host "Deployment completed for publish profile target."
+}
+else {
+    Write-Host "Deployment completed for $FunctionAppName."
+}
 Write-Host "Zip package: $zipPath"

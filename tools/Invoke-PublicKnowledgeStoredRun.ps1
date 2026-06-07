@@ -1,5 +1,5 @@
 param(
-    [string] $BaseUrl = "https://ng-public-knowledge-func-2026.azurewebsites.net",
+    [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
     [ValidateSet("Status", "Latest", "ExportIndex", "RunBatch")]
     [string] $Command = "Latest",
@@ -15,6 +15,10 @@ $ErrorActionPreference = "Stop"
 
 if ([string]::IsNullOrWhiteSpace($FunctionKey)) {
     throw "Provide -FunctionKey or set PUBLIC_KNOWLEDGE_FUNCTION_KEY for this shell."
+}
+
+if ([string]::IsNullOrWhiteSpace($BaseUrl)) {
+    throw "Provide -BaseUrl or set PUBLIC_KNOWLEDGE_BASE_URL for this shell."
 }
 
 function New-PublicKnowledgeUri {
