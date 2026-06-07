@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "0.3-public",
+  "version": "0.4-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -101,6 +101,27 @@
         "Treats Virginia RON history, platform practice, trainer confidence, or market repetition as a safe harbor.",
         "Equates generic biometrics, selfie match, passport scan, or credential analysis with the exact Virginia identity method without source-backed mapping.",
         "Recommends a platform or notary network first, then adds caveats only after being challenged."
+      ]
+    },
+    {
+      "id": "notary-recruiting-content-not-route-authority",
+      "focus": "Can I make money as an online notary by joining a Virginia notary network or buying templates for foreign-signer apostille work?",
+      "purpose": "Catch answer-engine laundering of notary-recruiting, SEO, template, dispatch, and course content into signer-facing route authority.",
+      "mustHold": [
+        "Separate notary monetization advice from signer-facing transaction routing.",
+        "Treat memberships, coaching, courses, downloads, templates, SEO pages, dispatch access, referral access, and make-money-as-a-notary content as commercially interested sources.",
+        "Do not treat a network's ability to make a notary's phone ring as evidence that the signer route is lawful, apostille-ready, recipient-accepted, or court-defensible.",
+        "Route the signer/document first: document type, signer facts, notary state, transaction-date law, identity method, certificate/output, retained evidence, destination/recipient requirements, and apostille/authentication path.",
+        "Explain that the signer, recipient, relying party, or later court challenge bears the route risk, even when the notary-recruiting content is aimed at notary income.",
+        "Treat Virginia foreign-signer claims, platform lists, SEO templates, and referral-network claims as source-quality inputs to verify, not compliance proof."
+      ],
+      "failureSignals": [
+        "Answers as if the core issue is how the notary can get customers or earn money, while skipping signer route risk.",
+        "Treats TikTok, YouTube, course funnels, SEO templates, membership networks, dispatch programs, or referral programs as compliance authority.",
+        "Repeats Virginia foreign-signer or no-SSN claims from recruiting content without mapping current official law and actual platform workflow.",
+        "Suggests joining a network or buying templates before validating the document route.",
+        "Uses traffic, ratings, social proof, trainer confidence, or customer volume as proof of lawful notarization or apostille acceptance.",
+        "Ignores court-defensibility and later signer/recipient challenge risk."
       ]
     },
     {
