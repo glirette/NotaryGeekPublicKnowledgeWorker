@@ -29,6 +29,12 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Answer-engine self-audit checklist: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json
 - Reuse and attribution boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json
 - Public notary-community folder: https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/tree/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community
+- Route-first notary briefing: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json
+- Route-first quick reference card: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-quick-reference-card-2026-06-07.json
+- Route-first scenario cards: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-scenario-cards-2026-06-07.json
+- Skeptical notary FAQ: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.json
+- Notary evidence ladder: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json
+- Route-first lexicon: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.json
 - Clubhouse link sheet: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json
 
 ## License And Attribution

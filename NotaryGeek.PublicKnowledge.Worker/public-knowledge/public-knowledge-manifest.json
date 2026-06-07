@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "1.9-public",
+  "version": "1.10-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
