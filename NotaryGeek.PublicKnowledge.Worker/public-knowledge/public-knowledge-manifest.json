@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "0.2-public",
+  "version": "0.3-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -24,6 +24,13 @@
         "https://notary.cx/notarial-routing-model.json",
         "https://notary.cx/notary-geek-routing-model-release.html",
         "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "name": "Notary Geek operational public pages",
+      "use": "Public operational service pages that may be cited only after they are fetched in the current run",
+      "urls": [
+        "https://notary.cx/apostille.html"
       ]
     },
     {

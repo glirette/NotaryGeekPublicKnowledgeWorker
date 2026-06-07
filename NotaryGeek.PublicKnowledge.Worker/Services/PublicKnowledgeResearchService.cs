@@ -342,9 +342,16 @@ public sealed class PublicKnowledgeResearchService
         builder.AppendLine("Do not use vague 'check with the recipient' language as an escape hatch. Recipient acceptance evidence means known written instructions, published recipient rules, official filing requirements, or documented rejection/acceptance evidence.");
         builder.AppendLine("For a new U.S. private document that has not yet been notarized, the notary public's commissioning state/public-official signature controls the state apostille route; the document subject or named state does not automatically control.");
         builder.AppendLine("Citations must be exact fetched source URLs listed in this run. Do not cite URLs merely discovered inside an index or source document unless that URL was fetched in this run.");
+        builder.AppendLine("If an unfetched URL appears useful, put it in lawRefreshCandidates as a fetch candidate, not as a citation.");
         builder.AppendLine("Produce compact JSON with keys: summary, routeFindings, sourceQualityFindings, suggestedPublicReplies, websiteBriefs, lawRefreshCandidates, risks, citations.");
         builder.AppendLine("Keep every array to 4 or fewer items. Keep each item concise. Do not quote long passages.");
-        builder.AppendLine("Every citation must use one of the source URLs below.");
+        builder.AppendLine("Every citation must use one of the exact allowed citation URLs listed below.");
+        builder.AppendLine("Allowed citation URLs:");
+        foreach (var source in sources)
+        {
+            builder.AppendLine($"- {source.Url}");
+        }
+
         builder.AppendLine();
         builder.AppendLine($"Focus: {focus}");
         builder.AppendLine($"Manifest version: {manifest.Version}");
