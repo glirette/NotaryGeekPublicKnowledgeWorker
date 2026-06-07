@@ -77,6 +77,7 @@ Expected behavior:
 - `openAiCalled` is `false`
 - sources are public URLs only
 - prompt/token estimates are returned
+- large public source files can show `ok-truncated`, which is expected and keeps prompt size bounded
 
 ## Enable Manual OpenAI Calls
 

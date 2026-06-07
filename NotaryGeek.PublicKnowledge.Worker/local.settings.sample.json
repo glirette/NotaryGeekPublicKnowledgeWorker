@@ -7,6 +7,8 @@
     "PublicKnowledge__TimerEnabled": "false",
     "PublicKnowledge__PublicCorpusManifestUrl": "",
     "PublicKnowledge__PublicBaseUrl": "https://notary.cx",
+    "PublicKnowledge__MaxBytesPerSource": "750000",
+    "PublicKnowledge__MaxCharactersPerSource": "20000",
     "OpenAI__BaseUrl": "https://api.openai.com",
     "OpenAI__EndpointPath": "/v1/responses",
     "OpenAI__Model": "gpt-5-mini",

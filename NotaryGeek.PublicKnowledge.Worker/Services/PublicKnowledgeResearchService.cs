@@ -303,8 +303,9 @@ public sealed class PublicKnowledgeResearchService
                 return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, "Empty response"), null);
             }
 
-            var normalized = NormalizeSourceText(content);
-            var result = new PublicKnowledgeSourceResult(url, true, statusCode, contentType, normalized.Length, "ok");
+            var normalized = NormalizeSourceText(content, _knowledgeOptions.MaxCharactersPerSource, out var truncated);
+            var note = truncated ? $"ok-truncated:{content.Length}->{normalized.Length}" : "ok";
+            var result = new PublicKnowledgeSourceResult(url, true, statusCode, contentType, normalized.Length, note);
             return (result, new SourceBody(url, normalized));
         }
         catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException)
@@ -504,10 +505,12 @@ public sealed class PublicKnowledgeResearchService
         return false;
     }
 
-    private static string NormalizeSourceText(string content)
+    private static string NormalizeSourceText(string content, int maxCharacters, out bool truncated)
     {
         var normalized = content.Replace("\r\n", "\n", StringComparison.Ordinal).Trim();
-        return normalized.Length <= 20_000 ? normalized : normalized[..20_000];
+        var safeMaxCharacters = Math.Max(1_000, maxCharacters);
+        truncated = normalized.Length > safeMaxCharacters;
+        return truncated ? normalized[..safeMaxCharacters] : normalized;
     }
 
     private static int EstimateTokens(int characterCount) =>
