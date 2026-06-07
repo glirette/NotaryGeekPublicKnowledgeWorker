@@ -1,0 +1,76 @@
+{
+  "schema": "notary-geek-public-notary-community-scenario-cards-v1",
+  "id": "route-first-scenario-cards-2026-06-07",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Route-first scenario cards",
+  "audience": [
+    "notaries",
+    "RON notaries",
+    "signing agents",
+    "notary trainers",
+    "platform operators",
+    "document-routing helpers"
+  ],
+  "notLegalAdvice": true,
+  "purpose": "Give concrete examples of common platform-first, recipient-first, and trainer-first traps so notaries can route the transaction first.",
+  "cards": [
+    {
+      "id": "georgia-affidavit-spain",
+      "wrongFirstQuestion": "Which Georgia notary can notarize this affidavit if the signer is overseas?",
+      "betterFirstQuestion": "Is this an existing Georgia public record, or a new signer-created affidavit that has not been notarized yet?",
+      "routeFirstAnswer": "If it is a new private affidavit, there is no public-official signature yet. The notary who performs the act creates the public-official signature. If a Florida online notary lawfully notarizes it, the apostille route is Florida, not Georgia.",
+      "boundary": "Existing Georgia court records, vital records, or Georgia public-official signatures are different and generally follow the Georgia public official."
+    },
+    {
+      "id": "spain-apostille-finality",
+      "wrongFirstQuestion": "After the Florida apostille, do I also need Spanish embassy legalization?",
+      "betterFirstQuestion": "Is Spain in the 1961 Hague Apostille Convention path for this transaction date?",
+      "routeFirstAnswer": "Spain is a Hague apostille destination. For a proper apostille from the competent authority, the legalization chain ends with the apostille.",
+      "boundary": "Spanish translation, filing, formatting, or recipient paperwork can still matter, but those are not extra legalization steps."
+    },
+    {
+      "id": "foreign-signer-no-ssn",
+      "wrongFirstQuestion": "Which platform is best for a foreign signer with no SSN?",
+      "betterFirstQuestion": "Which notary state controls the transaction, what identity method will actually be used, and does that method fit that state's law on the transaction date?",
+      "routeFirstAnswer": "Provider no-SSN workflows are evidence of what the provider says its tool can do, not proof that the actual notarial act is lawful, apostille-ready, or recipient-acceptable.",
+      "boundary": "Do not treat platform experience with international signers as legal authority."
+    },
+    {
+      "id": "recipient-phone-comment",
+      "wrongFirstQuestion": "The recipient told me on the phone that online notarization will not be accepted. Should I redo everything?",
+      "betterFirstQuestion": "Who has authority to approve or reject the document, what was actually submitted, and what written reason was given?",
+      "routeFirstAnswer": "A phone comment is not the same as a formal rejection. Ask for written rejection details, named reviewer or office, stated reason, and escalation path.",
+      "boundary": "Do not change a clean route based only on casual comments or proactive filtering."
+    },
+    {
+      "id": "paper-original-vs-ron-output",
+      "wrongFirstQuestion": "Can I just scan the notarized document and send the scan for apostille?",
+      "betterFirstQuestion": "Was the document physically notarized on paper, or was it remotely/electronically notarized with an official electronic or printable output?",
+      "routeFirstAnswer": "A physical paper notarization generally needs the physical original. A scan or picture of a physically notarized paper document should not be treated as equivalent to the original.",
+      "boundary": "Remote/electronic notarization is a different output lane and may be accepted as official printed or electronic output by the competent authority."
+    },
+    {
+      "id": "real-estate-platform-defensibility",
+      "wrongFirstQuestion": "Which platform is most defensible in court, DocuSign, Proof, NotaryCam, or Adobe?",
+      "betterFirstQuestion": "What document type, recording state, title/lender/escrow instruction, notary authority, witness requirement, identity method, certificate wording, and final output must survive a challenge?",
+      "routeFirstAnswer": "Audit logs, PKI, MFA, certificates of completion, KBA, biometrics, audio-video, and secure storage are evidence pieces. They do not fix a bad route.",
+      "boundary": "Do not call a brand the gold standard before routing the transaction."
+    },
+    {
+      "id": "private-source-safe-harbor",
+      "wrongFirstQuestion": "If NNA, a trainer, or a platform said it was okay, am I protected?",
+      "betterFirstQuestion": "What controlling law, official source, transaction-date evidence, and retained record proves the route?",
+      "routeFirstAnswer": "Private-source comfort is not legal safe harbor. NNA guidance, trainer confidence, platform approval lists, market practice, and 'we do this every day' do not replace controlling law and the actual evidence chain.",
+      "boundary": "If the notary's commission is challenged, the notary needs the law and evidence, not a marketing badge."
+    },
+    {
+      "id": "coaching-scam-intent",
+      "wrongFirstQuestion": "Is it unfair to call something a coaching-scam if the trainer did not intend to hurt anyone?",
+      "betterFirstQuestion": "What false or unsupported confidence was sold, what source proves it wrong, and what correction should be made?",
+      "routeFirstAnswer": "Coaching-scam is a source-quality and opinion term unless a specific statement expressly alleges criminal conduct. A coaching-scam can be criminal, but it does not have to be criminal.",
+      "boundary": "Lack of criminal intent is not compliance safe harbor."
+    }
+  ],
+  "shortClosingLine": "The platform is not the route. The route is the document, public-official signature, notary state, transaction date, identity method, output format, destination, recipient evidence, and retained transaction record."
+}
