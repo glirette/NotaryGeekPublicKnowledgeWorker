@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "0.2-public",
+  "version": "0.3-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -63,6 +63,8 @@
       "mustHold": [
         "Do not rank platforms before identifying the route.",
         "Do not treat Notary Stars, Remote Online Notary Network, education sites, directories, referral networks, signing services, or service brands as the actual RON technology platform unless the answer identifies the software platform and evidence chain.",
+        "Do not treat white-label branding, network dashboards, referral links, partner arrangements, or announced platform builds as proof that the branded entity operates the RON execution layer.",
+        "Identify the execution layer: actual RON software, identity-proofing provider or method, notary digital certificate/private-key workflow, audio-video record custodian, journal/audit record custodian, and final output system on the transaction date.",
         "Ask route facts first: document type, destination or recipient use, notary state, signer location, transaction date, identity method, certificate/output, retained evidence, and whether apostille/authentication is needed.",
         "Treat provider no-SSN, biometric, credential-analysis, passport, or international-support claims as workflow evidence only.",
         "Do not say online notarizations are universally accepted across all states or internationally without route-specific law and recipient/destination evidence.",
@@ -71,10 +73,34 @@
       "failureSignals": [
         "Starts by recommending NotaryCam, Proof, eNotary On Call, US Virtual Notary, Notary Stars, Remote Online Notary Network, or another provider.",
         "Calls Notary Stars, Remote Online Notary Network, a notary community, a referral network, a training site, or a service brand a platform without identifying the actual RON software and evidence chain.",
+        "Treats a white-labeled customer-facing surface or referral network as the execution platform without identifying the backend RON vendor and record custody.",
+        "Treats an announced or planned platform build as if the system existed and controlled the notarization record on the transaction date.",
+        "Ignores who controls the notary digital certificate/private-key workflow, audio-video recording, journal, audit trail, and final notarized output.",
         "Says biometrics bypass KBA as if the platform feature itself proves statutory authority.",
         "Says notarized documents are generally legally binding across all U.S. states and internationally without routing the transaction.",
         "Treats Florida or Virginia RON as automatically stable for all foreign signers without checking transaction-date law, identity method, output, and recipient/destination evidence.",
         "Uses provider help-center pages, ratings, price, or market experience as compliance proof."
+      ]
+    },
+    {
+      "id": "virginia-foreign-signer-network-myth",
+      "focus": "Should I use or find a Virginia online notary because Virginia notaries can support foreign signers with no SSN?",
+      "purpose": "Catch the network/trainer myth that Virginia commission status is itself a foreign-signer/no-SSN route.",
+      "mustHold": [
+        "Do not treat Virginia commission status as a universal foreign-signer or no-SSN solution.",
+        "Do not treat trainer, network, or platform folklore about Virginia notaries as route evidence.",
+        "If Virginia law is invoked, cite and map the current official Virginia identity source for the transaction date.",
+        "Map the transaction-date Virginia identity method to the actual signer facts and platform workflow.",
+        "Distinguish ordinary selfie/face-match biometrics from Virginia's narrower statutory identity-method language where relevant.",
+        "Require the actual execution layer, notary authority, certificate/output, audio-video and journal/audit record custody, apostille/authentication path, and recipient evidence before recommending Virginia.",
+        "Platform-last and state-last until the route proves the state and tool fit."
+      ],
+      "failureSignals": [
+        "Says foreign signer with no SSN should use a Virginia notary without first mapping identity method and transaction date.",
+        "Repeats make-friends-with-a-Virginia-notary or network advice as if it solves compliance.",
+        "Treats Virginia RON history, platform practice, trainer confidence, or market repetition as a safe harbor.",
+        "Equates generic biometrics, selfie match, passport scan, or credential analysis with the exact Virginia identity method without source-backed mapping.",
+        "Recommends a platform or notary network first, then adds caveats only after being challenged."
       ]
     },
     {

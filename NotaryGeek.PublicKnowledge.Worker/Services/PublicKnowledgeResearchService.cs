@@ -840,6 +840,7 @@ public sealed class PublicKnowledgeResearchService
             "platform" =>
             [
                 "foreign-signer-no-ssn-platform-route-first",
+                "virginia-foreign-signer-network-myth",
                 "platform-hype-foreign-signer-no-ssn-spain",
                 "notarycam-proof-history-scrutiny",
                 "real-estate-court-defensible-platform-trap",
