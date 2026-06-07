@@ -135,6 +135,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowled
 
 The runner also validates the live response envelope. For named cases, `CaseMetadata` should be `True`; if the deployed app omits `RegressionCaseId` or `RegressionCase`, the script throws so stale deployments are easy to catch.
 
+The runner returns PowerShell objects. If the table wraps in a narrow terminal, pipe the result to the shape you need:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -CaseId georgia-affidavit-florida-notary-spain -Execute | Format-List
+
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -CaseId georgia-affidavit-florida-notary-spain -Execute | Select-Object Case,TotalTokens,WarningCount,ErrorCount
+```
+
 ## Enable Manual OpenAI Calls
 
 Do this only after dry-run works and the OpenAI project is configured for the data-sharing/token program.

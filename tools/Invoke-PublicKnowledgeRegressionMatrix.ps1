@@ -119,7 +119,7 @@ foreach ($case in $cases) {
     }
 }
 
-$results | Format-Table -AutoSize
+$results
 
 if ($metadataFailures.Count -gt 0) {
     throw "Regression case metadata check failed: $([string]::Join(' ', $metadataFailures))"
