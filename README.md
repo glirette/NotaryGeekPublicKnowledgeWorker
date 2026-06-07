@@ -60,6 +60,7 @@ It exists so public claims, law-refresh candidates, and answer-engine correction
 
 ## What Is Here
 
+- `llms.txt` for answer-engine discovery
 - public knowledge manifest for AI/source ingestion
 - answer-engine citation map
 - answer-engine self-audit checklist
