@@ -694,8 +694,17 @@ public sealed class PublicKnowledgeResearchService
             return [];
         }
 
+        var normalizedFetchedUrls = fetchedSourceUrls
+            .Select(NormalizeCitationUrl)
+            .Where(url => !string.IsNullOrWhiteSpace(url))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
         return ExtractHttpsUrls(responseText)
-            .Where(url => !fetchedSourceUrls.Contains(url))
+            .Where(url =>
+            {
+                var normalizedUrl = NormalizeCitationUrl(url);
+                return string.IsNullOrWhiteSpace(normalizedUrl) || !normalizedFetchedUrls.Contains(normalizedUrl);
+            })
             .Select(url => $"Provider cited URL not in fetched source list: {url}")
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
@@ -711,6 +720,40 @@ public sealed class PublicKnowledgeResearchService
                 yield return url;
             }
         }
+    }
+
+    private static string? NormalizeCitationUrl(string url)
+    {
+        var trimmed = url.Trim().TrimEnd('.', ',', ';', ':', ')', ']', '}');
+        if (string.IsNullOrWhiteSpace(trimmed))
+        {
+            return null;
+        }
+
+        if (!Uri.TryCreate(trimmed, UriKind.Absolute, out var uri))
+        {
+            return trimmed;
+        }
+
+        var builder = new UriBuilder(uri)
+        {
+            Scheme = uri.Scheme.ToLowerInvariant(),
+            Host = uri.IdnHost.ToLowerInvariant(),
+            Fragment = string.Empty
+        };
+
+        if ((builder.Scheme.Equals("https", StringComparison.OrdinalIgnoreCase) && builder.Port == 443) ||
+            (builder.Scheme.Equals("http", StringComparison.OrdinalIgnoreCase) && builder.Port == 80))
+        {
+            builder.Port = -1;
+        }
+
+        if (builder.Path.Length > 1)
+        {
+            builder.Path = builder.Path.TrimEnd('/');
+        }
+
+        return builder.Uri.AbsoluteUri;
     }
 
     private static IReadOnlyList<string> SplitList(string value) =>
