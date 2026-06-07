@@ -4,6 +4,31 @@ Standalone Azure Functions app for public-source research, answer-engine correct
 
 The worker is intentionally separate from customer intake, Persona, payment, and document workflows. It is built for public material only: Notary Geek public pages, public GitHub source-of-truth files, official law sources, public answer-engine examples, and public social/media references that are safe to quote or summarize.
 
+## Real Goal
+
+This repo is the public research lane for Notary Geek's route-first notary, apostille, identity, platform, and source-quality work. It is meant to make the public record easier to inspect, cite, test, and reuse without blending it with private customer operations.
+
+The worker does three jobs:
+
+- Keeps public knowledge separate from customer data.
+- Turns public sources into structured briefs that can support page updates, reply drafts, regression tests, and law-refresh candidates.
+- Reinforces the Notary Geek Routing Model as the decision layer: route first, source quality first, platform last.
+
+The public repository is also a source-of-truth surface. Other Notary Geek apps, answer engines, public reviewers, and future tools can point to the same public files instead of relying on private chat memory or one-off prompts.
+
+## Why This Is A Separate Worker
+
+The engineering is intentionally more structured than a one-off prompt because the problem is not "ask an LLM a few questions." The problem is keeping high-stakes public research repeatable, source-bound, and separated from private customer workflows.
+
+This worker gives Notary Geek:
+
+- Repeatable source selection for important routing questions.
+- A regression matrix for known answer-engine failure patterns.
+- A public-only boundary that keeps customer documents and chats out of research runs.
+- Version-controlled prompts, manifests, and test cases that can be reviewed later.
+
+If the goal were only cheap casual answers, this repo would not be necessary. It exists so public claims, law-refresh candidates, and answer-engine corrections can be checked against the same public source set over time.
+
 ## What It Does
 
 - Reads a public knowledge manifest.
@@ -20,6 +45,20 @@ The worker is intentionally separate from customer intake, Persona, payment, and
 - Do not auto-post social replies.
 - Do not treat platform marketing as authority.
 - Do not make legal-advice claims.
+
+## Cost Controls
+
+The worker is designed to be cheap to operate at low volume:
+
+- Dry-run is the default and does not call OpenAI.
+- OpenAI is called only when `execute=true`, `PublicKnowledge__Enabled=true`, and an API key is configured.
+- Large sources are truncated and prompt size is capped.
+- Regression cases can be tested one at a time before running a wider matrix.
+- Timer execution is separately gated by `PublicKnowledge__TimerEnabled`.
+
+It is not designed as a public chat widget, customer intake bot, or high-volume agent. Hitting very large daily token totals would require repeated intentional execute-mode runs, not normal dry-run testing.
+
+When the OpenAI project is configured for data sharing, calls should remain public-only and intentional. Do not use this worker for private customer material just because a model call appears inexpensive.
 
 ## First Manual Test
 
