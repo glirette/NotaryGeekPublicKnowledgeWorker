@@ -12,6 +12,7 @@ The worker is intentionally separate from customer intake, Persona, payment, and
 - Defaults to dry-run mode so you can inspect source selection and token estimates before calling OpenAI.
 - Calls OpenAI only when `execute=true`, `PublicKnowledge__Enabled=true`, and an API key is configured.
 - Returns a JSON brief that can help with reply drafts, page briefs, law-refresh candidates, and source-quality notes.
+- Provides a public-safe regression matrix for route-first answer patterns such as Hague apostille finality, Georgia-affidavit routing, no-SSN platform hype, Saudi Arabia Hague status, outside-apostille-path wording, informal rejection claims, and court-defensible real-estate platform traps.
 
 ## What It Must Not Do
 
@@ -32,6 +33,27 @@ To spend tokens after the app settings are configured:
 
 ```bash
 curl "https://<function-app>.azurewebsites.net/api/public-knowledge/research?code=<function-key>&execute=true&focus=Spain%20apostille%20routing"
+```
+
+## Regression Matrix
+
+View the matrix:
+
+```bash
+curl "https://<function-app>.azurewebsites.net/api/public-knowledge/regression-matrix?code=<function-key>"
+```
+
+Run a named case in dry-run mode:
+
+```bash
+curl "https://<function-app>.azurewebsites.net/api/public-knowledge/research?code=<function-key>&case=spain-hague-finality"
+```
+
+From local PowerShell, the runner can execute the matrix without putting the function key in command history:
+
+```powershell
+$env:PUBLIC_KNOWLEDGE_FUNCTION_KEY = "<key-for-this-shell-only>"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1
 ```
 
 See [Azure Cloud Shell setup](docs/azure-cloud-shell-setup.md) and [Public GitHub SSOT](docs/public-github-ssot.md).
