@@ -114,6 +114,25 @@ Useful current case IDs:
 - `real-estate-court-defensible-platform-trap`
 - `notarycam-proof-history-scrutiny`
 
+From local PowerShell, you can run the matrix without putting the function key in command history by using an environment variable for the current shell:
+
+```powershell
+$env:PUBLIC_KNOWLEDGE_FUNCTION_KEY = "<key-for-this-shell-only>"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1
+```
+
+That default run is dry-run only. To call OpenAI for the selected cases:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -Execute -DelaySeconds 2 -OutDir .\artifacts\regression-runs
+```
+
+To run one case:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -CaseId spain-hague-finality
+```
+
 ## Enable Manual OpenAI Calls
 
 Do this only after dry-run works and the OpenAI project is configured for the data-sharing/token program.
