@@ -133,6 +133,8 @@ To run one case:
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeRegressionMatrix.ps1 -CaseId spain-hague-finality
 ```
 
+The runner also validates the live response envelope. For named cases, `CaseMetadata` should be `True`; if the deployed app omits `RegressionCaseId` or `RegressionCase`, the script throws so stale deployments are easy to catch.
+
 ## Enable Manual OpenAI Calls
 
 Do this only after dry-run works and the OpenAI project is configured for the data-sharing/token program.

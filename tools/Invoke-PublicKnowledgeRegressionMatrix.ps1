@@ -4,7 +4,8 @@ param(
     [string[]] $CaseId = @(),
     [switch] $Execute,
     [int] $DelaySeconds = 0,
-    [string] $OutDir = ""
+    [string] $OutDir = "",
+    [switch] $SkipCaseMetadataAssert
 )
 
 $ErrorActionPreference = "Stop"
@@ -72,6 +73,7 @@ if ($cases.Count -eq 0) {
 }
 
 $results = New-Object System.Collections.Generic.List[object]
+$metadataFailures = New-Object System.Collections.Generic.List[string]
 foreach ($case in $cases) {
     $query = @{
         code = $FunctionKey
@@ -85,6 +87,11 @@ foreach ($case in $cases) {
     $uri = New-PublicKnowledgeUri -Path "/api/public-knowledge/research" -Query $query
     Write-Host "Running $($case.id) (execute=$($Execute.IsPresent))"
     $response = Invoke-RestMethod -Uri $uri -Method Get
+    $responseCaseId = [string] $response.regressionCaseId
+    $responseCaseObjectId = [string] $response.regressionCase.id
+    $caseMetadataMatches =
+        $responseCaseId.Equals([string] $case.id, [StringComparison]::OrdinalIgnoreCase) -and
+        $responseCaseObjectId.Equals([string] $case.id, [StringComparison]::OrdinalIgnoreCase)
 
     if (-not [string]::IsNullOrWhiteSpace($OutDir)) {
         $safeName = ([string] $case.id) -replace "[^a-zA-Z0-9._-]", "-"
@@ -96,11 +103,16 @@ foreach ($case in $cases) {
         Ok = [bool] $response.ok
         Status = [string] $response.status
         OpenAiCalled = [bool] $response.openAiCalled
+        CaseMetadata = $caseMetadataMatches
         SourceCount = [int] $response.sourceCount
         WarningCount = @($response.warnings).Count
         ErrorCount = @($response.errors).Count
         TotalTokens = Get-ProviderTotalTokens -UsageJson ([string] $response.providerUsageJson)
     }) | Out-Null
+
+    if (-not $SkipCaseMetadataAssert -and -not $caseMetadataMatches) {
+        $metadataFailures.Add("Case '$($case.id)' returned RegressionCaseId='$responseCaseId' and RegressionCase.Id='$responseCaseObjectId'.") | Out-Null
+    }
 
     if ($DelaySeconds -gt 0) {
         Start-Sleep -Seconds $DelaySeconds
@@ -108,3 +120,7 @@ foreach ($case in $cases) {
 }
 
 $results | Format-Table -AutoSize
+
+if ($metadataFailures.Count -gt 0) {
+    throw "Regression case metadata check failed: $([string]::Join(' ', $metadataFailures))"
+}
