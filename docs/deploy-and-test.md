@@ -227,6 +227,18 @@ curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowled
 
 For a stored no-spend dry-run, add `execute=false`.
 
+Export and save a compact latest-run index:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/export-index?code=<key>"
+```
+
+That endpoint writes `runs/latest-index.json` and returns the index. Use `save=false` to preview without writing:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/export-index?code=<key>&save=false"
+```
+
 ## Optional GitHub Actions Later
 
 GitHub Actions are not forbidden. They just should not be the first dependency or run on every push.

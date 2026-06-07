@@ -116,34 +116,84 @@ public sealed class PublicKnowledgeRunStorageService
     public async Task<IReadOnlyList<PublicKnowledgeStoredRunSummary>> ListLatestAsync(
         CancellationToken cancellationToken)
     {
+        var envelopes = await ListLatestEnvelopesAsync(cancellationToken);
+        var summaries = envelopes
+            .Select(envelope => new PublicKnowledgeStoredRunSummary(
+                envelope.CaseId,
+                envelope.StoredAtUtc,
+                envelope.Trigger,
+                envelope.Batch,
+                envelope.Result.Ok,
+                envelope.Result.Status,
+                envelope.Result.OpenAiCalled,
+                envelope.Result.SourceCount,
+                envelope.Result.Warnings.Count,
+                envelope.Result.Errors.Count,
+                envelope.BlobName,
+                envelope.LatestBlobName))
+            .ToArray();
+
+        return summaries
+            .OrderBy(item => item.CaseId, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    public async Task<PublicKnowledgeLatestRunIndex> BuildLatestIndexAsync(
+        CancellationToken cancellationToken)
+    {
+        var envelopes = await ListLatestEnvelopesAsync(cancellationToken);
+        var items = envelopes
+            .OrderBy(envelope => envelope.CaseId, StringComparer.OrdinalIgnoreCase)
+            .Select(envelope => BuildIndexItem(envelope))
+            .ToArray();
+
+        return new PublicKnowledgeLatestRunIndex(
+            "notary-geek-public-knowledge-latest-run-index-v1",
+            "0.1-public",
+            DateTime.UtcNow,
+            _options.OutputContainerName,
+            "runs/latest-index.json",
+            items.Length,
+            items);
+    }
+
+    public async Task<PublicKnowledgeLatestRunIndex> SaveLatestIndexAsync(
+        CancellationToken cancellationToken)
+    {
+        var index = await BuildLatestIndexAsync(cancellationToken);
         var container = await GetContainerAsync(cancellationToken);
-        var summaries = new List<PublicKnowledgeStoredRunSummary>();
+        var json = JsonSerializer.Serialize(index, JsonOptions);
+        var blob = container.GetBlobClient(index.LatestIndexBlobName);
+        await blob.UploadAsync(BinaryData.FromString(json), overwrite: true, cancellationToken);
+        await blob.SetHttpHeadersAsync(
+            new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+            cancellationToken: cancellationToken);
+
+        return index;
+    }
+
+    private async Task<IReadOnlyList<PublicKnowledgeStoredRunEnvelope>> ListLatestEnvelopesAsync(
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var envelopes = new List<PublicKnowledgeStoredRunEnvelope>();
 
         await foreach (var blob in container.GetBlobsAsync(prefix: "runs/latest/", cancellationToken: cancellationToken))
         {
+            if (blob.Name.Equals("runs/latest-index.json", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
             try
             {
                 var client = container.GetBlobClient(blob.Name);
                 var response = await client.DownloadContentAsync(cancellationToken);
                 var envelope = response.Value.Content.ToObjectFromJson<PublicKnowledgeStoredRunEnvelope>(JsonOptions);
-                if (envelope is null)
+                if (envelope is not null)
                 {
-                    continue;
+                    envelopes.Add(envelope);
                 }
-
-                summaries.Add(new PublicKnowledgeStoredRunSummary(
-                    envelope.CaseId,
-                    envelope.StoredAtUtc,
-                    envelope.Trigger,
-                    envelope.Batch,
-                    envelope.Result.Ok,
-                    envelope.Result.Status,
-                    envelope.Result.OpenAiCalled,
-                    envelope.Result.SourceCount,
-                    envelope.Result.Warnings.Count,
-                    envelope.Result.Errors.Count,
-                    envelope.BlobName,
-                    envelope.LatestBlobName));
             }
             catch (Exception ex) when (ex is JsonException or Azure.RequestFailedException)
             {
@@ -151,9 +201,7 @@ public sealed class PublicKnowledgeRunStorageService
             }
         }
 
-        return summaries
-            .OrderBy(item => item.CaseId, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        return envelopes;
     }
 
     private async Task<BlobContainerClient> GetContainerAsync(CancellationToken cancellationToken)
@@ -181,6 +229,115 @@ public sealed class PublicKnowledgeRunStorageService
             .ToArray());
 
         return string.IsNullOrWhiteSpace(safe) ? "unknown" : safe;
+    }
+
+    private static PublicKnowledgeLatestRunIndexItem BuildIndexItem(
+        PublicKnowledgeStoredRunEnvelope envelope)
+    {
+        var response = ParseResponseText(envelope.Result.ResponseText);
+        return new PublicKnowledgeLatestRunIndexItem(
+            envelope.CaseId,
+            envelope.StoredAtUtc,
+            envelope.Trigger,
+            envelope.Batch,
+            envelope.Result.Ok,
+            envelope.Result.Status,
+            envelope.Result.OpenAiCalled,
+            envelope.Result.SourceCount,
+            envelope.Result.Warnings.Count,
+            envelope.Result.Errors.Count,
+            envelope.BlobName,
+            envelope.LatestBlobName,
+            response.Summary,
+            response.RouteFindings,
+            response.SourceQualityFindings,
+            response.SuggestedPublicReplies,
+            response.WebsiteBriefs,
+            response.LawRefreshCandidates,
+            response.Risks,
+            response.Citations);
+    }
+
+    private static ParsedProviderResponse ParseResponseText(string? responseText)
+    {
+        if (string.IsNullOrWhiteSpace(responseText))
+        {
+            return ParsedProviderResponse.Empty;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(responseText);
+            var root = document.RootElement;
+            return new ParsedProviderResponse(
+                TryGetString(root, "summary"),
+                TryGetStringArray(root, "routeFindings"),
+                TryGetStringArray(root, "sourceQualityFindings"),
+                TryGetStringArray(root, "suggestedPublicReplies"),
+                TryGetStringArray(root, "websiteBriefs"),
+                TryGetStringArray(root, "lawRefreshCandidates"),
+                TryGetStringArray(root, "risks"),
+                TryGetStringArray(root, "citations"));
+        }
+        catch (JsonException)
+        {
+            return ParsedProviderResponse.Empty;
+        }
+    }
+
+    private static string? TryGetString(JsonElement root, string propertyName)
+    {
+        if (!TryGetProperty(root, propertyName, out var property))
+        {
+            return null;
+        }
+
+        return property.ValueKind == JsonValueKind.String
+            ? property.GetString()
+            : property.GetRawText();
+    }
+
+    private static IReadOnlyList<string> TryGetStringArray(JsonElement root, string propertyName)
+    {
+        if (!TryGetProperty(root, propertyName, out var property) || property.ValueKind != JsonValueKind.Array)
+        {
+            return [];
+        }
+
+        return property
+            .EnumerateArray()
+            .Select(item => item.ValueKind == JsonValueKind.String ? item.GetString() : item.GetRawText())
+            .Where(item => !string.IsNullOrWhiteSpace(item))
+            .Cast<string>()
+            .ToArray();
+    }
+
+    private static bool TryGetProperty(JsonElement element, string propertyName, out JsonElement property)
+    {
+        foreach (var candidate in element.EnumerateObject())
+        {
+            if (candidate.NameEquals(propertyName) || candidate.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase))
+            {
+                property = candidate.Value;
+                return true;
+            }
+        }
+
+        property = default;
+        return false;
+    }
+
+    private sealed record ParsedProviderResponse(
+        string? Summary,
+        IReadOnlyList<string> RouteFindings,
+        IReadOnlyList<string> SourceQualityFindings,
+        IReadOnlyList<string> SuggestedPublicReplies,
+        IReadOnlyList<string> WebsiteBriefs,
+        IReadOnlyList<string> LawRefreshCandidates,
+        IReadOnlyList<string> Risks,
+        IReadOnlyList<string> Citations)
+    {
+        public static ParsedProviderResponse Empty { get; } = new(null, [], [], [], [], [], [], []);
     }
 }
 
@@ -224,3 +381,34 @@ public sealed record PublicKnowledgeStoredRunSummary(
     int ErrorCount,
     string BlobName,
     string LatestBlobName);
+
+public sealed record PublicKnowledgeLatestRunIndex(
+    string Schema,
+    string Version,
+    DateTime GeneratedAtUtc,
+    string ContainerName,
+    string LatestIndexBlobName,
+    int RunCount,
+    IReadOnlyList<PublicKnowledgeLatestRunIndexItem> Items);
+
+public sealed record PublicKnowledgeLatestRunIndexItem(
+    string CaseId,
+    DateTime StoredAtUtc,
+    string Trigger,
+    string Batch,
+    bool Ok,
+    string Status,
+    bool OpenAiCalled,
+    int SourceCount,
+    int WarningCount,
+    int ErrorCount,
+    string BlobName,
+    string LatestBlobName,
+    string? Summary,
+    IReadOnlyList<string> RouteFindings,
+    IReadOnlyList<string> SourceQualityFindings,
+    IReadOnlyList<string> SuggestedPublicReplies,
+    IReadOnlyList<string> WebsiteBriefs,
+    IReadOnlyList<string> LawRefreshCandidates,
+    IReadOnlyList<string> Risks,
+    IReadOnlyList<string> Citations);

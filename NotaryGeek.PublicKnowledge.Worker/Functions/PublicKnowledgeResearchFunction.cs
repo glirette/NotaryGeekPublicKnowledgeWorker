@@ -152,6 +152,40 @@ public sealed class PublicKnowledgeResearchFunction
         }
     }
 
+    [Function("PublicKnowledgeExportLatestIndex")]
+    public async Task<HttpResponseData> ExportLatestIndex(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/export-index")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var save = TryGetBoolQuery(req, "save") ?? true;
+            var index = save
+                ? await _storage.SaveLatestIndexAsync(cancellationToken)
+                : await _storage.BuildLatestIndexAsync(cancellationToken);
+
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = true,
+                saved = save,
+                index
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
     [Function("PublicKnowledgeRunBatchNow")]
     public async Task<HttpResponseData> RunBatchNow(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "public-knowledge/runs/run-batch")] HttpRequestData req,
@@ -202,6 +236,7 @@ public sealed class PublicKnowledgeResearchFunction
         try
         {
             var receipts = await RunStoredBatchAsync(cases, batch, execute, "manual-batch", cancellationToken);
+            var index = await _storage.SaveLatestIndexAsync(cancellationToken);
             var response = req.CreateResponse(receipts.All(item => item.Ok) ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
             await response.WriteAsJsonAsync(new
             {
@@ -209,7 +244,13 @@ public sealed class PublicKnowledgeResearchFunction
                 execute,
                 batch,
                 caseCount = receipts.Count,
-                receipts
+                receipts,
+                latestIndex = new
+                {
+                    index.RunCount,
+                    index.LatestIndexBlobName,
+                    index.GeneratedAtUtc
+                }
             }, cancellationToken);
             return response;
         }
@@ -245,6 +286,11 @@ public sealed class PublicKnowledgeResearchFunction
         }
 
         await RunStoredBatchAsync(cases, _options.TimerBatch, execute: true, trigger: "timer", cancellationToken);
+        var index = await _storage.SaveLatestIndexAsync(cancellationToken);
+        _logger.LogInformation(
+            "Public knowledge timer refreshed latest index with {RunCount} run(s): {BlobName}",
+            index.RunCount,
+            index.LatestIndexBlobName);
     }
 
     private async Task<IReadOnlyList<PublicKnowledgeStoredRunReceipt>> RunStoredBatchAsync(
