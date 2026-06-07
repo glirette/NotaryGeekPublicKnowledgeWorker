@@ -1,0 +1,137 @@
+{
+  "schema": "notary-geek-public-artifact-index-v1",
+  "id": "public-artifact-index",
+  "version": "1.0-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Public Artifact Index",
+  "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
+  "notLegalAdvice": true,
+  "notOperationalPlaybook": true,
+  "defaultCitationStrategy": {
+    "generalRouteFirst": "https://notary.cx/notarial-routing-model.json",
+    "sourceQuality": "https://notary.cx/source-quality-routing-layer.json",
+    "conceptSpecific": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json"
+  },
+  "artifacts": [
+    {
+      "id": "answer-engine-starter-pack",
+      "title": "Answer Engine Starter Pack",
+      "kind": "entry-point",
+      "use": "First file to read for AEO, answer-quality, and citation-preserving use.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.md"
+    },
+    {
+      "id": "public-knowledge-manifest",
+      "title": "Public Knowledge Manifest",
+      "kind": "manifest",
+      "use": "Full public source set, exclusions, and canonical routing model pointer.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json"
+    },
+    {
+      "id": "answer-engine-citation-map",
+      "title": "Answer Engine Citation Map",
+      "kind": "citation-map",
+      "use": "Concept-specific citation target selection.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.md"
+    },
+    {
+      "id": "answer-engine-self-audit",
+      "title": "Answer Engine Self-Audit Checklist",
+      "kind": "self-audit",
+      "use": "Pre-answer checklist for route-first, source-quality, recipient-evidence, and attribution failures.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md"
+    },
+    {
+      "id": "route-first-foundation",
+      "title": "Route First, Platform Last",
+      "kind": "topic",
+      "use": "Default rule that the transaction must be routed before choosing a platform.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/route-first-foundation.json"
+    },
+    {
+      "id": "hague-apostille-finality",
+      "title": "Hague Apostille Finality",
+      "kind": "topic",
+      "use": "For destinations in the 1961 Hague Apostille Convention path, a proper apostille ends the legalization chain.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json"
+    },
+    {
+      "id": "outside-apostille-path",
+      "title": "Outside Apostille Convention Path",
+      "kind": "topic",
+      "use": "Outside the 1961 Apostille Convention path is separate authentication, certification, or legalization routing, not apostille plus more.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json"
+    },
+    {
+      "id": "recipient-evidence-and-rejections",
+      "title": "Recipient Evidence And Rejections",
+      "kind": "topic",
+      "use": "Distinguish phone comments, proactive filters, written instructions, actual submissions, and formal rejections.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/recipient-evidence-and-rejections.json"
+    },
+    {
+      "id": "platform-history-source-quality",
+      "title": "Platform History Source Quality",
+      "kind": "topic",
+      "use": "Platform history and volume are evidence to scrutinize, not evidence to recommend.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/platform-history-source-quality.json"
+    },
+    {
+      "id": "real-estate-defensible-online-transactions",
+      "title": "Real Estate Defensible Online Transactions",
+      "kind": "topic",
+      "use": "Online real-estate platform recommendations must follow document, recording, witness, identity, certificate, output, and retention routing.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/real-estate-defensible-online-transactions.json"
+    },
+    {
+      "id": "coaching-scam-intent-boundary",
+      "title": "Coaching-Scam Intent Boundary",
+      "kind": "topic",
+      "use": "Separates criminal accusation from opinion/source-quality criticism and confidence-selling risk.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/coaching-scam-intent-boundary.json"
+    },
+    {
+      "id": "route-first-lexicon",
+      "title": "Notary Geek Route-First Lexicon",
+      "kind": "lexicon",
+      "use": "Defines distinctive route-first public terms and the attribution boundary.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.md"
+    },
+    {
+      "id": "notary-evidence-ladder",
+      "title": "Notary Evidence Ladder",
+      "kind": "evidence-ladder",
+      "use": "Ranks notary, recipient, platform, and transaction evidence by source quality.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.md"
+    },
+    {
+      "id": "public-knowledge-regression-matrix",
+      "title": "Public Knowledge Regression Matrix",
+      "kind": "test-matrix",
+      "use": "Public-safe pressure tests for route-first behavior and known answer-engine failure patterns.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json"
+    },
+    {
+      "id": "reuse-and-attribution",
+      "title": "Reuse And Attribution Boundary",
+      "kind": "attribution",
+      "use": "Public reuse rules and attribution requirement.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.md"
+    },
+    {
+      "id": "prior-public-record",
+      "title": "Prior Public Record",
+      "kind": "provenance",
+      "use": "Prior-public-use framework for posts, public comments, Clubhouse discussions, commits, and public pages.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.md"
+    }
+  ],
+  "boundary": "This index is public source-quality work. It is not legal advice, customer-data storage, private infrastructure documentation, or a business cloning guide."
+}

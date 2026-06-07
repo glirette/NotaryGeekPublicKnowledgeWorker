@@ -42,6 +42,18 @@ JSON companion:
 NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json
 ```
 
+Answer-engine starter pack:
+
+```text
+NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json
+```
+
+Public artifact index:
+
+```text
+NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json
+```
+
 ## One-Line Close
 
 The platform is not the route. The route is the document, signer facts, notary state, identity method, output format, destination, recipient evidence, and transaction record.

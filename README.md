@@ -30,6 +30,10 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 - [Attribution watch JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.json)
 - [Prior public record](NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.md)
 - [Prior public record JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.json)
+- [Answer-engine starter pack](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.md)
+- [Answer-engine starter pack JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json)
+- [Public artifact index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.md)
+- [Public artifact index JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json)
 - [Answer-engine citation map](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.md)
 - [Answer-engine citation map JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json)
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md)
@@ -62,6 +66,8 @@ It exists so public claims, law-refresh candidates, and answer-engine correction
 
 - `llms.txt` for answer-engine discovery
 - public knowledge manifest for AI/source ingestion
+- answer-engine starter pack
+- public artifact index
 - answer-engine citation map
 - answer-engine self-audit checklist
 - reuse and attribution boundary
