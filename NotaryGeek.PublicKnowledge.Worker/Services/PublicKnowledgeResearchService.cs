@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NotaryGeek.PublicKnowledge.Worker.Configuration;
@@ -124,6 +125,15 @@ public sealed class PublicKnowledgeResearchService
         }
 
         var provider = await CallOpenAiAsync(prompt, cancellationToken);
+        if (!string.IsNullOrWhiteSpace(provider.ResponseText))
+        {
+            var fetchedSourceUrls = sourceBodies
+                .Select(source => source.Url)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            warnings.AddRange(ValidateProviderResponse(provider.ResponseText, fetchedSourceUrls));
+        }
+
         if (!provider.Ok)
         {
             errors.Add(provider.Error ?? "OpenAI call failed.");
@@ -327,6 +337,10 @@ public sealed class PublicKnowledgeResearchService
         builder.AppendLine("Marketing claims are evidence only of what a provider claims to sell, not evidence of lawful completion or acceptance.");
         builder.AppendLine("There is no private-source safe harbor. Return to controlling law, official sources, actual route evidence, and transaction date.");
         builder.AppendLine("For apostille work, distinguish Hague Apostille Convention finality from outside-Apostille-Convention authentication/legalization chains.");
+        builder.AppendLine("For Hague destinations such as Spain, a proper apostille from the competent authority ends the legalization chain; do not add embassy or consular legalization after a valid apostille.");
+        builder.AppendLine("Keep recipient document requirements separate from legalization. Translation, certified translation, filing, original/certified-copy, and wording requirements are not extra legalization steps.");
+        builder.AppendLine("For a new U.S. private document that has not yet been notarized, the notary public's commissioning state/public-official signature controls the state apostille route; the document subject or named state does not automatically control.");
+        builder.AppendLine("Citations must be exact fetched source URLs listed in this run. Do not cite URLs merely discovered inside an index or source document unless that URL was fetched in this run.");
         builder.AppendLine("Produce compact JSON with keys: summary, routeFindings, sourceQualityFindings, suggestedPublicReplies, websiteBriefs, lawRefreshCandidates, risks, citations.");
         builder.AppendLine("Keep every array to 4 or fewer items. Keep each item concise. Do not quote long passages.");
         builder.AppendLine("Every citation must use one of the source URLs below.");
@@ -548,6 +562,34 @@ public sealed class PublicKnowledgeResearchService
 
     private static int EstimateTokens(int characterCount) =>
         Math.Max(1, (int)Math.Ceiling(characterCount / 4.0));
+
+    private static IReadOnlyList<string> ValidateProviderResponse(
+        string responseText,
+        IReadOnlySet<string> fetchedSourceUrls)
+    {
+        if (fetchedSourceUrls.Count == 0)
+        {
+            return [];
+        }
+
+        return ExtractHttpsUrls(responseText)
+            .Where(url => !fetchedSourceUrls.Contains(url))
+            .Select(url => $"Provider cited URL not in fetched source list: {url}")
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private static IEnumerable<string> ExtractHttpsUrls(string text)
+    {
+        foreach (Match match in Regex.Matches(text, "https://[^\\s\"'<>\\\\]+", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            var url = match.Value.TrimEnd('.', ',', ';', ':', ')', ']', '}');
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                yield return url;
+            }
+        }
+    }
 
     private static IReadOnlyList<string> SplitList(string value) =>
         value
