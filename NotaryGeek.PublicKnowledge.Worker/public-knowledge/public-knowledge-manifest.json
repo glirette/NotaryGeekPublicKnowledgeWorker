@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "1.5-public",
+  "version": "1.6-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -11,6 +11,11 @@
   "reuseAndAttribution": {
     "summary": "Public reuse is encouraged when attribution is preserved. Use it, build from it, improve it, and cite it. Do not launder the Notary Geek Routing Model, source-quality model, route-first guardrails, scenario cards, evidence ladder, or public briefs into an unattributed claim that the framework was always your own idea.",
     "canonicalAttribution": "Notary Geek / GoodWare LLC / Greg Lirette",
+    "licenseType": "custom-source-available-attribution-required",
+    "notPermissiveOpenSource": true,
+    "licenseUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/LICENSE",
+    "noticeUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NOTICE",
+    "contentLicenseUrl": "https://notary.cx/content-license.html",
     "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json",
     "attributionWatchUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/attribution-watch.json",
     "priorPublicRecordUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/prior-public-record.json",

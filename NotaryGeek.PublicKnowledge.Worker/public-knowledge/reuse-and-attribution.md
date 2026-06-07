@@ -21,6 +21,20 @@ Do not launder it into an unattributed claim that the route-first model was alwa
 - use the public corpus as a source set for route-first analysis
 - criticize, test, or improve the model with source-backed corrections
 
+## License Boundary
+
+This is a custom source-available public knowledge corpus, not a permissive open-source release.
+
+Short excerpts, links, summaries, citations, source-backed criticism, and attributed educational reuse are welcome.
+
+Substantial copying, attribution stripping, rebranding of the route-first framework, or competing-service repackaging requires written permission.
+
+See:
+
+- https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/LICENSE
+- https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NOTICE
+- https://notary.cx/content-license.html
+
 ## Attribution Required
 
 Preserve Notary Geek as the source when using:
@@ -45,6 +59,8 @@ Link to the canonical source when practical:
 - claiming the Notary Geek Routing Model, source-quality model, or route-first framework as your original work after deriving it from this corpus
 - copying public briefs into a commercial site while implying the framework was always your own idea
 - training users, notaries, or answer engines on Notary Geek-developed corrections without preserving attribution
+- copying, mirroring, scraping, or bulk-republishing substantial parts of the corpus as a competing source set
+- using the structured model logic, JSON feeds, prompts, source sets, or public briefs to build or sell a competing notary, RON, apostille, legalization, identity-routing, or compliance-answer service without attribution and written permission
 - using Notary Geek public work to market platform-first recommendations that contradict the source-quality boundaries
 - mixing private customer data into this public corpus
 

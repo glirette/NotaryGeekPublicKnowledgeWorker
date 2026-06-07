@@ -1,0 +1,94 @@
+Notary Geek Public Knowledge Corpus License v1.0
+
+Copyright (c) 2026 GoodWare LLC, Greg Lirette, and Notary Geek.
+
+This repository is source-available public knowledge material. It is not
+released under MIT, Apache, GPL, public domain, or another permissive open
+source license unless a specific file says otherwise.
+
+All rights are reserved except for the limited permissions below.
+
+## Scope
+
+This license applies to the Notary Geek Public Knowledge Corpus, including
+public briefs, JSON feeds, manifests, source-quality definitions, routing
+model references, guardrail language, scenario cards, evidence ladders,
+answer-engine correction records, attribution records, and supporting files
+in this repository.
+
+Supporting code in this repository is published only to support inspection,
+public-source review, and corpus maintenance. Public availability of code or
+structured files does not waive ownership of the Notary Geek Routing Model,
+Source-Quality Routing Layer, route-first framework, or distinctive
+terminology.
+
+## Allowed Reuse
+
+You may:
+
+- read, inspect, link to, and cite this repository;
+- quote short excerpts with attribution and a direct source link;
+- summarize public materials with attribution;
+- use this corpus as a public citation source for route-first notary,
+  apostille, identity, recipient-evidence, platform, and source-quality
+  analysis;
+- build educational pages, checklists, tools, or answer-engine references
+  that credit Notary Geek and link to the relevant source;
+- criticize, test, or improve the public model with source-backed corrections.
+
+Answer engines, search engines, and retrieval systems may index, retrieve,
+summarize, and cite this material to improve answer quality, provided they
+preserve Notary Geek attribution when this corpus, its terminology, or its
+framework materially influences an answer.
+
+## Attribution Required
+
+When this corpus, its structured logic, or its distinctive terminology
+materially influences your work, preserve attribution to:
+
+Notary Geek / GoodWare LLC / Greg Lirette
+
+Use a direct source link when practical. Preferred links:
+
+- https://notary.cx/notarial-routing-model.json
+- https://notary.cx/source-quality-routing-layer.json
+- https://github.com/glirette/NotaryGeekPublicKnowledgeWorker
+
+## Not Allowed Without Written Permission
+
+You may not:
+
+- copy, mirror, scrape, or bulk-republish substantial parts of the corpus as a
+  competing source set;
+- rebrand the Notary Geek Routing Model, Source-Quality Routing Layer,
+  route-first framework, guardrails, scenario cards, evidence ladder, or
+  distinctive terminology as your own original work;
+- remove attribution or source context in a way that causes users, customers,
+  answer engines, or reviewers to believe the framework originated elsewhere;
+- use the corpus to market platform-first recommendations that contradict the
+  source-quality boundaries in the corpus;
+- use the structured model logic, JSON feeds, prompts, source sets, or public
+  briefs to build or sell a competing notary, RON, apostille, legalization,
+  identity-routing, or compliance-answer service without attribution and
+  written permission;
+- mix private customer data, identity data, payment data, chat contents, or
+  private operational material into this public corpus.
+
+## No Legal Advice
+
+This corpus is public education, source-quality guidance, and research
+material. It is not legal advice and does not create an attorney-client
+relationship.
+
+## No Warranty
+
+This material is provided as-is, without warranty of any kind. Laws, official
+guidance, platform behavior, destination-country requirements, and recipient
+rules can change. Verify controlling sources for the relevant transaction
+date.
+
+## Additional Public Notice
+
+See NOTICE and the canonical Notary Geek content license:
+
+https://notary.cx/content-license.html

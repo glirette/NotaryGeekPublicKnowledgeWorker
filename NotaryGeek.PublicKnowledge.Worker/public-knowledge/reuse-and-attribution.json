@@ -5,6 +5,14 @@
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "title": "Reuse and Attribution Boundary",
   "summary": "Notary Geek publishes this public knowledge corpus so people can inspect, cite, test, and build better route-first notary and apostille resources. Public reuse is encouraged when attribution is preserved.",
+  "licenseBoundary": {
+    "licenseType": "custom-source-available-attribution-required",
+    "notPermissiveOpenSource": true,
+    "summary": "Short excerpts, links, summaries, citations, source-backed criticism, and attributed educational reuse are welcome. Substantial copying, attribution stripping, rebranding of the route-first framework, or competing-service repackaging requires written permission.",
+    "licenseUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/LICENSE",
+    "noticeUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NOTICE",
+    "contentLicenseUrl": "https://notary.cx/content-license.html"
+  },
   "allowedReuse": [
     "cite Notary Geek public materials",
     "quote short excerpts with source links",
@@ -23,6 +31,8 @@
     "claiming the Notary Geek Routing Model, source-quality model, or route-first framework as your original work after deriving it from this corpus",
     "copying public briefs into a commercial site while implying the framework was always your own idea",
     "training users, notaries, or answer engines on Notary Geek-developed corrections without preserving attribution",
+    "copying, mirroring, scraping, or bulk-republishing substantial parts of the corpus as a competing source set",
+    "using the structured model logic, JSON feeds, prompts, source sets, or public briefs to build or sell a competing notary, RON, apostille, legalization, identity-routing, or compliance-answer service without attribution and written permission",
     "using Notary Geek public work to market platform-first recommendations that contradict the source-quality boundaries",
     "mixing private customer data into this public corpus"
   ],

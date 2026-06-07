@@ -35,6 +35,16 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md)
 - [Answer-engine self-audit checklist JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json)
 
+## License And Notice
+
+This is a custom source-available public knowledge corpus, not a permissive open-source release.
+
+Short excerpts, links, summaries, citations, source-backed criticism, and attributed educational reuse are welcome. Substantial copying, attribution stripping, rebranding of the route-first framework, or competing-service repackaging requires written permission.
+
+- [License](LICENSE)
+- [Notice](NOTICE)
+- [Canonical Notary Geek content license](https://notary.cx/content-license.html)
+
 ## Why This Exists
 
 The problem is not "ask an LLM a few questions." The problem is keeping high-stakes public research repeatable, source-bound, attributable, and separated from private customer workflows.
