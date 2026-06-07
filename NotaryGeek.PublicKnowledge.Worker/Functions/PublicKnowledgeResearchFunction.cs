@@ -46,6 +46,7 @@ public sealed class PublicKnowledgeResearchFunction
     {
         var caseId = TryGetStringQuery(req, "case") ?? TryGetStringQuery(req, "profile");
         var focus = TryGetStringQuery(req, "focus") ?? "public notary, apostille, identity, platform, and source-quality research";
+        PublicKnowledgeRegressionCase? selectedRegressionCase = null;
 
         if (!string.IsNullOrWhiteSpace(caseId))
         {
@@ -62,6 +63,7 @@ public sealed class PublicKnowledgeResearchFunction
                 return badRequest;
             }
 
+            selectedRegressionCase = regressionCase;
             focus = regressionCase.Focus;
         }
 
@@ -69,7 +71,9 @@ public sealed class PublicKnowledgeResearchFunction
             Execute: TryGetBoolQuery(req, "execute") ?? false,
             FromTimer: false,
             Focus: focus,
-            RequestedUrls: GetRepeatedQuery(req, "url"));
+            RequestedUrls: GetRepeatedQuery(req, "url"),
+            RegressionCaseId: selectedRegressionCase?.Id,
+            RegressionCase: selectedRegressionCase);
 
         var result = await _service.RunAsync(command, cancellationToken);
         var response = req.CreateResponse(result.Ok ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
@@ -106,7 +110,9 @@ public sealed class PublicKnowledgeResearchFunction
             Execute: true,
             FromTimer: true,
             Focus: "daily public law, answer-engine, source-quality, and route-first research triage",
-            RequestedUrls: []);
+            RequestedUrls: [],
+            RegressionCaseId: null,
+            RegressionCase: null);
 
         var result = await _service.RunAsync(command, cancellationToken);
         if (!result.Ok)

@@ -6,7 +6,9 @@ public sealed record PublicKnowledgeRunCommand(
     bool Execute,
     bool FromTimer,
     string Focus,
-    IReadOnlyList<string> RequestedUrls);
+    IReadOnlyList<string> RequestedUrls,
+    string? RegressionCaseId,
+    PublicKnowledgeRegressionCase? RegressionCase);
 
 public sealed record PublicKnowledgeRunResult(
     bool Ok,
@@ -16,6 +18,8 @@ public sealed record PublicKnowledgeRunResult(
     string Status,
     DateTime CheckedAtUtc,
     string Focus,
+    string? RegressionCaseId,
+    PublicKnowledgeRegressionCase? RegressionCase,
     int SourceCount,
     int PromptCharacters,
     int EstimatedInputTokens,
