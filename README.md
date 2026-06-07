@@ -112,6 +112,13 @@ List latest stored outputs:
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/latest?code=<key>"
 ```
 
+Or from local PowerShell:
+
+```powershell
+$env:PUBLIC_KNOWLEDGE_FUNCTION_KEY = "<key-for-this-shell-only>"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeStoredRun.ps1 -Command Latest
+```
+
 Build and save the compact latest-run index:
 
 ```bash
@@ -119,6 +126,12 @@ curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowled
 ```
 
 Manual stored batches and the daily timer both refresh `runs/latest-index.json`. The blob container remains private by default; publish only intentional, public-safe extracts through GitHub or Notary Geek pages.
+
+To run and store the Core batch from local PowerShell:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeStoredRun.ps1 -Command RunBatch -Batch Core
+```
 
 See [Azure Cloud Shell setup](docs/azure-cloud-shell-setup.md) and [Public GitHub SSOT](docs/public-github-ssot.md).
 

@@ -231,10 +231,25 @@ curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowled
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/latest?code=<key>&case=spain-hague-finality"
 ```
 
+From local PowerShell, use the stored-run helper instead of hand-building the URL:
+
+```powershell
+$env:PUBLIC_KNOWLEDGE_FUNCTION_KEY = "<key-for-this-shell-only>"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeStoredRun.ps1 -Command Latest
+
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeStoredRun.ps1 -Command Latest -CaseId spain-hague-finality
+```
+
 Run and store a batch immediately without waiting for the timer:
 
 ```bash
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/run-batch?code=<key>&batch=Core"
+```
+
+PowerShell equivalent:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeStoredRun.ps1 -Command RunBatch -Batch Core
 ```
 
 Run and store one case:
@@ -243,7 +258,13 @@ Run and store one case:
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/run-batch?code=<key>&case=spain-hague-finality"
 ```
 
-For a stored no-spend dry-run, add `execute=false`.
+PowerShell equivalent:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\Invoke-PublicKnowledgeStoredRun.ps1 -Command RunBatch -CaseId spain-hague-finality
+```
+
+For a stored no-spend dry-run, add `execute=false` to the curl URL or `-DryRun` to the PowerShell helper.
 
 Export and save a compact latest-run index:
 
