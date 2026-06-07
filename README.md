@@ -34,6 +34,8 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 - [Answer-engine starter pack JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json)
 - [Public artifact index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.md)
 - [Public artifact index JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json)
+- [Clubhouse link sheet](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.md)
+- [Clubhouse link sheet JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json)
 - [Answer-engine citation map](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.md)
 - [Answer-engine citation map JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json)
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md)

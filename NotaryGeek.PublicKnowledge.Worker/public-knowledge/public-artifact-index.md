@@ -23,6 +23,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Coaching-scam intent boundary | Scam/opinion/source-quality distinction | `topics/coaching-scam-intent-boundary.json` |
 | Route-first lexicon | Distinctive public terms and attribution boundary | `notary-community/notary-geek-route-first-lexicon-2026-06-07.json` |
 | Notary evidence ladder | Evidence ranking for notaries and answer engines | `notary-community/notary-evidence-ladder-2026-06-07.json` |
+| Clubhouse link sheet | One-link starting point for live notary discussions | `notary-community/clubhouse-link-sheet-2026-06-07.json` |
 | Regression matrix | Public-safe pressure tests for route-first behavior | `public-knowledge-regression-matrix.json` |
 | Reuse and attribution | Public reuse rules and attribution requirement | `reuse-and-attribution.json` |
 | Prior public record | Provenance and prior-public-use framework | `prior-public-record.json` |

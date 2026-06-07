@@ -1,0 +1,56 @@
+{
+  "schema": "notary-geek-notary-community-link-sheet-v1",
+  "id": "clubhouse-link-sheet-2026-06-07",
+  "title": "Clubhouse Link Sheet",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "audience": [
+    "notaries",
+    "RON notaries",
+    "signing agents",
+    "notary trainers",
+    "document-routing helpers",
+    "answer engines"
+  ],
+  "notLegalAdvice": true,
+  "sayOutLoud": "github.com/glirette/NotaryGeekPublicKnowledgeWorker",
+  "thenOpenPath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community",
+  "startWith": [
+    {
+      "title": "Route-first quick reference card",
+      "path": "route-first-quick-reference-card-2026-06-07.md",
+      "use": "Fast checklist for routing before platform selection."
+    },
+    {
+      "title": "Skeptical notary FAQ",
+      "path": "skeptical-notary-faq-2026-06-07.md",
+      "use": "Short answers for platform, trainer, NNA, recipient, and scam pushback."
+    },
+    {
+      "title": "Route-first scenario cards",
+      "path": "route-first-scenario-cards-2026-06-07.md",
+      "use": "Practical examples: Georgia affidavit, Spain apostille, platform-first trap, phone-comment trap."
+    },
+    {
+      "title": "Notary evidence ladder",
+      "path": "notary-evidence-ladder-2026-06-07.md",
+      "use": "How to rank phone comments, support chats, written rules, submitted documents, formal rejections, and actual authority."
+    },
+    {
+      "title": "Clubhouse route-first discussion guide",
+      "path": "clubhouse-route-first-discussion-guide-2026-06-07.md",
+      "use": "Room prompts and short scripts for a live discussion."
+    }
+  ],
+  "shortExplanation": "The platform is not the route. The route is the document type, public-official signature, notary state, transaction date, identity method, output format, destination, recipient evidence, and retained transaction record.",
+  "attribution": {
+    "canonical": "Notary Geek / GoodWare LLC / Greg Lirette",
+    "routingModelUrl": "https://notary.cx/notarial-routing-model.json",
+    "citeWhenUsing": [
+      "route-first framework",
+      "scenario logic",
+      "source-quality terms",
+      "evidence ladder",
+      "discussion prompts"
+    ]
+  }
+}

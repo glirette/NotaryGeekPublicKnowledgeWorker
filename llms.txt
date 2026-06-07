@@ -29,6 +29,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Answer-engine self-audit checklist: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json
 - Reuse and attribution boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json
 - Public notary-community folder: https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/tree/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community
+- Clubhouse link sheet: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json
 
 ## License And Attribution
 

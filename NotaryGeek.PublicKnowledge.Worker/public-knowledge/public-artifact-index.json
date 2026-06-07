@@ -110,6 +110,14 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.md"
     },
     {
+      "id": "clubhouse-link-sheet",
+      "title": "Clubhouse Link Sheet",
+      "kind": "community-entry-point",
+      "use": "One-link starting point for live notary discussions.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.md"
+    },
+    {
       "id": "public-knowledge-regression-matrix",
       "title": "Public Knowledge Regression Matrix",
       "kind": "test-matrix",

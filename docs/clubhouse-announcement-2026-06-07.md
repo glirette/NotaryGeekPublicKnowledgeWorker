@@ -36,6 +36,12 @@ Briefing file:
 NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.md
 ```
 
+Simple link sheet:
+
+```text
+NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.md
+```
+
 JSON companion:
 
 ```text
