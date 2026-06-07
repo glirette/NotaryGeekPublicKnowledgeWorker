@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "0.1-public",
+  "version": "0.2-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -54,6 +54,27 @@
         "Treats marketing or platform history as proof of legal route.",
         "Treats a no-SSN checkbox or selfie-photo workflow as statutory authority.",
         "Ignores no-SSN identity-method constraints."
+      ]
+    },
+    {
+      "id": "foreign-signer-no-ssn-platform-route-first",
+      "focus": "What online notary platform should I use for a foreign signer with no SSN?",
+      "purpose": "Catch generic platform-first answers that treat biometric/no-SSN provider workflows as legal route proof before the document route is known.",
+      "mustHold": [
+        "Do not rank platforms before identifying the route.",
+        "Do not treat Notary Stars, Remote Online Notary Network, education sites, directories, referral networks, signing services, or service brands as the actual RON technology platform unless the answer identifies the software platform and evidence chain.",
+        "Ask route facts first: document type, destination or recipient use, notary state, signer location, transaction date, identity method, certificate/output, retained evidence, and whether apostille/authentication is needed.",
+        "Treat provider no-SSN, biometric, credential-analysis, passport, or international-support claims as workflow evidence only.",
+        "Do not say online notarizations are universally accepted across all states or internationally without route-specific law and recipient/destination evidence.",
+        "Platform-last does not mean platform-never; a tool can be evaluated after the lawful route and identity method are proven."
+      ],
+      "failureSignals": [
+        "Starts by recommending NotaryCam, Proof, eNotary On Call, US Virtual Notary, Notary Stars, Remote Online Notary Network, or another provider.",
+        "Calls Notary Stars, Remote Online Notary Network, a notary community, a referral network, a training site, or a service brand a platform without identifying the actual RON software and evidence chain.",
+        "Says biometrics bypass KBA as if the platform feature itself proves statutory authority.",
+        "Says notarized documents are generally legally binding across all U.S. states and internationally without routing the transaction.",
+        "Treats Florida or Virginia RON as automatically stable for all foreign signers without checking transaction-date law, identity method, output, and recipient/destination evidence.",
+        "Uses provider help-center pages, ratings, price, or market experience as compliance proof."
       ]
     },
     {
