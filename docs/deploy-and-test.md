@@ -283,12 +283,33 @@ curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowled
 
 GitHub Actions are not forbidden. They just should not be the first dependency or run on every push.
 
-If we add Actions later, prefer a manual-only workflow:
+This repo now includes a manual-only workflow:
 
+- File: `.github/workflows/deploy-public-knowledge-worker.yml`
 - Trigger: `workflow_dispatch`
 - Scope: deploy this Function App only
-- Secrets: Azure publish profile or service principal, no OpenAI key unless absolutely required
-- Cost control: do not run on every push while this is still changing often
+- Required secret: `PUBLIC_KNOWLEDGE_PUBLISH_PROFILE`
+- Optional status-check secret: `PUBLIC_KNOWLEDGE_FUNCTION_KEY`
+- Cost control: it does not run on every push
+- Runtime posture: uses current Node 24-based checkout/setup-dotnet actions and then runs the existing PowerShell deploy script
+
+Create the secrets in GitHub:
+
+```text
+Repository -> Settings -> Secrets and variables -> Actions -> New repository secret
+```
+
+`PUBLIC_KNOWLEDGE_PUBLISH_PROFILE` should contain the full Azure publish profile XML for `ng-public-knowledge-func-2026`.
+
+`PUBLIC_KNOWLEDGE_FUNCTION_KEY` can contain the Function key used for `/api/public-knowledge/status`. If it is not configured, the deploy still runs and the status-check step skips itself.
+
+To deploy from GitHub:
+
+```text
+Repository -> Actions -> Deploy Public Knowledge Worker -> Run workflow
+```
+
+The workflow uses the existing local deploy script, publishes Release, sends the ZIP package to Kudu ZIP Deploy, and polls deployment status. Local ZIP deploy remains the known-good default when you are already at the machine.
 
 ## Why Not Use The Function To Deploy Code?
 

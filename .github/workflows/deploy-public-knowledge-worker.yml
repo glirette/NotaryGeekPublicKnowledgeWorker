@@ -1,0 +1,83 @@
+name: Deploy Public Knowledge Worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_status_check:
+        description: Call the protected status endpoint after deployment if PUBLIC_KNOWLEDGE_FUNCTION_KEY is configured.
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-knowledge-worker-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy Azure Function
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Confirm publish profile secret
+        shell: pwsh
+        env:
+          PUBLIC_KNOWLEDGE_PUBLISH_PROFILE: ${{ secrets.PUBLIC_KNOWLEDGE_PUBLISH_PROFILE }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_PUBLISH_PROFILE)) {
+            throw "Missing required secret PUBLIC_KNOWLEDGE_PUBLISH_PROFILE."
+          }
+
+      - name: Deploy by Kudu ZIP Deploy
+        shell: pwsh
+        env:
+          PUBLIC_KNOWLEDGE_PUBLISH_PROFILE: ${{ secrets.PUBLIC_KNOWLEDGE_PUBLISH_PROFILE }}
+        run: |
+          .\tools\Deploy-PublicKnowledgeWorker.ps1 `
+            -Configuration Release `
+            -DeploymentPollTimeoutSeconds 600 `
+            -DeploymentPollIntervalSeconds 5
+
+      - name: Protected status check
+        if: ${{ inputs.run_status_check }}
+        shell: pwsh
+        env:
+          PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
+            Write-Host "PUBLIC_KNOWLEDGE_FUNCTION_KEY is not configured. Skipping protected status check."
+            exit 0
+          }
+
+          $encodedKey = [System.Uri]::EscapeDataString($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)
+          $status = Invoke-RestMethod `
+            -Method Get `
+            -Uri "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/status?code=$encodedKey" `
+            -TimeoutSec 60
+
+          if (-not $status.ok) {
+            throw "Public Knowledge Worker status endpoint returned ok=false."
+          }
+
+          $summary = [pscustomobject]@{
+            enabled = $status.status.Enabled
+            timerEnabled = $status.status.TimerEnabled
+            model = $status.status.Model
+            hasOpenAiApiKey = $status.status.HasOpenAiApiKey
+            maxSourcesPerRun = $status.status.MaxSourcesPerRun
+            storageHasConnectionString = $status.storage.HasConnectionString
+          }
+
+          $summary | ConvertTo-Json -Depth 4
