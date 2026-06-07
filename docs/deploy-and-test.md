@@ -32,7 +32,7 @@ az resource update \
   --set properties.allow=true
 ```
 
-That publishes the Function App, zips the output, and deploys it to:
+That publishes the Function App, zips the output, sends it to Kudu ZIP Deploy, and polls the Kudu deployment record until it completes or fails. It deploys to:
 
 ```text
 ng-public-knowledge-func-2026.azurewebsites.net

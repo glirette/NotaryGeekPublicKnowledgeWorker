@@ -3,7 +3,9 @@ param(
     [string] $FunctionAppName = "ng-public-knowledge-func-2026",
     [string] $Configuration = "Release",
     [string] $PublishProfilePath = "",
-    [string] $PublishProfileXml = $env:PUBLIC_KNOWLEDGE_PUBLISH_PROFILE
+    [string] $PublishProfileXml = $env:PUBLIC_KNOWLEDGE_PUBLISH_PROFILE,
+    [int] $DeploymentPollTimeoutSeconds = 300,
+    [int] $DeploymentPollIntervalSeconds = 5
 )
 
 $ErrorActionPreference = "Stop"
@@ -69,13 +71,78 @@ if (-not [string]::IsNullOrWhiteSpace($PublishProfileXml)) {
     $basicAuth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("${username}:$password"))
     Write-Host "Deploying package to $scmHost with Kudu ZIP Deploy."
     try {
-        Invoke-RestMethod `
-            -Uri "https://$scmHost/api/zipdeploy" `
-            -Method Post `
-            -Headers @{ Authorization = "Basic $basicAuth" } `
-            -ContentType "application/zip" `
-            -InFile $zipPath `
-            -TimeoutSec 300 | Out-Null
+        $zipDeployUri = "https://$scmHost/api/zipdeploy?isAsync=true"
+        $zipDeployParams = @{
+            Uri = $zipDeployUri
+            Method = "Post"
+            Headers = @{ Authorization = "Basic $basicAuth" }
+            ContentType = "application/zip"
+            InFile = $zipPath
+            TimeoutSec = 300
+        }
+
+        if ((Get-Command Invoke-WebRequest).Parameters.ContainsKey("UseBasicParsing")) {
+            $zipDeployParams.UseBasicParsing = $true
+        }
+
+        $submitResponse = Invoke-WebRequest @zipDeployParams
+        $deploymentStatusUri = [string] $submitResponse.Headers["Location"]
+        if ([string]::IsNullOrWhiteSpace($deploymentStatusUri)) {
+            $deploymentStatusUri = "https://$scmHost/api/deployments/latest"
+        }
+        elseif ($deploymentStatusUri.StartsWith("/", [StringComparison]::Ordinal)) {
+            $deploymentStatusUri = "https://$scmHost$deploymentStatusUri"
+        }
+
+        Write-Host "Kudu deployment accepted. Polling $deploymentStatusUri"
+        $deadline = (Get-Date).AddSeconds([Math]::Max(30, $DeploymentPollTimeoutSeconds))
+        $lastStatusText = $null
+        $deployment = $null
+
+        do {
+            Start-Sleep -Seconds ([Math]::Max(1, $DeploymentPollIntervalSeconds))
+            $deployment = Invoke-RestMethod `
+                -Uri $deploymentStatusUri `
+                -Method Get `
+                -Headers @{ Authorization = "Basic $basicAuth" } `
+                -TimeoutSec 60
+
+            $status = if ($null -ne $deployment.status) { [int] $deployment.status } else { -1 }
+            $statusText = [string] $deployment.status_text
+            $message = [string] $deployment.message
+            $progress = [string] $deployment.progress
+            $display = "status=$status"
+            if (-not [string]::IsNullOrWhiteSpace($statusText)) { $display += "; statusText=$statusText" }
+            if (-not [string]::IsNullOrWhiteSpace($message)) { $display += "; message=$message" }
+            if (-not [string]::IsNullOrWhiteSpace($progress)) { $display += "; progress=$progress" }
+
+            if ($display -ne $lastStatusText) {
+                Write-Host "Kudu deployment: $display"
+                $lastStatusText = $display
+            }
+
+            $complete = $false
+            if ($deployment.PSObject.Properties.Name -contains "complete") {
+                $complete = [bool] $deployment.complete
+            }
+            elseif ($status -eq 3 -or $status -eq 4) {
+                $complete = $true
+            }
+
+            if ($complete) {
+                if ($status -eq 4) {
+                    Write-Host "Kudu deployment completed successfully."
+                    break
+                }
+
+                throw "Kudu deployment completed with non-success status $status. Review deployment id '$($deployment.id)' on $scmHost."
+            }
+        }
+        while ((Get-Date) -lt $deadline)
+
+        if ($null -eq $deployment -or ((Get-Date) -ge $deadline -and [int] $deployment.status -ne 4)) {
+            throw "Timed out waiting for Kudu deployment to finish after $DeploymentPollTimeoutSeconds seconds. Review $deploymentStatusUri."
+        }
     }
     catch {
         $statusCode = $null
@@ -102,5 +169,5 @@ else {
         --src $zipPath
 }
 
-Write-Host "Deployment submitted to $FunctionAppName."
+Write-Host "Deployment completed for $FunctionAppName."
 Write-Host "Zip package: $zipPath"
