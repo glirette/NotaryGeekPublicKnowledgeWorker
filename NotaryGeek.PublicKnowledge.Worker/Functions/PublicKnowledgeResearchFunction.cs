@@ -12,15 +12,18 @@ namespace NotaryGeek.PublicKnowledge.Worker.Functions;
 public sealed class PublicKnowledgeResearchFunction
 {
     private readonly PublicKnowledgeResearchService _service;
+    private readonly PublicKnowledgeRunStorageService _storage;
     private readonly PublicKnowledgeOptions _options;
     private readonly ILogger<PublicKnowledgeResearchFunction> _logger;
 
     public PublicKnowledgeResearchFunction(
         PublicKnowledgeResearchService service,
+        PublicKnowledgeRunStorageService storage,
         IOptions<PublicKnowledgeOptions> options,
         ILogger<PublicKnowledgeResearchFunction> logger)
     {
         _service = service;
+        _storage = storage;
         _options = options.Value;
         _logger = logger;
     }
@@ -34,7 +37,8 @@ public sealed class PublicKnowledgeResearchFunction
         await response.WriteAsJsonAsync(new
         {
             ok = true,
-            status = _service.GetStatus()
+            status = _service.GetStatus(),
+            storage = _storage.GetStatus()
         }, cancellationToken);
         return response;
     }
@@ -95,6 +99,59 @@ public sealed class PublicKnowledgeResearchFunction
         return response;
     }
 
+    [Function("PublicKnowledgeLatestRuns")]
+    public async Task<HttpResponseData> LatestRuns(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/latest")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var caseId = TryGetStringQuery(req, "case");
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            if (!string.IsNullOrWhiteSpace(caseId))
+            {
+                var latest = await _storage.ReadLatestAsync(caseId, cancellationToken);
+                if (latest is null)
+                {
+                    var notFound = req.CreateResponse(HttpStatusCode.NotFound);
+                    await notFound.WriteAsJsonAsync(new
+                    {
+                        ok = false,
+                        error = "latest_run_not_found",
+                        requestedCase = caseId
+                    }, cancellationToken);
+                    return notFound;
+                }
+
+                await response.WriteAsJsonAsync(new
+                {
+                    ok = true,
+                    latest
+                }, cancellationToken);
+                return response;
+            }
+
+            var latestRuns = await _storage.ListLatestAsync(cancellationToken);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = true,
+                latestRuns
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
     [Function("PublicKnowledgeResearchTimer")]
     public async Task RunTimer(
         [TimerTrigger("0 17 9 * * *")] TimerInfo timer,
@@ -106,21 +163,43 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
-        var command = new PublicKnowledgeRunCommand(
-            Execute: true,
-            FromTimer: true,
-            Focus: "daily public law, answer-engine, source-quality, and route-first research triage",
-            RequestedUrls: [],
-            RegressionCaseId: null,
-            RegressionCase: null);
-
-        var result = await _service.RunAsync(command, cancellationToken);
-        if (!result.Ok)
+        var cases = _service.GetRegressionCasesForBatch(_options.TimerBatch);
+        if (cases.Count == 0)
         {
-            _logger.LogWarning(
-                "Public knowledge research timer failed with {ErrorCount} error(s): {Errors}",
-                result.Errors.Count,
-                string.Join(" | ", result.Errors));
+            _logger.LogWarning("Public knowledge research timer found no cases for batch {Batch}.", _options.TimerBatch);
+            return;
+        }
+
+        var runStartedUtc = DateTime.UtcNow;
+        foreach (var regressionCase in cases)
+        {
+            var command = new PublicKnowledgeRunCommand(
+                Execute: true,
+                FromTimer: true,
+                Focus: regressionCase.Focus,
+                RequestedUrls: [],
+                RegressionCaseId: regressionCase.Id,
+                RegressionCase: regressionCase);
+
+            var result = await _service.RunAsync(command, cancellationToken);
+            var receipt = await _storage.SaveAsync(result, "timer", _options.TimerBatch, runStartedUtc, cancellationToken);
+            _logger.LogInformation(
+                "Public knowledge timer stored case {CaseId}: ok={Ok}; status={Status}; warnings={WarningCount}; errors={ErrorCount}; blob={BlobName}",
+                receipt.CaseId,
+                receipt.Ok,
+                receipt.Status,
+                receipt.WarningCount,
+                receipt.ErrorCount,
+                receipt.BlobName);
+
+            if (!result.Ok)
+            {
+                _logger.LogWarning(
+                    "Public knowledge research timer case {CaseId} failed with {ErrorCount} error(s): {Errors}",
+                    regressionCase.Id,
+                    result.Errors.Count,
+                    string.Join(" | ", result.Errors));
+            }
         }
     }
 

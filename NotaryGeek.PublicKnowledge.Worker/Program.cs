@@ -16,6 +16,7 @@ var host = new HostBuilder()
 
         services.AddHttpClient();
         services.AddSingleton<PublicKnowledgeResearchService>();
+        services.AddSingleton<PublicKnowledgeRunStorageService>();
     })
     .Build();
 

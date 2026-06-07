@@ -86,6 +86,22 @@ public sealed class PublicKnowledgeResearchService
         return regressionCase is not null;
     }
 
+    public IReadOnlyList<PublicKnowledgeRegressionCase> GetRegressionCasesForBatch(string batch)
+    {
+        var cases = GetRegressionMatrix().Cases;
+        var ids = GetRegressionCaseIdsForBatch(batch);
+        if (ids.Count == 0)
+        {
+            return cases;
+        }
+
+        return ids
+            .Select(id => cases.FirstOrDefault(item => item.Id.Equals(id, StringComparison.OrdinalIgnoreCase)))
+            .Where(item => item is not null)
+            .Cast<PublicKnowledgeRegressionCase>()
+            .ToArray();
+    }
+
     public async Task<PublicKnowledgeRunResult> RunAsync(
         PublicKnowledgeRunCommand command,
         CancellationToken cancellationToken)
@@ -703,6 +719,37 @@ public sealed class PublicKnowledgeResearchService
             .Where(item => !string.IsNullOrWhiteSpace(item))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
+
+    private static IReadOnlyList<string> GetRegressionCaseIdsForBatch(string batch) =>
+        batch.Trim().ToLowerInvariant() switch
+        {
+            "core" =>
+            [
+                "spain-hague-finality",
+                "georgia-affidavit-florida-notary-spain",
+                "platform-hype-foreign-signer-no-ssn-spain",
+                "outside-apostille-path-not-apostille-plus"
+            ],
+            "platform" =>
+            [
+                "platform-hype-foreign-signer-no-ssn-spain",
+                "notarycam-proof-history-scrutiny",
+                "real-estate-court-defensible-platform-trap"
+            ],
+            "apostille" =>
+            [
+                "spain-hague-finality",
+                "georgia-affidavit-florida-notary-spain",
+                "saudi-arabia-hague-not-non-hague",
+                "outside-apostille-path-not-apostille-plus"
+            ],
+            "recipient" =>
+            [
+                "recipient-phone-comment-not-rejection",
+                "real-estate-court-defensible-platform-trap"
+            ],
+            _ => []
+        };
 
     private sealed record SourceBody(string Url, string Content);
 

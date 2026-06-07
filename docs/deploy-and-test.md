@@ -63,6 +63,8 @@ az functionapp keys list \
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/status?code=<key>"
 ```
 
+The status response includes storage readiness. `storage.hasConnectionString` should be `true` before enabling timer output persistence.
+
 ## Dry-Run Research
 
 This should not call OpenAI.
@@ -173,7 +175,13 @@ Then:
 curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/research?code=<key>&execute=true&focus=Spain%20apostille%20routing"
 ```
 
-Keep the timer hard-disabled until there is a deliberate cadence:
+## Timer Output
+
+The timer is intentionally off until there is a deliberate cadence. When enabled, it runs the configured regression batch, calls OpenAI, and stores each result in the Function App storage container.
+
+Current timer schedule in code: daily at `09:17 UTC`.
+
+Keep the timer hard-disabled:
 
 ```bash
 az functionapp config appsettings set \
@@ -183,6 +191,27 @@ az functionapp config appsettings set \
 ```
 
 This keeps both the code-level timer gate and the Azure Functions timer trigger disabled. Manual dry-runs and manual `execute=true` calls still work.
+
+To light it up for the `Core` batch:
+
+```bash
+az functionapp config appsettings set \
+  --resource-group NG-PUBLIC-KNOWLEDGE \
+  --name ng-public-knowledge-func-2026 \
+  --settings PublicKnowledge__TimerEnabled=true AzureWebJobs.PublicKnowledgeResearchTimer.Disabled=false PublicKnowledge__TimerBatch=Core PublicKnowledge__OutputStorageConnectionStringSetting=AzureWebJobsStorage PublicKnowledge__OutputContainerName=public-knowledge-runs
+
+az functionapp restart \
+  --resource-group NG-PUBLIC-KNOWLEDGE \
+  --name ng-public-knowledge-func-2026
+```
+
+Inspect latest stored timer/manual outputs:
+
+```bash
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/latest?code=<key>"
+
+curl "https://ng-public-knowledge-func-2026.azurewebsites.net/api/public-knowledge/runs/latest?code=<key>&case=spain-hague-finality"
+```
 
 ## Optional GitHub Actions Later
 
