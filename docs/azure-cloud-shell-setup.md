@@ -37,7 +37,8 @@ az functionapp config appsettings set \
     PublicKnowledge__PublicCorpusManifestUrl=https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json \
     OpenAI__BaseUrl=https://api.openai.com \
     OpenAI__EndpointPath=/v1/responses \
-    OpenAI__Model=gpt-5-mini
+    OpenAI__Model=gpt-5-mini \
+    OpenAI__ReasoningEffort=low
 ```
 
 Azure redacts values in the appsettings response. `value: null` in the table usually means the CLI is not echoing secrets/settings back, not that the value is missing.

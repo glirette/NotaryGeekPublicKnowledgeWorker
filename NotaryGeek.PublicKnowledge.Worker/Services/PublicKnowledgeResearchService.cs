@@ -327,7 +327,8 @@ public sealed class PublicKnowledgeResearchService
         builder.AppendLine("Marketing claims are evidence only of what a provider claims to sell, not evidence of lawful completion or acceptance.");
         builder.AppendLine("There is no private-source safe harbor. Return to controlling law, official sources, actual route evidence, and transaction date.");
         builder.AppendLine("For apostille work, distinguish Hague Apostille Convention finality from outside-Apostille-Convention authentication/legalization chains.");
-        builder.AppendLine("Produce JSON with keys: summary, routeFindings, sourceQualityFindings, suggestedPublicReplies, websiteBriefs, lawRefreshCandidates, risks, citations.");
+        builder.AppendLine("Produce compact JSON with keys: summary, routeFindings, sourceQualityFindings, suggestedPublicReplies, websiteBriefs, lawRefreshCandidates, risks, citations.");
+        builder.AppendLine("Keep every array to 4 or fewer items. Keep each item concise. Do not quote long passages.");
         builder.AppendLine("Every citation must use one of the source URLs below.");
         builder.AppendLine();
         builder.AppendLine($"Focus: {focus}");
@@ -366,10 +367,10 @@ public sealed class PublicKnowledgeResearchService
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _openAiOptions.ApiKey);
 
         var endpoint = BuildOpenAiEndpoint();
-        var payload = new
+        var payload = new Dictionary<string, object?>
         {
-            model = _openAiOptions.Model,
-            input = new object[]
+            ["model"] = _openAiOptions.Model,
+            ["input"] = new object[]
             {
                 new
                 {
@@ -377,8 +378,16 @@ public sealed class PublicKnowledgeResearchService
                     content = prompt
                 }
             },
-            max_output_tokens = _knowledgeOptions.MaxOutputTokens
+            ["max_output_tokens"] = _knowledgeOptions.MaxOutputTokens
         };
+
+        if (!string.IsNullOrWhiteSpace(_openAiOptions.ReasoningEffort))
+        {
+            payload["reasoning"] = new
+            {
+                effort = _openAiOptions.ReasoningEffort
+            };
+        }
 
         using var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
         {
@@ -397,9 +406,13 @@ public sealed class PublicKnowledgeResearchService
             }
 
             using var document = JsonDocument.Parse(responseText);
+            var responseStatus = TryGetStringProperty(document.RootElement, "status");
+            var statusWithResponse = string.IsNullOrWhiteSpace(responseStatus)
+                ? status
+                : $"{status}; response={responseStatus}";
             var outputText = ExtractOutputText(document.RootElement);
             var usageJson = TryGetRawProperty(document.RootElement, "usage");
-            return new OpenAiProviderResult(true, outputText, status, usageJson, null);
+            return new OpenAiProviderResult(true, outputText, statusWithResponse, usageJson, null);
         }
         catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException)
         {
@@ -489,6 +502,11 @@ public sealed class PublicKnowledgeResearchService
 
     private static string? TryGetRawProperty(JsonElement root, string propertyName) =>
         TryGetProperty(root, propertyName, out var property) ? property.GetRawText() : null;
+
+    private static string? TryGetStringProperty(JsonElement root, string propertyName) =>
+        TryGetProperty(root, propertyName, out var property) && property.ValueKind == JsonValueKind.String
+            ? property.GetString()
+            : null;
 
     private static bool TryGetProperty(JsonElement element, string propertyName, out JsonElement property)
     {

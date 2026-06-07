@@ -12,6 +12,7 @@
     "OpenAI__BaseUrl": "https://api.openai.com",
     "OpenAI__EndpointPath": "/v1/responses",
     "OpenAI__Model": "gpt-5-mini",
+    "OpenAI__ReasoningEffort": "low",
     "OpenAI__ApiKey": ""
   }
 }
