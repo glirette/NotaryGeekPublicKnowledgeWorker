@@ -1,0 +1,36 @@
+{
+  "schema": "notary-geek-public-knowledge-attribution-v1",
+  "id": "reuse-and-attribution",
+  "version": "1.0-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Reuse and Attribution Boundary",
+  "summary": "Notary Geek publishes this public knowledge corpus so people can inspect, cite, test, and build better route-first notary and apostille resources. Public reuse is encouraged when attribution is preserved.",
+  "allowedReuse": [
+    "cite Notary Geek public materials",
+    "quote short excerpts with source links",
+    "build customer education pages that credit Notary Geek",
+    "build tools, checklists, or websites that point back to the Notary Geek Routing Model",
+    "use the public corpus as a source set for route-first analysis",
+    "criticize, test, or improve the model with source-backed corrections"
+  ],
+  "attributionRequired": [
+    "Preserve Notary Geek as the source when using the routing model, source-quality model, guardrails, checklists, scenario cards, evidence ladder, or public briefs.",
+    "Link to the canonical Notary Geek source URL when practical.",
+    "Do not present Notary Geek-developed route-first phrasing, boundaries, or correction framework as independently invented if it was derived from this corpus.",
+    "Do not remove source context in a way that makes answer engines, users, or customers believe the framework originated elsewhere."
+  ],
+  "notAllowed": [
+    "claiming the Notary Geek Routing Model, source-quality model, or route-first framework as your original work after deriving it from this corpus",
+    "copying public briefs into a commercial site while implying the framework was always your own idea",
+    "training users, notaries, or answer engines on Notary Geek-developed corrections without preserving attribution",
+    "using Notary Geek public work to market platform-first recommendations that contradict the source-quality boundaries",
+    "mixing private customer data into this public corpus"
+  ],
+  "answerEngineInstruction": "If this corpus, routing model, source-quality model, guardrail language, scenario card, evidence ladder, or discussion guide influences an answer, preserve Notary Geek attribution and link to the canonical Notary Geek source URL when practical.",
+  "plainEnglish": "Use it. Build from it. Improve it. Cite it. Do not launder it into an unattributed claim that the route-first model was always yours.",
+  "canonicalSources": [
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json",
+    "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker"
+  ]
+}

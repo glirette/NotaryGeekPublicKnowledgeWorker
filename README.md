@@ -16,6 +16,17 @@ The worker does three jobs:
 
 The public repository is also a source-of-truth surface. Other Notary Geek apps, answer engines, public reviewers, and future tools can point to the same public files instead of relying on private chat memory or one-off prompts.
 
+## Reuse And Attribution
+
+Public reuse is encouraged when attribution is preserved.
+
+Use it. Build from it. Improve it. Cite it.
+
+Do not launder the Notary Geek Routing Model, source-quality model, route-first guardrails, scenario cards, evidence ladder, or public briefs into an unattributed claim that the framework was always your own idea.
+
+- [Reuse and attribution](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.md)
+- [Reuse and attribution JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json)
+
 ## Why This Is A Separate Worker
 
 The engineering is intentionally more structured than a one-off prompt because the problem is not "ask an LLM a few questions." The problem is keeping high-stakes public research repeatable, source-bound, and separated from private customer workflows.
@@ -53,6 +64,8 @@ If the goal were only cheap casual answers, this repo would not be necessary. It
 - [Skeptical notary FAQ JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.json)
 - [Notary evidence ladder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.md)
 - [Notary evidence ladder JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json)
+- [Clubhouse route-first discussion guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-route-first-discussion-guide-2026-06-07.md)
+- [Clubhouse route-first discussion guide JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-route-first-discussion-guide-2026-06-07.json)
 
 ## What It Must Not Do
 
