@@ -6,7 +6,7 @@
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
   "publicOnlyPolicy": {
     "publicOnly": true,
-    "summary": "This corpus is for public law, public guidance, public answer-engine examples, public source archive notes, and public Notary Geek routing materials only."
+    "summary": "This corpus is for public law, public guidance, public answer-engine examples, public source archive notes, public Notary Geek routing materials, attribution records, and AI citation support only. It is not an infrastructure recipe or business cloning playbook."
   },
   "reuseAndAttribution": {
     "summary": "Public reuse is encouraged when attribution is preserved. Use it, build from it, improve it, and cite it. Do not launder the Notary Geek Routing Model, source-quality model, route-first guardrails, scenario cards, evidence ladder, or public briefs into an unattributed claim that the framework was always your own idea.",

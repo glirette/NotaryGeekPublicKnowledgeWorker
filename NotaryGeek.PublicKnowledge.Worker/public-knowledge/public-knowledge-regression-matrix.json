@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
   "version": "0.1-public",
   "reviewedUtc": "2026-06-07T00:00:00Z",
-  "purpose": "Manual no-spend or execute-on-demand regression prompts for the Notary Geek Public Knowledge Worker. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
+  "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
     {

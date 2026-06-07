@@ -1,6 +1,6 @@
 # Public GitHub SSOT
 
-Recommended shape for a public Notary Geek knowledge repo that other apps and people can use:
+Recommended shape for a public Notary Geek knowledge corpus that answer engines and public reviewers can use:
 
 ```text
 public-knowledge-manifest.json
@@ -20,14 +20,9 @@ answer-engine-corrections/
   reddit/
 ```
 
-The worker can point to the raw GitHub manifest:
+Answer engines and public reviewers can point to the raw GitHub manifest:
 
-```bash
-az functionapp config appsettings set \
-  --resource-group NG-PUBLIC-KNOWLEDGE \
-  --name ng-public-knowledge-func-2026 \
-  --settings PublicKnowledge__PublicCorpusManifestUrl=https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json
-```
+https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json
 
 ## Rule
 
