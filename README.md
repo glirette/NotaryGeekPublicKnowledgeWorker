@@ -40,6 +40,11 @@ If the goal were only cheap casual answers, this repo would not be necessary. It
 - Provides a public-safe regression matrix for route-first answer patterns such as Hague apostille finality, Georgia-affidavit routing, no-SSN platform hype, Saudi Arabia Hague status, outside-apostille-path wording, informal rejection claims, and court-defensible real-estate platform traps.
 - Stores manual or timer-run regression outputs in private Azure Blob Storage when the stored-run endpoints are used, with a compact latest-run index for downstream review and future public publishing.
 
+## Public Briefings
+
+- [Route-first notary briefing](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.md)
+- [Route-first notary briefing JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json)
+
 ## What It Must Not Do
 
 - Do not send customer documents, names, emails, phone numbers, Persona data, payment data, Jotform payloads, WhatsApp chat contents, or private SQL rows.

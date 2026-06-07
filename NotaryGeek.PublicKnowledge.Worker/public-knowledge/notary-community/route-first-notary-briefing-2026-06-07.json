@@ -1,0 +1,82 @@
+{
+  "schema": "notary-geek-public-notary-community-briefing-v1",
+  "id": "route-first-notary-briefing-2026-06-07",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Route-first notary briefing",
+  "audience": [
+    "notaries",
+    "RON notaries",
+    "signing agents",
+    "notary trainers",
+    "platform operators",
+    "document-routing helpers"
+  ],
+  "purpose": "Give notaries practical public-source questions and boundaries before relying on platform recommendations, trainer claims, recipient phone comments, or answer-engine summaries.",
+  "notLegalAdvice": true,
+  "oneSentence": "Do not pick the platform first. Route the transaction first, then decide whether a platform, notary state, identity method, document output, apostille path, and recipient evidence actually fit.",
+  "routeFirstChecklist": [
+    "Document type: signer-created private document, public record, court record, vital record, corporate record, real-estate instrument, USPS Form 1583, or another lane.",
+    "Public-official signature: who signs in official capacity, or whether there is no public-official signature yet.",
+    "Notary commissioning state and transaction date: the notary state controls the notarial act and often the apostille route for a newly notarized private document.",
+    "Identity method and evidence: KBA, biometrics, credential analysis, selfie comparison, and no-SSN workflows are not interchangeable legal authority.",
+    "Output format: paper notarization original, remote/electronic notarization output, certified copy, existing official record, or scan.",
+    "Destination/use and recipient evidence: Hague apostille path, outside-apostille path, recorder, title company, agency, bank, written instructions, published rules, or actual documented rejection."
+  ],
+  "coreBoundaries": [
+    {
+      "name": "platformLast",
+      "rule": "The platform is a tool after the route is proven. Platform history, marketing, foreign-signer experience, title-market comfort, NNA language, MISMO/SOC/NIST language, or vendor consensus is not legal safe harbor."
+    },
+    {
+      "name": "newPrivateDocumentNotaryState",
+      "rule": "For a new signer-created private document that has not yet been notarized, the document subject or named state does not automatically choose the apostille state. The notary public's commissioning state/public-official signature controls the state apostille route."
+    },
+    {
+      "name": "existingPublicRecordDifferent",
+      "rule": "Existing public records, court records, vital records, and existing non-notary public-official signatures usually follow the jurisdiction of the public official who signed or certified the record."
+    },
+    {
+      "name": "hagueApostilleFinality",
+      "rule": "For destinations in the 1961 Hague Apostille Convention path, a valid apostille from the competent authority ends the legalization chain. Do not add embassy or consular legalization after a valid apostille."
+    },
+    {
+      "name": "outsideApostillePath",
+      "rule": "For destinations outside the 1961 Apostille Convention path, do not call the route apostille plus more steps. It is a separate authentication, certification, or legalization route whose exact sequence depends on the destination and document facts."
+    },
+    {
+      "name": "paperVsRemoteOutput",
+      "rule": "A physical paper notarization generally needs the physical original. A scan or picture of a physically notarized paper document should not be treated as equivalent to the original. Remote/electronic notarization output is a different lane and may be accepted as official printed or electronic output by the competent authority."
+    },
+    {
+      "name": "recipientEvidence",
+      "rule": "A phone comment, casual support answer, proactive filter, or trying-to-be-helpful warning is not the same as a formal rejection. Look for written instructions, published rules, named reviewer or office, stated reason, approval authority, and escalation path."
+    },
+    {
+      "name": "coachingScamIntent",
+      "rule": "Coaching-scam is a source-quality and opinion term unless a specific statement expressly alleges criminal conduct. A coaching-scam can be criminal, but it does not have to be criminal. Lack of criminal intent is not compliance safe harbor."
+    }
+  ],
+  "betterQuestions": [
+    "What public official signature will the competent authority authenticate?",
+    "Is this document already signed by a public official, or is it a new document that still needs a notary?",
+    "Which law controlled the notary on the transaction date?",
+    "What identity method was actually used, and does that method fit the notary state?",
+    "Is this a paper original, certified copy, remote/electronic notarial output, or just a scan?",
+    "Is the destination in the 1961 Apostille Convention path for this transaction date?",
+    "Is the recipient statement written, published, official, or just a phone comment?",
+    "Is the platform claim legal authority, or only evidence of what the provider says it sells?"
+  ],
+  "notaryTalkTrack": [
+    "Let us route the transaction first. The platform is only a tool.",
+    "The route depends on the document type, notary state, identity method, output format, destination, and actual evidence.",
+    "I am not giving legal advice, but I am not going to treat platform marketing, trainer confidence, or a phone comment as controlling authority.",
+    "If the document has not been notarized yet, the state named inside the document usually does not choose the apostille state. The notary's public-official signature does."
+  ],
+  "publicSources": [
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json",
+    "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+    "https://travel.state.gov/content/travel/en/replace-certify-docs/authenticate-your-document/apostille-requirements.html"
+  ]
+}
