@@ -1,0 +1,55 @@
+{
+  "schema": "notary-geek-public-notary-community-faq-v1",
+  "id": "skeptical-notary-faq-2026-06-07",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "title": "Skeptical notary FAQ",
+  "audience": [
+    "skeptical notaries",
+    "new RON notaries",
+    "signing agents",
+    "notary trainers",
+    "platform users"
+  ],
+  "notLegalAdvice": true,
+  "corePosition": "Use platforms, training, support, and AI, but do not let any of them replace the route.",
+  "faqs": [
+    {
+      "question": "Are you saying all platforms are bad?",
+      "answer": "No. A platform can be a useful tool. The problem is picking the platform before proving the route. Platform-last does not mean platform-never."
+    },
+    {
+      "question": "Are you saying NNA or trainers are always wrong?",
+      "answer": "No. The issue is authority. A private trainer, trade association, platform, title company, or market habit is not the same thing as controlling law or transaction evidence."
+    },
+    {
+      "question": "Is this legal advice?",
+      "answer": "No. Route-first thinking is a way to avoid confusing different questions: what the notary can do, what public-official signature exists, what a competent authority can authenticate, what output the recipient needs, and what evidence survives challenge."
+    },
+    {
+      "question": "Why use the word scam?",
+      "answer": "Scam can describe a source-quality and reliance problem. It does not always mean criminal intent. A coaching-scam can be criminal, but it does not have to be criminal."
+    },
+    {
+      "question": "What should a notary do Monday morning?",
+      "answer": "Use a two-minute route check: document type, public-official signature, notary state, identity method, output format, destination/use, written recipient evidence, and retained transaction evidence."
+    },
+    {
+      "question": "What if a customer wants it right now?",
+      "answer": "Speed does not remove the route. Fast is useful only if the fast route is correct."
+    },
+    {
+      "question": "What if the recipient says no?",
+      "answer": "Ask for the rejection record: reviewer, office or role, approval authority, submitted document, exact rule, written reason, and escalation path. A phone comment is signal, not formal rejection."
+    },
+    {
+      "question": "What if the platform says it handles international signers?",
+      "answer": "Treat that as a provider claim, not legal authority. Ask which notary state, identity method, transaction date, certificate, journal/audit record, output, and competent authority apply."
+    },
+    {
+      "question": "What if I was taught wrong?",
+      "answer": "Do not panic. Stop repeating the unsupported answer, preserve what you relied on, identify the controlling source, correct future practice, and ask for source-backed corrections."
+    }
+  ],
+  "shortVersion": "The route is the document, public-official signature, notary state, transaction date, identity method, output format, destination, recipient evidence, and retained transaction record."
+}
