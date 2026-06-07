@@ -12,12 +12,15 @@
     "certified translation",
     "filing formalities",
     "original or certified-copy requirements",
+    "paper-original requirements versus official remote/electronic notarization output",
     "recipient document formatting",
     "shipping and delivery logistics"
   ],
+  "outputFormatBoundary": "Do not flatten every apostille submission into paper-original language. A physical paper notarization generally requires the physical original. A remote or electronic notarization may be apostilled from the official printed or electronic output accepted by the competent authority. A scan or picture of a physically notarized paper document should not be treated as equivalent to the original.",
   "failureSignals": [
     "says Florida apostille then Spanish consular legalization",
     "calls translation an extra legalization step",
+    "treats a scan of a physically notarized paper document as equivalent to the original",
     "uses stale country status without checking the current apostille path",
     "treats platform international support as proof of apostille finality"
   ],

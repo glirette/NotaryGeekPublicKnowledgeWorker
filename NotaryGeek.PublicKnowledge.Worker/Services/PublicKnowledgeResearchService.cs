@@ -453,12 +453,13 @@ public sealed class PublicKnowledgeResearchService
         builder.AppendLine("For apostille work, distinguish Hague Apostille Convention finality from outside-Apostille-Convention authentication/legalization chains.");
         builder.AppendLine("For Hague destinations such as Spain, a proper apostille from the competent authority ends the legalization chain; do not add embassy or consular legalization after a valid apostille.");
         builder.AppendLine("Keep recipient document requirements separate from legalization. Translation, certified translation, filing, original/certified-copy, and wording requirements are not extra legalization steps.");
+        builder.AppendLine("For document output, distinguish paper notarizations from remote/electronic notarizations. A physical paper notarization generally needs the physical original for apostille/authentication; a remote/electronic notarization may use the official printed/electronic output accepted by the competent authority. Do not collapse both into 'paper original' language.");
         builder.AppendLine("Do not use vague 'check with the recipient' language as an escape hatch. Recipient acceptance evidence means known written instructions, published recipient rules, official filing requirements, or documented rejection/acceptance evidence.");
         builder.AppendLine("For a new U.S. private document that has not yet been notarized, the notary public's commissioning state/public-official signature controls the state apostille route; the document subject or named state does not automatically control.");
         builder.AppendLine("Citations must be exact fetched source URLs listed in this run. Do not cite URLs merely discovered inside an index or source document unless that URL was fetched in this run.");
         builder.AppendLine("If an unfetched URL appears useful, put it in lawRefreshCandidates as a fetch candidate, not as a citation.");
         builder.AppendLine("Produce compact JSON with keys: summary, routeFindings, sourceQualityFindings, suggestedPublicReplies, websiteBriefs, lawRefreshCandidates, risks, citations.");
-        builder.AppendLine("Keep every array to 4 or fewer items. Keep each item concise. Do not quote long passages.");
+        builder.AppendLine("Keep every array to 4 or fewer items. Keep each array item as a plain concise string, not a nested JSON object and not JSON serialized as text. Do not quote long passages.");
         builder.AppendLine("Every citation must use one of the exact allowed citation URLs listed below.");
         builder.AppendLine("Allowed citation URLs:");
         foreach (var source in sources)

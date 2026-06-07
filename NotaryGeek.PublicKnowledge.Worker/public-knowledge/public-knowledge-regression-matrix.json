@@ -12,10 +12,12 @@
       "mustHold": [
         "Spain is treated as a 1961 Hague Apostille Convention destination.",
         "A proper apostille from the competent authority ends the legalization chain.",
+        "Document-output language distinguishes a paper notarization original from an official remote/electronic notarization output accepted by the competent authority.",
         "Translation, filing, originals, certified copies, and recipient formatting are separate from legalization."
       ],
       "failureSignals": [
         "Adds Spanish embassy or consular legalization after a valid apostille.",
+        "Says every Florida RON apostille route requires the underlying paper original without distinguishing remote/electronic output from a physically notarized paper document.",
         "Calls translation or filing an extra legalization step.",
         "Uses vague ask-the-recipient language without evidence standards."
       ]
