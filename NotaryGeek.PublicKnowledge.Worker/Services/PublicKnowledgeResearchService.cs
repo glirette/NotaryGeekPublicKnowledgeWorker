@@ -734,7 +734,8 @@ public sealed class PublicKnowledgeResearchService
             [
                 "platform-hype-foreign-signer-no-ssn-spain",
                 "notarycam-proof-history-scrutiny",
-                "real-estate-court-defensible-platform-trap"
+                "real-estate-court-defensible-platform-trap",
+                "coaching-scam-no-criminal-intent-boundary"
             ],
             "apostille" =>
             [

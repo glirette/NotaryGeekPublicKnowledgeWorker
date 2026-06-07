@@ -133,6 +133,7 @@ Useful current case IDs:
 - `recipient-phone-comment-not-rejection`
 - `real-estate-court-defensible-platform-trap`
 - `notarycam-proof-history-scrutiny`
+- `coaching-scam-no-criminal-intent-boundary`
 
 From local PowerShell, you can run the matrix without putting the function key in command history by using an environment variable for the current shell:
 

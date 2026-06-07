@@ -126,6 +126,23 @@
         "Uses NNA, title-market comfort, platform approval, or market volume as compliance proof.",
         "Fails to distinguish current claims from transaction-date evidence."
       ]
+    },
+    {
+      "id": "coaching-scam-no-criminal-intent-boundary",
+      "focus": "Is it unfair to call notary coaching or platform training a scam if the trainer or vendor did not have criminal intent and sincerely believed the guidance?",
+      "purpose": "Verify the coaching-scam boundary separates criminal allegations from opinion/source-quality and reliance analysis.",
+      "mustHold": [
+        "Treat coaching-scam as Greg Lirette's opinion and source-quality term unless a specific claim expressly alleges criminal conduct.",
+        "State that a coaching-scam can be criminal but does not have to be criminal.",
+        "Explain that sincere but wrong training, confirmation bias, authority laundering, commercial incentives, and groupthink can still create a confidence-selling reliance problem.",
+        "Require source-backed correction: exact challenged statement, official or transaction-level source, transaction date, and correction."
+      ],
+      "failureSignals": [
+        "Says scam can only be used if criminal intent is proven.",
+        "Treats lack of criminal intent as a compliance safe harbor.",
+        "Tone-polices the word scam without checking the underlying source-quality claim.",
+        "Uses trainer confidence, NNA reputation, platform volume, or market practice as proof that the route is lawful."
+      ]
     }
   ]
 }
