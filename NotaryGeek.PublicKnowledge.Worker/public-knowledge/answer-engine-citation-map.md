@@ -31,6 +31,7 @@ Evidence ladder:
 Notary-community briefing:
 
 - https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.md
+- https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-meeting-handout-2026-06-07.md
 
 Hague apostille finality:
 

@@ -8,6 +8,7 @@ The purpose is practical: help notaries ask better first questions before trusti
 
 - [Route-first notary briefing](route-first-notary-briefing-2026-06-07.md)
 - [Route-first quick reference card](route-first-quick-reference-card-2026-06-07.md)
+- [Route-first meeting handout](route-first-meeting-handout-2026-06-07.md)
 - [Route-first scenario cards](route-first-scenario-cards-2026-06-07.md)
 - [Skeptical notary FAQ](skeptical-notary-faq-2026-06-07.md)
 - [Notary evidence ladder](notary-evidence-ladder-2026-06-07.md)
@@ -18,6 +19,7 @@ Machine-readable companions:
 
 - [Route-first notary briefing JSON](route-first-notary-briefing-2026-06-07.json)
 - [Route-first quick reference card JSON](route-first-quick-reference-card-2026-06-07.json)
+- [Route-first meeting handout JSON](route-first-meeting-handout-2026-06-07.json)
 - [Route-first scenario cards JSON](route-first-scenario-cards-2026-06-07.json)
 - [Skeptical notary FAQ JSON](skeptical-notary-faq-2026-06-07.json)
 - [Notary evidence ladder JSON](notary-evidence-ladder-2026-06-07.json)

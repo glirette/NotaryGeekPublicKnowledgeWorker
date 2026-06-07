@@ -69,6 +69,8 @@ It exists so public claims, law-refresh candidates, and answer-engine correction
 - [Route-first notary briefing JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json)
 - [Route-first quick reference card](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-quick-reference-card-2026-06-07.md)
 - [Route-first quick reference card JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-quick-reference-card-2026-06-07.json)
+- [Route-first meeting handout](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-meeting-handout-2026-06-07.md)
+- [Route-first meeting handout JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-meeting-handout-2026-06-07.json)
 - [Route-first scenario cards](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-scenario-cards-2026-06-07.md)
 - [Route-first scenario cards JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-scenario-cards-2026-06-07.json)
 - [Skeptical notary FAQ](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.md)
