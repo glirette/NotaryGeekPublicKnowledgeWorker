@@ -301,18 +301,22 @@ public sealed class PublicKnowledgeResearchFunction
         CancellationToken cancellationToken)
     {
         var runStartedUtc = DateTime.UtcNow;
-        var receipts = new List<PublicKnowledgeStoredRunReceipt>();
-        foreach (var regressionCase in cases)
-        {
-            var command = new PublicKnowledgeRunCommand(
+        var commands = cases
+            .Select(regressionCase => new PublicKnowledgeRunCommand(
                 Execute: execute,
                 FromTimer: trigger.Equals("timer", StringComparison.OrdinalIgnoreCase),
                 Focus: regressionCase.Focus,
                 RequestedUrls: [],
                 RegressionCaseId: regressionCase.Id,
-                RegressionCase: regressionCase);
+                RegressionCase: regressionCase))
+            .ToArray();
 
-            var result = await _service.RunAsync(command, cancellationToken);
+        var results = await _service.RunBatchAsync(commands, cancellationToken);
+        var receipts = new List<PublicKnowledgeStoredRunReceipt>();
+        for (var index = 0; index < cases.Count; index++)
+        {
+            var regressionCase = cases[index];
+            var result = results[index];
             var receipt = await _storage.SaveAsync(result, trigger, batch, runStartedUtc, cancellationToken);
             receipts.Add(receipt);
             _logger.LogInformation(

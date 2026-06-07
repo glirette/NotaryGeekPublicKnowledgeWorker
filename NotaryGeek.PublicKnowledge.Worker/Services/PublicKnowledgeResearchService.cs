@@ -106,13 +106,50 @@ public sealed class PublicKnowledgeResearchService
         PublicKnowledgeRunCommand command,
         CancellationToken cancellationToken)
     {
+        var preparedSources = await PrepareSourcesAsync(command.RequestedUrls, cancellationToken);
+        return await RunWithPreparedSourcesAsync(command, preparedSources, cancellationToken);
+    }
+
+    public async Task<IReadOnlyList<PublicKnowledgeRunResult>> RunBatchAsync(
+        IReadOnlyList<PublicKnowledgeRunCommand> commands,
+        CancellationToken cancellationToken)
+    {
+        if (commands.Count == 0)
+        {
+            return [];
+        }
+
+        if (!CommandsUseSameSourceSet(commands))
+        {
+            var sequentialResults = new List<PublicKnowledgeRunResult>();
+            foreach (var command in commands)
+            {
+                sequentialResults.Add(await RunAsync(command, cancellationToken));
+            }
+
+            return sequentialResults;
+        }
+
+        var preparedSources = await PrepareSourcesAsync(commands[0].RequestedUrls, cancellationToken);
+        var results = new List<PublicKnowledgeRunResult>();
+        foreach (var command in commands)
+        {
+            results.Add(await RunWithPreparedSourcesAsync(command, preparedSources, cancellationToken));
+        }
+
+        return results;
+    }
+
+    private async Task<PreparedSources> PrepareSourcesAsync(
+        IReadOnlyList<string> requestedUrls,
+        CancellationToken cancellationToken)
+    {
         var warnings = new List<string>();
-        var errors = new List<string>();
         var sourceResults = new List<PublicKnowledgeSourceResult>();
         var sourceBodies = new List<SourceBody>();
 
         var manifest = await LoadManifestAsync(warnings, cancellationToken);
-        var urls = SelectSourceUrls(manifest, command.RequestedUrls, warnings);
+        var urls = SelectSourceUrls(manifest, requestedUrls, warnings);
         var client = CreateFetchClient();
         var selectedUrls = urls.Take(_knowledgeOptions.MaxSourcesPerRun).ToArray();
         var sourceFetchConcurrency = Math.Clamp(
@@ -158,6 +195,24 @@ public sealed class PublicKnowledgeResearchService
                 warnings.Add(fetched.Warning);
             }
         }
+
+        return new PreparedSources(
+            manifest,
+            sourceResults.ToArray(),
+            sourceBodies.ToArray(),
+            warnings.ToArray());
+    }
+
+    private async Task<PublicKnowledgeRunResult> RunWithPreparedSourcesAsync(
+        PublicKnowledgeRunCommand command,
+        PreparedSources preparedSources,
+        CancellationToken cancellationToken)
+    {
+        var warnings = new List<string>(preparedSources.Warnings);
+        var errors = new List<string>();
+        var manifest = preparedSources.Manifest;
+        var sourceResults = preparedSources.SourceResults;
+        var sourceBodies = preparedSources.SourceBodies;
 
         var prompt = BuildPrompt(manifest, command.Focus, sourceBodies);
         var promptCharacters = prompt.Length;
@@ -238,6 +293,14 @@ public sealed class PublicKnowledgeResearchService
             provider.UsageJson,
             warnings,
             errors);
+    }
+
+    private static bool CommandsUseSameSourceSet(IReadOnlyList<PublicKnowledgeRunCommand> commands)
+    {
+        var first = commands[0].RequestedUrls;
+        return commands.All(command =>
+            command.RequestedUrls.Count == first.Count &&
+            command.RequestedUrls.SequenceEqual(first, StringComparer.OrdinalIgnoreCase));
     }
 
     private HttpClient CreateFetchClient()
@@ -797,6 +860,12 @@ public sealed class PublicKnowledgeResearchService
         };
 
     private sealed record SourceBody(string Url, string Content);
+
+    private sealed record PreparedSources(
+        PublicKnowledgeManifest Manifest,
+        IReadOnlyList<PublicKnowledgeSourceResult> SourceResults,
+        IReadOnlyList<SourceBody> SourceBodies,
+        IReadOnlyList<string> Warnings);
 
     private sealed record SourceFetchWorkItem(
         int Index,
