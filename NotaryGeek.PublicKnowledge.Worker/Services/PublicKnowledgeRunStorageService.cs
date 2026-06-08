@@ -95,7 +95,12 @@ public sealed class PublicKnowledgeRunStorageService
             result.Warnings.Count,
             result.Errors.Count,
             blobName,
-            latestBlobName);
+            latestBlobName,
+            result.RegressionScore?.Verdict,
+            result.RegressionScore?.MustHoldPassed,
+            result.RegressionScore?.MustHoldTotal,
+            result.RegressionScore?.FailureSignalsObserved,
+            result.RegressionScore?.FailureSignalTotal);
     }
 
     public async Task<PublicKnowledgeQueuedRunEnvelope> CreateQueuedRunAsync(
@@ -247,7 +252,12 @@ public sealed class PublicKnowledgeRunStorageService
                 envelope.Result.Warnings.Count,
                 envelope.Result.Errors.Count,
                 envelope.BlobName,
-                envelope.LatestBlobName))
+                envelope.LatestBlobName,
+                envelope.Result.RegressionScore?.Verdict,
+                envelope.Result.RegressionScore?.MustHoldPassed,
+                envelope.Result.RegressionScore?.MustHoldTotal,
+                envelope.Result.RegressionScore?.FailureSignalsObserved,
+                envelope.Result.RegressionScore?.FailureSignalTotal))
             .ToArray();
 
         return summaries
@@ -547,7 +557,12 @@ public sealed class PublicKnowledgeRunStorageService
             response.WebsiteBriefs,
             response.LawRefreshCandidates,
             response.Risks,
-            response.Citations);
+            response.Citations,
+            envelope.Result.RegressionScore?.Verdict,
+            envelope.Result.RegressionScore?.MustHoldPassed,
+            envelope.Result.RegressionScore?.MustHoldTotal,
+            envelope.Result.RegressionScore?.FailureSignalsObserved,
+            envelope.Result.RegressionScore?.FailureSignalTotal);
     }
 
     private static ParsedProviderResponse ParseResponseText(string? responseText)
@@ -658,7 +673,12 @@ public sealed record PublicKnowledgeStoredRunReceipt(
     int WarningCount,
     int ErrorCount,
     string BlobName,
-    string LatestBlobName);
+    string LatestBlobName,
+    string? ScoreVerdict = null,
+    int? MustHoldPassed = null,
+    int? MustHoldTotal = null,
+    int? FailureSignalsObserved = null,
+    int? FailureSignalTotal = null);
 
 public sealed record PublicKnowledgeQueuedRunEnvelope(
     string Schema,
@@ -689,7 +709,12 @@ public sealed record PublicKnowledgeStoredRunSummary(
     int WarningCount,
     int ErrorCount,
     string BlobName,
-    string LatestBlobName);
+    string LatestBlobName,
+    string? ScoreVerdict = null,
+    int? MustHoldPassed = null,
+    int? MustHoldTotal = null,
+    int? FailureSignalsObserved = null,
+    int? FailureSignalTotal = null);
 
 public sealed record PublicKnowledgeLatestRunIndex(
     string Schema,
@@ -720,4 +745,9 @@ public sealed record PublicKnowledgeLatestRunIndexItem(
     IReadOnlyList<string> WebsiteBriefs,
     IReadOnlyList<string> LawRefreshCandidates,
     IReadOnlyList<string> Risks,
-    IReadOnlyList<string> Citations);
+    IReadOnlyList<string> Citations,
+    string? ScoreVerdict = null,
+    int? MustHoldPassed = null,
+    int? MustHoldTotal = null,
+    int? FailureSignalsObserved = null,
+    int? FailureSignalTotal = null);

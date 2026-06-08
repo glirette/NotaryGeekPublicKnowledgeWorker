@@ -12,6 +12,92 @@ namespace NotaryGeek.PublicKnowledge.Worker.Services;
 
 public sealed class PublicKnowledgeResearchService
 {
+    private static readonly HashSet<string> RuleScoringStopWords = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "about",
+        "actual",
+        "after",
+        "again",
+        "against",
+        "alone",
+        "also",
+        "another",
+        "automatically",
+        "because",
+        "before",
+        "being",
+        "calls",
+        "check",
+        "does",
+        "doing",
+        "every",
+        "fails",
+        "first",
+        "from",
+        "give",
+        "have",
+        "into",
+        "itself",
+        "lists",
+        "must",
+        "only",
+        "proof",
+        "require",
+        "requires",
+        "says",
+        "should",
+        "shows",
+        "signals",
+        "simply",
+        "starts",
+        "still",
+        "that",
+        "their",
+        "then",
+        "there",
+        "these",
+        "this",
+        "treat",
+        "treats",
+        "uses",
+        "when",
+        "where",
+        "which",
+        "while",
+        "with",
+        "without"
+    };
+
+    private static readonly string[] FailureNegationMarkers =
+    [
+        " no ",
+        " not ",
+        " never ",
+        " cannot ",
+        " do not ",
+        " does not ",
+        " should not ",
+        " must not ",
+        " is not ",
+        " are not ",
+        " isn't ",
+        " aren't ",
+        " don't ",
+        " doesn't ",
+        " avoid ",
+        " reject ",
+        " rejects ",
+        " rejected ",
+        " not required ",
+        " no additional ",
+        " no further ",
+        " do not add ",
+        " do not call ",
+        " do not treat ",
+        " do not use ",
+        " do not recommend "
+    ];
+
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = false
@@ -255,6 +341,7 @@ public sealed class PublicKnowledgeResearchService
 
         if (!shouldCallOpenAi || errors.Count > 0)
         {
+            var preflightScore = ScoreRegressionResponse(command.RegressionCase, null);
             return new PublicKnowledgeRunResult(
                 Ok: errors.Count == 0,
                 Execute: command.Execute,
@@ -274,7 +361,8 @@ public sealed class PublicKnowledgeResearchService
                 ProviderStatus: null,
                 ProviderUsageJson: null,
                 warnings,
-                errors);
+                errors,
+                preflightScore);
         }
 
         var provider = await CallOpenAiAsync(prompt, cancellationToken);
@@ -292,6 +380,7 @@ public sealed class PublicKnowledgeResearchService
             errors.Add(provider.Error ?? "OpenAI call failed.");
         }
 
+        var regressionScore = ScoreRegressionResponse(command.RegressionCase, provider.ResponseText);
         return new PublicKnowledgeRunResult(
             Ok: provider.Ok && errors.Count == 0,
             Execute: command.Execute,
@@ -311,7 +400,8 @@ public sealed class PublicKnowledgeResearchService
             provider.Status,
             provider.UsageJson,
             warnings,
-            errors);
+            errors,
+            regressionScore);
     }
 
     private static bool CommandsUseSameSourceSet(IReadOnlyList<PublicKnowledgeRunCommand> commands)
@@ -792,6 +882,210 @@ public sealed class PublicKnowledgeResearchService
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
+
+    private static PublicKnowledgeRegressionScore? ScoreRegressionResponse(
+        PublicKnowledgeRegressionCase? regressionCase,
+        string? responseText)
+    {
+        if (regressionCase is null)
+        {
+            return null;
+        }
+
+        var hasResponse = !string.IsNullOrWhiteSpace(responseText);
+        var mustHoldChecks = regressionCase.MustHold
+            .Select(rule => ScoreMustHoldRule(rule, responseText))
+            .ToArray();
+        var failureSignalChecks = regressionCase.FailureSignals
+            .Select(rule => ScoreFailureSignalRule(rule, responseText))
+            .ToArray();
+        var mustHoldTotal = mustHoldChecks.Length;
+        var mustHoldPassed = mustHoldChecks.Count(item => item.Matched);
+        var failureSignalTotal = failureSignalChecks.Length;
+        var failureSignalsObserved = failureSignalChecks.Count(item => item.Matched);
+        var verdict = GetRegressionVerdict(
+            hasResponse,
+            mustHoldTotal,
+            mustHoldPassed,
+            failureSignalsObserved);
+
+        return new PublicKnowledgeRegressionScore(
+            "notary-geek-public-knowledge-regression-score-v1",
+            "0.1-public",
+            verdict,
+            "deterministic-surface-triage-v1",
+            "Surface scoring is triage only. Human review still controls promotion, correction, and legal/source-quality approval.",
+            mustHoldTotal,
+            mustHoldPassed,
+            Math.Max(0, mustHoldTotal - mustHoldPassed),
+            failureSignalTotal,
+            failureSignalsObserved,
+            mustHoldChecks,
+            failureSignalChecks);
+    }
+
+    private static PublicKnowledgeRegressionRuleCheck ScoreMustHoldRule(
+        string rule,
+        string? responseText)
+    {
+        var ruleTokens = GetRuleScoringTokens(rule);
+        if (string.IsNullOrWhiteSpace(responseText) || ruleTokens.Count == 0)
+        {
+            return BuildRuleCheck(rule, "not-evaluated", false, [], ruleTokens, 0);
+        }
+
+        var normalizedResponse = NormalizeRuleScoringText(responseText);
+        var matchedTokens = ruleTokens
+            .Where(token => ContainsScoringToken(normalizedResponse, token))
+            .ToArray();
+        var requiredTokenCount = GetRequiredMustHoldTokenCount(ruleTokens.Count);
+        var matched = matchedTokens.Length >= requiredTokenCount;
+
+        return BuildRuleCheck(
+            rule,
+            matched ? "passed" : "missing",
+            matched,
+            matchedTokens,
+            ruleTokens,
+            requiredTokenCount);
+    }
+
+    private static PublicKnowledgeRegressionRuleCheck ScoreFailureSignalRule(
+        string rule,
+        string? responseText)
+    {
+        var ruleTokens = GetRuleScoringTokens(rule);
+        if (string.IsNullOrWhiteSpace(responseText) || ruleTokens.Count == 0)
+        {
+            return BuildRuleCheck(rule, "not-evaluated", false, [], ruleTokens, 0);
+        }
+
+        var requiredTokenCount = GetRequiredFailureSignalTokenCount(ruleTokens.Count);
+        foreach (var segment in SplitScoringSegments(responseText))
+        {
+            var normalizedSegment = NormalizeRuleScoringText(segment);
+            var matchedTokens = ruleTokens
+                .Where(token => ContainsScoringToken(normalizedSegment, token))
+                .ToArray();
+
+            if (matchedTokens.Length < requiredTokenCount)
+            {
+                continue;
+            }
+
+            if (HasFailureNegationMarker(normalizedSegment))
+            {
+                continue;
+            }
+
+            return BuildRuleCheck(
+                rule,
+                "observed",
+                true,
+                matchedTokens,
+                ruleTokens,
+                requiredTokenCount);
+        }
+
+        return BuildRuleCheck(rule, "clear", false, [], ruleTokens, requiredTokenCount);
+    }
+
+    private static PublicKnowledgeRegressionRuleCheck BuildRuleCheck(
+        string rule,
+        string status,
+        bool matched,
+        IReadOnlyList<string> matchedTokens,
+        IReadOnlyList<string> ruleTokens,
+        int requiredTokenCount)
+    {
+        var matchedSet = matchedTokens.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var missingTokens = ruleTokens
+            .Where(token => !matchedSet.Contains(token))
+            .ToArray();
+
+        return new PublicKnowledgeRegressionRuleCheck(
+            rule,
+            status,
+            matched,
+            matchedTokens.Count,
+            requiredTokenCount,
+            matchedTokens,
+            missingTokens);
+    }
+
+    private static string GetRegressionVerdict(
+        bool hasResponse,
+        int mustHoldTotal,
+        int mustHoldPassed,
+        int failureSignalsObserved)
+    {
+        if (!hasResponse)
+        {
+            return "not-scored";
+        }
+
+        if (failureSignalsObserved > 0)
+        {
+            return "fail";
+        }
+
+        if (mustHoldTotal == 0)
+        {
+            return "not-scored";
+        }
+
+        if (mustHoldPassed == mustHoldTotal)
+        {
+            return "pass";
+        }
+
+        return mustHoldPassed == 0 ? "fail" : "needs-review";
+    }
+
+    private static IReadOnlyList<string> GetRuleScoringTokens(string rule) =>
+        Regex.Matches(rule.ToLowerInvariant(), "[a-z0-9]+", RegexOptions.CultureInvariant)
+            .Select(match => match.Value)
+            .Where(token => token.Length >= 4)
+            .Where(token => !RuleScoringStopWords.Contains(token))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Take(24)
+            .ToArray();
+
+    private static int GetRequiredMustHoldTokenCount(int tokenCount) =>
+        tokenCount switch
+        {
+            <= 0 => 0,
+            <= 2 => tokenCount,
+            <= 5 => Math.Max(2, tokenCount - 1),
+            _ => Math.Max(3, (int)Math.Ceiling(tokenCount * 0.45))
+        };
+
+    private static int GetRequiredFailureSignalTokenCount(int tokenCount) =>
+        tokenCount switch
+        {
+            <= 0 => 0,
+            <= 3 => tokenCount,
+            _ => Math.Max(4, (int)Math.Ceiling(tokenCount * 0.65))
+        };
+
+    private static bool ContainsScoringToken(string normalizedText, string token) =>
+        normalizedText.Contains($" {token} ", StringComparison.OrdinalIgnoreCase);
+
+    private static string NormalizeRuleScoringText(string text)
+    {
+        var lowered = text.ToLowerInvariant();
+        var normalized = Regex.Replace(lowered, "[^a-z0-9]+", " ", RegexOptions.CultureInvariant);
+        return $" {Regex.Replace(normalized, "\\s+", " ", RegexOptions.CultureInvariant).Trim()} ";
+    }
+
+    private static IReadOnlyList<string> SplitScoringSegments(string responseText) =>
+        Regex.Split(responseText, @"[\r\n.!?;]+", RegexOptions.CultureInvariant)
+            .Select(segment => segment.Trim())
+            .Where(segment => segment.Length > 0)
+            .ToArray();
+
+    private static bool HasFailureNegationMarker(string normalizedSegment) =>
+        FailureNegationMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {

@@ -68,7 +68,7 @@ $cases = @($matrixResponse.matrix.cases)
 
 $batchCaseIds = switch ($Batch) {
     "Core" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "platform-hype-foreign-signer-no-ssn-spain", "outside-apostille-path-not-apostille-plus") }
-    "Platform" { @("platform-hype-foreign-signer-no-ssn-spain", "notarycam-proof-history-scrutiny", "real-estate-court-defensible-platform-trap", "coaching-scam-no-criminal-intent-boundary") }
+    "Platform" { @("foreign-signer-no-ssn-platform-route-first", "virginia-foreign-signer-network-myth", "commercial-incentive-routing-not-route-authority", "platform-hype-foreign-signer-no-ssn-spain", "notarycam-proof-history-scrutiny", "real-estate-court-defensible-platform-trap", "coaching-scam-no-criminal-intent-boundary") }
     "Apostille" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "saudi-arabia-hague-not-non-hague", "outside-apostille-path-not-apostille-plus") }
     "Recipient" { @("recipient-phone-comment-not-rejection", "real-estate-court-defensible-platform-trap") }
     default { @() }
@@ -117,12 +117,25 @@ foreach ($case in $cases) {
         $response | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $OutDir "$safeName.json") -Encoding UTF8
     }
 
+    $score = $response.regressionScore
+    $scoreVerdict = ""
+    $mustHoldSummary = ""
+    $failureSignalSummary = ""
+    if ($null -ne $score) {
+        $scoreVerdict = [string] $score.verdict
+        $mustHoldSummary = "{0}/{1}" -f $score.mustHoldPassed, $score.mustHoldTotal
+        $failureSignalSummary = "{0}/{1}" -f $score.failureSignalsObserved, $score.failureSignalTotal
+    }
+
     $results.Add([pscustomobject]@{
         Case = [string] $case.id
         Ok = [bool] $response.ok
         Status = [string] $response.status
         OpenAiCalled = [bool] $response.openAiCalled
         CaseMetadata = $caseMetadataMatches
+        Score = $scoreVerdict
+        MustHold = $mustHoldSummary
+        FailureSignals = $failureSignalSummary
         SourceCount = [int] $response.sourceCount
         WarningCount = @($response.warnings).Count
         ErrorCount = @($response.errors).Count
@@ -149,6 +162,9 @@ else {
             Status,
             @{ Name = "AI"; Expression = { $_.OpenAiCalled } },
             @{ Name = "Meta"; Expression = { $_.CaseMetadata } },
+            Score,
+            MustHold,
+            @{ Name = "FailSig"; Expression = { $_.FailureSignals } },
             @{ Name = "Src"; Expression = { $_.SourceCount } },
             @{ Name = "Warn"; Expression = { $_.WarningCount } },
             @{ Name = "Err"; Expression = { $_.ErrorCount } },

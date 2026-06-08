@@ -29,7 +29,31 @@ public sealed record PublicKnowledgeRunResult(
     string? ProviderStatus,
     string? ProviderUsageJson,
     IReadOnlyList<string> Warnings,
-    IReadOnlyList<string> Errors);
+    IReadOnlyList<string> Errors,
+    PublicKnowledgeRegressionScore? RegressionScore = null);
+
+public sealed record PublicKnowledgeRegressionScore(
+    string Schema,
+    string Version,
+    string Verdict,
+    string Strategy,
+    string Note,
+    int MustHoldTotal,
+    int MustHoldPassed,
+    int MustHoldMissing,
+    int FailureSignalTotal,
+    int FailureSignalsObserved,
+    IReadOnlyList<PublicKnowledgeRegressionRuleCheck> MustHoldChecks,
+    IReadOnlyList<PublicKnowledgeRegressionRuleCheck> FailureSignalChecks);
+
+public sealed record PublicKnowledgeRegressionRuleCheck(
+    string Rule,
+    string Status,
+    bool Matched,
+    int MatchedTokenCount,
+    int RequiredTokenCount,
+    IReadOnlyList<string> MatchedTokens,
+    IReadOnlyList<string> MissingTokens);
 
 public sealed record PublicKnowledgeQueuedRunMessage(
     string JobId,
