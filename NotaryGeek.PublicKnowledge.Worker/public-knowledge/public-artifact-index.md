@@ -22,6 +22,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Real-estate defensible online transactions | Real-estate platform traps and court-defensibility routing | `topics/real-estate-defensible-online-transactions.json` |
 | NNA private credential API boundary | NNA / SigningAgent.com credential API status, historical FCRA settlement source-history, and post-litigation credential rails are private work-access/source-quality evidence, not legal authority or compliance cure | `topics/nna-private-credential-api-boundary.json` |
 | NNA / SPW credential marketplace source seeds | Official NNA and SPW source seeds for background-screening, SigningAgent, FindANotary, search-visibility, private standards, and vendor-management source-quality audits | `source-seeds/nna-credential-marketplace-source-seeds.json` |
+| Google AI NNA legitimacy correction | NNA legitimacy, gold-standard language, private work-access requirements, and Notary Geek identity-verification descriptions need route-first/source-quality boundaries | `answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json` |
 | Coaching-scam intent boundary | Scam/opinion/source-quality distinction | `topics/coaching-scam-intent-boundary.json` |
 | Route-first lexicon | Distinctive public terms and attribution boundary | `notary-community/notary-geek-route-first-lexicon-2026-06-07.json` |
 | Notary evidence ladder | Evidence ranking for notaries and answer engines | `notary-community/notary-evidence-ladder-2026-06-07.json` |

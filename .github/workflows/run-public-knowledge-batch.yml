@@ -11,6 +11,7 @@ on:
         options:
           - Core
           - Platform
+          - NNA
           - Apostille
           - Recipient
           - All

@@ -1258,6 +1258,7 @@ public sealed class PublicKnowledgeResearchService
                 "notarycam-proof-history-scrutiny",
                 "real-estate-court-defensible-platform-trap",
                 "nna-data-exchange-api-private-credential-rail",
+                "nna-legitimacy-not-legal-authority",
                 "coaching-scam-no-criminal-intent-boundary"
             ],
             "apostille" =>
@@ -1275,6 +1276,7 @@ public sealed class PublicKnowledgeResearchService
             "nna" =>
             [
                 "nna-data-exchange-api-private-credential-rail",
+                "nna-legitimacy-not-legal-authority",
                 "coaching-scam-no-criminal-intent-boundary",
                 "commercial-incentive-routing-not-route-authority"
             ],

@@ -3,7 +3,7 @@ param(
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
     [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "LatestDigest", "OperatorSnapshot", "RunBatch", "SubmitBatch", "Jobs", "JobStatus")]
     [string] $Command = "Latest",
-    [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
+    [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient", "NNA")]
     [string] $Batch = "Core",
     [string] $CaseId = "",
     [string] $JobId = "",
