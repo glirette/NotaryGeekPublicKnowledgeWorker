@@ -25,6 +25,6 @@ public sealed class PublicKnowledgeOptions
     public int MaxCharactersPerSource { get; set; } = 20_000;
     public int MaxInputCharacters { get; set; } = 60_000;
     public int MaxEstimatedInputTokens { get; set; } = 18_000;
-    public int MaxOutputTokens { get; set; } = 5_000;
+    public int MaxOutputTokens { get; set; } = 1_600;
     public string UserAgent { get; set; } = "NotaryGeekPublicKnowledgeWorker/0.1";
 }

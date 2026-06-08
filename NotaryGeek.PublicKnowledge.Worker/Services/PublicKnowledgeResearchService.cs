@@ -172,6 +172,10 @@ public sealed class PublicKnowledgeResearchService
             _openAiOptions.EndpointPath,
             _openAiOptions.Model,
             !string.IsNullOrWhiteSpace(_openAiOptions.ApiKey),
+            _knowledgeOptions.MaxOutputTokens,
+            IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode,
+            _openAiOptions.HighCostMaxOutputTokens,
+            _openAiOptions.HighCostReasoningEffort,
             _knowledgeOptions.MaxSourcesPerRun,
             _knowledgeOptions.SourceFetchConcurrency,
             _knowledgeOptions.MaxEstimatedInputTokens,
@@ -727,6 +731,13 @@ public sealed class PublicKnowledgeResearchService
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _openAiOptions.ApiKey);
 
         var endpoint = BuildOpenAiEndpoint();
+        var highCostGuardActive = IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode;
+        var maxOutputTokens = highCostGuardActive
+            ? Math.Min(_knowledgeOptions.MaxOutputTokens, Math.Max(1, _openAiOptions.HighCostMaxOutputTokens))
+            : _knowledgeOptions.MaxOutputTokens;
+        var reasoningEffort = highCostGuardActive && !string.IsNullOrWhiteSpace(_openAiOptions.HighCostReasoningEffort)
+            ? _openAiOptions.HighCostReasoningEffort
+            : _openAiOptions.ReasoningEffort;
         var payload = new Dictionary<string, object?>
         {
             ["model"] = _openAiOptions.Model,
@@ -738,14 +749,14 @@ public sealed class PublicKnowledgeResearchService
                     content = prompt
                 }
             },
-            ["max_output_tokens"] = _knowledgeOptions.MaxOutputTokens
+            ["max_output_tokens"] = maxOutputTokens
         };
 
-        if (!string.IsNullOrWhiteSpace(_openAiOptions.ReasoningEffort))
+        if (!string.IsNullOrWhiteSpace(reasoningEffort))
         {
             payload["reasoning"] = new
             {
-                effort = _openAiOptions.ReasoningEffort
+                effort = reasoningEffort
             };
         }
 
@@ -791,6 +802,17 @@ public sealed class PublicKnowledgeResearchService
         }
 
         return new Uri(baseUrl + path);
+    }
+
+    private bool IsHighCostModel(string model)
+    {
+        if (string.IsNullOrWhiteSpace(model))
+        {
+            return false;
+        }
+
+        return SplitList(_openAiOptions.HighCostModelMarkers)
+            .Any(marker => model.Contains(marker, StringComparison.OrdinalIgnoreCase));
     }
 
     private string BuildAbsoluteUrl(string pathOrUrl)
@@ -1320,6 +1342,10 @@ public sealed record PublicKnowledgeStatus(
     string OpenAiEndpointPath,
     string Model,
     bool HasOpenAiApiKey,
+    int MaxOutputTokens,
+    bool HighCostGuardActive,
+    int HighCostMaxOutputTokens,
+    string HighCostReasoningEffort,
     int MaxSourcesPerRun,
     int SourceFetchConcurrency,
     int MaxEstimatedInputTokens,
