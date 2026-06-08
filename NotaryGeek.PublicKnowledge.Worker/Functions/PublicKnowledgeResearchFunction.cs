@@ -189,6 +189,35 @@ public sealed class PublicKnowledgeResearchFunction
         }
     }
 
+    [Function("PublicKnowledgeNeedsGreg")]
+    public async Task<HttpResponseData> NeedsGreg(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/needs-greg")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var report = await _storage.BuildNeedsGregReportAsync(cancellationToken);
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = true,
+                report
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
     [Function("PublicKnowledgeRunBatchNow")]
     public async Task<HttpResponseData> RunBatchNow(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "public-knowledge/runs/run-batch")] HttpRequestData req,

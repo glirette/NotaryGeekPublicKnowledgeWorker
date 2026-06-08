@@ -1,7 +1,7 @@
 param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
-    [ValidateSet("Status", "Latest", "ExportIndex", "RunBatch", "SubmitBatch", "JobStatus")]
+    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "RunBatch", "SubmitBatch", "JobStatus")]
     [string] $Command = "Latest",
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
     [string] $Batch = "Core",
@@ -59,6 +59,9 @@ $path = switch ($Command) {
         }
 
         "/api/public-knowledge/runs/export-index"
+    }
+    "NeedsGreg" {
+        "/api/public-knowledge/runs/needs-greg"
     }
     "RunBatch" {
         $query.execute = if ($DryRun) { "false" } else { "true" }
@@ -141,6 +144,34 @@ switch ($Command) {
             GeneratedAtUtc = $response.index.generatedAtUtc
             RunCount = $response.index.runCount
             LatestIndexBlobName = $response.index.latestIndexBlobName
+        }
+    }
+    "NeedsGreg" {
+        $report = $response.report
+        [pscustomobject]@{
+            Healthy = [bool] $report.healthy
+            Summary = [string] $report.summary
+            RunCount = [int] $report.runCount
+            Passing = [int] $report.passingCount
+            NeedsReview = [int] $report.needsReviewCount
+            Fail = [int] $report.failCount
+            NotScored = [int] $report.notScoredCount
+            WarningRuns = [int] $report.warningRunCount
+            ErrorRuns = [int] $report.errorRunCount
+        }
+
+        if (@($report.items).Count -gt 0) {
+            $report.items |
+                Select-Object `
+                    Priority,
+                    CaseId,
+                    ScoreVerdict,
+                    @{ Name = "MustHold"; Expression = { if ($null -ne $_.MustHoldTotal) { "{0}/{1}" -f $_.MustHoldPassed, $_.MustHoldTotal } else { "" } } },
+                    @{ Name = "FailSig"; Expression = { if ($null -ne $_.FailureSignalTotal) { "{0}/{1}" -f $_.FailureSignalsObserved, $_.FailureSignalTotal } else { "" } } },
+                    WarningCount,
+                    ErrorCount,
+                    Reason,
+                    SuggestedNextAction
         }
     }
     "RunBatch" {

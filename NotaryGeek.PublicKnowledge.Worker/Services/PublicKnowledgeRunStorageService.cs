@@ -299,6 +299,48 @@ public sealed class PublicKnowledgeRunStorageService
         return index;
     }
 
+    public async Task<PublicKnowledgeNeedsGregReport> BuildNeedsGregReportAsync(
+        CancellationToken cancellationToken)
+    {
+        var envelopes = await ListLatestEnvelopesAsync(cancellationToken);
+        var items = envelopes
+            .Select(BuildNeedsGregItem)
+            .Where(item => item.NeedsAttention)
+            .OrderBy(item => item.Priority)
+            .ThenBy(item => item.CaseId, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        var passCount = envelopes.Count(IsPassingLatestRun);
+        var needsReviewCount = envelopes.Count(envelope =>
+            envelope.Result.RegressionScore?.Verdict?.Equals("needs-review", StringComparison.OrdinalIgnoreCase) == true);
+        var failCount = envelopes.Count(envelope =>
+            envelope.Result.RegressionScore?.Verdict?.Equals("fail", StringComparison.OrdinalIgnoreCase) == true ||
+            !envelope.Result.Ok ||
+            envelope.Result.Errors.Count > 0);
+        var notScoredCount = envelopes.Count(envelope =>
+            string.IsNullOrWhiteSpace(envelope.Result.RegressionScore?.Verdict) ||
+            envelope.Result.RegressionScore.Verdict.Equals("not-scored", StringComparison.OrdinalIgnoreCase));
+        var warningRunCount = envelopes.Count(envelope => envelope.Result.Warnings.Count > 0);
+        var errorRunCount = envelopes.Count(envelope => envelope.Result.Errors.Count > 0);
+        var summary = items.Length == 0
+            ? "No latest public knowledge runs need Greg review based on current stored scores, warnings, and errors."
+            : $"{items.Length} latest public knowledge run(s) need Greg review.";
+
+        return new PublicKnowledgeNeedsGregReport(
+            "notary-geek-public-knowledge-needs-greg-report-v1",
+            "0.1-public",
+            DateTime.UtcNow,
+            envelopes.Count,
+            items.Length == 0,
+            summary,
+            passCount,
+            needsReviewCount,
+            failCount,
+            notScoredCount,
+            warningRunCount,
+            errorRunCount,
+            items);
+    }
+
     private async Task<PublicKnowledgeQueuedRunEnvelope> MergeQueuedRunReceiptsAsync(
         PublicKnowledgeQueuedRunMessage message,
         IReadOnlyList<PublicKnowledgeStoredRunReceipt> receipts,
@@ -565,6 +607,148 @@ public sealed class PublicKnowledgeRunStorageService
             envelope.Result.RegressionScore?.FailureSignalTotal);
     }
 
+    private static PublicKnowledgeNeedsGregItem BuildNeedsGregItem(
+        PublicKnowledgeStoredRunEnvelope envelope)
+    {
+        var score = envelope.Result.RegressionScore;
+        var verdict = score?.Verdict;
+        var warningCount = envelope.Result.Warnings.Count;
+        var errorCount = envelope.Result.Errors.Count;
+        var needsAttention = !envelope.Result.Ok ||
+            errorCount > 0 ||
+            warningCount > 0 ||
+            string.IsNullOrWhiteSpace(verdict) ||
+            verdict.Equals("fail", StringComparison.OrdinalIgnoreCase) ||
+            verdict.Equals("needs-review", StringComparison.OrdinalIgnoreCase) ||
+            verdict.Equals("not-scored", StringComparison.OrdinalIgnoreCase);
+        var priority = GetNeedsGregPriority(envelope);
+        var reason = GetNeedsGregReason(envelope);
+        var suggestedNextAction = GetNeedsGregSuggestedAction(envelope);
+
+        return new PublicKnowledgeNeedsGregItem(
+            envelope.CaseId,
+            envelope.StoredAtUtc,
+            envelope.Trigger,
+            envelope.Batch,
+            envelope.Result.Ok,
+            envelope.Result.Status,
+            verdict,
+            score?.MustHoldPassed,
+            score?.MustHoldTotal,
+            score?.FailureSignalsObserved,
+            score?.FailureSignalTotal,
+            envelope.Result.OpenAiCalled,
+            envelope.Result.SourceCount,
+            warningCount,
+            errorCount,
+            priority,
+            needsAttention,
+            reason,
+            suggestedNextAction,
+            envelope.BlobName,
+            envelope.LatestBlobName);
+    }
+
+    private static bool IsPassingLatestRun(PublicKnowledgeStoredRunEnvelope envelope) =>
+        envelope.Result.Ok &&
+        envelope.Result.Errors.Count == 0 &&
+        envelope.Result.RegressionScore?.Verdict?.Equals("pass", StringComparison.OrdinalIgnoreCase) == true;
+
+    private static int GetNeedsGregPriority(PublicKnowledgeStoredRunEnvelope envelope)
+    {
+        var verdict = envelope.Result.RegressionScore?.Verdict;
+        if (!envelope.Result.Ok || envelope.Result.Errors.Count > 0)
+        {
+            return 10;
+        }
+
+        if (verdict?.Equals("fail", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return 20;
+        }
+
+        if (verdict?.Equals("needs-review", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return 30;
+        }
+
+        if (string.IsNullOrWhiteSpace(verdict) ||
+            verdict.Equals("not-scored", StringComparison.OrdinalIgnoreCase))
+        {
+            return 40;
+        }
+
+        return envelope.Result.Warnings.Count > 0 ? 50 : 90;
+    }
+
+    private static string GetNeedsGregReason(PublicKnowledgeStoredRunEnvelope envelope)
+    {
+        var score = envelope.Result.RegressionScore;
+        if (!envelope.Result.Ok || envelope.Result.Errors.Count > 0)
+        {
+            return "Run returned an error or provider/preflight failure.";
+        }
+
+        if (score?.Verdict?.Equals("fail", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return score.FailureSignalsObserved > 0
+                ? "Scorer observed one or more failure-signal patterns."
+                : "Scorer marked the answer failed because must-hold coverage was too weak.";
+        }
+
+        if (score?.Verdict?.Equals("needs-review", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return "Scorer found partial must-hold coverage and no observed failure signal.";
+        }
+
+        if (string.IsNullOrWhiteSpace(score?.Verdict) ||
+            score.Verdict.Equals("not-scored", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Run is not scored, usually because it was a dry run or no model response was stored.";
+        }
+
+        if (envelope.Result.Warnings.Count > 0)
+        {
+            return "Run passed scoring but produced warning(s), usually citation/source hygiene.";
+        }
+
+        return "No current review reason.";
+    }
+
+    private static string GetNeedsGregSuggestedAction(PublicKnowledgeStoredRunEnvelope envelope)
+    {
+        var score = envelope.Result.RegressionScore;
+        if (!envelope.Result.Ok || envelope.Result.Errors.Count > 0)
+        {
+            return "Check the stored run errors first; fix source fetch, prompt size, provider, or storage configuration before judging content.";
+        }
+
+        if (score?.Verdict?.Equals("fail", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return score.FailureSignalsObserved > 0
+                ? "Review whether this is a true model failure or scorer false positive; patch the scorer, sources, or regression case before promotion."
+                : "Review missing must-hold coverage; strengthen public sources or prompt boundaries if the model answer is weak.";
+        }
+
+        if (score?.Verdict?.Equals("needs-review", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return "Review the missing must-hold checks; promote only if the answer is substantively correct despite surface scoring gaps.";
+        }
+
+        if (string.IsNullOrWhiteSpace(score?.Verdict) ||
+            score.Verdict.Equals("not-scored", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Run an execute=true case if a model answer is needed; otherwise ignore dry-run diagnostics.";
+        }
+
+        if (envelope.Result.Warnings.Count > 0)
+        {
+            return "Review warning(s) for citation hygiene or add fetch candidates to the manifest when appropriate.";
+        }
+
+        return "No action needed.";
+    }
+
     private static ParsedProviderResponse ParseResponseText(string? responseText)
     {
         if (string.IsNullOrWhiteSpace(responseText))
@@ -751,3 +935,41 @@ public sealed record PublicKnowledgeLatestRunIndexItem(
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
     int? FailureSignalTotal = null);
+
+public sealed record PublicKnowledgeNeedsGregReport(
+    string Schema,
+    string Version,
+    DateTime GeneratedAtUtc,
+    int RunCount,
+    bool Healthy,
+    string Summary,
+    int PassingCount,
+    int NeedsReviewCount,
+    int FailCount,
+    int NotScoredCount,
+    int WarningRunCount,
+    int ErrorRunCount,
+    IReadOnlyList<PublicKnowledgeNeedsGregItem> Items);
+
+public sealed record PublicKnowledgeNeedsGregItem(
+    string CaseId,
+    DateTime StoredAtUtc,
+    string Trigger,
+    string Batch,
+    bool Ok,
+    string Status,
+    string? ScoreVerdict,
+    int? MustHoldPassed,
+    int? MustHoldTotal,
+    int? FailureSignalsObserved,
+    int? FailureSignalTotal,
+    bool OpenAiCalled,
+    int SourceCount,
+    int WarningCount,
+    int ErrorCount,
+    int Priority,
+    bool NeedsAttention,
+    string Reason,
+    string SuggestedNextAction,
+    string BlobName,
+    string LatestBlobName);
