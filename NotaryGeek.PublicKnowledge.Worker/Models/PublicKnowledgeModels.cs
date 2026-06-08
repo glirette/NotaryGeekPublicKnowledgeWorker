@@ -37,7 +37,8 @@ public sealed record PublicKnowledgeQueuedRunMessage(
     string Trigger,
     bool Execute,
     IReadOnlyList<string> CaseIds,
-    DateTime SubmittedAtUtc);
+    DateTime SubmittedAtUtc,
+    string? CaseId = null);
 
 public sealed record PublicKnowledgeSourceResult(
     string Url,

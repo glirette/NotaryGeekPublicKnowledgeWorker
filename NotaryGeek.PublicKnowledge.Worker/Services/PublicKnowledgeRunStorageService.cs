@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.Extensions.Configuration;
@@ -101,22 +102,7 @@ public sealed class PublicKnowledgeRunStorageService
         PublicKnowledgeQueuedRunMessage message,
         CancellationToken cancellationToken)
     {
-        var envelope = new PublicKnowledgeQueuedRunEnvelope(
-            "notary-geek-public-knowledge-queued-run-v1",
-            "0.1-public",
-            message.JobId,
-            message.Batch,
-            message.Trigger,
-            message.Execute,
-            message.CaseIds,
-            message.SubmittedAtUtc,
-            null,
-            null,
-            "queued",
-            0,
-            message.CaseIds.Count,
-            [],
-            null);
+        var envelope = CreateQueuedRunEnvelope(message);
 
         await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
         return envelope;
@@ -126,46 +112,31 @@ public sealed class PublicKnowledgeRunStorageService
         string jobId,
         CancellationToken cancellationToken)
     {
-        var container = await GetContainerAsync(cancellationToken);
-        var blob = container.GetBlobClient(GetQueuedRunBlobName(jobId));
-        if (!await blob.ExistsAsync(cancellationToken))
-        {
-            return null;
-        }
-
-        var response = await blob.DownloadContentAsync(cancellationToken);
-        return response.Value.Content.ToObjectFromJson<PublicKnowledgeQueuedRunEnvelope>(JsonOptions);
+        var (envelope, _) = await ReadQueuedRunWithEtagAsync(jobId, cancellationToken);
+        return envelope;
     }
 
     public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunRunningAsync(
         PublicKnowledgeQueuedRunMessage message,
         CancellationToken cancellationToken)
     {
-        var existing = await ReadQueuedRunAsync(message.JobId, cancellationToken);
-        var envelope = (existing ?? new PublicKnowledgeQueuedRunEnvelope(
-                "notary-geek-public-knowledge-queued-run-v1",
-                "0.1-public",
-                message.JobId,
-                message.Batch,
-                message.Trigger,
-                message.Execute,
-                message.CaseIds,
-                message.SubmittedAtUtc,
-                null,
-                null,
-                "queued",
-                0,
-                message.CaseIds.Count,
-                [],
-                null))
-            with
+        return await UpdateQueuedRunEnvelopeAsync(
+            message.JobId,
+            existing =>
             {
-                StartedAtUtc = DateTime.UtcNow,
-                Status = "running"
-            };
+                var envelope = existing ?? CreateQueuedRunEnvelope(message);
+                if (IsTerminalQueuedRunStatus(envelope.Status))
+                {
+                    return envelope;
+                }
 
-        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
-        return envelope;
+                return envelope with
+                {
+                    StartedAtUtc = envelope.StartedAtUtc ?? DateTime.UtcNow,
+                    Status = "running"
+                };
+            },
+            cancellationToken);
     }
 
     public async Task<PublicKnowledgeQueuedRunEnvelope> CompleteQueuedRunAsync(
@@ -173,41 +144,7 @@ public sealed class PublicKnowledgeRunStorageService
         IReadOnlyList<PublicKnowledgeStoredRunReceipt> receipts,
         CancellationToken cancellationToken)
     {
-        var existing = await ReadQueuedRunAsync(message.JobId, cancellationToken);
-        var completed = receipts.Count(item => item.Ok);
-        var status = receipts.Count == 0
-            ? "completed-empty"
-            : receipts.All(item => item.Ok)
-                ? "completed"
-                : "completed-with-errors";
-        var envelope = (existing ?? new PublicKnowledgeQueuedRunEnvelope(
-                "notary-geek-public-knowledge-queued-run-v1",
-                "0.1-public",
-                message.JobId,
-                message.Batch,
-                message.Trigger,
-                message.Execute,
-                message.CaseIds,
-                message.SubmittedAtUtc,
-                null,
-                null,
-                "running",
-                0,
-                message.CaseIds.Count,
-                [],
-                null))
-            with
-            {
-                CompletedAtUtc = DateTime.UtcNow,
-                Status = status,
-                CompletedCount = completed,
-                TotalCount = message.CaseIds.Count,
-                Receipts = receipts,
-                Error = null
-            };
-
-        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
-        return envelope;
+        return await MergeQueuedRunReceiptsAsync(message, receipts, error: null, cancellationToken);
     }
 
     public async Task<PublicKnowledgeQueuedRunEnvelope> FailQueuedRunAsync(
@@ -252,6 +189,29 @@ public sealed class PublicKnowledgeRunStorageService
 
         await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
         return envelope;
+    }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope> FailQueuedRunCaseAsync(
+        PublicKnowledgeQueuedRunMessage message,
+        string error,
+        CancellationToken cancellationToken)
+    {
+        var caseId = !string.IsNullOrWhiteSpace(message.CaseId)
+            ? message.CaseId
+            : message.CaseIds.FirstOrDefault() ?? "job";
+        var jobBlobName = GetQueuedRunBlobName(message.JobId);
+        var receipt = new PublicKnowledgeStoredRunReceipt(
+            caseId,
+            false,
+            "failed",
+            false,
+            0,
+            0,
+            1,
+            jobBlobName,
+            jobBlobName);
+
+        return await MergeQueuedRunReceiptsAsync(message, [receipt], error, cancellationToken);
     }
 
     public async Task<PublicKnowledgeStoredRunEnvelope?> ReadLatestAsync(
@@ -329,6 +289,120 @@ public sealed class PublicKnowledgeRunStorageService
         return index;
     }
 
+    private async Task<PublicKnowledgeQueuedRunEnvelope> MergeQueuedRunReceiptsAsync(
+        PublicKnowledgeQueuedRunMessage message,
+        IReadOnlyList<PublicKnowledgeStoredRunReceipt> receipts,
+        string? error,
+        CancellationToken cancellationToken)
+    {
+        return await UpdateQueuedRunEnvelopeAsync(
+            message.JobId,
+            existing =>
+            {
+                var envelope = existing ?? CreateQueuedRunEnvelope(message);
+                var knownCaseIds = envelope.CaseIds.Count > 0
+                    ? envelope.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase).ToArray()
+                    : message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+                var merged = new Dictionary<string, PublicKnowledgeStoredRunReceipt>(StringComparer.OrdinalIgnoreCase);
+
+                foreach (var receipt in envelope.Receipts)
+                {
+                    if (!string.IsNullOrWhiteSpace(receipt.CaseId))
+                    {
+                        merged[receipt.CaseId] = receipt;
+                    }
+                }
+
+                foreach (var receipt in receipts)
+                {
+                    if (!string.IsNullOrWhiteSpace(receipt.CaseId))
+                    {
+                        merged[receipt.CaseId] = receipt;
+                    }
+                }
+
+                var orderedReceipts = knownCaseIds
+                    .Where(merged.ContainsKey)
+                    .Select(caseId => merged[caseId])
+                    .Concat(merged
+                        .Where(item => !knownCaseIds.Contains(item.Key, StringComparer.OrdinalIgnoreCase))
+                        .OrderBy(item => item.Key, StringComparer.OrdinalIgnoreCase)
+                        .Select(item => item.Value))
+                    .ToArray();
+                var totalCount = knownCaseIds.Length;
+                var completedCount = totalCount == 0
+                    ? orderedReceipts.Length
+                    : knownCaseIds.Count(caseId => merged.ContainsKey(caseId));
+                var hasErrors = orderedReceipts.Any(item => !item.Ok);
+                var isComplete = totalCount == 0 || completedCount >= totalCount;
+                var nextStatus = isComplete
+                    ? orderedReceipts.Length == 0
+                        ? "completed-empty"
+                        : hasErrors
+                            ? "completed-with-errors"
+                            : "completed"
+                    : "running";
+
+                return envelope with
+                {
+                    StartedAtUtc = envelope.StartedAtUtc ?? DateTime.UtcNow,
+                    CompletedAtUtc = isComplete ? DateTime.UtcNow : null,
+                    Status = nextStatus,
+                    CompletedCount = completedCount,
+                    TotalCount = totalCount,
+                    Receipts = orderedReceipts,
+                    Error = MergeError(envelope.Error, error)
+                };
+            },
+            cancellationToken);
+    }
+
+    private async Task<PublicKnowledgeQueuedRunEnvelope> UpdateQueuedRunEnvelopeAsync(
+        string jobId,
+        Func<PublicKnowledgeQueuedRunEnvelope?, PublicKnowledgeQueuedRunEnvelope> update,
+        CancellationToken cancellationToken)
+    {
+        const int maxAttempts = 5;
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            var (existing, etag) = await ReadQueuedRunWithEtagAsync(jobId, cancellationToken);
+            var envelope = update(existing);
+            try
+            {
+                await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken, etag);
+                return envelope;
+            }
+            catch (RequestFailedException ex) when ((ex.Status == 409 || ex.Status == 412) && attempt < maxAttempts)
+            {
+                _logger.LogInformation(
+                    ex,
+                    "Queued run {JobId} was updated concurrently; retrying status merge attempt {Attempt}/{MaxAttempts}.",
+                    jobId,
+                    attempt + 1,
+                    maxAttempts);
+                await Task.Delay(TimeSpan.FromMilliseconds(75 * attempt), cancellationToken);
+            }
+        }
+
+        throw new InvalidOperationException($"Could not update queued run '{jobId}' after concurrent writes.");
+    }
+
+    private async Task<(PublicKnowledgeQueuedRunEnvelope? Envelope, ETag? ETag)> ReadQueuedRunWithEtagAsync(
+        string jobId,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(GetQueuedRunBlobName(jobId));
+        if (!await blob.ExistsAsync(cancellationToken))
+        {
+            return (null, null);
+        }
+
+        var response = await blob.DownloadContentAsync(cancellationToken);
+        var envelope = response.Value.Content.ToObjectFromJson<PublicKnowledgeQueuedRunEnvelope>(JsonOptions);
+        return (envelope, response.Value.Details.ETag);
+    }
+
     private async Task<IReadOnlyList<PublicKnowledgeStoredRunEnvelope>> ListLatestEnvelopesAsync(
         CancellationToken cancellationToken)
     {
@@ -376,15 +450,18 @@ public sealed class PublicKnowledgeRunStorageService
 
     private async Task SaveQueuedRunEnvelopeAsync(
         PublicKnowledgeQueuedRunEnvelope envelope,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        ETag? etag = null)
     {
         var container = await GetContainerAsync(cancellationToken);
         var json = JsonSerializer.Serialize(envelope, JsonOptions);
         var blob = container.GetBlobClient(GetQueuedRunBlobName(envelope.JobId));
-        await blob.UploadAsync(BinaryData.FromString(json), overwrite: true, cancellationToken);
-        await blob.SetHttpHeadersAsync(
-            new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
-            cancellationToken: cancellationToken);
+        var options = new BlobUploadOptions
+        {
+            HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+            Conditions = etag is null ? null : new BlobRequestConditions { IfMatch = etag.Value }
+        };
+        await blob.UploadAsync(BinaryData.FromString(json), options, cancellationToken);
     }
 
     private static string GetQueuedRunBlobName(string jobId) =>
@@ -402,6 +479,48 @@ public sealed class PublicKnowledgeRunStorageService
             .ToArray());
 
         return string.IsNullOrWhiteSpace(safe) ? "unknown" : safe;
+    }
+
+    private static PublicKnowledgeQueuedRunEnvelope CreateQueuedRunEnvelope(
+        PublicKnowledgeQueuedRunMessage message) =>
+        new(
+            "notary-geek-public-knowledge-queued-run-v1",
+            "0.1-public",
+            message.JobId,
+            message.Batch,
+            message.Trigger,
+            message.Execute,
+            message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            message.SubmittedAtUtc,
+            null,
+            null,
+            "queued",
+            0,
+            message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase).Count(),
+            [],
+            null);
+
+    private static bool IsTerminalQueuedRunStatus(string status) =>
+        status.Equals("completed", StringComparison.OrdinalIgnoreCase) ||
+        status.Equals("completed-with-errors", StringComparison.OrdinalIgnoreCase) ||
+        status.Equals("completed-empty", StringComparison.OrdinalIgnoreCase) ||
+        status.Equals("failed", StringComparison.OrdinalIgnoreCase);
+
+    private static string? MergeError(string? existing, string? incoming)
+    {
+        if (string.IsNullOrWhiteSpace(incoming))
+        {
+            return existing;
+        }
+
+        if (string.IsNullOrWhiteSpace(existing))
+        {
+            return incoming;
+        }
+
+        return existing.Contains(incoming, StringComparison.OrdinalIgnoreCase)
+            ? existing
+            : $"{existing} | {incoming}";
     }
 
     private static PublicKnowledgeLatestRunIndexItem BuildIndexItem(

@@ -1,5 +1,6 @@
 {
   "version": "2.0",
+  "functionTimeout": "00:10:00",
   "logging": {
     "applicationInsights": {
       "samplingSettings": {
@@ -7,6 +8,13 @@
         "excludedTypes": "Request"
       },
       "enableLiveMetricsFilters": true
+    }
+  },
+  "extensions": {
+    "queues": {
+      "batchSize": 4,
+      "newBatchThreshold": 2,
+      "maxPollingInterval": "00:00:05"
     }
   }
 }
