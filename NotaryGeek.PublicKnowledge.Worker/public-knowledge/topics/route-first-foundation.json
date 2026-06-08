@@ -9,6 +9,7 @@
   "routingOrder": [
     "document type and destination",
     "controlling law and transaction date",
+    "the full legal surface that touches the work, not only notary law",
     "notary state or public official signature that will anchor the authentication route",
     "identity method and retained transaction evidence",
     "known written recipient instructions, official route requirements, published recipient rules, or documented rejection/acceptance evidence",
@@ -26,6 +27,10 @@
     {
       "name": "challenge-question-flip-boundary",
       "rule": "If a few challenge questions force an answer to retreat from a platform recommendation into caveats, the first answer was not source-grounded enough."
+    },
+    {
+      "name": "ethical-acceptance-all-law-boundary",
+      "rule": "A technically possible notarization, platform session, or apostille path is not automatically an ethically supportable transaction. Route-first must check the written rule, document source, intended use, recipient path, rejection risk, and any other legal surface that actually touches the work."
     }
   ],
   "publicReplyPosture": "Be precise, calm, and source-quality focused. Explain the route without making a legal-advice claim.",
@@ -33,6 +38,8 @@
     "platform-first recommendation",
     "treats marketing as authority",
     "uses vague ask-the-recipient language as an escape hatch",
+    "treats technical completion as compliance",
+    "treats notary law as the only applicable law",
     "ignores transaction date",
     "does not identify the public official signature or competent authority path"
   ]

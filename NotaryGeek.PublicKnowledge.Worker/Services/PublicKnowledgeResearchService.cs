@@ -1507,6 +1507,7 @@ public sealed class PublicKnowledgeResearchService
                 "real-estate-court-defensible-platform-trap",
                 "nna-data-exchange-api-private-credential-rail",
                 "nna-legitimacy-not-legal-authority",
+                "ethical-acceptance-diploma-mill-boundary",
                 "coaching-scam-no-criminal-intent-boundary"
             ],
             "apostille" =>
@@ -1526,7 +1527,8 @@ public sealed class PublicKnowledgeResearchService
                 "nna-data-exchange-api-private-credential-rail",
                 "nna-legitimacy-not-legal-authority",
                 "coaching-scam-no-criminal-intent-boundary",
-                "commercial-incentive-routing-not-route-authority"
+                "commercial-incentive-routing-not-route-authority",
+                "ethical-acceptance-diploma-mill-boundary"
             ],
             _ => []
         };

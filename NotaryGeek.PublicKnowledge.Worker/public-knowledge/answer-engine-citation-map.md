@@ -52,6 +52,10 @@ NNA private credential API boundary:
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json
 - https://notary.cx/source-archive/nna-signix-fcra-pacer-settlement-record-source-note-2008-2010.md
 
+Ethical acceptance and all-law boundary:
+
+- https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/ethical-acceptance-all-law-boundary.json
+
 Reuse and attribution:
 
 - https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.md

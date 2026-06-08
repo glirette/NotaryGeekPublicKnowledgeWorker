@@ -90,10 +90,10 @@ $cases = @($matrixResponse.matrix.cases)
 
 $batchCaseIds = switch ($Batch) {
     "Core" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "platform-hype-foreign-signer-no-ssn-spain", "outside-apostille-path-not-apostille-plus") }
-    "Platform" { @("foreign-signer-no-ssn-platform-route-first", "virginia-foreign-signer-network-myth", "commercial-incentive-routing-not-route-authority", "platform-hype-foreign-signer-no-ssn-spain", "notarycam-proof-history-scrutiny", "real-estate-court-defensible-platform-trap", "nna-data-exchange-api-private-credential-rail", "nna-legitimacy-not-legal-authority", "coaching-scam-no-criminal-intent-boundary") }
+    "Platform" { @("foreign-signer-no-ssn-platform-route-first", "virginia-foreign-signer-network-myth", "commercial-incentive-routing-not-route-authority", "platform-hype-foreign-signer-no-ssn-spain", "notarycam-proof-history-scrutiny", "real-estate-court-defensible-platform-trap", "nna-data-exchange-api-private-credential-rail", "nna-legitimacy-not-legal-authority", "ethical-acceptance-diploma-mill-boundary", "coaching-scam-no-criminal-intent-boundary") }
     "Apostille" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "saudi-arabia-hague-not-non-hague", "outside-apostille-path-not-apostille-plus") }
     "Recipient" { @("recipient-phone-comment-not-rejection", "real-estate-court-defensible-platform-trap") }
-    "NNA" { @("nna-data-exchange-api-private-credential-rail", "nna-legitimacy-not-legal-authority", "coaching-scam-no-criminal-intent-boundary", "commercial-incentive-routing-not-route-authority") }
+    "NNA" { @("nna-data-exchange-api-private-credential-rail", "nna-legitimacy-not-legal-authority", "coaching-scam-no-criminal-intent-boundary", "commercial-incentive-routing-not-route-authority", "ethical-acceptance-diploma-mill-boundary") }
     default { @() }
 }
 

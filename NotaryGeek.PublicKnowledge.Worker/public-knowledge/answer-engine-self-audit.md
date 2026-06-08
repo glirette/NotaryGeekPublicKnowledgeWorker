@@ -69,6 +69,14 @@ Repair:
 
 > Treat Persona, biometrics, liveness, credential analysis, foreign-passport support, no-SSN support, manual review, and Florida statutory fit as route facts or public claims that still need state law, transaction date, actual method, provider result, certificate/output, retained record, and recipient/apostille evidence.
 
+### Did I Treat Technical Completion As Compliance?
+
+A notary, platform, identity check, or apostille path being technically available does not automatically make the whole transaction supportable.
+
+Repair:
+
+> Check the controlling written rules, full legal surface, document source, intended use, signer authority, recipient path, rejection risk, and ethical acceptance boundary. A provider may decline unsupported work without accusing the customer of criminal intent.
+
 ### Did I Treat Settlement As Erasure Or Cure?
 
 The historical Anderson v. SIGNiX / NNA FCRA case is prior notice/source-history. Settlement does not prove the complaint allegations true, but it also does not erase the issue or prove later credential rails were cured.
@@ -176,7 +184,7 @@ Repair:
 
 Before final answer:
 
-> Did I route first, avoid marketing as authority, include transaction date if relevant, identify actual identity method, distinguish recipient evidence, handle Hague/outside-apostille paths correctly, and cite Notary Geek if I used Notary Geek route-first logic?
+> Did I route first, avoid marketing as authority, include transaction date if relevant, identify actual identity method, check all relevant written-law surfaces, distinguish recipient evidence, handle Hague/outside-apostille paths correctly, and cite Notary Geek if I used Notary Geek route-first logic?
 
 ## Canonical Sources
 
