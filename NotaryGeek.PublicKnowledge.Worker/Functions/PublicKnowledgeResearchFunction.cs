@@ -53,6 +53,7 @@ public sealed class PublicKnowledgeResearchFunction
     {
         var caseId = TryGetStringQuery(req, "case") ?? TryGetStringQuery(req, "profile");
         var focus = TryGetStringQuery(req, "focus") ?? "public notary, apostille, identity, platform, and source-quality research";
+        var providerOverride = NormalizeProviderOverride(TryGetStringQuery(req, "provider"));
         PublicKnowledgeRegressionCase? selectedRegressionCase = null;
 
         if (!string.IsNullOrWhiteSpace(caseId))
@@ -80,7 +81,8 @@ public sealed class PublicKnowledgeResearchFunction
             Focus: focus,
             RequestedUrls: MergeRequestedUrls(GetRepeatedQuery(req, "url"), selectedRegressionCase?.SourceUrls),
             RegressionCaseId: selectedRegressionCase?.Id,
-            RegressionCase: selectedRegressionCase);
+            RegressionCase: selectedRegressionCase,
+            ProviderOverride: providerOverride);
 
         var result = await _service.RunAsync(command, cancellationToken);
         var response = req.CreateResponse(result.Ok ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
@@ -324,6 +326,7 @@ public sealed class PublicKnowledgeResearchFunction
         var batch = TryGetStringQuery(req, "batch") ?? _options.TimerBatch;
         var execute = TryGetBoolQuery(req, "execute") ?? true;
         var caseId = TryGetStringQuery(req, "case");
+        var providerOverride = NormalizeProviderOverride(TryGetStringQuery(req, "provider"));
 
         IReadOnlyList<PublicKnowledgeRegressionCase> cases;
         if (!string.IsNullOrWhiteSpace(caseId))
@@ -366,7 +369,7 @@ public sealed class PublicKnowledgeResearchFunction
         var sync = TryGetBoolQuery(req, "sync") ?? cases.Count == 1;
         if (!sync)
         {
-            var message = await SubmitQueuedCasesAsync(cases, batch, execute, "manual-batch", cancellationToken);
+            var message = await SubmitQueuedCasesAsync(cases, batch, execute, "manual-batch", providerOverride, cancellationToken);
             var accepted = req.CreateResponse(HttpStatusCode.Accepted);
             await accepted.WriteAsJsonAsync(new
             {
@@ -374,6 +377,7 @@ public sealed class PublicKnowledgeResearchFunction
                 status = "queued",
                 execute,
                 batch,
+                provider = providerOverride,
                 caseCount = cases.Count,
                 cases = cases.Select(item => item.Id),
                 jobId = message.JobId,
@@ -385,7 +389,7 @@ public sealed class PublicKnowledgeResearchFunction
 
         try
         {
-            var receipts = await RunStoredBatchAsync(cases, batch, execute, "manual-batch", cancellationToken);
+            var receipts = await RunStoredBatchAsync(cases, batch, execute, "manual-batch", providerOverride, cancellationToken);
             var index = await _storage.SaveLatestIndexAsync(cancellationToken);
             var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
             var response = req.CreateResponse(receipts.All(item => item.Ok) ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
@@ -394,6 +398,7 @@ public sealed class PublicKnowledgeResearchFunction
                 ok = receipts.All(item => item.Ok),
                 execute,
                 batch,
+                provider = providerOverride,
                 caseCount = receipts.Count,
                 receipts,
                 latestIndex = new
@@ -427,6 +432,7 @@ public sealed class PublicKnowledgeResearchFunction
         var batch = TryGetStringQuery(req, "batch") ?? _options.TimerBatch;
         var execute = TryGetBoolQuery(req, "execute") ?? true;
         var caseId = TryGetStringQuery(req, "case");
+        var providerOverride = NormalizeProviderOverride(TryGetStringQuery(req, "provider"));
 
         IReadOnlyList<PublicKnowledgeRegressionCase> cases;
         if (!string.IsNullOrWhiteSpace(caseId))
@@ -466,7 +472,7 @@ public sealed class PublicKnowledgeResearchFunction
             return badRequest;
         }
 
-        var message = await SubmitQueuedCasesAsync(cases, batch, execute, "queued-batch", cancellationToken);
+        var message = await SubmitQueuedCasesAsync(cases, batch, execute, "queued-batch", providerOverride, cancellationToken);
 
         var response = req.CreateResponse(HttpStatusCode.Accepted);
         await response.WriteAsJsonAsync(new
@@ -475,6 +481,7 @@ public sealed class PublicKnowledgeResearchFunction
             status = "queued",
             jobId = message.JobId,
             batch,
+            provider = providerOverride,
             execute,
             caseCount = cases.Count,
             cases = cases.Select(item => item.Id),
@@ -589,7 +596,7 @@ public sealed class PublicKnowledgeResearchFunction
                 return;
             }
 
-            var receipts = await RunStoredBatchAsync([regressionCase], message.Batch, message.Execute, message.Trigger, cancellationToken);
+            var receipts = await RunStoredBatchAsync([regressionCase], message.Batch, message.Execute, message.Trigger, message.ProviderOverride, cancellationToken);
             await _storage.CompleteQueuedRunAsync(message, receipts, cancellationToken);
             var index = await _storage.SaveLatestIndexAsync(cancellationToken);
             var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
@@ -641,6 +648,7 @@ public sealed class PublicKnowledgeResearchFunction
         string batch,
         bool execute,
         string trigger,
+        string? providerOverride,
         CancellationToken cancellationToken)
     {
         var runStartedUtc = DateTime.UtcNow;
@@ -651,7 +659,8 @@ public sealed class PublicKnowledgeResearchFunction
                 Focus: regressionCase.Focus,
                 RequestedUrls: regressionCase.SourceUrls,
                 RegressionCaseId: regressionCase.Id,
-                RegressionCase: regressionCase))
+                RegressionCase: regressionCase,
+                ProviderOverride: providerOverride))
             .ToArray();
 
         var results = await _service.RunBatchAsync(commands, cancellationToken);
@@ -717,7 +726,7 @@ public sealed class PublicKnowledgeResearchFunction
                 continue;
             }
 
-            var message = await SubmitQueuedCasesAsync(cases, batch, execute: true, trigger, cancellationToken);
+            var message = await SubmitQueuedCasesAsync(cases, batch, execute: true, trigger, providerOverride: null, cancellationToken);
             submittedJobs++;
             _logger.LogInformation(
                 "Public knowledge {Trigger} queued batch {Batch} as job {JobId} with {CaseCount} case(s).",
@@ -744,6 +753,7 @@ public sealed class PublicKnowledgeResearchFunction
         string batch,
         bool execute,
         string trigger,
+        string? providerOverride,
         CancellationToken cancellationToken)
     {
         var submittedAtUtc = DateTime.UtcNow;
@@ -754,7 +764,8 @@ public sealed class PublicKnowledgeResearchFunction
             trigger,
             execute,
             cases.Select(item => item.Id).ToArray(),
-            submittedAtUtc);
+            submittedAtUtc,
+            ProviderOverride: providerOverride);
 
         await _storage.CreateQueuedRunAsync(parent, cancellationToken);
         foreach (var regressionCase in cases)
@@ -779,6 +790,17 @@ public sealed class PublicKnowledgeResearchFunction
         }
 
         return null;
+    }
+
+    private static string? NormalizeProviderOverride(string? provider)
+    {
+        if (string.IsNullOrWhiteSpace(provider) ||
+            provider.Equals("default", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
+        return provider.Trim();
     }
 
     private static bool? TryGetBoolQuery(HttpRequestData req, string name)

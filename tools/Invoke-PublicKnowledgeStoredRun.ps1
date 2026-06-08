@@ -6,6 +6,8 @@ param(
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient", "NNA")]
     [string] $Batch = "Core",
     [string] $CaseId = "",
+    [ValidateSet("", "Default", "OpenAI", "Straico")]
+    [string] $Provider = "",
     [string] $JobId = "",
     [ValidateSet("", "queued", "running", "completed", "completed-with-errors", "completed-empty", "failed")]
     [string] $JobStatus = "",
@@ -47,6 +49,10 @@ function New-PublicKnowledgeUri {
 }
 
 $query = @{ code = $FunctionKey }
+if (-not [string]::IsNullOrWhiteSpace($Provider) -and $Provider -ne "Default") {
+    $query.provider = $Provider
+}
+
 $path = switch ($Command) {
     "Status" { "/api/public-knowledge/status" }
     "Latest" {

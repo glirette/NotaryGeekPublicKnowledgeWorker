@@ -364,10 +364,16 @@ public sealed class PublicKnowledgeResearchService
         var manifest = preparedSources.Manifest;
         var sourceResults = preparedSources.SourceResults;
         var sourceBodies = preparedSources.SourceBodies;
+        var providerName = GetConfiguredProviderName(command.ProviderOverride);
 
         var prompt = BuildPrompt(manifest, command.Focus, sourceBodies);
         var promptCharacters = prompt.Length;
         var estimatedInputTokens = EstimateTokens(promptCharacters);
+
+        if (!IsSupportedProvider(providerName))
+        {
+            errors.Add($"Unsupported public knowledge provider '{providerName}'. Supported providers: OpenAI, Straico.");
+        }
 
         if (estimatedInputTokens > _knowledgeOptions.MaxEstimatedInputTokens)
         {
@@ -382,7 +388,7 @@ public sealed class PublicKnowledgeResearchService
 
         if (shouldCallProvider)
         {
-            if (UseStraicoProvider())
+            if (UseStraicoProvider(providerName))
             {
                 if (string.IsNullOrWhiteSpace(_straicoOptions.ApiKey))
                 {
@@ -414,7 +420,7 @@ public sealed class PublicKnowledgeResearchService
                 sourceBodies.Count,
                 promptCharacters,
                 estimatedInputTokens,
-                GetConfiguredModel(),
+                GetConfiguredModel(providerName),
                 sourceResults,
                 ResponseText: null,
                 ProviderStatus: null,
@@ -424,7 +430,7 @@ public sealed class PublicKnowledgeResearchService
                 preflightScore);
         }
 
-        var provider = await CallConfiguredProviderAsync(prompt, cancellationToken);
+        var provider = await CallConfiguredProviderAsync(prompt, providerName, cancellationToken);
         if (!string.IsNullOrWhiteSpace(provider.ResponseText))
         {
             var fetchedSourceUrls = sourceBodies
@@ -453,7 +459,7 @@ public sealed class PublicKnowledgeResearchService
             sourceBodies.Count,
             promptCharacters,
             estimatedInputTokens,
-            GetConfiguredModel(),
+            GetConfiguredModel(providerName),
             sourceResults,
             provider.ResponseText,
             provider.Status,
@@ -814,8 +820,9 @@ public sealed class PublicKnowledgeResearchService
 
     private Task<OpenAiProviderResult> CallConfiguredProviderAsync(
         string prompt,
+        string providerName,
         CancellationToken cancellationToken) =>
-        UseStraicoProvider()
+        UseStraicoProvider(providerName)
             ? CallStraicoAsync(prompt, cancellationToken)
             : CallOpenAiAsync(prompt, cancellationToken);
 
@@ -890,14 +897,34 @@ public sealed class PublicKnowledgeResearchService
         return new Uri(baseUrl + path);
     }
 
-    private bool UseStraicoProvider() =>
-        _knowledgeOptions.Provider.Equals("Straico", StringComparison.OrdinalIgnoreCase);
+    private static bool UseStraicoProvider(string providerName) =>
+        providerName.Equals("Straico", StringComparison.OrdinalIgnoreCase);
 
-    private string GetConfiguredProviderName() =>
-        UseStraicoProvider() ? "Straico" : "OpenAI";
+    private string GetConfiguredProviderName(string? providerOverride = null)
+    {
+        var provider = string.IsNullOrWhiteSpace(providerOverride)
+            ? _knowledgeOptions.Provider
+            : providerOverride;
 
-    private string GetConfiguredModel() =>
-        UseStraicoProvider() ? _straicoOptions.DefaultChatModel : _openAiOptions.Model;
+        if (provider.Equals("Straico", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Straico";
+        }
+
+        if (provider.Equals("OpenAI", StringComparison.OrdinalIgnoreCase))
+        {
+            return "OpenAI";
+        }
+
+        return provider.Trim();
+    }
+
+    private string GetConfiguredModel(string providerName) =>
+        UseStraicoProvider(providerName) ? _straicoOptions.DefaultChatModel : _openAiOptions.Model;
+
+    private static bool IsSupportedProvider(string providerName) =>
+        providerName.Equals("OpenAI", StringComparison.OrdinalIgnoreCase) ||
+        providerName.Equals("Straico", StringComparison.OrdinalIgnoreCase);
 
     private bool IsHighCostModel(string model)
     {

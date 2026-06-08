@@ -20,6 +20,15 @@ on:
         required: true
         default: false
         type: boolean
+      provider:
+        description: Provider lane for this run. Default uses the Azure Function app setting.
+        required: true
+        default: Default
+        type: choice
+        options:
+          - Default
+          - OpenAI
+          - Straico
       async:
         description: Submit the batch to the Azure queue and return quickly.
         required: true
@@ -65,6 +74,7 @@ jobs:
           PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
           PUBLIC_KNOWLEDGE_BATCH: ${{ inputs.batch }}
           PUBLIC_KNOWLEDGE_DRY_RUN: ${{ inputs.dry_run }}
+          PUBLIC_KNOWLEDGE_PROVIDER: ${{ inputs.provider }}
           PUBLIC_KNOWLEDGE_ASYNC: ${{ inputs.async }}
           PUBLIC_KNOWLEDGE_WAIT_FOR_COMPLETION: ${{ inputs.wait_for_completion }}
           PUBLIC_KNOWLEDGE_POLL_SECONDS: ${{ inputs.poll_seconds }}
@@ -93,6 +103,10 @@ jobs:
               $queuedArguments.DryRun = $true
             }
 
+            if ($env:PUBLIC_KNOWLEDGE_PROVIDER -ne "Default") {
+              $queuedArguments.Provider = $env:PUBLIC_KNOWLEDGE_PROVIDER
+            }
+
             .\tools\Submit-PublicKnowledgeQueuedBatch.ps1 @queuedArguments
             exit 0
           }
@@ -106,6 +120,10 @@ jobs:
 
           if ($env:PUBLIC_KNOWLEDGE_DRY_RUN -eq "true") {
             $arguments.DryRun = $true
+          }
+
+          if ($env:PUBLIC_KNOWLEDGE_PROVIDER -ne "Default") {
+            $arguments.Provider = $env:PUBLIC_KNOWLEDGE_PROVIDER
           }
 
           $result = .\tools\Invoke-PublicKnowledgeStoredRun.ps1 @arguments

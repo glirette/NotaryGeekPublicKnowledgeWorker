@@ -8,7 +8,8 @@ public sealed record PublicKnowledgeRunCommand(
     string Focus,
     IReadOnlyList<string> RequestedUrls,
     string? RegressionCaseId,
-    PublicKnowledgeRegressionCase? RegressionCase);
+    PublicKnowledgeRegressionCase? RegressionCase,
+    string? ProviderOverride = null);
 
 public sealed record PublicKnowledgeRunResult(
     bool Ok,
@@ -62,7 +63,8 @@ public sealed record PublicKnowledgeQueuedRunMessage(
     bool Execute,
     IReadOnlyList<string> CaseIds,
     DateTime SubmittedAtUtc,
-    string? CaseId = null);
+    string? CaseId = null,
+    string? ProviderOverride = null);
 
 public sealed record PublicKnowledgeSourceResult(
     string Url,

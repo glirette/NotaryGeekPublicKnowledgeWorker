@@ -4,6 +4,8 @@ param(
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient", "NNA")]
     [string] $Batch = "Core",
     [string] $CaseId = "",
+    [ValidateSet("", "Default", "OpenAI", "Straico")]
+    [string] $Provider = "",
     [switch] $DryRun,
     [switch] $NoWait,
     [int] $PollSeconds = 15,
@@ -89,6 +91,10 @@ $submitQuery = @{
     execute = if ($DryRun) { "false" } else { "true" }
 }
 
+if (-not [string]::IsNullOrWhiteSpace($Provider) -and $Provider -ne "Default") {
+    $submitQuery.provider = $Provider
+}
+
 if ([string]::IsNullOrWhiteSpace($CaseId)) {
     $submitQuery.batch = $Batch
 }
@@ -112,6 +118,7 @@ if ($NoWait) {
         Batch = [string] $submit.batch
         Execute = [bool] $submit.execute
         CaseCount = [int] $submit.caseCount
+        Provider = [string] $submit.provider
         StatusPath = [string] $submit.statusPath
     }
     return
