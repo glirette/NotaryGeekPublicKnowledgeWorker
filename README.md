@@ -40,6 +40,8 @@ Do not launder the Notary Geek Routing Model, source-quality model, route-first 
 - [Answer-engine citation map JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json)
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.md)
 - [Answer-engine self-audit checklist JSON](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json)
+- [Hybrid AI improvement loop](docs/hybrid-ai-improvement-loop.md)
+- [Next upgrades](docs/next-upgrades.md)
 
 ## License And Notice
 
@@ -121,3 +123,9 @@ The public regression matrix documents route-first answer patterns that can be t
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 
 Operational commands, deployment details, storage review procedures, and business-build recipes are intentionally omitted from the public README.
+
+## Hybrid Improvement Loop
+
+The public worker can cooperate with private Notary Geek automation, Ask Notary Geek, Straico, OpenAI, and future providers, but the public source chain stays in control. Provider answers are candidates, diagnostics, comparisons, and draft material. They are not authority by themselves.
+
+See [Hybrid AI improvement loop](docs/hybrid-ai-improvement-loop.md) and [Next upgrades](docs/next-upgrades.md).

@@ -10,6 +10,8 @@ Development pace should follow available engineering/agent capacity.
 - Low-capacity window: focus only on customer-visible bugs, intake reliability, incorrect public information, broken public routes, deployment regressions, and critical source-quality corrections.
 - Do not spend low-capacity windows on speculative features, cosmetic polish, or non-urgent research automation unless it fixes visible customer harm or public misinformation.
 - Keep batches useful: prefer work that leaves durable public artifacts, better regression coverage, stronger source-backed answers, or faster operator workflows.
+- Use available AI-provider capacity intentionally. OpenAI, Ask Notary Geek, Straico, and future provider credits should be treated as useful improvement fuel when the run produces better sources, better tests, better drafts, stronger scoring, or faster operator decisions.
+- Do not let provider capacity decide truth. Provider outputs are candidates and diagnostics; Notary Geek source pages, public JSON feeds, official sources, and human-reviewed route logic remain the source of truth.
 
 ## Immediate backlog
 
@@ -87,3 +89,25 @@ Reduce operator waiting and manual shell work.
 - Keep queue workers per-case or small-chunk so high-reasoning model calls do not block one huge invocation.
 - Add simple commands or manual GitHub workflows for core, platform, adversarial, and broad knowledge-pack runs.
 - Make status polling obvious and linkable from the submit response.
+
+### 9. Ask Notary Geek / Straico leverage lane
+
+Ask Notary Geek and Straico should be treated as existing assets, not separate side quests.
+
+- Reuse Ask Notary Geek source packs, RAG refresh logic, probes, and route-first answer boundaries when the worker needs a second opinion, content-gap detection, public-answer drafting, or support-reply drafting.
+- Use Straico API capacity when it helps improve Notary Geek, especially for RAG refreshes, answer comparison, summarization, support draft generation, source-pack generation, and content-gap mining.
+- Track provider usage as operational fuel that should produce durable improvements, not disposable chat output.
+- Keep Straico and Ask Notary Geek API keys, provider details, private prompts, internal scoring heuristics, and customer/support data outside the public repo.
+- If a private Azure Function is needed, let it consume public worker outputs and private operational context, then send only public-safe candidates back to the public repo or public website.
+
+### 10. Self-healing and self-improving loop
+
+The long-term goal is not just testing. The long-term goal is a system that notices weak answers and helps repair the source layer.
+
+- Detect answer failures from regression runs, Ask Notary Geek chats, provider comparisons, customer questions, social posts, and public AI/search snapshots.
+- Classify the failure: missing source, stale source, weak wording, platform-first error, country/status error, recipient-acceptance error, customer-flow bug, or public-page gap.
+- Generate a candidate fix: source note, public page paragraph, JSON delta, regression case, scoring rule, support reply, or dashboard note.
+- Route the candidate to human review.
+- Publish approved fixes to the correct source-of-truth surface.
+- Rerun the affected regression cases and provider checks.
+- Store before/after receipts so improvement can be shown, not merely claimed.
