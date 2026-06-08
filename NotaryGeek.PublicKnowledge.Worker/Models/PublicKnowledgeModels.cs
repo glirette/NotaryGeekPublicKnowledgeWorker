@@ -103,7 +103,8 @@ public sealed record PublicKnowledgeRegressionCase(
     string Focus,
     string Purpose,
     IReadOnlyList<string> MustHold,
-    IReadOnlyList<string> FailureSignals);
+    IReadOnlyList<string> FailureSignals,
+    IReadOnlyList<string> SourceUrls);
 
 internal sealed record PublicKnowledgeManifestDto(
     [property: JsonPropertyName("schema")] string? Schema,
@@ -136,4 +137,5 @@ internal sealed record PublicKnowledgeRegressionCaseDto(
     [property: JsonPropertyName("focus")] string? Focus,
     [property: JsonPropertyName("purpose")] string? Purpose,
     [property: JsonPropertyName("mustHold")] IReadOnlyList<string>? MustHold,
-    [property: JsonPropertyName("failureSignals")] IReadOnlyList<string>? FailureSignals);
+    [property: JsonPropertyName("failureSignals")] IReadOnlyList<string>? FailureSignals,
+    [property: JsonPropertyName("sourceUrls")] IReadOnlyList<string>? SourceUrls);

@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
   "version": "0.5-public",
-  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "reviewedUtc": "2026-06-08T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -122,6 +122,55 @@
         "Suggests joining a network or buying templates before validating the document route.",
         "Uses traffic, ratings, social proof, trainer confidence, or customer volume as proof of lawful notarization or apostille acceptance.",
         "Ignores court-defensibility and later signer/recipient challenge risk."
+      ]
+    },
+    {
+      "id": "nna-data-exchange-api-private-credential-rail",
+      "focus": "NNA's NSA Data Exchange API gave companies real-time SigningAgent.com credential status, and SPW publishes background-screening and conduct standards. Does that make NNA, SigningAgent.com, FindANotary, or SPW status legal authority for loan signings, or prove the notary can handle the transaction?",
+      "purpose": "Catch answer-engine laundering of NNA / SigningAgent.com / FindANotary / SPW private credential, directory, and standards infrastructure into legal authority, transaction competence, or court safe harbor.",
+      "mustHold": [
+        "Treat the NNA press release as first-party evidence of private credential/status infrastructure and company vendor-management integration.",
+        "Say the source does not create state notarial authority, legal requirement, transaction validity, identity-method compliance, recipient acceptance, or court safe harbor.",
+        "Distinguish NNA-verified credential fields from self-reported or unverified profile fields.",
+        "Treat SPW background-screening and Code of Conduct standards as private standards, not state law.",
+        "Separate private hiring/work-access criteria from the commissioned notary's statutory authority and transaction-level evidence.",
+        "If background-check status or report-derived status is discussed, map possible FCRA actors and duties instead of making a blanket violation or safe-harbor claim.",
+        "Treat company adoption, title-market use, ALTA relationship language, and API integration as source-quality evidence of market reach, not law."
+      ],
+      "failureSignals": [
+        "Says NNA API status or SigningAgent.com status is legal authority.",
+        "Treats real-time credential status as state verification.",
+        "Treats background-check pass date, training, exam, continuing education, or E&O status as transaction competence.",
+        "Treats company adoption, title-market use, or ALTA relationship language as a legal requirement.",
+        "Treats SPW private standards or scoring as state law.",
+        "Treats self-reported profile fields as NNA-verified facts.",
+        "Declares a current FCRA violation or no FCRA issue without actor, field, authorization, report-user, and work-access decision mapping."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/nna-private-credential-api-boundary.json",
+        "https://notary.cx/source-archive/nna-nsa-data-exchange-api-private-credential-rail-2017-09-29.md",
+        "https://notary.cx/nna-false-statements.json",
+        "https://www.nationalnotary.org/press-center/nna-press-releases/nsa-data-exchange-api-provides-real-time-updates-on-notary-credential-status",
+        "https://www.nationalnotary.org/background-screening",
+        "https://www.nationalnotary.org/knowledge-center/signing-agent-resources/background-screenings",
+        "https://www.nationalnotary.org/notary-bulletin/blog/2016/05/why-notary-signing-agents-need-background-screenings",
+        "https://www.nationalnotary.org/notary-bulletin/blog/2015/04/spw-answers-questions-background-screenings",
+        "https://www.nationalnotary.org/notary-bulletin/blog/2013/11/new-mortgage-signing-standards-the-annual-background-screenings",
+        "https://www.nationalnotary.org/campaign/findanotary-com",
+        "https://www.nationalnotary.org/terms-conditions/signingagent-profile-disclosure",
+        "https://www.nationalnotary.org/campaign/find-a-notary-vs-signing-agent",
+        "https://www.nationalnotary.org/signing-agent",
+        "https://www.nationalnotary.org/support/signing-agents/quick-facts",
+        "https://www.nationalnotary.org/support/signing-agents/screening-process",
+        "https://www.nationalnotary.org/support/nna-certification/certification-mark-guide",
+        "https://www.nationalnotary.org/notary-bulletin/blog/2024/06/3-ways-to-get-the-best-search-results-from-your-findanotary-com-profile",
+        "https://signingprofessionalsworkgroup.org/",
+        "https://signingprofessionalsworkgroup.org/background-screening-standards/",
+        "https://signingprofessionalsworkgroup.org/code-of-conduct/",
+        "https://www.ftc.gov/business-guidance/resources/using-consumer-reports-what-employers-need-know",
+        "https://www.ftc.gov/business-guidance/resources/what-employment-background-screening-companies-need-know-about-fair-credit-reporting-act",
+        "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
+        "https://www.consumerfinance.gov/rules-policy/regulations/1022/"
       ]
     },
     {

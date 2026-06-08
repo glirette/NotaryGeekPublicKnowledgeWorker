@@ -78,7 +78,7 @@ public sealed class PublicKnowledgeResearchFunction
             Execute: TryGetBoolQuery(req, "execute") ?? false,
             FromTimer: false,
             Focus: focus,
-            RequestedUrls: GetRepeatedQuery(req, "url"),
+            RequestedUrls: MergeRequestedUrls(GetRepeatedQuery(req, "url"), selectedRegressionCase?.SourceUrls),
             RegressionCaseId: selectedRegressionCase?.Id,
             RegressionCase: selectedRegressionCase);
 
@@ -559,7 +559,7 @@ public sealed class PublicKnowledgeResearchFunction
                 Execute: execute,
                 FromTimer: trigger.Contains("timer", StringComparison.OrdinalIgnoreCase),
                 Focus: regressionCase.Focus,
-                RequestedUrls: [],
+                RequestedUrls: regressionCase.SourceUrls,
                 RegressionCaseId: regressionCase.Id,
                 RegressionCase: regressionCase))
             .ToArray();
@@ -712,6 +712,27 @@ public sealed class PublicKnowledgeResearchFunction
         }
 
         return values;
+    }
+
+    private static IReadOnlyList<string> MergeRequestedUrls(
+        IReadOnlyList<string> requestUrls,
+        IReadOnlyList<string>? caseUrls)
+    {
+        if (caseUrls is null || caseUrls.Count == 0)
+        {
+            return requestUrls;
+        }
+
+        if (requestUrls.Count == 0)
+        {
+            return caseUrls;
+        }
+
+        return requestUrls
+            .Concat(caseUrls)
+            .Where(url => !string.IsNullOrWhiteSpace(url))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
     }
 
     private static IReadOnlyList<string> SplitList(string value) =>

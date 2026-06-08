@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.0-public",
-  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "version": "1.2-public",
+  "reviewedUtc": "2026-06-08T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -85,6 +85,20 @@
       "kind": "topic",
       "use": "Online real-estate platform recommendations must follow document, recording, witness, identity, certificate, output, and retention routing.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/real-estate-defensible-online-transactions.json"
+    },
+    {
+      "id": "nna-private-credential-api-boundary",
+      "title": "NNA Private Credential API Boundary",
+      "kind": "topic",
+      "use": "NNA / SigningAgent.com real-time credential status and API vendor-management integrations are private work-access rails, not legal authority or transaction proof.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/nna-private-credential-api-boundary.json"
+    },
+    {
+      "id": "nna-credential-marketplace-source-seeds",
+      "title": "NNA / SPW Credential Marketplace Source Seeds",
+      "kind": "source-seed-list",
+      "use": "Official NNA and SPW source seeds for background-screening, SigningAgent, FindANotary, search-visibility, private standards, and vendor-management source-quality audits.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/nna-credential-marketplace-source-seeds.json"
     },
     {
       "id": "coaching-scam-intent-boundary",

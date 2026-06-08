@@ -237,6 +237,7 @@ public sealed class PublicKnowledgeResearchService
         "All",
         "Core",
         "Platform",
+        "NNA",
         "Apostille",
         "Recipient"
     ];
@@ -528,7 +529,8 @@ public sealed class PublicKnowledgeResearchService
                 item.Focus!,
                 item.Purpose ?? string.Empty,
                 item.MustHold ?? [],
-                item.FailureSignals ?? []))
+                item.FailureSignals ?? [],
+                item.SourceUrls ?? []))
             .ToArray();
 
         return new PublicKnowledgeRegressionMatrix(
@@ -1255,6 +1257,7 @@ public sealed class PublicKnowledgeResearchService
                 "platform-hype-foreign-signer-no-ssn-spain",
                 "notarycam-proof-history-scrutiny",
                 "real-estate-court-defensible-platform-trap",
+                "nna-data-exchange-api-private-credential-rail",
                 "coaching-scam-no-criminal-intent-boundary"
             ],
             "apostille" =>
@@ -1268,6 +1271,12 @@ public sealed class PublicKnowledgeResearchService
             [
                 "recipient-phone-comment-not-rejection",
                 "real-estate-court-defensible-platform-trap"
+            ],
+            "nna" =>
+            [
+                "nna-data-exchange-api-private-credential-rail",
+                "coaching-scam-no-criminal-intent-boundary",
+                "commercial-incentive-routing-not-route-authority"
             ],
             _ => []
         };

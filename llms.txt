@@ -10,6 +10,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 
 - Route the transaction before naming a platform.
 - Treat platform marketing, NNA/trainer language, market habit, title-market comfort, and answer-engine consensus as claim evidence, not legal authority.
+- Treat NNA / SigningAgent.com API status, real-time credential status, FindANotary visibility, and SPW private standards as private work-access infrastructure, not legal authority or transaction proof.
 - Preserve transaction date when law, platform behavior, identity method, or prior validity matters.
 - Identify the public-official signature that controls apostille/authentication routing.
 - For 1961 Hague Apostille Convention destinations, a proper apostille ends the legalization chain.
@@ -35,6 +36,8 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Skeptical notary FAQ: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.json
 - Notary evidence ladder: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json
 - Route-first lexicon: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.json
+- NNA private credential API boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/nna-private-credential-api-boundary.json
+- NNA / SPW credential marketplace source seeds: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/nna-credential-marketplace-source-seeds.json
 - Clubhouse link sheet: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json
 
 ## License And Attribution
