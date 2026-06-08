@@ -137,6 +137,26 @@ while (-not (Test-TerminalStatus -Status $status) -and (Get-Date).ToUniversalTim
 Save-Json -Value $jobResponse -Name "job-final.json"
 
 if (-not (Test-TerminalStatus -Status $status)) {
+    try {
+        $jobsUri = New-PublicKnowledgeUri -Path "/api/public-knowledge/runs/jobs" -Query @{ code = $FunctionKey; take = "10" }
+        $jobsResponse = Invoke-RestMethod -Uri $jobsUri -Method Get
+        Write-Host "Recent queued jobs before timeout:"
+        ($jobsResponse.jobs |
+            Select-Object `
+                SubmittedAtUtc,
+                Status,
+                Batch,
+                Trigger,
+                @{ Name = "Done"; Expression = { "{0}/{1}" -f $_.CompletedCount, $_.TotalCount } },
+                IsStale,
+                ActiveAgeMinutes,
+                JobId) |
+            Format-Table -AutoSize
+    }
+    catch {
+        Write-Host "Could not fetch recent queued jobs before timeout: $($_.Exception.Message)"
+    }
+
     throw "Timed out waiting for queued job '$jobId'. Last status: $status."
 }
 

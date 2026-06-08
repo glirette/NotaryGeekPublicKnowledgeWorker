@@ -1,12 +1,15 @@
 param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
-    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "LatestDigest", "RunBatch", "SubmitBatch", "JobStatus")]
+    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "LatestDigest", "RunBatch", "SubmitBatch", "Jobs", "JobStatus")]
     [string] $Command = "Latest",
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
     [string] $Batch = "Core",
     [string] $CaseId = "",
     [string] $JobId = "",
+    [ValidateSet("", "queued", "running", "completed", "completed-with-errors", "completed-empty", "failed")]
+    [string] $JobStatus = "",
+    [int] $Take = 20,
     [switch] $DryRun,
     [switch] $NoSave,
     [string] $OutFile = ""
@@ -87,6 +90,14 @@ $path = switch ($Command) {
         }
 
         "/api/public-knowledge/runs/submit-batch"
+    }
+    "Jobs" {
+        $query.take = [string] $Take
+        if (-not [string]::IsNullOrWhiteSpace($JobStatus)) {
+            $query.status = $JobStatus
+        }
+
+        "/api/public-knowledge/runs/jobs"
     }
     "JobStatus" {
         if ([string]::IsNullOrWhiteSpace($JobId)) {
@@ -225,6 +236,21 @@ switch ($Command) {
             CaseCount = $response.caseCount
             StatusPath = $response.statusPath
         }
+    }
+    "Jobs" {
+        $response.jobs |
+            Select-Object `
+                SubmittedAtUtc,
+                Status,
+                Batch,
+                Trigger,
+                @{ Name = "Done"; Expression = { "{0}/{1}" -f $_.CompletedCount, $_.TotalCount } },
+                OkReceiptCount,
+                FailedReceiptCount,
+                IsStale,
+                ActiveAgeMinutes,
+                JobId,
+                Error
     }
     "JobStatus" {
         $response.job

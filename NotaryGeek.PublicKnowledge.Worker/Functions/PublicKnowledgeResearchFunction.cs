@@ -429,6 +429,42 @@ public sealed class PublicKnowledgeResearchFunction
         return response;
     }
 
+    [Function("PublicKnowledgeQueuedJobs")]
+    public async Task<HttpResponseData> QueuedJobs(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/jobs")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var take = Math.Clamp(TryGetIntQuery(req, "take") ?? 20, 1, 100);
+            var status = TryGetStringQuery(req, "status");
+            var jobs = await _storage.ListQueuedRunsAsync(take, status, cancellationToken);
+
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = true,
+                take,
+                status,
+                jobCount = jobs.Count,
+                staleJobCount = jobs.Count(item => item.IsStale),
+                jobs
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
     [Function("PublicKnowledgeQueuedJobStatus")]
     public async Task<HttpResponseData> QueuedJobStatus(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/jobs/{jobId}")] HttpRequestData req,
@@ -695,6 +731,12 @@ public sealed class PublicKnowledgeResearchFunction
     {
         var value = TryGetStringQuery(req, name);
         return bool.TryParse(value, out var parsed) ? parsed : null;
+    }
+
+    private static int? TryGetIntQuery(HttpRequestData req, string name)
+    {
+        var value = TryGetStringQuery(req, name);
+        return int.TryParse(value, out var parsed) ? parsed : null;
     }
 
     private static IReadOnlyList<string> GetRepeatedQuery(HttpRequestData req, string name)

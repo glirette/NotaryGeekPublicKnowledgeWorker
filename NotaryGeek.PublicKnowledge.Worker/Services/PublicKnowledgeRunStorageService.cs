@@ -123,6 +123,46 @@ public sealed class PublicKnowledgeRunStorageService
         return envelope;
     }
 
+    public async Task<IReadOnlyList<PublicKnowledgeQueuedRunSummary>> ListQueuedRunsAsync(
+        int take,
+        string? status,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var summaries = new List<PublicKnowledgeQueuedRunSummary>();
+
+        await foreach (var blob in container.GetBlobsAsync(prefix: "runs/jobs/", cancellationToken: cancellationToken))
+        {
+            try
+            {
+                var client = container.GetBlobClient(blob.Name);
+                var response = await client.DownloadContentAsync(cancellationToken);
+                var envelope = response.Value.Content.ToObjectFromJson<PublicKnowledgeQueuedRunEnvelope>(JsonOptions);
+                if (envelope is null)
+                {
+                    continue;
+                }
+
+                if (!string.IsNullOrWhiteSpace(status) &&
+                    !envelope.Status.Equals(status, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                summaries.Add(BuildQueuedRunSummary(envelope, blob.Name));
+            }
+            catch (Exception ex) when (ex is JsonException or RequestFailedException)
+            {
+                _logger.LogWarning(ex, "Could not read public knowledge queued job blob {BlobName}.", blob.Name);
+            }
+        }
+
+        return summaries
+            .OrderByDescending(item => item.SubmittedAtUtc)
+            .Take(Math.Clamp(take, 1, 100))
+            .ToArray();
+    }
+
     public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunRunningAsync(
         PublicKnowledgeQueuedRunMessage message,
         CancellationToken cancellationToken)
@@ -598,6 +638,35 @@ public sealed class PublicKnowledgeRunStorageService
         status.Equals("completed-empty", StringComparison.OrdinalIgnoreCase) ||
         status.Equals("failed", StringComparison.OrdinalIgnoreCase);
 
+    private static PublicKnowledgeQueuedRunSummary BuildQueuedRunSummary(
+        PublicKnowledgeQueuedRunEnvelope envelope,
+        string blobName)
+    {
+        var isTerminal = IsTerminalQueuedRunStatus(envelope.Status);
+        var activeSinceUtc = envelope.StartedAtUtc ?? envelope.SubmittedAtUtc;
+        var activeAgeMinutes = Math.Max(0, (DateTime.UtcNow - activeSinceUtc).TotalMinutes);
+        var isStale = !isTerminal && activeAgeMinutes >= 45;
+
+        return new PublicKnowledgeQueuedRunSummary(
+            envelope.JobId,
+            envelope.Batch,
+            envelope.Trigger,
+            envelope.Execute,
+            envelope.SubmittedAtUtc,
+            envelope.StartedAtUtc,
+            envelope.CompletedAtUtc,
+            envelope.Status,
+            envelope.CompletedCount,
+            envelope.TotalCount,
+            envelope.Receipts.Count(item => item.Ok),
+            envelope.Receipts.Count(item => !item.Ok),
+            isTerminal,
+            isStale,
+            Math.Round(activeAgeMinutes, 1),
+            envelope.Error,
+            blobName);
+    }
+
     private static string? MergeError(string? existing, string? incoming)
     {
         if (string.IsNullOrWhiteSpace(incoming))
@@ -920,6 +989,25 @@ public sealed record PublicKnowledgeQueuedRunEnvelope(
     int TotalCount,
     IReadOnlyList<PublicKnowledgeStoredRunReceipt> Receipts,
     string? Error);
+
+public sealed record PublicKnowledgeQueuedRunSummary(
+    string JobId,
+    string Batch,
+    string Trigger,
+    bool Execute,
+    DateTime SubmittedAtUtc,
+    DateTime? StartedAtUtc,
+    DateTime? CompletedAtUtc,
+    string Status,
+    int CompletedCount,
+    int TotalCount,
+    int OkReceiptCount,
+    int FailedReceiptCount,
+    bool IsTerminal,
+    bool IsStale,
+    double ActiveAgeMinutes,
+    string? Error,
+    string BlobName);
 
 public sealed record PublicKnowledgeStoredRunSummary(
     string CaseId,
