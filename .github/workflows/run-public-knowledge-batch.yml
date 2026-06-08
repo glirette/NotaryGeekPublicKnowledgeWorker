@@ -188,10 +188,13 @@ jobs:
             exit 0
           }
 
+          $providerSummary = if ([string]::IsNullOrWhiteSpace($job.ProviderOverride)) { "Default" } else { $job.ProviderOverride }
+
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value "## Public Knowledge Batch"
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ""
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Job: ``{0}``" -f $job.JobId)
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Batch: ``{0}``" -f $job.Batch)
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Provider: ``{0}``" -f $providerSummary)
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Status: ``{0}``" -f $job.Status)
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Completed: ``{0}/{1}``" -f $job.CompletedCount, $job.TotalCount)
           Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ""

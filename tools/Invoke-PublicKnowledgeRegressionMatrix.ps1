@@ -4,6 +4,8 @@ param(
     [string[]] $CaseId = @(),
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient", "NNA")]
     [string] $Batch = "All",
+    [ValidateSet("", "Default", "OpenAI", "Straico")]
+    [string] $Provider = "",
     [switch] $Execute,
     [int] $DelaySeconds = 0,
     [string] $OutDir = "",
@@ -108,6 +110,10 @@ foreach ($case in $cases) {
     $query = @{
         code = $FunctionKey
         case = [string] $case.id
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($Provider) -and $Provider -ne "Default") {
+        $query.provider = $Provider
     }
 
     if ($Execute) {
