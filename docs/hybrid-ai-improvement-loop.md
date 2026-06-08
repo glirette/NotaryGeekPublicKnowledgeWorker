@@ -1,6 +1,6 @@
 # Hybrid AI Improvement Loop
 
-This note describes how the public knowledge worker can cooperate with Ask Notary Geek, Straico, OpenAI, and future private Azure functions without mixing public source work with private customer operations.
+This note describes how the public knowledge worker can cooperate with Ask Notary Geek, OpenAI, private retrieval/provider orchestration, and future private Azure functions without mixing public source work with private customer operations.
 
 ## Principle
 
@@ -32,7 +32,7 @@ The private layer can use stronger automation because it is not meant to be a pu
 Private extension examples:
 
 - Ask Notary Geek provider calls and probes
-- Straico API/RAG refresh orchestration
+- private retrieval/RAG refresh orchestration
 - OpenAI comparison/scoring runs
 - internal scoring heuristics
 - private source-gap triage
@@ -46,11 +46,11 @@ The private layer may use Azure Functions, existing app services, existing datab
 
 ## Provider Strategy
 
-OpenAI, Ask Notary Geek, Straico, and future AI providers can each serve a different role.
+OpenAI, Ask Notary Geek, private retrieval providers, and future AI providers can each serve a different role.
 
 - OpenAI: high-reasoning route tests, adversarial regression, structured scoring, public-data sharing runs, source-quality comparison, and public-interest answer improvement.
 - Ask Notary Geek: Notary Geek source-bound answer behavior, customer-style phrasing, route-first support drafts, and content-gap detection from the live website experience.
-- Straico: RAG refresh, alternate-provider comparison, summarization, public-source pack processing, and use of available monthly/rollover capacity while the provider remains viable.
+- Private retrieval providers: RAG refresh, alternate-provider comparison, summarization, public-source pack processing, and use of available monthly/rollover capacity while the provider remains viable.
 - Future providers: comparison, resilience, and provider-health checks so no single external provider becomes the whole system.
 
 Use provider capacity aggressively when it produces durable improvement. Do not spend capacity on disposable output that leaves no better source, test, page, score, draft, or operational decision behind.
@@ -77,7 +77,7 @@ Start with automation that saves operator time and improves public correctness.
 - Generate scored verdicts for existing regression runs.
 - Create review candidates from strong model outputs.
 - Create public-safe summaries from completed runs.
-- Compare OpenAI and Straico answers for the same public case.
+- Compare OpenAI and private-provider answers for the same public case.
 - Detect when Ask Notary Geek answers expose missing public source pages.
 - Generate `llms.txt`, `content-index.json`, and press/news candidate snippets from approved source changes.
 - Keep old/bad answers from recurring by adding a regression case when a failure is found.
@@ -89,7 +89,7 @@ A private Azure Function can sit beside the public worker.
 Recommended split:
 
 - Public worker: public corpus, public tests, public receipts, public dashboard, public source chain.
-- Private AI worker: provider orchestration, Ask Notary Geek/Straico calls, internal scoring, promotion candidates, private queue review, support drafts, and human-review workflows.
+- Private AI worker: provider orchestration, Ask Notary Geek/private-provider calls, internal scoring, promotion candidates, private queue review, support drafts, and human-review workflows.
 
 The private worker can read public worker outputs. It should only write back public-safe artifacts after review.
 
@@ -97,7 +97,7 @@ The private worker can read public worker outputs. It should only write back pub
 
 - Do not send private customer data into public runs.
 - Do not expose provider keys, function keys, publish profiles, internal prompts, or private scoring logic.
-- Do not let Straico or any provider become the authority. It is a retrieval/candidate layer.
+- Do not let any private retrieval provider become the authority. It is a retrieval/candidate layer.
 - Do not auto-publish legal conclusions or accusations.
 - Do not let provider credits create busywork. Every run should leave a useful artifact or decision.
 - When capacity is low, prioritize customer-visible bugs, wrong public information, intake reliability, and critical source-quality corrections.

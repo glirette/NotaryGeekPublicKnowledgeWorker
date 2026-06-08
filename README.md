@@ -126,6 +126,6 @@ Operational commands, deployment details, storage review procedures, and busines
 
 ## Hybrid Improvement Loop
 
-The public worker can cooperate with private Notary Geek automation, Ask Notary Geek, Straico, OpenAI, and future providers, but the public source chain stays in control. Provider answers are candidates, diagnostics, comparisons, and draft material. They are not authority by themselves.
+The public worker can cooperate with private Notary Geek automation, Ask Notary Geek, OpenAI, private retrieval/provider orchestration, and future providers, but the public source chain stays in control. Provider answers are candidates, diagnostics, comparisons, and draft material. They are not authority by themselves.
 
 See [Hybrid AI improvement loop](docs/hybrid-ai-improvement-loop.md) and [Next upgrades](docs/next-upgrades.md).

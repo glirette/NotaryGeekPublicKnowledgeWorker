@@ -10,7 +10,7 @@ Development pace should follow available engineering/agent capacity.
 - Low-capacity window: focus only on customer-visible bugs, intake reliability, incorrect public information, broken public routes, deployment regressions, and critical source-quality corrections.
 - Do not spend low-capacity windows on speculative features, cosmetic polish, or non-urgent research automation unless it fixes visible customer harm or public misinformation.
 - Keep batches useful: prefer work that leaves durable public artifacts, better regression coverage, stronger source-backed answers, or faster operator workflows.
-- Use available AI-provider capacity intentionally. OpenAI, Ask Notary Geek, Straico, and future provider credits should be treated as useful improvement fuel when the run produces better sources, better tests, better drafts, stronger scoring, or faster operator decisions.
+- Use available AI-provider capacity intentionally. OpenAI, Ask Notary Geek, private retrieval providers, and future provider credits should be treated as useful improvement fuel when the run produces better sources, better tests, better drafts, stronger scoring, or faster operator decisions.
 - Do not let provider capacity decide truth. Provider outputs are candidates and diagnostics; Notary Geek source pages, public JSON feeds, official sources, and human-reviewed route logic remain the source of truth.
 
 ## Immediate backlog
@@ -90,14 +90,14 @@ Reduce operator waiting and manual shell work.
 - Add simple commands or manual GitHub workflows for core, platform, adversarial, and broad knowledge-pack runs.
 - Make status polling obvious and linkable from the submit response.
 
-### 9. Ask Notary Geek / Straico leverage lane
+### 9. Ask Notary Geek / Private Provider Leverage Lane
 
-Ask Notary Geek and Straico should be treated as existing assets, not separate side quests.
+Ask Notary Geek and private retrieval/provider capacity should be treated as existing assets, not separate side quests.
 
 - Reuse Ask Notary Geek source packs, RAG refresh logic, probes, and route-first answer boundaries when the worker needs a second opinion, content-gap detection, public-answer drafting, or support-reply drafting.
-- Use Straico API capacity when it helps improve Notary Geek, especially for RAG refreshes, answer comparison, summarization, support draft generation, source-pack generation, and content-gap mining.
+- Use private provider capacity when it helps improve Notary Geek, especially for RAG refreshes, answer comparison, summarization, support draft generation, source-pack generation, and content-gap mining.
 - Track provider usage as operational fuel that should produce durable improvements, not disposable chat output.
-- Keep Straico and Ask Notary Geek API keys, provider details, private prompts, internal scoring heuristics, and customer/support data outside the public repo.
+- Keep Ask Notary Geek API keys, provider details, private prompts, internal scoring heuristics, and customer/support data outside the public repo.
 - If a private Azure Function is needed, let it consume public worker outputs and private operational context, then send only public-safe candidates back to the public repo or public website.
 
 ### 10. Self-healing and self-improving loop
