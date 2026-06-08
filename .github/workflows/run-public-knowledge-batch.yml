@@ -120,3 +120,21 @@ jobs:
               throw "Public knowledge batch had $($failed.Count) failed case(s)."
             }
           }
+
+      - name: Print latest digest
+        if: ${{ always() }}
+        shell: pwsh
+        env:
+          PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+          PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY) -or [string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_BASE_URL)) {
+            Write-Host "Digest skipped because protected worker secrets are not configured."
+            exit 0
+          }
+
+          .\tools\Invoke-PublicKnowledgeStoredRun.ps1 `
+            -BaseUrl $env:PUBLIC_KNOWLEDGE_BASE_URL `
+            -FunctionKey $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY `
+            -Command LatestDigest |
+            Format-Table -AutoSize
