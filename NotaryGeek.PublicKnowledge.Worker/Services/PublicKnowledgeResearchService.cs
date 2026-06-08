@@ -906,7 +906,8 @@ public sealed class PublicKnowledgeResearchService
             .Where(url => !string.IsNullOrWhiteSpace(url))
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        return ExtractHttpsUrls(responseText)
+        var citationUrls = ExtractProviderCitationUrls(responseText, out var parseWarning);
+        var warnings = citationUrls
             .Where(url =>
             {
                 var normalizedUrl = NormalizeCitationUrl(url);
@@ -915,6 +916,57 @@ public sealed class PublicKnowledgeResearchService
             .Select(url => $"Provider cited URL not in fetched source list: {url}")
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
+
+        return string.IsNullOrWhiteSpace(parseWarning)
+            ? warnings
+            : warnings.Prepend(parseWarning).ToArray();
+    }
+
+    private static IReadOnlyList<string> ExtractProviderCitationUrls(
+        string responseText,
+        out string? parseWarning)
+    {
+        parseWarning = null;
+        try
+        {
+            using var document = JsonDocument.Parse(responseText);
+            if (!TryGetProperty(document.RootElement, "citations", out var citations))
+            {
+                parseWarning = "Provider response did not include a citations array.";
+                return [];
+            }
+
+            if (citations.ValueKind != JsonValueKind.Array)
+            {
+                parseWarning = "Provider response citations field was not an array.";
+                return [];
+            }
+
+            return citations
+                .EnumerateArray()
+                .SelectMany(item =>
+                {
+                    var value = item.ValueKind == JsonValueKind.String
+                        ? item.GetString()
+                        : item.GetRawText();
+
+                    if (string.IsNullOrWhiteSpace(value))
+                    {
+                        return [];
+                    }
+
+                    var urls = ExtractHttpsUrls(value).ToArray();
+                    return urls.Length > 0 ? urls : [value];
+                })
+                .Where(item => !string.IsNullOrWhiteSpace(item))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+        catch (JsonException)
+        {
+            parseWarning = "Provider response was not valid JSON; URL validation scanned the full response text.";
+            return ExtractHttpsUrls(responseText).ToArray();
+        }
     }
 
     private static PublicKnowledgeRegressionScore? ScoreRegressionResponse(
