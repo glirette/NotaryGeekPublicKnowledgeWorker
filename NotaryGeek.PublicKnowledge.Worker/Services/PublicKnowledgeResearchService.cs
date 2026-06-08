@@ -98,6 +98,40 @@ public sealed class PublicKnowledgeResearchService
         " do not recommend "
     ];
 
+    private static readonly string[] FailureCorrectiveContextMarkers =
+    [
+        " bad route ",
+        " can cause ",
+        " can create ",
+        " causes delay ",
+        " creates delay ",
+        " create delay ",
+        " creates confusion ",
+        " create confusion ",
+        " correction ",
+        " corrective ",
+        " delay and route confusion ",
+        " do not describe ",
+        " does not mean ",
+        " is wrong ",
+        " are wrong ",
+        " incorrect ",
+        " misstate ",
+        " misstates ",
+        " misstated ",
+        " route confusion ",
+        " route error ",
+        " risk ",
+        " risks ",
+        " separate from ",
+        " should be avoided ",
+        " should be treated as ",
+        " treat that as ",
+        " wrong route ",
+        " would cause ",
+        " would create "
+    ];
+
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = false
@@ -961,6 +995,7 @@ public sealed class PublicKnowledgeResearchService
         }
 
         var requiredTokenCount = GetRequiredFailureSignalTokenCount(ruleTokens.Count);
+        IReadOnlyList<string> correctiveMatchedTokens = [];
         foreach (var segment in SplitScoringSegments(responseText))
         {
             var normalizedSegment = NormalizeRuleScoringText(segment);
@@ -973,8 +1008,10 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
-            if (HasFailureNegationMarker(normalizedSegment))
+            if (HasFailureNegationMarker(normalizedSegment) ||
+                HasFailureCorrectiveContextMarker(normalizedSegment))
             {
+                correctiveMatchedTokens = matchedTokens;
                 continue;
             }
 
@@ -985,6 +1022,11 @@ public sealed class PublicKnowledgeResearchService
                 matchedTokens,
                 ruleTokens,
                 requiredTokenCount);
+        }
+
+        if (correctiveMatchedTokens.Count > 0)
+        {
+            return BuildRuleCheck(rule, "clear-corrective-mention", false, correctiveMatchedTokens, ruleTokens, requiredTokenCount);
         }
 
         return BuildRuleCheck(rule, "clear", false, [], ruleTokens, requiredTokenCount);
@@ -1086,6 +1128,9 @@ public sealed class PublicKnowledgeResearchService
 
     private static bool HasFailureNegationMarker(string normalizedSegment) =>
         FailureNegationMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
+
+    private static bool HasFailureCorrectiveContextMarker(string normalizedSegment) =>
+        FailureCorrectiveContextMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {
