@@ -140,17 +140,20 @@ public sealed class PublicKnowledgeResearchService
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly PublicKnowledgeOptions _knowledgeOptions;
     private readonly OpenAiOptions _openAiOptions;
+    private readonly StraicoOptions _straicoOptions;
     private readonly ILogger<PublicKnowledgeResearchService> _logger;
 
     public PublicKnowledgeResearchService(
         IHttpClientFactory httpClientFactory,
         IOptions<PublicKnowledgeOptions> knowledgeOptions,
         IOptions<OpenAiOptions> openAiOptions,
+        IOptions<StraicoOptions> straicoOptions,
         ILogger<PublicKnowledgeResearchService> logger)
     {
         _httpClientFactory = httpClientFactory;
         _knowledgeOptions = knowledgeOptions.Value;
         _openAiOptions = openAiOptions.Value;
+        _straicoOptions = straicoOptions.Value;
         _logger = logger;
     }
 
@@ -168,10 +171,14 @@ public sealed class PublicKnowledgeResearchService
             _knowledgeOptions.PublicBaseUrl,
             _knowledgeOptions.QueueName,
             string.IsNullOrWhiteSpace(_knowledgeOptions.PublicCorpusManifestUrl) ? "bundled-local" : _knowledgeOptions.PublicCorpusManifestUrl,
+            GetConfiguredProviderName(),
             _openAiOptions.BaseUrl,
             _openAiOptions.EndpointPath,
             _openAiOptions.Model,
             !string.IsNullOrWhiteSpace(_openAiOptions.ApiKey),
+            _straicoOptions.BaseUrl,
+            _straicoOptions.DefaultChatModel,
+            !string.IsNullOrWhiteSpace(_straicoOptions.ApiKey),
             _knowledgeOptions.MaxOutputTokens,
             IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode,
             _openAiOptions.HighCostMaxOutputTokens,
@@ -367,18 +374,31 @@ public sealed class PublicKnowledgeResearchService
             errors.Add($"Estimated input tokens {estimatedInputTokens} exceed configured limit {_knowledgeOptions.MaxEstimatedInputTokens}.");
         }
 
-        var shouldCallOpenAi = command.Execute && errors.Count == 0;
-        if (shouldCallOpenAi && !_knowledgeOptions.Enabled)
+        var shouldCallProvider = command.Execute && errors.Count == 0;
+        if (shouldCallProvider && !_knowledgeOptions.Enabled)
         {
             errors.Add("PublicKnowledge__Enabled is false. Dry-run is allowed, but OpenAI calls are disabled.");
         }
 
-        if (shouldCallOpenAi && string.IsNullOrWhiteSpace(_openAiOptions.ApiKey))
+        if (shouldCallProvider)
         {
-            errors.Add("OpenAI__ApiKey is not configured.");
+            if (UseStraicoProvider())
+            {
+                if (string.IsNullOrWhiteSpace(_straicoOptions.ApiKey))
+                {
+                    errors.Add("Straico__ApiKey is not configured.");
+                }
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(_openAiOptions.ApiKey))
+                {
+                    errors.Add("OpenAI__ApiKey is not configured.");
+                }
+            }
         }
 
-        if (!shouldCallOpenAi || errors.Count > 0)
+        if (!shouldCallProvider || errors.Count > 0)
         {
             var preflightScore = ScoreRegressionResponse(command.RegressionCase, null);
             return new PublicKnowledgeRunResult(
@@ -394,7 +414,7 @@ public sealed class PublicKnowledgeResearchService
                 sourceBodies.Count,
                 promptCharacters,
                 estimatedInputTokens,
-                _openAiOptions.Model,
+                GetConfiguredModel(),
                 sourceResults,
                 ResponseText: null,
                 ProviderStatus: null,
@@ -404,7 +424,7 @@ public sealed class PublicKnowledgeResearchService
                 preflightScore);
         }
 
-        var provider = await CallOpenAiAsync(prompt, cancellationToken);
+        var provider = await CallConfiguredProviderAsync(prompt, cancellationToken);
         if (!string.IsNullOrWhiteSpace(provider.ResponseText))
         {
             var fetchedSourceUrls = sourceBodies
@@ -433,7 +453,7 @@ public sealed class PublicKnowledgeResearchService
             sourceBodies.Count,
             promptCharacters,
             estimatedInputTokens,
-            _openAiOptions.Model,
+            GetConfiguredModel(),
             sourceResults,
             provider.ResponseText,
             provider.Status,
@@ -792,6 +812,59 @@ public sealed class PublicKnowledgeResearchService
         }
     }
 
+    private Task<OpenAiProviderResult> CallConfiguredProviderAsync(
+        string prompt,
+        CancellationToken cancellationToken) =>
+        UseStraicoProvider()
+            ? CallStraicoAsync(prompt, cancellationToken)
+            : CallOpenAiAsync(prompt, cancellationToken);
+
+    private async Task<OpenAiProviderResult> CallStraicoAsync(
+        string prompt,
+        CancellationToken cancellationToken)
+    {
+        var client = _httpClientFactory.CreateClient("Straico");
+        client.Timeout = TimeSpan.FromSeconds(Math.Max(10, _straicoOptions.TimeoutSeconds));
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _straicoOptions.ApiKey);
+
+        var model = string.IsNullOrWhiteSpace(_straicoOptions.DefaultChatModel)
+            ? "openai/gpt-5-mini"
+            : _straicoOptions.DefaultChatModel.Trim();
+        var endpoint = BuildStraicoEndpoint("/v1/prompt/completion");
+        var payload = new
+        {
+            models = new[] { model },
+            message = prompt
+        };
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
+        {
+            Content = new StringContent(JsonSerializer.Serialize(payload, JsonOptions), Encoding.UTF8, "application/json")
+        };
+
+        try
+        {
+            using var response = await client.SendAsync(request, cancellationToken);
+            var responseText = await response.Content.ReadAsStringAsync(cancellationToken);
+            var status = $"{(int)response.StatusCode} {response.StatusCode}";
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new OpenAiProviderResult(false, null, status, null, responseText);
+            }
+
+            using var document = JsonDocument.Parse(responseText);
+            var outputText = ExtractStraicoOutputText(document.RootElement, model);
+            var usageJson = ExtractStraicoUsageJson(document.RootElement);
+            return new OpenAiProviderResult(true, outputText, $"{status}; provider=straico", usageJson, null);
+        }
+        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException)
+        {
+            _logger.LogWarning(ex, "Straico public knowledge request failed.");
+            return new OpenAiProviderResult(false, null, "exception; provider=straico", null, ex.Message);
+        }
+    }
+
     private Uri BuildOpenAiEndpoint()
     {
         var baseUrl = _openAiOptions.BaseUrl.TrimEnd('/');
@@ -803,6 +876,28 @@ public sealed class PublicKnowledgeResearchService
 
         return new Uri(baseUrl + path);
     }
+
+    private Uri BuildStraicoEndpoint(string path)
+    {
+        var baseUrl = string.IsNullOrWhiteSpace(_straicoOptions.BaseUrl)
+            ? "https://api.straico.com"
+            : _straicoOptions.BaseUrl.TrimEnd('/');
+        if (!path.StartsWith("/", StringComparison.Ordinal))
+        {
+            path = "/" + path;
+        }
+
+        return new Uri(baseUrl + path);
+    }
+
+    private bool UseStraicoProvider() =>
+        _knowledgeOptions.Provider.Equals("Straico", StringComparison.OrdinalIgnoreCase);
+
+    private string GetConfiguredProviderName() =>
+        UseStraicoProvider() ? "Straico" : "OpenAI";
+
+    private string GetConfiguredModel() =>
+        UseStraicoProvider() ? _straicoOptions.DefaultChatModel : _openAiOptions.Model;
 
     private bool IsHighCostModel(string model)
     {
@@ -880,6 +975,108 @@ public sealed class PublicKnowledgeResearchService
         }
 
         return builder.ToString().Trim();
+    }
+
+    private static string ExtractStraicoOutputText(JsonElement root, string model)
+    {
+        if (TryGetProperty(root, "data", out var data) && data.ValueKind == JsonValueKind.Object)
+        {
+            if (TryGetProperty(data, "completions", out var completions) && completions.ValueKind == JsonValueKind.Object)
+            {
+                if (TryGetProperty(completions, model, out var modelCompletion))
+                {
+                    var text = ExtractStraicoModelCompletionText(modelCompletion);
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        return text;
+                    }
+                }
+
+                foreach (var completion in completions.EnumerateObject())
+                {
+                    var text = ExtractStraicoModelCompletionText(completion.Value);
+                    if (!string.IsNullOrWhiteSpace(text))
+                    {
+                        return text;
+                    }
+                }
+            }
+
+            if (TryGetProperty(data, "answer", out var answer) && answer.ValueKind == JsonValueKind.String)
+            {
+                return answer.GetString() ?? string.Empty;
+            }
+        }
+
+        return root.GetRawText();
+    }
+
+    private static string ExtractStraicoModelCompletionText(JsonElement modelCompletion)
+    {
+        if (TryGetProperty(modelCompletion, "completion", out var completion))
+        {
+            var text = ExtractChatCompletionText(completion);
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                return text;
+            }
+        }
+
+        return ExtractChatCompletionText(modelCompletion);
+    }
+
+    private static string ExtractChatCompletionText(JsonElement completion)
+    {
+        if (TryGetProperty(completion, "choices", out var choices) && choices.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var choice in choices.EnumerateArray())
+            {
+                if (TryGetProperty(choice, "message", out var message) &&
+                    TryGetProperty(message, "content", out var content) &&
+                    content.ValueKind == JsonValueKind.String)
+                {
+                    return content.GetString() ?? string.Empty;
+                }
+
+                if (TryGetProperty(choice, "text", out var text) && text.ValueKind == JsonValueKind.String)
+                {
+                    return text.GetString() ?? string.Empty;
+                }
+            }
+        }
+
+        if (TryGetProperty(completion, "content", out var directContent) && directContent.ValueKind == JsonValueKind.String)
+        {
+            return directContent.GetString() ?? string.Empty;
+        }
+
+        return string.Empty;
+    }
+
+    private static string? ExtractStraicoUsageJson(JsonElement root)
+    {
+        if (!TryGetProperty(root, "data", out var data) || data.ValueKind != JsonValueKind.Object)
+        {
+            return null;
+        }
+
+        var usage = new Dictionary<string, object?>();
+        if (TryGetProperty(data, "overall_price", out var overallPrice))
+        {
+            usage["overall_price"] = JsonSerializer.Deserialize<object>(overallPrice.GetRawText(), JsonOptions);
+        }
+
+        if (TryGetProperty(data, "overall_words", out var overallWords))
+        {
+            usage["overall_words"] = JsonSerializer.Deserialize<object>(overallWords.GetRawText(), JsonOptions);
+        }
+
+        if (TryGetProperty(data, "coins_used", out var coinsUsed))
+        {
+            usage["coins_used"] = JsonSerializer.Deserialize<object>(coinsUsed.GetRawText(), JsonOptions);
+        }
+
+        return usage.Count == 0 ? null : JsonSerializer.Serialize(usage, JsonOptions);
     }
 
     private static string? TryGetRawProperty(JsonElement root, string propertyName) =>
@@ -1338,10 +1535,14 @@ public sealed record PublicKnowledgeStatus(
     string PublicBaseUrl,
     string QueueName,
     string ManifestSource,
+    string Provider,
     string OpenAiBaseUrl,
     string OpenAiEndpointPath,
     string Model,
     bool HasOpenAiApiKey,
+    string StraicoBaseUrl,
+    string StraicoModel,
+    bool HasStraicoApiKey,
     int MaxOutputTokens,
     bool HighCostGuardActive,
     int HighCostMaxOutputTokens,

@@ -13,6 +13,7 @@ var host = new HostBuilder()
 
         services.Configure<OpenAiOptions>(context.Configuration.GetSection("OpenAI"));
         services.Configure<PublicKnowledgeOptions>(context.Configuration.GetSection("PublicKnowledge"));
+        services.Configure<StraicoOptions>(context.Configuration.GetSection("Straico"));
 
         services.AddHttpClient();
         services.AddSingleton<PublicKnowledgeResearchService>();

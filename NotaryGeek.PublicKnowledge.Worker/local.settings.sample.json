@@ -9,6 +9,7 @@
     "PublicKnowledge__TimerBatch": "Core",
     "PublicKnowledge__TimerBatches": "Core",
     "PublicKnowledge__PumpTimerBatches": "Core;Platform",
+    "PublicKnowledge__Provider": "OpenAI",
     "PublicKnowledge__PublicCorpusManifestUrl": "",
     "PublicKnowledge__PublicBaseUrl": "https://notary.cx",
     "PublicKnowledge__LocalRegressionMatrixPath": "public-knowledge/public-knowledge-regression-matrix.json",
@@ -26,6 +27,9 @@
     "OpenAI__AllowHighCostMode": "false",
     "OpenAI__HighCostReasoningEffort": "medium",
     "OpenAI__HighCostMaxOutputTokens": "1600",
-    "OpenAI__ApiKey": ""
+    "OpenAI__ApiKey": "",
+    "Straico__ApiKey": "",
+    "Straico__BaseUrl": "https://api.straico.com",
+    "Straico__DefaultChatModel": "openai/gpt-5-mini"
   }
 }
