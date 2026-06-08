@@ -58,6 +58,16 @@ function Get-ProviderTotalTokens {
     }
 }
 
+function Get-ProviderCalled {
+    param([object] $Value)
+
+    if ($null -ne $Value.providerCalled) {
+        return [bool] $Value.providerCalled
+    }
+
+    return [bool] $Value.openAiCalled
+}
+
 if (-not [string]::IsNullOrWhiteSpace($OutDir)) {
     New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 }
@@ -132,7 +142,7 @@ foreach ($case in $cases) {
         Case = [string] $case.id
         Ok = [bool] $response.ok
         Status = [string] $response.status
-        OpenAiCalled = [bool] $response.openAiCalled
+        ProviderCalled = Get-ProviderCalled $response
         CaseMetadata = $caseMetadataMatches
         Score = $scoreVerdict
         MustHold = $mustHoldSummary
@@ -161,7 +171,7 @@ else {
             Case,
             Ok,
             Status,
-            @{ Name = "AI"; Expression = { $_.OpenAiCalled } },
+            @{ Name = "Provider"; Expression = { $_.ProviderCalled } },
             @{ Name = "Meta"; Expression = { $_.CaseMetadata } },
             Score,
             MustHold,

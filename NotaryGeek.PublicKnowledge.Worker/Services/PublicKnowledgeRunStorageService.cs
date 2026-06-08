@@ -974,7 +974,10 @@ public sealed record PublicKnowledgeStoredRunReceipt(
     int? MustHoldPassed = null,
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
-    int? FailureSignalTotal = null);
+    int? FailureSignalTotal = null)
+{
+    public bool ProviderCalled => OpenAiCalled;
+}
 
 public sealed record PublicKnowledgeQueuedRunEnvelope(
     string Schema,
@@ -1031,7 +1034,10 @@ public sealed record PublicKnowledgeStoredRunSummary(
     int? MustHoldPassed = null,
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
-    int? FailureSignalTotal = null);
+    int? FailureSignalTotal = null)
+{
+    public bool ProviderCalled => OpenAiCalled;
+}
 
 public sealed record PublicKnowledgeLatestRunIndex(
     string Schema,
@@ -1067,7 +1073,10 @@ public sealed record PublicKnowledgeLatestRunIndexItem(
     int? MustHoldPassed = null,
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
-    int? FailureSignalTotal = null);
+    int? FailureSignalTotal = null)
+{
+    public bool ProviderCalled => OpenAiCalled;
+}
 
 public sealed record PublicKnowledgeNeedsGregReport(
     string Schema,
@@ -1108,4 +1117,7 @@ public sealed record PublicKnowledgeNeedsGregItem(
     string Reason,
     string SuggestedNextAction,
     string BlobName,
-    string LatestBlobName);
+    string LatestBlobName)
+{
+    public bool ProviderCalled => OpenAiCalled;
+}

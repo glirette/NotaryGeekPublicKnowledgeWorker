@@ -52,6 +52,16 @@ function Test-TerminalStatus {
     return @("completed", "completed-with-errors", "completed-empty", "failed") -contains $Status
 }
 
+function Get-ProviderCalled {
+    param([object] $Value)
+
+    if ($null -ne $Value.ProviderCalled) {
+        return [bool] $Value.ProviderCalled
+    }
+
+    return [bool] $Value.OpenAiCalled
+}
+
 function Save-Json {
     param(
         [object] $Value,
@@ -79,7 +89,7 @@ function Select-ReceiptTable {
             ScoreVerdict,
             @{ Name = "MustHold"; Expression = { if ($null -ne $_.MustHoldTotal) { "{0}/{1}" -f $_.MustHoldPassed, $_.MustHoldTotal } else { "" } } },
             @{ Name = "FailSig"; Expression = { if ($null -ne $_.FailureSignalTotal) { "{0}/{1}" -f $_.FailureSignalsObserved, $_.FailureSignalTotal } else { "" } } },
-            OpenAiCalled,
+            @{ Name = "ProviderCalled"; Expression = { Get-ProviderCalled $_ } },
             SourceCount,
             WarningCount,
             ErrorCount,
