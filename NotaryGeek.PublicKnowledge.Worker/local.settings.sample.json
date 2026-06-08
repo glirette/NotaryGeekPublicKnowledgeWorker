@@ -20,8 +20,8 @@
     "PublicKnowledge__MaxCharactersPerSource": "20000",
     "OpenAI__BaseUrl": "https://api.openai.com",
     "OpenAI__EndpointPath": "/v1/responses",
-    "OpenAI__Model": "gpt-5-mini",
-    "OpenAI__ReasoningEffort": "low",
+    "OpenAI__Model": "gpt-5.5-2026-04-23",
+    "OpenAI__ReasoningEffort": "high",
     "OpenAI__ApiKey": ""
   }
 }
