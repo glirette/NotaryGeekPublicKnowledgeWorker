@@ -14,6 +14,7 @@ public sealed class PublicKnowledgeOptions
     public string LocalRegressionMatrixPath { get; set; } = "public-knowledge/public-knowledge-regression-matrix.json";
     public string OutputStorageConnectionStringSetting { get; set; } = "AzureWebJobsStorage";
     public string OutputContainerName { get; set; } = "public-knowledge-runs";
+    public string QueueName { get; set; } = "public-knowledge-run-jobs";
     public string AllowedSourceHosts { get; set; } =
         "notary.cx;www.notary.cx;raw.githubusercontent.com;github.com;www.hcch.net;travel.state.gov;dos.fl.gov;dos.myflorida.com;dos.ny.gov;www.sos.state.tx.us;law.justia.com;leginfo.legislature.ca.gov;support.proof.com";
     public string DefaultSourcePaths { get; set; } =

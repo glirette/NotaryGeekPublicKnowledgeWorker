@@ -13,17 +13,20 @@ public sealed class PublicKnowledgeResearchFunction
 {
     private readonly PublicKnowledgeResearchService _service;
     private readonly PublicKnowledgeRunStorageService _storage;
+    private readonly PublicKnowledgeQueueService _queue;
     private readonly PublicKnowledgeOptions _options;
     private readonly ILogger<PublicKnowledgeResearchFunction> _logger;
 
     public PublicKnowledgeResearchFunction(
         PublicKnowledgeResearchService service,
         PublicKnowledgeRunStorageService storage,
+        PublicKnowledgeQueueService queue,
         IOptions<PublicKnowledgeOptions> options,
         ILogger<PublicKnowledgeResearchFunction> logger)
     {
         _service = service;
         _storage = storage;
+        _queue = queue;
         _options = options.Value;
         _logger = logger;
     }
@@ -264,6 +267,151 @@ public sealed class PublicKnowledgeResearchFunction
                 message = ex.Message
             }, cancellationToken);
             return failed;
+        }
+    }
+
+    [Function("PublicKnowledgeSubmitBatch")]
+    public async Task<HttpResponseData> SubmitBatch(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "public-knowledge/runs/submit-batch")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        var batch = TryGetStringQuery(req, "batch") ?? _options.TimerBatch;
+        var execute = TryGetBoolQuery(req, "execute") ?? true;
+        var caseId = TryGetStringQuery(req, "case");
+
+        IReadOnlyList<PublicKnowledgeRegressionCase> cases;
+        if (!string.IsNullOrWhiteSpace(caseId))
+        {
+            if (!_service.TryGetRegressionCase(caseId, out var regressionCase) || regressionCase is null)
+            {
+                var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+                await badRequest.WriteAsJsonAsync(new
+                {
+                    ok = false,
+                    error = "unknown_regression_case",
+                    requestedCase = caseId,
+                    availableCases = _service.GetRegressionMatrix().Cases.Select(item => item.Id)
+                }, cancellationToken);
+                return badRequest;
+            }
+
+            batch = $"single:{regressionCase.Id}";
+            cases = [regressionCase];
+        }
+        else
+        {
+            cases = _service.GetRegressionCasesForBatch(batch);
+        }
+
+        if (cases.Count == 0)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "empty_batch",
+                requestedBatch = batch,
+                availableBatches = _service.GetRegressionBatchNames(),
+                availableCases = _service.GetRegressionMatrix().Cases.Select(item => item.Id)
+            }, cancellationToken);
+            return badRequest;
+        }
+
+        var submittedAtUtc = DateTime.UtcNow;
+        var jobId = $"{submittedAtUtc:yyyyMMddTHHmmssZ}-{Guid.NewGuid():N}";
+        var message = new PublicKnowledgeQueuedRunMessage(
+            jobId,
+            batch,
+            "queued-batch",
+            execute,
+            cases.Select(item => item.Id).ToArray(),
+            submittedAtUtc);
+
+        await _storage.CreateQueuedRunAsync(message, cancellationToken);
+        await _queue.EnqueueAsync(message, cancellationToken);
+
+        var response = req.CreateResponse(HttpStatusCode.Accepted);
+        await response.WriteAsJsonAsync(new
+        {
+            ok = true,
+            status = "queued",
+            jobId,
+            batch,
+            execute,
+            caseCount = cases.Count,
+            cases = cases.Select(item => item.Id),
+            statusPath = $"/api/public-knowledge/runs/jobs/{Uri.EscapeDataString(jobId)}"
+        }, cancellationToken);
+        return response;
+    }
+
+    [Function("PublicKnowledgeQueuedJobStatus")]
+    public async Task<HttpResponseData> QueuedJobStatus(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/jobs/{jobId}")] HttpRequestData req,
+        string jobId,
+        CancellationToken cancellationToken)
+    {
+        var job = await _storage.ReadQueuedRunAsync(jobId, cancellationToken);
+        if (job is null)
+        {
+            var notFound = req.CreateResponse(HttpStatusCode.NotFound);
+            await notFound.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "queued_job_not_found",
+                jobId
+            }, cancellationToken);
+            return notFound;
+        }
+
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        await response.WriteAsJsonAsync(new
+        {
+            ok = true,
+            job
+        }, cancellationToken);
+        return response;
+    }
+
+    [Function("PublicKnowledgeQueuedBatchWorker")]
+    public async Task ProcessQueuedBatch(
+        [QueueTrigger("public-knowledge-run-jobs", Connection = "AzureWebJobsStorage")] PublicKnowledgeQueuedRunMessage message,
+        CancellationToken cancellationToken)
+    {
+        _logger.LogInformation(
+            "Public knowledge queued job {JobId} started for batch {Batch} with {CaseCount} case(s).",
+            message.JobId,
+            message.Batch,
+            message.CaseIds.Count);
+
+        try
+        {
+            await _storage.MarkQueuedRunRunningAsync(message, cancellationToken);
+            var cases = message.CaseIds
+                .Select(caseId => _service.TryGetRegressionCase(caseId, out var regressionCase) ? regressionCase : null)
+                .Where(item => item is not null)
+                .Cast<PublicKnowledgeRegressionCase>()
+                .ToArray();
+
+            if (cases.Length == 0)
+            {
+                await _storage.FailQueuedRunAsync(message, "No valid regression cases were found for queued job.", cancellationToken);
+                return;
+            }
+
+            var receipts = await RunStoredBatchAsync(cases, message.Batch, message.Execute, message.Trigger, cancellationToken);
+            await _storage.CompleteQueuedRunAsync(message, receipts, cancellationToken);
+            var index = await _storage.SaveLatestIndexAsync(cancellationToken);
+            _logger.LogInformation(
+                "Public knowledge queued job {JobId} completed and refreshed latest index with {RunCount} run(s).",
+                message.JobId,
+                index.RunCount);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Public knowledge queued job {JobId} failed.", message.JobId);
+            await _storage.FailQueuedRunAsync(message, ex.Message, cancellationToken);
+            throw;
         }
     }
 

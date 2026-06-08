@@ -31,6 +31,14 @@ public sealed record PublicKnowledgeRunResult(
     IReadOnlyList<string> Warnings,
     IReadOnlyList<string> Errors);
 
+public sealed record PublicKnowledgeQueuedRunMessage(
+    string JobId,
+    string Batch,
+    string Trigger,
+    bool Execute,
+    IReadOnlyList<string> CaseIds,
+    DateTime SubmittedAtUtc);
+
 public sealed record PublicKnowledgeSourceResult(
     string Url,
     bool Ok,

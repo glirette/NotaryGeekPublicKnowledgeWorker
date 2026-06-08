@@ -97,6 +97,163 @@ public sealed class PublicKnowledgeRunStorageService
             latestBlobName);
     }
 
+    public async Task<PublicKnowledgeQueuedRunEnvelope> CreateQueuedRunAsync(
+        PublicKnowledgeQueuedRunMessage message,
+        CancellationToken cancellationToken)
+    {
+        var envelope = new PublicKnowledgeQueuedRunEnvelope(
+            "notary-geek-public-knowledge-queued-run-v1",
+            "0.1-public",
+            message.JobId,
+            message.Batch,
+            message.Trigger,
+            message.Execute,
+            message.CaseIds,
+            message.SubmittedAtUtc,
+            null,
+            null,
+            "queued",
+            0,
+            message.CaseIds.Count,
+            [],
+            null);
+
+        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
+        return envelope;
+    }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope?> ReadQueuedRunAsync(
+        string jobId,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(GetQueuedRunBlobName(jobId));
+        if (!await blob.ExistsAsync(cancellationToken))
+        {
+            return null;
+        }
+
+        var response = await blob.DownloadContentAsync(cancellationToken);
+        return response.Value.Content.ToObjectFromJson<PublicKnowledgeQueuedRunEnvelope>(JsonOptions);
+    }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunRunningAsync(
+        PublicKnowledgeQueuedRunMessage message,
+        CancellationToken cancellationToken)
+    {
+        var existing = await ReadQueuedRunAsync(message.JobId, cancellationToken);
+        var envelope = (existing ?? new PublicKnowledgeQueuedRunEnvelope(
+                "notary-geek-public-knowledge-queued-run-v1",
+                "0.1-public",
+                message.JobId,
+                message.Batch,
+                message.Trigger,
+                message.Execute,
+                message.CaseIds,
+                message.SubmittedAtUtc,
+                null,
+                null,
+                "queued",
+                0,
+                message.CaseIds.Count,
+                [],
+                null))
+            with
+            {
+                StartedAtUtc = DateTime.UtcNow,
+                Status = "running"
+            };
+
+        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
+        return envelope;
+    }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope> CompleteQueuedRunAsync(
+        PublicKnowledgeQueuedRunMessage message,
+        IReadOnlyList<PublicKnowledgeStoredRunReceipt> receipts,
+        CancellationToken cancellationToken)
+    {
+        var existing = await ReadQueuedRunAsync(message.JobId, cancellationToken);
+        var completed = receipts.Count(item => item.Ok);
+        var status = receipts.Count == 0
+            ? "completed-empty"
+            : receipts.All(item => item.Ok)
+                ? "completed"
+                : "completed-with-errors";
+        var envelope = (existing ?? new PublicKnowledgeQueuedRunEnvelope(
+                "notary-geek-public-knowledge-queued-run-v1",
+                "0.1-public",
+                message.JobId,
+                message.Batch,
+                message.Trigger,
+                message.Execute,
+                message.CaseIds,
+                message.SubmittedAtUtc,
+                null,
+                null,
+                "running",
+                0,
+                message.CaseIds.Count,
+                [],
+                null))
+            with
+            {
+                CompletedAtUtc = DateTime.UtcNow,
+                Status = status,
+                CompletedCount = completed,
+                TotalCount = message.CaseIds.Count,
+                Receipts = receipts,
+                Error = null
+            };
+
+        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
+        return envelope;
+    }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope> FailQueuedRunAsync(
+        PublicKnowledgeQueuedRunMessage message,
+        string error,
+        CancellationToken cancellationToken)
+    {
+        var existing = await ReadQueuedRunAsync(message.JobId, cancellationToken);
+        var receipt = new PublicKnowledgeStoredRunReceipt(
+            "job",
+            false,
+            "failed",
+            false,
+            0,
+            0,
+            1,
+            $"runs/jobs/{ToSafeBlobSegment(message.JobId)}.json",
+            $"runs/jobs/{ToSafeBlobSegment(message.JobId)}.json");
+        var envelope = (existing ?? new PublicKnowledgeQueuedRunEnvelope(
+                "notary-geek-public-knowledge-queued-run-v1",
+                "0.1-public",
+                message.JobId,
+                message.Batch,
+                message.Trigger,
+                message.Execute,
+                message.CaseIds,
+                message.SubmittedAtUtc,
+                null,
+                null,
+                "running",
+                0,
+                message.CaseIds.Count,
+                [],
+                null))
+            with
+            {
+                CompletedAtUtc = DateTime.UtcNow,
+                Status = "failed",
+                Error = error,
+                Receipts = [receipt]
+            };
+
+        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
+        return envelope;
+    }
+
     public async Task<PublicKnowledgeStoredRunEnvelope?> ReadLatestAsync(
         string caseId,
         CancellationToken cancellationToken)
@@ -216,6 +373,22 @@ public sealed class PublicKnowledgeRunStorageService
         await container.CreateIfNotExistsAsync(PublicAccessType.None, cancellationToken: cancellationToken);
         return container;
     }
+
+    private async Task SaveQueuedRunEnvelopeAsync(
+        PublicKnowledgeQueuedRunEnvelope envelope,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var json = JsonSerializer.Serialize(envelope, JsonOptions);
+        var blob = container.GetBlobClient(GetQueuedRunBlobName(envelope.JobId));
+        await blob.UploadAsync(BinaryData.FromString(json), overwrite: true, cancellationToken);
+        await blob.SetHttpHeadersAsync(
+            new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+            cancellationToken: cancellationToken);
+    }
+
+    private static string GetQueuedRunBlobName(string jobId) =>
+        $"runs/jobs/{ToSafeBlobSegment(jobId)}.json";
 
     private string? GetConnectionString() =>
         _configuration[_options.OutputStorageConnectionStringSetting];
@@ -367,6 +540,23 @@ public sealed record PublicKnowledgeStoredRunReceipt(
     int ErrorCount,
     string BlobName,
     string LatestBlobName);
+
+public sealed record PublicKnowledgeQueuedRunEnvelope(
+    string Schema,
+    string Version,
+    string JobId,
+    string Batch,
+    string Trigger,
+    bool Execute,
+    IReadOnlyList<string> CaseIds,
+    DateTime SubmittedAtUtc,
+    DateTime? StartedAtUtc,
+    DateTime? CompletedAtUtc,
+    string Status,
+    int CompletedCount,
+    int TotalCount,
+    IReadOnlyList<PublicKnowledgeStoredRunReceipt> Receipts,
+    string? Error);
 
 public sealed record PublicKnowledgeStoredRunSummary(
     string CaseId,

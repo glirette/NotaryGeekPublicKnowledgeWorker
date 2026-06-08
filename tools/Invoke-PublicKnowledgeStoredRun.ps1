@@ -1,11 +1,12 @@
 param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
-    [ValidateSet("Status", "Latest", "ExportIndex", "RunBatch")]
+    [ValidateSet("Status", "Latest", "ExportIndex", "RunBatch", "SubmitBatch", "JobStatus")]
     [string] $Command = "Latest",
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
     [string] $Batch = "Core",
     [string] $CaseId = "",
+    [string] $JobId = "",
     [switch] $DryRun,
     [switch] $NoSave,
     [string] $OutFile = ""
@@ -70,6 +71,24 @@ $path = switch ($Command) {
 
         "/api/public-knowledge/runs/run-batch"
     }
+    "SubmitBatch" {
+        $query.execute = if ($DryRun) { "false" } else { "true" }
+        if (-not [string]::IsNullOrWhiteSpace($CaseId)) {
+            $query.case = $CaseId
+        }
+        else {
+            $query.batch = $Batch
+        }
+
+        "/api/public-knowledge/runs/submit-batch"
+    }
+    "JobStatus" {
+        if ([string]::IsNullOrWhiteSpace($JobId)) {
+            throw "Provide -JobId for JobStatus."
+        }
+
+        "/api/public-knowledge/runs/jobs/$([Uri]::EscapeDataString($JobId))"
+    }
 }
 
 $uri = New-PublicKnowledgeUri -Path $path -Query $query
@@ -110,5 +129,19 @@ switch ($Command) {
     }
     "RunBatch" {
         $response.receipts | Select-Object CaseId, Ok, Status, OpenAiCalled, SourceCount, WarningCount, ErrorCount, BlobName, LatestBlobName
+    }
+    "SubmitBatch" {
+        [pscustomobject]@{
+            Ok = [bool] $response.ok
+            Status = $response.status
+            JobId = $response.jobId
+            Batch = $response.batch
+            Execute = [bool] $response.execute
+            CaseCount = $response.caseCount
+            StatusPath = $response.statusPath
+        }
+    }
+    "JobStatus" {
+        $response.job
     }
 }

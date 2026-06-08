@@ -14,6 +14,7 @@
     "PublicKnowledge__LocalRegressionMatrixPath": "public-knowledge/public-knowledge-regression-matrix.json",
     "PublicKnowledge__OutputStorageConnectionStringSetting": "AzureWebJobsStorage",
     "PublicKnowledge__OutputContainerName": "public-knowledge-runs",
+    "PublicKnowledge__QueueName": "public-knowledge-run-jobs",
     "PublicKnowledge__MaxSourcesPerRun": "24",
     "PublicKnowledge__SourceFetchConcurrency": "12",
     "PublicKnowledge__MaxBytesPerSource": "750000",
