@@ -139,9 +139,14 @@ jobs:
             -Command LatestDigest |
             Format-Table -AutoSize
 
-          .\tools\Invoke-PublicKnowledgeStoredRun.ps1 `
-            -BaseUrl $env:PUBLIC_KNOWLEDGE_BASE_URL `
-            -FunctionKey $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY `
-            -Command Jobs `
-            -Take 10 |
-            Format-Table -AutoSize
+          try {
+            .\tools\Invoke-PublicKnowledgeStoredRun.ps1 `
+              -BaseUrl $env:PUBLIC_KNOWLEDGE_BASE_URL `
+              -FunctionKey $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY `
+              -Command Jobs `
+              -Take 10 |
+              Format-Table -AutoSize
+          }
+          catch {
+            Write-Host "Recent jobs skipped: $($_.Exception.Message)"
+          }

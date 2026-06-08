@@ -1,7 +1,7 @@
 param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
-    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "LatestDigest", "RunBatch", "SubmitBatch", "Jobs", "JobStatus")]
+    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "LatestDigest", "OperatorSnapshot", "RunBatch", "SubmitBatch", "Jobs", "JobStatus")]
     [string] $Command = "Latest",
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
     [string] $Batch = "Core",
@@ -68,6 +68,14 @@ $path = switch ($Command) {
     }
     "LatestDigest" {
         "/api/public-knowledge/runs/latest-digest"
+    }
+    "OperatorSnapshot" {
+        $query.take = [string] $Take
+        if (-not $NoSave) {
+            $query.refresh = "true"
+        }
+
+        "/api/public-knowledge/operator-snapshot"
     }
     "RunBatch" {
         $query.execute = if ($DryRun) { "false" } else { "true" }
@@ -207,6 +215,30 @@ switch ($Command) {
 
         if (@($digest.operatorNextActions).Count -gt 0) {
             $digest.operatorNextActions |
+                ForEach-Object { [pscustomobject]@{ NextAction = [string] $_ } }
+        }
+    }
+    "OperatorSnapshot" {
+        [pscustomobject]@{
+            Healthy = [bool] $response.healthy
+            AttentionCount = [int] $response.attentionCount
+            GeneratedAtUtc = $response.generatedAtUtc
+            Refreshed = [bool] $response.refreshed
+            Model = [string] $response.status.model
+            TimerEnabled = [bool] $response.status.timerEnabled
+            PumpTimerEnabled = [bool] $response.status.pumpTimerEnabled
+            RunCount = [int] $response.digest.runCount
+            Passing = [int] $response.digest.passingCount
+            NeedsReview = [int] $response.digest.needsReviewCount
+            Fail = [int] $response.digest.failCount
+            WarningRuns = [int] $response.digest.warningRunCount
+            ErrorRuns = [int] $response.digest.errorRunCount
+            RunningJobs = [int] $response.runningJobCount
+            StaleJobs = [int] $response.staleJobCount
+        }
+
+        if (@($response.operatorNextActions).Count -gt 0) {
+            $response.operatorNextActions |
                 ForEach-Object { [pscustomobject]@{ NextAction = [string] $_ } }
         }
     }

@@ -262,6 +262,60 @@ public sealed class PublicKnowledgeResearchFunction
         }
     }
 
+    [Function("PublicKnowledgeOperatorSnapshot")]
+    public async Task<HttpResponseData> OperatorSnapshot(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/operator-snapshot")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var refresh = TryGetBoolQuery(req, "refresh") ?? false;
+            var take = Math.Clamp(TryGetIntQuery(req, "take") ?? 10, 1, 50);
+            PublicKnowledgeNeedsGregReport? report = null;
+            if (!refresh)
+            {
+                report = await _storage.ReadSavedNeedsGregReportAsync(cancellationToken);
+            }
+
+            var refreshed = refresh || report is null;
+            report ??= await _storage.SaveNeedsGregReportAsync(cancellationToken);
+            var jobs = await _storage.ListQueuedRunsAsync(take, status: null, cancellationToken);
+            var staleJobs = jobs.Where(item => item.IsStale).ToArray();
+            var runningJobs = jobs.Where(item => !item.IsTerminal).ToArray();
+            var nextActions = BuildOperatorSnapshotNextActions(report, staleJobs);
+
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = true,
+                generatedAtUtc = DateTime.UtcNow,
+                refreshed,
+                healthy = report.Healthy && staleJobs.Length == 0,
+                attentionCount = report.Items.Count + staleJobs.Length,
+                status = _service.GetStatus(),
+                storage = _storage.GetStatus(),
+                digest = BuildDigestSummary(report),
+                runningJobCount = runningJobs.Length,
+                staleJobCount = staleJobs.Length,
+                recentJobs = jobs,
+                topReviewItems = report.Items.Take(10).ToArray(),
+                operatorNextActions = nextActions
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
     [Function("PublicKnowledgeRunBatchNow")]
     public async Task<HttpResponseData> RunBatchNow(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "public-knowledge/runs/run-batch")] HttpRequestData req,
@@ -801,4 +855,20 @@ public sealed class PublicKnowledgeResearchFunction
             report.LatestReportBlobName,
             OperatorNextActions = report.OperatorNextActions ?? Array.Empty<string>()
         };
+
+    private static IReadOnlyList<string> BuildOperatorSnapshotNextActions(
+        PublicKnowledgeNeedsGregReport report,
+        IReadOnlyList<PublicKnowledgeQueuedRunSummary> staleJobs)
+    {
+        var actions = new List<string>();
+        foreach (var staleJob in staleJobs.Take(5))
+        {
+            actions.Add($"Check stale queued job {staleJob.JobId}: status={staleJob.Status}, completed={staleJob.CompletedCount}/{staleJob.TotalCount}, ageMinutes={staleJob.ActiveAgeMinutes}.");
+        }
+
+        actions.AddRange(report.OperatorNextActions ?? Array.Empty<string>());
+        return actions.Count == 0
+            ? ["No operator action needed from the latest public knowledge snapshot."]
+            : actions.Distinct(StringComparer.OrdinalIgnoreCase).Take(10).ToArray();
+    }
 }
