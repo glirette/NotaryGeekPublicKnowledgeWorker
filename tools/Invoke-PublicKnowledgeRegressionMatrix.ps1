@@ -70,6 +70,16 @@ function Get-ProviderCalled {
     return [bool] $Value.openAiCalled
 }
 
+function Get-ProviderName {
+    param([object] $Value)
+
+    if ($null -ne $Value.provider -and -not [string]::IsNullOrWhiteSpace([string] $Value.provider)) {
+        return [string] $Value.provider
+    }
+
+    return ""
+}
+
 if (-not [string]::IsNullOrWhiteSpace($OutDir)) {
     New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 }
@@ -148,6 +158,7 @@ foreach ($case in $cases) {
         Case = [string] $case.id
         Ok = [bool] $response.ok
         Status = [string] $response.status
+        Provider = Get-ProviderName $response
         ProviderCalled = Get-ProviderCalled $response
         CaseMetadata = $caseMetadataMatches
         Score = $scoreVerdict
@@ -177,7 +188,8 @@ else {
             Case,
             Ok,
             Status,
-            @{ Name = "Provider"; Expression = { $_.ProviderCalled } },
+            Provider,
+            ProviderCalled,
             @{ Name = "Meta"; Expression = { $_.CaseMetadata } },
             Score,
             MustHold,

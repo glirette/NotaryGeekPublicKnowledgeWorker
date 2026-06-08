@@ -62,6 +62,20 @@ function Get-ProviderCalled {
     return [bool] $Value.OpenAiCalled
 }
 
+function Get-ProviderName {
+    param([object] $Value)
+
+    if ($null -ne $Value.Provider -and -not [string]::IsNullOrWhiteSpace([string] $Value.Provider)) {
+        return [string] $Value.Provider
+    }
+
+    if ($null -ne $Value.ProviderOverride -and -not [string]::IsNullOrWhiteSpace([string] $Value.ProviderOverride)) {
+        return [string] $Value.ProviderOverride
+    }
+
+    return ""
+}
+
 function Save-Json {
     param(
         [object] $Value,
@@ -89,6 +103,7 @@ function Select-ReceiptTable {
             ScoreVerdict,
             @{ Name = "MustHold"; Expression = { if ($null -ne $_.MustHoldTotal) { "{0}/{1}" -f $_.MustHoldPassed, $_.MustHoldTotal } else { "" } } },
             @{ Name = "FailSig"; Expression = { if ($null -ne $_.FailureSignalTotal) { "{0}/{1}" -f $_.FailureSignalsObserved, $_.FailureSignalTotal } else { "" } } },
+            @{ Name = "Provider"; Expression = { Get-ProviderName $_ } },
             @{ Name = "ProviderCalled"; Expression = { Get-ProviderCalled $_ } },
             SourceCount,
             WarningCount,
@@ -163,6 +178,7 @@ if (-not (Test-TerminalStatus -Status $status)) {
                 SubmittedAtUtc,
                 Status,
                 Batch,
+                ProviderOverride,
                 Trigger,
                 @{ Name = "Done"; Expression = { "{0}/{1}" -f $_.CompletedCount, $_.TotalCount } },
                 IsStale,

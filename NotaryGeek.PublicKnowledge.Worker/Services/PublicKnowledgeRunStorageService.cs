@@ -102,7 +102,8 @@ public sealed class PublicKnowledgeRunStorageService
             result.RegressionScore?.MustHoldPassed,
             result.RegressionScore?.MustHoldTotal,
             result.RegressionScore?.FailureSignalsObserved,
-            result.RegressionScore?.FailureSignalTotal);
+            result.RegressionScore?.FailureSignalTotal,
+            GetProviderName(result));
     }
 
     public async Task<PublicKnowledgeQueuedRunEnvelope> CreateQueuedRunAsync(
@@ -209,7 +210,8 @@ public sealed class PublicKnowledgeRunStorageService
             0,
             1,
             $"runs/jobs/{ToSafeBlobSegment(message.JobId)}.json",
-            $"runs/jobs/{ToSafeBlobSegment(message.JobId)}.json");
+            $"runs/jobs/{ToSafeBlobSegment(message.JobId)}.json",
+            Provider: GetProviderName(message.ProviderOverride));
         var envelope = (existing ?? new PublicKnowledgeQueuedRunEnvelope(
                 "notary-geek-public-knowledge-queued-run-v1",
                 "0.1-public",
@@ -257,7 +259,8 @@ public sealed class PublicKnowledgeRunStorageService
             0,
             1,
             jobBlobName,
-            jobBlobName);
+            jobBlobName,
+            Provider: GetProviderName(message.ProviderOverride));
 
         return await MergeQueuedRunReceiptsAsync(message, [receipt], error, cancellationToken);
     }
@@ -300,7 +303,8 @@ public sealed class PublicKnowledgeRunStorageService
                 envelope.Result.RegressionScore?.MustHoldPassed,
                 envelope.Result.RegressionScore?.MustHoldTotal,
                 envelope.Result.RegressionScore?.FailureSignalsObserved,
-                envelope.Result.RegressionScore?.FailureSignalTotal))
+                envelope.Result.RegressionScore?.FailureSignalTotal,
+                GetProviderName(envelope.Result)))
             .ToArray();
 
         return summaries
@@ -614,6 +618,32 @@ public sealed class PublicKnowledgeRunStorageService
         return string.IsNullOrWhiteSpace(safe) ? "unknown" : safe;
     }
 
+    private static string GetProviderName(PublicKnowledgeRunResult result)
+    {
+        if (!string.IsNullOrWhiteSpace(result.Provider))
+        {
+            return result.Provider;
+        }
+
+        if (result.Model.Contains('/', StringComparison.Ordinal))
+        {
+            return "Straico";
+        }
+
+        return "OpenAI";
+    }
+
+    private static string? GetProviderName(string? providerOverride)
+    {
+        if (string.IsNullOrWhiteSpace(providerOverride) ||
+            providerOverride.Equals("Default", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
+        return providerOverride;
+    }
+
     private static PublicKnowledgeQueuedRunEnvelope CreateQueuedRunEnvelope(
         PublicKnowledgeQueuedRunMessage message) =>
         new(
@@ -716,7 +746,8 @@ public sealed class PublicKnowledgeRunStorageService
             envelope.Result.RegressionScore?.MustHoldPassed,
             envelope.Result.RegressionScore?.MustHoldTotal,
             envelope.Result.RegressionScore?.FailureSignalsObserved,
-            envelope.Result.RegressionScore?.FailureSignalTotal);
+            envelope.Result.RegressionScore?.FailureSignalTotal,
+            GetProviderName(envelope.Result));
     }
 
     private static PublicKnowledgeNeedsGregItem BuildNeedsGregItem(
@@ -758,7 +789,8 @@ public sealed class PublicKnowledgeRunStorageService
             reason,
             suggestedNextAction,
             envelope.BlobName,
-            envelope.LatestBlobName);
+            envelope.LatestBlobName,
+            GetProviderName(envelope.Result));
     }
 
     private static bool IsPassingLatestRun(PublicKnowledgeStoredRunEnvelope envelope) =>
@@ -974,7 +1006,8 @@ public sealed record PublicKnowledgeStoredRunReceipt(
     int? MustHoldPassed = null,
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
-    int? FailureSignalTotal = null)
+    int? FailureSignalTotal = null,
+    string? Provider = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }
@@ -1034,7 +1067,8 @@ public sealed record PublicKnowledgeStoredRunSummary(
     int? MustHoldPassed = null,
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
-    int? FailureSignalTotal = null)
+    int? FailureSignalTotal = null,
+    string? Provider = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }
@@ -1073,7 +1107,8 @@ public sealed record PublicKnowledgeLatestRunIndexItem(
     int? MustHoldPassed = null,
     int? MustHoldTotal = null,
     int? FailureSignalsObserved = null,
-    int? FailureSignalTotal = null)
+    int? FailureSignalTotal = null,
+    string? Provider = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }
@@ -1117,7 +1152,8 @@ public sealed record PublicKnowledgeNeedsGregItem(
     string Reason,
     string SuggestedNextAction,
     string BlobName,
-    string LatestBlobName)
+    string LatestBlobName,
+    string? Provider = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }

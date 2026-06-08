@@ -427,7 +427,8 @@ public sealed class PublicKnowledgeResearchService
                 ProviderUsageJson: null,
                 warnings,
                 errors,
-                preflightScore);
+                preflightScore,
+                Provider: providerName);
         }
 
         var provider = await CallConfiguredProviderAsync(prompt, providerName, cancellationToken);
@@ -466,7 +467,8 @@ public sealed class PublicKnowledgeResearchService
             provider.UsageJson,
             warnings,
             errors,
-            regressionScore);
+            regressionScore,
+            Provider: providerName);
     }
 
     private static bool CommandsUseSameSourceSet(IReadOnlyList<PublicKnowledgeRunCommand> commands)

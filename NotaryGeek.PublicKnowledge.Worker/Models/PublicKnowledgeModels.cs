@@ -31,7 +31,8 @@ public sealed record PublicKnowledgeRunResult(
     string? ProviderUsageJson,
     IReadOnlyList<string> Warnings,
     IReadOnlyList<string> Errors,
-    PublicKnowledgeRegressionScore? RegressionScore = null)
+    PublicKnowledgeRegressionScore? RegressionScore = null,
+    string? Provider = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }
