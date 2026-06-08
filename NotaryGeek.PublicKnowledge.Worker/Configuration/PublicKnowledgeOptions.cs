@@ -4,7 +4,10 @@ public sealed class PublicKnowledgeOptions
 {
     public bool Enabled { get; set; }
     public bool TimerEnabled { get; set; }
+    public bool PumpTimerEnabled { get; set; }
     public string TimerBatch { get; set; } = "Core";
+    public string TimerBatches { get; set; } = string.Empty;
+    public string PumpTimerBatches { get; set; } = "Core;Platform";
     public string PublicBaseUrl { get; set; } = "https://notary.cx";
     public string PublicCorpusManifestUrl { get; set; } = string.Empty;
     public string LocalManifestPath { get; set; } = "public-knowledge/public-knowledge-manifest.json";

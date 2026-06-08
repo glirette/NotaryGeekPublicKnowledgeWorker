@@ -41,6 +41,10 @@ public sealed class PublicKnowledgeResearchService
             DateTime.UtcNow,
             _knowledgeOptions.Enabled,
             _knowledgeOptions.TimerEnabled,
+            _knowledgeOptions.PumpTimerEnabled,
+            _knowledgeOptions.TimerBatch,
+            SplitList(_knowledgeOptions.TimerBatches).DefaultIfEmpty(_knowledgeOptions.TimerBatch).ToArray(),
+            SplitList(_knowledgeOptions.PumpTimerBatches),
             _knowledgeOptions.PublicBaseUrl,
             string.IsNullOrWhiteSpace(_knowledgeOptions.PublicCorpusManifestUrl) ? "bundled-local" : _knowledgeOptions.PublicCorpusManifestUrl,
             _openAiOptions.BaseUrl,
@@ -89,10 +93,15 @@ public sealed class PublicKnowledgeResearchService
     public IReadOnlyList<PublicKnowledgeRegressionCase> GetRegressionCasesForBatch(string batch)
     {
         var cases = GetRegressionMatrix().Cases;
+        if (batch.Trim().Equals("all", StringComparison.OrdinalIgnoreCase))
+        {
+            return cases;
+        }
+
         var ids = GetRegressionCaseIdsForBatch(batch);
         if (ids.Count == 0)
         {
-            return cases;
+            return [];
         }
 
         return ids
@@ -101,6 +110,15 @@ public sealed class PublicKnowledgeResearchService
             .Cast<PublicKnowledgeRegressionCase>()
             .ToArray();
     }
+
+    public IReadOnlyList<string> GetRegressionBatchNames() =>
+    [
+        "All",
+        "Core",
+        "Platform",
+        "Apostille",
+        "Recipient"
+    ];
 
     public async Task<PublicKnowledgeRunResult> RunAsync(
         PublicKnowledgeRunCommand command,
@@ -888,6 +906,10 @@ public sealed record PublicKnowledgeStatus(
     DateTime CheckedAtUtc,
     bool Enabled,
     bool TimerEnabled,
+    bool PumpTimerEnabled,
+    string TimerBatch,
+    IReadOnlyList<string> TimerBatches,
+    IReadOnlyList<string> PumpTimerBatches,
     string PublicBaseUrl,
     string ManifestSource,
     string OpenAiBaseUrl,

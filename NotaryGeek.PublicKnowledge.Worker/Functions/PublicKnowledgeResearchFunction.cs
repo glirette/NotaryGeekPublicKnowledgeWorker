@@ -227,7 +227,7 @@ public sealed class PublicKnowledgeResearchFunction
                 ok = false,
                 error = "empty_batch",
                 requestedBatch = batch,
-                availableBatches = new[] { "All", "Core", "Platform", "Apostille", "Recipient" },
+                availableBatches = _service.GetRegressionBatchNames(),
                 availableCases = _service.GetRegressionMatrix().Cases.Select(item => item.Id)
             }, cancellationToken);
             return badRequest;
@@ -278,19 +278,21 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
-        var cases = _service.GetRegressionCasesForBatch(_options.TimerBatch);
-        if (cases.Count == 0)
+        await RunConfiguredTimerBatchesAsync(_options.TimerBatches, _options.TimerBatch, "timer", cancellationToken);
+    }
+
+    [Function("PublicKnowledgePumpTimer")]
+    public async Task RunPumpTimer(
+        [TimerTrigger("0 7 */2 * * *")] TimerInfo timer,
+        CancellationToken cancellationToken)
+    {
+        if (!_options.PumpTimerEnabled)
         {
-            _logger.LogWarning("Public knowledge research timer found no cases for batch {Batch}.", _options.TimerBatch);
+            _logger.LogInformation("Public knowledge pump timer skipped because PublicKnowledge__PumpTimerEnabled is false.");
             return;
         }
 
-        await RunStoredBatchAsync(cases, _options.TimerBatch, execute: true, trigger: "timer", cancellationToken);
-        var index = await _storage.SaveLatestIndexAsync(cancellationToken);
-        _logger.LogInformation(
-            "Public knowledge timer refreshed latest index with {RunCount} run(s): {BlobName}",
-            index.RunCount,
-            index.LatestIndexBlobName);
+        await RunConfiguredTimerBatchesAsync(_options.PumpTimerBatches, "Core;Platform", "pump-timer", cancellationToken);
     }
 
     private async Task<IReadOnlyList<PublicKnowledgeStoredRunReceipt>> RunStoredBatchAsync(
@@ -304,7 +306,7 @@ public sealed class PublicKnowledgeResearchFunction
         var commands = cases
             .Select(regressionCase => new PublicKnowledgeRunCommand(
                 Execute: execute,
-                FromTimer: trigger.Equals("timer", StringComparison.OrdinalIgnoreCase),
+                FromTimer: trigger.Contains("timer", StringComparison.OrdinalIgnoreCase),
                 Focus: regressionCase.Focus,
                 RequestedUrls: [],
                 RegressionCaseId: regressionCase.Id,
@@ -341,6 +343,56 @@ public sealed class PublicKnowledgeResearchFunction
         }
 
         return receipts;
+    }
+
+    private async Task RunConfiguredTimerBatchesAsync(
+        string configuredBatches,
+        string fallbackBatch,
+        string trigger,
+        CancellationToken cancellationToken)
+    {
+        var batches = SplitList(configuredBatches);
+        if (batches.Count == 0)
+        {
+            batches = SplitList(fallbackBatch);
+        }
+
+        if (batches.Count == 0)
+        {
+            batches = ["Core"];
+        }
+
+        var totalReceipts = 0;
+        foreach (var batch in batches)
+        {
+            var cases = _service.GetRegressionCasesForBatch(batch);
+            if (cases.Count == 0)
+            {
+                _logger.LogWarning(
+                    "Public knowledge {Trigger} found no cases for batch {Batch}. Available batches: {Batches}",
+                    trigger,
+                    batch,
+                    string.Join(", ", _service.GetRegressionBatchNames()));
+                continue;
+            }
+
+            var receipts = await RunStoredBatchAsync(cases, batch, execute: true, trigger, cancellationToken);
+            totalReceipts += receipts.Count;
+        }
+
+        if (totalReceipts == 0)
+        {
+            _logger.LogWarning("Public knowledge {Trigger} completed with no stored receipts.", trigger);
+            return;
+        }
+
+        var index = await _storage.SaveLatestIndexAsync(cancellationToken);
+        _logger.LogInformation(
+            "Public knowledge {Trigger} stored {ReceiptCount} receipt(s) and refreshed latest index with {RunCount} run(s): {BlobName}",
+            trigger,
+            totalReceipts,
+            index.RunCount,
+            index.LatestIndexBlobName);
     }
 
     private static string? TryGetStringQuery(HttpRequestData req, string name)
@@ -381,4 +433,11 @@ public sealed class PublicKnowledgeResearchFunction
 
         return values;
     }
+
+    private static IReadOnlyList<string> SplitList(string value) =>
+        value
+            .Split([';', ','], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Where(item => !string.IsNullOrWhiteSpace(item))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
 }

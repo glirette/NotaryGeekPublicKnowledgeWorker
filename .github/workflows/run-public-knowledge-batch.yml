@@ -1,0 +1,73 @@
+name: Run Public Knowledge Batch
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: Regression batch to run.
+        required: true
+        default: Platform
+        type: choice
+        options:
+          - Core
+          - Platform
+          - Apostille
+          - Recipient
+          - All
+      dry_run:
+        description: Fetch sources and build prompts without calling OpenAI.
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-knowledge-batch
+  cancel-in-progress: false
+
+jobs:
+  run-batch:
+    name: Run Protected Batch
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run batch
+        shell: pwsh
+        env:
+          PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+          PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
+          PUBLIC_KNOWLEDGE_BATCH: ${{ inputs.batch }}
+          PUBLIC_KNOWLEDGE_DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
+            throw "Missing required secret PUBLIC_KNOWLEDGE_FUNCTION_KEY."
+          }
+
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_BASE_URL)) {
+            throw "Missing required secret PUBLIC_KNOWLEDGE_BASE_URL."
+          }
+
+          $arguments = @{
+            BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL
+            FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY
+            Command = "RunBatch"
+            Batch = $env:PUBLIC_KNOWLEDGE_BATCH
+          }
+
+          if ($env:PUBLIC_KNOWLEDGE_DRY_RUN -eq "true") {
+            $arguments.DryRun = $true
+          }
+
+          $result = .\tools\Invoke-PublicKnowledgeStoredRun.ps1 @arguments
+          $result | Format-Table -AutoSize
+
+          $failed = @($result | Where-Object { -not $_.Ok })
+          if ($failed.Count -gt 0) {
+            throw "Public knowledge batch had $($failed.Count) failed case(s)."
+          }
