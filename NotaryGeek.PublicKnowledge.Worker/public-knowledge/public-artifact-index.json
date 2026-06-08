@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.4-public",
+  "version": "1.5-public",
   "reviewedUtc": "2026-06-08T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -13,6 +13,14 @@
     "conceptSpecific": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json"
   },
   "artifacts": [
+    {
+      "id": "notary-law-source-index",
+      "title": "Notary Law Source Index",
+      "kind": "law-source-index",
+      "use": "Starter public official-source index for notary-law and notary-administration sources.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md"
+    },
     {
       "id": "answer-engine-starter-pack",
       "title": "Answer Engine Starter Pack",

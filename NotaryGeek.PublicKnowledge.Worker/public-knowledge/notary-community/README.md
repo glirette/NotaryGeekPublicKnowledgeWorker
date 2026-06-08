@@ -2,7 +2,9 @@
 
 This folder contains public-safe material for notaries, signing agents, RON notaries, trainers, platform operators, and document-routing helpers.
 
-The purpose is practical: help notaries ask better first questions before trusting a platform, trainer, recipient phone comment, or answer-engine recommendation.
+The purpose is practical: help notaries ask better first questions before trusting a platform, trainer, directory badge, private standard, recipient phone comment, or search result.
+
+This is meant to be useful. If you are a notary and you see a missing official source, stale link, unclear explanation, or better route-first example, open an issue or send a source-backed correction.
 
 ## Start Here
 
@@ -33,6 +35,17 @@ Machine-readable companions:
 The platform is not the route.
 
 The route is the document type, public-official signature, notary state, transaction date, identity method, output format, destination, recipient evidence, and transaction record.
+
+## Community Use
+
+Use this material to:
+
+- check your own assumptions;
+- ask better questions before accepting a job;
+- separate law from marketing;
+- explain route-first thinking to another notary;
+- find public source links worth preserving;
+- improve the public corpus with source-backed corrections.
 
 ## Boundary
 

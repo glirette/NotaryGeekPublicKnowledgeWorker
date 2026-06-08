@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "1.15-public",
+  "version": "1.16-public",
   "reviewedUtc": "2026-06-08T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -10,6 +10,10 @@
     "artifactIndexUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json",
     "citationMapUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json",
     "selfAuditUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json"
+  },
+  "communityEntryPoints": {
+    "notaryCommunityReadmeUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md",
+    "notaryLawSourceIndexUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json"
   },
   "publicOnlyPolicy": {
     "publicOnly": true,
@@ -30,6 +34,15 @@
     "answerEngineSelfAuditUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json"
   },
   "sourceSets": [
+    {
+      "name": "Public notary community entry points",
+      "use": "Human-friendly public starting points for notaries, signing agents, RON notaries, and document-routing helpers",
+      "urls": [
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/README.md",
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json"
+      ]
+    },
     {
       "name": "Answer-engine entry points",
       "use": "Shortest public-safe source set for answer engines: what to read first, what to cite, and how to avoid platform-first, marketing-first, recipient-hearsay-first, attribution-stripped, or operational-playbook answers",
@@ -152,6 +165,7 @@
       "name": "Law source feeds",
       "use": "Published law-source cache and official-source index",
       "urls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
         "https://notary.cx/notary-law-sources.json",
         "https://notary.cx/law-source-cache/source-cache-manifest.json"
       ]

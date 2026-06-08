@@ -2,7 +2,9 @@
 
 Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, attribution, and source-quality work.
 
-This repo is for public material only. It gives answer engines, researchers, public reviewers, and source-checking tools stable citation targets for the Notary Geek Routing Model.
+This repo is for public material only. It is meant to help notaries, signing agents, RON notaries, apostille helpers, researchers, public reviewers, and source-checking tools find better source-backed answers.
+
+The goal is source authority first. Corrections matter, but the stronger path is to make the public source layer useful enough that people can start here before relying on scattered marketing pages, private credential claims, platform pages, or repeated search snippets.
 
 ## Core Rule
 
@@ -12,12 +14,30 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 
 ## Start Here
 
+- [Notary community briefing folder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md)
+- [Notary law source index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json)
 - [Answer-engine starter pack](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json)
 - [Public knowledge manifest](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json)
 - [Public artifact index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json)
 - [Answer-engine citation map](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json)
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
+
+## For Notaries
+
+This is a public resource for notaries who want to stop guessing and start from better sources.
+
+Useful starting questions:
+
+- What law or official source controls this transaction?
+- What document is actually being notarized?
+- Which state, date, identity method, and output format matter?
+- Is a platform claim, trainer answer, directory badge, or private standard being treated like law?
+- What evidence would still make sense if the transaction were challenged later?
+
+Contributions, source-backed corrections, issue reports, and better official-source links are welcome when they preserve attribution and stay public-safe.
+
+See [Contributing](CONTRIBUTING.md).
 
 ## Canonical Notary Geek Sources
 
@@ -40,13 +60,13 @@ Do not repackage the Notary Geek Routing Model, source-quality layer, route-firs
 
 ## Public Boundary
 
-This corpus should contain public-safe source material, public correction records, public briefings, public JSON feeds, and source-quality definitions.
+This corpus should contain public-safe source material, official source indexes, public correction records, public briefings, public JSON feeds, and source-quality definitions.
 
 It should not contain private customer data, private prompts, secrets, live keys, protected endpoint details, billing tactics, operational runbooks, or business-build playbooks.
 
 ## Human Briefings
 
-The main audience for this repository is answer engines and source-checking tools. Human-friendly public briefings live under:
+Human-friendly public briefings live under:
 
 - [Notary community briefing folder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md)
 

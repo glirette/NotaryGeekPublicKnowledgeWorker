@@ -1,0 +1,156 @@
+{
+  "schema": "notary-geek-public-law-source-index-v1",
+  "id": "notary-law-source-index",
+  "version": "0.1-seed",
+  "reviewedUtc": "2026-06-08T00:00:00Z",
+  "title": "Notary Law Source Index",
+  "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
+  "notLegalAdvice": true,
+  "sourceAuthorityFirst": true,
+  "status": "seed",
+  "publicBoundary": "Public sources only. Do not add private customer facts, private operating strategy, secrets, raw provider payloads, or internal business playbooks.",
+  "sourceQualityRule": "Prefer controlling statutes, official code publications, secretary-of-state or commissioning-agency pages, official handbooks, official rules, and official apostille/authentication pages before private associations, platforms, trainers, directories, or market habit.",
+  "jurisdictions": [
+    {
+      "id": "us-fl",
+      "country": "US",
+      "state": "FL",
+      "name": "Florida",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "fl-chapter-117-senate",
+          "title": "Chapter 117, Florida Statutes",
+          "sourceType": "official-statute",
+          "publisher": "Florida Senate",
+          "url": "https://www.flsenate.gov/Laws/Statutes/2025/Chapter117/All",
+          "notes": "Official statute source for Florida notary law. Verify current statutory year before relying on a specific section."
+        },
+        {
+          "id": "fl-online-sunshine-chapter-117",
+          "title": "Chapter 117, Florida Statutes, Online Sunshine",
+          "sourceType": "official-statute",
+          "publisher": "Florida Legislature",
+          "url": "https://leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&StatuteYear=2024&Title=-%3E2024-%3EChapter+117-%3EPart+I&URL=0100-0199%2F0117%2F0117PartIContentsIndex.html",
+          "notes": "Official legislature source. Use current-year source when available."
+        }
+      ]
+    },
+    {
+      "id": "us-tx",
+      "country": "US",
+      "state": "TX",
+      "name": "Texas",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "tx-sos-notary-educational-information",
+          "title": "Notary Public Educational Information",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Texas Secretary of State",
+          "url": "https://www.sos.texas.gov/statdoc/edinfo.shtml",
+          "notes": "Official Texas Secretary of State notary public educational information. Add controlling statute/rule URLs in later passes."
+        }
+      ]
+    },
+    {
+      "id": "us-ca",
+      "country": "US",
+      "state": "CA",
+      "name": "California",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "ca-sos-notary",
+          "title": "Notary Public & Apostille",
+          "sourceType": "official-agency-page",
+          "publisher": "California Secretary of State",
+          "url": "https://www.sos.ca.gov/notary/",
+          "notes": "Official California Secretary of State notary and apostille entry point."
+        },
+        {
+          "id": "ca-sos-notary-handbook",
+          "title": "Notary Public Handbook",
+          "sourceType": "official-handbook",
+          "publisher": "California Secretary of State",
+          "url": "https://www.sos.ca.gov/notary/handbook",
+          "notes": "Official California notary handbook page. Verify current handbook year before relying on a handbook statement."
+        }
+      ]
+    },
+    {
+      "id": "us-ny",
+      "country": "US",
+      "state": "NY",
+      "name": "New York",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "ny-dos-notary-public",
+          "title": "Notary Public",
+          "sourceType": "official-agency-page",
+          "publisher": "New York Department of State",
+          "url": "https://dos.ny.gov/notary-public",
+          "notes": "Official New York Department of State notary public entry point."
+        },
+        {
+          "id": "ny-dos-notary-license-law",
+          "title": "Notary Public License Law",
+          "sourceType": "official-law-booklet",
+          "publisher": "New York Department of State",
+          "url": "https://dos.ny.gov/notary-public-license-law-0",
+          "notes": "Official New York notary public license law page. Verify current PDF/version before relying on a statement."
+        }
+      ]
+    },
+    {
+      "id": "us-va",
+      "country": "US",
+      "state": "VA",
+      "name": "Virginia",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "va-code-title-47-1",
+          "title": "Code of Virginia, Title 47.1",
+          "sourceType": "official-statute",
+          "publisher": "Virginia Law / Legislative Information System",
+          "url": "https://law.lis.virginia.gov/vacodefull/title47.1/",
+          "notes": "Official Code of Virginia source for Virginia notary law."
+        },
+        {
+          "id": "va-secretary-notary-commissions",
+          "title": "Notary Commissions",
+          "sourceType": "official-agency-page",
+          "publisher": "Office of the Secretary of the Commonwealth of Virginia",
+          "url": "https://www.commonwealth.virginia.gov/official-documents/notary-commissions/",
+          "notes": "Official Virginia notary commissions entry point."
+        }
+      ]
+    },
+    {
+      "id": "us-wy",
+      "country": "US",
+      "state": "WY",
+      "name": "Wyoming",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "wy-sos-notaries",
+          "title": "Notaries",
+          "sourceType": "official-agency-page",
+          "publisher": "Wyoming Secretary of State",
+          "url": "https://sos.wyo.gov/services/notaries.aspx",
+          "notes": "Official Wyoming Secretary of State notary entry point. Add statute/rule URLs in later passes."
+        }
+      ]
+    }
+  ],
+  "nextIndexingTargets": [
+    "Add official statute/rule URLs for every U.S. state and Washington DC.",
+    "Separate statutes, administrative rules, agency handbooks, commissioning pages, RON/electronic-notary pages, fee pages, apostille/authentication pages, and FAQ pages.",
+    "Add retrieval timestamps and content hashes for fetched source snapshots.",
+    "Add source-quality classification and stale-link checks.",
+    "Generate promotion candidates as pull requests before publishing normalized law extracts."
+  ]
+}

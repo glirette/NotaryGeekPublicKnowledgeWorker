@@ -10,7 +10,7 @@ routing-model/
   notarial-routing-model.json
   source-quality-routing-layer.json
 law/
-  notary-law-sources.json
+  notary-law-source-index.json
   law-source-cache-manifest.json
 topics/
   apostille-routing.md
@@ -33,6 +33,10 @@ https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/
 For a machine-readable map of public artifacts and citation use, use:
 
 https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json
+
+For the public law/source-index lane, use:
+
+https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json
 
 ## Rule
 
