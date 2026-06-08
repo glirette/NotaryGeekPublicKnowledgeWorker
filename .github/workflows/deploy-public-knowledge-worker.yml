@@ -25,6 +25,15 @@ on:
           - Apostille
           - Recipient
           - All
+      provider_after_deploy:
+        description: Provider lane for the post-deploy batch. Default uses the Azure Function app setting.
+        required: true
+        default: Default
+        type: choice
+        options:
+          - Default
+          - OpenAI
+          - Straico
 
 permissions:
   contents: read
@@ -97,8 +106,10 @@ jobs:
           $summary = [pscustomobject]@{
             enabled = $status.status.Enabled
             timerEnabled = $status.status.TimerEnabled
+            provider = $status.status.Provider
             model = $status.status.Model
             hasOpenAiApiKey = $status.status.HasOpenAiApiKey
+            hasStraicoApiKey = $status.status.HasStraicoApiKey
             maxSourcesPerRun = $status.status.MaxSourcesPerRun
             storageHasConnectionString = $status.storage.HasConnectionString
           }
@@ -112,6 +123,7 @@ jobs:
           PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
           PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
           PUBLIC_KNOWLEDGE_BATCH: ${{ inputs.batch_after_deploy }}
+          PUBLIC_KNOWLEDGE_PROVIDER: ${{ inputs.provider_after_deploy }}
         run: |
           if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
             Write-Host "PUBLIC_KNOWLEDGE_FUNCTION_KEY is not configured. Skipping post-deploy batch run."
@@ -123,11 +135,18 @@ jobs:
             exit 0
           }
 
-          $result = .\tools\Invoke-PublicKnowledgeStoredRun.ps1 `
-            -BaseUrl $env:PUBLIC_KNOWLEDGE_BASE_URL `
-            -FunctionKey $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY `
-            -Command SubmitBatch `
-            -Batch $env:PUBLIC_KNOWLEDGE_BATCH
+          $arguments = @{
+            BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL
+            FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY
+            Command = "SubmitBatch"
+            Batch = $env:PUBLIC_KNOWLEDGE_BATCH
+          }
+
+          if ($env:PUBLIC_KNOWLEDGE_PROVIDER -ne "Default") {
+            $arguments.Provider = $env:PUBLIC_KNOWLEDGE_PROVIDER
+          }
+
+          $result = .\tools\Invoke-PublicKnowledgeStoredRun.ps1 @arguments
 
           $result | Format-Table -AutoSize
 
