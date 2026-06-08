@@ -86,6 +86,7 @@ jobs:
               PollSeconds = [int] $env:PUBLIC_KNOWLEDGE_POLL_SECONDS
               TimeoutMinutes = [int] $env:PUBLIC_KNOWLEDGE_TIMEOUT_MINUTES
               FailOnBadStatus = $true
+              OutDir = "artifacts/public-knowledge-batch"
             }
 
             if ($env:PUBLIC_KNOWLEDGE_DRY_RUN -eq "true") {
@@ -151,3 +152,44 @@ jobs:
           catch {
             Write-Host "Recent jobs skipped: $($_.Exception.Message)"
           }
+
+      - name: Write queued batch summary
+        if: ${{ always() }}
+        shell: pwsh
+        run: |
+          $jobFile = "artifacts/public-knowledge-batch/job-final.json"
+          if (-not (Test-Path -LiteralPath $jobFile)) {
+            Write-Host "No queued batch job artifact found."
+            exit 0
+          }
+
+          $response = Get-Content -LiteralPath $jobFile -Raw | ConvertFrom-Json
+          $job = $response.job
+          if ($null -eq $job) {
+            Write-Host "Queued batch job artifact did not contain a job object."
+            exit 0
+          }
+
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value "## Public Knowledge Batch"
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ""
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Job: ``{0}``" -f $job.JobId)
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Batch: ``{0}``" -f $job.Batch)
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Status: ``{0}``" -f $job.Status)
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("- Completed: ``{0}/{1}``" -f $job.CompletedCount, $job.TotalCount)
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ""
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value "| Case | Ok | Verdict | Must hold | Failure signals | Warnings | Errors |"
+          Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value "| --- | --- | --- | --- | --- | ---: | ---: |"
+
+          foreach ($receipt in @($job.Receipts)) {
+            $mustHold = if ($null -ne $receipt.MustHoldTotal) { "{0}/{1}" -f $receipt.MustHoldPassed, $receipt.MustHoldTotal } else { "" }
+            $failureSignals = if ($null -ne $receipt.FailureSignalTotal) { "{0}/{1}" -f $receipt.FailureSignalsObserved, $receipt.FailureSignalTotal } else { "" }
+            Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Value ("| ``{0}`` | {1} | {2} | {3} | {4} | {5} | {6} |" -f $receipt.CaseId, $receipt.Ok, $receipt.ScoreVerdict, $mustHold, $failureSignals, $receipt.WarningCount, $receipt.ErrorCount)
+          }
+
+      - name: Upload batch diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: public-knowledge-batch-${{ inputs.batch }}-${{ github.run_id }}
+          path: artifacts/public-knowledge-batch
+          if-no-files-found: ignore
