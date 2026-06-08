@@ -12,6 +12,8 @@ namespace NotaryGeek.PublicKnowledge.Worker.Services;
 
 public sealed class PublicKnowledgeRunStorageService
 {
+    private const string LatestNeedsGregReportBlobName = "runs/latest-needs-greg.json";
+
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true
@@ -324,6 +326,12 @@ public sealed class PublicKnowledgeRunStorageService
         var summary = items.Length == 0
             ? "No latest public knowledge runs need Greg review based on current stored scores, warnings, and errors."
             : $"{items.Length} latest public knowledge run(s) need Greg review.";
+        IReadOnlyList<string> operatorNextActions = items.Length == 0
+            ? ["No action needed from the latest stored public knowledge runs."]
+            : items
+                .Take(5)
+                .Select(item => $"{item.CaseId}: {item.SuggestedNextAction}")
+                .ToArray();
 
         return new PublicKnowledgeNeedsGregReport(
             "notary-geek-public-knowledge-needs-greg-report-v1",
@@ -338,7 +346,39 @@ public sealed class PublicKnowledgeRunStorageService
             notScoredCount,
             warningRunCount,
             errorRunCount,
-            items);
+            items,
+            LatestNeedsGregReportBlobName,
+            items.FirstOrDefault()?.Priority,
+            operatorNextActions);
+    }
+
+    public async Task<PublicKnowledgeNeedsGregReport> SaveNeedsGregReportAsync(
+        CancellationToken cancellationToken)
+    {
+        var report = await BuildNeedsGregReportAsync(cancellationToken);
+        var container = await GetContainerAsync(cancellationToken);
+        var json = JsonSerializer.Serialize(report, JsonOptions);
+        var blob = container.GetBlobClient(report.LatestReportBlobName);
+        await blob.UploadAsync(BinaryData.FromString(json), overwrite: true, cancellationToken);
+        await blob.SetHttpHeadersAsync(
+            new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+            cancellationToken: cancellationToken);
+
+        return report;
+    }
+
+    public async Task<PublicKnowledgeNeedsGregReport?> ReadSavedNeedsGregReportAsync(
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(LatestNeedsGregReportBlobName);
+        if (!await blob.ExistsAsync(cancellationToken))
+        {
+            return null;
+        }
+
+        var response = await blob.DownloadContentAsync(cancellationToken);
+        return response.Value.Content.ToObjectFromJson<PublicKnowledgeNeedsGregReport>(JsonOptions);
     }
 
     private async Task<PublicKnowledgeQueuedRunEnvelope> MergeQueuedRunReceiptsAsync(
@@ -949,7 +989,10 @@ public sealed record PublicKnowledgeNeedsGregReport(
     int NotScoredCount,
     int WarningRunCount,
     int ErrorRunCount,
-    IReadOnlyList<PublicKnowledgeNeedsGregItem> Items);
+    IReadOnlyList<PublicKnowledgeNeedsGregItem> Items,
+    string LatestReportBlobName = "runs/latest-needs-greg.json",
+    int? HighestPriority = null,
+    IReadOnlyList<string>? OperatorNextActions = null);
 
 public sealed record PublicKnowledgeNeedsGregItem(
     string CaseId,

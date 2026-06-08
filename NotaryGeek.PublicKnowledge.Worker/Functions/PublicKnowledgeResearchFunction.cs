@@ -196,11 +196,55 @@ public sealed class PublicKnowledgeResearchFunction
     {
         try
         {
-            var report = await _storage.BuildNeedsGregReportAsync(cancellationToken);
+            var save = TryGetBoolQuery(req, "save") ?? false;
+            var report = save
+                ? await _storage.SaveNeedsGregReportAsync(cancellationToken)
+                : await _storage.BuildNeedsGregReportAsync(cancellationToken);
             var response = req.CreateResponse(HttpStatusCode.OK);
             await response.WriteAsJsonAsync(new
             {
                 ok = true,
+                saved = save,
+                report
+            }, cancellationToken);
+            return response;
+        }
+        catch (InvalidOperationException ex)
+        {
+            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
+            await failed.WriteAsJsonAsync(new
+            {
+                ok = false,
+                error = "storage_not_configured",
+                message = ex.Message
+            }, cancellationToken);
+            return failed;
+        }
+    }
+
+    [Function("PublicKnowledgeLatestDigest")]
+    public async Task<HttpResponseData> LatestDigest(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/runs/latest-digest")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var refresh = TryGetBoolQuery(req, "refresh") ?? false;
+            PublicKnowledgeNeedsGregReport? report = null;
+            if (!refresh)
+            {
+                report = await _storage.ReadSavedNeedsGregReportAsync(cancellationToken);
+            }
+
+            var refreshed = refresh || report is null;
+            report ??= await _storage.SaveNeedsGregReportAsync(cancellationToken);
+
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new
+            {
+                ok = true,
+                refreshed,
+                digest = BuildDigestSummary(report),
                 report
             }, cancellationToken);
             return response;
@@ -289,6 +333,7 @@ public sealed class PublicKnowledgeResearchFunction
         {
             var receipts = await RunStoredBatchAsync(cases, batch, execute, "manual-batch", cancellationToken);
             var index = await _storage.SaveLatestIndexAsync(cancellationToken);
+            var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
             var response = req.CreateResponse(receipts.All(item => item.Ok) ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
             await response.WriteAsJsonAsync(new
             {
@@ -302,7 +347,8 @@ public sealed class PublicKnowledgeResearchFunction
                     index.RunCount,
                     index.LatestIndexBlobName,
                     index.GeneratedAtUtc
-                }
+                },
+                latestDigest = BuildDigestSummary(digest)
             }, cancellationToken);
             return response;
         }
@@ -456,11 +502,14 @@ public sealed class PublicKnowledgeResearchFunction
             var receipts = await RunStoredBatchAsync([regressionCase], message.Batch, message.Execute, message.Trigger, cancellationToken);
             await _storage.CompleteQueuedRunAsync(message, receipts, cancellationToken);
             var index = await _storage.SaveLatestIndexAsync(cancellationToken);
+            var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
             _logger.LogInformation(
-                "Public knowledge queued job {JobId} stored case {CaseId} and refreshed latest index with {RunCount} run(s).",
+                "Public knowledge queued job {JobId} stored case {CaseId}; latest index has {RunCount} run(s); digest healthy={Healthy}; reviewCount={ReviewCount}.",
                 message.JobId,
                 caseId,
-                index.RunCount);
+                index.RunCount,
+                digest.Healthy,
+                digest.Items.Count);
         }
         catch (Exception ex)
         {
@@ -671,4 +720,22 @@ public sealed class PublicKnowledgeResearchFunction
             .Where(item => !string.IsNullOrWhiteSpace(item))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
+
+    private static object BuildDigestSummary(PublicKnowledgeNeedsGregReport report) =>
+        new
+        {
+            report.GeneratedAtUtc,
+            report.Healthy,
+            report.Summary,
+            report.RunCount,
+            report.PassingCount,
+            report.NeedsReviewCount,
+            report.FailCount,
+            report.NotScoredCount,
+            report.WarningRunCount,
+            report.ErrorRunCount,
+            report.HighestPriority,
+            report.LatestReportBlobName,
+            OperatorNextActions = report.OperatorNextActions ?? Array.Empty<string>()
+        };
 }

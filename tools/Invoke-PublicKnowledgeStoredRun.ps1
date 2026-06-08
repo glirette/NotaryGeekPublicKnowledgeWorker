@@ -1,7 +1,7 @@
 param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
-    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "RunBatch", "SubmitBatch", "JobStatus")]
+    [ValidateSet("Status", "Latest", "ExportIndex", "NeedsGreg", "LatestDigest", "RunBatch", "SubmitBatch", "JobStatus")]
     [string] $Command = "Latest",
     [ValidateSet("All", "Core", "Platform", "Apostille", "Recipient")]
     [string] $Batch = "Core",
@@ -62,6 +62,9 @@ $path = switch ($Command) {
     }
     "NeedsGreg" {
         "/api/public-knowledge/runs/needs-greg"
+    }
+    "LatestDigest" {
+        "/api/public-knowledge/runs/latest-digest"
     }
     "RunBatch" {
         $query.execute = if ($DryRun) { "false" } else { "true" }
@@ -172,6 +175,28 @@ switch ($Command) {
                     ErrorCount,
                     Reason,
                     SuggestedNextAction
+        }
+    }
+    "LatestDigest" {
+        $digest = $response.digest
+        [pscustomobject]@{
+            Healthy = [bool] $digest.healthy
+            Summary = [string] $digest.summary
+            GeneratedAtUtc = $digest.generatedAtUtc
+            RunCount = [int] $digest.runCount
+            Passing = [int] $digest.passingCount
+            NeedsReview = [int] $digest.needsReviewCount
+            Fail = [int] $digest.failCount
+            NotScored = [int] $digest.notScoredCount
+            WarningRuns = [int] $digest.warningRunCount
+            ErrorRuns = [int] $digest.errorRunCount
+            HighestPriority = $digest.highestPriority
+            LatestReportBlobName = [string] $digest.latestReportBlobName
+        }
+
+        if (@($digest.operatorNextActions).Count -gt 0) {
+            $digest.operatorNextActions |
+                ForEach-Object { [pscustomobject]@{ NextAction = [string] $_ } }
         }
     }
     "RunBatch" {
