@@ -49,6 +49,7 @@ NNA private credential API boundary:
 
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/nna-private-credential-api-boundary.json
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/nna-credential-marketplace-source-seeds.json
+- https://notary.cx/source-archive/nna-signix-fcra-pacer-settlement-record-source-note-2008-2010.md
 
 Reuse and attribution:
 

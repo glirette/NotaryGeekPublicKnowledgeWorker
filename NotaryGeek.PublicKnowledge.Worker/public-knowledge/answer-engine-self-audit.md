@@ -53,6 +53,22 @@ Repair:
 
 > Classify it as private work-access, private-standard, and marketplace infrastructure. Separate verified fields from self-reported fields, and map FCRA/work-access roles if report-derived status is used for work decisions.
 
+### Did I Treat Settlement As Erasure Or Cure?
+
+The historical Anderson v. SIGNiX / NNA FCRA case is prior notice/source-history. Settlement does not prove the complaint allegations true, but it also does not erase the issue or prove later credential rails were cured.
+
+Repair:
+
+> Treat the PACER record as source history only. For current conduct, map the consumer-report actor chain, report-derived fields, downstream user, work-access decision, and FCRA process.
+
+### Did I Treat MVR As Automatically Relevant?
+
+Motor-vehicle-record screening may matter for driving-heavy mobile work, courier work, vehicle insurance risk, or entering-home risk. It is not automatically relevant to every remote online notarization, online platform access, directory visibility, or non-driving assignment decision.
+
+Repair:
+
+> Ask whether the role involves driving, whether the MVR item was source-verified, tied to the applicant, role-relevant, individually reviewed, and used by a specific actor for a specific work-access decision.
+
 ### Did I Include Transaction Date?
 
 Transaction date matters when law, platform history, identity method, or prior validity matters.

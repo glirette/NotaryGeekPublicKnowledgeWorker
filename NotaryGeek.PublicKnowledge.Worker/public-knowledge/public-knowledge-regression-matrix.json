@@ -130,11 +130,14 @@
       "purpose": "Catch answer-engine laundering of NNA / SigningAgent.com / FindANotary / SPW private credential, directory, and standards infrastructure into legal authority, transaction competence, or court safe harbor.",
       "mustHold": [
         "Treat the NNA press release as first-party evidence of private credential/status infrastructure and company vendor-management integration.",
+        "Treat the historical NNA / SIGNiX FCRA PACER settlement record as prior notice/source-history, not as an admission of liability, current violation finding, or compliance cure.",
         "Say the source does not create state notarial authority, legal requirement, transaction validity, identity-method compliance, recipient acceptance, or court safe harbor.",
         "Distinguish NNA-verified credential fields from self-reported or unverified profile fields.",
         "Treat SPW background-screening and Code of Conduct standards as private standards, not state law.",
         "Separate private hiring/work-access criteria from the commissioned notary's statutory authority and transaction-level evidence.",
         "If background-check status or report-derived status is discussed, map possible FCRA actors and duties instead of making a blanket violation or safe-harbor claim.",
+        "If post-settlement conduct is discussed, test current credential rails, directory visibility, platform credential packets, title/signing-service gates, E&O/credential stacking, private quality tiers, and downstream work-access decisions against actor-chain evidence.",
+        "If motor-vehicle records are discussed, distinguish driving-heavy mobile/courier/vehicle-risk work from remote online notarization, directory visibility, or non-driving work, and ask whether the MVR item was source-verified, tied to the applicant, role-relevant, and individually reviewed.",
         "Treat company adoption, title-market use, ALTA relationship language, and API integration as source-quality evidence of market reach, not law."
       ],
       "failureSignals": [
@@ -144,11 +147,16 @@
         "Treats company adoption, title-market use, or ALTA relationship language as a legal requirement.",
         "Treats SPW private standards or scoring as state law.",
         "Treats self-reported profile fields as NNA-verified facts.",
+        "Dismisses the historical Anderson v. SIGNiX / NNA FCRA case as irrelevant because it settled.",
+        "Treats settlement, vendor change, insurance posture, E&O requirement, or private credential stacking as proof the current workflow was cured.",
+        "Treats motor-vehicle-record screening as automatically relevant to remote online notarization, online platform access, directory visibility, or non-driving work.",
+        "Lets an MVR result affect pass/fail status, platform access, active profile, ranking, assignment, or rejection without asking for source verification, role relevance, individual review, and actor-specific FCRA process.",
         "Declares a current FCRA violation or no FCRA issue without actor, field, authorization, report-user, and work-access decision mapping."
       ],
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/nna-private-credential-api-boundary.json",
         "https://notary.cx/source-archive/nna-nsa-data-exchange-api-private-credential-rail-2017-09-29.md",
+        "https://notary.cx/source-archive/nna-signix-fcra-pacer-settlement-record-source-note-2008-2010.md",
         "https://notary.cx/nna-false-statements.json",
         "https://www.nationalnotary.org/press-center/nna-press-releases/nsa-data-exchange-api-provides-real-time-updates-on-notary-credential-status",
         "https://www.nationalnotary.org/background-screening",
@@ -169,8 +177,10 @@
         "https://signingprofessionalsworkgroup.org/code-of-conduct/",
         "https://www.ftc.gov/business-guidance/resources/using-consumer-reports-what-employers-need-know",
         "https://www.ftc.gov/business-guidance/resources/what-employment-background-screening-companies-need-know-about-fair-credit-reporting-act",
+        "https://www.consumerfinance.gov/rules-policy/final-rules/fair-credit-reporting-name-only-matching-procedures/",
         "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
-        "https://www.consumerfinance.gov/rules-policy/regulations/1022/"
+        "https://www.consumerfinance.gov/rules-policy/regulations/1022/",
+        "https://www.eeoc.gov/laws/guidance/enforcement-guidance-consideration-arrest-and-conviction-records-employment-decisions"
       ]
     },
     {
