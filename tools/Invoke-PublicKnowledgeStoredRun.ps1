@@ -109,7 +109,23 @@ switch ($Command) {
     }
     "Latest" {
         if ($response.latestRuns) {
-            $response.latestRuns | Select-Object CaseId, StoredAtUtc, Trigger, Batch, Ok, Status, OpenAiCalled, SourceCount, WarningCount, ErrorCount, BlobName, LatestBlobName
+            $response.latestRuns |
+                Select-Object `
+                    CaseId,
+                    StoredAtUtc,
+                    Trigger,
+                    Batch,
+                    Ok,
+                    Status,
+                    ScoreVerdict,
+                    @{ Name = "MustHold"; Expression = { if ($null -ne $_.MustHoldTotal) { "{0}/{1}" -f $_.MustHoldPassed, $_.MustHoldTotal } else { "" } } },
+                    @{ Name = "FailSig"; Expression = { if ($null -ne $_.FailureSignalTotal) { "{0}/{1}" -f $_.FailureSignalsObserved, $_.FailureSignalTotal } else { "" } } },
+                    OpenAiCalled,
+                    SourceCount,
+                    WarningCount,
+                    ErrorCount,
+                    BlobName,
+                    LatestBlobName
         }
         elseif ($response.latest) {
             $response.latest
@@ -128,7 +144,20 @@ switch ($Command) {
         }
     }
     "RunBatch" {
-        $response.receipts | Select-Object CaseId, Ok, Status, OpenAiCalled, SourceCount, WarningCount, ErrorCount, BlobName, LatestBlobName
+        $response.receipts |
+            Select-Object `
+                CaseId,
+                Ok,
+                Status,
+                ScoreVerdict,
+                @{ Name = "MustHold"; Expression = { if ($null -ne $_.MustHoldTotal) { "{0}/{1}" -f $_.MustHoldPassed, $_.MustHoldTotal } else { "" } } },
+                @{ Name = "FailSig"; Expression = { if ($null -ne $_.FailureSignalTotal) { "{0}/{1}" -f $_.FailureSignalsObserved, $_.FailureSignalTotal } else { "" } } },
+                OpenAiCalled,
+                SourceCount,
+                WarningCount,
+                ErrorCount,
+                BlobName,
+                LatestBlobName
     }
     "SubmitBatch" {
         [pscustomobject]@{
