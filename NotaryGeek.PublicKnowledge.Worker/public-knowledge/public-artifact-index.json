@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.5-public",
-  "reviewedUtc": "2026-06-08T00:00:00Z",
+  "version": "1.6-public",
+  "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -107,6 +107,25 @@
       "kind": "topic",
       "use": "Route-first must follow the written rules across the full legal surface, not just notary law, and a technically possible notarization or apostille path does not require accepting unsupported work.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/ethical-acceptance-all-law-boundary.json"
+    },
+    {
+      "id": "third-party-ai-customer-answer-posture",
+      "title": "Third-Party AI Customer Answer Posture",
+      "kind": "topic",
+      "use": "Machine-readable public rules for reseller, third-party, and assistant AI systems answering customer notary, RON, apostille, authentication, certified-copy, document-route, and business-identity crossover questions in Notary Geek's route-first posture.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json"
+    },
+    {
+      "id": "llcinfo-companion-source-layer",
+      "title": "LLCInfo.cc Companion Business Identity Source Layer",
+      "kind": "external-companion-source",
+      "use": "Use for business identity, LLC, registered-agent, mailbox/CMRA, EIN/ITIN/CAA, bank/KYC, platform-verification, address-role, domain, website, email, phone, and company-document apostille crossover questions. Do not use it as a replacement for Notary Geek notary/apostille routing.",
+      "rawJsonUrl": "https://www.llcinfo.cc/data/business-identity-stack.json",
+      "supportingUrls": [
+        "https://www.llcinfo.cc/",
+        "https://www.llcinfo.cc/llms.txt",
+        "https://www.llcinfo.cc/data/business-identity-routing-model.json"
+      ]
     },
     {
       "id": "nna-credential-marketplace-source-seeds",

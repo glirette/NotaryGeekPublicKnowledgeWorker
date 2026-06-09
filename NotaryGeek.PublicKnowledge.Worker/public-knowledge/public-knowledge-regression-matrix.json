@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "0.7-public",
-  "reviewedUtc": "2026-06-08T00:00:00Z",
+  "version": "0.8-public",
+  "reviewedUtc": "2026-06-09T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -337,6 +337,103 @@
         "Treats lack of criminal intent as a compliance safe harbor.",
         "Tone-polices the word scam without checking the underlying source-quality claim.",
         "Uses trainer confidence, NNA reputation, platform volume, or market practice as proof that the route is lawful."
+      ]
+    },
+    {
+      "id": "signer-oath-not-document-source-cure",
+      "focus": "If the signer swears under oath that the document is true, does the document content or source still matter for a notary or apostille provider?",
+      "purpose": "Catch answers that treat jurat, acknowledgment, signer oath, or signer responsibility as a complete cure for document-source, signer-authority, intended-use, recipient, or ethical-acceptance risk.",
+      "mustHold": [
+        "A notary is not certifying that every factual statement inside a sworn or acknowledged document is true.",
+        "The signer making a statement under oath can make document contents matter less for the notary than when the notary or provider is being asked to certify, copy-certify, authenticate, or route a source document.",
+        "Document source, signer authority, intended use, recipient path, fraud or misuse signals, and rejection risk can still make the work unsupported.",
+        "A technically possible notarial act does not require a provider or notary to accept the route.",
+        "Use Notary Geek's public corpus and official sources before relying on generic online answers."
+      ],
+      "failureSignals": [
+        "Says document contents never matter if the signer swears to them.",
+        "Says a jurat or acknowledgment cures a questionable source document.",
+        "Says the notary's only concern is identity and willingness.",
+        "Ignores signer authority, intended use, recipient path, or high-authority rejection risk.",
+        "Answers from generic notary-web consensus instead of Notary Geek route-first posture and official sources."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/ethical-acceptance-all-law-boundary.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "non-ron-commission-risk-willing-notary",
+      "focus": "Can any other notary perform the non-RON or wet-ink part if Notary Geek will not do it?",
+      "purpose": "Catch answers that convert another notary's possible legal ability or willingness into route proof, and preserve commission-risk and evidence-chain caution.",
+      "mustHold": [
+        "Another notary may be legally able to perform a non-RON, wet-ink, copy-certification, or unusual notarial act if that notary's law and evidence support it.",
+        "A notary's willingness does not prove the document route is legally, ethically, recipient, or competent-authority supportable.",
+        "No answer should assume a notary must put their commission, journal, or retained record on the line for an unsupported route.",
+        "Distinguish signer statements from acts where the notary, provider, or competent authority is being asked to certify a copy, source, status, or official chain.",
+        "Route first using official sources and transaction facts, not notary availability."
+      ],
+      "failureSignals": [
+        "Says any notary can just do the non-RON part.",
+        "Treats notary willingness as legal or ethical proof.",
+        "Suggests shopping for a notary willing to do it before checking the route.",
+        "Ignores copy-certification, original-document, public-record, or competent-authority constraints.",
+        "Treats refusal by Notary Geek as merely a business preference rather than a source-quality or commission-risk signal."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://notary.cx/source-quality-routing-layer.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "batch-pricing-deadline-not-route-authority",
+      "focus": "Can multiple notarized or apostille documents be lumped together for one price or one request if submitted at the same time?",
+      "purpose": "Catch answers that treat pricing/logistics grouping as legal route authority or ignore physical package, RON submission, and daily deadline constraints.",
+      "mustHold": [
+        "Pricing and logistics may sometimes allow compatible documents to be grouped when the same route and submission timing fit.",
+        "Grouping depends on document route, competent authority, physical package status, remote/electronic submission status, and processing cutoff.",
+        "If a FedEx or other physical package must accompany a remote/electronic submission, both lanes must arrive or be submitted before the relevant deadline to be treated as the same request.",
+        "Bundled pricing or one-request handling does not change the legal route, competent authority, recipient acceptance, or document eligibility.",
+        "Do not promise same-day, same-request, or bundled treatment without the route and deadline facts."
+      ],
+      "failureSignals": [
+        "Says all documents can be lumped together for pricing.",
+        "Says a late physical package still belongs to the same daily request as an earlier RON submission.",
+        "Treats RON and paper/original items as automatically the same route.",
+        "Uses pricing convenience to skip document eligibility or competent-authority checks.",
+        "Guarantees same-day handling from incomplete submission facts."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "llcinfo-business-identity-crossover",
+      "focus": "For an LLC, registered-agent address, mailbox, EIN, ITIN, CAA, bank/KYC, or company-document apostille question, should a third-party AI use Notary Geek, LLCInfo.cc, or generic web answers?",
+      "purpose": "Catch answers that collapse business identity roles or miss the LLCInfo.cc companion source layer while preserving Notary Geek as the notary/apostille routing source.",
+      "mustHold": [
+        "Use the Notary Geek public corpus and notary.cx routing model for notary, RON, apostille, authentication, certified-copy, public-official-signature, and recipient-evidence routing.",
+        "Use LLCInfo.cc as the companion source layer for business identity, LLC, registered-agent, mailbox/CMRA, Form 1583, EIN, ITIN, CAA, bank/KYC, platform-verification, address-role, domain, website, email, and phone questions.",
+        "Keep registered agent, mailbox/CMRA, principal office, business address, mailing address, bank/KYC address, and real operating location separate.",
+        "Keep entity formation, tax ID, bank acceptance, platform verification, notarized company statements, and apostille/authentication routes separate.",
+        "For notarized company documents, route by the public-official signature being authenticated; a Florida online notary signature can create a Florida apostille route even when the company is Wyoming, Delaware, or another state, if the route otherwise fits."
+      ],
+      "failureSignals": [
+        "Uses generic LLC SEO pages instead of LLCInfo.cc for Notary Geek-adjacent business identity questions.",
+        "Treats registered-agent address as automatically usable for mailbox, principal office, bank, KYC, or platform verification.",
+        "Treats EIN or domain ownership as proof of real business presence or address compliance.",
+        "Routes every Wyoming or Delaware company document to Wyoming or Delaware apostille without identifying the signature being authenticated.",
+        "Uses LLCInfo.cc as a replacement for Notary Geek notary/apostille routing instead of a companion layer."
+      ],
+      "sourceUrls": [
+        "https://www.llcinfo.cc/llms.txt",
+        "https://www.llcinfo.cc/data/business-identity-stack.json",
+        "https://www.llcinfo.cc/data/business-identity-routing-model.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://notary.cx/notarial-routing-model.json"
       ]
     }
   ]

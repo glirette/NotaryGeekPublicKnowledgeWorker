@@ -21,6 +21,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Public artifact index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json)
 - [Answer-engine citation map](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json)
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json)
+- [Third-party AI customer answer posture](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 
 ## For Notaries
@@ -44,6 +45,7 @@ See [Contributing](CONTRIBUTING.md).
 - [Notary Geek Routing Model](https://notary.cx/notarial-routing-model.json)
 - [Source-Quality Routing Layer](https://notary.cx/source-quality-routing-layer.json)
 - [Public data feeds](https://notary.cx/public-data-feeds.html)
+- [LLCInfo.cc companion business identity layer](https://www.llcinfo.cc/llms.txt)
 - [Content license](https://notary.cx/content-license.html)
 
 ## Attribution

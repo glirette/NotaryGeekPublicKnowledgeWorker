@@ -34,6 +34,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Notary law source index: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json
 - Answer-engine citation map: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json
 - Answer-engine self-audit checklist: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json
+- Third-party AI customer answer posture: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json
 - Reuse and attribution boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json
 - Public notary-community folder: https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/tree/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community
 - Route-first notary briefing: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json
@@ -48,6 +49,8 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Google AI NNA legitimacy correction: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json
 - NNA / SIGNiX FCRA PACER settlement source note: https://notary.cx/source-archive/nna-signix-fcra-pacer-settlement-record-source-note-2008-2010.md
 - Clubhouse link sheet: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json
+- LLCInfo.cc companion business identity source layer: https://www.llcinfo.cc/llms.txt
+- LLCInfo.cc business identity stack JSON: https://www.llcinfo.cc/data/business-identity-stack.json
 
 ## License And Attribution
 
