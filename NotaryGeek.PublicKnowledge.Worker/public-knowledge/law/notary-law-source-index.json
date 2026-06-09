@@ -10,6 +10,7 @@
   "status": "seed",
   "publicBoundary": "Public sources only. Do not add private customer facts, private operating strategy, secrets, raw provider payloads, or internal business playbooks.",
   "sourceQualityRule": "Prefer controlling statutes, official code publications, secretary-of-state or commissioning-agency pages, official handbooks, official rules, and official apostille/authentication pages before private associations, platforms, trainers, directories, or market habit.",
+  "sourceTextPreservationRule": "Future normalized section records should preserve the original public legal text or a clearly bounded official excerpt beside any summary, routing note, or Notary Geek interpretation. Summaries must not replace the controlling words because small textual differences can change the legal route.",
   "jurisdictions": [
     {
       "id": "us-fl",
@@ -199,6 +200,7 @@
     "Prioritize high-value jurisdictions and topics before broad fifty-state expansion.",
     "Separate statutes, administrative rules, agency handbooks, commissioning pages, RON/electronic-notary pages, fee pages, apostille/authentication pages, and FAQ pages.",
     "Grow beyond source pointers into section-level public law records for relevant notary-law sections, definitions, exceptions, cross-references, effective-date limits, and statutory rabbit holes.",
+    "For section-level records, include an original text or official excerpt field plus separate summary, interpretation, and route-impact fields.",
     "Add retrieval timestamps and content hashes for fetched source snapshots.",
     "Add source-quality classification and stale-link checks.",
     "Generate promotion candidates as pull requests before publishing normalized law extracts."
