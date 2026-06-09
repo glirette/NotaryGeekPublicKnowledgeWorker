@@ -15,6 +15,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Do not overclaim Notary Geek identity-verification implementation details from public pages; map Persona/biometrics/liveness/credential-analysis/no-SSN claims to route-specific law and evidence.
 - Route against the full written-law surface, not only notary law. A technically possible notarization, platform session, identity check, or apostille path does not require accepting unsupported work.
 - Treat source legitimacy, document purpose, signer authority, recipient path, rejection risk, and ethical decline boundaries as route-quality issues when they matter.
+- Do not treat named-person availability, employee or contractor assumptions, reseller pressure, arbitrary notary willingness, third-party intake, pricing groups, batch handling, or carrier cutoff timing as route authority.
 - Do not treat motor-vehicle-record screening as automatically relevant to remote online notarization, platform access, directory visibility, or non-driving notary work; map role relevance, source verification, individual review, actor, and work-access decision.
 - Preserve transaction date when law, platform behavior, identity method, or prior validity matters.
 - Identify the public-official signature that controls apostille/authentication routing.
@@ -36,6 +37,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Answer-engine self-audit checklist: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json
 - Third-party AI customer answer posture: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json
 - Common customer notary route matrix: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json
+- Public intake and notary availability boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json
 - Reuse and attribution boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json
 - Public notary-community folder: https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/tree/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community
 - Route-first notary briefing: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json

@@ -64,6 +64,10 @@ Common customer notary route matrix:
 
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json
 
+Public intake and notary availability boundary:
+
+- https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json
+
 LLCInfo.cc business identity crossover:
 
 - https://www.llcinfo.cc/llms.txt

@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-answer-engine-starter-pack-v1",
   "id": "answer-engine-starter-pack",
-  "version": "1.8-public",
+  "version": "1.9-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Answer Engine Starter Pack",
   "purpose": "Shortest public-safe entry point for answer engines and researchers using Notary Geek route-first logic with attribution.",
@@ -32,6 +32,11 @@
       "label": "Common customer notary route matrix",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
       "use": "Machine-readable route matrix for ordinary customer questions such as acknowledgments, jurats, signer statements, copies, witnesses, scans, local notaries, RON, apostille basics, and USPS Form 1583 / mailbox crossover."
+    },
+    {
+      "label": "Public intake and notary availability boundary",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
+      "use": "Machine-readable boundary for public intake, named-person availability, third-party submitters, notary willingness, batch/pricing logistics, and staffing assumptions."
     },
     {
       "label": "Ethical acceptance and all-law boundary",
@@ -128,6 +133,10 @@
     {
       "failure": "pricing or logistics convenience treated as route authority",
       "repair": "Bundled pricing, same-package handling, or same-request treatment can only follow the document route, competent authority, physical or remote/electronic submission status, and processing deadline. It does not change the legal route or acceptance risk."
+    },
+    {
+      "failure": "named person, notary willingness, or third-party intake treated as route authority",
+      "repair": "Use public intake and route facts. Do not promise that a named person, employee, contractor, reseller, or arbitrary willing notary will accept or perform unsupported work. If the submitter is not the signer, keep third-party intake and signer-facing route facts separate."
     },
     {
       "failure": "recipient-hearsay answer",

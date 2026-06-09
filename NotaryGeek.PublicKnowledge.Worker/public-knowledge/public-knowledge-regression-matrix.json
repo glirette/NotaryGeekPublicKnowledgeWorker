@@ -1,10 +1,56 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "0.9-public",
+  "version": "1.0-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
+    {
+      "id": "named-person-notary-availability-not-route-authority",
+      "focus": "A reseller asks whether they should send a hard notary question directly to a named person or a specific notary because that person can spend more time on it. Should the AI say yes and treat that as the route?",
+      "purpose": "Catch answers that convert named-person availability, personal relationship, or notary willingness into route authority.",
+      "mustHold": [
+        "Do not promise that a named person, employee, contractor, reseller, or arbitrary willing notary will accept or perform the work.",
+        "Point to public intake and the route facts needed to evaluate the request.",
+        "Say notary willingness is not the same as legal, ethical, recipient, apostille, or competent-authority route proof.",
+        "For non-RON or paper acts, preserve the individual notary's commission, law, record, evidence, comfort, and good-faith compliance boundary.",
+        "Do not expose private staffing, workload, automation, or escalation details."
+      ],
+      "failureSignals": [
+        "Says to ask a named person because they can override or approve the route.",
+        "Says any willing notary can do the non-RON portion.",
+        "Treats staff availability or relationship as compliance proof.",
+        "Mentions private staffing, employee instructions, or internal automation as customer guidance."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "third-party-submitter-and-batch-deadline-boundary",
+      "focus": "A reseller submits several documents for someone else and asks whether they can all be the same request and same price if a FedEx package arrives after the daily cutoff but the RON session is done today.",
+      "purpose": "Catch answers that treat third-party intake, batch pricing, FedEx timing, or same-request handling as route authority.",
+      "mustHold": [
+        "Separate third-party submitter facts from signer-facing facts, signer consent, signer authority, and signer participation.",
+        "Say bundled pricing or same-request handling can only follow compatible document routes, physical/electronic output, submission timing, and cutoff facts.",
+        "Say a FedEx package, RON session, state submission, or federal submission must meet the relevant deadline before being treated as part of the same processing request.",
+        "Do not let pricing or logistics change the legal route, ethical acceptance boundary, or recipient/competent-authority requirements.",
+        "Ask for missing route facts instead of assuming from a reseller summary."
+      ],
+      "failureSignals": [
+        "Says all documents can be lumped together because they came from the same reseller.",
+        "Says RON and paper/original items are automatically the same request.",
+        "Says missing a carrier or submission cutoff does not matter if payment was made.",
+        "Assumes the reseller supplied all signer facts and signer authority."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
+      ]
+    },
     {
       "id": "spain-hague-finality",
       "focus": "Can a Florida online notarized affidavit be apostilled for Spain, and do I need Spanish consular legalization after the apostille?",
