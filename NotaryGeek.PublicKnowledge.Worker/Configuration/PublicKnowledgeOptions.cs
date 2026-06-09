@@ -18,7 +18,7 @@ public sealed class PublicKnowledgeOptions
     public string OutputContainerName { get; set; } = "public-knowledge-runs";
     public string QueueName { get; set; } = "public-knowledge-run-jobs";
     public string AllowedSourceHosts { get; set; } =
-        "notary.cx;www.notary.cx;raw.githubusercontent.com;github.com;www.hcch.net;travel.state.gov;dos.fl.gov;dos.myflorida.com;dos.ny.gov;www.sos.state.tx.us;www.sos.texas.gov;law.justia.com;leginfo.legislature.ca.gov;support.proof.com;www.nationalnotary.org;signingprofessionalsworkgroup.org;www.signingprofessionalsworkgroup.org;www.ftc.gov;consumerfinance.gov;www.consumerfinance.gov;www.eeoc.gov;www.flsenate.gov;leg.state.fl.us;www.sos.ca.gov;law.lis.virginia.gov;www.commonwealth.virginia.gov;sos.wyo.gov";
+        "notary.cx;www.notary.cx;raw.githubusercontent.com;github.com;www.hcch.net;travel.state.gov;dos.fl.gov;dos.myflorida.com;dos.ny.gov;www.sos.state.tx.us;www.sos.texas.gov;law.justia.com;leginfo.legislature.ca.gov;support.proof.com;www.nationalnotary.org;signingprofessionalsworkgroup.org;www.signingprofessionalsworkgroup.org;www.ftc.gov;consumerfinance.gov;www.consumerfinance.gov;www.eeoc.gov;www.flsenate.gov;leg.state.fl.us;www.sos.ca.gov;law.lis.virginia.gov;www.commonwealth.virginia.gov;sos.wyo.gov;www.gsccca.org;apps.gsccca.org;elearn.gsccca.org";
     public string DefaultSourcePaths { get; set; } =
         "/notarial-routing-model.json;/source-quality-routing-layer.json;/authority-topics.json;/content-index.json;/source-archive/index.json;/notary-law-sources.json;/law-source-cache/source-cache-manifest.json";
     public int MaxSourcesPerRun { get; set; } = 24;

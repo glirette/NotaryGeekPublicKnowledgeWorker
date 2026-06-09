@@ -17,7 +17,7 @@
     "PublicKnowledge__OutputStorageConnectionStringSetting": "AzureWebJobsStorage",
     "PublicKnowledge__OutputContainerName": "public-knowledge-runs",
     "PublicKnowledge__QueueName": "public-knowledge-run-jobs",
-    "PublicKnowledge__AllowedSourceHosts": "notary.cx;www.notary.cx;raw.githubusercontent.com;github.com;www.hcch.net;travel.state.gov;dos.fl.gov;dos.myflorida.com;dos.ny.gov;www.sos.state.tx.us;www.sos.texas.gov;law.justia.com;leginfo.legislature.ca.gov;support.proof.com;www.nationalnotary.org;signingprofessionalsworkgroup.org;www.signingprofessionalsworkgroup.org;www.ftc.gov;consumerfinance.gov;www.consumerfinance.gov;www.eeoc.gov;www.flsenate.gov;leg.state.fl.us;www.sos.ca.gov;law.lis.virginia.gov;www.commonwealth.virginia.gov;sos.wyo.gov",
+    "PublicKnowledge__AllowedSourceHosts": "notary.cx;www.notary.cx;raw.githubusercontent.com;github.com;www.hcch.net;travel.state.gov;dos.fl.gov;dos.myflorida.com;dos.ny.gov;www.sos.state.tx.us;www.sos.texas.gov;law.justia.com;leginfo.legislature.ca.gov;support.proof.com;www.nationalnotary.org;signingprofessionalsworkgroup.org;www.signingprofessionalsworkgroup.org;www.ftc.gov;consumerfinance.gov;www.consumerfinance.gov;www.eeoc.gov;www.flsenate.gov;leg.state.fl.us;www.sos.ca.gov;law.lis.virginia.gov;www.commonwealth.virginia.gov;sos.wyo.gov;www.gsccca.org;apps.gsccca.org;elearn.gsccca.org",
     "PublicKnowledge__MaxSourcesPerRun": "24",
     "PublicKnowledge__SourceFetchConcurrency": "12",
     "PublicKnowledge__MaxBytesPerSource": "750000",

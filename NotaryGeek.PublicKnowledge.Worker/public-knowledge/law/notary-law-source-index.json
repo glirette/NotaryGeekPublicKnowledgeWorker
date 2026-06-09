@@ -104,6 +104,39 @@
       ]
     },
     {
+      "id": "us-ga",
+      "country": "US",
+      "state": "GA",
+      "name": "Georgia",
+      "status": "seed-official-sources-identified",
+      "sources": [
+        {
+          "id": "ga-gsccca-notary-law",
+          "title": "Georgia Notary Law",
+          "sourceType": "official-statute-entry-point",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://www.gsccca.org/notary-and-apostilles/notaries/georgia-notary-law",
+          "notes": "Official GSCCCA Georgia Notary Law entry point. It points to Title 45, Article 17 of the Official Code of Georgia Annotated. Use the controlling law before relying on private summaries or training materials."
+        },
+        {
+          "id": "ga-gsccca-notary-files-forms",
+          "title": "Notary Files and Forms",
+          "sourceType": "official-agency-forms",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://www.gsccca.org/notary-and-apostilles/notaries/notary-files-forms",
+          "notes": "Official GSCCCA notary forms and handbook entry point. Treat forms and handbook material as implementation support, not a substitute for the controlling statute."
+        },
+        {
+          "id": "ga-gsccca-notary-education-course",
+          "title": "Georgia Notary Public Online Education Course",
+          "sourceType": "official-agency-education",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://elearn.gsccca.org/",
+          "notes": "Official GSCCCA education course entry point. Useful for notary education context, but source hierarchy still starts with the law."
+        }
+      ]
+    },
+    {
       "id": "us-va",
       "country": "US",
       "state": "VA",

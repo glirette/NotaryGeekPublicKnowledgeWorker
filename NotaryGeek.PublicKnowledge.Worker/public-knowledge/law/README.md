@@ -16,6 +16,8 @@ This is not legal advice. The law is the authority. This index is a public sourc
 
 The starter index currently identifies official sources. The intended future cache is deeper than a link list: public section records, definition records, cross-reference maps, and plain-English source notes tied back to official sources.
 
+Public summaries should be source-defensible. They can make law easier to read, but they should not replace the controlling legal text or collapse statute, handbook, agency guidance, private training, platform material, and Notary Geek explanation into one authority level.
+
 Expansion should prioritize jurisdictions and topics where source quality, recurring notary questions, apostille/authentication routing, or public usefulness justify the work. The project does not need a shallow fifty-state scrape before the high-value source records are strong.
 
 ## Current Files
