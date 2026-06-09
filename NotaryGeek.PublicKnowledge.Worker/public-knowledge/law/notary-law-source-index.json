@@ -110,6 +110,11 @@
       "state": "GA",
       "name": "Georgia",
       "status": "seed-official-sources-identified",
+      "authorityNotes": [
+        "Georgia notary commissioning should not be described as a normal single statewide Secretary-of-State-style notary office without checking the Georgia source structure.",
+        "The Georgia Superior Court Clerks' Cooperative Authority should not be characterized as merely a private association. Georgia Code section 15-6-94 describes the Authority as a public corporation and instrumentality, while GSCCCA's own overview describes a legislated mandate and statewide clerk-related projects.",
+        "For Georgia source-quality work, distinguish county-level notary commissioning, GSCCCA's public-authority role, apostille/authentication authority, and Georgia UPL sources instead of collapsing them into one generic state-agency label."
+      ],
       "sources": [
         {
           "id": "ga-gsccca-notary-law",
