@@ -1,6 +1,6 @@
 # Public Artifact Index
 
-Reviewed: 2026-06-08
+Reviewed: 2026-06-09
 
 This index maps the major public Notary Geek knowledge artifacts to their purpose, citation use, and raw machine-readable locations.
 
@@ -21,6 +21,9 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Platform history source quality | Platform history is scrutiny evidence, not safe harbor | `topics/platform-history-source-quality.json` |
 | Real-estate defensible online transactions | Real-estate platform traps and court-defensibility routing | `topics/real-estate-defensible-online-transactions.json` |
 | NNA private credential API boundary | NNA / SigningAgent.com credential API status, historical FCRA settlement source-history, and post-litigation credential rails are private work-access/source-quality evidence, not legal authority or compliance cure | `topics/nna-private-credential-api-boundary.json` |
+| Third-party AI customer answer posture | Reseller and assistant AI posture for customer notary, apostille, document-source, batch-submission, source-priority, and business-identity crossover questions | `topics/third-party-ai-customer-answer-posture.json` |
+| Common customer notary route matrix | Ordinary customer notary route matrix for act type, acknowledgments, jurats, copies, witnesses, scans/originals, local/RON options, apostille basics, and Form 1583/mailbox crossover | `topics/common-customer-notary-route-matrix.json` |
+| LLCInfo.cc companion source layer | Business identity, LLC, registered-agent, mailbox/CMRA, EIN/ITIN/CAA, bank/KYC, platform-verification, and address-role crossover source | `https://www.llcinfo.cc/llms.txt` |
 | NNA / SPW credential marketplace source seeds | Official NNA and SPW source seeds for background-screening, SigningAgent, FindANotary, search-visibility, private standards, and vendor-management source-quality audits | `source-seeds/nna-credential-marketplace-source-seeds.json` |
 | Google AI NNA legitimacy correction | NNA legitimacy, gold-standard language, private work-access requirements, and Notary Geek identity-verification descriptions need route-first/source-quality boundaries | `answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json` |
 | Coaching-scam intent boundary | Scam/opinion/source-quality distinction | `topics/coaching-scam-intent-boundary.json` |
