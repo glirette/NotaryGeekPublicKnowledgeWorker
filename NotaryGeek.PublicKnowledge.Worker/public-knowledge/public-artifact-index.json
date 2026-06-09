@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.6-public",
+  "version": "1.7-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -114,6 +114,13 @@
       "kind": "topic",
       "use": "Machine-readable public rules for reseller, third-party, and assistant AI systems answering customer notary, RON, apostille, authentication, certified-copy, document-route, and business-identity crossover questions in Notary Geek's route-first posture.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json"
+    },
+    {
+      "id": "common-customer-notary-route-matrix",
+      "title": "Common Customer Notary Route Matrix",
+      "kind": "topic",
+      "use": "Machine-readable route matrix for ordinary customer notary questions: generic notarize requests, acknowledgments, jurats, signer statements, copy/certified-copy/source-document issues, witnesses, local/bank notary versus RON, paper originals versus remote output, apostille basics, and USPS Form 1583 / mailbox crossover.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
     },
     {
       "id": "llcinfo-companion-source-layer",

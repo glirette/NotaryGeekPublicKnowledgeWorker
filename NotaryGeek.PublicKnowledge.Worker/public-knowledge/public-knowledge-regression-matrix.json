@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "0.8-public",
+  "version": "0.9-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -434,6 +434,73 @@
         "https://www.llcinfo.cc/data/business-identity-routing-model.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
         "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "generic-notarize-act-type-needed",
+      "focus": "A customer says: I need this notarized. Should the AI tell them to use an online notary, a bank notary, or any local notary?",
+      "purpose": "Catch generic notarize answers that skip the requested notarial act, certificate wording, signer facts, output lane, and downstream use.",
+      "mustHold": [
+        "Do not answer with a notary or platform recommendation first.",
+        "Identify the requested notarial act: acknowledgment, jurat/oath/affirmation, signature witnessing, copy certification, RON, wet-ink paper notarization, or another state-authorized act.",
+        "Ask for document type, recipient certificate wording, signer location, notary state, transaction date, identity method, output lane, and whether apostille/authentication/recording/recipient acceptance follows.",
+        "Treat bank/local notary and online notary as options only after the route fits.",
+        "Use the Notary Geek common customer route matrix and routing model before generic online notary advice."
+      ],
+      "failureSignals": [
+        "Says any notary can notarize it.",
+        "Recommends online notarization, a bank, or a shipping-store notary before identifying the act.",
+        "Lets a platform choose the certificate wording.",
+        "Skips signer location, identity method, output lane, or downstream apostille/authentication risk."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "copy-certified-copy-scan-source-document",
+      "focus": "Can a customer notarize or apostille a copy, scan, PDF, diploma, passport, ID, vital record, court record, or company record?",
+      "purpose": "Catch answers that collapse notarized copy, notary copy certification, official certified copy, source document, scan, physical original, and remote/electronic output.",
+      "mustHold": [
+        "Do not treat copy, certified copy, notarized photocopy, official record, physical original, remote/electronic output, and ordinary scan as interchangeable.",
+        "Identify the source document, issuing office, recipient requirement, notary-state copy-certification authority, and public-official signature or notary signature that would be authenticated.",
+        "Official records, vital records, court records, school records, company records, passports, IDs, and other source documents may require official certified-copy or issuing-office routes instead of notarized photocopies.",
+        "A scan of a paper notarization is not automatically equivalent to the physical original.",
+        "A remote/electronic notarial output is a separate lane, not just a scan of paper."
+      ],
+      "failureSignals": [
+        "Says just notarize a photocopy.",
+        "Treats a notarized copy as an official certified copy.",
+        "Says a scan is enough without checking the output lane and recipient/competent authority.",
+        "Says a notary can certify any government ID, vital record, court record, school record, public record, or company record without checking state law and recipient route."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://notary.cx/notarial-routing-model.json",
+        "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "id": "witnesses-not-platform-assumption",
+      "focus": "Can the online notary or platform handle witnesses, or are witnesses unnecessary?",
+      "purpose": "Catch answers that skip witness source, witness eligibility, remote-witness permissibility, and retained evidence.",
+      "mustHold": [
+        "Witness requirements are route-specific and may come from the document, law, recorder, title/escrow/lender, recipient, foreign destination, or private instruction.",
+        "Do not assume the notary counts as a witness.",
+        "Do not assume an online platform can always provide compliant witnesses.",
+        "Check whether remote witnesses are allowed for the transaction date and route.",
+        "Identify required witness evidence and retention before saying the route works."
+      ],
+      "failureSignals": [
+        "Says witnesses are never needed for online notarization.",
+        "Says the platform can always provide witnesses.",
+        "Says the notary can just be the witness.",
+        "Ignores recording, real-estate, title, court, foreign-recipient, or recipient-specific witness requirements."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/real-estate-defensible-online-transactions.json"
       ]
     }
   ]
