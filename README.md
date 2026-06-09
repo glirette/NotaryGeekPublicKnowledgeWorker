@@ -16,6 +16,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 
 - [Notary community briefing folder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md)
 - [Notary law source index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json)
+- [Reseller AI ingestion profile](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-ingestion-profile.json)
 - [Answer-engine starter pack](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json)
 - [Public knowledge manifest](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json)
 - [Public artifact index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json)
