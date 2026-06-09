@@ -133,6 +133,22 @@
           "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
           "url": "https://elearn.gsccca.org/",
           "notes": "Official GSCCCA education course entry point. Useful for notary education context, but source hierarchy still starts with the law."
+        },
+        {
+          "id": "ga-state-bar-upl-advisory-opinions",
+          "title": "UPL Advisory Opinions",
+          "sourceType": "official-bar-upl-index",
+          "publisher": "State Bar of Georgia",
+          "url": "https://www.gabar.org/programs/unlicensed-practice-of-law/upl-advisory-opinions",
+          "notes": "Official State Bar of Georgia UPL advisory-opinion index. Use for Georgia real-estate closing and settlement role questions before relying on private loan-signing training claims."
+        },
+        {
+          "id": "ga-supreme-court-upl-advisory-opinion-2003-2",
+          "title": "In re UPL Advisory Opinion 2003-2",
+          "sourceType": "official-court-upl-opinion",
+          "publisher": "Supreme Court of Georgia / State Bar of Georgia",
+          "url": "https://www.gabar.org/docs/default-source/programs-pdf/in-re-upl-advisory-opinion-2003-2-277-ga-472-%282003%29.pdf",
+          "notes": "Official Georgia UPL source for deed-conveyance execution and real-estate closing role questions. Do not reduce this to a blanket slogan about loan signing; use it to separate notarial authority, market labels, attorney-only legal work, and witness/notary-only claims."
         }
       ]
     },
