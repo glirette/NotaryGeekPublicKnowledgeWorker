@@ -136,6 +136,22 @@
           "notes": "Official GSCCCA education course entry point. Useful for notary education context, but source hierarchy still starts with the law."
         },
         {
+          "id": "ga-code-gsccca-authority-status",
+          "title": "Georgia Code, GSCCCA Authority Status",
+          "sourceType": "official-statute-entity-authority",
+          "publisher": "Georgia Code / Justia mirror",
+          "url": "https://law.justia.com/codes/georgia/title-15/chapter-6/article-2/section-15-6-94/",
+          "notes": "Public statute source describing the Superior Court Clerks' Cooperative Authority as a public corporation and instrumentality. Use this before characterizing GSCCCA's public/private status."
+        },
+        {
+          "id": "ga-gsccca-apostille-authentications",
+          "title": "Authentications / Apostille",
+          "sourceType": "official-apostille-authentication-page",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://www.gsccca.org/notary-and-apostilles/apostilles",
+          "notes": "GSCCCA apostille/authentication entry point. Use for Georgia apostille routing and competent-authority questions involving Georgia notarized documents."
+        },
+        {
           "id": "ga-state-bar-upl-advisory-opinions",
           "title": "UPL Advisory Opinions",
           "sourceType": "official-bar-upl-index",
