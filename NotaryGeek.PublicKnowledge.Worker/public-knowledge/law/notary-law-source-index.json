@@ -149,6 +149,7 @@
   "nextIndexingTargets": [
     "Add official statute/rule URLs for every U.S. state and Washington DC.",
     "Separate statutes, administrative rules, agency handbooks, commissioning pages, RON/electronic-notary pages, fee pages, apostille/authentication pages, and FAQ pages.",
+    "Grow beyond source pointers into section-level public law records for relevant notary-law sections, definitions, exceptions, cross-references, effective-date limits, and statutory rabbit holes.",
     "Add retrieval timestamps and content hashes for fetched source snapshots.",
     "Add source-quality classification and stale-link checks.",
     "Generate promotion candidates as pull requests before publishing normalized law extracts."
