@@ -17,35 +17,11 @@ The registry should answer source-backed questions such as:
 
 This is an address-first system. Provider names, brand names, registered-agent names, mailbox brands, virtual office brands, and Secretary of State roster entries attach to an address record as evidence. They do not replace the address record.
 
-## Code Home
+## Public Surface Boundary
 
-Azure Function code should live in:
+This public note describes the source-quality model for an address intelligence registry. It should not describe private code layout, hosting, deployment targets, provider account configuration, worker names, job schedules, publication pipelines, or internal storage paths.
 
-```text
-NotaryGeek.PublicKnowledge.Worker
-```
-
-Suggested project files:
-
-```text
-NotaryGeek.PublicKnowledge.Worker/Configuration/SmartyOptions.cs
-NotaryGeek.PublicKnowledge.Worker/Configuration/AddressIntelligenceOptions.cs
-NotaryGeek.PublicKnowledge.Worker/Functions/AddressIntelligenceFunction.cs
-NotaryGeek.PublicKnowledge.Worker/Models/AddressIntelligenceRecord.cs
-NotaryGeek.PublicKnowledge.Worker/Models/AddressEvidenceRecord.cs
-NotaryGeek.PublicKnowledge.Worker/Models/AddressEnrichmentRun.cs
-NotaryGeek.PublicKnowledge.Worker/Services/AddressIntelligenceRegistryService.cs
-NotaryGeek.PublicKnowledge.Worker/Services/SmartyUsStreetAddressEnrichmentService.cs
-NotaryGeek.PublicKnowledge.Worker/Services/UspsCmraEvidenceService.cs
-```
-
-The static publication target should remain LLCInfo.cc / BusinessIdentitySites:
-
-```text
-site/data/address-intelligence-registry.json
-site/data/registered-agent-service-addresses.json
-site/data/cmra-address-evidence.json
-```
+Public outputs may identify LLCInfo.cc as the business-identity companion source layer when the relevant public feeds or pages already exist. They should not instruct readers how Notary Geek or GoodWare builds, publishes, monitors, or deploys those feeds.
 
 ## Source Boundary
 
@@ -60,7 +36,7 @@ Keep these layers separate:
 - human review notes;
 - public disclosure.
 
-Do not let Smarty, a Secretary of State roster, a provider web page, or an address-cluster rule overwrite another layer.
+Do not let an address-validation provider, a Secretary of State roster, a provider web page, or an address-cluster rule overwrite another layer.
 
 ## Input Sources
 
@@ -73,7 +49,7 @@ Initial inputs:
 - provider pages advertising mailbox, mail scanning, forwarding, virtual office, or private mailbox services;
 - USPS CMRA-related source material;
 - manual confirmations and correspondence when public-safe to summarize;
-- source-monitor snapshots.
+- public source snapshots.
 
 ## Evidence Statuses
 
@@ -141,11 +117,11 @@ Suggested disclosure text:
 
 > CMRA status in this registry is evidence-based, not a live USPS master list. Records marked USPS-confirmed include the date and method of confirmation. Records marked likely, disputed, or unknown require further source review. Address-validation providers can help standardize addresses, but they do not prove CMRA status by themselves.
 
-## Smarty Role
+## Address-Validation Provider Role
 
-Smarty should be used for address validation and enrichment only.
+Address-validation providers should be used for address validation and enrichment only.
 
-Smarty can help with:
+Address-validation evidence can help with:
 
 - standardizing street/city/state/ZIP;
 - delivery point and ZIP precision if licensed and returned;
@@ -153,7 +129,7 @@ Smarty can help with:
 - grouping obvious address variants;
 - preserving geocoding/address metadata if licensed and returned.
 
-Smarty should not be used alone to decide:
+Address-validation evidence should not be used alone to decide:
 
 - CMRA status;
 - non-CMRA status;
@@ -161,33 +137,6 @@ Smarty should not be used alone to decide:
 - provider ownership;
 - customer legitimacy;
 - bank/platform acceptance.
-
-Credentials stay in Azure Function app settings:
-
-```text
-Smarty__AuthId
-Smarty__AuthToken
-```
-
-## API Shape
-
-Private function routes:
-
-```text
-POST /api/address-intelligence/enrichment-runs
-GET  /api/address-intelligence/enrichment-runs/{runId}
-POST /api/address-intelligence/sources/ingest
-POST /api/address-intelligence/usps-confirmations
-GET  /api/address-intelligence/export
-```
-
-Public JSON outputs:
-
-```text
-/data/address-intelligence-registry.json
-/data/registered-agent-service-addresses.json
-/data/cmra-address-evidence.json
-```
 
 ## Public JSON Record Shape
 
@@ -227,28 +176,28 @@ Public JSON outputs:
 }
 ```
 
-## Monitoring
+## Public Review Signals
 
-Monitor:
+Public review should watch for:
 
 - official registered-agent rosters;
 - known provider pages;
 - USPS DMM/Form pages;
 - source URLs already cited by registry records;
 - stale records older than the review threshold;
-- changed Smarty validation results, if rechecked.
+- changed address-validation evidence, if rechecked.
 
-Run types:
+Public observation categories:
 
 ```text
-source_refresh
-address_validation
-usps_confirmation_review
-public_export
-staleness_audit
+source observation
+address validation evidence
+USPS confirmation evidence
+public disclosure
+staleness review
 ```
 
-Every export should include:
+Every public record or feed should disclose:
 
 - generated timestamp;
 - source snapshot timestamp;
@@ -259,13 +208,12 @@ Every export should include:
 - USPS confirmation disclosure;
 - known limitations.
 
-## Implementation Order
+## Public Development Sequence
 
-1. Define the general address/evidence JSON schema.
-2. Move Wyoming CRA address export into the general input model.
-3. Add Smarty batch validation as an Azure Function service.
-4. Add evidence records for registered-agent service sources.
-5. Add CMRA evidence records without overclaiming.
-6. Add USPS confirmation workflow and disclosure fields.
-7. Publish JSON feeds through LLCInfo.cc.
-8. Add monitor jobs and stale-evidence reports.
+1. Define the public address/evidence schema.
+2. Document the source roles without collapsing registered-agent, CMRA, mailbox, virtual-office, and business-address roles.
+3. Add registered-agent service evidence without treating a provider page, state roster, or cluster rule as the whole answer.
+4. Add CMRA evidence without overclaiming when USPS or provider confirmation is incomplete.
+5. Add USPS confirmation disclosure fields.
+6. Add public staleness and limitation language.
+7. Expose only public-safe records and source summaries through the public business-identity source layer when ready.
