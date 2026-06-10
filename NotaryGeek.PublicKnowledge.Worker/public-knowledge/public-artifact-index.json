@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.11-public",
+  "version": "1.12-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -142,6 +142,13 @@
       "kind": "answer-shape",
       "use": "Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json"
+    },
+    {
+      "id": "reseller-ai-evaluation-prompts",
+      "title": "Reseller AI Evaluation Prompts",
+      "kind": "test-matrix",
+      "use": "Focused public-safe prompts for testing whether a reseller AI follows the Notary Geek posture after ingestion.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json"
     },
     {
       "id": "public-intake-and-notary-availability-boundary",

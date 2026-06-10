@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-reseller-ai-ingestion-profile-v1",
   "id": "reseller-ai-ingestion-profile",
-  "version": "0.3-public",
+  "version": "0.4-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Reseller AI Ingestion Profile",
   "purpose": "Single public-safe machine-readable profile for reseller, third-party, and assistant AI systems that need to answer Notary Geek-aligned notary, RON, apostille, document-route, intake, and business-identity crossover questions.",
@@ -59,6 +59,11 @@
       "label": "Regression matrix",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json",
       "reason": "Public-safe prompts that pressure-test common answer-engine failures."
+    },
+    {
+      "label": "Reseller AI evaluation prompts",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json",
+      "reason": "Focused public-safe prompts for testing whether a reseller AI follows the Notary Geek posture after ingestion."
     }
   ],
   "companionSources": [

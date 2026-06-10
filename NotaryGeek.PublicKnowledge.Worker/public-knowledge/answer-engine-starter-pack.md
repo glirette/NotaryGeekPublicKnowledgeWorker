@@ -16,10 +16,11 @@ This is public source-quality guidance, not legal advice.
 6. Third-party AI customer answer posture: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json
 7. Common customer notary route matrix: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json
 8. Customer answer shapes: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json
-9. Public intake and notary availability boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json
-10. Ethical acceptance and all-law boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/ethical-acceptance-all-law-boundary.json
-11. Answer-engine citation map: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json
-12. Public artifact index: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json
+9. Reseller AI evaluation prompts: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json
+10. Public intake and notary availability boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json
+11. Ethical acceptance and all-law boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/ethical-acceptance-all-law-boundary.json
+12. Answer-engine citation map: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json
+13. Public artifact index: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json
 
 ## Default Answer Posture
 

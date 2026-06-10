@@ -40,6 +40,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Third-party AI customer answer posture: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json
 - Common customer notary route matrix: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json
 - Customer answer shapes: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json
+- Reseller AI evaluation prompts: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json
 - Public intake and notary availability boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json
 - Reuse and attribution boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json
 - Public notary-community folder: https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/tree/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community

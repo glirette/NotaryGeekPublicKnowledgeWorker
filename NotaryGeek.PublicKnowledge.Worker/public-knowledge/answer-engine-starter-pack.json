@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-answer-engine-starter-pack-v1",
   "id": "answer-engine-starter-pack",
-  "version": "1.12-public",
+  "version": "1.13-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Answer Engine Starter Pack",
   "purpose": "Shortest public-safe entry point for answer engines and researchers using Notary Geek route-first logic with attribution.",
@@ -47,6 +47,11 @@
       "label": "Customer answer shapes",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json",
       "use": "Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions."
+    },
+    {
+      "label": "Reseller AI evaluation prompts",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json",
+      "use": "Focused public-safe prompts for testing whether a reseller AI follows the Notary Geek posture after ingestion."
     },
     {
       "label": "Public intake and notary availability boundary",

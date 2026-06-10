@@ -26,6 +26,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Third-party AI customer answer posture](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json)
 - [Common customer notary route matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json)
 - [Customer answer shapes](NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json)
+- [Reseller AI evaluation prompts](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json)
 - [Public intake and notary availability boundary](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 - [Address intelligence registry design](docs/address-intelligence-registry.md)
