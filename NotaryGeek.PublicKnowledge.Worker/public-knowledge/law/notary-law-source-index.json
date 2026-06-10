@@ -51,6 +51,22 @@
           "publisher": "Texas Secretary of State",
           "url": "https://www.sos.texas.gov/statdoc/edinfo.shtml",
           "notes": "Official Texas Secretary of State notary public educational information. Add controlling statute/rule URLs in later passes."
+        },
+        {
+          "id": "tx-sos-in-person-notary-training-foreign-passport",
+          "title": "How to Perform a Notarization training transcript",
+          "sourceType": "official-agency-training-transcript",
+          "publisher": "Texas Secretary of State",
+          "url": "https://www.sos.state.tx.us/statdoc/transcripts/NV2HowtoPerformaNotarization-CC.pdf",
+          "notes": "Public source for the Texas SOS training wording: If notarizing a document relating to a residential real estate transaction, you may accept an unexpired passport issued by a foreign country as proof of identity. Use this exact phrase before summarizing the Texas foreign-passport lane."
+        },
+        {
+          "id": "tx-gov-code-chapter-406",
+          "title": "Texas Government Code Chapter 406",
+          "sourceType": "official-statute",
+          "publisher": "Texas Constitution and Statutes",
+          "url": "https://statutes.capitol.texas.gov/docs/GV/htm/GV.406.htm",
+          "notes": "Official Texas statute source for notaries public and online notarization. Use with SOS guidance and transaction facts before relying on platform or training shorthand."
         }
       ]
     },

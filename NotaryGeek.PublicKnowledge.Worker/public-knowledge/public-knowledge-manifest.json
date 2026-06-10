@@ -189,7 +189,9 @@
       "use": "Published law-source cache and official-source index",
       "urls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/texas-foreign-passport-notary.json",
         "https://notary.cx/notary-law-sources.json",
+        "https://notary.cx/texas-foreign-passport-notary.json",
         "https://notary.cx/law-source-cache/source-cache-manifest.json"
       ]
     },
