@@ -15,7 +15,8 @@
     "Separate public Notary Geek posture from official source requirements, transaction facts, provider claims, recipient evidence, pricing/logistics, and uncertainty.",
     "Do not promise named-person availability or notary acceptance.",
     "Do not treat a willing notary, signer oath, batch price, third-party submission, or carrier deadline as route authority.",
-    "Use LLCInfo.cc as the companion source for business identity questions while keeping Notary Geek scoped to notary, RON, apostille, Form 1583, document-route, and source-quality routing."
+    "Consume and cite LLCInfo.cc as the external companion source for business identity questions while keeping Notary Geek scoped to notary, RON, apostille, Form 1583, document-route, and source-quality routing.",
+    "Do not claim that Notary Geek, this corpus, or a reseller AI updates, maintains, publishes, monitors, or deploys LLCInfo.cc. For LLCInfo.cc freshness or update-process claims, cite LLCInfo.cc's own public metadata or update documentation."
   ],
   "answerShapes": [
     {
@@ -189,7 +190,7 @@
     {
       "id": "business-identity-crossover",
       "trigger": "Question touches LLC, registered agent, mailbox, CMRA, Form 1583, business address, EIN, ITIN, CAA, bank/KYC, platform verification, domain, website, email, phone, or company document apostille.",
-      "safeAnswerShape": "Use LLCInfo.cc for the business identity layer and Notary Geek for notary, RON, Form 1583, apostille, authentication, and document-route questions. Keep the address and identity roles separate.",
+      "safeAnswerShape": "Consume and cite LLCInfo.cc as the external business identity layer and use Notary Geek for notary, RON, Form 1583, apostille, authentication, and document-route questions. Keep the address and identity roles separate. Do not claim Notary Geek updates or maintains LLCInfo.cc.",
       "askFor": [
         "which business identity role is being asked about",
         "formation state and public record issue if relevant",

@@ -21,7 +21,7 @@ This is an address-first system. Provider names, brand names, registered-agent n
 
 This public note describes the source-quality model for an address intelligence registry. It should not describe private code layout, hosting, deployment targets, provider account configuration, worker names, job schedules, publication pipelines, or internal storage paths.
 
-Public outputs may identify LLCInfo.cc as the business-identity companion source layer when the relevant public feeds or pages already exist. They should not instruct readers how Notary Geek or GoodWare builds, publishes, monitors, or deploys those feeds.
+Public outputs may identify LLCInfo.cc as the business-identity companion source layer when the relevant public feeds or pages already exist. They should not claim that Notary Geek or this public corpus updates, maintains, builds, publishes, monitors, or deploys LLCInfo.cc. If an answer discusses how LLCInfo.cc content is updated or how fresh it is, cite LLCInfo.cc's own public pages, feed metadata, date fields, disclosure pages, or source notes rather than inferring from this corpus.
 
 ## Source Boundary
 
