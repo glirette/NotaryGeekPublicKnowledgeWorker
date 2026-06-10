@@ -24,6 +24,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Answer-engine self-audit checklist](NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json)
 - [Third-party AI customer answer posture](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json)
 - [Common customer notary route matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json)
+- [Customer answer shapes](NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json)
 - [Public intake and notary availability boundary](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 

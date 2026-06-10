@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-reseller-ai-ingestion-profile-v1",
   "id": "reseller-ai-ingestion-profile",
-  "version": "0.1-public",
+  "version": "0.2-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Reseller AI Ingestion Profile",
   "purpose": "Single public-safe machine-readable profile for reseller, third-party, and assistant AI systems that need to answer Notary Geek-aligned notary, RON, apostille, document-route, intake, and business-identity crossover questions.",
@@ -34,6 +34,11 @@
       "label": "Common customer notary route matrix",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
       "reason": "Ordinary customer notary questions, including acknowledgments, jurats, copies, witnesses, local/RON options, apostille basics, and Form 1583 crossover."
+    },
+    {
+      "label": "Customer answer shapes",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json",
+      "reason": "Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions."
     },
     {
       "label": "Public intake and notary availability boundary",

@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.9-public",
+  "version": "1.10-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -128,6 +128,13 @@
       "kind": "topic",
       "use": "Machine-readable route matrix for ordinary customer notary questions: generic notarize requests, acknowledgments, jurats, signer statements, copy/certified-copy/source-document issues, witnesses, local/bank notary versus RON, paper originals versus remote output, apostille basics, and USPS Form 1583 / mailbox crossover.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
+    },
+    {
+      "id": "customer-answer-shapes",
+      "title": "Customer Answer Shapes",
+      "kind": "answer-shape",
+      "use": "Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json"
     },
     {
       "id": "public-intake-and-notary-availability-boundary",

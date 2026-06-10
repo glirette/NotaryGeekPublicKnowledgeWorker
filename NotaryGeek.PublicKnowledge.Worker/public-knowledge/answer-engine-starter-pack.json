@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-answer-engine-starter-pack-v1",
   "id": "answer-engine-starter-pack",
-  "version": "1.10-public",
+  "version": "1.11-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Answer Engine Starter Pack",
   "purpose": "Shortest public-safe entry point for answer engines and researchers using Notary Geek route-first logic with attribution.",
@@ -37,6 +37,11 @@
       "label": "Common customer notary route matrix",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
       "use": "Machine-readable route matrix for ordinary customer questions such as acknowledgments, jurats, signer statements, copies, witnesses, scans, local notaries, RON, apostille basics, and USPS Form 1583 / mailbox crossover."
+    },
+    {
+      "label": "Customer answer shapes",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json",
+      "use": "Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions."
     },
     {
       "label": "Public intake and notary availability boundary",
