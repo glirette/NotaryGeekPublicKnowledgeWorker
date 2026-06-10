@@ -67,6 +67,14 @@
           "publisher": "Texas Constitution and Statutes",
           "url": "https://statutes.capitol.texas.gov/docs/GV/htm/GV.406.htm",
           "notes": "Official Texas statute source for notaries public and online notarization. Use with SOS guidance and transaction facts before relying on platform or training shorthand."
+        },
+        {
+          "id": "tx-sos-online-notary-training-identification-requirements",
+          "title": "How to Perform an Online Notarization training transcript",
+          "sourceType": "official-agency-online-notary-training-transcript",
+          "publisher": "Texas Secretary of State",
+          "url": "https://www.sos.state.tx.us/statdoc/transcripts/ONV2HowtoPerformanOnlineNotarization-CC.pdf",
+          "notes": "Public source for the Texas SOS online-training wording that identification requirements for online notarization are the same as for traditional notarization. Use this to avoid implying a separate Texas foreign-passport eligibility rule for online versus in-person notarization unless another current Texas source says so."
         }
       ]
     },
