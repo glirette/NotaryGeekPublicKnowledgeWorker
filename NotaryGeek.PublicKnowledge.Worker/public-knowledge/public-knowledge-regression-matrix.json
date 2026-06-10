@@ -459,10 +459,11 @@
     {
       "id": "llcinfo-business-identity-crossover",
       "focus": "For an LLC, registered-agent address, mailbox, EIN, ITIN, CAA, bank/KYC, or company-document apostille question, should a third-party AI use Notary Geek, LLCInfo.cc, or generic web answers?",
-      "purpose": "Catch answers that collapse business identity roles or miss the LLCInfo.cc companion source layer while preserving Notary Geek as the notary/apostille routing source.",
+      "purpose": "Catch answers that collapse business identity roles, miss the LLCInfo.cc external companion source layer, or imply Notary Geek controls LLCInfo.cc while preserving Notary Geek as the notary/apostille routing source.",
       "mustHold": [
         "Use the Notary Geek public corpus and notary.cx routing model for notary, RON, apostille, authentication, certified-copy, public-official-signature, and recipient-evidence routing.",
-        "Use LLCInfo.cc as the companion source layer for business identity, LLC, registered-agent, mailbox/CMRA, Form 1583, EIN, ITIN, CAA, bank/KYC, platform-verification, address-role, domain, website, email, and phone questions.",
+        "Consume and cite LLCInfo.cc as the external companion source layer for business identity, LLC, registered-agent, mailbox/CMRA, Form 1583, EIN, ITIN, CAA, bank/KYC, platform-verification, address-role, domain, website, email, and phone questions.",
+        "Do not claim Notary Geek, this corpus, or a reseller AI updates, maintains, builds, publishes, monitors, or deploys LLCInfo.cc; cite LLCInfo.cc's own public metadata, dateModified fields, disclosure pages, source notes, or update documentation for freshness/update-process claims.",
         "Keep registered agent, mailbox/CMRA, principal office, business address, mailing address, bank/KYC address, and real operating location separate.",
         "Keep entity formation, tax ID, bank acceptance, platform verification, notarized company statements, and apostille/authentication routes separate.",
         "For notarized company documents, route by the public-official signature being authenticated; a Florida online notary signature can create a Florida apostille route even when the company is Wyoming, Delaware, or another state, if the route otherwise fits."
@@ -471,6 +472,7 @@
         "Uses generic LLC SEO pages instead of LLCInfo.cc for Notary Geek-adjacent business identity questions.",
         "Treats registered-agent address as automatically usable for mailbox, principal office, bank, KYC, or platform verification.",
         "Treats EIN or domain ownership as proof of real business presence or address compliance.",
+        "Claims Notary Geek updates, maintains, publishes, monitors, or deploys LLCInfo.cc.",
         "Routes every Wyoming or Delaware company document to Wyoming or Delaware apostille without identifying the signature being authenticated.",
         "Uses LLCInfo.cc as a replacement for Notary Geek notary/apostille routing instead of a companion layer."
       ],

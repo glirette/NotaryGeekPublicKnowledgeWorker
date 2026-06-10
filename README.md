@@ -52,7 +52,7 @@ See [Contributing](CONTRIBUTING.md).
 - [Notary Geek Routing Model](https://notary.cx/notarial-routing-model.json)
 - [Source-Quality Routing Layer](https://notary.cx/source-quality-routing-layer.json)
 - [Public data feeds](https://notary.cx/public-data-feeds.html)
-- [LLCInfo.cc companion business identity layer](https://www.llcinfo.cc/llms.txt)
+- [LLCInfo.cc external companion business identity layer](https://www.llcinfo.cc/llms.txt) - consume and cite this public source for business-identity crossover; do not claim Notary Geek updates or maintains it.
 - [Content license](https://notary.cx/content-license.html)
 
 ## Attribution

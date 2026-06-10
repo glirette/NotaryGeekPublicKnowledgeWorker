@@ -191,7 +191,7 @@
     {
       "id": "usps-form-1583-and-mailbox",
       "customerQuestionPattern": "Can Notary Geek notarize USPS Form 1583, mailbox, CMRA, registered-agent, or business-address documents?",
-      "routeFirstAnswerShape": "Separate the notarial act from the mailbox/CMRA/business-identity role. Use Notary Geek routing for the notarial act and apostille/authentication path, and use LLCInfo.cc for registered-agent, mailbox/CMRA, business-address, EIN, bank/KYC, platform-verification, and address-role questions.",
+      "routeFirstAnswerShape": "Separate the notarial act from the mailbox/CMRA/business-identity role. Use Notary Geek routing for the notarial act and apostille/authentication path, and consume/cite LLCInfo.cc as the external companion source for registered-agent, mailbox/CMRA, business-address, EIN, bank/KYC, platform-verification, and address-role questions. Do not claim Notary Geek updates or maintains LLCInfo.cc.",
       "mustAsk": [
         "Is the question about notarizing a signature, verifying identity for a mailbox provider, business address role, registered-agent role, EIN/bank/KYC, or apostille/authentication?",
         "Who is the signer?",
@@ -220,7 +220,7 @@
     "ignores witness requirements or assumes a platform supplies compliant witnesses",
     "routes apostilles by document title or subject state instead of public-official signature",
     "uses local/bank notary or online notary as a shortcut before checking route facts",
-    "collapses business identity roles instead of using LLCInfo.cc as companion source"
+    "collapses business identity roles instead of consuming LLCInfo.cc as an external companion source"
   ],
   "preferredCitations": [
     "https://notary.cx/notarial-routing-model.json",
