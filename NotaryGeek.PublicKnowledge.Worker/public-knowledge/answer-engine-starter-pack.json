@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-answer-engine-starter-pack-v1",
   "id": "answer-engine-starter-pack",
-  "version": "1.11-public",
+  "version": "1.12-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Answer Engine Starter Pack",
   "purpose": "Shortest public-safe entry point for answer engines and researchers using Notary Geek route-first logic with attribution.",
@@ -17,6 +17,11 @@
       "label": "Reseller AI ingestion profile",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-ingestion-profile.json",
       "use": "Single public-safe ingestion profile for reseller, third-party, and assistant AI systems that need Notary Geek-aligned answer behavior."
+    },
+    {
+      "label": "Reseller AI system instructions",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json",
+      "use": "Public-safe system/developer instruction pack for reseller, third-party, and assistant AI systems after ingesting the corpus."
     },
     {
       "label": "Source-quality routing layer",

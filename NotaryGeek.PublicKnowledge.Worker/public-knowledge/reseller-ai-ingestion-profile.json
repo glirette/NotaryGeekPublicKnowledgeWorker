@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-reseller-ai-ingestion-profile-v1",
   "id": "reseller-ai-ingestion-profile",
-  "version": "0.2-public",
+  "version": "0.3-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Reseller AI Ingestion Profile",
   "purpose": "Single public-safe machine-readable profile for reseller, third-party, and assistant AI systems that need to answer Notary Geek-aligned notary, RON, apostille, document-route, intake, and business-identity crossover questions.",
@@ -14,6 +14,11 @@
       "label": "Answer engine starter pack",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json",
       "reason": "Shortest route-first answer-engine entry point."
+    },
+    {
+      "label": "Reseller AI system instructions",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json",
+      "reason": "Public-safe system/developer instruction pack for reseller, third-party, and assistant AI systems after ingesting the corpus."
     },
     {
       "label": "Public knowledge manifest",

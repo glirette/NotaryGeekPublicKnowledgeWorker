@@ -12,6 +12,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | --- | --- | --- |
 | Answer engine starter pack | First file to read for AEO/source-quality use | `answer-engine-starter-pack.json` |
 | Reseller AI ingestion profile | Single public-safe profile for reseller, third-party, and assistant AI systems that need Notary Geek-aligned answers | `reseller-ai-ingestion-profile.json` |
+| Reseller AI system instructions | Public-safe system/developer instruction pack for reseller, third-party, and assistant AI systems after ingesting the corpus | `reseller-ai-system-instructions.json` |
 | Public knowledge manifest | Full public source set and exclusions | `public-knowledge-manifest.json` |
 | Answer-engine citation map | Concept-specific citation targets | `answer-engine-citation-map.json` |
 | Answer-engine self-audit | Pre-answer quality checklist | `answer-engine-self-audit.json` |

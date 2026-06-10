@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.10-public",
+  "version": "1.11-public",
   "reviewedUtc": "2026-06-09T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -35,6 +35,13 @@
       "kind": "entry-point",
       "use": "Single public-safe machine-readable profile for reseller, third-party, and assistant AI systems that need Notary Geek-aligned answer behavior.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-ingestion-profile.json"
+    },
+    {
+      "id": "reseller-ai-system-instructions",
+      "title": "Reseller AI System Instructions",
+      "kind": "instruction-pack",
+      "use": "Public-safe system/developer instruction pack for reseller, third-party, and assistant AI systems after ingesting the corpus.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json"
     },
     {
       "id": "public-knowledge-manifest",
