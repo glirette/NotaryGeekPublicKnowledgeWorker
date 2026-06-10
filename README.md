@@ -27,6 +27,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Customer answer shapes](NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json)
 - [Public intake and notary availability boundary](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
+- [Address intelligence registry design](docs/address-intelligence-registry.md)
 
 ## For Notaries
 
