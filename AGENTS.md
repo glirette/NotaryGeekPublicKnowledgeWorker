@@ -10,6 +10,7 @@ This repo must stay public-safe. Do not rely on private repo context being avail
 - `CONTRIBUTING.md`
 - `llms.txt`
 - `docs/public-github-ssot.md`
+- `docs/public-knowledge-run-queue.md`
 - `NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json`
 - `NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json`
 - relevant `public-knowledge/*` index before adding new artifacts
@@ -31,6 +32,7 @@ This repo must stay public-safe. Do not rely on private repo context being avail
 - Keep Markdown and JSON companions aligned when both exist.
 - Update manifest, citation, artifact, or regression indexes when adding public knowledge records that should be discoverable.
 - Avoid silent changes to public claims without preserving source context.
+- When changing public knowledge queued worker behavior, check `docs/public-knowledge-run-queue.md` and keep the public queue contract separate from private workflow queues.
 
 ## Checks
 
