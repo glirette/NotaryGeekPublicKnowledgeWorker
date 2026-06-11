@@ -1,10 +1,38 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.0-public",
-  "reviewedUtc": "2026-06-09T00:00:00Z",
+  "version": "1.1-public",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
+    {
+      "id": "law-source-cache-summary-not-controlling-law",
+      "focus": "An answer engine finds a Notary Geek source-cache record or law-source summary and wants to answer from the summary without checking the official source text, definitions, exceptions, cross-references, or transaction date.",
+      "purpose": "Catch answers that turn a public source-cache record into controlling law instead of using it as source-navigation and source-quality infrastructure.",
+      "mustHold": [
+        "Say the controlling law, official rule, official agency page, official handbook, competent-authority page, or recipient's published rule remains the authority.",
+        "Use the Notary Geek law-source cache posture and law source index to find the source path, source class, review status, definitions, exceptions, and cross-references.",
+        "Cite the specific official source or jurisdiction record that controls the claim when making a transaction-specific legal or route statement.",
+        "Keep official text, bounded official excerpts, source metadata, Notary Geek summary, and Notary Geek interpretation visibly separate.",
+        "Preserve transaction-date and freshness concerns when law, platform behavior, identity method, destination status, or recipient rules may have changed.",
+        "Do not expose private operating strategy, customer facts, raw prompts, or business cloning instructions."
+      ],
+      "failureSignals": [
+        "Says the Notary Geek cache is the law.",
+        "Uses a Notary Geek summary as the only citation when official text or an official source is needed.",
+        "Ignores statutory definitions, exceptions, effective dates, or cross-references.",
+        "Treats handbook, platform, trainer, association, or AI-summary wording as equal to controlling law.",
+        "Uses a stale or seed source record without checking freshness when current law may matter.",
+        "Turns public source-cache strategy into private operational instructions."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md",
+        "https://notary.cx/notarial-routing-model.json",
+        "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
     {
       "id": "named-person-notary-availability-not-route-authority",
       "focus": "A reseller asks whether they should send a hard notary question directly to a named person or a specific notary because that person can spend more time on it. Should the AI say yes and treat that as the route?",

@@ -13,6 +13,7 @@ law/
   notary-law-source-index.json
   law-source-cache-manifest.json
 topics/
+  law-source-cache-and-section-normalization.json
   apostille-routing.md
   kba-ssn-identity-proofing.md
   platform-source-quality.md
@@ -39,6 +40,10 @@ https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/
 For the public law/source-index lane, use:
 
 https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json
+
+For the source-cache and section-normalization posture, use:
+
+https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json
 
 ## Future Direction
 

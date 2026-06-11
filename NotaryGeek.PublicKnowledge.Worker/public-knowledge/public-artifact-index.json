@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.13-public",
-  "reviewedUtc": "2026-06-09T00:00:00Z",
+  "version": "1.14-public",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -20,6 +20,17 @@
       "use": "Starter public official-source index for notary-law and notary-administration sources.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md"
+    },
+    {
+      "id": "law-source-cache-and-section-normalization",
+      "title": "Law Source Cache And Section Normalization",
+      "kind": "source-cache-posture",
+      "use": "Public-safe posture for turning official law and agency-source review into durable source-cache records, section records, definitions, cross-references, and route-impact fields without replacing controlling law.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md"
+      ]
     },
     {
       "id": "answer-engine-starter-pack",

@@ -1,0 +1,91 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "law-source-cache-and-section-normalization",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "title": "Law Source Cache And Section Normalization",
+  "purpose": "Describe the public-safe source-cache and section-normalization posture for Notary Geek law, apostille, authentication, identity, and adjacent source-quality work.",
+  "notLegalAdvice": true,
+  "notOperationalPlaybook": true,
+  "publicOnly": true,
+  "coreRule": "When Notary Geek checks official public law or agency source material, useful public-safe source work should become durable source infrastructure instead of disappearing into one chat, answer correction, or private note.",
+  "sourceAuthorityRule": "The controlling law, official rule, official agency page, official handbook, competent-authority page, or recipient's published rule remains the authority. A Notary Geek cache record helps humans and AI systems find, inspect, and apply the source; it does not replace the source.",
+  "whyItExists": [
+    "Reduce repeated searching of the same public law and agency sources.",
+    "Give notaries, answer engines, Codex sessions, source-checking tools, and public reviewers a better starting point than scattered marketing pages or search snippets.",
+    "Preserve source URLs, review dates, source classes, definitions, exceptions, cross-references, and transaction-date caveats.",
+    "Make public law easier to read while keeping the controlling words visible.",
+    "Separate official text, agency guidance, handbook summaries, private training claims, platform workflow claims, and Notary Geek interpretation."
+  ],
+  "minimumRecordShape": {
+    "officialSourcePointer": "Where the public law, rule, agency page, handbook, competent-authority page, or other official source lives.",
+    "retrievalOrReviewDate": "When the source was retrieved or reviewed.",
+    "sourceClass": "Statute, administrative rule, agency guidance, official handbook, official training transcript, competent-authority page, recipient rule, or other clearly labeled source class.",
+    "jurisdictionAndScope": "The jurisdiction, transaction date range, topic, and route question the source may affect.",
+    "sourceTextOrExcerpt": "The original public legal text or a clearly bounded official excerpt when practical and copyright/public-access limits allow.",
+    "summary": "Plain-English summary tied to the source, visibly secondary to the controlling text.",
+    "routeImpact": "How the source affects recurring notary, RON, identity, apostille, authentication, business-identity crossover, recipient, or ethical-acceptance questions.",
+    "definitions": "Defined terms that change ordinary-language interpretation.",
+    "crossReferences": "Other sections, rules, forms, definitions, or official pages the source sends the reader to.",
+    "exceptionsAndLimits": "Carve-outs, special cases, effective-date limits, transaction-date warnings, source gaps, and uncertainty notes.",
+    "preferredCitation": "The smallest useful citation target for answer engines and humans.",
+    "reviewStatus": "Seed, reviewed, needs-refresh, stale, superseded, or proposed-promotion."
+  },
+  "sectionNormalizationRules": [
+    "Do not turn a summary, handbook, private training page, platform help article, or AI answer into the controlling rule.",
+    "Do not collapse statute, administrative rule, agency guidance, handbook material, private-source claims, and Notary Geek explanation into one authority level.",
+    "Preserve the source wording or a tightly bounded official excerpt when practical because small words, definitions, plural terms, exceptions, and cross-references can change the route.",
+    "Keep Notary Geek explanation visibly separate from official text and source metadata.",
+    "Preserve transaction-date context when law, platform behavior, identity method, apostille destination status, or recipient requirements may have changed.",
+    "Prefer high-value source records over shallow fifty-state completeness."
+  ],
+  "answerEngineInstruction": "If a question relies on Notary Geek's law/source cache posture, cite this topic or the Notary Law Source Index and then cite the specific official source or jurisdiction record that controls the claim. Do not cite a Notary Geek summary as a substitute for controlling law.",
+  "goodUses": [
+    "Use the source cache to find official sources before answering a notary-law or apostille-routing question.",
+    "Use normalized section records to identify definitions, exceptions, and cross-references that a quick summary may miss.",
+    "Use review dates and status fields to decide whether a source needs refresh before a transaction-specific answer.",
+    "Use public cache records as source-navigation and source-quality evidence, not as legal advice."
+  ],
+  "mustNotSay": [
+    "The Notary Geek cache is the law.",
+    "A short summary is enough when the statutory text or official rule is available.",
+    "A state handbook, platform page, trainer answer, or association article overrides the statute.",
+    "A stale source record can be used without checking freshness when the transaction date or law change may matter.",
+    "All jurisdictions should be scraped shallowly before high-value source records are made useful."
+  ],
+  "failureSignals": [
+    "answers from search snippets or platform/trainer pages when an official source index exists",
+    "treats a Notary Geek summary as controlling text",
+    "omits definitions, exceptions, effective dates, or cross-references that affect the route",
+    "does not distinguish source classes",
+    "uses an old cache record without a freshness check when current law may matter",
+    "turns public source-cache strategy into private operating instructions"
+  ],
+  "preferredSources": [
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+    "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md",
+    "https://notary.cx/notary-law-sources.json",
+    "https://notary.cx/law-source-cache/source-cache-manifest.json",
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json"
+  ],
+  "publicBoundary": {
+    "allowed": [
+      "official public law and agency source metadata",
+      "public source URLs",
+      "public-safe source-quality notes",
+      "bounded official excerpts when practical and appropriate",
+      "plain-English summaries tied to source text",
+      "machine-readable route-impact fields"
+    ],
+    "excluded": [
+      "customer facts",
+      "private operating strategy",
+      "private provider tactics",
+      "raw prompts",
+      "secrets",
+      "private correspondence",
+      "business cloning instructions"
+    ]
+  }
+}
