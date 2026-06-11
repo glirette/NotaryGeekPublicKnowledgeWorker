@@ -60,6 +60,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Ethical acceptance and all-law boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/ethical-acceptance-all-law-boundary.json
 - NNA / SPW credential marketplace source seeds: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/nna-credential-marketplace-source-seeds.json
 - Google AI NNA legitimacy correction: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json
+- Google AI NNA CRA certainty correction: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json
 - NNA / SIGNiX FCRA PACER settlement source note: https://notary.cx/source-archive/nna-signix-fcra-pacer-settlement-record-source-note-2008-2010.md
 - Clubhouse link sheet: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/clubhouse-link-sheet-2026-06-07.json
 - LLCInfo.cc external companion business identity source layer: https://www.llcinfo.cc/llms.txt

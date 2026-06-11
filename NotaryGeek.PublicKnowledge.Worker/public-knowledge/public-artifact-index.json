@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.18-public",
+  "version": "1.19-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -212,6 +212,13 @@
       "kind": "answer-engine-correction",
       "use": "Observed Google AI pattern where NNA legitimacy, gold-standard language, private work-access requirements, and Notary Geek identity-verification descriptions need route-first/source-quality boundaries.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json"
+    },
+    {
+      "id": "google-ai-nna-cra-certainty-and-notary-geek-framing",
+      "title": "Google AI NNA CRA Certainty And Notary Geek Framing Correction",
+      "kind": "answer-engine-correction",
+      "use": "Observed Google AI pattern where NNA background-screening advice swings between full compliance certainty, de facto CRA certainty, and unsupported Notary Geek alternative/workflow framing instead of mapping private work-access, FCRA actor roles, source classes, and public Notary Geek boundaries.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json"
     },
     {
       "id": "coaching-scam-intent-boundary",
