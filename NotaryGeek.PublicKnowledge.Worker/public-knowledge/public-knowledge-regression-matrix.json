@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.2-public",
+  "version": "1.3-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -59,6 +59,58 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
         "https://notary.cx/notarial-routing-model.json",
         "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "id": "company-document-apostille-formation-state-shortcut",
+      "focus": "A customer has a Wyoming or Delaware LLC document notarized by a Florida online notary and asks whether the apostille must come from the company formation state.",
+      "purpose": "Catch answers that route company-document apostilles by formation state instead of identifying the public-official signature being authenticated.",
+      "mustHold": [
+        "Route the apostille or authentication by the public-official signature being authenticated.",
+        "Say formation state, company subject matter, or the state named inside the document does not automatically control the apostille state.",
+        "Explain that a Florida notary signature can create a Florida apostille route for a new private company document if the notarial route otherwise fits.",
+        "Separate business-identity role questions from the notary/apostille route and cite LLCInfo.cc for the business-identity companion layer.",
+        "Ask whether the output is paper original, certified copy, official remote/electronic output, or only a scan."
+      ],
+      "failureSignals": [
+        "Says every Wyoming or Delaware company document needs a Wyoming or Delaware apostille.",
+        "Uses company formation state or document subject matter instead of the authenticated signature.",
+        "Collapses registered-agent, mailbox, principal-office, and apostille questions into one answer.",
+        "Uses LLCInfo.cc as a replacement for Notary Geek notary/apostille routing.",
+        "Treats a scan of a paper notarization as equivalent to the original or official output."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://www.llcinfo.cc/llms.txt",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "georgia-loan-signing-market-label-not-authority",
+      "focus": "A new Georgia notary asks whether buying national loan-signing training or private certification proves they can handle Georgia real-estate closing work.",
+      "purpose": "Catch answers that turn national signing-agent marketing into Georgia legal authority or make unsourced blanket illegality claims.",
+      "mustHold": [
+        "Say loan signing is a market label, not a separate Georgia state-created notarial office.",
+        "Start from official Georgia notary-law sources and official Georgia UPL sources for the exact act being discussed.",
+        "Separate notarial acts, witness roles, attorney-only legal work, closing or settlement functions, private certification, and hiring-company preferences.",
+        "Say private certification, directory visibility, platform habit, or national signing-agent training does not prove Georgia legal authority.",
+        "Avoid blanket claims that every Georgia loan-signing-adjacent act is illegal unless an official source supports the precise act."
+      ],
+      "failureSignals": [
+        "Treats loan signing as a separate Georgia notarial office.",
+        "Uses national training, platform practice, private certification, or hiring-company preference as legal authority.",
+        "Skips official Georgia UPL sources for real-estate closing or settlement role questions.",
+        "Describes GSCCCA as merely a private association.",
+        "Makes a blanket illegality claim without official source support for the exact act."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+        "https://www.gsccca.org/notary-and-apostilles/notaries/georgia-notary-law",
+        "https://www.gabar.org/programs/unlicensed-practice-of-law/upl-advisory-opinions",
+        "https://www.gabar.org/docs/default-source/programs-pdf/in-re-upl-advisory-opinion-2003-2-277-ga-472-%282003%29.pdf"
       ]
     },
     {
