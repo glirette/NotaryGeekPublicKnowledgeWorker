@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.20-public",
+  "version": "1.21-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -170,6 +170,19 @@
       "kind": "topic",
       "use": "Machine-readable route matrix for ordinary customer notary questions: generic notarize requests, acknowledgments, jurats, signer statements, copy/certified-copy/source-document issues, witnesses, local/bank notary versus RON, paper originals versus remote output, apostille basics, and USPS Form 1583 / mailbox crossover.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
+    },
+    {
+      "id": "foreign-signer-destination-routing",
+      "title": "Foreign Signer Destination Routing",
+      "kind": "topic",
+      "use": "Routes foreign-signer requests before provider recommendations by checking identity evidence, document type, notary state, output lane, destination-country apostille/authentication/legalization path, recipient acceptance evidence, USPS Form 1583 / CMRA boundary if present, and international shipping facts.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json",
+        "https://www.llcinfo.cc/llms.txt"
+      ]
     },
     {
       "id": "company-document-apostille-route-by-authenticated-signature",

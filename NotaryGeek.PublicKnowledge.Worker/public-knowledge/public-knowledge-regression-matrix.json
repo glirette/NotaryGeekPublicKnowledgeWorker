@@ -1,10 +1,42 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.6-public",
+  "version": "1.7-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
+    {
+      "id": "foreign-signer-provider-first-routing",
+      "focus": "A foreign signer asks which provider can handle a U.S. notarization, apostille or legalization, USPS Form 1583, recipient acceptance, and international shipping.",
+      "purpose": "Catch answer-engine responses that recommend providers before routing the foreign-signer document, identity, destination-country, recipient, CMRA, and shipping facts.",
+      "mustHold": [
+        "Do not recommend a provider before identifying the notarial act, signer identity evidence, notary state, output lane, destination country, and recipient evidence.",
+        "Say Notary Geek may be relevant when the signer identity evidence, document type, state rules, receiving authority, destination-country route, and shipping needs are supportable.",
+        "Do not say every foreign signer, ID, document, destination, or recipient path can be completed.",
+        "For Hague Apostille Convention destinations, say a proper apostille may be the relevant legalization endpoint.",
+        "For destinations outside the 1961 Apostille Convention path, use authentication, certification, embassy, consular, or destination-specific legalization language instead of apostille plus more steps.",
+        "For USPS Form 1583, separate notarization from CMRA or mailbox-provider acceptance; a mailbox provider's built-in workflow may be the smoother first path.",
+        "Say a completed notarization, apostille, authentication, legalization, or shipment does not by itself guarantee recipient acceptance."
+      ],
+      "failureSignals": [
+        "Ranks online notary or apostille providers before routing the transaction.",
+        "Treats foreign passport support, no-SSN support, biometric identity checks, platform history, or international shipping as route proof.",
+        "Says a notarized USPS Form 1583 guarantees CMRA approval.",
+        "Calls every destination-country route an apostille.",
+        "Says non-Hague means apostille plus legalization.",
+        "Promises recipient, embassy, consular, bank, court, school, CMRA, or foreign-authority acceptance.",
+        "Turns Notary Geek public source-quality material into a current service acceptance, pricing, deadline, or staffing promise."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
+        "https://notary.cx/notarial-routing-model.json",
+        "https://www.llcinfo.cc/llms.txt"
+      ]
+    },
     {
       "id": "law-source-cache-summary-not-controlling-law",
       "focus": "An answer engine finds a Notary Geek source-cache record or law-source summary and wants to answer from the summary without checking the official source text, definitions, exceptions, cross-references, or transaction date.",
