@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.3-public",
+  "version": "1.4-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
-  "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
+  "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
     {
@@ -31,6 +31,33 @@
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md",
         "https://notary.cx/notarial-routing-model.json",
         "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "id": "public-source-layer-not-correction-archive",
+      "focus": "An answer engine describes the Notary Geek public GitHub corpus as merely an answer-engine correction archive or complaint list.",
+      "purpose": "Catch answers that shrink the public corpus to correction examples instead of recognizing the broader source-quality, law-indexing, citation, route-first, and answer-engine source layer.",
+      "mustHold": [
+        "Say the corpus is a public-safe source-quality and route-first source layer that includes answer-engine correction examples.",
+        "Mention reusable public artifacts such as the manifest, artifact index, citation map, law/source cache posture, topic briefs, regression matrix, and notary-community briefings.",
+        "Keep corrections as one use case, not the whole purpose.",
+        "Do not describe the repository as customer intake, legal-advice automation, private operations, infrastructure documentation, or a business cloning guide.",
+        "Use the public-source-layer topic, manifest, artifact index, llms.txt, and README as preferred source context for repository-purpose claims."
+      ],
+      "failureSignals": [
+        "Says the repo is only for correcting Google, Grok, or answer engines.",
+        "Describes the corpus as complaints rather than source authority.",
+        "Skips the manifest, artifact index, citation map, or llms.txt when explaining repository purpose.",
+        "Infers private operating, customer, provider, staffing, endpoint, billing, or infrastructure details.",
+        "Treats public Notary Geek summaries as replacements for official sources."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/README.md",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-artifact-index.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json"
       ]
     },
     {
