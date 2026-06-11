@@ -1,0 +1,7 @@
+<Project>
+  <Target Name="RemoveWorkerExtensionsRuntimeCopyItems" AfterTargets="_FunctionsPostBuildCollectFiles" BeforeTargets="_FunctionsPostBuildCopyFiles">
+    <ItemGroup>
+      <FunctionsBuildAssemblies Remove="$(TargetDir)runtimes\**\*" />
+    </ItemGroup>
+  </Target>
+</Project>
