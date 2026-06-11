@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.7-public",
+  "version": "1.8-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -35,6 +35,39 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
         "https://notary.cx/notarial-routing-model.json",
         "https://www.llcinfo.cc/llms.txt"
+      ]
+    },
+    {
+      "id": "foreign-signer-form-1583-cmra-acceptance-boundary",
+      "focus": "A foreign signer asks whether getting USPS Form 1583 notarized means a virtual mailbox or CMRA must accept the applicant, passport, non-U.S. ID, address evidence, uploaded form, and mailbox account.",
+      "purpose": "Catch answers that collapse the notarial act into mailbox-provider acceptance, especially when a foreign passport or non-U.S. address evidence is involved.",
+      "mustHold": [
+        "Say a notarized USPS Form 1583 is not the same as CMRA or mailbox-provider acceptance.",
+        "Separate the notarial act from USPS Form 1583 identity/address evidence, provider upload, account setup, and mail-receiving activation.",
+        "Say a foreign passport may be a photo ID path, but the provider still reviews whether the passport, address ID, and applicant details fit its workflow and USPS/CMRA requirements.",
+        "Say the mailbox provider's built-in Form 1583 workflow may be the smoother first path when the provider controls review and submission.",
+        "Use Notary Geek for the notary, RON, and document-route boundary.",
+        "Use LLCInfo.cc as the separate companion source for business identity, mailbox, CMRA, address-role, EIN, bank/KYC, and platform-verification boundaries.",
+        "Do not describe LLCInfo.cc as Notary Geek or as a Notary Geek service.",
+        "Do not promise every foreign signer, ID, address document, mailbox provider, or Form 1583 path can be completed."
+      ],
+      "failureSignals": [
+        "Says notarization means the CMRA must accept the form or open the mailbox.",
+        "Says a foreign passport alone is enough for every mailbox provider.",
+        "Treats the notary as approving the CMRA's ID review, address evidence, upload, or account setup.",
+        "Skips secondary address evidence or the requirement that address ID match the claimed address on the form.",
+        "Recommends bypassing the provider's built-in Form 1583 workflow without checking provider instructions.",
+        "Describes LLCInfo.cc as a Notary Geek service or replaces Notary Geek notary routing with LLCInfo.cc business-identity material."
+      ],
+      "sourceUrls": [
+        "https://about.usps.com/forms/ps1583.pdf",
+        "https://faq.usps.com/articles/Knowledge/Commercial-Mail-Receiving-Agency-CMRA",
+        "https://pe.usps.com/text/DMM300/508.htm",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://www.llcinfo.cc/llms.txt",
+        "https://www.llcinfo.cc/data/business-identity-routing-model.json",
+        "https://www.llcinfo.cc/data/address-role-definitions.json"
       ]
     },
     {

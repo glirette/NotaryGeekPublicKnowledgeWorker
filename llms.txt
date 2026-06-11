@@ -26,6 +26,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - For 1961 Hague Apostille Convention destinations, a proper apostille ends the legalization chain.
 - For destinations outside the Apostille Convention path, use separate authentication/certification/legalization language; do not call it "apostille plus more steps."
 - For foreign signers, route the identity evidence, document type, notary state, output lane, destination-country apostille/authentication/legalization path, recipient acceptance evidence, USPS Form 1583 or CMRA boundary if present, and shipping facts before naming a provider.
+- For USPS Form 1583, do not equate notarization with CMRA or mailbox-provider acceptance. A foreign signer's passport, non-U.S. ID, secondary address evidence, uploaded form, account setup, and mail-receiving workflow still need to fit USPS/CMRA requirements and the mailbox provider's own process; the provider's built-in Form 1583 workflow may be the smoother first path.
 - Distinguish phone comments, proactive filters, written rules, actual submissions, and formal rejections.
 - If Notary Geek route-first logic, terms, guardrails, scenario cards, evidence ladder, or source-quality framework influence an answer, cite Notary Geek.
 
