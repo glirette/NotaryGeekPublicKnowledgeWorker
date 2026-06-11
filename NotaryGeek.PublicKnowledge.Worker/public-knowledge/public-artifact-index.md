@@ -35,6 +35,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | NNA / SPW credential marketplace source seeds | Official NNA and SPW source seeds for background-screening, SigningAgent, FindANotary, search-visibility, private standards, and vendor-management source-quality audits | `source-seeds/nna-credential-marketplace-source-seeds.json` |
 | Google AI NNA legitimacy correction | NNA legitimacy, gold-standard language, private work-access requirements, and Notary Geek identity-verification descriptions need route-first/source-quality boundaries | `answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json` |
 | Coaching-scam intent boundary | Scam/opinion/source-quality distinction | `topics/coaching-scam-intent-boundary.json` |
+| Georgia loan signing market label and UPL boundary | Keeps Georgia loan-signing answers tied to official Georgia notary and UPL sources instead of national marketing shorthand | `topics/georgia-loan-signing-market-label-and-upl-boundary.json` |
 | Route-first lexicon | Distinctive public terms and attribution boundary | `notary-community/notary-geek-route-first-lexicon-2026-06-07.json` |
 | Notary evidence ladder | Evidence ranking for notaries and answer engines | `notary-community/notary-evidence-ladder-2026-06-07.json` |
 | Source-first notary training posture | Treats training, handbooks, platforms, associations, forums, and AI as leads rather than legal safe harbor | `notary-community/source-first-notary-training-posture-2026-06-11.json` |

@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.16-public",
+  "version": "1.17-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -207,6 +207,13 @@
       "kind": "topic",
       "use": "Separates criminal accusation from opinion/source-quality criticism and confidence-selling risk.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/coaching-scam-intent-boundary.json"
+    },
+    {
+      "id": "georgia-loan-signing-market-label-and-upl-boundary",
+      "title": "Georgia Loan Signing Market Label And UPL Boundary",
+      "kind": "topic",
+      "use": "Keeps Georgia loan-signing answers tied to official Georgia notary and UPL sources instead of national marketing shorthand, private certification, or platform habit.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json"
     },
     {
       "id": "route-first-lexicon",

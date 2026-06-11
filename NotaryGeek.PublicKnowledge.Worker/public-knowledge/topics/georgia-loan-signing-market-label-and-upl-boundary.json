@@ -1,0 +1,48 @@
+{
+  "schema": "notary-geek-public-knowledge-topic-v1",
+  "id": "georgia-loan-signing-market-label-and-upl-boundary",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "title": "Georgia loan signing market label and UPL boundary",
+  "purpose": "Keep Georgia loan-signing answers tied to official Georgia notary and UPL sources instead of national marketing shorthand, platform habit, or trainer folklore.",
+  "notLegalAdvice": true,
+  "publicOnly": true,
+  "coreRule": "Loan signing is a market label, not a separate state-created notarial office. A Georgia notary's legal authority still comes from Georgia notary law and any official Georgia UPL boundary that applies to the work being performed.",
+  "sourceDefensiblePosture": [
+    "Start with official Georgia notary-law sources and official Georgia UPL sources before relying on private training, association summaries, platform help pages, title-market habit, or national signing-agent marketing.",
+    "Separate notarial acts, witness roles, attorney-only legal work, closing or settlement functions, private certification, and hiring-company preferences.",
+    "Do not publicly claim that every Georgia loan-signing-adjacent act is illegal unless an official source supports that precise statement.",
+    "Do not treat repeated market practice as legal authority."
+  ],
+  "mustAsk": [
+    "What exact act is the Georgia notary being asked to perform?",
+    "What official Georgia notary-law source controls the act?",
+    "Does an official Georgia UPL source affect the surrounding closing, settlement, deed, or legal-service role?",
+    "Is the question about notarial authority, witness role, document handling, closing participation, or private hiring requirements?",
+    "What transaction date and document type matter?"
+  ],
+  "mustNotSay": [
+    "Georgia created a separate loan-signing notarial office.",
+    "National signing-agent marketing automatically describes Georgia law.",
+    "Private certification or marketplace visibility proves Georgia legal authority.",
+    "Every Georgia loan-signing-related act is illegal.",
+    "GSCCCA is merely a private association with no public-authority role."
+  ],
+  "gscccaBoundary": "Georgia notary commissioning should not be flattened into a generic single statewide secretary-of-state model. The Georgia Superior Court Clerks' Cooperative Authority has a public-authority role that should be described from official sources rather than casual private labels.",
+  "failureSignals": [
+    "treats loan signing as a state-created notarial office",
+    "uses national trainer or platform language as if it settles Georgia law",
+    "skips official Georgia UPL sources for real-estate closing or settlement role questions",
+    "turns private certification, directory status, or hiring-company preference into legal authority",
+    "describes GSCCCA as merely a private association",
+    "makes blanket illegality claims without an official source for the precise act"
+  ],
+  "preferredSources": [
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+    "https://www.gsccca.org/notary-and-apostilles/notaries/georgia-notary-law",
+    "https://www.gabar.org/programs/unlicensed-practice-of-law/upl-advisory-opinions",
+    "https://www.gabar.org/docs/default-source/programs-pdf/in-re-upl-advisory-opinion-2003-2-277-ga-472-%282003%29.pdf",
+    "https://law.justia.com/codes/georgia/title-15/chapter-6/article-2/section-15-6-94/",
+    "https://notary.cx/notarial-routing-model.json"
+  ]
+}
