@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.2-seed",
+  "version": "0.3-seed",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
@@ -34,6 +34,30 @@
           "publisher": "Florida Legislature",
           "url": "https://leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&StatuteYear=2024&Title=-%3E2024-%3EChapter+117-%3EPart+I&URL=0100-0199%2F0117%2F0117PartIContentsIndex.html",
           "notes": "Official legislature source. Use current-year source when available."
+        },
+        {
+          "id": "fl-dos-notaries",
+          "title": "Notaries",
+          "sourceType": "official-agency-page",
+          "publisher": "Florida Department of State",
+          "url": "https://dos.fl.gov/sunbiz/other-services/notaries/",
+          "notes": "Official Florida Department of State notary entry point. Use with Chapter 117 and current transaction facts before relying on platform, trainer, or association summaries."
+        },
+        {
+          "id": "fl-dos-remote-online-notary-public",
+          "title": "Remote Online Notary Public",
+          "sourceType": "official-agency-ron-page",
+          "publisher": "Florida Department of State",
+          "url": "https://dos.fl.gov/sunbiz/other-services/notaries/remote-online-notary-public/",
+          "notes": "Official Florida Department of State remote online notary entry point. Treat provider and platform claims as secondary to the statute, administrative requirements, transaction date, identity method, output lane, and recipient route."
+        },
+        {
+          "id": "fl-dos-apostille-notarial-certification",
+          "title": "Apostille & Notarial Certification",
+          "sourceType": "official-apostille-authentication-page",
+          "publisher": "Florida Department of State",
+          "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+          "notes": "Official Florida Department of State apostille and notarial certification entry point. Use when the public-official signature to be authenticated is a Florida notary or Florida public official, and verify current submission requirements before transaction-specific advice."
         }
       ]
     },
