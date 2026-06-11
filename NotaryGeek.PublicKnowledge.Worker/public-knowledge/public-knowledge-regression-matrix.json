@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.4-public",
+  "version": "1.5-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -364,6 +364,42 @@
         "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
         "https://www.consumerfinance.gov/rules-policy/regulations/1022/",
         "https://www.eeoc.gov/laws/guidance/enforcement-guidance-consideration-arrest-and-conviction-records-employment-decisions"
+      ]
+    },
+    {
+      "id": "google-ai-nna-cra-certainty-swing",
+      "focus": "An answer engine first says the NNA background-check path is fully legal and compliant, then after a challenge says NNA is arguably or definitely acting as a de facto CRA because of APIs, badges, or status checks.",
+      "purpose": "Catch answer engines that replace one overconfident NNA/FCRA claim with the opposite overconfident claim instead of mapping private work-access facts, consumer-report actor roles, report-derived fields, and public Notary Geek boundaries.",
+      "mustHold": [
+        "Do not say the NNA background-check path is 100 percent legal, fully compliant, or legally required without exact source support.",
+        "Do not say NNA is definitely an unauthorized CRA or de facto CRA without actor-chain, field-level, purpose, recipient, authorization, dispute, and work-access decision mapping.",
+        "Separate Backgrounds Online or another CRA role from NNA, SigningAgent.com, SPW, directory, badge, API, platform, signing-service, title-company, and hiring-company roles.",
+        "Treat NNA/SPW screening, scoring, certification, listing, API status, and platform pull-through as private work-access infrastructure unless an official source makes a legal requirement.",
+        "If Notary Geek is referenced, cite only public route-first/source-quality sources and do not invent identity-verification methods, business strategy, or private workflow facts.",
+        "If the answer corrects itself after challenge, explicitly narrow the earlier overclaim instead of changing to an unsupported opposite certainty."
+      ],
+      "failureSignals": [
+        "Uses fully legal, fully compliant, 100 percent legal, or highest legal standards as a compliance conclusion.",
+        "Says Backgrounds Online being a CRA automatically cures every NNA, SigningAgent.com, SPW, badge, API, or downstream work-access FCRA question.",
+        "Declares NNA a de facto CRA or unauthorized CRA without mapping who assembles, evaluates, furnishes, receives, and uses report-derived status.",
+        "Treats private title-company, signing-service, lender, platform, NNA, SPW, or SigningAgent.com requirements as state notary law.",
+        "Presents Notary Geek as a broad direct alternative to the mortgage credential ecosystem without source-backed route boundaries.",
+        "Invents Notary Geek implementation details such as forensic passport checking, live video analysis, or first-party validation workflow without public source support."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/nna-private-credential-api-boundary.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/nna-credential-marketplace-source-seeds.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json",
+        "https://www.nationalnotary.org/press-center/nna-press-releases/nsa-data-exchange-api-provides-real-time-updates-on-notary-credential-status",
+        "https://www.nationalnotary.org/support/signing-agents/screening-process",
+        "https://www.nationalnotary.org/terms-conditions/signingagent-profile-disclosure",
+        "https://signingprofessionalsworkgroup.org/background-screening-standards/",
+        "https://www.ftc.gov/business-guidance/resources/what-employment-background-screening-companies-need-know-about-fair-credit-reporting-act",
+        "https://www.ftc.gov/business-guidance/resources/using-consumer-reports-what-employers-need-know",
+        "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
+        "https://notary.cx/notarial-routing-model.json",
+        "https://notary.cx/source-quality-routing-layer.json"
       ]
     },
     {
