@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.1-seed",
-  "reviewedUtc": "2026-06-08T00:00:00Z",
+  "version": "0.2-seed",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -100,6 +100,76 @@
           "publisher": "California Secretary of State",
           "url": "https://www.sos.ca.gov/notary/handbook",
           "notes": "Official California notary handbook page. Verify current handbook year before relying on a handbook statement."
+        }
+      ]
+    },
+    {
+      "id": "us-de",
+      "country": "US",
+      "state": "DE",
+      "name": "Delaware",
+      "status": "seed-official-sources-identified",
+      "authorityNotes": [
+        "Delaware notary and apostille questions should distinguish the Delaware Notary Public site from Delaware Division of Corporations apostille/authentication pages.",
+        "For Delaware company-document apostille questions, identify the Delaware notary or Delaware public official signature being authenticated before assuming entity formation alone answers the route.",
+        "The Delaware Division of Corporations page reviewed on 2026-06-11 states that the Division can authenticate or apostille documents signed by a Delaware notary or Delaware public official and lists categories it will not apostille or authenticate. Verify the current page before relying on a transaction-specific route."
+      ],
+      "sources": [
+        {
+          "id": "de-notary-public-home",
+          "title": "Delaware Notary Public",
+          "sourceType": "official-agency-page",
+          "publisher": "State of Delaware",
+          "url": "https://notary.delaware.gov/",
+          "notes": "Official Delaware Notary Public entry point for applications, FAQs, Delaware laws, approved technology providers, apostilles/authentications, and other notary administration pages."
+        },
+        {
+          "id": "de-notary-laws",
+          "title": "Delaware Laws",
+          "sourceType": "official-statute-entry-point",
+          "publisher": "Delaware Notary Public / State of Delaware",
+          "url": "https://notary.delaware.gov/delaware-laws/",
+          "notes": "Official Delaware Notary Public laws page. It points to Delaware Code Title 29, Chapter 43 for notaries public. Use current Delaware Code text before relying on a specific section."
+        },
+        {
+          "id": "de-notary-faqs",
+          "title": "Frequently Asked Questions",
+          "sourceType": "official-agency-faq",
+          "publisher": "Delaware Notary Public / State of Delaware",
+          "url": "https://notary.delaware.gov/faqs/",
+          "notes": "Official Delaware Notary Public FAQ entry point. Useful for implementation questions such as copies, foreign-language documents, electronic/remote notary services, and certificate requirements, but do not treat FAQ wording as a substitute for the code section it references."
+        },
+        {
+          "id": "de-notary-approved-technology-providers",
+          "title": "Approved Technology Providers",
+          "sourceType": "official-agency-ron-technology-page",
+          "publisher": "Delaware Notary Public / State of Delaware",
+          "url": "https://notary.delaware.gov/approved-technology-providers/",
+          "notes": "Official Delaware page for approved electronic and remote technology providers. Use this as provider-approval evidence only, not as a general legal safe harbor for every transaction or recipient."
+        },
+        {
+          "id": "de-notary-apostilles-authentications",
+          "title": "Apostilles & Authentications",
+          "sourceType": "official-agency-apostille-pointer",
+          "publisher": "Delaware Notary Public / State of Delaware",
+          "url": "https://notary.delaware.gov/apostilles-authentications/",
+          "notes": "Official Delaware Notary Public page stating that requests for apostilles and authentications for documents notarized by a Delaware notary public are handled by the Delaware Division of Corporations."
+        },
+        {
+          "id": "de-division-corporations-apostille-info",
+          "title": "Certifications, Apostilles and Authentication of Documents",
+          "sourceType": "official-apostille-authentication-page",
+          "publisher": "Delaware Division of Corporations",
+          "url": "https://corp.delaware.gov/apost_info/",
+          "notes": "Official Delaware Division of Corporations apostille/authentication page. Reviewed 2026-06-11; it states the Division can authenticate or apostille documents signed by a Delaware notary or Delaware public official and identifies categories the Division does not accept, including out-of-state documents and photocopied documents. Verify current wording before transaction-specific advice."
+        },
+        {
+          "id": "de-division-corporations-non-commercial-apostille",
+          "title": "Submitting Non-Commercial Documents for Apostille or Authentication",
+          "sourceType": "official-apostille-authentication-instructions",
+          "publisher": "Delaware Division of Corporations",
+          "url": "https://corp.delaware.gov/submitting-non-commercial-documents-for-apostille-or-authentication/",
+          "notes": "Official Delaware Division of Corporations instructions for non-commercial apostille/authentication submissions. Use for submission mechanics only after the signature/authentication route is identified."
         }
       ]
     },
