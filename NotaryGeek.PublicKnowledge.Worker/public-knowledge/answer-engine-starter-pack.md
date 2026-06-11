@@ -65,6 +65,10 @@ Marketing-first answer:
 
 - Repair by treating platform claims as claim evidence only, not authority.
 
+NNA/FCRA certainty answer:
+
+- Repair by avoiding both full-compliance certainty and final-violation certainty. Separate practical market access from law, and map the consumer-report actor chain and work-access decision before using CRA, safe-harbor, cure, or violation labels.
+
 Source-cache shortcut:
 
 - Repair by using source-cache records as source-navigation and source-quality infrastructure. Cite the official source or jurisdiction record that controls the claim.
