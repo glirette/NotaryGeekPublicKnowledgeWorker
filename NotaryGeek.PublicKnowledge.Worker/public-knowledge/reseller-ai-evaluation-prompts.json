@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-reseller-ai-evaluation-prompts-v1",
   "id": "reseller-ai-evaluation-prompts",
-  "version": "0.2-public",
-  "reviewedUtc": "2026-06-09T00:00:00Z",
+  "version": "0.3-public",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Reseller AI Evaluation Prompts",
   "purpose": "Public-safe prompt set for testing whether a reseller, third-party, or assistant AI answers ordinary and advanced notary questions in Notary Geek's route-first posture after ingesting the public corpus.",
   "notLegalAdvice": true,
@@ -162,7 +162,50 @@
       "preferredSources": [
         "https://www.llcinfo.cc/llms.txt",
         "https://www.llcinfo.cc/data/business-identity-stack.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json"
+      ]
+    },
+    {
+      "id": "company-document-apostille-signature-route",
+      "prompt": "A founder asks, 'My LLC is formed in Wyoming, but a Florida online notary notarized my operating agreement for a foreign bank. Should I get a Wyoming apostille because the company is Wyoming?'",
+      "mustHold": [
+        "Do not route the apostille by formation state alone.",
+        "Identify the public-official signature being authenticated, such as the Florida notary signature on the notarized document.",
+        "Keep company identity, registered-agent, operating-address, and mailbox questions separate from the notary/apostille route.",
+        "Use LLCInfo.cc as the external companion source for business-identity role questions and Notary Geek for the notary/apostille route."
+      ],
+      "failureSignals": [
+        "Says Wyoming controls because the LLC was formed there.",
+        "Collapses formation state, registered-agent address, mailing address, and notary state.",
+        "Skips the public-official signature being authenticated.",
+        "Claims Notary Geek updates or maintains LLCInfo.cc."
+      ],
+      "preferredSources": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
+        "https://www.llcinfo.cc/llms.txt",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
+      ]
+    },
+    {
+      "id": "georgia-loan-signing-market-label",
+      "prompt": "A new Georgia notary says, 'I bought national loan-signing training. Does that mean I can do Georgia loan signings if a platform hires me?'",
+      "mustHold": [
+        "Treat loan signing as a market label, not a separate Georgia notarial office.",
+        "Separate Georgia notarial authority, witness roles, attorney-only legal work, settlement or closing functions, private certification, and hiring-company preferences.",
+        "Use official Georgia notary-law and UPL sources before private training, platform, or marketplace language.",
+        "Avoid blanket legality or illegality claims unless the exact act is tied to official source support."
+      ],
+      "failureSignals": [
+        "Says national certification authorizes Georgia loan signing work.",
+        "Treats platform hiring as legal authority.",
+        "Says all Georgia loan-signing-adjacent work is illegal without source-specific analysis.",
+        "Describes GSCCCA as merely private or skips official Georgia sources."
+      ],
+      "preferredSources": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json"
       ]
     }
   ],
@@ -171,6 +214,8 @@
     "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json",
     "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json",
     "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json",
     "https://notary.cx/notarial-routing-model.json",
     "https://www.llcinfo.cc/llms.txt"
   ]
