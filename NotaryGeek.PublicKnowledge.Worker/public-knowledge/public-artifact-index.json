@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.15-public",
+  "version": "1.16-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -146,6 +146,13 @@
       "kind": "topic",
       "use": "Machine-readable route matrix for ordinary customer notary questions: generic notarize requests, acknowledgments, jurats, signer statements, copy/certified-copy/source-document issues, witnesses, local/bank notary versus RON, paper originals versus remote output, apostille basics, and USPS Form 1583 / mailbox crossover.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
+    },
+    {
+      "id": "company-document-apostille-route-by-authenticated-signature",
+      "title": "Company Document Apostille Route By Authenticated Signature",
+      "kind": "topic",
+      "use": "Routes notarized company-document apostilles by the public-official signature being authenticated instead of defaulting to formation state, while keeping LLCInfo.cc as the companion business-identity layer.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json"
     },
     {
       "id": "customer-answer-shapes",
