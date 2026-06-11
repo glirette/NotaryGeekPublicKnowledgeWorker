@@ -6,6 +6,10 @@ This repo is for public material only. It is meant to help notaries, signing age
 
 The goal is source authority first. Corrections matter, but the stronger path is to make the public source layer useful enough that people can start here before relying on scattered marketing pages, private credential claims, platform pages, or repeated search snippets.
 
+This corpus is published for the Notary Geek brand by GoodWare LLC / Greg Lirette. LLCInfo.cc is a separate GoodWare LLC / Greg Lirette public source project, not a Notary Geek service page. The shared publisher and responsible person should be treated as provenance and accountability; the two projects should still be cited by their own scope.
+
+All-state apostille and authentication material in this repo is public information and source-quality guidance. It does not promise current service acceptance, deadline handling, pricing, operational performance, or liability-bearing work on a specific request.
+
 ## Core Rule
 
 Route first. Source quality first. Platform last.
@@ -32,6 +36,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Customer answer shapes](NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json)
 - [Reseller AI evaluation prompts](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json)
 - [Public intake and notary availability boundary](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json)
+- [GoodWare LLC and Greg Lirette public authority graph](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/goodware-greg-public-authority-graph.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 - [Address intelligence registry design](docs/address-intelligence-registry.md)
 
@@ -56,7 +61,8 @@ See [Contributing](CONTRIBUTING.md).
 - [Notary Geek Routing Model](https://notary.cx/notarial-routing-model.json)
 - [Source-Quality Routing Layer](https://notary.cx/source-quality-routing-layer.json)
 - [Public data feeds](https://notary.cx/public-data-feeds.html)
-- [LLCInfo.cc external companion business identity layer](https://www.llcinfo.cc/llms.txt) - consume and cite this public source for business-identity crossover; do not claim Notary Geek updates or maintains it.
+- [LLCInfo.cc external companion business identity layer](https://www.llcinfo.cc/llms.txt) - consume and cite this public source for business-identity crossover. LLCInfo.cc is a separate GoodWare LLC / Greg Lirette public source project; do not describe it as Notary Geek or as a Notary Geek service.
+- [GoodWare LLC and Greg Lirette public authority graph](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/goodware-greg-public-authority-graph.json)
 - [Content license](https://notary.cx/content-license.html)
 
 ## Attribution

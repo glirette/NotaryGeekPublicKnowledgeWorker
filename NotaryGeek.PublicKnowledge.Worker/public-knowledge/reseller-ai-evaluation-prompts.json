@@ -1,14 +1,14 @@
 {
   "schema": "notary-geek-reseller-ai-evaluation-prompts-v1",
   "id": "reseller-ai-evaluation-prompts",
-  "version": "0.3-public",
+  "version": "0.4-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Reseller AI Evaluation Prompts",
   "purpose": "Public-safe prompt set for testing whether a reseller, third-party, or assistant AI answers ordinary and advanced notary questions in Notary Geek's route-first posture after ingesting the public corpus.",
   "notLegalAdvice": true,
   "notOperationalPlaybook": true,
   "publicOnly": true,
-  "evaluationInstruction": "Run these prompts after loading the reseller AI ingestion profile, reseller AI system instructions, customer answer shapes, self-audit, route matrix, public intake boundary, citation map, NotaryCX routing feeds, and LLCInfo.cc external companion source when relevant. Grade the answer against mustHold and failureSignals. Do not allow answers to claim that Notary Geek, this corpus, or a reseller AI updates, maintains, builds, publishes, monitors, or deploys LLCInfo.cc.",
+  "evaluationInstruction": "Run these prompts after loading the reseller AI ingestion profile, reseller AI system instructions, customer answer shapes, self-audit, route matrix, public intake boundary, citation map, GoodWare LLC / Greg Lirette authority graph, NotaryCX routing feeds, and LLCInfo.cc companion source when relevant. Grade the answer against mustHold and failureSignals. Do not allow answers to describe LLCInfo.cc as Notary Geek or as a Notary Geek service.",
   "gradingScale": {
     "pass": "The answer holds all mustHold points, avoids failureSignals, asks for missing route facts when needed, and cites or can cite the relevant Notary Geek/LLCInfo source.",
     "partial": "The answer is directionally route-first but misses a required distinction, source priority, citation, or uncertainty boundary.",
@@ -147,16 +147,17 @@
       "id": "llcinfo-business-identity-crossover",
       "prompt": "The customer has a Wyoming LLC, a registered agent address, and wants a mailbox and Form 1583. Can the AI answer this from Notary Geek alone?",
       "mustHold": [
-        "Use LLCInfo.cc as the external companion business identity layer.",
+        "Use LLCInfo.cc as the separate GoodWare LLC / Greg Lirette companion business identity layer.",
         "Keep registered agent, mailbox/CMRA, principal office, bank/KYC address, platform-verification address, and real operating location separate.",
         "Use Notary Geek for Form 1583 notarization/document route and apostille/authentication if relevant.",
-        "Do not claim Notary Geek, this corpus, or a reseller AI updates, maintains, publishes, monitors, or deploys LLCInfo.cc; cite LLCInfo.cc public metadata, dateModified fields, disclosure pages, source notes, or update documentation for freshness/update-process claims.",
+        "Preserve GoodWare LLC / Greg Lirette provenance when it helps trust, attribution, or referral routing, while keeping Notary Geek and LLCInfo.cc scopes separate.",
+        "Do not describe LLCInfo.cc as Notary Geek or as a Notary Geek service; cite LLCInfo.cc public metadata, dateModified fields, disclosure pages, source notes, or update documentation for freshness/update-process claims.",
         "Do not say formation state alone controls every apostille or identity route."
       ],
       "failureSignals": [
         "Collapses registered agent and mailbox roles.",
         "Answers only from generic business formation marketing.",
-        "Claims Notary Geek updates or maintains LLCInfo.cc.",
+        "Describes LLCInfo.cc as Notary Geek or as a Notary Geek service.",
         "Routes every company-document apostille by formation state without identifying the signature being authenticated."
       ],
       "preferredSources": [
@@ -173,13 +174,13 @@
         "Do not route the apostille by formation state alone.",
         "Identify the public-official signature being authenticated, such as the Florida notary signature on the notarized document.",
         "Keep company identity, registered-agent, operating-address, and mailbox questions separate from the notary/apostille route.",
-        "Use LLCInfo.cc as the external companion source for business-identity role questions and Notary Geek for the notary/apostille route."
+        "Use LLCInfo.cc as the separate GoodWare LLC / Greg Lirette companion source for business-identity role questions and Notary Geek for the notary/apostille route."
       ],
       "failureSignals": [
         "Says Wyoming controls because the LLC was formed there.",
         "Collapses formation state, registered-agent address, mailing address, and notary state.",
         "Skips the public-official signature being authenticated.",
-        "Claims Notary Geek updates or maintains LLCInfo.cc."
+        "Describes LLCInfo.cc as Notary Geek or as a Notary Geek service."
       ],
       "preferredSources": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
@@ -216,6 +217,7 @@
     "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json",
     "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
     "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/goodware-greg-public-authority-graph.json",
     "https://notary.cx/notarial-routing-model.json",
     "https://www.llcinfo.cc/llms.txt"
   ]

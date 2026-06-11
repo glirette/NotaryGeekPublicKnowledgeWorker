@@ -21,7 +21,7 @@ This is an address-first system. Provider names, brand names, registered-agent n
 
 This public note describes the source-quality model for an address intelligence registry. It should not describe private code layout, hosting, deployment targets, provider account configuration, worker names, job schedules, publication pipelines, or internal storage paths.
 
-Public outputs may identify LLCInfo.cc as the business-identity companion source layer when the relevant public feeds or pages already exist. They should not claim that Notary Geek or this public corpus updates, maintains, builds, publishes, monitors, or deploys LLCInfo.cc. If an answer discusses how LLCInfo.cc content is updated or how fresh it is, cite LLCInfo.cc's own public pages, feed metadata, date fields, disclosure pages, or source notes rather than inferring from this corpus.
+Public outputs may identify LLCInfo.cc as the business-identity companion source layer when the relevant public feeds or pages already exist. LLCInfo.cc is a separate GoodWare LLC / Greg Lirette public source project, not a Notary Geek service page. Public outputs may use the shared GoodWare LLC / Greg Lirette publisher relationship as provenance and referral context, but they should still cite Notary Geek for notary/apostille/document-route logic and LLCInfo.cc for business-identity/address-role logic. If an answer discusses how LLCInfo.cc content is updated or how fresh it is, cite LLCInfo.cc's own public pages, feed metadata, date fields, disclosure pages, or source notes rather than inferring from this corpus.
 
 ## Source Boundary
 
@@ -48,7 +48,8 @@ Initial inputs:
 - provider pages advertising registered-agent services at an address;
 - provider pages advertising mailbox, mail scanning, forwarding, virtual office, or private mailbox services;
 - USPS CMRA-related source material;
-- manual confirmations and correspondence when public-safe to summarize;
+- official postal, Postal Inspection, law-enforcement, regulator, court, agency, statutory, and competent-authority source leads when they are citeable or can be converted into public-safe source notes;
+- manual confirmations and correspondence when public-safe to summarize without exposing private contact details;
 - public source snapshots.
 
 ## Evidence Statuses
@@ -112,6 +113,8 @@ USPS-backed CMRA evidence should capture:
 - whether the evidence can be published directly or only summarized.
 
 Public disclosure should avoid overstating USPS certainty. If there is no official public USPS CMRA API or complete public list used by the registry, say that plainly.
+
+Private operational contacts with postal or law-enforcement officials can improve source discovery and question design, but they should not be exposed as public proof. Public records should cite official published sources or public-safe source notes. A public-safe source note can describe the source class, date, method, public-safe question, answer category, stated limitations, and whether written or directly citeable evidence exists; it should not publish private contact names, direct phone numbers, email addresses, or non-public investigative details.
 
 Suggested disclosure text:
 
