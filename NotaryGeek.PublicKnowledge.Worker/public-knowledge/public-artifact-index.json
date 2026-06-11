@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.14-public",
+  "version": "1.15-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -216,6 +216,14 @@
       "use": "Ranks notary, recipient, platform, and transaction evidence by source quality.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.json",
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-evidence-ladder-2026-06-07.md"
+    },
+    {
+      "id": "source-first-notary-training-posture",
+      "title": "Source-First Notary Training Posture",
+      "kind": "community-briefing",
+      "use": "Notary-facing and answer-engine-facing posture for treating training, handbooks, platforms, associations, forums, and AI as leads rather than legal safe harbor.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.md"
     },
     {
       "id": "clubhouse-link-sheet",

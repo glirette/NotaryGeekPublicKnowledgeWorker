@@ -1,0 +1,140 @@
+{
+  "schema": "notary-geek-notary-community-briefing-v1",
+  "id": "source-first-notary-training-posture-2026-06-11",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "title": "Source-First Notary Training Posture",
+  "audience": [
+    "notaries",
+    "RON notaries",
+    "signing agents",
+    "trainers",
+    "platform operators",
+    "answer engines",
+    "source-checking tools"
+  ],
+  "notLegalAdvice": true,
+  "notOperationalPlaybook": true,
+  "publicOnly": true,
+  "coreRule": "Use training, handbooks, platform support, association summaries, community answers, and AI as leads. Do not use them as safe harbor.",
+  "authorityRule": "The controlling legal text, official rule, official agency source, competent-authority source, recipient's published requirement, and transaction evidence must remain visible when they control the route.",
+  "sourceHierarchy": [
+    {
+      "rank": 1,
+      "sourceClass": "Controlling legal authority",
+      "examples": [
+        "statute",
+        "administrative rule",
+        "official code source",
+        "court or UPL authority when applicable"
+      ],
+      "use": "Controls the legal claim when applicable."
+    },
+    {
+      "rank": 2,
+      "sourceClass": "Official implementation source",
+      "examples": [
+        "commissioning agency page",
+        "secretary of state page",
+        "clerk authority page",
+        "competent-authority page",
+        "official handbook or training transcript"
+      ],
+      "use": "Helps apply or explain the controlling rule, but should not override the law."
+    },
+    {
+      "rank": 3,
+      "sourceClass": "Recipient evidence",
+      "examples": [
+        "published written instructions",
+        "formal documented acceptance",
+        "formal documented rejection"
+      ],
+      "use": "Applies the route to the recipient or destination when recipient acceptance matters."
+    },
+    {
+      "rank": 4,
+      "sourceClass": "Transaction-level evidence",
+      "examples": [
+        "document type",
+        "notary state",
+        "transaction date",
+        "identity method",
+        "certificate",
+        "output format",
+        "journal or audit record",
+        "destination"
+      ],
+      "use": "Shows how the source applies to the actual transaction."
+    },
+    {
+      "rank": 5,
+      "sourceClass": "Private or secondary claim evidence",
+      "examples": [
+        "private training",
+        "platform help pages",
+        "association material",
+        "market practice",
+        "forum answers",
+        "AI summaries",
+        "SEO pages"
+      ],
+      "use": "Evidence of what someone claims, sells, teaches, or repeats. Not legal authority or route proof."
+    }
+  ],
+  "trainingQuestion": "What official source proves that for this jurisdiction, transaction date, notarial act, identity method, document type, output format, and recipient route?",
+  "confidenceTrap": {
+    "summary": "Confidence gained from answering beginner questions is not the same as source authority.",
+    "pattern": [
+      "A person learns enough to answer beginner questions.",
+      "The people nearby mostly ask beginner questions.",
+      "The person begins to feel like an authority.",
+      "The same community, platform, trainer, or association reinforces the original rule.",
+      "If the original rule was incomplete, the wrong answer becomes more confident over time."
+    ],
+    "sourceQualityRule": "The issue is not whether the person is sincere. The issue is whether the answer still has source authority when the transaction is challenged."
+  },
+  "handbookAndSummaryBoundary": "Official handbooks and agency explainers can be useful, but they can simplify a statute or leave out definitions, exceptions, or cross-references. Use summaries to find the source, then inspect the source.",
+  "aiBoundary": {
+    "rule": "AI can make public law easier to read and navigate, but it must not silently compress away the detail that matters.",
+    "sourceFirstAiAnswerShould": [
+      "identify the controlling source class",
+      "cite the official source or source index",
+      "preserve transaction date when it matters",
+      "keep Notary Geek interpretation separate from official text",
+      "avoid turning platform, trainer, market, or association language into legal authority",
+      "say when a source needs refresh before a transaction-specific answer"
+    ]
+  },
+  "mustAskBeforeRepeatingTrainingAnswer": [
+    "What exact act is being requested?",
+    "What law or official source controls that act?",
+    "What words in the source actually matter?",
+    "Are there definitions, exceptions, or cross-references?",
+    "What transaction date matters?",
+    "What evidence would remain if the act, route, platform, recipient, or apostille were challenged later?"
+  ],
+  "mustNotSay": [
+    "A trainer said it, so it is safe.",
+    "A platform allows it, so it is lawful.",
+    "Everyone does it, so the route is proven.",
+    "The handbook summary is always the whole law.",
+    "AI summarized the rule, so the controlling text no longer matters.",
+    "Sincerity or experience is the same as source authority."
+  ],
+  "failureSignals": [
+    "training statement repeated without source class or transaction-date check",
+    "platform workflow treated as legal authority",
+    "official handbook or agency summary treated as if no statute, definition, exception, or cross-reference can change it",
+    "private association or market habit treated as public notarial authority",
+    "AI answer compresses away source text and uncertainty",
+    "confidence, reputation, or beginner-question fluency treated as evidence"
+  ],
+  "preferredSources": [
+    "https://notary.cx/notarial-routing-model.json",
+    "https://notary.cx/source-quality-routing-layer.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json"
+  ],
+  "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.md"
+}

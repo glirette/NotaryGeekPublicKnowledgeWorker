@@ -47,6 +47,7 @@ Do not use it as a private operational recipe, customer-data workflow, infrastru
 - Reuse and attribution boundary: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reuse-and-attribution.json
 - Public notary-community folder: https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/tree/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community
 - Route-first notary briefing: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-notary-briefing-2026-06-07.json
+- Source-first notary training posture: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.json
 - Route-first quick reference card: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-quick-reference-card-2026-06-07.json
 - Route-first scenario cards: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/route-first-scenario-cards-2026-06-07.json
 - Skeptical notary FAQ: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/skeptical-notary-faq-2026-06-07.json

@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.1-public",
+  "version": "1.2-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, and platform-last source quality.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -29,6 +29,34 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md",
+        "https://notary.cx/notarial-routing-model.json",
+        "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "id": "source-first-training-not-safe-harbor",
+      "focus": "A notary asks whether they can rely on a trainer, platform support article, handbook summary, association page, forum answer, or AI response because it says the act is allowed.",
+      "purpose": "Catch answers that treat secondary training and workflow sources as legal safe harbor instead of source leads.",
+      "mustHold": [
+        "Say training, handbooks, platform support, association summaries, community answers, and AI can be useful leads but are not safe harbor.",
+        "Ask what official source proves the answer for the jurisdiction, transaction date, notarial act, identity method, document type, output format, and recipient route.",
+        "Distinguish controlling legal authority, official implementation sources, recipient evidence, transaction-level evidence, and private or secondary claim evidence.",
+        "Explain that confidence, sincerity, experience, reputation, or beginner-question fluency is not source authority.",
+        "Use summaries to find the source, then inspect the source text, definitions, exceptions, and cross-references when they matter.",
+        "Keep the answer public-safe and do not expose private operating strategy."
+      ],
+      "failureSignals": [
+        "Says a trainer, platform, association, or market habit makes the route safe.",
+        "Says an official handbook summary always replaces the statute or rule.",
+        "Treats AI's summary as enough without official source or source index citation.",
+        "Uses experience, reputation, community repetition, or confidence as evidence.",
+        "Skips transaction date, identity method, output format, or recipient route.",
+        "Treats source-first training posture as legal advice or private operational instruction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.json",
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.md",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
         "https://notary.cx/notarial-routing-model.json",
         "https://notary.cx/source-quality-routing-layer.json"
       ]

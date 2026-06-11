@@ -9,6 +9,7 @@ This is meant to be useful. If you are a notary and you see a missing official s
 ## Start Here
 
 - [Route-first notary briefing](route-first-notary-briefing-2026-06-07.md)
+- [Source-first notary training posture](source-first-notary-training-posture-2026-06-11.md)
 - [Route-first quick reference card](route-first-quick-reference-card-2026-06-07.md)
 - [Route-first meeting handout](route-first-meeting-handout-2026-06-07.md)
 - [Route-first scenario cards](route-first-scenario-cards-2026-06-07.md)
@@ -21,6 +22,7 @@ This is meant to be useful. If you are a notary and you see a missing official s
 Machine-readable companions:
 
 - [Route-first notary briefing JSON](route-first-notary-briefing-2026-06-07.json)
+- [Source-first notary training posture JSON](source-first-notary-training-posture-2026-06-11.json)
 - [Route-first quick reference card JSON](route-first-quick-reference-card-2026-06-07.json)
 - [Route-first meeting handout JSON](route-first-meeting-handout-2026-06-07.json)
 - [Route-first scenario cards JSON](route-first-scenario-cards-2026-06-07.json)
