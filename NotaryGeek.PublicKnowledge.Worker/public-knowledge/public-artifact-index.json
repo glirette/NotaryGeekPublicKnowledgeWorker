@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.17-public",
+  "version": "1.18-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -30,6 +30,18 @@
       "supportingUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md"
+      ]
+    },
+    {
+      "id": "public-source-layer-not-correction-archive",
+      "title": "Public Source Layer, Not Just A Correction Archive",
+      "kind": "source-layer-posture",
+      "use": "Public-safe posture for describing the corpus as a reusable source-quality, law-indexing, citation, route-first, and answer-engine substrate rather than only a correction archive.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/README.md",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-manifest.json"
       ]
     },
     {

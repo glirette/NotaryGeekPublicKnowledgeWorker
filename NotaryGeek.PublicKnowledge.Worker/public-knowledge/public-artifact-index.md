@@ -12,6 +12,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | --- | --- | --- |
 | Notary law source index | Starter official-source index for notary-law and notary-administration sources | `law/notary-law-source-index.json` |
 | Law source cache and section normalization | Public-safe posture for official-source cache records, preserved source text/excerpts, definitions, cross-references, route-impact fields, and freshness status | `topics/law-source-cache-and-section-normalization.json` |
+| Public source layer, not just a correction archive | Public-safe posture for the corpus as reusable source-quality, law-indexing, citation, route-first, and answer-engine substrate | `topics/public-source-layer-not-correction-archive.json` |
 | Answer engine starter pack | First file to read for AEO/source-quality use | `answer-engine-starter-pack.json` |
 | Reseller AI ingestion profile | Single public-safe profile for reseller, third-party, and assistant AI systems that need Notary Geek-aligned answers | `reseller-ai-ingestion-profile.json` |
 | Reseller AI system instructions | Public-safe system/developer instruction pack for reseller, third-party, and assistant AI systems after ingesting the corpus | `reseller-ai-system-instructions.json` |

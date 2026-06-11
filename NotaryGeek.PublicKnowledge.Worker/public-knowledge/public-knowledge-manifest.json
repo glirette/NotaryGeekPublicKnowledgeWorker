@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "1.29-public",
+  "version": "1.30-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -18,6 +18,7 @@
     "resellerAiEvaluationPromptsUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json",
     "publicIntakeAndNotaryAvailabilityBoundaryUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
     "lawSourceCacheAndSectionNormalizationUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+    "publicSourceLayerNotCorrectionArchiveUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json",
     "companyDocumentApostilleRouteByAuthenticatedSignatureUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
     "georgiaLoanSigningMarketLabelAndUplBoundaryUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json"
   },
@@ -76,7 +77,8 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
-        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json"
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json"
       ]
     },
     {
@@ -135,6 +137,7 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json"
       ]
     },
