@@ -14,7 +14,8 @@
     "queues": {
       "batchSize": 4,
       "newBatchThreshold": 2,
-      "maxPollingInterval": "00:00:05"
+      "maxPollingInterval": "00:00:05",
+      "maxDequeueCount": 5
     }
   }
 }
