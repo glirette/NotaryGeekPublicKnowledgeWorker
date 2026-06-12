@@ -1,0 +1,88 @@
+name: helperfunc low-risk review
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  content-only:
+    name: content-only approval
+    if: ${{ github.event.pull_request.draft == false }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Evaluate changed files
+        id: evaluate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+
+          gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/files" --jq '.[].filename' > changed-files.txt
+
+          if [ ! -s changed-files.txt ]; then
+            echo "content_only=false" >> "${GITHUB_OUTPUT}"
+            echo "No changed files were reported." >> "${GITHUB_STEP_SUMMARY}"
+            exit 0
+          fi
+
+          blocked=0
+          {
+            echo "Changed files:"
+            sed 's/^/- /' changed-files.txt
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+          while IFS= read -r file; do
+            case "${file}" in
+              README.md|CONTRIBUTING.md|NOTICE|llms.txt)
+                ;;
+              docs/*.md|docs/*.json|docs/*.jsonl|docs/*.csv|docs/*.ndjson|docs/*.txt|docs/**/*.md|docs/**/*.json|docs/**/*.jsonl|docs/**/*.csv|docs/**/*.ndjson|docs/**/*.txt)
+                ;;
+              NotaryGeek.PublicKnowledge.Worker/public-knowledge/*.md|NotaryGeek.PublicKnowledge.Worker/public-knowledge/*.json|NotaryGeek.PublicKnowledge.Worker/public-knowledge/*.jsonl|NotaryGeek.PublicKnowledge.Worker/public-knowledge/*.csv|NotaryGeek.PublicKnowledge.Worker/public-knowledge/*.ndjson|NotaryGeek.PublicKnowledge.Worker/public-knowledge/*.txt|NotaryGeek.PublicKnowledge.Worker/public-knowledge/**/*.md|NotaryGeek.PublicKnowledge.Worker/public-knowledge/**/*.json|NotaryGeek.PublicKnowledge.Worker/public-knowledge/**/*.jsonl|NotaryGeek.PublicKnowledge.Worker/public-knowledge/**/*.csv|NotaryGeek.PublicKnowledge.Worker/public-knowledge/**/*.ndjson|NotaryGeek.PublicKnowledge.Worker/public-knowledge/**/*.txt)
+                ;;
+              *)
+                echo "::notice::helperfunc will not auto-approve because ${file} is outside the low-risk public-content allowlist."
+                blocked=1
+                ;;
+            esac
+          done < changed-files.txt
+
+          if [ "${blocked}" -eq 0 ]; then
+            echo "content_only=true" >> "${GITHUB_OUTPUT}"
+            echo "helperfunc classified this PR as low-risk public content/docs only." >> "${GITHUB_STEP_SUMMARY}"
+          else
+            echo "content_only=false" >> "${GITHUB_OUTPUT}"
+            echo "helperfunc did not classify this PR as low-risk public content/docs only." >> "${GITHUB_STEP_SUMMARY}"
+          fi
+
+      - name: Approve low-risk public content PR
+        if: ${{ steps.evaluate.outputs.content_only == 'true' }}
+        shell: bash
+        env:
+          DEFAULT_GITHUB_TOKEN: ${{ github.token }}
+          HELPERFUNC_REVIEW_TOKEN: ${{ secrets.HELPERFUNC_REVIEW_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          set -euo pipefail
+
+          review_token="${HELPERFUNC_REVIEW_TOKEN:-${DEFAULT_GITHUB_TOKEN}}"
+          export GH_TOKEN="${review_token}"
+
+          if gh pr review "${PR_URL}" --approve --body "helperfunc approved this as low-risk public content/docs-only. This does not cover code, workflow, secret, or executable changes."; then
+            echo "helperfunc submitted an approving review." >> "${GITHUB_STEP_SUMMARY}"
+          else
+            echo "::warning::helperfunc classified this as low-risk public content/docs-only but could not submit an approving review. Configure HELPERFUNC_REVIEW_TOKEN if the default GitHub token is not allowed to approve PRs."
+            echo "Approval token needs pull request review permission." >> "${GITHUB_STEP_SUMMARY}"
+          fi
