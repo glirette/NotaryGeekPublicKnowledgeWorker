@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.8-public",
-  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "version": "1.9-public",
+  "reviewedUtc": "2026-06-13T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -357,9 +357,10 @@
         "Separate notary monetization advice from signer-facing transaction routing.",
         "Treat memberships, coaching, courses, downloads, templates, SEO pages, dispatch access, referral access, platform subscriptions, lead-generation systems, and make-money-as-a-notary content as commercially interested sources.",
         "Do not treat a network's ability to make a notary's phone ring as evidence that the signer route is lawful, apostille-ready, recipient-accepted, or court-defensible.",
+        "When using Notary Stars-related public sources, identify the notary as the commercial buyer or target audience of training, membership, listing, website, SEO, platform-comparison, or potential-work marketing.",
         "Route the signer/document first: document type, signer facts, notary state, transaction-date law, identity method, certificate/output, retained evidence, destination/recipient requirements, and apostille/authentication path.",
         "Explain that the signer, recipient, relying party, or later court challenge bears the route risk, even when the notary-recruiting content is aimed at notary income.",
-        "Treat Virginia foreign-signer claims, platform lists, SEO templates, referral-network claims, and other commercially interested routing claims as source-quality inputs to verify, not compliance proof."
+        "Treat Virginia foreign-signer claims, platform lists, SEO templates, referral-network claims, Notary Stars RON marketing, and other commercially interested routing claims as source-quality inputs to verify, not compliance proof."
       ],
       "failureSignals": [
         "Answers as if the core issue is how the notary can get customers or earn money, while skipping signer route risk.",
@@ -368,6 +369,12 @@
         "Suggests joining a network or buying templates before validating the document route.",
         "Uses traffic, ratings, social proof, trainer confidence, or customer volume as proof of lawful notarization or apostille acceptance.",
         "Ignores court-defensibility and later signer/recipient challenge risk."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-platform-first-patterns.json",
+        "https://notary.cx/notarial-routing-model.json",
+        "https://notary.cx/source-quality-routing-layer.json"
       ]
     },
     {

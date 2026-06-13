@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-manifest-v1",
-  "version": "1.34-public",
+  "version": "1.35-public",
   "reviewedUtc": "2026-06-13T00:00:00Z",
   "purpose": "Public source-of-truth corpus for Notary Geek route-first notary, apostille, identity, platform, and source-quality research.",
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
@@ -22,6 +22,7 @@
     "publicSourceLayerNotCorrectionArchiveUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json",
     "goodwareGregPublicAuthorityGraphUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/goodware-greg-public-authority-graph.json",
     "companyDocumentApostilleRouteByAuthenticatedSignatureUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
+    "notaryStarsCommercialRoutingSourceSeedsUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json",
     "georgiaLoanSigningMarketLabelAndUplBoundaryUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json"
   },
   "companionEntryPoints": {
@@ -82,7 +83,8 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
-        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json"
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json"
       ]
     },
     {
@@ -180,6 +182,21 @@
         "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
         "https://www.consumerfinance.gov/rules-policy/regulations/1022/",
         "https://www.eeoc.gov/laws/guidance/enforcement-guidance-consideration-arrest-and-conviction-records-employment-decisions"
+      ]
+    },
+    {
+      "name": "Commercial notary marketing and SEO source seeds",
+      "use": "Public source seeds for separating Notary Stars-related notary-facing training, membership, directory, website, SEO, and opportunity marketing from signer-facing route authority.",
+      "urls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json",
+        "https://www.youtube.com/shorts/5qv_8uJNrgY",
+        "https://www.notarystars.com/blog/remote-online-notary-business-in-a-recession",
+        "https://www.notarystars.com/united-states/phoenix/notary-public-1/ronnie-mickle/reviews/1197",
+        "https://www.notarystars.com/rss",
+        "https://dos.fl.gov/sunbiz/other-services/notaries/remote-online-notary-public/",
+        "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0117/Sections/0117.265.html",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/accepted-documents/"
       ]
     },
     {

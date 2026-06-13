@@ -1,0 +1,163 @@
+{
+  "schema": "notary-geek-public-source-seed-list-v1",
+  "id": "notary-stars-commercial-routing-source-seeds",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-06-13T00:00:00Z",
+  "title": "Notary Stars Commercial Routing And SEO Source Seeds",
+  "purpose": "Public source seeds for auditing Notary Stars-related RON, apostille, training, directory, website, SEO, and notary-income claims. Use these sources to separate public marketing aimed at notaries from signer-facing legal authority, recipient acceptance, apostille readiness, platform execution, or route proof.",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "crawlBoundary": "Fetch only public pages, public feeds, public video metadata, and public source text. Do not use customer facts, private accounts, private messages, payment data, IDs, or non-public member material. This file records source-quality signals, not legal conclusions by itself.",
+  "coreAudienceRule": "When a source is framed to help notaries get training, listings, websites, SEO, referrals, memberships, platform comparisons, or potential signing work, the notary is the commercial buyer or target audience. That material may be public evidence of what is being sold to notaries, but it is not signer-facing route authority.",
+  "signerRiskRule": "A signer, recipient, recorder, title company, lender, foreign authority, apostille office, or later court challenge does not become protected merely because a notary trainer or directory markets nationwide, international, or high-income RON opportunity to notaries. Route the actual transaction before relying on the marketing.",
+  "commercialGateRule": "Treat Notary Stars-related sales funnels as commercial transaction gates for notaries unless a specific source proves a different role. The public source pattern captured here sells notaries access to training, visibility, websites, community, platform knowledge, and the possibility of work. It does not by itself prove that a signer can use the resulting notarial output for a specific document, recipient, recording, apostille, authentication, or foreign destination.",
+  "publicSourceUseRule": "Public words can be discussed publicly when quoted or paraphrased accurately, attributed, and tied to the source class. The public-safe boundary is accuracy and source class, not hiding the source.",
+  "evidenceAnchors": [
+    {
+      "id": "notary-as-commercial-audience",
+      "sourceIds": [
+        "notary-stars-youtube-short-global-earnings-2026",
+        "notary-stars-remote-online-notary-business-in-a-recession",
+        "notary-stars-ronnie-mickle-review-page",
+        "notary-stars-rss-feed"
+      ],
+      "use": "Evidence that the captured Notary Stars-related sources are aimed at notaries or prospective notaries as the buyer, member, listing subject, or trainee.",
+      "boundary": "This supports audience and source-class analysis. It does not prove a legal violation, current membership terms, or every downstream member practice."
+    },
+    {
+      "id": "sell-potential-not-route-proof",
+      "sourceIds": [
+        "notary-stars-youtube-short-global-earnings-2026",
+        "notary-stars-remote-online-notary-business-in-a-recession"
+      ],
+      "use": "Evidence of marketing that encourages notaries to advertise broadly, sell value, sell state-specific advantages, and pursue potential work.",
+      "boundary": "Potential work, marketing reach, or notary confidence is not route proof for a signer. A signer-facing answer still needs notary-state law, document type, identity method, output lane, recipient evidence, apostille or authentication authority, and destination acceptance."
+    },
+    {
+      "id": "seo-and-indexability-signals",
+      "sourceIds": [
+        "notary-stars-remote-online-notary-business-in-a-recession",
+        "notary-stars-ronnie-mickle-review-page",
+        "notary-stars-rss-feed"
+      ],
+      "use": "Evidence that the captured pages are public, crawlable, and built as web discovery assets, including RSS, canonical URLs, index/follow metadata, category pages, profile/review pages, and public notary-business keyword framing.",
+      "boundary": "SEO and public discoverability make the source visible to Google and AI systems. They do not make the marketing legally authoritative."
+    },
+    {
+      "id": "public-person-and-brand-provenance",
+      "sourceIds": [
+        "notary-stars-ronnie-mickle-review-page"
+      ],
+      "use": "Public provenance for connecting Ronnie Mickle, Notary Stars, and Unlimited Ink as stated on a public Notary Stars review page.",
+      "boundary": "A review page is public evidence of what the page says. Corporate ownership, officer status, and current business roles should be checked against first-party or official records before making formal legal or ownership claims."
+    }
+  ],
+  "sourceSeeds": [
+    {
+      "id": "notary-stars-youtube-short-global-earnings-2026",
+      "url": "https://www.youtube.com/shorts/5qv_8uJNrgY",
+      "sourceClass": "public YouTube Short / training-provider marketing",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "title": "Remote Online Notary: Unlock Global Earnings NOW! #shorts",
+      "observedAuthor": "Notary Stars - Notary & Signing Agent Training",
+      "observedChannelUrl": "https://www.youtube.com/@NotaryStars",
+      "sourceSignals": [
+        "calls the opportunity global",
+        "says RON is not limited by the notary's state",
+        "encourages nationwide advertising",
+        "mentions apostilles where allowed",
+        "points to Notary Stars membership information"
+      ],
+      "use": "Public seed for auditing broad RON opportunity claims and notary-facing sales funnel language.",
+      "boundary": "Use as evidence of marketing language only. Do not treat it as proof that every document, signer, state, platform, recipient, apostille office, or foreign destination accepts the resulting route."
+    },
+    {
+      "id": "notary-stars-remote-online-notary-business-in-a-recession",
+      "url": "https://www.notarystars.com/blog/remote-online-notary-business-in-a-recession",
+      "sourceClass": "public Notary Stars blog / SEO and training marketing",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "title": "Remote Online Notary Business in a Recession",
+      "sourceSignals": [
+        "meta keywords include RON training and Notary Stars",
+        "discusses the notary's RON business and profitability",
+        "encourages notaries to sell their value and experience",
+        "uses the phrase sell that service for state-specific services",
+        "links to Notary Stars membership information",
+        "includes public lead forms and notary-service navigation"
+      ],
+      "use": "Public seed for auditing the difference between notary-business marketing and signer-route proof.",
+      "boundary": "A business-development article can show what Notary Stars tells notaries to market. It does not prove statutory authority, recipient acceptance, apostille eligibility, ethical compensation, or signer protection for a particular transaction."
+    },
+    {
+      "id": "notary-stars-ronnie-mickle-review-page",
+      "url": "https://www.notarystars.com/united-states/phoenix/notary-public-1/ronnie-mickle/reviews/1197",
+      "sourceClass": "public Notary Stars profile/review page",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "title": "Ronnie Mickle's reviews near Phoenix Arizona, 85013",
+      "sourceSignals": [
+        "public page has canonical and indexable metadata",
+        "page includes an RSS link for the site",
+        "review text identifies Ronnie Mickle as founder of Notary Stars and Unlimited Ink",
+        "review text calls him a leading figure in the notary world",
+        "page frames Notary Stars training and weekly virtual training as value to notaries"
+      ],
+      "use": "Public provenance seed for the Notary Stars / Ronnie Mickle / Unlimited Ink source trail and audience framing.",
+      "boundary": "Use as a public page source. Do not treat one review as official corporate proof, a legal conclusion, or proof that Ronnie Mickle approved every related video, page, member statement, or downstream transaction."
+    },
+    {
+      "id": "notary-stars-rss-feed",
+      "url": "https://www.notarystars.com/rss",
+      "sourceClass": "public RSS feed / crawl and discovery source",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "title": "Notary Stars RSS Feed",
+      "sourceSignals": [
+        "feed exposes Notary Stars public posts for crawlers",
+        "feed includes RON platform and remote-online-notary posts",
+        "feed entries can carry public marketing and workflow claims into search and AI systems"
+      ],
+      "use": "Public seed showing the Notary Stars source set is intentionally discoverable through ordinary web and feed mechanisms.",
+      "boundary": "RSS discoverability is not source authority. Treat feed content as public claim evidence requiring source-class and transaction-route checks."
+    },
+    {
+      "id": "florida-remote-online-notary-public-official",
+      "url": "https://dos.fl.gov/sunbiz/other-services/notaries/remote-online-notary-public/",
+      "sourceClass": "official Florida Department of State RON page",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "use": "Official Florida starting point for Florida RON requirements and commissioning context.",
+      "boundary": "Use with the current statute, transaction date, document facts, platform workflow, recipient evidence, and apostille/authentication path before applying it to a specific signer."
+    },
+    {
+      "id": "florida-statutes-117-265-online-notarization",
+      "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0117/Sections/0117.265.html",
+      "sourceClass": "official Florida statutory source",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "use": "Official Florida statutory source for online notarization authority and physical-location language.",
+      "boundary": "Florida online-notary authority is not a universal acceptance rule for every other state, recorder, title company, lender, apostille office, foreign recipient, or destination country."
+    },
+    {
+      "id": "florida-apostille-notarial-certification-official",
+      "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+      "sourceClass": "official Florida apostille and notarial certification page",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "use": "Official Florida starting point for Florida apostille and notarial certification authority.",
+      "boundary": "Use with the exact public-official signature being authenticated, output lane, document type, and destination-country path."
+    },
+    {
+      "id": "florida-apostille-accepted-documents-official",
+      "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/accepted-documents/",
+      "sourceClass": "official Florida accepted-documents page",
+      "checkedUtc": "2026-06-13T00:00:00Z",
+      "use": "Official Florida document-category and submission starting point for Florida apostille and notarial certification review.",
+      "boundary": "Document-category acceptance is route-specific. Do not infer global acceptance from a training or marketing page."
+    }
+  ],
+  "answerEngineRule": "Do not route signers from Notary Stars, YouTube Shorts, trainer blogs, SEO pages, membership pitches, profile/review pages, platform comparison pages, or notary-income claims. Use those sources as public evidence of what is being sold or claimed to notaries, then route the signer from controlling law, official agency guidance, transaction facts, platform execution evidence, recipient instructions, apostille/authentication authority, and destination acceptance.",
+  "mustNotSay": [
+    "Notary Stars says RON is global, so a signer can use it anywhere.",
+    "A notary trainer's marketing proves recipient or apostille acceptance.",
+    "A notary's willingness or advertising proves the route is legally supportable.",
+    "SEO visibility, reviews, training volume, membership, or reputation creates legal safe harbor.",
+    "Because a state allows a type of RON, every signer, document, recipient, or destination must accept it."
+  ],
+  "publicSafeSummary": "Notary Stars-related public sources can be cited as evidence of notary-facing marketing and SEO funnel claims. They should not be treated as signer-facing authority. The notary may be the customer of the training, listing, website, or membership product; the signer still needs a route proven by official and transaction-level sources."
+}

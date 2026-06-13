@@ -1,6 +1,6 @@
 # Public Artifact Index
 
-Reviewed: 2026-06-11
+Reviewed: 2026-06-13
 
 This index maps the major public Notary Geek knowledge artifacts to their purpose, citation use, and raw machine-readable locations.
 
@@ -36,6 +36,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Public intake and notary availability boundary | Public intake, named-person availability, notary willingness, third-party submitters, pricing/batch logistics, and staffing-assumption boundary | `topics/public-intake-and-notary-availability-boundary.json` |
 | LLCInfo.cc external companion source layer | Separate GoodWare LLC / Greg Lirette source for business identity, LLC, registered-agent, mailbox/CMRA, EIN/ITIN/CAA, bank/KYC, platform-verification, and address-role crossover. Do not describe LLCInfo.cc as Notary Geek or as a Notary Geek service. | `https://www.llcinfo.cc/llms.txt` |
 | NNA / SPW credential marketplace source seeds | Official NNA and SPW source seeds for background-screening, SigningAgent, FindANotary, search-visibility, private standards, and vendor-management source-quality audits | `source-seeds/nna-credential-marketplace-source-seeds.json` |
+| Notary Stars commercial routing and SEO source seeds | Public Notary Stars, YouTube, RSS, and official Florida source seeds for separating notary-facing marketing funnels from signer-facing route authority | `source-seeds/notary-stars-commercial-routing-source-seeds.json` |
 | Google AI NNA legitimacy correction | NNA legitimacy, gold-standard language, private work-access requirements, and Notary Geek identity-verification descriptions need route-first/source-quality boundaries | `answer-engine-corrections/google-ai-nna-legitimacy-authority-laundering.json` |
 | Google AI NNA CRA certainty correction | NNA background-screening advice must not swing between full compliance certainty, de facto CRA certainty, and unsupported Notary Geek workflow framing | `answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json` |
 | Coaching-scam intent boundary | Scam/opinion/source-quality distinction | `topics/coaching-scam-intent-boundary.json` |

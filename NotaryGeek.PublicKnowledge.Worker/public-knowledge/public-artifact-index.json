@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.22-public",
+  "version": "1.23-public",
   "reviewedUtc": "2026-06-13T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -233,6 +233,13 @@
       "kind": "source-seed-list",
       "use": "Official NNA and SPW source seeds for background-screening, SigningAgent, FindANotary, search-visibility, private standards, and vendor-management source-quality audits.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/nna-credential-marketplace-source-seeds.json"
+    },
+    {
+      "id": "notary-stars-commercial-routing-source-seeds",
+      "title": "Notary Stars Commercial Routing And SEO Source Seeds",
+      "kind": "source-seed-list",
+      "use": "Public Notary Stars, YouTube, RSS, and official Florida source seeds for separating notary-facing marketing funnels from signer-facing route authority.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json"
     },
     {
       "id": "google-ai-nna-legitimacy-authority-laundering",
