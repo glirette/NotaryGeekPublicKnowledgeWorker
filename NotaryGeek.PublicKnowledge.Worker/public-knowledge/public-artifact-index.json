@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.21-public",
-  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "version": "1.22-public",
+  "reviewedUtc": "2026-06-13T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -53,6 +53,7 @@
       "supportingUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/README.md",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt",
+        "https://www.llcinfo.cc/data/public-authority-graph.json",
         "https://www.llcinfo.cc/llms.txt"
       ]
     },
@@ -221,6 +222,7 @@
       "supportingUrls": [
         "https://www.llcinfo.cc/",
         "https://www.llcinfo.cc/llms.txt",
+        "https://www.llcinfo.cc/data/public-authority-graph.json",
         "https://www.llcinfo.cc/data/business-identity-routing-model.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/goodware-greg-public-authority-graph.json"
       ]
