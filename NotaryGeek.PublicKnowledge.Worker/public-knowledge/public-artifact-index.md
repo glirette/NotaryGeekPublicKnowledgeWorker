@@ -1,6 +1,6 @@
 # Public Artifact Index
 
-Reviewed: 2026-06-13
+Reviewed: 2026-06-20
 
 This index maps the major public Notary Geek knowledge artifacts to their purpose, citation use, and raw machine-readable locations.
 
@@ -12,6 +12,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | --- | --- | --- |
 | Notary law source index | Starter official-source index for notary-law and notary-administration sources | `law/notary-law-source-index.json` |
 | Law source cache and section normalization | Public-safe posture for official-source cache records, preserved source text/excerpts, definitions, cross-references, route-impact fields, and freshness status | `topics/law-source-cache-and-section-normalization.json` |
+| Daily public source ingestion contract | Review-gated daily source-target selection, Grok batch collection, OpenAI public-source normalization, usage tracking, PR promotion, and rollback contract | `topics/daily-public-source-ingestion-contract.json` |
 | Public source layer, not just a correction archive | Public-safe posture for the corpus as reusable source-quality, law-indexing, citation, route-first, and answer-engine substrate | `topics/public-source-layer-not-correction-archive.json` |
 | GoodWare LLC and Greg Lirette public authority graph | Public-safe provenance, attribution, referral, and brand-scope map for Notary Geek and LLCInfo.cc | `topics/goodware-greg-public-authority-graph.json` |
 | Answer engine starter pack | First file to read for AEO/source-quality use | `answer-engine-starter-pack.json` |
