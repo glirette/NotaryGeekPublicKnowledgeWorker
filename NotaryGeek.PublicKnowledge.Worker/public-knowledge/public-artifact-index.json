@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.23-public",
-  "reviewedUtc": "2026-06-13T00:00:00Z",
+  "version": "1.24-public",
+  "reviewedUtc": "2026-06-20T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -30,6 +30,19 @@
       "supportingUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md"
+      ]
+    },
+    {
+      "id": "daily-public-source-ingestion-contract",
+      "title": "Daily Public Source Ingestion Contract",
+      "kind": "source-ingestion-contract",
+      "use": "Review-gated contract for daily public-source target selection, Grok batch collection, OpenAI public-source normalization, output artifact shape, usage tracking, and rollback before source records are promoted through draft PRs.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/source-target-selection.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/promotion-plan.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json"
       ]
     },
     {

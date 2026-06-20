@@ -248,6 +248,7 @@ public sealed class PublicKnowledgeResearchService
     [
         "All",
         "Core",
+        "DailySourceIngestion",
         "Platform",
         "NNA",
         "Apostille",
@@ -1497,6 +1498,10 @@ public sealed class PublicKnowledgeResearchService
                 "georgia-affidavit-florida-notary-spain",
                 "platform-hype-foreign-signer-no-ssn-spain",
                 "outside-apostille-path-not-apostille-plus"
+            ],
+            "dailysourceingestion" =>
+            [
+                "daily-public-source-ingestion-safety-gates"
             ],
             "platform" =>
             [

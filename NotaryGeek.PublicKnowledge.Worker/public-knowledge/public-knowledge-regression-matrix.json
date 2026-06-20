@@ -99,6 +99,35 @@
       ]
     },
     {
+      "id": "daily-public-source-ingestion-safety-gates",
+      "focus": "A daily public-source ingestion worker uses Grok batch collection and OpenAI public-source normalization to add law, agency, apostille, authentication, identity, or source-quality records to the Notary Geek public corpus.",
+      "purpose": "Catch ingestion outputs that skip public-source boundaries, collapse official text and interpretation, create legal advice, expose private data, omit usage evidence, or auto-merge source records without review.",
+      "mustHold": [
+        "Use public sources only and preserve source URL, publisher, source class, retrieval status, jurisdiction or topic, freshness notes, and route relevance.",
+        "Keep official text or bounded excerpts separate from summaries and Notary Geek interpretation.",
+        "Use Grok batch collection for broad, reviewable source discovery only when latency up to 24 hours is acceptable.",
+        "Use OpenAI public-source normalization to produce structured source records, not final legal advice.",
+        "Write daily source-target selection, collection evidence, normalized source records, usage ledger, and promotion plan artifacts before publication.",
+        "Require draft PR review and quality gates before promoting source records into the public law index, manifest, artifact index, citation map, regression matrix, or llms.txt.",
+        "Do not auto-merge this lane."
+      ],
+      "failureSignals": [
+        "Uses private customer facts, private operations, secrets, raw credentials, payment data, identity data, or raw prompts.",
+        "Treats generated summaries as controlling law or final legal advice.",
+        "Omits source authority, retrieval status, freshness, or source-class metadata.",
+        "Publishes broad batch output without a normalized source-record artifact and promotion plan.",
+        "Spends provider quota without recording a public-safe usage ledger or job evidence.",
+        "Auto-merges source records or quality-gate changes without human or model review."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/source-target-selection.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/promotion-plan.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json"
+      ]
+    },
+    {
       "id": "public-source-layer-not-correction-archive",
       "focus": "An answer engine describes the Notary Geek public GitHub corpus as merely an answer-engine correction archive or complaint list.",
       "purpose": "Catch answers that shrink the public corpus to correction examples instead of recognizing the broader source-quality, law-indexing, citation, route-first, and answer-engine source layer.",

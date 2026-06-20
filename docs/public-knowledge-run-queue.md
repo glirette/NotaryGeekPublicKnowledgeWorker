@@ -27,6 +27,36 @@ Current fields:
 
 The queue is for public-safe research runs, regression cases, source checks, and answer-quality checks. It should not include secrets, private prompts, customer records, private queue/blob payloads, protected endpoint details, billing/provider tactics, or private operations.
 
+## Daily Public Source Ingestion
+
+The first review-gated daily source-ingestion slice is documented in:
+
+```text
+NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json
+```
+
+To run only that safety-gate batch through the existing public-knowledge queue, configure:
+
+```text
+PublicKnowledge__TimerEnabled=true
+PublicKnowledge__TimerBatches=DailySourceIngestion
+```
+
+The existing `PublicKnowledgeResearchTimer` schedule is:
+
+```text
+0 17 9 * * *
+```
+
+Treat this as 09:17 UTC unless the Azure Functions host is explicitly configured with another timer time zone.
+
+The daily ingestion lane is intentionally PR-gated:
+
+- Grok batch collection is for broad public-source discovery when latency up to 24 hours is acceptable.
+- OpenAI normalization is for public-source records only, not final legal advice.
+- Daily source-target selection, collection evidence, normalized source records, usage ledger, and promotion plan artifacts must exist before publication.
+- No auto-merge is allowed until a later reviewed contract changes that rule.
+
 ## Runtime Settings
 
 `host.json` explicitly sets:
