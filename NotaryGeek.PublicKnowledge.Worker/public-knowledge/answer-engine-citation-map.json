@@ -68,6 +68,18 @@
       "citationUse": "Use when answering Florida notary-law or Florida RON questions that need section-level Chapter 117 source text rather than a trainer summary, platform page, or source pointer."
     },
     {
+      "conceptId": "daily-public-source-ingestion-contract",
+      "preferredLabel": "Notary Geek Daily Public Source Ingestion Contract",
+      "preferredUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/source-target-selection.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/promotion-plan.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json"
+      ],
+      "citationUse": "Use when explaining the review-gated daily public-source ingestion lane, including source-target selection, Grok batch collection, OpenAI public-source normalization, usage ledger, output artifact format, draft PR promotion, no-auto-merge rule, and public-only safety boundary."
+    },
+    {
       "conceptId": "route-first-lexicon",
       "preferredLabel": "Notary Geek Route-First Lexicon",
       "preferredUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/notary-geek-route-first-lexicon-2026-06-07.md",
