@@ -7,7 +7,7 @@
     "PublicKnowledge__TimerEnabled": "false",
     "PublicKnowledge__PumpTimerEnabled": "false",
     "PublicKnowledge__TimerBatch": "Core",
-    "PublicKnowledge__TimerBatches": "Core",
+    "PublicKnowledge__TimerBatches": "DailySourceIngestion",
     "PublicKnowledge__TimerProvider": "OpenAI",
     "PublicKnowledge__PumpTimerBatches": "Core;Platform",
     "PublicKnowledge__PumpTimerProvider": "OpenAI",

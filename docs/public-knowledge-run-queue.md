@@ -44,6 +44,7 @@ NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-in
 Use the Azure Functions timer as the daily scheduler. Configure:
 
 ```text
+PublicKnowledge__Enabled=true
 PublicKnowledge__TimerEnabled=true
 PublicKnowledge__TimerBatches=DailySourceIngestion
 PublicKnowledge__TimerProvider=OpenAI
@@ -60,6 +61,8 @@ The existing `PublicKnowledgeResearchTimer` schedule is:
 Treat this as 09:17 UTC unless the Azure Functions host is explicitly configured with another timer time zone.
 
 The GitHub Actions workflow `run-public-knowledge-batch.yml` remains available for manual/on-demand protected submits, defaulting to `DailySourceIngestion` with provider `OpenAI`. Do not add a second daily submitter unless duplicate OpenAI public-source runs are intentional.
+
+Do not set this lane up with a private or generic provider key. When `PublicKnowledge__RequirePublicSourceOpenAiKey=true`, the worker fails closed if `OpenAI__PublicSourceApiKey` is missing instead of falling back to `OpenAI__ApiKey`.
 
 The daily ingestion lane is intentionally PR-gated:
 
@@ -127,6 +130,46 @@ If the operator snapshot reports stale jobs, inspect the queued job status:
 ```text
 GET /api/public-knowledge/runs/jobs/{jobId}?code=FUNCTION_KEY
 ```
+
+## Tomorrow Daily Run Verification
+
+The next daily Azure timer run should submit `DailySourceIngestion` at the first `09:17 UTC` timer occurrence after deployment and app-setting updates.
+
+Before the timer window, call the protected status endpoint and verify the booleans/settings only:
+
+```text
+GET /api/public-knowledge/status?code=FUNCTION_KEY
+```
+
+Expected non-secret fields:
+
+```text
+status.Enabled=true
+status.TimerEnabled=true
+status.TimerBatches includes DailySourceIngestion
+status.TimerProvider=OpenAI
+status.Provider=OpenAI
+status.HasPublicSourceOpenAiApiKey=true
+status.RequirePublicSourceOpenAiKey=true
+storage.HasConnectionString=true
+```
+
+After `09:17 UTC`, check:
+
+```text
+GET /api/public-knowledge/operator-snapshot?code=FUNCTION_KEY&refresh=true
+GET /api/public-knowledge/runs/jobs?code=FUNCTION_KEY&take=20
+```
+
+The recent job list should include a `timer` job with `batch=DailySourceIngestion`, `providerOverride=OpenAI`, and the case `daily-public-source-ingestion-safety-gates`. If the job is still running, wait for queue workers to finish and then inspect:
+
+```text
+GET /api/public-knowledge/runs/jobs/{jobId}?code=FUNCTION_KEY
+GET /api/public-knowledge/runs/latest-digest?code=FUNCTION_KEY
+GET /api/public-knowledge/runs/needs-greg?code=FUNCTION_KEY
+```
+
+Expected outcome is a completed public-source run or a review-needed failure with public-safe errors. Any failure mentioning `OpenAI__PublicSourceApiKey` means the public-source key setting was not deployed or resolved.
 
 If Azure Functions reports repeated execution failures, inspect the storage account backing `AzureWebJobsStorage` for:
 
