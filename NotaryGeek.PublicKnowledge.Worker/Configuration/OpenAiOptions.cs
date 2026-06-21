@@ -7,6 +7,7 @@ public sealed class OpenAiOptions
     public string Model { get; set; } = "gpt-5-mini";
     public string ReasoningEffort { get; set; } = "medium";
     public string ApiKey { get; set; } = string.Empty;
+    public string PublicSourceApiKey { get; set; } = string.Empty;
     public int TimeoutSeconds { get; set; } = 60;
     public bool AllowHighCostMode { get; set; }
     public string HighCostModelMarkers { get; set; } = "gpt-5.5;gpt-5_5";

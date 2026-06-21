@@ -109,6 +109,8 @@ jobs:
             provider = $status.status.Provider
             model = $status.status.Model
             hasOpenAiApiKey = $status.status.HasOpenAiApiKey
+            hasPublicSourceOpenAiApiKey = $status.status.HasPublicSourceOpenAiApiKey
+            requirePublicSourceOpenAiKey = $status.status.RequirePublicSourceOpenAiKey
             hasStraicoApiKey = $status.status.HasStraicoApiKey
             maxSourcesPerRun = $status.status.MaxSourcesPerRun
             storageHasConnectionString = $status.storage.HasConnectionString

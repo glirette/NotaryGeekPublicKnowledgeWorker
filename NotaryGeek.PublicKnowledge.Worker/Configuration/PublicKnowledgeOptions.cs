@@ -7,8 +7,11 @@ public sealed class PublicKnowledgeOptions
     public bool PumpTimerEnabled { get; set; }
     public string TimerBatch { get; set; } = "Core";
     public string TimerBatches { get; set; } = string.Empty;
+    public string TimerProvider { get; set; } = "OpenAI";
     public string PumpTimerBatches { get; set; } = "Core;Platform";
+    public string PumpTimerProvider { get; set; } = "OpenAI";
     public string Provider { get; set; } = "OpenAI";
+    public bool RequirePublicSourceOpenAiKey { get; set; } = true;
     public string PublicBaseUrl { get; set; } = "https://notary.cx";
     public string PublicCorpusManifestUrl { get; set; } = string.Empty;
     public string LocalManifestPath { get; set; } = "public-knowledge/public-knowledge-manifest.json";

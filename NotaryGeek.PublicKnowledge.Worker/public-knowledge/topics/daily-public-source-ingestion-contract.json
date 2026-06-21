@@ -5,6 +5,7 @@
   "reviewedUtc": "2026-06-20T00:00:00Z",
   "title": "Daily Public Source Ingestion Contract",
   "purpose": "Define the first safe daily public-source ingestion slice for Notary Geek public law, agency, apostille, authentication, identity, and source-quality sources using reviewable Grok batch collection, OpenAI public-source normalization, and PR-gated publication.",
+  "publicContextUrl": "https://notary.cx/notary-geek-openai-public-data-sharing-case-study-press-release.html",
   "notLegalAdvice": true,
   "notOperationalPlaybook": true,
   "publicOnly": true,
@@ -16,7 +17,16 @@
       "cronExpression": "0 17 9 * * *",
       "timeZoneNote": "Azure Functions timer expressions are treated as UTC unless the host is configured otherwise. Treat this as 09:17 UTC for source control planning.",
       "enablementSetting": "PublicKnowledge__TimerEnabled=true",
-      "batchSetting": "PublicKnowledge__TimerBatches=DailySourceIngestion"
+      "batchSetting": "PublicKnowledge__TimerBatches=DailySourceIngestion",
+      "providerSetting": "PublicKnowledge__TimerProvider=OpenAI",
+      "requiredKeySetting": "OpenAI__PublicSourceApiKey",
+      "schedulerBoundary": "Use the Azure timer as the active daily scheduler. Do not add a second daily submitter unless duplicate daily public-source runs are intentional."
+    },
+    "githubActionsManualSubmitter": {
+      "workflow": ".github/workflows/run-public-knowledge-batch.yml",
+      "batch": "DailySourceIngestion",
+      "provider": "OpenAI",
+      "use": "Repository-visible manual submitter that queues the public-source batch through the protected Azure Function endpoint and returns after queue submission."
     },
     "pumpTimer": {
       "functionName": "PublicKnowledgePumpTimer",
@@ -80,6 +90,8 @@
   "openAiNormalizationContract": {
     "providerLane": "openai_platform",
     "mode": "public-source-normalization",
+    "requiredKeySetting": "OpenAI__PublicSourceApiKey",
+    "keyBoundary": "Use the dedicated daily-reset public data-sharing key for this public-safe lane. Do not fall back to a private or generic OpenAI API key when the public-source key is absent.",
     "inputSources": [
       "public source target selection",
       "Grok batch collection result",
@@ -212,6 +224,7 @@
     ],
     "rules": [
       "Record estimates before submission and provider-reported usage after completion when available.",
+      "Treat each 24-hour reset window as a daily public-source allocation and schedule one useful public-safe run per day when work is available.",
       "Keep budget notes public-safe and do not publish account identifiers, keys, billing screenshots, or private provider dashboard details.",
       "Stop promotion if usage evidence is missing for a paid or capped run."
     ]

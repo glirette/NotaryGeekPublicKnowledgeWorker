@@ -626,7 +626,12 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
-        await RunConfiguredTimerBatchesAsync(_options.TimerBatches, _options.TimerBatch, "timer", cancellationToken);
+        await RunConfiguredTimerBatchesAsync(
+            _options.TimerBatches,
+            _options.TimerBatch,
+            "timer",
+            _options.TimerProvider,
+            cancellationToken);
     }
 
     [Function("PublicKnowledgePumpTimer")]
@@ -640,7 +645,12 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
-        await RunConfiguredTimerBatchesAsync(_options.PumpTimerBatches, "Core;Platform", "pump-timer", cancellationToken);
+        await RunConfiguredTimerBatchesAsync(
+            _options.PumpTimerBatches,
+            "Core;Platform",
+            "pump-timer",
+            _options.PumpTimerProvider,
+            cancellationToken);
     }
 
     private async Task<IReadOnlyList<PublicKnowledgeStoredRunReceipt>> RunStoredBatchAsync(
@@ -699,6 +709,7 @@ public sealed class PublicKnowledgeResearchFunction
         string configuredBatches,
         string fallbackBatch,
         string trigger,
+        string provider,
         CancellationToken cancellationToken)
     {
         var batches = SplitList(configuredBatches);
@@ -726,14 +737,16 @@ public sealed class PublicKnowledgeResearchFunction
                 continue;
             }
 
-            var message = await SubmitQueuedCasesAsync(cases, batch, execute: true, trigger, providerOverride: null, cancellationToken);
+            var providerOverride = NormalizeProviderOverride(provider);
+            var message = await SubmitQueuedCasesAsync(cases, batch, execute: true, trigger, providerOverride, cancellationToken);
             submittedJobs++;
             _logger.LogInformation(
-                "Public knowledge {Trigger} queued batch {Batch} as job {JobId} with {CaseCount} case(s).",
+                "Public knowledge {Trigger} queued batch {Batch} as job {JobId} with {CaseCount} case(s); provider={Provider}.",
                 trigger,
                 batch,
                 message.JobId,
-                cases.Count);
+                cases.Count,
+                providerOverride ?? "Default");
         }
 
         if (submittedJobs == 0)

@@ -167,7 +167,9 @@ public sealed class PublicKnowledgeResearchService
             _knowledgeOptions.PumpTimerEnabled,
             _knowledgeOptions.TimerBatch,
             SplitList(_knowledgeOptions.TimerBatches).DefaultIfEmpty(_knowledgeOptions.TimerBatch).ToArray(),
+            NormalizeStatusProvider(_knowledgeOptions.TimerProvider),
             SplitList(_knowledgeOptions.PumpTimerBatches),
+            NormalizeStatusProvider(_knowledgeOptions.PumpTimerProvider),
             _knowledgeOptions.PublicBaseUrl,
             _knowledgeOptions.QueueName,
             string.IsNullOrWhiteSpace(_knowledgeOptions.PublicCorpusManifestUrl) ? "bundled-local" : _knowledgeOptions.PublicCorpusManifestUrl,
@@ -177,6 +179,8 @@ public sealed class PublicKnowledgeResearchService
             _openAiOptions.EndpointPath,
             _openAiOptions.Model,
             !string.IsNullOrWhiteSpace(_openAiOptions.ApiKey),
+            !string.IsNullOrWhiteSpace(_openAiOptions.PublicSourceApiKey),
+            _knowledgeOptions.RequirePublicSourceOpenAiKey,
             _straicoOptions.BaseUrl,
             _straicoOptions.DefaultChatModel,
             !string.IsNullOrWhiteSpace(_straicoOptions.ApiKey),
@@ -399,9 +403,11 @@ public sealed class PublicKnowledgeResearchService
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(_openAiOptions.ApiKey))
+                if (string.IsNullOrWhiteSpace(GetOpenAiApiKey()))
                 {
-                    errors.Add("OpenAI__ApiKey is not configured.");
+                    errors.Add(_knowledgeOptions.RequirePublicSourceOpenAiKey
+                        ? "OpenAI__PublicSourceApiKey is not configured for the public-source OpenAI lane."
+                        : "OpenAI__PublicSourceApiKey or OpenAI__ApiKey is not configured.");
                 }
             }
         }
@@ -758,7 +764,7 @@ public sealed class PublicKnowledgeResearchService
     {
         var client = _httpClientFactory.CreateClient("OpenAI");
         client.Timeout = TimeSpan.FromSeconds(Math.Max(10, _openAiOptions.TimeoutSeconds));
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _openAiOptions.ApiKey);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetOpenAiApiKey());
 
         var endpoint = BuildOpenAiEndpoint();
         var highCostGuardActive = IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode;
@@ -925,6 +931,18 @@ public sealed class PublicKnowledgeResearchService
 
     private string GetConfiguredModel(string providerName) =>
         UseStraicoProvider(providerName) ? _straicoOptions.DefaultChatModel : _openAiOptions.Model;
+
+    private string GetOpenAiApiKey()
+    {
+        if (!string.IsNullOrWhiteSpace(_openAiOptions.PublicSourceApiKey))
+        {
+            return _openAiOptions.PublicSourceApiKey;
+        }
+
+        return _knowledgeOptions.RequirePublicSourceOpenAiKey
+            ? string.Empty
+            : _openAiOptions.ApiKey;
+    }
 
     private static bool IsSupportedProvider(string providerName) =>
         providerName.Equals("OpenAI", StringComparison.OrdinalIgnoreCase) ||
@@ -1489,6 +1507,11 @@ public sealed class PublicKnowledgeResearchService
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
+    private static string NormalizeStatusProvider(string provider) =>
+        string.IsNullOrWhiteSpace(provider) || provider.Equals("default", StringComparison.OrdinalIgnoreCase)
+            ? "Default"
+            : provider.Trim();
+
     private static IReadOnlyList<string> GetRegressionCaseIdsForBatch(string batch) =>
         batch.Trim().ToLowerInvariant() switch
         {
@@ -1568,7 +1591,9 @@ public sealed record PublicKnowledgeStatus(
     bool PumpTimerEnabled,
     string TimerBatch,
     IReadOnlyList<string> TimerBatches,
+    string TimerProvider,
     IReadOnlyList<string> PumpTimerBatches,
+    string PumpTimerProvider,
     string PublicBaseUrl,
     string QueueName,
     string ManifestSource,
@@ -1578,6 +1603,8 @@ public sealed record PublicKnowledgeStatus(
     string OpenAiEndpointPath,
     string Model,
     bool HasOpenAiApiKey,
+    bool HasPublicSourceOpenAiApiKey,
+    bool RequirePublicSourceOpenAiKey,
     string StraicoBaseUrl,
     string StraicoModel,
     bool HasStraicoApiKey,
