@@ -11,6 +11,7 @@
     "providerCallsMade": false,
     "grokBatchSubmitted": false,
     "openAiNormalizationSubmitted": false,
+    "openAiKeySetting": "OpenAI__PublicSourceApiKey",
     "artifactPromotionReady": true,
     "sourceRecordPromotionReady": false
   },
@@ -30,6 +31,7 @@
     "JSON parsing succeeds for every changed JSON file.",
     "git diff --check succeeds.",
     "DailySourceIngestion batch is discoverable through the worker batch list.",
+    "Daily OpenAI runs require OpenAI__PublicSourceApiKey and must not fall back to a private or generic OpenAI API key.",
     "No source artifact contains secrets, customer facts, private operations, private provider tactics, payment data, identity data, or raw prompts.",
     "The PR remains draft or review-gated until a human reviews the daily ingestion contract."
   ],

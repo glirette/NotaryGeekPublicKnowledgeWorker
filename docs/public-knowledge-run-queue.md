@@ -29,17 +29,26 @@ The queue is for public-safe research runs, regression cases, source checks, and
 
 ## Daily Public Source Ingestion
 
+Public context:
+
+```text
+https://notary.cx/notary-geek-openai-public-data-sharing-case-study-press-release.html
+```
+
 The first review-gated daily source-ingestion slice is documented in:
 
 ```text
 NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json
 ```
 
-To run only that safety-gate batch through the existing public-knowledge queue, configure:
+Use the Azure Functions timer as the daily scheduler. Configure:
 
 ```text
 PublicKnowledge__TimerEnabled=true
 PublicKnowledge__TimerBatches=DailySourceIngestion
+PublicKnowledge__TimerProvider=OpenAI
+PublicKnowledge__RequirePublicSourceOpenAiKey=true
+OpenAI__PublicSourceApiKey=<the dedicated daily-reset public data-sharing key, stored in Azure app settings or Key Vault reference>
 ```
 
 The existing `PublicKnowledgeResearchTimer` schedule is:
@@ -49,6 +58,8 @@ The existing `PublicKnowledgeResearchTimer` schedule is:
 ```
 
 Treat this as 09:17 UTC unless the Azure Functions host is explicitly configured with another timer time zone.
+
+The GitHub Actions workflow `run-public-knowledge-batch.yml` remains available for manual/on-demand protected submits, defaulting to `DailySourceIngestion` with provider `OpenAI`. Do not add a second daily submitter unless duplicate OpenAI public-source runs are intentional.
 
 The daily ingestion lane is intentionally PR-gated:
 
