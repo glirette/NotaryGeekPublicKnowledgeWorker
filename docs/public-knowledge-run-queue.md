@@ -71,6 +71,42 @@ The daily ingestion lane is intentionally PR-gated:
 - Daily source-target selection, collection evidence, normalized source records, usage ledger, and promotion plan artifacts must exist before publication.
 - No auto-merge is allowed until a later reviewed contract changes that rule.
 
+## 2026-06-21 Live Verification
+
+Deployment and app-setting verification completed against `ng-public-knowledge-func-2026` in resource group `NG-PUBLIC-KNOWLEDGE`.
+
+Protected status endpoint confirmed:
+
+```text
+status.Enabled=true
+status.TimerEnabled=true
+status.TimerBatch=DailySourceIngestion
+status.TimerBatches includes DailySourceIngestion
+status.TimerProvider=OpenAI
+status.Provider=OpenAI
+status.HasPublicSourceOpenAiApiKey=true
+status.RequirePublicSourceOpenAiKey=true
+status.PumpTimerEnabled=true
+```
+
+Manual protected submit verified the daily batch before waiting for the next timer window:
+
+```text
+jobId=20260621T221301Z-2b706e89d50547bfbaa8e4d1fe627e36
+batch=DailySourceIngestion
+providerOverride=OpenAI
+status=completed
+completed=1/1
+case=daily-public-source-ingestion-safety-gates
+openAiCalled=true
+provider=OpenAI
+sourceCount=2
+warnings=5
+errors=0
+scoreVerdict=needs-review
+latestBlobName=runs/latest/daily-public-source-ingestion-safety-gates.json
+```
+
 ## Runtime Settings
 
 `host.json` explicitly sets:
