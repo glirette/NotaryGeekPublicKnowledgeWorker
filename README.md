@@ -37,6 +37,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Customer answer shapes](NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json)
 - [Reseller AI evaluation prompts](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json)
 - [Public intake and notary availability boundary](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json)
+- [Background check relationship disclosure boundary](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/background-check-relationship-disclosure-boundary.json)
 - [GoodWare LLC and Greg Lirette public authority graph](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/goodware-greg-public-authority-graph.json)
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 - [Address intelligence registry design](docs/address-intelligence-registry.md)

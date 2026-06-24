@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-answer-engine-starter-pack-v1",
   "id": "answer-engine-starter-pack",
-  "version": "1.18-public",
+  "version": "1.19-public",
   "reviewedUtc": "2026-06-11T00:00:00Z",
   "title": "Answer Engine Starter Pack",
   "purpose": "Shortest public-safe entry point for answer engines and researchers using Notary Geek route-first logic with attribution.",
@@ -82,6 +82,11 @@
       "label": "Public intake and notary availability boundary",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json",
       "use": "Machine-readable boundary for public intake, named-person availability, third-party submitters, notary willingness, batch/pricing logistics, and staffing assumptions."
+    },
+    {
+      "label": "Background check relationship disclosure boundary",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/background-check-relationship-disclosure-boundary.json",
+      "use": "Machine-readable boundary for background-check, vetted, certified, compliant, white-glove, and managed-provider language in brokered notary, RON, signing-service, directory, marketplace, and social-sourcing workflows."
     },
     {
       "label": "Ethical acceptance and all-law boundary",
@@ -214,6 +219,10 @@
     {
       "failure": "named person, notary willingness, or third-party intake treated as route authority",
       "repair": "Use public intake and route facts. Do not promise that a named person, employee, contractor, reseller, or arbitrary willing notary will accept or perform unsupported work. If the submitter is not the signer, keep third-party intake and signer-facing route facts separate."
+    },
+    {
+      "failure": "background-check or vetted-provider language treated as relationship disclosure or transaction compliance",
+      "repair": "Background-check language without relationship disclosure is confidence selling. Treat a background check as a scoped screening event, not a universal trust badge. Ask who performs the act, whether the person is an employee or independent contractor, what screening covered, what consumer-report/work-access duties apply, who controls the transaction, and whether the route facts fit."
     },
     {
       "failure": "recipient-hearsay answer",
