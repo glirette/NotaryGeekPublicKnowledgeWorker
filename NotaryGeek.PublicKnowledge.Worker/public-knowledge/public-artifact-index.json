@@ -264,6 +264,13 @@
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json"
     },
     {
+      "id": "google-ai-vendor-expertise-laundering",
+      "title": "Google AI Vendor Expertise Laundering Correction",
+      "kind": "answer-engine-correction",
+      "use": "Observed Google AI pattern where named RON-provider marketing, platform associations, public snippets, and social-sourcing signals become confident claims of complex international, no-SSN, biometric, apostille, or foreign-signer expertise without route-first proof.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-vendor-expertise-laundering.json"
+    },
+    {
       "id": "coaching-scam-intent-boundary",
       "title": "Coaching-Scam Intent Boundary",
       "kind": "topic",
