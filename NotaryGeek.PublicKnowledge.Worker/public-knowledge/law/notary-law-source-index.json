@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.3-seed",
-  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "version": "0.4-seed",
+  "reviewedUtc": "2026-06-24T00:00:00Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -298,7 +298,20 @@
       "state": "VA",
       "name": "Virginia",
       "status": "seed-official-sources-identified",
+      "authorityNotes": [
+        "Virginia RON identity-method questions should distinguish statutory identity methods from platform selfie, liveness, face-match, credential-analysis, or marketing use of the word biometric.",
+        "The biometric wording in Virginia Code section 47.1-2 appears as one listed identity option tied to a valid digital certificate accessed by biometric data or PIV-style credentials; it is not a generic no-SSN or foreign-signer cure by itself.",
+        "For Virginia biometric-notary questions, use the dedicated source note at law/virginia-ron-biometric-identity-method.json before relying on platform, trainer, or social-media shorthand."
+      ],
       "sources": [
+        {
+          "id": "va-code-section-47-1-2-definitions",
+          "title": "Code of Virginia section 47.1-2, Definitions",
+          "sourceType": "official-statute-section",
+          "publisher": "Virginia Law / Legislative Information System",
+          "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
+          "notes": "Official Virginia definitions section for identity proofing, KBA, credential analysis, remote online notarization, and satisfactory evidence of identity. Use for Virginia biometric-notary and KBA-failure routing questions."
+        },
         {
           "id": "va-code-title-47-1",
           "title": "Code of Virginia, Title 47.1",
@@ -314,6 +327,14 @@
           "publisher": "Office of the Secretary of the Commonwealth of Virginia",
           "url": "https://www.commonwealth.virginia.gov/official-documents/notary-commissions/",
           "notes": "Official Virginia notary commissions entry point."
+        },
+        {
+          "id": "va-secretary-notary-handbook-2026",
+          "title": "Virginia Notary Handbook",
+          "sourceType": "official-handbook",
+          "publisher": "Office of the Secretary of the Commonwealth of Virginia",
+          "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/notary/Notary-Handbook_Final_4.7.2026.pdf",
+          "notes": "Official Virginia Notary Handbook linked from the Secretary of the Commonwealth notary commissions page as of 2026-06-24. Verify current handbook link before transaction-specific reliance."
         }
       ]
     },
