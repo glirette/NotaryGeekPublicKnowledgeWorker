@@ -1,13 +1,13 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.3-seed",
-  "reviewedUtc": "2026-06-11T00:00:00Z",
+  "version": "0.4-public",
+  "reviewedUtc": "2026-07-08T00:00:00Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
   "sourceAuthorityFirst": true,
-  "status": "seed",
+  "status": "seed-with-florida-section-corpus",
   "publicBoundary": "Public sources only. Do not add private customer facts, private operating strategy, secrets, raw provider payloads, or internal business playbooks.",
   "sourceQualityRule": "Prefer controlling statutes, official code publications, secretary-of-state or commissioning-agency pages, official handbooks, official rules, and official apostille/authentication pages before private associations, platforms, trainers, directories, or market habit.",
   "sourceTextPreservationRule": "Future normalized section records should preserve the original public legal text or a clearly bounded official excerpt beside any summary, routing note, or Notary Geek interpretation. Summaries must not replace the controlling words because small textual differences can change the legal route.",
@@ -17,7 +17,7 @@
       "country": "US",
       "state": "FL",
       "name": "Florida",
-      "status": "seed-official-sources-identified",
+      "status": "section-corpus-published-needs-freshness-review",
       "sources": [
         {
           "id": "fl-chapter-117-senate",
@@ -58,6 +58,29 @@
           "publisher": "Florida Department of State",
           "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
           "notes": "Official Florida Department of State apostille and notarial certification entry point. Use when the public-official signature to be authenticated is a Florida notary or Florida public official, and verify current submission requirements before transaction-specific advice."
+        }
+      ],
+      "sectionCorpora": [
+        {
+          "id": "florida-chapter-117-2025-section-corpus",
+          "title": "Florida Chapter 117, Florida Statutes, 2025 Section Corpus",
+          "sourceType": "official-statute-section-corpus",
+          "publisher": "Florida Senate",
+          "statuteYear": "2025",
+          "chapter": {
+            "number": "CHAPTER 117",
+            "name": "NOTARIES PUBLIC"
+          },
+          "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json",
+          "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json",
+          "officialSourceUrl": "https://www.flsenate.gov/Laws/Statutes/2025/Chapter117/All",
+          "sectionCount": 26,
+          "firstSection": "117.01",
+          "lastSection": "117.305",
+          "retrievedUtc": "2026-07-08T02:32:22Z",
+          "corpusSha256": "c6fe4028b62200fbc21a1242ad48981939cde5cc3e53e082005a2e2c5d263e8c",
+          "status": "official-text-captured-needs-freshness-review",
+          "notes": "Full Chapter 117 source text captured from the official 2025 Florida Senate chapter page into structured JSON. Verify current statutory year and effective dates before transaction-specific reliance."
         }
       ]
     },

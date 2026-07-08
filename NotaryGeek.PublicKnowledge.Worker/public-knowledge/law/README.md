@@ -26,6 +26,7 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 ## Current Files
 
 - [Notary Law Source Index](notary-law-source-index.json)
+- [Florida Chapter 117, Florida Statutes, 2025 Section Corpus](us-fl/florida-chapter-117-2025.json)
 - [Law Source Cache And Section Normalization](../topics/law-source-cache-and-section-normalization.json)
 - [Texas Foreign Passport Notary Source Note](texas-foreign-passport-notary.json)
 
