@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.23-public",
-  "reviewedUtc": "2026-06-13T00:00:00Z",
+  "version": "1.24-public",
+  "reviewedUtc": "2026-07-08T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -30,6 +30,21 @@
       "supportingUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md"
+      ]
+    },
+    {
+      "id": "florida-chapter-117-2025-section-corpus",
+      "title": "Florida Chapter 117, Florida Statutes, 2025 Section Corpus",
+      "kind": "law-section-corpus",
+      "use": "Full structured JSON capture of Florida Chapter 117 notary-law source text from the official Florida Senate 2025 chapter page, with section records, preserved source text, cross-reference extraction, hashes, and freshness-review status.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/README.md",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://www.flsenate.gov/Laws/Statutes/2025/Chapter117/All",
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/4",
+        "https://github.com/glirette/BootStrapCritical/issues/122"
       ]
     },
     {
