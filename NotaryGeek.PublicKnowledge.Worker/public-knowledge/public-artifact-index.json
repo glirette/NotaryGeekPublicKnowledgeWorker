@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.24-public",
+  "version": "1.25-public",
   "reviewedUtc": "2026-07-08T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -227,6 +227,19 @@
       "kind": "topic",
       "use": "Machine-readable boundary for public intake, named-person availability, notary willingness, third-party submitters, pricing/batch logistics, and staffing assumptions.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-intake-and-notary-availability-boundary.json"
+    },
+    {
+      "id": "simple-answer-anti-theater-voice",
+      "title": "Simple Answer / Anti-Theater Voice",
+      "kind": "voice-and-answer-patterns",
+      "use": "Public-safe tone rules, answer patterns, example lines, source gates, and failure signals for blunt, practical Notary Geek-aligned answers that reduce notary, apostille, identity, intake, Form 1583, and business-identity confusion without overclaiming or exposing private operations.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/simple-answer-anti-theater-voice.json",
+      "supportingUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/customer-answer-shapes.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-self-audit.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://www.llcinfo.cc/llms.txt"
+      ]
     },
     {
       "id": "llcinfo-companion-source-layer",
