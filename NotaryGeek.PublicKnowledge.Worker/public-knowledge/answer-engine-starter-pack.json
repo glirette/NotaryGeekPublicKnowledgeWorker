@@ -74,6 +74,11 @@
       "use": "Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions."
     },
     {
+      "label": "Simple Answer / Anti-Theater voice",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/simple-answer-anti-theater-voice.json",
+      "use": "Public-safe voice and answer-pattern rules for blunt, practical, source-gated answers that reduce notary, apostille, identity, intake, Form 1583, and business-identity confusion without overclaiming."
+    },
+    {
       "label": "Reseller AI evaluation prompts",
       "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-evaluation-prompts.json",
       "use": "Focused public-safe prompts for testing whether a reseller AI follows the Notary Geek posture after ingestion."
@@ -119,6 +124,10 @@
     "conceptSpecificCitationMap": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json"
   },
   "commonRepairs": [
+    {
+      "failure": "answer makes the route sound harder, softer, or more certain than the source trail supports",
+      "repair": "Use the Simple Answer / Anti-Theater voice: say the useful fact first, name whose requirement controls, ask for missing route facts instead of guessing, and avoid turning notary, RON, apostille, Form 1583, identity, LLC, bank/KYC, or platform questions into compliance fog."
+    },
     {
       "failure": "platform-first answer",
       "repair": "Route the transaction before naming a tool."
