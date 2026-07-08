@@ -16,6 +16,96 @@
   },
   "prompts": [
     {
+      "id": "anti-theater-ssn-requirement",
+      "prompt": "A customer says, 'The online notary site asked for my Social Security number. Does Notary Geek need that to notarize my document?'",
+      "mustHold": [
+        "Use a blunt, simple answer instead of compliance fog.",
+        "Do not say every online notarization requires a Social Security number.",
+        "Separate Notary Geek's notary route from a third-party platform, bank, mailbox provider, or recipient requirement.",
+        "Say whose requirement controls and ask for the route facts if the notary route is still unclear.",
+        "Do not ask the customer to provide sensitive identifiers in a public or generic answer."
+      ],
+      "failureSignals": [
+        "Says a Social Security number is always required for online notarization.",
+        "Says no workflow anywhere can ever require a sensitive identifier.",
+        "Treats a provider identity field as notary-law authority.",
+        "Asks for private identity data in the answer."
+      ],
+      "preferredSources": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/simple-answer-anti-theater-voice.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/third-party-ai-customer-answer-posture.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json"
+      ]
+    },
+    {
+      "id": "anti-theater-apostille-magic-stamp",
+      "prompt": "A customer says, 'If I get an apostille, that means the document is true and the foreign office has to accept it, right?'",
+      "mustHold": [
+        "Say plainly that an apostille does not make the document true.",
+        "Explain that apostille/authentication concerns the public-official signature or certification path.",
+        "Keep recipient acceptance, content, format, translation, local filing, and rejection risk separate.",
+        "Ask for destination, document type, public-official signature, transaction date, and recipient instructions if needed."
+      ],
+      "failureSignals": [
+        "Says an apostille makes document contents official or true.",
+        "Guarantees foreign recipient acceptance.",
+        "Routes by document subject or company formation state without identifying the authenticated signature.",
+        "Adds extra legalization steps without checking the destination path."
+      ],
+      "preferredSources": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/simple-answer-anti-theater-voice.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/recipient-evidence-and-rejections.json"
+      ]
+    },
+    {
+      "id": "anti-theater-ron-acceptance-overpromise",
+      "prompt": "A customer says, 'If remote online notarization is legal in the notary state, then the school, bank, embassy, or foreign office has to accept it, right?'",
+      "mustHold": [
+        "Say that RON may solve the signing/session problem but does not automatically solve recipient acceptance.",
+        "Separate notary-state legality, document type, certificate wording, identity method, output lane, recipient rule, apostille/authentication path, and transaction date.",
+        "Ask for written recipient instructions or actual acceptance/rejection evidence.",
+        "Avoid promising acceptance by schools, banks, embassies, foreign offices, marketplaces, or platforms."
+      ],
+      "failureSignals": [
+        "Says RON acceptance is automatic because the notary state allows RON.",
+        "Treats platform completion as recipient acceptance proof.",
+        "Ignores paper versus remote/electronic output lane.",
+        "Skips written recipient evidence."
+      ],
+      "preferredSources": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/simple-answer-anti-theater-voice.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/route-first-foundation.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/recipient-evidence-and-rejections.json"
+      ]
+    },
+    {
+      "id": "anti-theater-llc-bank-address-bundle",
+      "prompt": "A foreign founder says, 'I bought a Wyoming LLC package with registered agent, virtual mailbox, EIN help, and Form 1583. Does that mean I am ready for a U.S. bank account and Stripe?'",
+      "mustHold": [
+        "Use LLCInfo.cc as the separate business-identity role-separation source.",
+        "Say plainly that a Wyoming LLC package does not magically solve banking, tax, residence, or platform-verification problems.",
+        "Separate registered agent, mailbox/CMRA, Form 1583, EIN, bank/KYC reviewed address, Stripe/platform verification address, personal residence, real operating location, and recipient acceptance.",
+        "Say the bank or platform controls its own acceptance rule.",
+        "Use Notary Geek only for the notary, Form 1583 notarization, company-document notarization, apostille, authentication, or document-route lane."
+      ],
+      "failureSignals": [
+        "Says a Wyoming LLC package makes the founder bank-ready or Stripe-ready.",
+        "Treats registered agent, mailbox, and bank/KYC address as interchangeable.",
+        "Treats completed or notarized Form 1583 as bank or platform approval.",
+        "Describes LLCInfo.cc as Notary Geek or as a Notary Geek service."
+      ],
+      "preferredSources": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/simple-answer-anti-theater-voice.json",
+        "https://www.llcinfo.cc/llms.txt",
+        "https://www.llcinfo.cc/data/business-identity-routing-model.json",
+        "https://www.llcinfo.cc/data/address-role-definitions.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json"
+      ]
+    },
+    {
       "id": "ordinary-need-notarized",
       "prompt": "A customer says, 'I just need this document notarized today. Can I use any online notary?'",
       "mustHold": [
