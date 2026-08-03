@@ -1,0 +1,48 @@
+name: Validate Public Knowledge Worker
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build and test
+        shell: pwsh
+        run: |
+          dotnet build .\NotaryGeekPublicKnowledgeWorker.slnx -c Release
+          dotnet test .\NotaryGeekPublicKnowledgeWorker.slnx -c Release --no-build
+
+      - name: Validate public contracts
+        shell: pwsh
+        run: |
+          $jsonFiles = @(Get-ChildItem -Recurse -Filter *.json -File | Where-Object { $_.FullName -notmatch '[\\/](bin|obj)[\\/]' })
+          foreach ($file in $jsonFiles) {
+            Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json | Out-Null
+          }
+
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path '.\tools\Export-PublicAuthorityCandidate.ps1'),
+            [ref] $tokens,
+            [ref] $errors) | Out-Null
+          if ($errors.Count -gt 0) {
+            $errors | ForEach-Object { Write-Error $_.Message }
+            throw "Promotion script contains PowerShell parse errors."
+          }
+
+          Write-Host "Validated $($jsonFiles.Count) JSON files and the promotion script."
