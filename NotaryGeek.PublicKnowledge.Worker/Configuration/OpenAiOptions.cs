@@ -6,9 +6,13 @@ public sealed class OpenAiOptions
     public string EndpointPath { get; set; } = "/v1/responses";
     public string Model { get; set; } = "gpt-5-mini";
     public string ReasoningEffort { get; set; } = "medium";
+    public string AuthorityReasoningEffort { get; set; } = "minimal";
     public string ApiKey { get; set; } = string.Empty;
     public string PublicSourceApiKey { get; set; } = string.Empty;
     public int TimeoutSeconds { get; set; } = 60;
+    public int MaxProviderAttempts { get; set; } = 2;
+    public int AuthorityMaxOutputTokens { get; set; } = 6_000;
+    public int RepairMaxOutputTokens { get; set; } = 8_000;
     public bool AllowHighCostMode { get; set; }
     public string HighCostModelMarkers { get; set; } = "gpt-5.5;gpt-5_5";
     public string HighCostReasoningEffort { get; set; } = "medium";
