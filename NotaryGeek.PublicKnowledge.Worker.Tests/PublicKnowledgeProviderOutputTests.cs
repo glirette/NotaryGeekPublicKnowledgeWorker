@@ -148,6 +148,14 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.Equal("generic", PublicKnowledgeProviderOutput.SelectPublicSourceApiKey(null, "generic", false));
     }
 
+    [Fact]
+    public void PumpRefusesProviderExecutionIncludingLegacyAuthorityEnvelopes()
+    {
+        Assert.False(PublicKnowledgeExecutionPolicy.ShouldCallProvider("pump-timer", "authority-generation", true));
+        Assert.False(PublicKnowledgeExecutionPolicy.ShouldCallProvider("pump-timer", "regression", true));
+        Assert.True(PublicKnowledgeExecutionPolicy.ShouldCallProvider("timer", "authority-generation", true));
+    }
+
     private static HashSet<string> FetchedUrls() => new(StringComparer.OrdinalIgnoreCase) { SourceUrl };
 
     private static string CreateValidResponse(DateTime reviewedAtUtc) => JsonSerializer.Serialize(new

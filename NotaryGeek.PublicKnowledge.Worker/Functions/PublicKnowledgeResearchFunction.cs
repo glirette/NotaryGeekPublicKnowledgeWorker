@@ -722,16 +722,18 @@ public sealed class PublicKnowledgeResearchFunction
         CancellationToken cancellationToken)
     {
         var runStartedUtc = DateTime.UtcNow;
+        var runKind = GetRunKind(batch);
+        var effectiveExecute = PublicKnowledgeExecutionPolicy.ShouldCallProvider(trigger, runKind, execute);
         var commands = cases
             .Select(regressionCase => new PublicKnowledgeRunCommand(
-                Execute: execute,
+                Execute: effectiveExecute,
                 FromTimer: trigger.Contains("timer", StringComparison.OrdinalIgnoreCase),
                 Focus: regressionCase.Focus,
                 RequestedUrls: regressionCase.SourceUrls,
                 RegressionCaseId: regressionCase.Id,
                 RegressionCase: regressionCase,
                 ProviderOverride: providerOverride,
-                RunKind: GetRunKind(batch),
+                RunKind: runKind,
                 AuthorityLane: GetAuthorityLane(batch)))
             .ToArray();
 
