@@ -281,6 +281,49 @@ public sealed class PublicKnowledgeRunStorageService
         return response.Value.Content.ToObjectFromJson<PublicKnowledgeStoredRunEnvelope>(JsonOptions);
     }
 
+    public async Task<bool> HasFreshSuccessfulRunAsync(
+        string caseId,
+        TimeSpan freshness,
+        CancellationToken cancellationToken)
+    {
+        var latest = await ReadLatestAsync(caseId, cancellationToken);
+        return latest is not null &&
+               latest.Result.Ok &&
+               latest.Result.StructuredOutput is not null &&
+               latest.StoredAtUtc >= DateTime.UtcNow.Subtract(freshness);
+    }
+
+    public async Task<bool> TryAcquireDailySelectionAsync(
+        string batch,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var now = DateTime.UtcNow;
+        var blob = container.GetBlobClient($"runs/selection/{now:yyyy/MM/dd}/{ToSafeBlobSegment(batch)}.json");
+        var payload = BinaryData.FromObjectAsJson(new
+        {
+            schema = "public-authority-daily-selection/v1",
+            batch,
+            selectedAtUtc = now
+        }, JsonOptions);
+        try
+        {
+            await blob.UploadAsync(
+                payload,
+                new BlobUploadOptions
+                {
+                    Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },
+                    HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" }
+                },
+                cancellationToken);
+            return true;
+        }
+        catch (RequestFailedException ex) when (ex.Status == 409 || ex.Status == 412)
+        {
+            return false;
+        }
+    }
+
     public async Task<IReadOnlyList<PublicKnowledgeStoredRunSummary>> ListLatestAsync(
         CancellationToken cancellationToken)
     {

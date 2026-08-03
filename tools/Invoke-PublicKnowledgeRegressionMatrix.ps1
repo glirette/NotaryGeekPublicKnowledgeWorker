@@ -2,7 +2,7 @@ param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
     [string[]] $CaseId = @(),
-    [ValidateSet("All", "Core", "DailySourceIngestion", "Platform", "Apostille", "Recipient", "NNA")]
+    [ValidateSet("All", "Core", "DailySourceIngestion", "TechnicalSourceIngestion", "Platform", "Apostille", "Recipient", "NNA")]
     [string] $Batch = "All",
     [ValidateSet("", "Default", "OpenAI", "Straico")]
     [string] $Provider = "",
@@ -91,6 +91,7 @@ $cases = @($matrixResponse.matrix.cases)
 $batchCaseIds = switch ($Batch) {
     "Core" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "platform-hype-foreign-signer-no-ssn-spain", "outside-apostille-path-not-apostille-plus") }
     "DailySourceIngestion" { @("daily-public-source-ingestion-safety-gates") }
+    "TechnicalSourceIngestion" { @("daily-technical-source-ingestion") }
     "Platform" { @("foreign-signer-no-ssn-platform-route-first", "virginia-foreign-signer-network-myth", "commercial-incentive-routing-not-route-authority", "platform-hype-foreign-signer-no-ssn-spain", "notarycam-proof-history-scrutiny", "real-estate-court-defensible-platform-trap", "nna-data-exchange-api-private-credential-rail", "nna-legitimacy-not-legal-authority", "ethical-acceptance-diploma-mill-boundary", "coaching-scam-no-criminal-intent-boundary") }
     "Apostille" { @("spain-hague-finality", "georgia-affidavit-florida-notary-spain", "saudi-arabia-hague-not-non-hague", "outside-apostille-path-not-apostille-plus") }
     "Recipient" { @("recipient-phone-comment-not-rejection", "real-estate-court-defensible-platform-trap") }

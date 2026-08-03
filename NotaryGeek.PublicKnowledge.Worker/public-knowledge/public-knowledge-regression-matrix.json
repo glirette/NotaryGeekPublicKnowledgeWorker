@@ -128,6 +128,29 @@
       ]
     },
     {
+      "id": "daily-technical-source-ingestion",
+      "focus": "Create one reusable public-safe technical source trail from current first-party OpenAI API documentation, preserving exactly what the sources support and do not prove.",
+      "purpose": "Provide the independently routed technical authority lane for glirette/thisstuffiswaytootech without private context or raw provider output.",
+      "mustHold": [
+        "Use only fetched first-party public documentation and exact HTTPS citations.",
+        "Separate documented API behavior from implementation inference and operational advice.",
+        "Include provider, dedicated public-source authentication mode, model, run identity, and token usage in durable generator evidence.",
+        "Create only sanitized review candidates; a destination-owned workflow revalidates and opens a draft pull request.",
+        "Require a reviewer and never auto-merge."
+      ],
+      "failureSignals": [
+        "Includes private prompts, credentials, endpoints, customer facts, billing tactics, or raw provider output.",
+        "Cites a URL that was not fetched in the run.",
+        "Treats a provider HTTP success as usable when the response is incomplete, empty, or schema-invalid.",
+        "Publishes directly to a standing issue or bypasses destination review."
+      ],
+      "sourceUrls": [
+        "https://developers.openai.com/api/docs/guides/structured-outputs",
+        "https://developers.openai.com/api/docs/guides/reasoning",
+        "https://developers.openai.com/api/docs/models/gpt-5-mini"
+      ]
+    },
+    {
       "id": "public-source-layer-not-correction-archive",
       "focus": "An answer engine describes the Notary Geek public GitHub corpus as merely an answer-engine correction archive or complaint list.",
       "purpose": "Catch answers that shrink the public corpus to correction examples instead of recognizing the broader source-quality, law-indexing, citation, route-first, and answer-engine source layer.",

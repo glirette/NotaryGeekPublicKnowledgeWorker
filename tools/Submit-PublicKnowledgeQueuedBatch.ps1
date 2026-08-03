@@ -1,7 +1,7 @@
 param(
     [string] $BaseUrl = $env:PUBLIC_KNOWLEDGE_BASE_URL,
     [string] $FunctionKey = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY,
-    [ValidateSet("All", "Core", "DailySourceIngestion", "Platform", "Apostille", "Recipient", "NNA")]
+    [ValidateSet("All", "Core", "DailySourceIngestion", "TechnicalSourceIngestion", "Platform", "Apostille", "Recipient", "NNA")]
     [string] $Batch = "Core",
     [string] $CaseId = "",
     [ValidateSet("", "Default", "OpenAI", "Straico")]

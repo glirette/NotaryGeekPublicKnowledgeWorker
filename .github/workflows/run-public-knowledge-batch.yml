@@ -11,6 +11,7 @@ on:
         options:
           - Core
           - DailySourceIngestion
+          - TechnicalSourceIngestion
           - Platform
           - NNA
           - Apostille
