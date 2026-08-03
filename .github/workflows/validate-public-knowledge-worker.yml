@@ -45,4 +45,21 @@ jobs:
             throw "Promotion script contains PowerShell parse errors."
           }
 
-          Write-Host "Validated $($jsonFiles.Count) JSON files and the promotion script."
+          $promotionWorkflow = Get-Content -LiteralPath '.github/workflows/promote-public-authority-candidates.yml' -Raw
+          foreach ($required in @('/api/public-knowledge/promotion-ack', 'promotedAtUtc', 'PUBLIC_KNOWLEDGE_FUNCTION_KEY')) {
+            if (-not $promotionWorkflow.Contains($required)) {
+              throw "Promotion workflow is missing required contract '$required'."
+            }
+          }
+
+          $publicationWorkflow = Get-Content -LiteralPath '.github/workflows/acknowledge-public-authority-publication.yml' -Raw
+          foreach ($required in @('pull_request:', 'merged == true', '/api/public-knowledge/publication-ack', 'publishedAtUtc', 'PUBLIC_KNOWLEDGE_FUNCTION_KEY')) {
+            if (-not $publicationWorkflow.Contains($required)) {
+              throw "Publication workflow is missing required contract '$required'."
+            }
+          }
+          if ($publicationWorkflow.Contains('actions/checkout') -or $publicationWorkflow.Contains('pull_request_target:')) {
+            throw "Publication acknowledgement must not check out PR code or use pull_request_target."
+          }
+
+          Write-Host "Validated $($jsonFiles.Count) JSON files, promotion export, and trusted receipt workflows."

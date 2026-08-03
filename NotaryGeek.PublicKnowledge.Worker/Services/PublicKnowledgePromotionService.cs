@@ -191,6 +191,10 @@ public sealed class PublicKnowledgePromotionService
         {
             throw new ArgumentException("Publication acknowledgement must match the promoted candidate, destination, and pull request URL.");
         }
+        if (receipt.PublishedAtUtc < promotion.PromotedAtUtc)
+        {
+            throw new ArgumentException("Publication acknowledgement cannot predate the matching promotion receipt.");
+        }
 
         var blobName = $"promotion/publications/{ToSafeSegment(destination)}/{receipt.CandidateId}.json";
         await UploadReceiptOnceAsync(
