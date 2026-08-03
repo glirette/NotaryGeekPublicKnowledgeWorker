@@ -11,7 +11,6 @@ public sealed class PublicKnowledgeOptions
     public string PumpTimerBatches { get; set; } = string.Empty;
     public string PumpTimerProvider { get; set; } = "OpenAI";
     public string Provider { get; set; } = "OpenAI";
-    public bool RequirePublicSourceOpenAiKey { get; set; } = true;
     public int AuthorityFreshnessHours { get; set; } = 20;
     public int PromotionFeedMaxCandidates { get; set; } = 20;
     public int SourceFreshnessDays { get; set; } = 14;

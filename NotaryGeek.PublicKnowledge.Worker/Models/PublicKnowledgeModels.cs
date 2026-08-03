@@ -149,7 +149,15 @@ public sealed record PublicAuthorityUsage(
     int OutputTokens,
     int ReasoningTokens);
 
+[System.Text.Json.Serialization.JsonUnmappedMemberHandling(System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow)]
 public sealed record PublicAuthorityPromotionReceipt(
+    string CandidateId,
+    string Destination,
+    DateTime PromotedAtUtc,
+    string PullRequestUrl);
+
+[System.Text.Json.Serialization.JsonUnmappedMemberHandling(System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow)]
+public sealed record PublicAuthorityPublicationReceipt(
     string CandidateId,
     string Destination,
     DateTime PublishedAtUtc,
@@ -157,7 +165,10 @@ public sealed record PublicAuthorityPromotionReceipt(
 
 public sealed record PublicAuthorityPromotionStatus(
     int CandidateCount,
+    int PromotedCandidateCount,
+    int PublishedCandidateCount,
     DateTime? LastCandidateUtc,
+    DateTime? LastSuccessfulPromotionUtc,
     DateTime? LastSuccessfulPublicationUtc,
     int RunHistoryRetentionDays,
     int JobEnvelopeRetentionDays,

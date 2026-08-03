@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -85,7 +86,51 @@ public sealed class PublicKnowledgeResearchFunction
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "public-knowledge/promotion-ack")] HttpRequestData req,
         CancellationToken cancellationToken)
     {
-        var receipt = await req.ReadFromJsonAsync<PublicAuthorityPromotionReceipt>(cancellationToken);
+        PublicAuthorityPromotionReceipt? receipt;
+        try
+        {
+            receipt = await req.ReadFromJsonAsync<PublicAuthorityPromotionReceipt>(cancellationToken);
+        }
+        catch (JsonException)
+        {
+            receipt = null;
+        }
+        if (receipt is null)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_promotion_receipt" }, cancellationToken);
+            return badRequest;
+        }
+
+        try
+        {
+            await _promotion.RecordPromotionAsync(receipt, cancellationToken);
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new { ok = true, receipt.CandidateId, receipt.Destination, receipt.PromotedAtUtc }, cancellationToken);
+            return response;
+        }
+        catch (ArgumentException ex)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_promotion_receipt", message = ex.Message }, cancellationToken);
+            return badRequest;
+        }
+    }
+
+    [Function("PublicKnowledgePublicationAck")]
+    public async Task<HttpResponseData> PublicationAck(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "public-knowledge/publication-ack")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        PublicAuthorityPublicationReceipt? receipt;
+        try
+        {
+            receipt = await req.ReadFromJsonAsync<PublicAuthorityPublicationReceipt>(cancellationToken);
+        }
+        catch (JsonException)
+        {
+            receipt = null;
+        }
         if (receipt is null)
         {
             var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);

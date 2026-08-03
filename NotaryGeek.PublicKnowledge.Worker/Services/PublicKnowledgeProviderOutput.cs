@@ -21,15 +21,8 @@ public static class PublicKnowledgeProviderOutput
         }
     };
 
-    public static string SelectPublicSourceApiKey(string? publicSourceApiKey, string? genericApiKey, bool requirePublicSourceKey)
-    {
-        if (!string.IsNullOrWhiteSpace(publicSourceApiKey))
-        {
-            return publicSourceApiKey;
-        }
-
-        return requirePublicSourceKey ? string.Empty : genericApiKey ?? string.Empty;
-    }
+    public static string SelectPublicSourceApiKey(string? publicSourceApiKey) =>
+        publicSourceApiKey ?? string.Empty;
 
     public static bool TryValidate(
         string? responseStatus,

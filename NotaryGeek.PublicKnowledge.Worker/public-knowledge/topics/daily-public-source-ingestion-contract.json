@@ -40,7 +40,7 @@
     "modelSetting": "OpenAI__Model",
     "requiredKeySetting": "OpenAI__PublicSourceApiKey",
     "authModeEvidence": "dedicated_public_source_key",
-    "failClosedSetting": "PublicKnowledge__RequirePublicSourceOpenAiKey=true",
+    "failClosedBoundary": "Authority calls unconditionally require OpenAI__PublicSourceApiKey; generic OpenAI__ApiKey is never selected.",
     "genericKeyFallbackAllowed": false,
     "structuredOutput": {
       "requestShape": "text.format={type:json_schema,name:public_authority_candidates,schema:<strict-schema>,strict:true}",
@@ -131,9 +131,16 @@
     "autoMergeAllowed": false,
     "standingIssueCommentsAreNotPromotion": true,
     "rawProviderOutputMayBePublished": false,
-    "publicationAckRoute": "POST /api/public-knowledge/promotion-ack",
+    "promotionAckRoute": "POST /api/public-knowledge/promotion-ack",
+    "promotionAckFields": ["candidateId", "destination", "promotedAtUtc", "pullRequestUrl"],
+    "promotionAckAuthorization": "function",
+    "promotedCandidateFeedBehavior": "Exclude destination and candidate ID after a validated draft-PR promotion receipt.",
+    "publicationAckRoute": "POST /api/public-knowledge/publication-ack",
+    "publicationAckFields": ["candidateId", "destination", "publishedAtUtc", "pullRequestUrl"],
     "publicationAckAuthorization": "function",
-    "lastPublicationSource": "Validated destination acknowledgement containing a public GitHub HTTPS pull-request URL."
+    "publicationBoundary": "Only a trusted destination default-branch workflow acknowledges a same-repository authority PR after merge to main; it does not execute PR code.",
+    "lastPromotionSource": "Validated draft-PR acknowledgement containing the exact destination candidate and pull-request URL.",
+    "lastPublicationSource": "Validated merged-PR acknowledgement matching the existing promotion receipt."
   },
   "healthEvidence": {
     "providerFields": [
@@ -158,7 +165,10 @@
       "providerHealth.lastUsableOutputUtc",
       "providerHealth.actionableFailureReasons",
       "promotion.candidateCount",
+      "promotion.promotedCandidateCount",
+      "promotion.publishedCandidateCount",
       "promotion.lastCandidateUtc",
+      "promotion.lastSuccessfulPromotionUtc",
       "promotion.lastSuccessfulPublicationUtc"
     ]
   },

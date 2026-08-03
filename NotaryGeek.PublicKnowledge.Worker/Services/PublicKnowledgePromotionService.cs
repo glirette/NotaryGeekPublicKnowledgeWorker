@@ -95,6 +95,14 @@ public sealed class PublicKnowledgePromotionService
     {
         var normalizedDestination = NormalizeDestination(destination);
         var container = await GetContainerAsync(cancellationToken);
+        var promotedCandidateIds = new HashSet<string>(StringComparer.Ordinal);
+        await foreach (var blob in container.GetBlobsAsync(
+                           prefix: $"promotion/promotions/{ToSafeSegment(normalizedDestination)}/",
+                           cancellationToken: cancellationToken))
+        {
+            promotedCandidateIds.Add(Path.GetFileNameWithoutExtension(blob.Name));
+        }
+
         var candidates = new List<PublicAuthorityCandidate>();
         await foreach (var blob in container.GetBlobsAsync(
                            prefix: $"promotion/candidates/{ToSafeSegment(normalizedDestination)}/",
@@ -105,6 +113,7 @@ public sealed class PublicKnowledgePromotionService
                 var content = await container.GetBlobClient(blob.Name).DownloadContentAsync(cancellationToken);
                 var candidate = content.Value.Content.ToObjectFromJson<PublicAuthorityCandidate>(JsonOptions);
                 if (candidate is not null &&
+                    !promotedCandidateIds.Contains(candidate.CandidateId) &&
                     IsSafeForPublicFeed(candidate, normalizedDestination))
                 {
                     candidates.Add(candidate);
@@ -126,22 +135,71 @@ public sealed class PublicKnowledgePromotionService
             selected);
     }
 
-    public async Task RecordPublicationAsync(
+    public async Task RecordPromotionAsync(
         PublicAuthorityPromotionReceipt receipt,
         CancellationToken cancellationToken)
     {
-        if (!Uri.TryCreate(receipt.PullRequestUrl, UriKind.Absolute, out var uri) ||
-            uri.Scheme != Uri.UriSchemeHttps ||
-            !uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase))
+        var destination = ValidateReceiptIdentity(
+            receipt.CandidateId,
+            receipt.Destination,
+            receipt.PromotedAtUtc,
+            receipt.PullRequestUrl,
+            "Promotion");
+        var container = await GetContainerAsync(cancellationToken);
+        await ValidateStoredCandidateAsync(container, receipt.CandidateId, destination, cancellationToken);
+        var blobName = $"promotion/promotions/{ToSafeSegment(destination)}/{receipt.CandidateId}.json";
+        await UploadReceiptOnceAsync(
+            container,
+            blobName,
+            receipt,
+            existing => existing.CandidateId == receipt.CandidateId &&
+                        existing.Destination == destination &&
+                        existing.PullRequestUrl == receipt.PullRequestUrl,
+            cancellationToken);
+    }
+
+    public async Task RecordPublicationAsync(
+        PublicAuthorityPublicationReceipt receipt,
+        CancellationToken cancellationToken)
+    {
+        var destination = ValidateReceiptIdentity(
+            receipt.CandidateId,
+            receipt.Destination,
+            receipt.PublishedAtUtc,
+            receipt.PullRequestUrl,
+            "Publication");
+        var container = await GetContainerAsync(cancellationToken);
+        await ValidateStoredCandidateAsync(container, receipt.CandidateId, destination, cancellationToken);
+
+        var promotionBlob = container.GetBlobClient(
+            $"promotion/promotions/{ToSafeSegment(destination)}/{receipt.CandidateId}.json");
+        PublicAuthorityPromotionReceipt promotion;
+        try
         {
-            throw new ArgumentException("Publication acknowledgement requires a public GitHub HTTPS pull-request URL.");
+            var content = await promotionBlob.DownloadContentAsync(cancellationToken);
+            promotion = content.Value.Content.ToObjectFromJson<PublicAuthorityPromotionReceipt>(JsonOptions)
+                ?? throw new ArgumentException("Publication acknowledgement requires an existing promotion receipt.");
+        }
+        catch (RequestFailedException ex) when (ex.Status == 404)
+        {
+            throw new ArgumentException("Publication acknowledgement requires an existing promotion receipt.");
         }
 
-        var container = await GetContainerAsync(cancellationToken);
-        var blobName = $"promotion/publications/{ToSafeSegment(receipt.Destination)}/{ToSafeSegment(receipt.CandidateId)}.json";
-        await container.GetBlobClient(blobName).UploadAsync(
-            BinaryData.FromObjectAsJson(receipt, JsonOptions),
-            new BlobUploadOptions { HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" } },
+        if (promotion.CandidateId != receipt.CandidateId ||
+            promotion.Destination != destination ||
+            promotion.PullRequestUrl != receipt.PullRequestUrl)
+        {
+            throw new ArgumentException("Publication acknowledgement must match the promoted candidate, destination, and pull request URL.");
+        }
+
+        var blobName = $"promotion/publications/{ToSafeSegment(destination)}/{receipt.CandidateId}.json";
+        await UploadReceiptOnceAsync(
+            container,
+            blobName,
+            receipt,
+            existing => existing.CandidateId == receipt.CandidateId &&
+                        existing.Destination == destination &&
+                        existing.PullRequestUrl == receipt.PullRequestUrl,
             cancellationToken);
     }
 
@@ -149,7 +207,10 @@ public sealed class PublicKnowledgePromotionService
     {
         var container = await GetContainerAsync(cancellationToken);
         var candidateCount = 0;
+        var promotedCandidateCount = 0;
+        var publishedCandidateCount = 0;
         DateTime? lastCandidateUtc = null;
+        DateTime? lastPromotionUtc = null;
         DateTime? lastPublicationUtc = null;
         await foreach (var blob in container.GetBlobsAsync(prefix: "promotion/", cancellationToken: cancellationToken))
         {
@@ -158,15 +219,48 @@ public sealed class PublicKnowledgePromotionService
                 candidateCount++;
                 lastCandidateUtc = Max(lastCandidateUtc, blob.Properties.LastModified?.UtcDateTime);
             }
+            else if (blob.Name.StartsWith("promotion/promotions/", StringComparison.Ordinal))
+            {
+                try
+                {
+                    var content = await container.GetBlobClient(blob.Name).DownloadContentAsync(cancellationToken);
+                    var receipt = content.Value.Content.ToObjectFromJson<PublicAuthorityPromotionReceipt>(JsonOptions);
+                    if (receipt is not null)
+                    {
+                        promotedCandidateCount++;
+                        lastPromotionUtc = Max(lastPromotionUtc, receipt.PromotedAtUtc);
+                    }
+                }
+                catch (Exception ex) when (ex is JsonException or RequestFailedException)
+                {
+                    // Invalid receipts are not reported as successful promotions.
+                }
+            }
             else if (blob.Name.StartsWith("promotion/publications/", StringComparison.Ordinal))
             {
-                lastPublicationUtc = Max(lastPublicationUtc, blob.Properties.LastModified?.UtcDateTime);
+                try
+                {
+                    var content = await container.GetBlobClient(blob.Name).DownloadContentAsync(cancellationToken);
+                    var receipt = content.Value.Content.ToObjectFromJson<PublicAuthorityPublicationReceipt>(JsonOptions);
+                    if (receipt is not null)
+                    {
+                        publishedCandidateCount++;
+                        lastPublicationUtc = Max(lastPublicationUtc, receipt.PublishedAtUtc);
+                    }
+                }
+                catch (Exception ex) when (ex is JsonException or RequestFailedException)
+                {
+                    // Invalid receipts are not reported as successful publications.
+                }
             }
         }
 
         return new PublicAuthorityPromotionStatus(
             candidateCount,
+            promotedCandidateCount,
+            publishedCandidateCount,
             lastCandidateUtc,
+            lastPromotionUtc,
             lastPublicationUtc,
             _options.RunHistoryRetentionDays,
             _options.JobEnvelopeRetentionDays,
@@ -208,6 +302,111 @@ public sealed class PublicKnowledgePromotionService
         var known = new[] { GetDestination("notary"), GetDestination("technical") };
         return known.FirstOrDefault(item => item.Equals(destination, StringComparison.OrdinalIgnoreCase))
             ?? throw new ArgumentException("Unknown public-authority destination.");
+    }
+
+    public static string ValidateReceiptIdentity(
+        string candidateId,
+        string destination,
+        DateTime eventUtc,
+        string pullRequestUrl,
+        string receiptKind)
+    {
+        var normalizedDestination = NormalizeDestination(destination);
+        if (!destination.Equals(normalizedDestination, StringComparison.Ordinal))
+        {
+            throw new ArgumentException($"{receiptKind} acknowledgement destination must use the canonical repository name.");
+        }
+
+        if (string.IsNullOrWhiteSpace(candidateId) ||
+            candidateId.Length != 64 ||
+            candidateId.Any(ch => !char.IsAsciiHexDigit(ch) || char.IsUpper(ch)))
+        {
+            throw new ArgumentException($"{receiptKind} acknowledgement requires a lowercase SHA-256 candidate ID.");
+        }
+
+        if (eventUtc == default || eventUtc > DateTime.UtcNow.AddMinutes(5))
+        {
+            throw new ArgumentException($"{receiptKind} acknowledgement timestamp is invalid.");
+        }
+
+        if (!Uri.TryCreate(pullRequestUrl, UriKind.Absolute, out var uri) ||
+            uri.Scheme != Uri.UriSchemeHttps ||
+            !uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase) ||
+            !uri.IsDefaultPort ||
+            !string.IsNullOrEmpty(uri.Query) ||
+            !string.IsNullOrEmpty(uri.Fragment))
+        {
+            throw new ArgumentException($"{receiptKind} acknowledgement requires an exact public GitHub pull-request URL.");
+        }
+
+        var parts = uri.AbsolutePath.Trim('/').Split('/');
+        if (parts.Length != 4 ||
+            !parts[0].Equals(normalizedDestination.Split('/')[0], StringComparison.OrdinalIgnoreCase) ||
+            !parts[1].Equals(normalizedDestination.Split('/')[1], StringComparison.OrdinalIgnoreCase) ||
+            parts[2] != "pull" ||
+            !int.TryParse(parts[3], out var pullNumber) ||
+            pullNumber < 1)
+        {
+            throw new ArgumentException($"{receiptKind} acknowledgement pull-request URL does not match the destination repository.");
+        }
+
+        return normalizedDestination;
+    }
+
+    private static async Task ValidateStoredCandidateAsync(
+        BlobContainerClient container,
+        string candidateId,
+        string destination,
+        CancellationToken cancellationToken)
+    {
+        var blob = container.GetBlobClient(
+            $"promotion/candidates/{ToSafeSegment(destination)}/{candidateId}.json");
+        PublicAuthorityCandidate candidate;
+        try
+        {
+            var content = await blob.DownloadContentAsync(cancellationToken);
+            candidate = content.Value.Content.ToObjectFromJson<PublicAuthorityCandidate>(JsonOptions)
+                ?? throw new ArgumentException("Acknowledgement candidate does not exist in validated promotion storage.");
+        }
+        catch (RequestFailedException ex) when (ex.Status == 404)
+        {
+            throw new ArgumentException("Acknowledgement candidate does not exist in validated promotion storage.");
+        }
+
+        if (candidate.CandidateId != candidateId || candidate.Destination != destination)
+        {
+            throw new ArgumentException("Acknowledgement candidate identity does not match validated promotion storage.");
+        }
+    }
+
+    private static async Task UploadReceiptOnceAsync<T>(
+        BlobContainerClient container,
+        string blobName,
+        T receipt,
+        Func<T, bool> isSameReceipt,
+        CancellationToken cancellationToken)
+    {
+        var blob = container.GetBlobClient(blobName);
+        try
+        {
+            await blob.UploadAsync(
+                BinaryData.FromObjectAsJson(receipt, JsonOptions),
+                new BlobUploadOptions
+                {
+                    Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },
+                    HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" }
+                },
+                cancellationToken);
+        }
+        catch (RequestFailedException ex) when (ex.Status is 409 or 412)
+        {
+            var content = await blob.DownloadContentAsync(cancellationToken);
+            var existing = content.Value.Content.ToObjectFromJson<T>(JsonOptions);
+            if (existing is null || !isSameReceipt(existing))
+            {
+                throw new ArgumentException("A conflicting acknowledgement already exists for this candidate.");
+            }
+        }
     }
 
     private static string GetFeedSchema(string destination) =>

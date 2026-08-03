@@ -49,13 +49,14 @@ Use the Azure Functions timer as the daily scheduler. Configure:
 PublicKnowledge__TimerEnabled=true
 PublicKnowledge__TimerBatches=DailySourceIngestion
 PublicKnowledge__TimerProvider=OpenAI
-PublicKnowledge__RequirePublicSourceOpenAiKey=true
 OpenAI__PublicSourceApiKey=<the dedicated daily-reset public data-sharing key, stored in Azure app settings or Key Vault reference>
 OpenAI__AuthorityReasoningEffort=minimal
 OpenAI__AuthorityMaxOutputTokens=6000
 OpenAI__RepairMaxOutputTokens=8000
 OpenAI__MaxProviderAttempts=2
 ```
+
+The authority lane unconditionally requires `OpenAI__PublicSourceApiKey`. It never falls back to generic `OpenAI__ApiKey`; the legacy `PublicKnowledge__RequirePublicSourceOpenAiKey` switch is not part of the repaired source contract.
 
 The existing `PublicKnowledgeResearchTimer` schedule is:
 
@@ -75,6 +76,7 @@ The daily ingestion lanes are intentionally PR-gated:
 - The two-hour pump makes no provider calls. It refreshes health/index artifacts and refuses provider execution from legacy pump envelopes.
 - Raw provider output remains private. Only the sanitized typed candidate feed is eligible for destination promotion.
 - Destination repositories revalidate candidates and own source-scoped branches and draft pull requests.
+- A protected promotion receipt suppresses a candidate from later feeds as soon as its draft PR exists; a separate protected publication receipt is recorded only after that same-repository PR merges to `main`.
 - Destination workflows must preflight `can_approve_pull_request_reviews` and fail closed when their job-scoped `GITHUB_TOKEN` cannot create pull requests.
 - No auto-merge is allowed until a later reviewed contract changes that rule.
 

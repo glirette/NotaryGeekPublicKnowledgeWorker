@@ -12,7 +12,6 @@
     "PublicKnowledge__PumpTimerBatches": "",
     "PublicKnowledge__PumpTimerProvider": "OpenAI",
     "PublicKnowledge__Provider": "OpenAI",
-    "PublicKnowledge__RequirePublicSourceOpenAiKey": "true",
     "PublicKnowledge__AuthorityFreshnessHours": "20",
     "PublicKnowledge__SourceFreshnessDays": "14",
     "PublicKnowledge__PromotionFeedMaxCandidates": "20",

@@ -110,7 +110,7 @@ jobs:
             model = $status.status.Model
             hasOpenAiApiKey = $status.status.HasOpenAiApiKey
             hasPublicSourceOpenAiApiKey = $status.status.HasPublicSourceOpenAiApiKey
-            requirePublicSourceOpenAiKey = $status.status.RequirePublicSourceOpenAiKey
+            publicSourceOpenAiKeyRequired = $status.status.PublicSourceOpenAiKeyRequired
             hasStraicoApiKey = $status.status.HasStraicoApiKey
             maxSourcesPerRun = $status.status.MaxSourcesPerRun
             storageHasConnectionString = $status.storage.HasConnectionString
@@ -120,6 +120,7 @@ jobs:
             providerFailedOutputs = $status.providerHealth.FailedOutputCount
             lastUsableOutputUtc = $status.providerHealth.LastUsableOutputUtc
             promotionCandidates = $status.promotion.CandidateCount
+            lastSuccessfulPromotionUtc = $status.promotion.LastSuccessfulPromotionUtc
             lastSuccessfulPublicationUtc = $status.promotion.LastSuccessfulPublicationUtc
           }
 

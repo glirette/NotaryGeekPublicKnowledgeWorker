@@ -180,7 +180,7 @@ public sealed class PublicKnowledgeResearchService
             _openAiOptions.Model,
             !string.IsNullOrWhiteSpace(_openAiOptions.ApiKey),
             !string.IsNullOrWhiteSpace(_openAiOptions.PublicSourceApiKey),
-            _knowledgeOptions.RequirePublicSourceOpenAiKey,
+            true,
             _straicoOptions.BaseUrl,
             _straicoOptions.DefaultChatModel,
             !string.IsNullOrWhiteSpace(_straicoOptions.ApiKey),
@@ -416,9 +416,7 @@ public sealed class PublicKnowledgeResearchService
             {
                 if (string.IsNullOrWhiteSpace(GetOpenAiApiKey()))
                 {
-                    errors.Add(_knowledgeOptions.RequirePublicSourceOpenAiKey
-                        ? "OpenAI__PublicSourceApiKey is not configured for the public-source OpenAI lane."
-                        : "OpenAI__PublicSourceApiKey or OpenAI__ApiKey is not configured.");
+                    errors.Add("OpenAI__PublicSourceApiKey is not configured for the public-source OpenAI lane.");
                 }
             }
         }
@@ -1050,10 +1048,7 @@ public sealed class PublicKnowledgeResearchService
         UseStraicoProvider(providerName) ? _straicoOptions.DefaultChatModel : _openAiOptions.Model;
 
     private string GetOpenAiApiKey()
-        => PublicKnowledgeProviderOutput.SelectPublicSourceApiKey(
-            _openAiOptions.PublicSourceApiKey,
-            _openAiOptions.ApiKey,
-            _knowledgeOptions.RequirePublicSourceOpenAiKey);
+        => PublicKnowledgeProviderOutput.SelectPublicSourceApiKey(_openAiOptions.PublicSourceApiKey);
 
     private static bool IsSupportedProvider(string providerName) =>
         providerName.Equals("OpenAI", StringComparison.OrdinalIgnoreCase) ||
@@ -1726,7 +1721,7 @@ public sealed record PublicKnowledgeStatus(
     string Model,
     bool HasOpenAiApiKey,
     bool HasPublicSourceOpenAiApiKey,
-    bool RequirePublicSourceOpenAiKey,
+    bool PublicSourceOpenAiKeyRequired,
     string StraicoBaseUrl,
     string StraicoModel,
     bool HasStraicoApiKey,

@@ -6,7 +6,7 @@ This repository is the reviewed source for the Azure Function public-authority w
 
 ## Reconciled Source Boundary
 
-The daily ingestion code and dedicated public-source key boundary that were previously present only in a local deployment and closed pull requests are now represented in source. The worker requires `OpenAI__PublicSourceApiKey` when `PublicKnowledge__RequirePublicSourceOpenAiKey=true`; it does not silently use `OpenAI__ApiKey`.
+The daily ingestion code and dedicated public-source key boundary that were previously present only in a local deployment and closed pull requests are now represented in source. Authority calls always require `OpenAI__PublicSourceApiKey`; `OpenAI__ApiKey` is never a fallback, regardless of legacy deployed settings.
 
 This repair does not deploy, change Azure settings, merge a pull request, or delete stored data. A reviewed deployment remains required before the live Function has this behavior.
 
@@ -51,6 +51,10 @@ The technical feed schema is `technical-source-candidate-feed/v1`. `recheckBefor
 
 Destination repositories own branches and draft pull requests using their job-scoped `GITHUB_TOKEN`; this Function owns no GitHub PAT or App secret. Each promotion job must validate the feed again, reject unknown fields, and preflight the repository Actions setting `can_approve_pull_request_reviews`. If that setting is false, PR creation must fail closed. Changing that protected repository setting is outside this repair.
 
+After a draft PR is created, the destination sends a function-key-protected promotion receipt to `POST /api/public-knowledge/promotion-ack` with exactly `candidateId`, `destination`, `promotedAtUtc`, and `pullRequestUrl`. Promoted candidate IDs are excluded from later feeds, preventing scheduled duplicate PRs. A draft PR is not a publication.
+
+Only the destination's trusted default-branch `pull_request: closed` workflow sends a publication receipt after a same-repository authority PR is merged to `main`. It does not check out or execute PR code. It reads the merged candidate files through the GitHub API and posts exactly `candidateId`, `destination`, `publishedAtUtc`, and `pullRequestUrl` to the function-key-protected `POST /api/public-knowledge/publication-ack`. Publication is accepted only when the candidate exists and an earlier promotion receipt has the same exact canonical destination and destination-repository PR URL.
+
 Standing issues such as `glirette/BootStrapCritical#138` are status boards, not provider-result queues or fake patch targets. Promotion occurs through source-scoped branches and draft pull requests, never repetitive result comments.
 
 ## Health And Retention
@@ -61,7 +65,7 @@ The protected status and operator snapshot return:
 - approximate live queue messages plus exact job-envelope count; new envelopes carry status metadata for active/completed/failed/stale counts, while pre-repair envelopes are reported as unknown legacy status without rewriting them;
 - latest-run provider/auth-mode/model sets and aggregate input/output/reasoning usage;
 - last usable output and recent actionable provider failure reasons;
-- candidate count, last candidate timestamp, and last acknowledged successful publication timestamp;
+- candidate, promoted, and published counts plus separate last-candidate, last-successful-promotion, and last-successful-publication timestamps;
 - configured retention windows.
 
 Retention is policy-only in this repair: 90 days for run history and 30 days for job envelopes by default. No deletion or compaction runs. A future reviewed implementation must preserve latest indexes, selection state, promotion candidates, publication acknowledgements, provider evidence, and actionable failures before removing history.
