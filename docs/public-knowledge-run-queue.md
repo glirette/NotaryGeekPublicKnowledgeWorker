@@ -1,6 +1,6 @@
 # Public Knowledge Run Queue
 
-Reviewed: 2026-06-11
+Reviewed: 2026-08-03
 
 This repo uses Azure Storage Queue `public-knowledge-run-jobs` for public knowledge research/regression batches.
 
@@ -21,7 +21,9 @@ Current fields:
   "caseIds": ["case-id"],
   "submittedAtUtc": "2026-06-11T00:00:00Z",
   "caseId": "case-id",
-  "providerOverride": null
+  "providerOverride": null,
+  "runKind": "regression",
+  "authorityLane": "notary"
 }
 ```
 
@@ -49,6 +51,10 @@ PublicKnowledge__TimerBatches=DailySourceIngestion
 PublicKnowledge__TimerProvider=OpenAI
 PublicKnowledge__RequirePublicSourceOpenAiKey=true
 OpenAI__PublicSourceApiKey=<the dedicated daily-reset public data-sharing key, stored in Azure app settings or Key Vault reference>
+OpenAI__AuthorityReasoningEffort=minimal
+OpenAI__AuthorityMaxOutputTokens=6000
+OpenAI__RepairMaxOutputTokens=8000
+OpenAI__MaxProviderAttempts=2
 ```
 
 The existing `PublicKnowledgeResearchTimer` schedule is:
@@ -61,12 +67,18 @@ Treat this as 09:17 UTC unless the Azure Functions host is explicitly configured
 
 The GitHub Actions workflow `run-public-knowledge-batch.yml` remains available for manual/on-demand protected submits, defaulting to `DailySourceIngestion` with provider `OpenAI`. Do not add a second daily submitter unless duplicate OpenAI public-source runs are intentional.
 
-The daily ingestion lane is intentionally PR-gated:
+The daily ingestion lanes are intentionally PR-gated:
 
-- Grok batch collection is for broad public-source discovery when latency up to 24 hours is acceptable.
-- OpenAI normalization is for public-source records only, not final legal advice.
-- Daily source-target selection, collection evidence, normalized source records, usage ledger, and promotion plan artifacts must exist before publication.
+- `DailySourceIngestion` creates Notary public-authority candidates; `TechnicalSourceIngestion` creates reusable technical source-trail candidates.
+- Strict Responses API Structured Outputs and local validation must both pass. Incomplete, empty, invalid, stale, or unfetched-citation output is failed even after HTTP 200.
+- Atomic daily selection, fresh-success suppression, source freshness, and deterministic candidate IDs prevent repeat fixed-case spend and duplicate promotion.
+- The two-hour pump makes no provider calls. It refreshes health/index artifacts and refuses provider execution from legacy pump envelopes.
+- Raw provider output remains private. Only the sanitized typed candidate feed is eligible for destination promotion.
+- Destination repositories revalidate candidates and own source-scoped branches and draft pull requests.
+- Destination workflows must preflight `can_approve_pull_request_reviews` and fail closed when their job-scoped `GITHUB_TOKEN` cannot create pull requests.
 - No auto-merge is allowed until a later reviewed contract changes that rule.
+
+See [Public Authority Machine](public-authority-machine.md) for the operating and health contract.
 
 ## Runtime Settings
 

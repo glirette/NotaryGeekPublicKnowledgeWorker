@@ -40,13 +40,19 @@ public sealed class PublicKnowledgeResearchFunction
         CancellationToken cancellationToken)
     {
         var promotion = await _promotion.GetStatusAsync(cancellationToken);
+        var queue = await _queue.GetStatusAsync(cancellationToken);
+        var backlog = await _storage.GetBacklogStatusAsync(cancellationToken);
+        var providerHealth = await _storage.GetProviderHealthAsync(cancellationToken);
         var response = req.CreateResponse(HttpStatusCode.OK);
         await response.WriteAsJsonAsync(new
         {
             ok = true,
             status = _service.GetStatus(),
             storage = _storage.GetStatus(),
-            promotion
+            promotion,
+            queue,
+            backlog,
+            providerHealth
         }, cancellationToken);
         return response;
     }
@@ -339,6 +345,9 @@ public sealed class PublicKnowledgeResearchFunction
             report ??= await _storage.SaveNeedsGregReportAsync(cancellationToken);
             var jobs = await _storage.ListQueuedRunsAsync(take, status: null, cancellationToken);
             var promotion = await _promotion.GetStatusAsync(cancellationToken);
+            var queue = await _queue.GetStatusAsync(cancellationToken);
+            var backlog = await _storage.GetBacklogStatusAsync(cancellationToken);
+            var providerHealth = await _storage.GetProviderHealthAsync(cancellationToken);
             var staleJobs = jobs.Where(item => item.IsStale).ToArray();
             var runningJobs = jobs.Where(item => !item.IsTerminal).ToArray();
             var nextActions = BuildOperatorSnapshotNextActions(report, staleJobs);
@@ -354,6 +363,9 @@ public sealed class PublicKnowledgeResearchFunction
                 status = _service.GetStatus(),
                 storage = _storage.GetStatus(),
                 promotion,
+                queue,
+                backlog,
+                providerHealth,
                 digest = BuildDigestSummary(report),
                 runningJobCount = runningJobs.Length,
                 staleJobCount = staleJobs.Length,

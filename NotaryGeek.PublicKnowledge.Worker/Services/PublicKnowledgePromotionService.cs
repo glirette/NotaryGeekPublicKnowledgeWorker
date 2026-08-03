@@ -105,7 +105,7 @@ public sealed class PublicKnowledgePromotionService
                 var content = await container.GetBlobClient(blob.Name).DownloadContentAsync(cancellationToken);
                 var candidate = content.Value.Content.ToObjectFromJson<PublicAuthorityCandidate>(JsonOptions);
                 if (candidate is not null &&
-                    candidate.Destination.Equals(normalizedDestination, StringComparison.OrdinalIgnoreCase))
+                    IsSafeForPublicFeed(candidate, normalizedDestination))
                 {
                     candidates.Add(candidate);
                 }
@@ -214,6 +214,25 @@ public sealed class PublicKnowledgePromotionService
         destination.Equals(GetDestination("technical"), StringComparison.OrdinalIgnoreCase)
             ? "technical-source-candidate-feed/v1"
             : "notary-public-authority-candidate-feed/v1";
+
+    private static bool IsSafeForPublicFeed(PublicAuthorityCandidate candidate, string destination) =>
+        candidate.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase) &&
+        !string.IsNullOrWhiteSpace(candidate.CandidateId) &&
+        !string.IsNullOrWhiteSpace(candidate.TopicId) &&
+        !string.IsNullOrWhiteSpace(candidate.Title) &&
+        !string.IsNullOrWhiteSpace(candidate.Summary) &&
+        candidate.RecheckBeforeUse &&
+        candidate.Sources is { Count: >= 1 and <= 12 } &&
+        candidate.Sources.All(source =>
+            source is not null &&
+            Uri.TryCreate(source.Url, UriKind.Absolute, out var uri) &&
+            uri.Scheme == Uri.UriSchemeHttps &&
+            !string.IsNullOrWhiteSpace(source.Title) &&
+            !string.IsNullOrWhiteSpace(source.Publisher) &&
+            !string.IsNullOrWhiteSpace(source.Supports)) &&
+        candidate.GeneratorEvidence is not null &&
+        candidate.GeneratorEvidence.Provider.Equals("openai", StringComparison.OrdinalIgnoreCase) &&
+        candidate.GeneratorEvidence.AuthMode.Equals("dedicated_public_source_key", StringComparison.Ordinal);
 
     private static string ToSafeSegment(string value) =>
         new(value.ToLowerInvariant().Select(ch => char.IsLetterOrDigit(ch) || ch is '-' or '_' ? ch : '-').ToArray());

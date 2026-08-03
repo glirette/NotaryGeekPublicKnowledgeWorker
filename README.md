@@ -43,6 +43,8 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 - [Address intelligence registry design](docs/address-intelligence-registry.md)
 - [Public knowledge run queue](docs/public-knowledge-run-queue.md)
+- [Public authority machine](docs/public-authority-machine.md)
+- [Public authority repair evidence (2026-08-03)](docs/public-authority-repair-evidence-2026-08-03.md)
 - [helperfunc low-risk review](docs/helperfunc-low-risk-review.md)
 
 ## For Notaries

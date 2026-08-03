@@ -26,7 +26,7 @@ Daily public source ingestion contract:
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/source-target-selection.json
 - https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/promotion-plan.json
 
-Use this when discussing the review-gated daily public-source ingestion lane, including source-target selection, Grok batch collection, OpenAI public-source normalization, usage ledgers, draft PR promotion, rollback, and the no-auto-merge rule.
+Use this when discussing the two review-gated daily authority lanes, strict OpenAI structured-output validation, dedicated-key evidence, idempotent selection, sanitized candidate feeds, destination-owned draft PR promotion, retention policy, and the no-auto-merge rule.
 
 Route-first lexicon:
 

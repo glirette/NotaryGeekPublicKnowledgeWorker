@@ -164,6 +164,72 @@ public sealed class PublicKnowledgeRunStorageService
             .ToArray();
     }
 
+    public async Task<PublicKnowledgeBacklogStatus> GetBacklogStatusAsync(CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var total = 0;
+        var running = 0;
+        var completed = 0;
+        var failed = 0;
+        var stale = 0;
+        var unknown = 0;
+        await foreach (var blob in container.GetBlobsAsync(
+                           traits: BlobTraits.Metadata,
+                           prefix: "runs/jobs/",
+                           cancellationToken: cancellationToken))
+        {
+            total++;
+            if (!blob.Metadata.TryGetValue("status", out var status))
+            {
+                unknown++;
+                continue;
+            }
+
+            if (status.Equals("completed", StringComparison.OrdinalIgnoreCase))
+            {
+                completed++;
+            }
+            else if (status.Equals("failed", StringComparison.OrdinalIgnoreCase))
+            {
+                failed++;
+            }
+            else
+            {
+                running++;
+                stale += blob.Properties.LastModified < DateTimeOffset.UtcNow.AddHours(-1) ? 1 : 0;
+            }
+        }
+
+        return new PublicKnowledgeBacklogStatus(total, running, completed, failed, stale, unknown, DateTime.UtcNow);
+    }
+
+    public async Task<PublicKnowledgeProviderHealth> GetProviderHealthAsync(CancellationToken cancellationToken)
+    {
+        var runs = await ListLatestEnvelopesAsync(cancellationToken);
+        var evidence = runs
+            .Where(item => item.Result.ProviderEvidence is not null)
+            .Select(item => new { item.StoredAtUtc, item.Result.Ok, Evidence = item.Result.ProviderEvidence! })
+            .ToArray();
+        return new PublicKnowledgeProviderHealth(
+            evidence.Length,
+            evidence.Count(item => item.Ok),
+            evidence.Count(item => !item.Ok),
+            evidence.Where(item => item.Ok).Select(item => (DateTime?)item.StoredAtUtc).Max(),
+            evidence.Select(item => item.Evidence.Provider).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Select(item => item.Evidence.AuthMode).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Select(item => item.Evidence.Model).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Sum(item => item.Evidence.InputTokens),
+            evidence.Sum(item => item.Evidence.OutputTokens),
+            evidence.Sum(item => item.Evidence.ReasoningTokens),
+            evidence
+                .Where(item => !item.Ok && !string.IsNullOrWhiteSpace(item.Evidence.FailureReason))
+                .OrderByDescending(item => item.StoredAtUtc)
+                .Select(item => item.Evidence.FailureReason!)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Take(5)
+                .ToArray());
+    }
+
     public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunRunningAsync(
         PublicKnowledgeQueuedRunMessage message,
         CancellationToken cancellationToken)
@@ -639,6 +705,7 @@ public sealed class PublicKnowledgeRunStorageService
         var options = new BlobUploadOptions
         {
             HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+            Metadata = new Dictionary<string, string> { ["status"] = envelope.Status.ToLowerInvariant() },
             Conditions = etag is null ? null : new BlobRequestConditions { IfMatch = etag.Value }
         };
         await blob.UploadAsync(BinaryData.FromString(json), options, cancellationToken);
@@ -1023,6 +1090,28 @@ public sealed record PublicKnowledgeRunStorageStatus(
     string ConnectionStringSetting,
     string ContainerName,
     bool HasConnectionString);
+
+public sealed record PublicKnowledgeBacklogStatus(
+    int JobEnvelopeCount,
+    int ActiveCount,
+    int CompletedCount,
+    int FailedCount,
+    int StaleCount,
+    int UnknownLegacyStatusCount,
+    DateTime CheckedAtUtc);
+
+public sealed record PublicKnowledgeProviderHealth(
+    int RunCount,
+    int UsableOutputCount,
+    int FailedOutputCount,
+    DateTime? LastUsableOutputUtc,
+    IReadOnlyList<string> Providers,
+    IReadOnlyList<string> AuthModes,
+    IReadOnlyList<string> Models,
+    int InputTokens,
+    int OutputTokens,
+    int ReasoningTokens,
+    IReadOnlyList<string> ActionableFailureReasons);
 
 public sealed record PublicKnowledgeStoredRunEnvelope(
     string Schema,

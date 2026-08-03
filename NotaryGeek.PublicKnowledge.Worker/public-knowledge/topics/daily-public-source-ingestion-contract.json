@@ -1,281 +1,189 @@
 {
-  "schema": "notary-geek-daily-public-source-ingestion-contract-v1",
+  "schema": "notary-geek-daily-public-source-ingestion-contract-v2",
   "id": "daily-public-source-ingestion-contract",
-  "version": "0.1-public",
-  "reviewedUtc": "2026-06-20T00:00:00Z",
-  "title": "Daily Public Source Ingestion Contract",
-  "purpose": "Define the first safe daily public-source ingestion slice for Notary Geek public law, agency, apostille, authentication, identity, and source-quality sources using reviewable Grok batch collection, OpenAI public-source normalization, and PR-gated publication.",
-  "publicContextUrl": "https://notary.cx/notary-geek-openai-public-data-sharing-case-study-press-release.html",
-  "notLegalAdvice": true,
-  "notOperationalPlaybook": true,
+  "version": "0.2-public",
+  "reviewedUtc": "2026-08-03T00:00:00Z",
+  "title": "Daily Public Authority Generation Contract",
+  "purpose": "Define the source-backed daily public-authority lanes, validated candidate feeds, and review-gated destination promotion contract.",
   "publicOnly": true,
-  "status": "dry-run-contract-ready",
-  "coreRule": "Every daily ingestion run must produce public-safe source infrastructure and reviewable evidence before publication. It must not produce legal advice, private operations, customer records, secrets, or auto-merged changes.",
-  "dailyTimerDesign": {
-    "existingAzureFunctionTimer": {
-      "functionName": "PublicKnowledgeResearchTimer",
-      "cronExpression": "0 17 9 * * *",
-      "timeZoneNote": "Azure Functions timer expressions are treated as UTC unless the host is configured otherwise. Treat this as 09:17 UTC for source control planning.",
-      "enablementSetting": "PublicKnowledge__TimerEnabled=true",
-      "batchSetting": "PublicKnowledge__TimerBatches=DailySourceIngestion",
-      "providerSetting": "PublicKnowledge__TimerProvider=OpenAI",
-      "requiredKeySetting": "OpenAI__PublicSourceApiKey",
-      "schedulerBoundary": "Use the Azure timer as the active daily scheduler. Do not add a second daily submitter unless duplicate daily public-source runs are intentional."
-    },
-    "githubActionsManualSubmitter": {
-      "workflow": ".github/workflows/run-public-knowledge-batch.yml",
+  "notLegalAdvice": true,
+  "status": "source-reconciled-review-required",
+  "coreRule": "Only complete, non-empty, schema-valid, application-validated public-source output may become a sanitized promotion candidate. Provider HTTP success alone is never usable output.",
+  "lanes": [
+    {
       "batch": "DailySourceIngestion",
-      "provider": "OpenAI",
-      "use": "Repository-visible manual submitter that queues the public-source batch through the protected Azure Function endpoint and returns after queue submission."
+      "authorityLane": "notary",
+      "destination": "glirette/NotaryGeekPublicKnowledgeWorker",
+      "feedSchema": "notary-public-authority-candidate-feed/v1",
+      "scope": "Notary, apostille, authentication, public-law, and source-quality structured knowledge."
     },
-    "pumpTimer": {
-      "functionName": "PublicKnowledgePumpTimer",
-      "cronExpression": "0 7 */2 * * *",
-      "enablementSetting": "PublicKnowledge__PumpTimerEnabled=true",
-      "use": "Poll queued public-knowledge jobs and refresh latest-run indexes/digests after asynchronous collection and normalization work."
-    },
-    "dailyWindowPolicy": {
-      "windowName": "public-source-normalization-daily-window",
-      "quotaBoundary": "Track OpenAI public-sharing or daily free allocation usage as a daily window. Do not assume unused capacity carries forward.",
-      "windowAnchorUtc": "Record the first OpenAI public-normalization call time for the day as daily_window_anchor_utc until a more precise account-level reset signal is available.",
-      "recommendedSubmitTimeUtc": "09:17:00Z",
-      "reservePolicy": "Keep an operator-defined reserve for urgent public-safe normalization or regression checks; do not spend the entire daily allocation on unreviewed broad collection."
+    {
+      "batch": "TechnicalSourceIngestion",
+      "authorityLane": "technical",
+      "destination": "glirette/thisstuffiswaytootech",
+      "feedSchema": "technical-source-candidate-feed/v1",
+      "scope": "Reusable public-safe technical, API, cloud, developer-tool, and platform source trails."
     }
+  ],
+  "scheduler": {
+    "dailyFunction": "PublicKnowledgeResearchTimer",
+    "dailyCronUtc": "0 17 9 * * *",
+    "timerBatchesSetting": "PublicKnowledge__TimerBatches",
+    "timerProviderSetting": "PublicKnowledge__TimerProvider=OpenAI",
+    "pumpFunction": "PublicKnowledgePumpTimer",
+    "pumpCronUtc": "0 7 */2 * * *",
+    "pumpBoundary": "The pump refreshes health, latest indexes, and digests without provider calls. It also refuses provider execution for legacy pump queue envelopes.",
+    "manualRegressionBoundary": "Regression batches are manual or explicitly queued diagnostics. They are not the daily authority-generation scheduler."
   },
-  "grokBatchJobContract": {
-    "providerLane": "xai_grok_batch",
-    "latencyBoundary": "Batch collection is asynchronous and may take up to 24 hours. It is for broad public-source discovery, not urgent corrections.",
-    "inputFormat": "jsonl",
-    "requestFields": [
-      "custom_id",
-      "method",
-      "url",
-      "body"
-    ],
-    "customIdPattern": "ngpk:{yyyy-mm-dd}:{source_target_id}:{jurisdiction_or_topic}:{sequence}",
-    "bodyContract": {
-      "model": "grok",
-      "temperature": 0,
-      "instructions": [
-        "Use only public source targets provided in the request.",
-        "Collect source metadata, official title, publisher, jurisdiction, source class, retrieval status, and route-relevant sections.",
-        "Do not create legal advice or final legal conclusions.",
-        "Do not include private customer data, private operating context, secrets, or credentials.",
-        "Return JSON only."
-      ],
-      "requiredOutputKeys": [
-        "source_target_id",
-        "retrieved_at_utc",
-        "source_url",
-        "source_title",
-        "publisher",
-        "jurisdiction",
-        "source_class",
-        "retrieval_status",
-        "official_text_or_excerpt",
-        "summary",
-        "route_relevance",
-        "definitions",
-        "cross_references",
-        "freshness_notes",
-        "normalization_warnings"
-      ]
-    },
-    "resultStorage": {
-      "rawBatchManifestPath": "public-knowledge/source-ingestion/{yyyy-mm-dd}/grok-batch-manifest.json",
-      "rawResultPath": "public-knowledge/source-ingestion/{yyyy-mm-dd}/grok-batch-results.jsonl",
-      "evidencePath": "public-knowledge/source-ingestion/{yyyy-mm-dd}/collection-evidence.json"
-    }
-  },
-  "openAiNormalizationContract": {
-    "providerLane": "openai_platform",
-    "mode": "public-source-normalization",
+  "openAiContract": {
+    "endpoint": "Responses API",
+    "modelSetting": "OpenAI__Model",
     "requiredKeySetting": "OpenAI__PublicSourceApiKey",
-    "keyBoundary": "Use the dedicated daily-reset public data-sharing key for this public-safe lane. Do not fall back to a private or generic OpenAI API key when the public-source key is absent.",
-    "inputSources": [
-      "public source target selection",
-      "Grok batch collection result",
-      "existing Notary Geek law source index",
-      "existing public knowledge manifest and citation map"
-    ],
-    "promptBoundary": [
-      "Normalize public source metadata and route impact only.",
-      "Keep official text, bounded excerpt, summary, and Notary Geek interpretation separate.",
-      "Do not generate final legal advice.",
-      "Do not add a source record when source authority, source URL, retrieval status, or public-safety class is unclear.",
-      "Return JSON matching normalizedSourceRecordShape."
-    ],
-    "normalizedSourceRecordShape": {
-      "schema": "notary-geek-normalized-public-source-record-v1",
-      "source_record_id": "",
-      "source_target_id": "",
-      "created_utc": "",
-      "reviewed_utc": "",
-      "public_only": true,
-      "source_url": "",
-      "source_title": "",
-      "publisher": "",
-      "jurisdiction": "",
-      "source_class": "",
-      "retrieval_status": "",
-      "source_text_or_excerpt": "",
-      "summary": "",
-      "route_impact": [],
-      "definitions": [],
-      "cross_references": [],
-      "exceptions_and_limits": [],
-      "freshness": {
-        "retrieved_at_utc": "",
-        "content_hash": "",
-        "needs_refresh_after_utc": "",
-        "freshness_reason": ""
-      },
-      "authority_boundary": {
-        "controlling_source": true,
-        "notary_geek_summary_is_not_law": true,
-        "not_legal_advice": true
-      },
-      "publication_gate": {
-        "ready_for_pr": false,
-        "review_required": true,
-        "blocking_issues": []
-      }
+    "authModeEvidence": "dedicated_public_source_key",
+    "failClosedSetting": "PublicKnowledge__RequirePublicSourceOpenAiKey=true",
+    "genericKeyFallbackAllowed": false,
+    "structuredOutput": {
+      "requestShape": "text.format={type:json_schema,name:public_authority_candidates,schema:<strict-schema>,strict:true}",
+      "applicationValidationRequired": true,
+      "usableResponseStatus": "completed",
+      "incompleteIsFailure": true,
+      "emptyIsFailure": true,
+      "invalidJsonIsFailure": true,
+      "schemaMismatchIsFailure": true,
+      "unfetchedCitationIsFailure": true,
+      "staleSourceIsFailure": true
     },
-    "outputPath": "public-knowledge/source-ingestion/{yyyy-mm-dd}/normalized-source-records.json"
-  },
-  "notaryGeekOutputArtifactFormat": {
-    "dailyFolder": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/{yyyy-mm-dd}/",
-    "requiredArtifacts": [
-      {
-        "file": "source-target-selection.json",
-        "purpose": "Public-safe daily target list chosen from official sources, high-value jurisdiction gaps, stale source records, and answer-engine regression failures."
-      },
-      {
-        "file": "grok-batch-manifest.json",
-        "purpose": "Batch request metadata, provider batch id, custom_id map, submitted_at_utc, expected_completion_by_utc, and source-target count."
-      },
-      {
-        "file": "collection-evidence.json",
-        "purpose": "Fetch status, titles, publishers, public-source class, and warnings without secrets or private customer data."
-      },
-      {
-        "file": "normalized-source-records.json",
-        "purpose": "OpenAI-normalized source records ready for human or model review before promotion."
-      },
-      {
-        "file": "promotion-plan.json",
-        "purpose": "Exact public corpus files to update, PR checklist, rollback file list, and review gates."
-      }
-    ],
-    "promotionTargets": [
-      "public-knowledge/law/notary-law-source-index.json",
-      "public-knowledge/topics/law-source-cache-and-section-normalization.json",
-      "public-knowledge/public-knowledge-manifest.json",
-      "public-knowledge/public-artifact-index.json",
-      "public-knowledge/answer-engine-citation-map.json",
-      "public-knowledge/public-knowledge-regression-matrix.json",
-      "llms.txt"
-    ]
-  },
-  "firstDryRunSlice": {
-    "date": "2026-06-20",
-    "scope": "Contract-only dry run plus one regression case and one source-target selection format. No live Grok batch was submitted and no OpenAI normalization call was made by this artifact.",
-    "sourceTargetSelection": [
-      {
-        "source_target_id": "daily-ingestion-contract-official-source-index",
-        "source_url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
-        "source_class": "public-corpus-official-source-index",
-        "reason": "Use the existing public law source index as the first safe target selector before broad collection."
-      },
-      {
-        "source_target_id": "daily-ingestion-contract-law-cache-posture",
-        "source_url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
-        "source_class": "public-corpus-source-cache-posture",
-        "reason": "Use the existing source-cache posture to constrain normalization and prevent legal-advice overreach."
-      }
-    ]
-  },
-  "qualityGates": [
-    "All source URLs must be public and allowed by the public-source boundary.",
-    "Every source record must identify publisher, jurisdiction or topic, source class, retrieval status, and freshness notes.",
-    "Official text or bounded excerpts must be visibly separate from summaries and Notary Geek interpretation.",
-    "No record may include customer facts, private correspondence, private operating strategy, secrets, raw credentials, provider dashboards, payment data, identity data, or raw prompts.",
-    "No generated output may be treated as final legal advice or controlling law.",
-    "Every promotion must be a draft PR with JSON parsing, diff check, and human or model review before merge.",
-    "Auto-merge is forbidden for this lane until a later reviewed contract explicitly changes that rule."
-  ],
-  "usageAndBudgetTrackingPlan": {
-    "dailyLedgerPath": "public-knowledge/source-ingestion/{yyyy-mm-dd}/usage-ledger.json",
-    "ledgerFields": [
-      "date_utc",
-      "daily_window_anchor_utc",
-      "provider",
-      "provider_lane",
-      "job_id",
-      "batch_id",
-      "request_count",
-      "input_token_estimate",
-      "output_token_estimate",
-      "reported_usage_json",
-      "free_or_public_sharing_allocation_claimed",
-      "operator_budget_limit",
-      "reserve_remaining_estimate",
-      "notes"
-    ],
-    "rules": [
-      "Record estimates before submission and provider-reported usage after completion when available.",
-      "Treat each 24-hour reset window as a daily public-source allocation and schedule one useful public-safe run per day when work is available.",
-      "Keep budget notes public-safe and do not publish account identifiers, keys, billing screenshots, or private provider dashboard details.",
-      "Stop promotion if usage evidence is missing for a paid or capped run."
-    ]
-  },
-  "rollbackPlan": {
-    "rollbackUnit": "one daily ingestion PR",
-    "steps": [
-      "Revert the draft PR or promotion commit before merge if quality gates fail.",
-      "If a merged source record is later found unsafe or wrong, open a corrective PR that removes the daily source-ingestion folder entries and any promoted manifest, citation-map, artifact-index, regression-matrix, or law-index references.",
-      "Preserve a public-safe correction note explaining the source-class or safety issue without exposing private data.",
-      "Do not delete provider usage ledgers or collection evidence unless they contain private data; redact and replace with a reviewed public-safe artifact instead."
-    ]
-  },
-  "reviewState": {
-    "readyForAutomation": false,
-    "readyForDraftPrPromotion": true,
-    "humanReviewRequiredBeforeMerge": true,
-    "autoMergeAllowed": false
-  },
-  "officialProviderDocsReviewed": [
-    {
-      "provider": "OpenAI",
-      "url": "https://help.openai.com/en/articles/10306912-sharing-feedback-evaluation-and-fine-tuning-data-and-api-inputs-and-outputs-with-openai",
-      "use": "Public-sharing/data-sharing boundary and complimentary daily token context. Re-check before relying on account-specific allocation behavior."
-    },
-    {
-      "provider": "xAI",
-      "url": "https://docs.x.ai/docs/tutorial#batch-processing",
-      "use": "Batch-processing concept and asynchronous public-source collection lane. Re-check exact API fields before submitting live batches."
+    "reasoningAndOutput": {
+      "authorityReasoningEffortSetting": "OpenAI__AuthorityReasoningEffort=minimal",
+      "authorityMaxOutputTokensSetting": "OpenAI__AuthorityMaxOutputTokens=6000",
+      "repairMaxOutputTokensSetting": "OpenAI__RepairMaxOutputTokens=8000",
+      "maxProviderAttemptsSetting": "OpenAI__MaxProviderAttempts=2",
+      "repairBoundary": "Retry only a bounded unusable or transient attempt; never publish either raw attempt."
     }
-  ],
+  },
+  "selectionState": {
+    "dailySelectionBlob": "runs/selection/{yyyy}/{MM}/{dd}/{batch}.json",
+    "atomicAcquisition": true,
+    "freshSuccessHoursSetting": "PublicKnowledge__AuthorityFreshnessHours=20",
+    "sourceFreshnessDaysSetting": "PublicKnowledge__SourceFreshnessDays=14",
+    "candidateId": "SHA-256 of destination, normalized topic, summary, and sorted source URLs",
+    "duplicateCandidateBehavior": "Atomic create-if-absent; duplicate generation is a no-op.",
+    "incrementalRule": "Skip targets with a fresh successful validated output and skip a second daily selection for the same batch."
+  },
+  "candidateFeed": {
+    "route": "GET /api/public-knowledge/promotion-feed?destination={owner/repo}",
+    "authorization": "anonymous-public-safe-output-only",
+    "maxCandidates": 20,
+    "rawProviderOutputIncluded": false,
+    "privateBlobUrlsIncluded": false,
+    "technicalSchema": "technical-source-candidate-feed/v1",
+    "rootFields": [
+      "schema",
+      "generatedAtUtc",
+      "candidates"
+    ],
+    "candidateFields": [
+      "candidateId",
+      "destination",
+      "topicId",
+      "title",
+      "summary",
+      "reviewedAtUtc",
+      "recheckBeforeUse",
+      "sources",
+      "supports",
+      "doesNotProve",
+      "generatorEvidence"
+    ],
+    "recheckBeforeUseType": "boolean",
+    "sourceFields": [
+      "url",
+      "title",
+      "publisher",
+      "kind",
+      "reviewedAtUtc",
+      "supports"
+    ],
+    "generatorEvidenceFields": [
+      "provider",
+      "authMode",
+      "model",
+      "runId",
+      "generatedAtUtc",
+      "usage"
+    ],
+    "usageFields": [
+      "inputTokens",
+      "outputTokens",
+      "reasoningTokens"
+    ]
+  },
+  "promotion": {
+    "owner": "destination repository",
+    "requiredPermissions": [
+      "contents:write",
+      "pull-requests:write"
+    ],
+    "repositoryPolicyPrerequisite": "The destination repository Actions setting can_approve_pull_request_reviews must permit GITHUB_TOKEN pull-request creation. The workflow must preflight and fail closed when it is false; this repair does not change that protected setting.",
+    "branchRequired": true,
+    "draftPullRequestRequired": true,
+    "reviewRequiredBeforeMerge": true,
+    "autoMergeAllowed": false,
+    "standingIssueCommentsAreNotPromotion": true,
+    "rawProviderOutputMayBePublished": false,
+    "publicationAckRoute": "POST /api/public-knowledge/promotion-ack",
+    "publicationAckAuthorization": "function",
+    "lastPublicationSource": "Validated destination acknowledgement containing a public GitHub HTTPS pull-request URL."
+  },
+  "healthEvidence": {
+    "providerFields": [
+      "provider",
+      "authMode",
+      "model",
+      "responseStatus",
+      "attempts",
+      "inputTokens",
+      "outputTokens",
+      "reasoningTokens",
+      "failureReason"
+    ],
+    "operatorFields": [
+      "queue.approximateMessageCount",
+      "backlog.jobEnvelopeCount",
+      "backlog.activeCount",
+      "backlog.completedCount",
+      "backlog.failedCount",
+      "backlog.staleCount",
+      "backlog.unknownLegacyStatusCount",
+      "providerHealth.lastUsableOutputUtc",
+      "providerHealth.actionableFailureReasons",
+      "promotion.candidateCount",
+      "promotion.lastCandidateUtc",
+      "promotion.lastSuccessfulPublicationUtc"
+    ]
+  },
+  "retention": {
+    "runHistoryDaysSetting": "PublicKnowledge__RunHistoryRetentionDays=90",
+    "jobEnvelopeDaysSetting": "PublicKnowledge__JobEnvelopeRetentionDays=30",
+    "mode": "policy-only-no-deletion",
+    "compactionRule": "Preserve latest indexes, daily selection records, promotion candidates, publication acknowledgements, provider evidence, and actionable failures before any future reviewed compaction implementation.",
+    "existingDataDeletedByThisRepair": false
+  },
   "publicBoundary": {
     "allowed": [
-      "official public law and agency sources",
-      "public source URLs and titles",
-      "public source metadata",
-      "bounded public excerpts when appropriate",
-      "public-safe route-impact notes",
-      "reviewable PR artifacts"
+      "official public sources",
+      "public-safe source metadata",
+      "bounded source-backed summaries",
+      "sanitized provider usage counts",
+      "reviewable destination candidates and pull requests"
     ],
     "excluded": [
-      "customer facts",
-      "private operating strategy",
-      "private provider tactics",
-      "secrets",
-      "raw credentials",
-      "payment data",
-      "identity documents or Persona data",
-      "raw prompts",
-      "legal advice as final truth",
-      "auto-merged source changes"
+      "customer or identity data",
+      "private prompts or raw provider responses",
+      "secrets, keys, tokens, or private endpoints",
+      "private operating or billing tactics",
+      "unreviewed direct publication",
+      "standing-board comment loops"
     ]
   }
 }

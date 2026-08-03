@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.24-public",
-  "reviewedUtc": "2026-07-08T00:00:00Z",
+  "version": "1.25-public",
+  "reviewedUtc": "2026-08-03T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -51,7 +51,7 @@
       "id": "daily-public-source-ingestion-contract",
       "title": "Daily Public Source Ingestion Contract",
       "kind": "source-ingestion-contract",
-      "use": "Review-gated contract for daily public-source target selection, Grok batch collection, OpenAI public-source normalization, output artifact shape, usage tracking, and rollback before source records are promoted through draft PRs.",
+      "use": "Review-gated contract for two daily public-authority lanes, strict OpenAI structured-output validation, provider evidence, idempotent selection, sanitized candidate feeds, retention policy, and destination-owned draft PR promotion.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json",
       "supportingUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/source-target-selection.json",

@@ -1,0 +1,101 @@
+name: Promote Public Authority Candidates
+
+on:
+  schedule:
+    - cron: "47 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: public-authority-promotion
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Validate sanitized feed
+        id: export
+        shell: pwsh
+        env:
+          PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_BASE_URL)) {
+            throw "Missing PUBLIC_KNOWLEDGE_BASE_URL."
+          }
+          $destination = "glirette/NotaryGeekPublicKnowledgeWorker"
+          $encodedDestination = [Uri]::EscapeDataString($destination)
+          $feedUrl = "$($env:PUBLIC_KNOWLEDGE_BASE_URL.TrimEnd('/'))/api/public-knowledge/promotion-feed?destination=$encodedDestination"
+          $files = @(.\tools\Export-PublicAuthorityCandidate.ps1 -FeedUrl $feedUrl -Destination $destination)
+          "candidate_count=$($files.Count)" >> $env:GITHUB_OUTPUT
+          if ($files.Count -eq 0) {
+            "No validated promotion candidates are available." >> $env:GITHUB_STEP_SUMMARY
+          }
+
+      - name: Preflight destination PR policy
+        if: ${{ steps.export.outputs.candidate_count != '0' }}
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
+            throw "Missing PUBLIC_KNOWLEDGE_FUNCTION_KEY required for publication acknowledgement."
+          }
+          $policy = gh api "repos/${{ github.repository }}/actions/permissions/workflow" | ConvertFrom-Json
+          if (-not $policy.can_approve_pull_request_reviews) {
+            throw "Destination prerequisite is false: can_approve_pull_request_reviews. No branch was pushed and no PR was created."
+          }
+
+      - name: Create source-scoped draft pull request
+        if: ${{ steps.export.outputs.candidate_count != '0' }}
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
+          PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          $stamp = Get-Date -AsUTC -Format yyyyMMdd-HHmmss
+          $branch = "authority/notary-$stamp"
+          git switch -c $branch
+          git add -- NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/candidates
+          $candidateFiles = @(git diff --cached --name-only -- NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/candidates)
+          if (git diff --cached --quiet) {
+            "All candidate IDs are already represented in the destination." >> $env:GITHUB_STEP_SUMMARY
+            exit 0
+          }
+          git commit -m "Add reviewed public authority candidates"
+          git push --set-upstream origin $branch
+          $body = @(
+            "Sanitized public-authority candidates from the validated worker feed.",
+            "",
+            "- Source URLs must be rechecked before merge.",
+            "- Raw provider output is not included.",
+            "- Human review is required; auto-merge is not enabled.",
+            "- Tracking: glirette/BootStrapCritical#138"
+          ) -join "`n"
+          $prUrl = gh pr create --draft --base main --head $branch --title "Add public authority candidates" --body $body
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
+            throw "Draft PR was created, but publication acknowledgement requires PUBLIC_KNOWLEDGE_FUNCTION_KEY."
+          }
+          $ackUrl = "$($env:PUBLIC_KNOWLEDGE_BASE_URL.TrimEnd('/'))/api/public-knowledge/promotion-ack"
+          foreach ($file in $candidateFiles) {
+            $candidate = Get-Content -LiteralPath $file -Raw | ConvertFrom-Json
+            $receipt = @{
+              candidateId = $candidate.candidateId
+              destination = $candidate.destination
+              publishedAtUtc = (Get-Date).ToUniversalTime().ToString("O")
+              pullRequestUrl = $prUrl
+            } | ConvertTo-Json
+            Invoke-RestMethod -Method Post -Uri $ackUrl -Headers @{ "x-functions-key" = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY } -ContentType "application/json" -Body $receipt | Out-Null
+          }
