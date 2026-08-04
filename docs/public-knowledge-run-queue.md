@@ -58,7 +58,7 @@ OpenAI__MaxProviderAttempts=2
 
 The authority lane unconditionally requires `OpenAI__PublicSourceApiKey`. It never falls back to generic `OpenAI__ApiKey`; the legacy `PublicKnowledge__RequirePublicSourceOpenAiKey` switch is not part of the repaired source contract.
 
-The credential does not reset daily. OpenAI's qualifying-token counter resets at 00:00 UTC. Sharing settings, organization eligibility, model eligibility, remaining daily headroom, and observed billing treatment are separate facts; the public repository boundary does not make a request qualify. A successful API response proves none of them. Confirm incentive treatment in the OpenAI Usage and Costs views, including both input and output tokens, and leave enough headroom that one request cannot cross the remaining daily ceiling.
+An API response does not prove incentive treatment or final request cost. Protected run evidence must leave both unknown unless independently verified.
 
 The existing `PublicKnowledgeResearchTimer` schedule is:
 
