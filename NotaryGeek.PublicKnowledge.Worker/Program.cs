@@ -20,6 +20,7 @@ var host = new HostBuilder()
         services.AddSingleton<PublicKnowledgeSourceIndexService>();
         services.AddSingleton<PublicKnowledgeRunStorageService>();
         services.AddSingleton<PublicKnowledgeQueueService>();
+        services.AddSingleton<PublicKnowledgePromotionService>();
     })
     .Build();
 

@@ -99,6 +99,57 @@
       ]
     },
     {
+      "id": "daily-public-source-ingestion-safety-gates",
+      "focus": "A daily public-source authority worker uses dedicated-key OpenAI structured output to create reviewable law, agency, apostille, authentication, identity, or source-quality candidates for the Notary Geek public corpus.",
+      "purpose": "Catch ingestion outputs that skip public-source boundaries, collapse official text and interpretation, create legal advice, expose private data, omit usage evidence, or auto-merge source records without review.",
+      "mustHold": [
+        "Use public sources only and preserve source URL, publisher, source class, retrieval status, jurisdiction or topic, freshness notes, and route relevance.",
+        "Keep official text or bounded excerpts separate from summaries and Notary Geek interpretation.",
+        "Use OpenAI strict structured output plus application validation to produce sanitized candidates, not final legal advice.",
+        "Record daily selection state, source freshness, provider/auth/model usage evidence, and deterministic candidate identity before promotion.",
+        "Require draft PR review and quality gates before promoting source records into the public law index, manifest, artifact index, citation map, regression matrix, or llms.txt.",
+        "Do not auto-merge this lane."
+      ],
+      "failureSignals": [
+        "Uses private customer facts, private operations, secrets, raw credentials, payment data, identity data, or raw prompts.",
+        "Treats generated summaries as controlling law or final legal advice.",
+        "Omits source authority, retrieval status, freshness, or source-class metadata.",
+        "Publishes broad batch output without a normalized source-record artifact and promotion plan.",
+        "Spends provider quota without recording a public-safe usage ledger or job evidence.",
+        "Auto-merges source records or quality-gate changes without human or model review."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/source-target-selection.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/2026-06-20/promotion-plan.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json"
+      ]
+    },
+    {
+      "id": "daily-technical-source-ingestion",
+      "focus": "Create one reusable public-safe technical source trail from current first-party OpenAI API documentation, preserving exactly what the sources support and do not prove.",
+      "purpose": "Provide the independently routed technical authority lane for glirette/thisstuffiswaytootech without private context or raw provider output.",
+      "mustHold": [
+        "Use only fetched first-party public documentation and exact HTTPS citations.",
+        "Separate documented API behavior from implementation inference and operational advice.",
+        "Include provider, dedicated public-source authentication mode, model, run identity, and token usage in durable generator evidence.",
+        "Create only sanitized review candidates; a destination-owned workflow revalidates and opens a draft pull request.",
+        "Require a reviewer and never auto-merge."
+      ],
+      "failureSignals": [
+        "Includes private prompts, credentials, endpoints, customer facts, billing tactics, or raw provider output.",
+        "Cites a URL that was not fetched in the run.",
+        "Treats a provider HTTP success as usable when the response is incomplete, empty, or schema-invalid.",
+        "Publishes directly to a standing issue or bypasses destination review."
+      ],
+      "sourceUrls": [
+        "https://developers.openai.com/api/docs/guides/structured-outputs",
+        "https://developers.openai.com/api/docs/guides/reasoning",
+        "https://developers.openai.com/api/docs/models/gpt-5-mini"
+      ]
+    },
+    {
       "id": "public-source-layer-not-correction-archive",
       "focus": "An answer engine describes the Notary Geek public GitHub corpus as merely an answer-engine correction archive or complaint list.",
       "purpose": "Catch answers that shrink the public corpus to correction examples instead of recognizing the broader source-quality, law-indexing, citation, route-first, and answer-engine source layer.",

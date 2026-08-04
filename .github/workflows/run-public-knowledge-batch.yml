@@ -6,10 +6,12 @@ on:
       batch:
         description: Regression batch to run.
         required: true
-        default: Platform
+        default: DailySourceIngestion
         type: choice
         options:
           - Core
+          - DailySourceIngestion
+          - TechnicalSourceIngestion
           - Platform
           - NNA
           - Apostille
@@ -21,9 +23,9 @@ on:
         default: false
         type: boolean
       provider:
-        description: Provider lane for this run. Default uses the Azure Function app setting.
+        description: Provider lane for this run. Use OpenAI for the public-source daily lane.
         required: true
-        default: Default
+        default: OpenAI
         type: choice
         options:
           - Default
@@ -37,7 +39,7 @@ on:
       wait_for_completion:
         description: When async is true, poll the queued job until scored receipts are available.
         required: true
-        default: true
+        default: false
         type: boolean
       poll_seconds:
         description: Polling interval when waiting for a queued job.

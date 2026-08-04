@@ -1,0 +1,61 @@
+name: Acknowledge Public Authority Publication
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  acknowledge:
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'authority/notary-')
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Acknowledge merged candidate publication
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLIC_KNOWLEDGE_BASE_URL: ${{ secrets.PUBLIC_KNOWLEDGE_BASE_URL }}
+          PUBLIC_KNOWLEDGE_FUNCTION_KEY: ${{ secrets.PUBLIC_KNOWLEDGE_FUNCTION_KEY }}
+          MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          MERGED_AT_UTC: ${{ github.event.pull_request.merged_at }}
+          PULL_REQUEST_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_BASE_URL) -or
+              [string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
+            throw "Publication acknowledgement requires PUBLIC_KNOWLEDGE_BASE_URL and PUBLIC_KNOWLEDGE_FUNCTION_KEY."
+          }
+
+          $destination = "glirette/NotaryGeekPublicKnowledgeWorker"
+          $prefix = "NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/candidates/"
+          $files = @(gh api --paginate "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" | ConvertFrom-Json |
+            Where-Object { $_.status -eq "added" -and $_.filename.StartsWith($prefix) -and $_.filename.EndsWith(".json") })
+          if ($files.Count -eq 0) {
+            throw "Merged authority PR contains no added candidate files."
+          }
+
+          $ackUrl = "$($env:PUBLIC_KNOWLEDGE_BASE_URL.TrimEnd('/'))/api/public-knowledge/publication-ack"
+          foreach ($file in $files) {
+            $encodedPath = ($file.filename.Split('/') | ForEach-Object { [Uri]::EscapeDataString($_) }) -join '/'
+            $content = gh api "repos/${{ github.repository }}/contents/$encodedPath`?ref=$env:MERGE_COMMIT_SHA" | ConvertFrom-Json
+            $json = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String(($content.content -replace '\s', '')))
+            $candidate = $json | ConvertFrom-Json
+            if ($candidate.destination -cne $destination -or
+                $candidate.candidateId -cnotmatch '^[a-f0-9]{64}$') {
+              throw "Merged candidate identity or destination is invalid."
+            }
+
+            $receipt = @{
+              candidateId = $candidate.candidateId
+              destination = $destination
+              publishedAtUtc = $env:MERGED_AT_UTC
+              pullRequestUrl = $env:PULL_REQUEST_URL
+            } | ConvertTo-Json
+            Invoke-RestMethod -Method Post -Uri $ackUrl -Headers @{ "x-functions-key" = $env:PUBLIC_KNOWLEDGE_FUNCTION_KEY } -ContentType "application/json" -Body $receipt | Out-Null
+          }

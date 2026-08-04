@@ -1,0 +1,199 @@
+{
+  "schema": "notary-geek-daily-public-source-ingestion-contract-v2",
+  "id": "daily-public-source-ingestion-contract",
+  "version": "0.2-public",
+  "reviewedUtc": "2026-08-03T00:00:00Z",
+  "title": "Daily Public Authority Generation Contract",
+  "purpose": "Define the source-backed daily public-authority lanes, validated candidate feeds, and review-gated destination promotion contract.",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "status": "source-reconciled-review-required",
+  "coreRule": "Only complete, non-empty, schema-valid, application-validated public-source output may become a sanitized promotion candidate. Provider HTTP success alone is never usable output.",
+  "lanes": [
+    {
+      "batch": "DailySourceIngestion",
+      "authorityLane": "notary",
+      "destination": "glirette/NotaryGeekPublicKnowledgeWorker",
+      "feedSchema": "notary-public-authority-candidate-feed/v1",
+      "scope": "Notary, apostille, authentication, public-law, and source-quality structured knowledge."
+    },
+    {
+      "batch": "TechnicalSourceIngestion",
+      "authorityLane": "technical",
+      "destination": "glirette/thisstuffiswaytootech",
+      "feedSchema": "technical-source-candidate-feed/v1",
+      "scope": "Reusable public-safe technical, API, cloud, developer-tool, and platform source trails."
+    }
+  ],
+  "scheduler": {
+    "dailyFunction": "PublicKnowledgeResearchTimer",
+    "dailyCronUtc": "0 17 9 * * *",
+    "timerBatchesSetting": "PublicKnowledge__TimerBatches",
+    "timerProviderSetting": "PublicKnowledge__TimerProvider=OpenAI",
+    "pumpFunction": "PublicKnowledgePumpTimer",
+    "pumpCronUtc": "0 7 */2 * * *",
+    "pumpBoundary": "The pump refreshes health, latest indexes, and digests without provider calls. It also refuses provider execution for legacy pump queue envelopes.",
+    "manualRegressionBoundary": "Regression batches are manual or explicitly queued diagnostics. They are not the daily authority-generation scheduler."
+  },
+  "openAiContract": {
+    "endpoint": "Responses API",
+    "modelSetting": "OpenAI__Model",
+    "requiredKeySetting": "OpenAI__PublicSourceApiKey",
+    "authModeEvidence": "dedicated_public_source_key",
+    "failClosedBoundary": "Authority calls unconditionally require OpenAI__PublicSourceApiKey; generic OpenAI__ApiKey is never selected.",
+    "genericKeyFallbackAllowed": false,
+    "structuredOutput": {
+      "requestShape": "text.format={type:json_schema,name:public_authority_candidates,schema:<strict-schema>,strict:true}",
+      "applicationValidationRequired": true,
+      "usableResponseStatus": "completed",
+      "incompleteIsFailure": true,
+      "emptyIsFailure": true,
+      "invalidJsonIsFailure": true,
+      "schemaMismatchIsFailure": true,
+      "unfetchedCitationIsFailure": true,
+      "staleSourceIsFailure": true
+    },
+    "reasoningAndOutput": {
+      "authorityReasoningEffortSetting": "OpenAI__AuthorityReasoningEffort=minimal",
+      "authorityMaxOutputTokensSetting": "OpenAI__AuthorityMaxOutputTokens=6000",
+      "repairMaxOutputTokensSetting": "OpenAI__RepairMaxOutputTokens=8000",
+      "maxProviderAttemptsSetting": "OpenAI__MaxProviderAttempts=2",
+      "repairBoundary": "Retry only a bounded unusable or transient attempt; never publish either raw attempt."
+    }
+  },
+  "selectionState": {
+    "dailySelectionBlob": "runs/selection/{yyyy}/{MM}/{dd}/{batch}.json",
+    "atomicAcquisition": true,
+    "freshSuccessHoursSetting": "PublicKnowledge__AuthorityFreshnessHours=20",
+    "sourceFreshnessDaysSetting": "PublicKnowledge__SourceFreshnessDays=14",
+    "candidateId": "SHA-256 of destination, normalized topic, summary, and sorted source URLs",
+    "duplicateCandidateBehavior": "Atomic create-if-absent; duplicate generation is a no-op.",
+    "incrementalRule": "Skip targets with a fresh successful validated output and skip a second daily selection for the same batch."
+  },
+  "candidateFeed": {
+    "route": "GET /api/public-knowledge/promotion-feed?destination={owner/repo}",
+    "authorization": "anonymous-public-safe-output-only",
+    "maxCandidates": 20,
+    "rawProviderOutputIncluded": false,
+    "privateBlobUrlsIncluded": false,
+    "technicalSchema": "technical-source-candidate-feed/v1",
+    "rootFields": [
+      "schema",
+      "generatedAtUtc",
+      "candidates"
+    ],
+    "candidateFields": [
+      "candidateId",
+      "destination",
+      "topicId",
+      "title",
+      "summary",
+      "reviewedAtUtc",
+      "recheckBeforeUse",
+      "sources",
+      "supports",
+      "doesNotProve",
+      "generatorEvidence"
+    ],
+    "recheckBeforeUseType": "boolean",
+    "sourceFields": [
+      "url",
+      "title",
+      "publisher",
+      "kind",
+      "reviewedAtUtc",
+      "supports"
+    ],
+    "generatorEvidenceFields": [
+      "provider",
+      "authMode",
+      "model",
+      "runId",
+      "generatedAtUtc",
+      "usage"
+    ],
+    "usageFields": [
+      "inputTokens",
+      "outputTokens",
+      "reasoningTokens"
+    ]
+  },
+  "promotion": {
+    "owner": "destination repository",
+    "requiredPermissions": [
+      "contents:write",
+      "pull-requests:write"
+    ],
+    "repositoryPolicyPrerequisite": "The destination repository Actions setting can_approve_pull_request_reviews must permit GITHUB_TOKEN pull-request creation. The workflow must preflight and fail closed when it is false; this repair does not change that protected setting.",
+    "branchRequired": true,
+    "draftPullRequestRequired": true,
+    "reviewRequiredBeforeMerge": true,
+    "autoMergeAllowed": false,
+    "standingIssueCommentsAreNotPromotion": true,
+    "rawProviderOutputMayBePublished": false,
+    "promotionAckRoute": "POST /api/public-knowledge/promotion-ack",
+    "promotionAckFields": ["candidateId", "destination", "promotedAtUtc", "pullRequestUrl"],
+    "promotionAckAuthorization": "function",
+    "promotedCandidateFeedBehavior": "Exclude destination and candidate ID after a validated draft-PR promotion receipt.",
+    "publicationAckRoute": "POST /api/public-knowledge/publication-ack",
+    "publicationAckFields": ["candidateId", "destination", "publishedAtUtc", "pullRequestUrl"],
+    "publicationAckAuthorization": "function",
+    "publicationBoundary": "Only a trusted destination default-branch workflow acknowledges a same-repository authority PR after merge to main; it does not execute PR code.",
+    "lastPromotionSource": "Validated draft-PR acknowledgement containing the exact destination candidate and pull-request URL.",
+    "lastPublicationSource": "Validated merged-PR acknowledgement matching the existing promotion receipt."
+  },
+  "healthEvidence": {
+    "providerFields": [
+      "provider",
+      "authMode",
+      "model",
+      "responseStatus",
+      "attempts",
+      "inputTokens",
+      "outputTokens",
+      "reasoningTokens",
+      "failureReason"
+    ],
+    "operatorFields": [
+      "queue.approximateMessageCount",
+      "backlog.jobEnvelopeCount",
+      "backlog.activeCount",
+      "backlog.completedCount",
+      "backlog.failedCount",
+      "backlog.staleCount",
+      "backlog.unknownLegacyStatusCount",
+      "providerHealth.lastUsableOutputUtc",
+      "providerHealth.actionableFailureReasons",
+      "promotion.candidateCount",
+      "promotion.promotedCandidateCount",
+      "promotion.publishedCandidateCount",
+      "promotion.lastCandidateUtc",
+      "promotion.lastSuccessfulPromotionUtc",
+      "promotion.lastSuccessfulPublicationUtc"
+    ]
+  },
+  "retention": {
+    "runHistoryDaysSetting": "PublicKnowledge__RunHistoryRetentionDays=90",
+    "jobEnvelopeDaysSetting": "PublicKnowledge__JobEnvelopeRetentionDays=30",
+    "mode": "policy-only-no-deletion",
+    "compactionRule": "Preserve latest indexes, daily selection records, promotion candidates, publication acknowledgements, provider evidence, and actionable failures before any future reviewed compaction implementation.",
+    "existingDataDeletedByThisRepair": false
+  },
+  "publicBoundary": {
+    "allowed": [
+      "official public sources",
+      "public-safe source metadata",
+      "bounded source-backed summaries",
+      "sanitized provider usage counts",
+      "reviewable destination candidates and pull requests"
+    ],
+    "excluded": [
+      "customer or identity data",
+      "private prompts or raw provider responses",
+      "secrets, keys, tokens, or private endpoints",
+      "private operating or billing tactics",
+      "unreviewed direct publication",
+      "standing-board comment loops"
+    ]
+  }
+}

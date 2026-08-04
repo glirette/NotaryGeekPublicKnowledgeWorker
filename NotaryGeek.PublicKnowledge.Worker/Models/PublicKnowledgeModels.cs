@@ -9,7 +9,9 @@ public sealed record PublicKnowledgeRunCommand(
     IReadOnlyList<string> RequestedUrls,
     string? RegressionCaseId,
     PublicKnowledgeRegressionCase? RegressionCase,
-    string? ProviderOverride = null);
+    string? ProviderOverride = null,
+    string RunKind = "regression",
+    string AuthorityLane = "notary");
 
 public sealed record PublicKnowledgeRunResult(
     bool Ok,
@@ -32,7 +34,11 @@ public sealed record PublicKnowledgeRunResult(
     IReadOnlyList<string> Warnings,
     IReadOnlyList<string> Errors,
     PublicKnowledgeRegressionScore? RegressionScore = null,
-    string? Provider = null)
+    string? Provider = null,
+    PublicKnowledgeProviderEvidence? ProviderEvidence = null,
+    PublicKnowledgeStructuredOutput? StructuredOutput = null,
+    string RunKind = "regression",
+    string AuthorityLane = "notary")
 {
     public bool ProviderCalled => OpenAiCalled;
 }
@@ -68,7 +74,105 @@ public sealed record PublicKnowledgeQueuedRunMessage(
     IReadOnlyList<string> CaseIds,
     DateTime SubmittedAtUtc,
     string? CaseId = null,
-    string? ProviderOverride = null);
+    string? ProviderOverride = null,
+    string RunKind = "regression",
+    string AuthorityLane = "notary");
+
+public sealed record PublicKnowledgeProviderEvidence(
+    string Provider,
+    string AuthMode,
+    string Model,
+    string ResponseStatus,
+    int Attempts,
+    int InputTokens,
+    int OutputTokens,
+    int ReasoningTokens,
+    string? FailureReason);
+
+public sealed record PublicKnowledgeStructuredOutput(
+    string Summary,
+    IReadOnlyList<string> RouteFindings,
+    IReadOnlyList<string> SourceQualityFindings,
+    IReadOnlyList<string> SuggestedPublicReplies,
+    IReadOnlyList<string> WebsiteBriefs,
+    IReadOnlyList<string> LawRefreshCandidates,
+    IReadOnlyList<string> Risks,
+    IReadOnlyList<string> Citations,
+    IReadOnlyList<PublicAuthorityCandidateDraft> Candidates);
+
+public sealed record PublicAuthorityCandidateDraft(
+    string TopicId,
+    string Title,
+    string Summary,
+    DateTime ReviewedAtUtc,
+    bool RecheckBeforeUse,
+    IReadOnlyList<PublicAuthoritySourceDraft> Sources,
+    IReadOnlyList<string> Supports,
+    IReadOnlyList<string> DoesNotProve);
+
+public sealed record PublicAuthoritySourceDraft(
+    string Url,
+    string Title,
+    string Publisher,
+    string Kind,
+    DateTime ReviewedAtUtc,
+    string Supports);
+
+public sealed record PublicAuthorityCandidateFeed(
+    string Schema,
+    DateTime GeneratedAtUtc,
+    IReadOnlyList<PublicAuthorityCandidate> Candidates);
+
+public sealed record PublicAuthorityCandidate(
+    string CandidateId,
+    string Destination,
+    string TopicId,
+    string Title,
+    string Summary,
+    DateTime ReviewedAtUtc,
+    bool RecheckBeforeUse,
+    IReadOnlyList<PublicAuthoritySourceDraft> Sources,
+    IReadOnlyList<string> Supports,
+    IReadOnlyList<string> DoesNotProve,
+    PublicAuthorityGeneratorEvidence GeneratorEvidence);
+
+public sealed record PublicAuthorityGeneratorEvidence(
+    string Provider,
+    string AuthMode,
+    string Model,
+    string RunId,
+    DateTime GeneratedAtUtc,
+    PublicAuthorityUsage Usage);
+
+public sealed record PublicAuthorityUsage(
+    int InputTokens,
+    int OutputTokens,
+    int ReasoningTokens);
+
+[System.Text.Json.Serialization.JsonUnmappedMemberHandling(System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow)]
+public sealed record PublicAuthorityPromotionReceipt(
+    string CandidateId,
+    string Destination,
+    DateTime PromotedAtUtc,
+    string PullRequestUrl);
+
+[System.Text.Json.Serialization.JsonUnmappedMemberHandling(System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow)]
+public sealed record PublicAuthorityPublicationReceipt(
+    string CandidateId,
+    string Destination,
+    DateTime PublishedAtUtc,
+    string PullRequestUrl);
+
+public sealed record PublicAuthorityPromotionStatus(
+    int CandidateCount,
+    int PromotedCandidateCount,
+    int PublishedCandidateCount,
+    DateTime? LastCandidateUtc,
+    DateTime? LastSuccessfulPromotionUtc,
+    DateTime? LastSuccessfulPublicationUtc,
+    int RunHistoryRetentionDays,
+    int JobEnvelopeRetentionDays,
+    string RetentionMode);
 
 public sealed record PublicKnowledgeSourceResult(
     string Url,

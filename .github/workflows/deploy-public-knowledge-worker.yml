@@ -11,7 +11,7 @@ on:
       run_batch_after_deploy:
         description: Run a public knowledge regression batch after deployment if PUBLIC_KNOWLEDGE_FUNCTION_KEY and PUBLIC_KNOWLEDGE_BASE_URL are configured.
         required: true
-        default: true
+        default: false
         type: boolean
       batch_after_deploy:
         description: Regression batch to run after deployment.
@@ -109,9 +109,19 @@ jobs:
             provider = $status.status.Provider
             model = $status.status.Model
             hasOpenAiApiKey = $status.status.HasOpenAiApiKey
+            hasPublicSourceOpenAiApiKey = $status.status.HasPublicSourceOpenAiApiKey
+            publicSourceOpenAiKeyRequired = $status.status.PublicSourceOpenAiKeyRequired
             hasStraicoApiKey = $status.status.HasStraicoApiKey
             maxSourcesPerRun = $status.status.MaxSourcesPerRun
             storageHasConnectionString = $status.storage.HasConnectionString
+            queueMessages = $status.queue.ApproximateMessageCount
+            jobEnvelopes = $status.backlog.JobEnvelopeCount
+            providerUsableOutputs = $status.providerHealth.UsableOutputCount
+            providerFailedOutputs = $status.providerHealth.FailedOutputCount
+            lastUsableOutputUtc = $status.providerHealth.LastUsableOutputUtc
+            promotionCandidates = $status.promotion.CandidateCount
+            lastSuccessfulPromotionUtc = $status.promotion.LastSuccessfulPromotionUtc
+            lastSuccessfulPublicationUtc = $status.promotion.LastSuccessfulPublicationUtc
           }
 
           $summary | ConvertTo-Json -Depth 4

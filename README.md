@@ -24,6 +24,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Notary law source index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json)
 - [Florida Chapter 117 section corpus](NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json)
 - [Law source cache and section normalization](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json)
+- [Daily public source ingestion contract](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/daily-public-source-ingestion-contract.json)
 - [Public source layer, not just a correction archive](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/public-source-layer-not-correction-archive.json)
 - [Reseller AI ingestion profile](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-ingestion-profile.json)
 - [Reseller AI system instructions](NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json)
@@ -42,6 +43,8 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Public knowledge regression matrix](NotaryGeek.PublicKnowledge.Worker/public-knowledge/public-knowledge-regression-matrix.json)
 - [Address intelligence registry design](docs/address-intelligence-registry.md)
 - [Public knowledge run queue](docs/public-knowledge-run-queue.md)
+- [Public authority machine](docs/public-authority-machine.md)
+- [Public authority repair evidence (2026-08-03)](docs/public-authority-repair-evidence-2026-08-03.md)
 - [helperfunc low-risk review](docs/helperfunc-low-risk-review.md)
 
 ## For Notaries

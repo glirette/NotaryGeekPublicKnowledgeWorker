@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -14,6 +15,7 @@ public sealed class PublicKnowledgeResearchFunction
     private readonly PublicKnowledgeResearchService _service;
     private readonly PublicKnowledgeRunStorageService _storage;
     private readonly PublicKnowledgeQueueService _queue;
+    private readonly PublicKnowledgePromotionService _promotion;
     private readonly PublicKnowledgeOptions _options;
     private readonly ILogger<PublicKnowledgeResearchFunction> _logger;
 
@@ -21,12 +23,14 @@ public sealed class PublicKnowledgeResearchFunction
         PublicKnowledgeResearchService service,
         PublicKnowledgeRunStorageService storage,
         PublicKnowledgeQueueService queue,
+        PublicKnowledgePromotionService promotion,
         IOptions<PublicKnowledgeOptions> options,
         ILogger<PublicKnowledgeResearchFunction> logger)
     {
         _service = service;
         _storage = storage;
         _queue = queue;
+        _promotion = promotion;
         _options = options.Value;
         _logger = logger;
     }
@@ -36,14 +40,117 @@ public sealed class PublicKnowledgeResearchFunction
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/status")] HttpRequestData req,
         CancellationToken cancellationToken)
     {
+        var promotion = await _promotion.GetStatusAsync(cancellationToken);
+        var queue = await _queue.GetStatusAsync(cancellationToken);
+        var backlog = await _storage.GetBacklogStatusAsync(cancellationToken);
+        var providerHealth = await _storage.GetProviderHealthAsync(cancellationToken);
         var response = req.CreateResponse(HttpStatusCode.OK);
         await response.WriteAsJsonAsync(new
         {
             ok = true,
             status = _service.GetStatus(),
-            storage = _storage.GetStatus()
+            storage = _storage.GetStatus(),
+            promotion,
+            queue,
+            backlog,
+            providerHealth
         }, cancellationToken);
         return response;
+    }
+
+    [Function("PublicKnowledgePromotionFeed")]
+    public async Task<HttpResponseData> PromotionFeed(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "public-knowledge/promotion-feed")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        var destination = TryGetStringQuery(req, "destination")
+            ?? PublicKnowledgePromotionService.GetDestination("notary");
+        try
+        {
+            var feed = await _promotion.ReadFeedAsync(destination, cancellationToken);
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            response.Headers.Add("Cache-Control", "public, max-age=300");
+            await response.WriteAsJsonAsync(feed, cancellationToken);
+            return response;
+        }
+        catch (ArgumentException ex)
+        {
+            var response = req.CreateResponse(HttpStatusCode.BadRequest);
+            await response.WriteAsJsonAsync(new { ok = false, error = "unknown_destination", message = ex.Message }, cancellationToken);
+            return response;
+        }
+    }
+
+    [Function("PublicKnowledgePromotionAck")]
+    public async Task<HttpResponseData> PromotionAck(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "public-knowledge/promotion-ack")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        PublicAuthorityPromotionReceipt? receipt;
+        try
+        {
+            receipt = await req.ReadFromJsonAsync<PublicAuthorityPromotionReceipt>(cancellationToken);
+        }
+        catch (JsonException)
+        {
+            receipt = null;
+        }
+        if (receipt is null)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_promotion_receipt" }, cancellationToken);
+            return badRequest;
+        }
+
+        try
+        {
+            await _promotion.RecordPromotionAsync(receipt, cancellationToken);
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new { ok = true, receipt.CandidateId, receipt.Destination, receipt.PromotedAtUtc }, cancellationToken);
+            return response;
+        }
+        catch (ArgumentException ex)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_promotion_receipt", message = ex.Message }, cancellationToken);
+            return badRequest;
+        }
+    }
+
+    [Function("PublicKnowledgePublicationAck")]
+    public async Task<HttpResponseData> PublicationAck(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "public-knowledge/publication-ack")] HttpRequestData req,
+        CancellationToken cancellationToken)
+    {
+        PublicAuthorityPublicationReceipt? receipt;
+        try
+        {
+            receipt = await req.ReadFromJsonAsync<PublicAuthorityPublicationReceipt>(cancellationToken);
+        }
+        catch (JsonException)
+        {
+            receipt = null;
+        }
+        if (receipt is null)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_publication_receipt" }, cancellationToken);
+            return badRequest;
+        }
+
+        try
+        {
+            await _promotion.RecordPublicationAsync(receipt, cancellationToken);
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(new { ok = true, receipt.CandidateId, receipt.Destination, receipt.PublishedAtUtc }, cancellationToken);
+            return response;
+        }
+        catch (ArgumentException ex)
+        {
+            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
+            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_publication_receipt", message = ex.Message }, cancellationToken);
+            return badRequest;
+        }
     }
 
     [Function("PublicKnowledgeResearch")]
@@ -282,6 +389,10 @@ public sealed class PublicKnowledgeResearchFunction
             var refreshed = refresh || report is null;
             report ??= await _storage.SaveNeedsGregReportAsync(cancellationToken);
             var jobs = await _storage.ListQueuedRunsAsync(take, status: null, cancellationToken);
+            var promotion = await _promotion.GetStatusAsync(cancellationToken);
+            var queue = await _queue.GetStatusAsync(cancellationToken);
+            var backlog = await _storage.GetBacklogStatusAsync(cancellationToken);
+            var providerHealth = await _storage.GetProviderHealthAsync(cancellationToken);
             var staleJobs = jobs.Where(item => item.IsStale).ToArray();
             var runningJobs = jobs.Where(item => !item.IsTerminal).ToArray();
             var nextActions = BuildOperatorSnapshotNextActions(report, staleJobs);
@@ -296,6 +407,10 @@ public sealed class PublicKnowledgeResearchFunction
                 attentionCount = report.Items.Count + staleJobs.Length,
                 status = _service.GetStatus(),
                 storage = _storage.GetStatus(),
+                promotion,
+                queue,
+                backlog,
+                providerHealth,
                 digest = BuildDigestSummary(report),
                 runningJobCount = runningJobs.Length,
                 staleJobCount = staleJobs.Length,
@@ -626,7 +741,12 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
-        await RunConfiguredTimerBatchesAsync(_options.TimerBatches, _options.TimerBatch, "timer", cancellationToken);
+        await RunConfiguredTimerBatchesAsync(
+            _options.TimerBatches,
+            _options.TimerBatch,
+            "timer",
+            _options.TimerProvider,
+            cancellationToken);
     }
 
     [Function("PublicKnowledgePumpTimer")]
@@ -640,7 +760,14 @@ public sealed class PublicKnowledgeResearchFunction
             return;
         }
 
-        await RunConfiguredTimerBatchesAsync(_options.PumpTimerBatches, "Core;Platform", "pump-timer", cancellationToken);
+        var index = await _storage.SaveLatestIndexAsync(cancellationToken);
+        var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
+        var promotion = await _promotion.GetStatusAsync(cancellationToken);
+        _logger.LogInformation(
+            "Public knowledge pump refreshed indexes without provider calls: latest={RunCount}; attention={AttentionCount}; candidates={CandidateCount}.",
+            index.RunCount,
+            digest.Items.Count,
+            promotion.CandidateCount);
     }
 
     private async Task<IReadOnlyList<PublicKnowledgeStoredRunReceipt>> RunStoredBatchAsync(
@@ -652,15 +779,19 @@ public sealed class PublicKnowledgeResearchFunction
         CancellationToken cancellationToken)
     {
         var runStartedUtc = DateTime.UtcNow;
+        var runKind = GetRunKind(batch);
+        var effectiveExecute = PublicKnowledgeExecutionPolicy.ShouldCallProvider(trigger, runKind, execute);
         var commands = cases
             .Select(regressionCase => new PublicKnowledgeRunCommand(
-                Execute: execute,
+                Execute: effectiveExecute,
                 FromTimer: trigger.Contains("timer", StringComparison.OrdinalIgnoreCase),
                 Focus: regressionCase.Focus,
                 RequestedUrls: regressionCase.SourceUrls,
                 RegressionCaseId: regressionCase.Id,
                 RegressionCase: regressionCase,
-                ProviderOverride: providerOverride))
+                ProviderOverride: providerOverride,
+                RunKind: runKind,
+                AuthorityLane: GetAuthorityLane(batch)))
             .ToArray();
 
         var results = await _service.RunBatchAsync(commands, cancellationToken);
@@ -671,6 +802,17 @@ public sealed class PublicKnowledgeResearchFunction
             var result = results[index];
             var receipt = await _storage.SaveAsync(result, trigger, batch, runStartedUtc, cancellationToken);
             receipts.Add(receipt);
+            if (result.Ok && result.RunKind.Equals("authority-generation", StringComparison.OrdinalIgnoreCase))
+            {
+                var savedCandidates = await _promotion.SaveValidatedCandidatesAsync(
+                    result,
+                    $"{runStartedUtc:yyyyMMddTHHmmssZ}-{regressionCase.Id}",
+                    cancellationToken);
+                _logger.LogInformation(
+                    "Public knowledge authority run {CaseId} saved {CandidateCount} new sanitized promotion candidate(s).",
+                    regressionCase.Id,
+                    savedCandidates);
+            }
             _logger.LogInformation(
                 "Public knowledge {Trigger} stored case {CaseId}: ok={Ok}; status={Status}; warnings={WarningCount}; errors={ErrorCount}; blob={BlobName}",
                 trigger,
@@ -699,6 +841,7 @@ public sealed class PublicKnowledgeResearchFunction
         string configuredBatches,
         string fallbackBatch,
         string trigger,
+        string provider,
         CancellationToken cancellationToken)
     {
         var batches = SplitList(configuredBatches);
@@ -726,14 +869,70 @@ public sealed class PublicKnowledgeResearchFunction
                 continue;
             }
 
-            var message = await SubmitQueuedCasesAsync(cases, batch, execute: true, trigger, providerOverride: null, cancellationToken);
+            if (IsAuthorityBatch(batch))
+            {
+                var freshCases = new List<PublicKnowledgeRegressionCase>();
+                foreach (var regressionCase in cases)
+                {
+                    var hasFreshRun = await _storage.HasFreshSuccessfulRunAsync(
+                        regressionCase.Id,
+                        batch,
+                        GetAuthorityLane(batch),
+                        TimeSpan.FromHours(Math.Max(1, _options.AuthorityFreshnessHours)),
+                        cancellationToken);
+                    if (!hasFreshRun)
+                    {
+                        freshCases.Add(regressionCase);
+                    }
+                }
+
+                cases = freshCases;
+                if (cases.Count == 0)
+                {
+                    _logger.LogInformation(
+                        "Public knowledge {Trigger} skipped authority batch {Batch}; all selection targets have fresh successful outputs.",
+                        trigger,
+                        batch);
+                    continue;
+                }
+
+                if (trigger.Equals("timer", StringComparison.OrdinalIgnoreCase) &&
+                    await _storage.HasDailySelectionAsync(batch, cancellationToken))
+                {
+                    _logger.LogInformation(
+                        "Public knowledge {Trigger} skipped authority batch {Batch}; today's accepted selection already has a durable receipt.",
+                        trigger,
+                        batch);
+                    continue;
+                }
+            }
+
+            var providerOverride = NormalizeProviderOverride(provider);
+            var dailyAuthoritySelection = IsAuthorityBatch(batch) &&
+                trigger.Equals("timer", StringComparison.OrdinalIgnoreCase);
+            var jobId = dailyAuthoritySelection
+                ? PublicKnowledgeExecutionPolicy.CreateDailyAuthorityJobId(batch, DateTime.UtcNow)
+                : null;
+            var message = await SubmitQueuedCasesAsync(
+                cases,
+                batch,
+                execute: true,
+                trigger,
+                providerOverride,
+                cancellationToken,
+                jobId);
+            if (dailyAuthoritySelection)
+            {
+                await _storage.CompleteDailySelectionAsync(batch, message.JobId, cancellationToken);
+            }
             submittedJobs++;
             _logger.LogInformation(
-                "Public knowledge {Trigger} queued batch {Batch} as job {JobId} with {CaseCount} case(s).",
+                "Public knowledge {Trigger} queued batch {Batch} as job {JobId} with {CaseCount} case(s); provider={Provider}.",
                 trigger,
                 batch,
                 message.JobId,
-                cases.Count);
+                cases.Count,
+                providerOverride ?? "Default");
         }
 
         if (submittedJobs == 0)
@@ -754,10 +953,11 @@ public sealed class PublicKnowledgeResearchFunction
         bool execute,
         string trigger,
         string? providerOverride,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        string? jobIdOverride = null)
     {
         var submittedAtUtc = DateTime.UtcNow;
-        var jobId = $"{submittedAtUtc:yyyyMMddTHHmmssZ}-{Guid.NewGuid():N}";
+        var jobId = jobIdOverride ?? $"{submittedAtUtc:yyyyMMddTHHmmssZ}-{Guid.NewGuid():N}";
         var parent = new PublicKnowledgeQueuedRunMessage(
             jobId,
             batch,
@@ -765,16 +965,28 @@ public sealed class PublicKnowledgeResearchFunction
             execute,
             cases.Select(item => item.Id).ToArray(),
             submittedAtUtc,
-            ProviderOverride: providerOverride);
+            ProviderOverride: providerOverride,
+            RunKind: GetRunKind(batch),
+            AuthorityLane: GetAuthorityLane(batch));
 
-        await _storage.CreateQueuedRunAsync(parent, cancellationToken);
-        foreach (var regressionCase in cases)
+        var envelope = await _storage.CreateQueuedRunAsync(parent, cancellationToken);
+        if (envelope.Status.Equals("preparing", StringComparison.OrdinalIgnoreCase))
         {
-            await _queue.EnqueueAsync(parent with { CaseId = regressionCase.Id }, cancellationToken);
+            await _queue.EnqueueAsync(parent, cancellationToken);
+            await _storage.MarkQueuedRunSubmittedAsync(parent.JobId, cancellationToken);
         }
 
         return parent;
     }
+
+    private static bool IsAuthorityBatch(string batch) =>
+        batch.Equals("DailySourceIngestion", StringComparison.OrdinalIgnoreCase) ||
+        batch.Equals("TechnicalSourceIngestion", StringComparison.OrdinalIgnoreCase);
+
+    private static string GetRunKind(string batch) => IsAuthorityBatch(batch) ? "authority-generation" : "regression";
+
+    private static string GetAuthorityLane(string batch) =>
+        batch.Equals("TechnicalSourceIngestion", StringComparison.OrdinalIgnoreCase) ? "technical" : "notary";
 
     private static string? TryGetStringQuery(HttpRequestData req, string name)
     {

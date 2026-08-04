@@ -35,6 +35,16 @@ public sealed class PublicKnowledgeQueueService
         await queue.SendMessageAsync(json, cancellationToken);
     }
 
+    public async Task<PublicKnowledgeQueueStatus> GetStatusAsync(CancellationToken cancellationToken)
+    {
+        var queue = await GetQueueAsync(cancellationToken);
+        var properties = await queue.GetPropertiesAsync(cancellationToken);
+        return new PublicKnowledgeQueueStatus(
+            _options.QueueName,
+            properties.Value.ApproximateMessagesCount,
+            DateTime.UtcNow);
+    }
+
     private async Task<QueueClient> GetQueueAsync(CancellationToken cancellationToken)
     {
         var connectionString = _configuration[_options.OutputStorageConnectionStringSetting];
@@ -52,3 +62,8 @@ public sealed class PublicKnowledgeQueueService
         return queue;
     }
 }
+
+public sealed record PublicKnowledgeQueueStatus(
+    string QueueName,
+    int ApproximateMessageCount,
+    DateTime CheckedAtUtc);

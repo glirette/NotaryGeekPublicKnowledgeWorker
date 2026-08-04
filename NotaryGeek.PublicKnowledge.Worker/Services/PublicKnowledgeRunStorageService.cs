@@ -111,10 +111,39 @@ public sealed class PublicKnowledgeRunStorageService
         CancellationToken cancellationToken)
     {
         var envelope = CreateQueuedRunEnvelope(message);
-
-        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
-        return envelope;
+        var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(GetQueuedRunBlobName(message.JobId));
+        try
+        {
+            await blob.UploadAsync(
+                BinaryData.FromObjectAsJson(envelope, JsonOptions),
+                new BlobUploadOptions
+                {
+                    Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },
+                    HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+                    Metadata = new Dictionary<string, string> { ["status"] = envelope.Status }
+                },
+                cancellationToken);
+            return envelope;
+        }
+        catch (RequestFailedException ex) when (ex.Status == 409 || ex.Status == 412)
+        {
+            return await ReadQueuedRunAsync(message.JobId, cancellationToken)
+                ?? throw new InvalidOperationException($"Queued run '{message.JobId}' exists but could not be read.");
+        }
     }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunSubmittedAsync(
+        string jobId,
+        CancellationToken cancellationToken) =>
+        await UpdateQueuedRunEnvelopeAsync(
+            jobId,
+            existing => existing is null
+                ? throw new InvalidOperationException($"Queued run '{jobId}' does not exist.")
+                : existing.Status.Equals("preparing", StringComparison.OrdinalIgnoreCase)
+                    ? existing with { Status = "queued" }
+                    : existing,
+            cancellationToken);
 
     public async Task<PublicKnowledgeQueuedRunEnvelope?> ReadQueuedRunAsync(
         string jobId,
@@ -162,6 +191,72 @@ public sealed class PublicKnowledgeRunStorageService
             .OrderByDescending(item => item.SubmittedAtUtc)
             .Take(Math.Clamp(take, 1, 100))
             .ToArray();
+    }
+
+    public async Task<PublicKnowledgeBacklogStatus> GetBacklogStatusAsync(CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var total = 0;
+        var running = 0;
+        var completed = 0;
+        var failed = 0;
+        var stale = 0;
+        var unknown = 0;
+        await foreach (var blob in container.GetBlobsAsync(
+                           traits: BlobTraits.Metadata,
+                           prefix: "runs/jobs/",
+                           cancellationToken: cancellationToken))
+        {
+            total++;
+            if (!blob.Metadata.TryGetValue("status", out var status))
+            {
+                unknown++;
+                continue;
+            }
+
+            if (status.Equals("completed", StringComparison.OrdinalIgnoreCase))
+            {
+                completed++;
+            }
+            else if (status.Equals("failed", StringComparison.OrdinalIgnoreCase))
+            {
+                failed++;
+            }
+            else
+            {
+                running++;
+                stale += blob.Properties.LastModified < DateTimeOffset.UtcNow.AddHours(-1) ? 1 : 0;
+            }
+        }
+
+        return new PublicKnowledgeBacklogStatus(total, running, completed, failed, stale, unknown, DateTime.UtcNow);
+    }
+
+    public async Task<PublicKnowledgeProviderHealth> GetProviderHealthAsync(CancellationToken cancellationToken)
+    {
+        var runs = await ListLatestEnvelopesAsync(cancellationToken);
+        var evidence = runs
+            .Where(item => item.Result.ProviderEvidence is not null)
+            .Select(item => new { item.StoredAtUtc, item.Result.Ok, Evidence = item.Result.ProviderEvidence! })
+            .ToArray();
+        return new PublicKnowledgeProviderHealth(
+            evidence.Length,
+            evidence.Count(item => item.Ok),
+            evidence.Count(item => !item.Ok),
+            evidence.Where(item => item.Ok).Select(item => (DateTime?)item.StoredAtUtc).Max(),
+            evidence.Select(item => item.Evidence.Provider).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Select(item => item.Evidence.AuthMode).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Select(item => item.Evidence.Model).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Sum(item => item.Evidence.InputTokens),
+            evidence.Sum(item => item.Evidence.OutputTokens),
+            evidence.Sum(item => item.Evidence.ReasoningTokens),
+            evidence
+                .Where(item => !item.Ok && !string.IsNullOrWhiteSpace(item.Evidence.FailureReason))
+                .OrderByDescending(item => item.StoredAtUtc)
+                .Select(item => item.Evidence.FailureReason!)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Take(5)
+                .ToArray());
     }
 
     public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunRunningAsync(
@@ -279,6 +374,62 @@ public sealed class PublicKnowledgeRunStorageService
 
         var response = await blob.DownloadContentAsync(cancellationToken);
         return response.Value.Content.ToObjectFromJson<PublicKnowledgeStoredRunEnvelope>(JsonOptions);
+    }
+
+    public async Task<bool> HasFreshSuccessfulRunAsync(
+        string caseId,
+        string expectedBatch,
+        string expectedLane,
+        TimeSpan freshness,
+        CancellationToken cancellationToken)
+    {
+        var latest = await ReadLatestAsync(caseId, cancellationToken);
+        return PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            latest,
+            expectedBatch,
+            expectedLane,
+            DateTime.UtcNow.Subtract(freshness));
+    }
+
+    public async Task<bool> HasDailySelectionAsync(
+        string batch,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(GetDailySelectionBlobName(batch, DateTime.UtcNow));
+        return await blob.ExistsAsync(cancellationToken);
+    }
+
+    public async Task CompleteDailySelectionAsync(
+        string batch,
+        string jobId,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        var now = DateTime.UtcNow;
+        var blob = container.GetBlobClient(GetDailySelectionBlobName(batch, now));
+        var payload = BinaryData.FromObjectAsJson(new
+        {
+            schema = "public-authority-daily-selection/v1",
+            batch,
+            jobId,
+            acceptedAtUtc = now
+        }, JsonOptions);
+        try
+        {
+            await blob.UploadAsync(
+                payload,
+                new BlobUploadOptions
+                {
+                    Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },
+                    HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" }
+                },
+                cancellationToken);
+        }
+        catch (RequestFailedException ex) when (ex.Status == 409 || ex.Status == 412)
+        {
+            // A matching UTC-day marker is the durable idempotency receipt.
+        }
     }
 
     public async Task<IReadOnlyList<PublicKnowledgeStoredRunSummary>> ListLatestAsync(
@@ -596,6 +747,7 @@ public sealed class PublicKnowledgeRunStorageService
         var options = new BlobUploadOptions
         {
             HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+            Metadata = new Dictionary<string, string> { ["status"] = envelope.Status.ToLowerInvariant() },
             Conditions = etag is null ? null : new BlobRequestConditions { IfMatch = etag.Value }
         };
         await blob.UploadAsync(BinaryData.FromString(json), options, cancellationToken);
@@ -603,6 +755,9 @@ public sealed class PublicKnowledgeRunStorageService
 
     private static string GetQueuedRunBlobName(string jobId) =>
         $"runs/jobs/{ToSafeBlobSegment(jobId)}.json";
+
+    private static string GetDailySelectionBlobName(string batch, DateTime utcNow) =>
+        $"runs/selection/{utcNow:yyyy/MM/dd}/{ToSafeBlobSegment(batch)}.json";
 
     private string? GetConnectionString() =>
         _configuration[_options.OutputStorageConnectionStringSetting];
@@ -658,7 +813,7 @@ public sealed class PublicKnowledgeRunStorageService
             message.ProviderOverride,
             null,
             null,
-            "queued",
+            "preparing",
             0,
             message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase).Count(),
             [],
@@ -980,6 +1135,28 @@ public sealed record PublicKnowledgeRunStorageStatus(
     string ConnectionStringSetting,
     string ContainerName,
     bool HasConnectionString);
+
+public sealed record PublicKnowledgeBacklogStatus(
+    int JobEnvelopeCount,
+    int ActiveCount,
+    int CompletedCount,
+    int FailedCount,
+    int StaleCount,
+    int UnknownLegacyStatusCount,
+    DateTime CheckedAtUtc);
+
+public sealed record PublicKnowledgeProviderHealth(
+    int RunCount,
+    int UsableOutputCount,
+    int FailedOutputCount,
+    DateTime? LastUsableOutputUtc,
+    IReadOnlyList<string> Providers,
+    IReadOnlyList<string> AuthModes,
+    IReadOnlyList<string> Models,
+    int InputTokens,
+    int OutputTokens,
+    int ReasoningTokens,
+    IReadOnlyList<string> ActionableFailureReasons);
 
 public sealed record PublicKnowledgeStoredRunEnvelope(
     string Schema,

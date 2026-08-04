@@ -167,7 +167,9 @@ public sealed class PublicKnowledgeResearchService
             _knowledgeOptions.PumpTimerEnabled,
             _knowledgeOptions.TimerBatch,
             SplitList(_knowledgeOptions.TimerBatches).DefaultIfEmpty(_knowledgeOptions.TimerBatch).ToArray(),
+            NormalizeStatusProvider(_knowledgeOptions.TimerProvider),
             SplitList(_knowledgeOptions.PumpTimerBatches),
+            NormalizeStatusProvider(_knowledgeOptions.PumpTimerProvider),
             _knowledgeOptions.PublicBaseUrl,
             _knowledgeOptions.QueueName,
             string.IsNullOrWhiteSpace(_knowledgeOptions.PublicCorpusManifestUrl) ? "bundled-local" : _knowledgeOptions.PublicCorpusManifestUrl,
@@ -177,6 +179,8 @@ public sealed class PublicKnowledgeResearchService
             _openAiOptions.EndpointPath,
             _openAiOptions.Model,
             !string.IsNullOrWhiteSpace(_openAiOptions.ApiKey),
+            !string.IsNullOrWhiteSpace(_openAiOptions.PublicSourceApiKey),
+            true,
             _straicoOptions.BaseUrl,
             _straicoOptions.DefaultChatModel,
             !string.IsNullOrWhiteSpace(_straicoOptions.ApiKey),
@@ -184,6 +188,10 @@ public sealed class PublicKnowledgeResearchService
             IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode,
             _openAiOptions.HighCostMaxOutputTokens,
             _openAiOptions.HighCostReasoningEffort,
+            _openAiOptions.AuthorityReasoningEffort,
+            _openAiOptions.AuthorityMaxOutputTokens,
+            _openAiOptions.RepairMaxOutputTokens,
+            Math.Clamp(_openAiOptions.MaxProviderAttempts, 1, 2),
             _knowledgeOptions.MaxSourcesPerRun,
             _knowledgeOptions.SourceFetchConcurrency,
             _knowledgeOptions.MaxEstimatedInputTokens,
@@ -248,6 +256,8 @@ public sealed class PublicKnowledgeResearchService
     [
         "All",
         "Core",
+        "DailySourceIngestion",
+        "TechnicalSourceIngestion",
         "Platform",
         "NNA",
         "Apostille",
@@ -367,13 +377,19 @@ public sealed class PublicKnowledgeResearchService
         var sourceBodies = preparedSources.SourceBodies;
         var providerName = GetConfiguredProviderName(command.ProviderOverride);
 
-        var prompt = BuildPrompt(manifest, command.Focus, sourceBodies);
+        var prompt = BuildPrompt(manifest, command, sourceBodies);
         var promptCharacters = prompt.Length;
         var estimatedInputTokens = EstimateTokens(promptCharacters);
 
         if (!IsSupportedProvider(providerName))
         {
             errors.Add($"Unsupported public knowledge provider '{providerName}'. Supported providers: OpenAI, Straico.");
+        }
+
+        if (command.RunKind.Equals("authority-generation", StringComparison.OrdinalIgnoreCase) &&
+            !providerName.Equals("OpenAI", StringComparison.OrdinalIgnoreCase))
+        {
+            errors.Add("Authority generation requires the dedicated public-source OpenAI lane.");
         }
 
         if (estimatedInputTokens > _knowledgeOptions.MaxEstimatedInputTokens)
@@ -398,9 +414,9 @@ public sealed class PublicKnowledgeResearchService
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(_openAiOptions.ApiKey))
+                if (string.IsNullOrWhiteSpace(GetOpenAiApiKey()))
                 {
-                    errors.Add("OpenAI__ApiKey is not configured.");
+                    errors.Add("OpenAI__PublicSourceApiKey is not configured for the public-source OpenAI lane.");
                 }
             }
         }
@@ -429,16 +445,22 @@ public sealed class PublicKnowledgeResearchService
                 warnings,
                 errors,
                 preflightScore,
-                Provider: providerName);
+                Provider: providerName,
+                RunKind: command.RunKind,
+                AuthorityLane: command.AuthorityLane);
         }
 
-        var provider = await CallConfiguredProviderAsync(prompt, providerName, cancellationToken);
+        var fetchedSourceUrls = sourceBodies
+            .Select(source => source.Url)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var provider = await CallConfiguredProviderAsync(
+            prompt,
+            providerName,
+            command,
+            fetchedSourceUrls,
+            cancellationToken);
         if (!string.IsNullOrWhiteSpace(provider.ResponseText))
         {
-            var fetchedSourceUrls = sourceBodies
-                .Select(source => source.Url)
-                .ToHashSet(StringComparer.OrdinalIgnoreCase);
-
             warnings.AddRange(ValidateProviderResponse(provider.ResponseText, fetchedSourceUrls));
         }
 
@@ -469,7 +491,11 @@ public sealed class PublicKnowledgeResearchService
             warnings,
             errors,
             regressionScore,
-            Provider: providerName);
+            Provider: providerName,
+            ProviderEvidence: provider.Evidence,
+            StructuredOutput: provider.StructuredOutput,
+            RunKind: command.RunKind,
+            AuthorityLane: command.AuthorityLane);
     }
 
     private static bool CommandsUseSameSourceSet(IReadOnlyList<PublicKnowledgeRunCommand> commands)
@@ -682,7 +708,7 @@ public sealed class PublicKnowledgeResearchService
 
     private string BuildPrompt(
         PublicKnowledgeManifest manifest,
-        string focus,
+        PublicKnowledgeRunCommand command,
         IReadOnlyList<SourceBody> sources)
     {
         var builder = new StringBuilder();
@@ -699,7 +725,17 @@ public sealed class PublicKnowledgeResearchService
         builder.AppendLine("For a new U.S. private document that has not yet been notarized, the notary public's commissioning state/public-official signature controls the state apostille route; the document subject or named state does not automatically control.");
         builder.AppendLine("Citations must be exact fetched source URLs listed in this run. Do not cite URLs merely discovered inside an index or source document unless that URL was fetched in this run.");
         builder.AppendLine("If an unfetched URL appears useful, put it in lawRefreshCandidates as a fetch candidate, not as a citation.");
-        builder.AppendLine("Produce compact JSON with keys: summary, routeFindings, sourceQualityFindings, suggestedPublicReplies, websiteBriefs, lawRefreshCandidates, risks, citations.");
+        builder.AppendLine("Produce compact JSON that exactly matches the required structured-output schema.");
+        builder.AppendLine("Candidate source URLs and citations must be exact fetched URLs. Each candidate must be public-safe, source-scoped, and independently reviewable.");
+        builder.AppendLine("Set recheckBeforeUse=true because a destination workflow must re-check current official sources before acting.");
+        if (command.AuthorityLane.Equals("technical", StringComparison.OrdinalIgnoreCase))
+        {
+            builder.AppendLine("Route candidates to reusable public-safe technical/API/cloud/platform source trails. Include no notary customer, private infrastructure, credential, endpoint, or operational context.");
+        }
+        else
+        {
+            builder.AppendLine("Route candidates to notary, apostille, public-law, and source-quality structured public knowledge.");
+        }
         builder.AppendLine("Keep every array to 4 or fewer items. Keep each array item as a plain concise string, not a nested JSON object and not JSON serialized as text. Do not quote long passages.");
         builder.AppendLine("Every citation must use one of the exact allowed citation URLs listed below.");
         builder.AppendLine("Allowed citation URLs:");
@@ -709,7 +745,9 @@ public sealed class PublicKnowledgeResearchService
         }
 
         builder.AppendLine();
-        builder.AppendLine($"Focus: {focus}");
+        builder.AppendLine($"Focus: {command.Focus}");
+        builder.AppendLine($"Run kind: {command.RunKind}");
+        builder.AppendLine($"Authority lane: {command.AuthorityLane}");
         builder.AppendLine($"Manifest version: {manifest.Version}");
         builder.AppendLine($"Canonical routing model: {manifest.CanonicalRoutingModel}");
         builder.AppendLine("Strict exclusions:");
@@ -753,81 +791,164 @@ public sealed class PublicKnowledgeResearchService
 
     private async Task<OpenAiProviderResult> CallOpenAiAsync(
         string prompt,
+        PublicKnowledgeRunCommand command,
+        IReadOnlySet<string> fetchedSourceUrls,
         CancellationToken cancellationToken)
     {
         var client = _httpClientFactory.CreateClient("OpenAI");
         client.Timeout = TimeSpan.FromSeconds(Math.Max(10, _openAiOptions.TimeoutSeconds));
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _openAiOptions.ApiKey);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GetOpenAiApiKey());
 
         var endpoint = BuildOpenAiEndpoint();
         var highCostGuardActive = IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode;
-        var maxOutputTokens = highCostGuardActive
-            ? Math.Min(_knowledgeOptions.MaxOutputTokens, Math.Max(1, _openAiOptions.HighCostMaxOutputTokens))
-            : _knowledgeOptions.MaxOutputTokens;
-        var reasoningEffort = highCostGuardActive && !string.IsNullOrWhiteSpace(_openAiOptions.HighCostReasoningEffort)
+        var authorityRun = command.RunKind.Equals("authority-generation", StringComparison.OrdinalIgnoreCase);
+        var configuredReasoningEffort = highCostGuardActive && !string.IsNullOrWhiteSpace(_openAiOptions.HighCostReasoningEffort)
             ? _openAiOptions.HighCostReasoningEffort
             : _openAiOptions.ReasoningEffort;
-        var payload = new Dictionary<string, object?>
-        {
-            ["model"] = _openAiOptions.Model,
-            ["input"] = new object[]
-            {
-                new
-                {
-                    role = "user",
-                    content = prompt
-                }
-            },
-            ["max_output_tokens"] = maxOutputTokens
-        };
+        var reasoningEffort = authorityRun && !string.IsNullOrWhiteSpace(_openAiOptions.AuthorityReasoningEffort)
+            ? _openAiOptions.AuthorityReasoningEffort
+            : configuredReasoningEffort;
+        var maxAttempts = Math.Clamp(_openAiOptions.MaxProviderAttempts, 1, 2);
+        var totalInputTokens = 0;
+        var totalOutputTokens = 0;
+        var totalReasoningTokens = 0;
+        string? lastOutputText = null;
+        string? lastUsageJson = null;
+        string lastStatus = "not-called";
+        string lastResponseStatus = "missing";
+        string lastFailureReason = "provider_not_called";
 
-        if (!string.IsNullOrWhiteSpace(reasoningEffort))
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
         {
-            payload["reasoning"] = new
+            var attemptPrompt = attempt == 1
+                ? prompt
+                : $"{prompt}\n\nThe prior attempt was unusable ({lastFailureReason}). Return one complete schema-valid response; do not add commentary.";
+            var maxOutputTokens = PublicKnowledgeExecutionPolicy.SelectOutputTokenBudget(
+                _knowledgeOptions.MaxOutputTokens,
+                _openAiOptions.AuthorityMaxOutputTokens,
+                _openAiOptions.RepairMaxOutputTokens,
+                _openAiOptions.HighCostMaxOutputTokens,
+                authorityRun,
+                repairAttempt: attempt > 1,
+                highCostGuardActive);
+            var payload = new Dictionary<string, object?>
             {
-                effort = reasoningEffort
+                ["model"] = _openAiOptions.Model,
+                ["input"] = new object[] { new { role = "user", content = attemptPrompt } },
+                ["max_output_tokens"] = maxOutputTokens,
+                ["store"] = false,
+                ["text"] = PublicKnowledgeProviderOutput.BuildOpenAiTextFormat()
             };
-        }
-
-        using var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
-        {
-            Content = new StringContent(JsonSerializer.Serialize(payload, JsonOptions), Encoding.UTF8, "application/json")
-        };
-
-        try
-        {
-            using var response = await client.SendAsync(request, cancellationToken);
-            var responseText = await response.Content.ReadAsStringAsync(cancellationToken);
-            var status = $"{(int)response.StatusCode} {response.StatusCode}";
-
-            if (!response.IsSuccessStatusCode)
+            if (!string.IsNullOrWhiteSpace(reasoningEffort))
             {
-                return new OpenAiProviderResult(false, null, status, null, responseText);
+                payload["reasoning"] = new { effort = reasoningEffort };
             }
 
-            using var document = JsonDocument.Parse(responseText);
-            var responseStatus = TryGetStringProperty(document.RootElement, "status");
-            var statusWithResponse = string.IsNullOrWhiteSpace(responseStatus)
-                ? status
-                : $"{status}; response={responseStatus}";
-            var outputText = ExtractOutputText(document.RootElement);
-            var usageJson = TryGetRawProperty(document.RootElement, "usage");
-            return new OpenAiProviderResult(true, outputText, statusWithResponse, usageJson, null);
+            using var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
+            {
+                Content = new StringContent(JsonSerializer.Serialize(payload, JsonOptions), Encoding.UTF8, "application/json")
+            };
+
+            try
+            {
+                using var response = await client.SendAsync(request, cancellationToken);
+                var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
+                lastStatus = $"{(int)response.StatusCode} {response.StatusCode}";
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    lastFailureReason = $"openai_http_{(int)response.StatusCode}";
+                    if (attempt < maxAttempts && (int)response.StatusCode >= 500)
+                    {
+                        continue;
+                    }
+
+                    break;
+                }
+
+                using var document = JsonDocument.Parse(responseBody);
+                lastResponseStatus = TryGetStringProperty(document.RootElement, "status") ?? "missing";
+                var incompleteReason = TryGetNestedStringProperty(document.RootElement, "incomplete_details", "reason");
+                lastStatus = $"{lastStatus}; response={lastResponseStatus}" +
+                             (string.IsNullOrWhiteSpace(incompleteReason) ? string.Empty : $"; reason={incompleteReason}");
+                lastOutputText = ExtractOutputText(document.RootElement);
+                lastUsageJson = TryGetRawProperty(document.RootElement, "usage");
+                var attemptEvidence = PublicKnowledgeProviderOutput.ParseEvidence(
+                    "openai",
+                    "dedicated_public_source_key",
+                    _openAiOptions.Model,
+                    lastResponseStatus,
+                    attempt,
+                    lastUsageJson,
+                    null);
+                totalInputTokens += attemptEvidence.InputTokens;
+                totalOutputTokens += attemptEvidence.OutputTokens;
+                totalReasoningTokens += attemptEvidence.ReasoningTokens;
+
+                if (PublicKnowledgeProviderOutput.TryValidate(
+                        lastResponseStatus,
+                        lastOutputText,
+                        fetchedSourceUrls,
+                        DateTime.UtcNow,
+                        _knowledgeOptions.SourceFreshnessDays,
+                        out var structuredOutput,
+                        out lastFailureReason))
+                {
+                    var evidence = new PublicKnowledgeProviderEvidence(
+                        "openai",
+                        "dedicated_public_source_key",
+                        _openAiOptions.Model,
+                        lastResponseStatus,
+                        attempt,
+                        totalInputTokens,
+                        totalOutputTokens,
+                        totalReasoningTokens,
+                        null);
+                    var aggregateUsage = JsonSerializer.Serialize(new
+                    {
+                        input_tokens = totalInputTokens,
+                        output_tokens = totalOutputTokens,
+                        output_tokens_details = new { reasoning_tokens = totalReasoningTokens },
+                        attempts = attempt
+                    }, JsonOptions);
+                    return new OpenAiProviderResult(true, lastOutputText, lastStatus, aggregateUsage, null, evidence, structuredOutput);
+                }
+
+                if (!string.IsNullOrWhiteSpace(incompleteReason))
+                {
+                    lastFailureReason = $"{lastFailureReason}:{incompleteReason}";
+                }
+            }
+            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException)
+            {
+                _logger.LogWarning(ex, "OpenAI public knowledge request attempt {Attempt} failed.", attempt);
+                lastStatus = "exception";
+                lastFailureReason = ex is JsonException ? "openai_response_invalid_json" : "openai_transport_failure";
+            }
         }
-        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException)
-        {
-            _logger.LogWarning(ex, "OpenAI public knowledge request failed.");
-            return new OpenAiProviderResult(false, null, "exception", null, ex.Message);
-        }
+
+        var failedEvidence = new PublicKnowledgeProviderEvidence(
+            "openai",
+            "dedicated_public_source_key",
+            _openAiOptions.Model,
+            lastResponseStatus,
+            maxAttempts,
+            totalInputTokens,
+            totalOutputTokens,
+            totalReasoningTokens,
+            lastFailureReason);
+        return new OpenAiProviderResult(false, lastOutputText, lastStatus, lastUsageJson, lastFailureReason, failedEvidence, null);
     }
 
     private Task<OpenAiProviderResult> CallConfiguredProviderAsync(
         string prompt,
         string providerName,
+        PublicKnowledgeRunCommand command,
+        IReadOnlySet<string> fetchedSourceUrls,
         CancellationToken cancellationToken) =>
         UseStraicoProvider(providerName)
             ? CallStraicoAsync(prompt, cancellationToken)
-            : CallOpenAiAsync(prompt, cancellationToken);
+            : CallOpenAiAsync(prompt, command, fetchedSourceUrls, cancellationToken);
 
     private async Task<OpenAiProviderResult> CallStraicoAsync(
         string prompt,
@@ -924,6 +1045,9 @@ public sealed class PublicKnowledgeResearchService
 
     private string GetConfiguredModel(string providerName) =>
         UseStraicoProvider(providerName) ? _straicoOptions.DefaultChatModel : _openAiOptions.Model;
+
+    private string GetOpenAiApiKey()
+        => PublicKnowledgeProviderOutput.SelectPublicSourceApiKey(_openAiOptions.PublicSourceApiKey);
 
     private static bool IsSupportedProvider(string providerName) =>
         providerName.Equals("OpenAI", StringComparison.OrdinalIgnoreCase) ||
@@ -1115,6 +1239,11 @@ public sealed class PublicKnowledgeResearchService
     private static string? TryGetStringProperty(JsonElement root, string propertyName) =>
         TryGetProperty(root, propertyName, out var property) && property.ValueKind == JsonValueKind.String
             ? property.GetString()
+            : null;
+
+    private static string? TryGetNestedStringProperty(JsonElement root, string objectName, string propertyName) =>
+        TryGetProperty(root, objectName, out var nested) && nested.ValueKind == JsonValueKind.Object
+            ? TryGetStringProperty(nested, propertyName)
             : null;
 
     private static bool TryGetProperty(JsonElement element, string propertyName, out JsonElement property)
@@ -1488,6 +1617,11 @@ public sealed class PublicKnowledgeResearchService
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
+    private static string NormalizeStatusProvider(string provider) =>
+        string.IsNullOrWhiteSpace(provider) || provider.Equals("default", StringComparison.OrdinalIgnoreCase)
+            ? "Default"
+            : provider.Trim();
+
     private static IReadOnlyList<string> GetRegressionCaseIdsForBatch(string batch) =>
         batch.Trim().ToLowerInvariant() switch
         {
@@ -1497,6 +1631,14 @@ public sealed class PublicKnowledgeResearchService
                 "georgia-affidavit-florida-notary-spain",
                 "platform-hype-foreign-signer-no-ssn-spain",
                 "outside-apostille-path-not-apostille-plus"
+            ],
+            "dailysourceingestion" =>
+            [
+                "daily-public-source-ingestion-safety-gates"
+            ],
+            "technicalsourceingestion" =>
+            [
+                "daily-technical-source-ingestion"
             ],
             "platform" =>
             [
@@ -1553,7 +1695,9 @@ public sealed class PublicKnowledgeResearchService
         string? ResponseText,
         string? Status,
         string? UsageJson,
-        string? Error);
+        string? Error,
+        PublicKnowledgeProviderEvidence? Evidence = null,
+        PublicKnowledgeStructuredOutput? StructuredOutput = null);
 }
 
 public sealed record PublicKnowledgeStatus(
@@ -1563,7 +1707,9 @@ public sealed record PublicKnowledgeStatus(
     bool PumpTimerEnabled,
     string TimerBatch,
     IReadOnlyList<string> TimerBatches,
+    string TimerProvider,
     IReadOnlyList<string> PumpTimerBatches,
+    string PumpTimerProvider,
     string PublicBaseUrl,
     string QueueName,
     string ManifestSource,
@@ -1573,6 +1719,8 @@ public sealed record PublicKnowledgeStatus(
     string OpenAiEndpointPath,
     string Model,
     bool HasOpenAiApiKey,
+    bool HasPublicSourceOpenAiApiKey,
+    bool PublicSourceOpenAiKeyRequired,
     string StraicoBaseUrl,
     string StraicoModel,
     bool HasStraicoApiKey,
@@ -1580,6 +1728,10 @@ public sealed record PublicKnowledgeStatus(
     bool HighCostGuardActive,
     int HighCostMaxOutputTokens,
     string HighCostReasoningEffort,
+    string AuthorityReasoningEffort,
+    int AuthorityMaxOutputTokens,
+    int RepairMaxOutputTokens,
+    int MaxProviderAttempts,
     int MaxSourcesPerRun,
     int SourceFetchConcurrency,
     int MaxEstimatedInputTokens,
