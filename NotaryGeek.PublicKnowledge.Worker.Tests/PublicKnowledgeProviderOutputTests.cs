@@ -275,6 +275,19 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.Contains("do not copy dates embedded in source content", instruction, StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("preparing", "active")]
+    [InlineData("queued", "active")]
+    [InlineData("running", "active")]
+    [InlineData("completed", "completed")]
+    [InlineData("completed-with-errors", "failed")]
+    [InlineData("completed-empty", "failed")]
+    [InlineData("failed", "failed")]
+    public void BacklogBucketsDoNotReportTerminalFailuresAsActive(string status, string expected)
+    {
+        Assert.Equal(expected, PublicKnowledgeExecutionPolicy.GetBacklogBucket(status));
+    }
+
     private static HashSet<string> FetchedUrls() => new(StringComparer.OrdinalIgnoreCase) { SourceUrl };
 
     private static PublicKnowledgeStoredRunEnvelope CreateStoredRun(
