@@ -876,6 +876,8 @@ public sealed class PublicKnowledgeResearchFunction
                 {
                     var hasFreshRun = await _storage.HasFreshSuccessfulRunAsync(
                         regressionCase.Id,
+                        batch,
+                        GetAuthorityLane(batch),
                         TimeSpan.FromHours(Math.Max(1, _options.AuthorityFreshnessHours)),
                         cancellationToken);
                     if (!hasFreshRun)
@@ -895,10 +897,10 @@ public sealed class PublicKnowledgeResearchFunction
                 }
 
                 if (trigger.Equals("timer", StringComparison.OrdinalIgnoreCase) &&
-                    !await _storage.TryAcquireDailySelectionAsync(batch, cancellationToken))
+                    await _storage.HasDailySelectionAsync(batch, cancellationToken))
                 {
                     _logger.LogInformation(
-                        "Public knowledge {Trigger} skipped authority batch {Batch}; today's idempotent selection was already acquired.",
+                        "Public knowledge {Trigger} skipped authority batch {Batch}; today's accepted selection already has a durable receipt.",
                         trigger,
                         batch);
                     continue;
@@ -906,7 +908,23 @@ public sealed class PublicKnowledgeResearchFunction
             }
 
             var providerOverride = NormalizeProviderOverride(provider);
-            var message = await SubmitQueuedCasesAsync(cases, batch, execute: true, trigger, providerOverride, cancellationToken);
+            var dailyAuthoritySelection = IsAuthorityBatch(batch) &&
+                trigger.Equals("timer", StringComparison.OrdinalIgnoreCase);
+            var jobId = dailyAuthoritySelection
+                ? PublicKnowledgeExecutionPolicy.CreateDailyAuthorityJobId(batch, DateTime.UtcNow)
+                : null;
+            var message = await SubmitQueuedCasesAsync(
+                cases,
+                batch,
+                execute: true,
+                trigger,
+                providerOverride,
+                cancellationToken,
+                jobId);
+            if (dailyAuthoritySelection)
+            {
+                await _storage.CompleteDailySelectionAsync(batch, message.JobId, cancellationToken);
+            }
             submittedJobs++;
             _logger.LogInformation(
                 "Public knowledge {Trigger} queued batch {Batch} as job {JobId} with {CaseCount} case(s); provider={Provider}.",
@@ -935,10 +953,11 @@ public sealed class PublicKnowledgeResearchFunction
         bool execute,
         string trigger,
         string? providerOverride,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        string? jobIdOverride = null)
     {
         var submittedAtUtc = DateTime.UtcNow;
-        var jobId = $"{submittedAtUtc:yyyyMMddTHHmmssZ}-{Guid.NewGuid():N}";
+        var jobId = jobIdOverride ?? $"{submittedAtUtc:yyyyMMddTHHmmssZ}-{Guid.NewGuid():N}";
         var parent = new PublicKnowledgeQueuedRunMessage(
             jobId,
             batch,
@@ -950,10 +969,11 @@ public sealed class PublicKnowledgeResearchFunction
             RunKind: GetRunKind(batch),
             AuthorityLane: GetAuthorityLane(batch));
 
-        await _storage.CreateQueuedRunAsync(parent, cancellationToken);
-        foreach (var regressionCase in cases)
+        var envelope = await _storage.CreateQueuedRunAsync(parent, cancellationToken);
+        if (envelope.Status.Equals("preparing", StringComparison.OrdinalIgnoreCase))
         {
-            await _queue.EnqueueAsync(parent with { CaseId = regressionCase.Id }, cancellationToken);
+            await _queue.EnqueueAsync(parent, cancellationToken);
+            await _storage.MarkQueuedRunSubmittedAsync(parent.JobId, cancellationToken);
         }
 
         return parent;

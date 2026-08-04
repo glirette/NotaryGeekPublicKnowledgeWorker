@@ -65,17 +65,32 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          $stamp = Get-Date -AsUTC -Format yyyyMMdd-HHmmss
-          $branch = "authority/notary-$stamp"
-          git switch -c $branch
           git add -- NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/candidates
           $candidateFiles = @(git diff --cached --name-only -- NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-ingestion/candidates)
           if (git diff --cached --quiet) {
             "All candidate IDs are already represented in the destination." >> $env:GITHUB_STEP_SUMMARY
             exit 0
           }
-          git commit -m "Add reviewed public authority candidates"
-          git push --set-upstream origin $branch
+          $candidateIds = @($candidateFiles | ForEach-Object {
+            (Get-Content -LiteralPath $_ -Raw | ConvertFrom-Json).candidateId
+          } | Sort-Object -Unique)
+          $identityBytes = [Text.Encoding]::UTF8.GetBytes(($candidateIds -join "`n"))
+          $identity = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($identityBytes)).ToLowerInvariant().Substring(0, 16)
+          $branch = "authority/notary-$identity"
+          $prUrl = gh pr list --state open --head $branch --json url --jq '.[0].url'
+          git ls-remote --exit-code --heads origin $branch *> $null
+          $remoteBranchExists = $LASTEXITCODE -eq 0
+          if ($remoteBranchExists) {
+            git fetch origin $branch
+            git diff --exit-code "origin/$branch" -- $candidateFiles
+            if ($LASTEXITCODE -ne 0) {
+              throw "Existing candidate-identity branch '$branch' does not match the validated feed."
+            }
+          } else {
+            git switch -c $branch
+            git commit -m "Add reviewed public authority candidates"
+            git push --set-upstream origin $branch
+          }
           $body = @(
             "Sanitized public-authority candidates from the validated worker feed.",
             "",
@@ -84,7 +99,11 @@ jobs:
             "- Human review is required; auto-merge is not enabled.",
             "- Tracking: glirette/BootStrapCritical#138"
           ) -join "`n"
-          $prUrl = gh pr create --draft --base main --head $branch --title "Add public authority candidates" --body $body
+          if ([string]::IsNullOrWhiteSpace($prUrl)) {
+            $prUrl = gh pr create --draft --base main --head $branch --title "Add public authority candidates" --body $body
+          } else {
+            "Reused existing candidate-identity draft PR: $prUrl" >> $env:GITHUB_STEP_SUMMARY
+          }
           if ([string]::IsNullOrWhiteSpace($env:PUBLIC_KNOWLEDGE_FUNCTION_KEY)) {
             throw "Draft PR was created, but promotion acknowledgement requires PUBLIC_KNOWLEDGE_FUNCTION_KEY."
           }

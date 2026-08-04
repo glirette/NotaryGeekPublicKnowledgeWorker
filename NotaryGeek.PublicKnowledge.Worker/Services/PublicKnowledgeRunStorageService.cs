@@ -111,10 +111,39 @@ public sealed class PublicKnowledgeRunStorageService
         CancellationToken cancellationToken)
     {
         var envelope = CreateQueuedRunEnvelope(message);
-
-        await SaveQueuedRunEnvelopeAsync(envelope, cancellationToken);
-        return envelope;
+        var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(GetQueuedRunBlobName(message.JobId));
+        try
+        {
+            await blob.UploadAsync(
+                BinaryData.FromObjectAsJson(envelope, JsonOptions),
+                new BlobUploadOptions
+                {
+                    Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },
+                    HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" },
+                    Metadata = new Dictionary<string, string> { ["status"] = envelope.Status }
+                },
+                cancellationToken);
+            return envelope;
+        }
+        catch (RequestFailedException ex) when (ex.Status == 409 || ex.Status == 412)
+        {
+            return await ReadQueuedRunAsync(message.JobId, cancellationToken)
+                ?? throw new InvalidOperationException($"Queued run '{message.JobId}' exists but could not be read.");
+        }
     }
+
+    public async Task<PublicKnowledgeQueuedRunEnvelope> MarkQueuedRunSubmittedAsync(
+        string jobId,
+        CancellationToken cancellationToken) =>
+        await UpdateQueuedRunEnvelopeAsync(
+            jobId,
+            existing => existing is null
+                ? throw new InvalidOperationException($"Queued run '{jobId}' does not exist.")
+                : existing.Status.Equals("preparing", StringComparison.OrdinalIgnoreCase)
+                    ? existing with { Status = "queued" }
+                    : existing,
+            cancellationToken);
 
     public async Task<PublicKnowledgeQueuedRunEnvelope?> ReadQueuedRunAsync(
         string jobId,
@@ -349,28 +378,42 @@ public sealed class PublicKnowledgeRunStorageService
 
     public async Task<bool> HasFreshSuccessfulRunAsync(
         string caseId,
+        string expectedBatch,
+        string expectedLane,
         TimeSpan freshness,
         CancellationToken cancellationToken)
     {
         var latest = await ReadLatestAsync(caseId, cancellationToken);
-        return latest is not null &&
-               latest.Result.Ok &&
-               latest.Result.StructuredOutput is not null &&
-               latest.StoredAtUtc >= DateTime.UtcNow.Subtract(freshness);
+        return PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            latest,
+            expectedBatch,
+            expectedLane,
+            DateTime.UtcNow.Subtract(freshness));
     }
 
-    public async Task<bool> TryAcquireDailySelectionAsync(
+    public async Task<bool> HasDailySelectionAsync(
         string batch,
         CancellationToken cancellationToken)
     {
         var container = await GetContainerAsync(cancellationToken);
+        var blob = container.GetBlobClient(GetDailySelectionBlobName(batch, DateTime.UtcNow));
+        return await blob.ExistsAsync(cancellationToken);
+    }
+
+    public async Task CompleteDailySelectionAsync(
+        string batch,
+        string jobId,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
         var now = DateTime.UtcNow;
-        var blob = container.GetBlobClient($"runs/selection/{now:yyyy/MM/dd}/{ToSafeBlobSegment(batch)}.json");
+        var blob = container.GetBlobClient(GetDailySelectionBlobName(batch, now));
         var payload = BinaryData.FromObjectAsJson(new
         {
             schema = "public-authority-daily-selection/v1",
             batch,
-            selectedAtUtc = now
+            jobId,
+            acceptedAtUtc = now
         }, JsonOptions);
         try
         {
@@ -382,11 +425,10 @@ public sealed class PublicKnowledgeRunStorageService
                     HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" }
                 },
                 cancellationToken);
-            return true;
         }
         catch (RequestFailedException ex) when (ex.Status == 409 || ex.Status == 412)
         {
-            return false;
+            // A matching UTC-day marker is the durable idempotency receipt.
         }
     }
 
@@ -714,6 +756,9 @@ public sealed class PublicKnowledgeRunStorageService
     private static string GetQueuedRunBlobName(string jobId) =>
         $"runs/jobs/{ToSafeBlobSegment(jobId)}.json";
 
+    private static string GetDailySelectionBlobName(string batch, DateTime utcNow) =>
+        $"runs/selection/{utcNow:yyyy/MM/dd}/{ToSafeBlobSegment(batch)}.json";
+
     private string? GetConnectionString() =>
         _configuration[_options.OutputStorageConnectionStringSetting];
 
@@ -768,7 +813,7 @@ public sealed class PublicKnowledgeRunStorageService
             message.ProviderOverride,
             null,
             null,
-            "queued",
+            "preparing",
             0,
             message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase).Count(),
             [],

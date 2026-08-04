@@ -801,13 +801,7 @@ public sealed class PublicKnowledgeResearchService
 
         var endpoint = BuildOpenAiEndpoint();
         var highCostGuardActive = IsHighCostModel(_openAiOptions.Model) && !_openAiOptions.AllowHighCostMode;
-        var configuredMaxOutputTokens = highCostGuardActive
-            ? Math.Min(_knowledgeOptions.MaxOutputTokens, Math.Max(1, _openAiOptions.HighCostMaxOutputTokens))
-            : _knowledgeOptions.MaxOutputTokens;
         var authorityRun = command.RunKind.Equals("authority-generation", StringComparison.OrdinalIgnoreCase);
-        var baseMaxOutputTokens = authorityRun
-            ? Math.Max(configuredMaxOutputTokens, _openAiOptions.AuthorityMaxOutputTokens)
-            : configuredMaxOutputTokens;
         var configuredReasoningEffort = highCostGuardActive && !string.IsNullOrWhiteSpace(_openAiOptions.HighCostReasoningEffort)
             ? _openAiOptions.HighCostReasoningEffort
             : _openAiOptions.ReasoningEffort;
@@ -829,9 +823,14 @@ public sealed class PublicKnowledgeResearchService
             var attemptPrompt = attempt == 1
                 ? prompt
                 : $"{prompt}\n\nThe prior attempt was unusable ({lastFailureReason}). Return one complete schema-valid response; do not add commentary.";
-            var maxOutputTokens = attempt == 1
-                ? baseMaxOutputTokens
-                : Math.Max(baseMaxOutputTokens, _openAiOptions.RepairMaxOutputTokens);
+            var maxOutputTokens = PublicKnowledgeExecutionPolicy.SelectOutputTokenBudget(
+                _knowledgeOptions.MaxOutputTokens,
+                _openAiOptions.AuthorityMaxOutputTokens,
+                _openAiOptions.RepairMaxOutputTokens,
+                _openAiOptions.HighCostMaxOutputTokens,
+                authorityRun,
+                repairAttempt: attempt > 1,
+                highCostGuardActive);
             var payload = new Dictionary<string, object?>
             {
                 ["model"] = _openAiOptions.Model,

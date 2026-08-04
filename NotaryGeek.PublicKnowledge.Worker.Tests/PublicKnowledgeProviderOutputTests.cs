@@ -218,7 +218,96 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.True(PublicKnowledgeExecutionPolicy.ShouldCallProvider("timer", "authority-generation", true));
     }
 
+    [Fact]
+    public void FreshnessRequiresMatchingAuthorityRunLaneAndBatch()
+    {
+        var freshAfterUtc = DateTime.UtcNow.AddHours(-24);
+        var matching = CreateStoredRun("authority-generation", "notary", "DailySourceIngestion", DateTime.UtcNow);
+
+        Assert.True(PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            matching, "DailySourceIngestion", "notary", freshAfterUtc));
+        Assert.False(PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            matching with { Batch = "Core" }, "DailySourceIngestion", "notary", freshAfterUtc));
+        Assert.False(PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            matching with { Result = matching.Result with { RunKind = "regression" } },
+            "DailySourceIngestion", "notary", freshAfterUtc));
+        Assert.False(PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            matching with { Result = matching.Result with { AuthorityLane = "technical" } },
+            "DailySourceIngestion", "notary", freshAfterUtc));
+        Assert.False(PublicKnowledgeExecutionPolicy.IsFreshAuthorityRun(
+            matching with { StoredAtUtc = freshAfterUtc.AddSeconds(-1) },
+            "DailySourceIngestion", "notary", freshAfterUtc));
+    }
+
+    [Fact]
+    public void HighCostCapIsAppliedAfterAuthorityAndRepairBudgetSelection()
+    {
+        Assert.Equal(6000, PublicKnowledgeExecutionPolicy.SelectOutputTokenBudget(
+            1600, 6000, 8000, 1600, authorityRun: true, repairAttempt: false, highCostGuardActive: false));
+        Assert.Equal(8000, PublicKnowledgeExecutionPolicy.SelectOutputTokenBudget(
+            1600, 6000, 8000, 1600, authorityRun: true, repairAttempt: true, highCostGuardActive: false));
+        Assert.Equal(1600, PublicKnowledgeExecutionPolicy.SelectOutputTokenBudget(
+            1600, 6000, 8000, 1600, authorityRun: true, repairAttempt: false, highCostGuardActive: true));
+        Assert.Equal(1600, PublicKnowledgeExecutionPolicy.SelectOutputTokenBudget(
+            1600, 6000, 8000, 1600, authorityRun: true, repairAttempt: true, highCostGuardActive: true));
+    }
+
+    [Fact]
+    public void DailyAuthorityJobIdentityIsStableForUtcDayAndBatch()
+    {
+        var morning = PublicKnowledgeExecutionPolicy.CreateDailyAuthorityJobId(
+            "DailySourceIngestion", new DateTime(2026, 8, 3, 9, 17, 0, DateTimeKind.Utc));
+        var retry = PublicKnowledgeExecutionPolicy.CreateDailyAuthorityJobId(
+            "DailySourceIngestion", new DateTime(2026, 8, 3, 10, 2, 0, DateTimeKind.Utc));
+
+        Assert.Equal("authority-20260803-dailysourceingestion", morning);
+        Assert.Equal(morning, retry);
+    }
+
     private static HashSet<string> FetchedUrls() => new(StringComparer.OrdinalIgnoreCase) { SourceUrl };
+
+    private static PublicKnowledgeStoredRunEnvelope CreateStoredRun(
+        string runKind,
+        string authorityLane,
+        string batch,
+        DateTime storedAtUtc)
+    {
+        var output = new PublicKnowledgeStructuredOutput(
+            "Usable structured output.", [], [], [], [], [], [], [SourceUrl], []);
+        var result = new PublicKnowledgeRunResult(
+            true,
+            true,
+            true,
+            false,
+            "completed",
+            storedAtUtc,
+            "test",
+            "case-1",
+            null,
+            1,
+            100,
+            25,
+            "gpt-5-mini",
+            [],
+            "{}",
+            "completed",
+            "{}",
+            [],
+            [],
+            StructuredOutput: output,
+            RunKind: runKind,
+            AuthorityLane: authorityLane);
+        return new PublicKnowledgeStoredRunEnvelope(
+            "notary-geek-public-knowledge-run/v1",
+            "0.1-public",
+            storedAtUtc,
+            "timer",
+            batch,
+            "case-1",
+            "runs/test.json",
+            "runs/latest/case-1.json",
+            result);
+    }
 
     private static string CreateValidResponse(DateTime reviewedAtUtc) => JsonSerializer.Serialize(new
     {
