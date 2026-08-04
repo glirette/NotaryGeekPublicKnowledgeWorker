@@ -32,7 +32,9 @@ HTTP 200 is transport evidence only. The worker marks output usable only when al
 - reviewed dates satisfy the configured freshness window;
 - at least one candidate exists with public-safe required fields.
 
-`incomplete`, empty, invalid JSON, schema mismatch, stale sources, and unfetched citations produce an actionable failure reason and `Ok=false`. Input, output, and reasoning-token counts remain separate in durable provider evidence.
+`incomplete`, empty, invalid JSON, schema mismatch, stale sources, and unfetched citations produce an actionable failure reason and `Ok=false`. Input, output, and reasoning-token counts remain separate in durable provider evidence. Evidence also distinguishes the requested model from the model returned by the API and records the returned service tier when present.
+
+The Responses API result does not prove incentive treatment or final request cost. Durable run evidence therefore records both as unavailable from the provider response instead of inferring zero cost from HTTP success.
 
 Current API behavior is based on the official [Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs), [reasoning guide](https://developers.openai.com/api/docs/guides/reasoning), and [GPT-5 mini model page](https://developers.openai.com/api/docs/models/gpt-5-mini).
 

@@ -49,7 +49,7 @@ Use the Azure Functions timer as the daily scheduler. Configure:
 PublicKnowledge__TimerEnabled=true
 PublicKnowledge__TimerBatches=DailySourceIngestion
 PublicKnowledge__TimerProvider=OpenAI
-OpenAI__PublicSourceApiKey=<the dedicated daily-reset public data-sharing key, stored in Azure app settings or Key Vault reference>
+OpenAI__PublicSourceApiKey=<the dedicated public-source project key, stored in Azure app settings or Key Vault reference>
 OpenAI__AuthorityReasoningEffort=minimal
 OpenAI__AuthorityMaxOutputTokens=6000
 OpenAI__RepairMaxOutputTokens=8000
@@ -57,6 +57,8 @@ OpenAI__MaxProviderAttempts=2
 ```
 
 The authority lane unconditionally requires `OpenAI__PublicSourceApiKey`. It never falls back to generic `OpenAI__ApiKey`; the legacy `PublicKnowledge__RequirePublicSourceOpenAiKey` switch is not part of the repaired source contract.
+
+An API response does not prove incentive treatment or final request cost. Protected run evidence must leave both unknown unless independently verified.
 
 The existing `PublicKnowledgeResearchTimer` schedule is:
 

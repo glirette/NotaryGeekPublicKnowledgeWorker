@@ -87,7 +87,12 @@ public sealed record PublicKnowledgeProviderEvidence(
     int InputTokens,
     int OutputTokens,
     int ReasoningTokens,
-    string? FailureReason);
+    string? FailureReason,
+    string? RequestedModel = null,
+    string? ServiceTier = null,
+    decimal? CostUsd = null,
+    string CostEvidence = "not_returned_by_provider_response",
+    string IncentiveEvidence = "not_reported_by_provider_response");
 
 public sealed record PublicKnowledgeStructuredOutput(
     string Summary,

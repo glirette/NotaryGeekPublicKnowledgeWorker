@@ -248,9 +248,30 @@ public sealed class PublicKnowledgeRunStorageService
             evidence.Select(item => item.Evidence.Provider).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
             evidence.Select(item => item.Evidence.AuthMode).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
             evidence.Select(item => item.Evidence.Model).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+            evidence.Select(item => item.Evidence.RequestedModel)
+                .Where(item => !string.IsNullOrWhiteSpace(item))
+                .Cast<string>()
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray(),
+            evidence.Select(item => item.Evidence.ServiceTier)
+                .Where(item => !string.IsNullOrWhiteSpace(item))
+                .Cast<string>()
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray(),
             evidence.Sum(item => item.Evidence.InputTokens),
             evidence.Sum(item => item.Evidence.OutputTokens),
             evidence.Sum(item => item.Evidence.ReasoningTokens),
+            evidence.Length > 0 && evidence.All(item => item.Evidence.CostUsd.HasValue)
+                ? evidence.Sum(item => item.Evidence.CostUsd!.Value)
+                : null,
+            evidence.Select(item => item.Evidence.CostEvidence)
+                .Where(item => !string.IsNullOrWhiteSpace(item))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray(),
+            evidence.Select(item => item.Evidence.IncentiveEvidence)
+                .Where(item => !string.IsNullOrWhiteSpace(item))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray(),
             evidence
                 .Where(item => !item.Ok && !string.IsNullOrWhiteSpace(item.Evidence.FailureReason))
                 .OrderByDescending(item => item.StoredAtUtc)
@@ -1154,9 +1175,14 @@ public sealed record PublicKnowledgeProviderHealth(
     IReadOnlyList<string> Providers,
     IReadOnlyList<string> AuthModes,
     IReadOnlyList<string> Models,
+    IReadOnlyList<string> RequestedModels,
+    IReadOnlyList<string> ServiceTiers,
     int InputTokens,
     int OutputTokens,
     int ReasoningTokens,
+    decimal? VerifiedCostUsd,
+    IReadOnlyList<string> CostEvidence,
+    IReadOnlyList<string> IncentiveEvidence,
     IReadOnlyList<string> ActionableFailureReasons);
 
 public sealed record PublicKnowledgeStoredRunEnvelope(

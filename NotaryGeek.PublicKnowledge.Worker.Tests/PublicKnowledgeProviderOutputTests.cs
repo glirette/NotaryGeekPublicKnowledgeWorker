@@ -139,6 +139,55 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.Equal(100, evidence.InputTokens);
         Assert.Equal(60, evidence.OutputTokens);
         Assert.Equal(40, evidence.ReasoningTokens);
+        Assert.Equal("gpt-5-mini", evidence.RequestedModel);
+        Assert.Equal("gpt-5-mini", evidence.Model);
+        Assert.Null(evidence.CostUsd);
+        Assert.Equal("not_returned_by_provider_response", evidence.CostEvidence);
+        Assert.Equal("not_reported_by_provider_response", evidence.IncentiveEvidence);
+    }
+
+    [Fact]
+    public void ProviderEvidenceSeparatesRequestedAndResolvedModelAndServiceTier()
+    {
+        var evidence = PublicKnowledgeProviderOutput.ParseEvidence(
+            "openai",
+            "dedicated_public_source_key",
+            "gpt-5-mini",
+            "completed",
+            1,
+            "{\"input_tokens\":10,\"output_tokens\":5}",
+            null,
+            "gpt-5-mini-2025-08-07",
+            "default");
+
+        Assert.Equal("gpt-5-mini", evidence.RequestedModel);
+        Assert.Equal("gpt-5-mini-2025-08-07", evidence.Model);
+        Assert.Equal("default", evidence.ServiceTier);
+        Assert.Null(evidence.CostUsd);
+    }
+
+    [Fact]
+    public void LegacyProviderEvidenceDefaultsToUnknownCostAndIncentiveTreatment()
+    {
+        var evidence = JsonSerializer.Deserialize<PublicKnowledgeProviderEvidence>("""
+            {
+              "provider": "openai",
+              "authMode": "dedicated_public_source_key",
+              "model": "gpt-5-mini",
+              "responseStatus": "completed",
+              "attempts": 1,
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "reasoningTokens": 0,
+              "failureReason": null
+            }
+            """, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+        Assert.NotNull(evidence);
+        Assert.Null(evidence.RequestedModel);
+        Assert.Null(evidence.CostUsd);
+        Assert.Equal("not_returned_by_provider_response", evidence.CostEvidence);
+        Assert.Equal("not_reported_by_provider_response", evidence.IncentiveEvidence);
     }
 
     [Fact]
