@@ -291,6 +291,7 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
         "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41"
       ]
     },
