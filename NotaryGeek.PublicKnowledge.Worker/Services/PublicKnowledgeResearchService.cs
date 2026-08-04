@@ -818,6 +818,8 @@ public sealed class PublicKnowledgeResearchService
         string lastStatus = "not-called";
         string lastResponseStatus = "missing";
         string lastFailureReason = "provider_not_called";
+        string lastResolvedModel = _openAiOptions.Model;
+        string? lastServiceTier = null;
 
         for (var attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -869,6 +871,8 @@ public sealed class PublicKnowledgeResearchService
 
                 using var document = JsonDocument.Parse(responseBody);
                 lastResponseStatus = TryGetStringProperty(document.RootElement, "status") ?? "missing";
+                lastResolvedModel = TryGetStringProperty(document.RootElement, "model") ?? _openAiOptions.Model;
+                lastServiceTier = TryGetStringProperty(document.RootElement, "service_tier");
                 var incompleteReason = TryGetNestedStringProperty(document.RootElement, "incomplete_details", "reason");
                 lastStatus = $"{lastStatus}; response={lastResponseStatus}" +
                              (string.IsNullOrWhiteSpace(incompleteReason) ? string.Empty : $"; reason={incompleteReason}");
@@ -881,7 +885,9 @@ public sealed class PublicKnowledgeResearchService
                     lastResponseStatus,
                     attempt,
                     lastUsageJson,
-                    null);
+                    null,
+                    lastResolvedModel,
+                    lastServiceTier);
                 totalInputTokens += attemptEvidence.InputTokens;
                 totalOutputTokens += attemptEvidence.OutputTokens;
                 totalReasoningTokens += attemptEvidence.ReasoningTokens;
@@ -898,13 +904,15 @@ public sealed class PublicKnowledgeResearchService
                     var evidence = new PublicKnowledgeProviderEvidence(
                         "openai",
                         "dedicated_public_source_key",
-                        _openAiOptions.Model,
+                        lastResolvedModel,
                         lastResponseStatus,
                         attempt,
                         totalInputTokens,
                         totalOutputTokens,
                         totalReasoningTokens,
-                        null);
+                        null,
+                        _openAiOptions.Model,
+                        lastServiceTier);
                     var aggregateUsage = JsonSerializer.Serialize(new
                     {
                         input_tokens = totalInputTokens,
@@ -931,13 +939,15 @@ public sealed class PublicKnowledgeResearchService
         var failedEvidence = new PublicKnowledgeProviderEvidence(
             "openai",
             "dedicated_public_source_key",
-            _openAiOptions.Model,
+            lastResolvedModel,
             lastResponseStatus,
             maxAttempts,
             totalInputTokens,
             totalOutputTokens,
             totalReasoningTokens,
-            lastFailureReason);
+            lastFailureReason,
+            _openAiOptions.Model,
+            lastServiceTier);
         return new OpenAiProviderResult(false, lastOutputText, lastStatus, lastUsageJson, lastFailureReason, failedEvidence, null);
     }
 
