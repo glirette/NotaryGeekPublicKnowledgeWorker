@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.4-public",
-  "reviewedUtc": "2026-07-08T00:00:00Z",
+  "version": "0.5-public",
+  "reviewedUtc": "2026-08-04T03:28:23Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -242,6 +242,46 @@
           "publisher": "New York Department of State",
           "url": "https://dos.ny.gov/notary-public-license-law-0",
           "notes": "Official New York notary public license law page. Verify current PDF/version before relying on a statement."
+        },
+        {
+          "id": "ny-dos-apostille-certificate-authentication",
+          "title": "Apostille or Certificate of Authentication",
+          "sourceType": "official-agency-guidance",
+          "publisher": "New York State Department of State",
+          "url": "https://dos.ny.gov/apostille-certificate-authentication",
+          "notes": "Primary current source for issuer identification, county-clerk certification requirements, the NYC Letter of Exemplification branch, and submission to the New York State Department of State."
+        },
+        {
+          "id": "ny-dos-apostille-authentication-request-form",
+          "title": "Apostille/Certificate of Authentication Request",
+          "sourceType": "official-agency-form",
+          "publisher": "New York State Department of State, Division of Licensing Services, Apostille and Authentication Unit",
+          "url": "https://dos.ny.gov/apostillecertificate-authentication-request-forms",
+          "notes": "Official request form and birth-certificate-specific issuer instructions. Reviewed at visible revision DOS-1917-f (Rev. 02/24); verify the current form before filing."
+        },
+        {
+          "id": "ny-doh-vital-records-apostille",
+          "title": "Apostille for Vital Records",
+          "sourceType": "official-agency-guidance",
+          "publisher": "New York State Department of Health",
+          "url": "https://www.health.ny.gov/vital_records/apostille",
+          "notes": "Official guidance for certificates available from NYSDOH. It directs NYC and other local records to New York Department of State guidance."
+        },
+        {
+          "id": "nyc-doh-birth-certificates",
+          "title": "Birth Certificates",
+          "sourceType": "official-agency-guidance",
+          "publisher": "New York City Department of Health and Mental Hygiene",
+          "url": "https://www.nyc.gov/site/doh/services/birth-death-records-birth.page",
+          "notes": "Official NYC birth-certificate page supporting the long-form certificate, Letter of Exemplification, New York County Clerk, and New York Department of State sequence."
+        },
+        {
+          "id": "ny-county-clerk-document-authentication",
+          "title": "Notary: Authentication of Documents",
+          "sourceType": "official-court-guidance",
+          "publisher": "New York State Unified Court System, First Judicial District, New York County Clerk's Office",
+          "url": "https://www.nycourts.gov/courts/1st-judicial-district/new-york-county-clerks-office/notary",
+          "notes": "Official clerk guidance for authenticating the NYC long-form birth certificate and Letter of Exemplification before the New York Department of State stage."
         }
       ]
     },
