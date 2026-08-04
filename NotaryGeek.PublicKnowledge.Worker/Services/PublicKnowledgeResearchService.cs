@@ -728,6 +728,7 @@ public sealed class PublicKnowledgeResearchService
         builder.AppendLine("Produce compact JSON that exactly matches the required structured-output schema.");
         builder.AppendLine("Candidate source URLs and citations must be exact fetched URLs. Each candidate must be public-safe, source-scoped, and independently reviewable.");
         builder.AppendLine("Set recheckBeforeUse=true because a destination workflow must re-check current official sources before acting.");
+        builder.AppendLine(PublicKnowledgeProviderOutput.BuildReviewTimestampInstruction(DateTime.UtcNow));
         if (command.AuthorityLane.Equals("technical", StringComparison.OrdinalIgnoreCase))
         {
             builder.AppendLine("Route candidates to reusable public-safe technical/API/cloud/platform source trails. Include no notary customer, private infrastructure, credential, endpoint, or operational context.");
