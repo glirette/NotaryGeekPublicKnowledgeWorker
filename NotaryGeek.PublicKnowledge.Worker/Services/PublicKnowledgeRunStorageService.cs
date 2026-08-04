@@ -214,11 +214,12 @@ public sealed class PublicKnowledgeRunStorageService
                 continue;
             }
 
-            if (status.Equals("completed", StringComparison.OrdinalIgnoreCase))
+            var bucket = PublicKnowledgeExecutionPolicy.GetBacklogBucket(status);
+            if (bucket.Equals("completed", StringComparison.Ordinal))
             {
                 completed++;
             }
-            else if (status.Equals("failed", StringComparison.OrdinalIgnoreCase))
+            else if (bucket.Equals("failed", StringComparison.Ordinal))
             {
                 failed++;
             }

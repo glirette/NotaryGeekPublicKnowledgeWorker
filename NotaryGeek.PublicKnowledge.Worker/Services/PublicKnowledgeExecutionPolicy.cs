@@ -60,4 +60,11 @@ public static class PublicKnowledgeExecutionPolicy
             .ToArray());
         return $"authority-{utcDate:yyyyMMdd}-{safeBatch}";
     }
+
+    public static string GetBacklogBucket(string status) => status.ToLowerInvariant() switch
+    {
+        "completed" => "completed",
+        "failed" or "completed-with-errors" or "completed-empty" => "failed",
+        _ => "active"
+    };
 }
