@@ -264,6 +264,17 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.Equal(morning, retry);
     }
 
+    [Fact]
+    public void AuthorityPromptDefinesReviewTimestampAsCurrentRunTime()
+    {
+        var reviewedAtUtc = new DateTime(2026, 8, 4, 3, 45, 0, DateTimeKind.Utc);
+        var instruction = PublicKnowledgeProviderOutput.BuildReviewTimestampInstruction(reviewedAtUtc);
+
+        Assert.Contains("2026-08-04T03:45:00.0000000Z", instruction, StringComparison.Ordinal);
+        Assert.Contains("this run's fetch/review time", instruction, StringComparison.Ordinal);
+        Assert.Contains("do not copy dates embedded in source content", instruction, StringComparison.Ordinal);
+    }
+
     private static HashSet<string> FetchedUrls() => new(StringComparer.OrdinalIgnoreCase) { SourceUrl };
 
     private static PublicKnowledgeStoredRunEnvelope CreateStoredRun(

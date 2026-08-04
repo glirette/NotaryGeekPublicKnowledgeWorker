@@ -24,6 +24,10 @@ public static class PublicKnowledgeProviderOutput
     public static string SelectPublicSourceApiKey(string? publicSourceApiKey) =>
         publicSourceApiKey ?? string.Empty;
 
+    public static string BuildReviewTimestampInstruction(DateTime reviewedAtUtc) =>
+        $"Set candidate reviewedAtUtc and every candidate source reviewedAtUtc to exactly {reviewedAtUtc:O}; " +
+        "these fields record this run's fetch/review time, so do not copy dates embedded in source content.";
+
     public static bool TryValidate(
         string? responseStatus,
         string? responseText,
