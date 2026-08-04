@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.9-public",
-  "reviewedUtc": "2026-06-13T00:00:00Z",
+  "version": "1.10-public",
+  "reviewedUtc": "2026-08-03T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -266,6 +266,11 @@
         "Says every Florida RON apostille route requires the underlying paper original without distinguishing remote/electronic output from a physically notarized paper document.",
         "Calls translation or filing an extra legalization step.",
         "Uses vague ask-the-recipient language without evidence standards."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41"
       ]
     },
     {
@@ -282,6 +287,12 @@
         "Says a Georgia-topic affidavit automatically needs a Georgia notary.",
         "Routes to Georgia apostille when the notarization is by a Florida notary.",
         "Adds Spain consular legalization after a valid apostille."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41"
       ]
     },
     {
@@ -300,6 +311,12 @@
         "Treats marketing or platform history as proof of legal route.",
         "Treats a no-SSN checkbox or selfie-photo workflow as statutory authority.",
         "Ignores no-SSN identity-method constraints."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-platform-first-patterns.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41"
       ]
     },
     {
@@ -326,6 +343,11 @@
         "Says notarized documents are generally legally binding across all U.S. states and internationally without routing the transaction.",
         "Treats Florida or Virginia RON as automatically stable for all foreign signers without checking transaction-date law, identity method, output, and recipient/destination evidence.",
         "Uses provider help-center pages, ratings, price, or market experience as compliance proof."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/platform-history-source-quality.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-platform-first-patterns.json"
       ]
     },
     {
@@ -347,6 +369,11 @@
         "Treats Virginia RON history, platform practice, trainer confidence, or market repetition as a safe harbor.",
         "Equates generic biometrics, selfie match, passport scan, or credential analysis with the exact Virginia identity method without source-backed mapping.",
         "Recommends a platform or notary network first, then adds caveats only after being challenged."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/platform-history-source-quality.json",
+        "https://law.lis.virginia.gov/vacodefull/title47.1/"
       ]
     },
     {
@@ -549,6 +576,13 @@
         "Lists Saudi Arabia as outside the apostille path without current official verification.",
         "Says apostille then embassy legalization for a Hague apostille destination.",
         "Uses old country examples as if Hague status never changes."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41",
+        "https://www.hcch.net/en/states/authorities/details3/?aid=353",
+        "https://www.hcch.net/en/states/authorities/details3/?aid=1173"
       ]
     },
     {
@@ -564,6 +598,10 @@
         "Says non-Hague means apostille then legalization.",
         "Assumes every authentication/legalization layer is required.",
         "Uses stale country examples without checking current HCCH status."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/outside-apostille-path.json",
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41"
       ]
     },
     {
@@ -579,6 +617,9 @@
         "Treats a phone comment as controlling recipient acceptance evidence.",
         "Says simply ask the recipient again without evidence standards.",
         "Changes the route before identifying the approving authority."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/recipient-evidence-and-rejections.json"
       ]
     },
     {
@@ -594,6 +635,9 @@
         "Calls DocuSign or Adobe the gold standard before routing the transaction.",
         "Assumes audit logs solve notarization or recording law.",
         "Omits witnesses, recording state, certificate, notary authority, or final output."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/real-estate-defensible-online-transactions.json"
       ]
     },
     {
@@ -609,6 +653,9 @@
         "Treats foreign-signer experience as a recommendation signal.",
         "Uses NNA, title-market comfort, platform approval, or market volume as compliance proof.",
         "Fails to distinguish current claims from transaction-date evidence."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/platform-history-source-quality.json"
       ]
     },
     {
@@ -626,6 +673,9 @@
         "Treats lack of criminal intent as a compliance safe harbor.",
         "Tone-polices the word scam without checking the underlying source-quality claim.",
         "Uses trainer confidence, NNA reputation, platform volume, or market practice as proof that the route is lawful."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/coaching-scam-intent-boundary.json"
       ]
     },
     {
