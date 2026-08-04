@@ -97,7 +97,7 @@ jobs:
             "- Source URLs must be rechecked before merge.",
             "- Raw provider output is not included.",
             "- Human review is required; auto-merge is not enabled.",
-            "- Tracking: glirette/BootStrapCritical#138"
+            "- This pull request contains public-source material only."
           ) -join "`n"
           if ([string]::IsNullOrWhiteSpace($prUrl)) {
             $prUrl = gh pr create --draft --base main --head $branch --title "Add public authority candidates" --body $body
