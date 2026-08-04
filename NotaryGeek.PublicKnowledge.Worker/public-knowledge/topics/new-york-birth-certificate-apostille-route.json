@@ -127,10 +127,9 @@
       "publisher": "New York City Department of Health and Mental Hygiene",
       "sourceType": "official-agency-guidance",
       "url": "https://www.nyc.gov/site/doh/services/birth-death-records-birth.page",
-      "queueSourceUrl": "https://www.nyc.gov/site/doh/services/birth-certificates.page",
       "checkedUtc": "2026-08-04T03:28:23Z",
       "routeUse": "Primary NYC source for the long-form birth certificate, Letter of Exemplification, New York County Clerk, and New York Department of State sequence.",
-      "boundary": "The queueSourceUrl preserves the durable salvage-queue identity; the url field points to the current page containing the substantive route. Use New York Department of State's live page rather than hard-coding the NYC page's embedded state-office details."
+      "boundary": "Use this current substantive NYC Health page for the NYC record-ordering branch, and use New York Department of State's live page rather than hard-coding the NYC page's embedded state-office details."
     },
     {
       "id": "ny-county-clerk-document-authentication",
