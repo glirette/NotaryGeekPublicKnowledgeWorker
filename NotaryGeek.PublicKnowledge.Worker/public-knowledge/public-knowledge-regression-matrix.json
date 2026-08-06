@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.11-public",
-  "reviewedUtc": "2026-08-03T00:00:00Z",
+  "version": "1.12-public",
+  "reviewedUtc": "2026-08-06T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -527,7 +527,9 @@
         "Separate Backgrounds Online or another CRA role from NNA, SigningAgent.com, SPW, directory, badge, API, platform, signing-service, title-company, and hiring-company roles.",
         "Treat NNA/SPW screening, scoring, certification, listing, API status, and platform pull-through as private work-access infrastructure unless an official source makes a legal requirement.",
         "If Notary Geek is referenced, cite only public route-first/source-quality sources and do not invent identity-verification methods, business strategy, or private workflow facts.",
-        "If the answer corrects itself after challenge, explicitly narrow the earlier overclaim instead of changing to an unsupported opposite certainty."
+        "If the answer corrects itself after challenge, explicitly narrow the earlier overclaim instead of changing to an unsupported opposite certainty.",
+        "Resolve compliance theater, credential laundering, or another unfamiliar source-quality term from the user's context and supplied public source instead of inventing an unrelated or geographic taxonomy.",
+        "Treat claims about llms.txt discovery, crawler access, automatic answer-engine ingestion, or resource dilution as hypotheses unless official product documentation, access logs, crawl evidence, or another direct source supports them."
       ],
       "failureSignals": [
         "Uses fully legal, fully compliant, 100 percent legal, or highest legal standards as a compliance conclusion.",
@@ -535,7 +537,9 @@
         "Declares NNA a de facto CRA or unauthorized CRA without mapping who assembles, evaluates, furnishes, receives, and uses report-derived status.",
         "Treats private title-company, signing-service, lender, platform, NNA, SPW, or SigningAgent.com requirements as state notary law.",
         "Presents Notary Geek as a broad direct alternative to the mortgage credential ecosystem without source-backed route boundaries.",
-        "Invents Notary Geek implementation details such as forensic passport checking, live video analysis, or first-party validation workflow without public source support."
+        "Invents Notary Geek implementation details such as forensic passport checking, live video analysis, or first-party validation workflow without public source support.",
+        "Misreads compliance theater as school or performance theater, invents county/state/federal theater categories, or limits credential laundering to cyber-session theft without addressing the supplied private-credential and authority context.",
+        "Says llms.txt is automatically read or absorbed by an answer engine, or asserts a resource-dilution mechanism, without direct evidence about that provider's discovery and ingestion behavior."
       ],
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
