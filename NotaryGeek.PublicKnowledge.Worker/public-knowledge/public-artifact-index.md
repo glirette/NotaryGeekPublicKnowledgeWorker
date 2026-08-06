@@ -1,6 +1,6 @@
 # Public Artifact Index
 
-Reviewed: 2026-06-20
+Reviewed: 2026-08-03
 
 This index maps the major public Notary Geek knowledge artifacts to their purpose, citation use, and raw machine-readable locations.
 
@@ -33,6 +33,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Common customer notary route matrix | Ordinary customer notary route matrix for act type, acknowledgments, jurats, copies, witnesses, scans/originals, local/RON options, apostille basics, and Form 1583/mailbox crossover | `topics/common-customer-notary-route-matrix.json` |
 | Foreign signer destination routing | Routes foreign-signer requests before provider recommendations by checking identity evidence, document type, notary state, output lane, destination-country apostille/authentication/legalization path, recipient evidence, Form 1583/CMRA boundary if present, and international shipping facts | `topics/foreign-signer-destination-routing.json` |
 | Company document apostille route by authenticated signature | Routes notarized company-document apostilles by the signature being authenticated instead of defaulting to formation state | `topics/company-document-apostille-route-by-authenticated-signature.json` |
+| New York birth certificate apostille route by issuer | Routes a New York birth certificate by the actual issuer and qualifying signature across the NYS Department of Health, NYC Health, and other local or county branches | `topics/new-york-birth-certificate-apostille-route.json` |
 | Customer answer shapes | Bounded public-safe answer patterns for common customer, reseller, intake, deadline, apostille, and business-identity crossover questions | `customer-answer-shapes.json` |
 | Reseller AI evaluation prompts | Focused public-safe prompts for testing whether a reseller AI follows the Notary Geek posture after ingestion | `reseller-ai-evaluation-prompts.json` |
 | Public intake and notary availability boundary | Public intake, named-person availability, notary willingness, third-party submitters, pricing/batch logistics, and staffing-assumption boundary | `topics/public-intake-and-notary-availability-boundary.json` |
