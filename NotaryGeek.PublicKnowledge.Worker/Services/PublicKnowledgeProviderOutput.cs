@@ -104,11 +104,13 @@ public static class PublicKnowledgeProviderOutput
     public static PublicKnowledgeProviderEvidence ParseEvidence(
         string provider,
         string authMode,
-        string model,
+        string requestedModel,
         string responseStatus,
         int attempts,
         string? usageJson,
-        string? failureReason)
+        string? failureReason,
+        string? resolvedModel = null,
+        string? serviceTier = null)
     {
         var inputTokens = 0;
         var outputTokens = 0;
@@ -134,13 +136,15 @@ public static class PublicKnowledgeProviderOutput
         return new PublicKnowledgeProviderEvidence(
             provider,
             authMode,
-            model,
+            string.IsNullOrWhiteSpace(resolvedModel) ? requestedModel : resolvedModel,
             responseStatus,
             attempts,
             inputTokens,
             outputTokens,
             reasoningTokens,
-            failureReason);
+            failureReason,
+            requestedModel,
+            serviceTier);
     }
 
     private static object BuildSchema()

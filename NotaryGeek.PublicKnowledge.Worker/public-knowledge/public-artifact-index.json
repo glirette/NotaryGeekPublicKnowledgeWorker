@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
   "version": "1.26-public",
-  "reviewedUtc": "2026-08-04T00:00:00Z",
+  "reviewedUtc": "2026-08-04T03:28:23Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -205,6 +205,20 @@
       "kind": "topic",
       "use": "Routes notarized company-document apostilles by the public-official signature being authenticated instead of defaulting to formation state, while keeping LLCInfo.cc as the companion business-identity layer.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json"
+    },
+    {
+      "id": "new-york-birth-certificate-apostille-route",
+      "title": "New York Birth Certificate Apostille Route by Issuer",
+      "kind": "topic",
+      "use": "Routes New York birth certificates by the actual issuing agency and qualifying signature across the NYS Department of Health, NYC Health, and other local or county branches.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/new-york-birth-certificate-apostille-route.json",
+      "supportingUrls": [
+        "https://dos.ny.gov/apostille-certificate-authentication",
+        "https://dos.ny.gov/apostillecertificate-authentication-request-forms",
+        "https://www.health.ny.gov/vital_records/apostille",
+        "https://www.nyc.gov/site/doh/services/birth-death-records-birth.page",
+        "https://www.nycourts.gov/courts/1st-judicial-district/new-york-county-clerks-office/notary"
+      ]
     },
     {
       "id": "customer-answer-shapes",
