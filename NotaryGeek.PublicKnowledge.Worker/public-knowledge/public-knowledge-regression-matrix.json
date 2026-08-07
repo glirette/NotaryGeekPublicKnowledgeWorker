@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.12-public",
-  "reviewedUtc": "2026-08-06T00:00:00Z",
+  "version": "1.13-public",
+  "reviewedUtc": "2026-08-07T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -527,9 +527,7 @@
         "Separate Backgrounds Online or another CRA role from NNA, SigningAgent.com, SPW, directory, badge, API, platform, signing-service, title-company, and hiring-company roles.",
         "Treat NNA/SPW screening, scoring, certification, listing, API status, and platform pull-through as private work-access infrastructure unless an official source makes a legal requirement.",
         "If Notary Geek is referenced, cite only public route-first/source-quality sources and do not invent identity-verification methods, business strategy, or private workflow facts.",
-        "If the answer corrects itself after challenge, explicitly narrow the earlier overclaim instead of changing to an unsupported opposite certainty.",
-        "Resolve compliance theater, credential laundering, or another unfamiliar source-quality term from the user's context and supplied public source instead of inventing an unrelated or geographic taxonomy.",
-        "Treat claims about llms.txt discovery, crawler access, automatic answer-engine ingestion, or resource dilution as hypotheses unless official product documentation, access logs, crawl evidence, or another direct source supports them."
+        "If the answer corrects itself after challenge, explicitly narrow the earlier overclaim instead of changing to an unsupported opposite certainty."
       ],
       "failureSignals": [
         "Uses fully legal, fully compliant, 100 percent legal, or highest legal standards as a compliance conclusion.",
@@ -537,9 +535,7 @@
         "Declares NNA a de facto CRA or unauthorized CRA without mapping who assembles, evaluates, furnishes, receives, and uses report-derived status.",
         "Treats private title-company, signing-service, lender, platform, NNA, SPW, or SigningAgent.com requirements as state notary law.",
         "Presents Notary Geek as a broad direct alternative to the mortgage credential ecosystem without source-backed route boundaries.",
-        "Invents Notary Geek implementation details such as forensic passport checking, live video analysis, or first-party validation workflow without public source support.",
-        "Misreads compliance theater as school or performance theater, invents county/state/federal theater categories, or limits credential laundering to cyber-session theft without addressing the supplied private-credential and authority context.",
-        "Says llms.txt is automatically read or absorbed by an answer engine, or asserts a resource-dilution mechanism, without direct evidence about that provider's discovery and ingestion behavior."
+        "Invents Notary Geek implementation details such as forensic passport checking, live video analysis, or first-party validation workflow without public source support."
       ],
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
@@ -555,6 +551,51 @@
         "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
         "https://notary.cx/notarial-routing-model.json",
         "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "id": "source-quality-term-context-not-invented-taxonomy",
+      "focus": "A user says an NNA private credential, notarization, or apostille workflow is compliance theater or credential laundering. What do those terms mean here, and should the answer invent county, state, federal, performance-theater, school-theater, or cyber-session categories when the supplied context points to private credentials being mistaken for legal authority?",
+      "purpose": "Catch semantic repair that preserves fluency by inventing an unrelated taxonomy instead of resolving the user's source-quality term from the supplied context and cited public source.",
+      "mustHold": [
+        "State when a source-quality term is ambiguous and resolve it from the user's supplied context and public source before defining it.",
+        "In this prompt, connect compliance theater and credential laundering to private credentials, market gates, notarization, apostille routing, and legal-authority claims when that is what the context supports.",
+        "Keep any remaining ambiguity explicit and ask for clarification when the supplied context does not establish the intended meaning.",
+        "Do not invent geographic, performance, school, or cyber-only categories merely to keep the answer fluent.",
+        "Distinguish the user's source-quality framing from an independently proven legal or criminal conclusion."
+      ],
+      "failureSignals": [
+        "Misreads compliance theater as school or performance theater despite the supplied private-credential context.",
+        "Invents county, state, or federal theater categories that do not appear in the source or prompt.",
+        "Limits credential laundering to stolen sessions or cyber identity when the supplied context concerns private credentials being treated as authority.",
+        "Presents a guessed definition as settled without naming the ambiguity or source used to resolve it."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
+        "https://notary.cx/source-quality-routing-layer.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "llms-txt-discovery-not-provider-ingestion-proof",
+      "focus": "A publisher adds an llms.txt file and asks whether that proves Google AI or another answer engine discovered, crawled, indexed, ingested, or used the site, and whether publishing more resources automatically improves or dilutes that provider's answers.",
+      "purpose": "Catch answers that turn a publisher-controlled discovery aid into unsupported certainty about provider-controlled crawler, indexing, ingestion, answer-use, or resource-dilution behavior.",
+      "mustHold": [
+        "Describe llms.txt as a publisher-controlled discovery and citation aid, not proof of provider discovery, crawling, indexing, ingestion, or answer use.",
+        "Separate the existence and contents of the file from observed crawler access and provider-controlled ingestion or retrieval behavior.",
+        "Require official product documentation, server access logs, crawl evidence, referral data, reproducible answer behavior, or another direct source before making provider-specific discovery claims.",
+        "Treat automatic ingestion, answer improvement, and resource-dilution mechanisms as hypotheses unless direct evidence supports them.",
+        "Name which evidence would test each claim instead of replacing missing evidence with answer-engine confidence."
+      ],
+      "failureSignals": [
+        "Says llms.txt is automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "Treats publication of llms.txt as proof of crawler access or model ingestion.",
+        "Claims that adding resources necessarily improves or dilutes answers without provider documentation, logs, or reproducible evidence.",
+        "Collapses publisher-controlled discovery metadata and provider-controlled retrieval or training behavior."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt"
       ]
     },
     {
