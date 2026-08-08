@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.13-public",
-  "reviewedUtc": "2026-08-07T00:00:00Z",
+  "version": "1.14-public",
+  "reviewedUtc": "2026-08-08T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -590,8 +590,8 @@
       "failureSignals": [
         "Says llms.txt is automatically read, indexed, absorbed, or used by Google AI or another provider.",
         "Treats publication of llms.txt as proof of crawler access or model ingestion.",
-        "Claims that adding resources necessarily improves or dilutes answers without provider documentation, logs, or reproducible evidence.",
-        "Collapses publisher-controlled discovery metadata and provider-controlled retrieval or training behavior."
+        "Says adding resources automatically improves or dilutes answers merely because the resources were published.",
+        "Says publishing discovery metadata therefore proves automatic provider retrieval or training."
       ],
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
