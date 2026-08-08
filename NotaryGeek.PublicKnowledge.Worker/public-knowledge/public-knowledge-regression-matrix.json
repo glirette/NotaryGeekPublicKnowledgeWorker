@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.15-public",
+  "version": "1.16-public",
   "reviewedUtc": "2026-08-08T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -567,7 +567,7 @@
       "failureSignals": [
         "Misreads compliance theater as school or performance theater despite the supplied private-credential context.",
         "Invents county, state, or federal theater categories that do not appear in the source or prompt.",
-        "Geographic, performance, school, or cyber-only categories are invented merely to keep the answer fluent.",
+        "Calls geographic, performance, school, and cyber the relevant source-quality categories.",
         "Limits credential laundering to stolen sessions or cyber identity when the supplied context concerns private credentials being treated as authority.",
         "Presents a guessed definition as settled without naming the ambiguity or source used to resolve it."
       ],

@@ -119,6 +119,7 @@ public sealed class PublicKnowledgeResearchService
         " misstate ",
         " misstates ",
         " misstated ",
+        " might ",
         " route confusion ",
         " route error ",
         " risk ",

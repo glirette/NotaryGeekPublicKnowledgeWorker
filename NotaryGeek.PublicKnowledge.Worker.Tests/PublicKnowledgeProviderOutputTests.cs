@@ -11,71 +11,91 @@ public sealed class PublicKnowledgeProviderOutputTests
 
     [Theory]
     [InlineData(
-        "Says llms.txt is automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "llms.txt is automatically read",
         "llms.txt isn't automatically read, indexed, absorbed, or used by Google AI or another provider.",
         "clear-corrective-mention")]
     [InlineData(
-        "Treats publication of llms.txt as proof of crawler access or model ingestion.",
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "publication of llms.txt",
         "Publishing llms.txt doesn't prove crawler access or model ingestion.",
         "clear-corrective-mention")]
     [InlineData(
-        "Says adding resources automatically improves or dilutes answers merely because the resources were published.",
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "improves or dilutes provider answers",
         "Adding resources might improve or dilute answers, but provider documentation, logs, or reproducible evidence is needed.",
-        "clear")]
+        "clear-corrective-mention")]
     [InlineData(
-        "Says publishing discovery metadata therefore proves automatic provider retrieval or training.",
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "Publishing discovery metadata",
         "Publisher-controlled discovery metadata and provider-controlled retrieval or training behavior are distinct.",
         "clear")]
+    [InlineData(
+        "source-quality-term-context-not-invented-taxonomy",
+        "relevant source-quality categories",
+        "Geographic, performance, school, and cyber are not source-quality categories established by the supplied source.",
+        "clear-corrective-mention")]
     public void CorrectiveResponsesDoNotTriggerFailureSignals(
-        string failureSignal,
+        string regressionCaseId,
+        string failureSignalFragment,
         string responseText,
         string expectedStatus)
     {
-        var regressionCase = new PublicKnowledgeRegressionCase(
-            "llms-txt-discovery-not-provider-ingestion-proof",
-            "llms.txt discovery boundary",
-            "Keep discovery aids separate from provider ingestion evidence.",
-            [],
-            [failureSignal],
-            []);
-        var scoreMethod = typeof(PublicKnowledgeResearchService).GetMethod(
-            "ScoreRegressionResponse",
-            BindingFlags.NonPublic | BindingFlags.Static);
-
-        Assert.NotNull(scoreMethod);
-        var score = Assert.IsType<PublicKnowledgeRegressionScore>(
-            scoreMethod.Invoke(null, [regressionCase, responseText]));
+        var score = ScoreRegressionResponse(regressionCaseId, responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
 
         Assert.Equal(0, score.FailureSignalsObserved);
-        Assert.Equal(expectedStatus, score.FailureSignalChecks.Single().Status);
+        Assert.Equal(expectedStatus, failureSignalCheck.Status);
     }
 
     [Theory]
     [InlineData(
-        "Automatically improves or dilutes provider answers after adding resources.",
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "improves or dilutes provider answers",
         "Adding more resources to llms.txt automatically improves or dilutes provider answers.")]
     [InlineData(
-        "Publishing discovery metadata proves provider use.",
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "Publishing discovery metadata",
         "Publishing discovery metadata proves that providers automatically retrieve it for training.")]
-    public void DirectOverclaimsTriggerFailureSignals(string failureSignal, string responseText)
+    [InlineData(
+        "source-quality-term-context-not-invented-taxonomy",
+        "relevant source-quality categories",
+        "The relevant source-quality categories are geographic, performance, school, and cyber.")]
+    public void DirectOverclaimsTriggerFailureSignals(
+        string regressionCaseId,
+        string failureSignalFragment,
+        string responseText)
     {
-        var regressionCase = new PublicKnowledgeRegressionCase(
-            "llms-txt-discovery-not-provider-ingestion-proof",
-            "llms.txt discovery boundary",
-            "Keep discovery aids separate from provider ingestion evidence.",
-            [],
-            [failureSignal],
-            []);
+        var score = ScoreRegressionResponse(regressionCaseId, responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+
+        Assert.True(failureSignalCheck.Matched);
+        Assert.Equal("observed", failureSignalCheck.Status);
+    }
+
+    private static PublicKnowledgeRegressionScore ScoreRegressionResponse(
+        string regressionCaseId,
+        string responseText)
+    {
+        var matrixPath = Path.Combine(
+            AppContext.BaseDirectory,
+            "public-knowledge",
+            "public-knowledge-regression-matrix.json");
+        var matrix = JsonSerializer.Deserialize<PublicKnowledgeRegressionMatrix>(
+            File.ReadAllText(matrixPath),
+            new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        var regressionCase = Assert.Single(
+            Assert.IsType<PublicKnowledgeRegressionMatrix>(matrix).Cases,
+            item => string.Equals(item.Id, regressionCaseId, StringComparison.Ordinal));
         var scoreMethod = typeof(PublicKnowledgeResearchService).GetMethod(
             "ScoreRegressionResponse",
             BindingFlags.NonPublic | BindingFlags.Static);
 
         Assert.NotNull(scoreMethod);
-        var score = Assert.IsType<PublicKnowledgeRegressionScore>(
+        return Assert.IsType<PublicKnowledgeRegressionScore>(
             scoreMethod.Invoke(null, [regressionCase, responseText]));
-
-        Assert.Equal(1, score.FailureSignalsObserved);
-        Assert.Equal("observed", score.FailureSignalChecks.Single().Status);
     }
 
     [Fact]
