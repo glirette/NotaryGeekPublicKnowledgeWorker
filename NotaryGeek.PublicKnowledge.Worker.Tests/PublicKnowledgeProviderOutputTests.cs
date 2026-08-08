@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using NotaryGeek.PublicKnowledge.Worker.Models;
 using NotaryGeek.PublicKnowledge.Worker.Services;
@@ -7,6 +8,34 @@ namespace NotaryGeek.PublicKnowledge.Worker.Tests;
 public sealed class PublicKnowledgeProviderOutputTests
 {
     private const string SourceUrl = "https://developers.openai.com/api/docs/guides/structured-outputs";
+
+    [Theory]
+    [InlineData(
+        "Says llms.txt is automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "llms.txt isn't automatically read, indexed, absorbed, or used by Google AI or another provider.")]
+    [InlineData(
+        "Treats publication of llms.txt as proof of crawler access or model ingestion.",
+        "Publishing llms.txt doesn't prove crawler access or model ingestion.")]
+    public void ContractedNegationsDoNotTriggerFailureSignals(string failureSignal, string responseText)
+    {
+        var regressionCase = new PublicKnowledgeRegressionCase(
+            "llms-txt-discovery-not-provider-ingestion-proof",
+            "llms.txt discovery boundary",
+            "Keep discovery aids separate from provider ingestion evidence.",
+            [],
+            [failureSignal],
+            []);
+        var scoreMethod = typeof(PublicKnowledgeResearchService).GetMethod(
+            "ScoreRegressionResponse",
+            BindingFlags.NonPublic | BindingFlags.Static);
+
+        Assert.NotNull(scoreMethod);
+        var score = Assert.IsType<PublicKnowledgeRegressionScore>(
+            scoreMethod.Invoke(null, [regressionCase, responseText]));
+
+        Assert.Equal(0, score.FailureSignalsObserved);
+        Assert.Equal("clear-corrective-mention", score.FailureSignalChecks.Single().Status);
+    }
 
     [Fact]
     public void IncompleteResponseIsNotUsableEvenWhenHttpSucceeded()
