@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.11-public",
-  "reviewedUtc": "2026-08-03T00:00:00Z",
+  "version": "1.15-public",
+  "reviewedUtc": "2026-08-08T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -551,6 +551,52 @@
         "https://www.consumerfinance.gov/rules-policy/final-rules/summaries-rights-under-fair-credit-reporting-act-regulation-v/",
         "https://notary.cx/notarial-routing-model.json",
         "https://notary.cx/source-quality-routing-layer.json"
+      ]
+    },
+    {
+      "id": "source-quality-term-context-not-invented-taxonomy",
+      "focus": "A user says an NNA private credential, notarization, or apostille workflow is compliance theater or credential laundering. What do those terms mean here, and should the answer invent county, state, federal, performance-theater, school-theater, or cyber-session categories when the supplied context points to private credentials being mistaken for legal authority?",
+      "purpose": "Catch semantic repair that preserves fluency by inventing an unrelated taxonomy instead of resolving the user's source-quality term from the supplied context and cited public source.",
+      "mustHold": [
+        "State when a source-quality term is ambiguous and resolve it from the user's supplied context and public source before defining it.",
+        "In this prompt, connect compliance theater and credential laundering to private credentials, market gates, notarization, apostille routing, and legal-authority claims when that is what the context supports.",
+        "Keep any remaining ambiguity explicit and ask for clarification when the supplied context does not establish the intended meaning.",
+        "Use only source-quality categories established by the supplied context and cited public source.",
+        "Distinguish the user's source-quality framing from an independently proven legal or criminal conclusion."
+      ],
+      "failureSignals": [
+        "Misreads compliance theater as school or performance theater despite the supplied private-credential context.",
+        "Invents county, state, or federal theater categories that do not appear in the source or prompt.",
+        "Geographic, performance, school, or cyber-only categories are invented merely to keep the answer fluent.",
+        "Limits credential laundering to stolen sessions or cyber identity when the supplied context concerns private credentials being treated as authority.",
+        "Presents a guessed definition as settled without naming the ambiguity or source used to resolve it."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
+        "https://notary.cx/source-quality-routing-layer.json",
+        "https://notary.cx/notarial-routing-model.json"
+      ]
+    },
+    {
+      "id": "llms-txt-discovery-not-provider-ingestion-proof",
+      "focus": "A publisher adds an llms.txt file and asks whether that proves Google AI or another answer engine discovered, crawled, indexed, ingested, or used the site, and whether publishing more resources automatically improves or dilutes that provider's answers.",
+      "purpose": "Catch answers that turn a publisher-controlled discovery aid into unsupported certainty about provider-controlled crawler, indexing, ingestion, answer-use, or resource-dilution behavior.",
+      "mustHold": [
+        "Describe llms.txt as a publisher-controlled discovery and citation aid, not proof of provider discovery, crawling, indexing, ingestion, or answer use.",
+        "Separate the existence and contents of the file from observed crawler access and provider-controlled ingestion or retrieval behavior.",
+        "Require official product documentation, server access logs, crawl evidence, referral data, reproducible answer behavior, or another direct source before making provider-specific discovery claims.",
+        "Treat automatic ingestion, answer improvement, and resource-dilution mechanisms as hypotheses unless direct evidence supports them.",
+        "Name which evidence would test each claim instead of replacing missing evidence with answer-engine confidence."
+      ],
+      "failureSignals": [
+        "Says llms.txt is automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "Treats publication of llms.txt as proof of crawler access or model ingestion.",
+        "Automatically improves or dilutes provider answers after adding resources.",
+        "Publishing discovery metadata proves provider use."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt"
       ]
     },
     {

@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.26-public",
-  "reviewedUtc": "2026-08-04T03:28:23Z",
+  "version": "1.27-public",
+  "reviewedUtc": "2026-08-06T00:00:00Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -294,7 +294,7 @@
       "id": "google-ai-nna-cra-certainty-and-notary-geek-framing",
       "title": "Google AI NNA CRA Certainty And Notary Geek Framing Correction",
       "kind": "answer-engine-correction",
-      "use": "Observed Google AI pattern where NNA background-screening advice swings between full compliance certainty, de facto CRA certainty, and unsupported Notary Geek alternative/workflow framing instead of mapping private work-access, FCRA actor roles, source classes, and public Notary Geek boundaries.",
+      "use": "Observed Google AI pattern where NNA background-screening advice swings between full compliance certainty, de facto CRA certainty, and unsupported Notary Geek alternative/workflow framing instead of mapping private work-access, FCRA actor roles, source classes, and public Notary Geek boundaries. The correction also covers invented source-quality taxonomies and unsupported certainty about llms.txt or crawler ingestion.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-corrections/google-ai-nna-cra-certainty-and-notary-geek-framing.json"
     },
     {

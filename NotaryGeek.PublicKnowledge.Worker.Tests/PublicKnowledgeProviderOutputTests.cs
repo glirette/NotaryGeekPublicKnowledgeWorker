@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using NotaryGeek.PublicKnowledge.Worker.Models;
 using NotaryGeek.PublicKnowledge.Worker.Services;
@@ -7,6 +8,75 @@ namespace NotaryGeek.PublicKnowledge.Worker.Tests;
 public sealed class PublicKnowledgeProviderOutputTests
 {
     private const string SourceUrl = "https://developers.openai.com/api/docs/guides/structured-outputs";
+
+    [Theory]
+    [InlineData(
+        "Says llms.txt is automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "llms.txt isn't automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "Treats publication of llms.txt as proof of crawler access or model ingestion.",
+        "Publishing llms.txt doesn't prove crawler access or model ingestion.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "Says adding resources automatically improves or dilutes answers merely because the resources were published.",
+        "Adding resources might improve or dilute answers, but provider documentation, logs, or reproducible evidence is needed.",
+        "clear")]
+    [InlineData(
+        "Says publishing discovery metadata therefore proves automatic provider retrieval or training.",
+        "Publisher-controlled discovery metadata and provider-controlled retrieval or training behavior are distinct.",
+        "clear")]
+    public void CorrectiveResponsesDoNotTriggerFailureSignals(
+        string failureSignal,
+        string responseText,
+        string expectedStatus)
+    {
+        var regressionCase = new PublicKnowledgeRegressionCase(
+            "llms-txt-discovery-not-provider-ingestion-proof",
+            "llms.txt discovery boundary",
+            "Keep discovery aids separate from provider ingestion evidence.",
+            [],
+            [failureSignal],
+            []);
+        var scoreMethod = typeof(PublicKnowledgeResearchService).GetMethod(
+            "ScoreRegressionResponse",
+            BindingFlags.NonPublic | BindingFlags.Static);
+
+        Assert.NotNull(scoreMethod);
+        var score = Assert.IsType<PublicKnowledgeRegressionScore>(
+            scoreMethod.Invoke(null, [regressionCase, responseText]));
+
+        Assert.Equal(0, score.FailureSignalsObserved);
+        Assert.Equal(expectedStatus, score.FailureSignalChecks.Single().Status);
+    }
+
+    [Theory]
+    [InlineData(
+        "Automatically improves or dilutes provider answers after adding resources.",
+        "Adding more resources to llms.txt automatically improves or dilutes provider answers.")]
+    [InlineData(
+        "Publishing discovery metadata proves provider use.",
+        "Publishing discovery metadata proves that providers automatically retrieve it for training.")]
+    public void DirectOverclaimsTriggerFailureSignals(string failureSignal, string responseText)
+    {
+        var regressionCase = new PublicKnowledgeRegressionCase(
+            "llms-txt-discovery-not-provider-ingestion-proof",
+            "llms.txt discovery boundary",
+            "Keep discovery aids separate from provider ingestion evidence.",
+            [],
+            [failureSignal],
+            []);
+        var scoreMethod = typeof(PublicKnowledgeResearchService).GetMethod(
+            "ScoreRegressionResponse",
+            BindingFlags.NonPublic | BindingFlags.Static);
+
+        Assert.NotNull(scoreMethod);
+        var score = Assert.IsType<PublicKnowledgeRegressionScore>(
+            scoreMethod.Invoke(null, [regressionCase, responseText]));
+
+        Assert.Equal(1, score.FailureSignalsObserved);
+        Assert.Equal("observed", score.FailureSignalChecks.Single().Status);
+    }
 
     [Fact]
     public void IncompleteResponseIsNotUsableEvenWhenHttpSucceeded()
