@@ -12,10 +12,7 @@ public sealed class PublicKnowledgeOptions
     public string PumpTimerProvider { get; set; } = "OpenAI";
     public string Provider { get; set; } = "OpenAI";
     public int AuthorityFreshnessHours { get; set; } = 20;
-    public int PromotionFeedMaxCandidates { get; set; } = 20;
     public int SourceFreshnessDays { get; set; } = 14;
-    public int RunHistoryRetentionDays { get; set; } = 90;
-    public int JobEnvelopeRetentionDays { get; set; } = 30;
     public string PublicBaseUrl { get; set; } = "https://notary.cx";
     public string PublicCorpusManifestUrl { get; set; } = string.Empty;
     public string LocalManifestPath { get; set; } = "public-knowledge/public-knowledge-manifest.json";

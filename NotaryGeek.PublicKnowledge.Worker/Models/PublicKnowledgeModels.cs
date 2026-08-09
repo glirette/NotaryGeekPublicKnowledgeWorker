@@ -123,11 +123,6 @@ public sealed record PublicAuthoritySourceDraft(
     DateTime ReviewedAtUtc,
     string Supports);
 
-public sealed record PublicAuthorityCandidateFeed(
-    string Schema,
-    DateTime GeneratedAtUtc,
-    IReadOnlyList<PublicAuthorityCandidate> Candidates);
-
 public sealed record PublicAuthorityCandidate(
     string CandidateId,
     string Destination,
@@ -153,31 +148,6 @@ public sealed record PublicAuthorityUsage(
     int InputTokens,
     int OutputTokens,
     int ReasoningTokens);
-
-[System.Text.Json.Serialization.JsonUnmappedMemberHandling(System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow)]
-public sealed record PublicAuthorityPromotionReceipt(
-    string CandidateId,
-    string Destination,
-    DateTime PromotedAtUtc,
-    string PullRequestUrl);
-
-[System.Text.Json.Serialization.JsonUnmappedMemberHandling(System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow)]
-public sealed record PublicAuthorityPublicationReceipt(
-    string CandidateId,
-    string Destination,
-    DateTime PublishedAtUtc,
-    string PullRequestUrl);
-
-public sealed record PublicAuthorityPromotionStatus(
-    int CandidateCount,
-    int PromotedCandidateCount,
-    int PublishedCandidateCount,
-    DateTime? LastCandidateUtc,
-    DateTime? LastSuccessfulPromotionUtc,
-    DateTime? LastSuccessfulPublicationUtc,
-    int RunHistoryRetentionDays,
-    int JobEnvelopeRetentionDays,
-    string RetentionMode);
 
 public sealed record PublicKnowledgeSourceResult(
     string Url,

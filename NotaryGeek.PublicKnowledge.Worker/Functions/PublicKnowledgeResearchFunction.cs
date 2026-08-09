@@ -1,5 +1,4 @@
 using System.Net;
-using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -40,7 +39,6 @@ public sealed class PublicKnowledgeResearchFunction
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/status")] HttpRequestData req,
         CancellationToken cancellationToken)
     {
-        var promotion = await _promotion.GetStatusAsync(cancellationToken);
         var queue = await _queue.GetStatusAsync(cancellationToken);
         var backlog = await _storage.GetBacklogStatusAsync(cancellationToken);
         var providerHealth = await _storage.GetProviderHealthAsync(cancellationToken);
@@ -50,107 +48,11 @@ public sealed class PublicKnowledgeResearchFunction
             ok = true,
             status = _service.GetStatus(),
             storage = _storage.GetStatus(),
-            promotion,
             queue,
             backlog,
             providerHealth
         }, cancellationToken);
         return response;
-    }
-
-    [Function("PublicKnowledgePromotionFeed")]
-    public async Task<HttpResponseData> PromotionFeed(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "public-knowledge/promotion-feed")] HttpRequestData req,
-        CancellationToken cancellationToken)
-    {
-        var destination = TryGetStringQuery(req, "destination")
-            ?? PublicKnowledgePromotionService.GetDestination("notary");
-        try
-        {
-            var feed = await _promotion.ReadFeedAsync(destination, cancellationToken);
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Cache-Control", "public, max-age=300");
-            await response.WriteAsJsonAsync(feed, cancellationToken);
-            return response;
-        }
-        catch (ArgumentException ex)
-        {
-            var response = req.CreateResponse(HttpStatusCode.BadRequest);
-            await response.WriteAsJsonAsync(new { ok = false, error = "unknown_destination", message = ex.Message }, cancellationToken);
-            return response;
-        }
-    }
-
-    [Function("PublicKnowledgePromotionAck")]
-    public async Task<HttpResponseData> PromotionAck(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "public-knowledge/promotion-ack")] HttpRequestData req,
-        CancellationToken cancellationToken)
-    {
-        PublicAuthorityPromotionReceipt? receipt;
-        try
-        {
-            receipt = await req.ReadFromJsonAsync<PublicAuthorityPromotionReceipt>(cancellationToken);
-        }
-        catch (JsonException)
-        {
-            receipt = null;
-        }
-        if (receipt is null)
-        {
-            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
-            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_promotion_receipt" }, cancellationToken);
-            return badRequest;
-        }
-
-        try
-        {
-            await _promotion.RecordPromotionAsync(receipt, cancellationToken);
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            await response.WriteAsJsonAsync(new { ok = true, receipt.CandidateId, receipt.Destination, receipt.PromotedAtUtc }, cancellationToken);
-            return response;
-        }
-        catch (ArgumentException ex)
-        {
-            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
-            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_promotion_receipt", message = ex.Message }, cancellationToken);
-            return badRequest;
-        }
-    }
-
-    [Function("PublicKnowledgePublicationAck")]
-    public async Task<HttpResponseData> PublicationAck(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "public-knowledge/publication-ack")] HttpRequestData req,
-        CancellationToken cancellationToken)
-    {
-        PublicAuthorityPublicationReceipt? receipt;
-        try
-        {
-            receipt = await req.ReadFromJsonAsync<PublicAuthorityPublicationReceipt>(cancellationToken);
-        }
-        catch (JsonException)
-        {
-            receipt = null;
-        }
-        if (receipt is null)
-        {
-            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
-            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_publication_receipt" }, cancellationToken);
-            return badRequest;
-        }
-
-        try
-        {
-            await _promotion.RecordPublicationAsync(receipt, cancellationToken);
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            await response.WriteAsJsonAsync(new { ok = true, receipt.CandidateId, receipt.Destination, receipt.PublishedAtUtc }, cancellationToken);
-            return response;
-        }
-        catch (ArgumentException ex)
-        {
-            var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
-            await badRequest.WriteAsJsonAsync(new { ok = false, error = "invalid_publication_receipt", message = ex.Message }, cancellationToken);
-            return badRequest;
-        }
     }
 
     [Function("PublicKnowledgeResearch")]
@@ -355,68 +257,6 @@ public sealed class PublicKnowledgeResearchFunction
                 refreshed,
                 digest = BuildDigestSummary(report),
                 report
-            }, cancellationToken);
-            return response;
-        }
-        catch (InvalidOperationException ex)
-        {
-            var failed = req.CreateResponse(HttpStatusCode.BadRequest);
-            await failed.WriteAsJsonAsync(new
-            {
-                ok = false,
-                error = "storage_not_configured",
-                message = ex.Message
-            }, cancellationToken);
-            return failed;
-        }
-    }
-
-    [Function("PublicKnowledgeOperatorSnapshot")]
-    public async Task<HttpResponseData> OperatorSnapshot(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "public-knowledge/operator-snapshot")] HttpRequestData req,
-        CancellationToken cancellationToken)
-    {
-        try
-        {
-            var refresh = TryGetBoolQuery(req, "refresh") ?? false;
-            var take = Math.Clamp(TryGetIntQuery(req, "take") ?? 10, 1, 50);
-            PublicKnowledgeNeedsGregReport? report = null;
-            if (!refresh)
-            {
-                report = await _storage.ReadSavedNeedsGregReportAsync(cancellationToken);
-            }
-
-            var refreshed = refresh || report is null;
-            report ??= await _storage.SaveNeedsGregReportAsync(cancellationToken);
-            var jobs = await _storage.ListQueuedRunsAsync(take, status: null, cancellationToken);
-            var promotion = await _promotion.GetStatusAsync(cancellationToken);
-            var queue = await _queue.GetStatusAsync(cancellationToken);
-            var backlog = await _storage.GetBacklogStatusAsync(cancellationToken);
-            var providerHealth = await _storage.GetProviderHealthAsync(cancellationToken);
-            var staleJobs = jobs.Where(item => item.IsStale).ToArray();
-            var runningJobs = jobs.Where(item => !item.IsTerminal).ToArray();
-            var nextActions = BuildOperatorSnapshotNextActions(report, staleJobs);
-
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            await response.WriteAsJsonAsync(new
-            {
-                ok = true,
-                generatedAtUtc = DateTime.UtcNow,
-                refreshed,
-                healthy = report.Healthy && staleJobs.Length == 0,
-                attentionCount = report.Items.Count + staleJobs.Length,
-                status = _service.GetStatus(),
-                storage = _storage.GetStatus(),
-                promotion,
-                queue,
-                backlog,
-                providerHealth,
-                digest = BuildDigestSummary(report),
-                runningJobCount = runningJobs.Length,
-                staleJobCount = staleJobs.Length,
-                recentJobs = jobs,
-                topReviewItems = report.Items.Take(10).ToArray(),
-                operatorNextActions = nextActions
             }, cancellationToken);
             return response;
         }
@@ -762,12 +602,10 @@ public sealed class PublicKnowledgeResearchFunction
 
         var index = await _storage.SaveLatestIndexAsync(cancellationToken);
         var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
-        var promotion = await _promotion.GetStatusAsync(cancellationToken);
         _logger.LogInformation(
-            "Public knowledge pump refreshed indexes without provider calls: latest={RunCount}; attention={AttentionCount}; candidates={CandidateCount}.",
+            "Public knowledge pump refreshed indexes without provider calls: latest={RunCount}; attention={AttentionCount}.",
             index.RunCount,
-            digest.Items.Count,
-            promotion.CandidateCount);
+            digest.Items.Count);
     }
 
     private async Task<IReadOnlyList<PublicKnowledgeStoredRunReceipt>> RunStoredBatchAsync(
@@ -1090,19 +928,4 @@ public sealed class PublicKnowledgeResearchFunction
             OperatorNextActions = report.OperatorNextActions ?? Array.Empty<string>()
         };
 
-    private static IReadOnlyList<string> BuildOperatorSnapshotNextActions(
-        PublicKnowledgeNeedsGregReport report,
-        IReadOnlyList<PublicKnowledgeQueuedRunSummary> staleJobs)
-    {
-        var actions = new List<string>();
-        foreach (var staleJob in staleJobs.Take(5))
-        {
-            actions.Add($"Check stale queued job {staleJob.JobId}: status={staleJob.Status}, completed={staleJob.CompletedCount}/{staleJob.TotalCount}, ageMinutes={staleJob.ActiveAgeMinutes}.");
-        }
-
-        actions.AddRange(report.OperatorNextActions ?? Array.Empty<string>());
-        return actions.Count == 0
-            ? ["No operator action needed from the latest public knowledge snapshot."]
-            : actions.Distinct(StringComparer.OrdinalIgnoreCase).Take(10).ToArray();
-    }
 }

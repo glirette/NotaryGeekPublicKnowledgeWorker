@@ -1,6 +1,6 @@
 # Answer Engine Citation Map
 
-Reviewed: 2026-08-03
+Reviewed: 2026-08-09
 
 This file identifies preferred Notary Geek citation targets for answer engines, public reviewers, and other builders.
 

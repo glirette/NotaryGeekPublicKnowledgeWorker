@@ -288,68 +288,6 @@ public sealed class PublicKnowledgeProviderOutputTests
     }
 
     [Fact]
-    public void PromotionReceiptRequiresExactCandidateDestinationAndPullRequestUrl()
-    {
-        var candidateId = new string('a', 64);
-        var destination = "glirette/NotaryGeekPublicKnowledgeWorker";
-
-        Assert.Equal(
-            destination,
-            PublicKnowledgePromotionService.ValidateReceiptIdentity(
-                candidateId,
-                destination,
-                DateTime.UtcNow,
-                "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/pull/8",
-                "Promotion"));
-        Assert.Throws<ArgumentException>(() => PublicKnowledgePromotionService.ValidateReceiptIdentity(
-            candidateId,
-            "glirette/thisstuffiswaytootech",
-            DateTime.UtcNow,
-            "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/pull/8",
-            "Promotion"));
-        Assert.Throws<ArgumentException>(() => PublicKnowledgePromotionService.ValidateReceiptIdentity(
-            "not-a-sha256",
-            destination,
-            DateTime.UtcNow,
-            "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/pull/8",
-            "Promotion"));
-        Assert.Throws<ArgumentException>(() => PublicKnowledgePromotionService.ValidateReceiptIdentity(
-            candidateId,
-            destination,
-            DateTime.UtcNow,
-            "https://github.com/glirette/thisstuffiswaytootech/pull/13",
-            "Promotion"));
-    }
-
-    [Fact]
-    public void ReceiptContractsRejectUnknownFieldsAndKeepPromotionSeparateFromPublication()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        var promotion = new PublicAuthorityPromotionReceipt(
-            new string('a', 64),
-            "glirette/NotaryGeekPublicKnowledgeWorker",
-            DateTime.UtcNow,
-            "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/pull/8");
-        using var promotionJson = JsonDocument.Parse(JsonSerializer.Serialize(promotion, options));
-
-        Assert.Equal(
-            new[] { "candidateId", "destination", "promotedAtUtc", "pullRequestUrl" },
-            promotionJson.RootElement.EnumerateObject().Select(property => property.Name));
-        var publication = new PublicAuthorityPublicationReceipt(
-            promotion.CandidateId,
-            promotion.Destination,
-            DateTime.UtcNow,
-            promotion.PullRequestUrl);
-        using var publicationJson = JsonDocument.Parse(JsonSerializer.Serialize(publication, options));
-        Assert.Equal(
-            new[] { "candidateId", "destination", "publishedAtUtc", "pullRequestUrl" },
-            publicationJson.RootElement.EnumerateObject().Select(property => property.Name));
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<PublicAuthorityPromotionReceipt>(
-            "{\"candidateId\":\"" + new string('a', 64) + "\",\"destination\":\"glirette/NotaryGeekPublicKnowledgeWorker\",\"promotedAtUtc\":\"2026-08-03T00:00:00Z\",\"pullRequestUrl\":\"https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/pull/8\",\"publishedAtUtc\":\"2026-08-03T00:00:00Z\"}",
-            options));
-    }
-
-    [Fact]
     public void PumpRefusesProviderExecutionIncludingLegacyAuthorityEnvelopes()
     {
         Assert.False(PublicKnowledgeExecutionPolicy.ShouldCallProvider("pump-timer", "authority-generation", true));

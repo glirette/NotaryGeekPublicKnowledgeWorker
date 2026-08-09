@@ -1,6 +1,6 @@
 # Public Artifact Index
 
-Reviewed: 2026-08-06
+Reviewed: 2026-08-09
 
 This index maps the major public Notary Geek knowledge artifacts to their purpose, citation use, and raw machine-readable locations.
 
