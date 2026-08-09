@@ -119,9 +119,6 @@ jobs:
             providerUsableOutputs = $status.providerHealth.UsableOutputCount
             providerFailedOutputs = $status.providerHealth.FailedOutputCount
             lastUsableOutputUtc = $status.providerHealth.LastUsableOutputUtc
-            promotionCandidates = $status.promotion.CandidateCount
-            lastSuccessfulPromotionUtc = $status.promotion.LastSuccessfulPromotionUtc
-            lastSuccessfulPublicationUtc = $status.promotion.LastSuccessfulPublicationUtc
           }
 
           $summary | ConvertTo-Json -Depth 4
