@@ -119,6 +119,7 @@ public sealed class PublicKnowledgeResearchService
         " misstate ",
         " misstates ",
         " misstated ",
+        " might ",
         " route confusion ",
         " route error ",
         " risk ",
@@ -1570,7 +1571,8 @@ public sealed class PublicKnowledgeResearchService
             .ToArray();
 
     private static bool HasFailureNegationMarker(string normalizedSegment) =>
-        FailureNegationMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
+        FailureNegationMarkers.Any(marker =>
+            normalizedSegment.Contains(NormalizeRuleScoringText(marker), StringComparison.OrdinalIgnoreCase));
 
     private static bool HasFailureCorrectiveContextMarker(string normalizedSegment) =>
         FailureCorrectiveContextMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));

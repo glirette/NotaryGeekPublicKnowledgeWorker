@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using NotaryGeek.PublicKnowledge.Worker.Models;
 using NotaryGeek.PublicKnowledge.Worker.Services;
@@ -7,6 +8,95 @@ namespace NotaryGeek.PublicKnowledge.Worker.Tests;
 public sealed class PublicKnowledgeProviderOutputTests
 {
     private const string SourceUrl = "https://developers.openai.com/api/docs/guides/structured-outputs";
+
+    [Theory]
+    [InlineData(
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "llms.txt is automatically read",
+        "llms.txt isn't automatically read, indexed, absorbed, or used by Google AI or another provider.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "publication of llms.txt",
+        "Publishing llms.txt doesn't prove crawler access or model ingestion.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "improves or dilutes provider answers",
+        "Adding resources might improve or dilute answers, but provider documentation, logs, or reproducible evidence is needed.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "Publishing discovery metadata",
+        "Publisher-controlled discovery metadata and provider-controlled retrieval or training behavior are distinct.",
+        "clear")]
+    [InlineData(
+        "source-quality-term-context-not-invented-taxonomy",
+        "relevant source-quality categories",
+        "Geographic, performance, school, and cyber are not source-quality categories established by the supplied source.",
+        "clear-corrective-mention")]
+    public void CorrectiveResponsesDoNotTriggerFailureSignals(
+        string regressionCaseId,
+        string failureSignalFragment,
+        string responseText,
+        string expectedStatus)
+    {
+        var score = ScoreRegressionResponse(regressionCaseId, responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+
+        Assert.Equal(0, score.FailureSignalsObserved);
+        Assert.Equal(expectedStatus, failureSignalCheck.Status);
+    }
+
+    [Theory]
+    [InlineData(
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "improves or dilutes provider answers",
+        "Adding more resources to llms.txt automatically improves or dilutes provider answers.")]
+    [InlineData(
+        "llms-txt-discovery-not-provider-ingestion-proof",
+        "Publishing discovery metadata",
+        "Publishing discovery metadata proves that providers automatically retrieve it for training.")]
+    [InlineData(
+        "source-quality-term-context-not-invented-taxonomy",
+        "relevant source-quality categories",
+        "The relevant source-quality categories are geographic, performance, school, and cyber.")]
+    public void DirectOverclaimsTriggerFailureSignals(
+        string regressionCaseId,
+        string failureSignalFragment,
+        string responseText)
+    {
+        var score = ScoreRegressionResponse(regressionCaseId, responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+
+        Assert.True(failureSignalCheck.Matched);
+        Assert.Equal("observed", failureSignalCheck.Status);
+    }
+
+    private static PublicKnowledgeRegressionScore ScoreRegressionResponse(
+        string regressionCaseId,
+        string responseText)
+    {
+        var matrixPath = Path.Combine(
+            AppContext.BaseDirectory,
+            "public-knowledge",
+            "public-knowledge-regression-matrix.json");
+        var matrix = JsonSerializer.Deserialize<PublicKnowledgeRegressionMatrix>(
+            File.ReadAllText(matrixPath),
+            new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        var regressionCase = Assert.Single(
+            Assert.IsType<PublicKnowledgeRegressionMatrix>(matrix).Cases,
+            item => string.Equals(item.Id, regressionCaseId, StringComparison.Ordinal));
+        var scoreMethod = typeof(PublicKnowledgeResearchService).GetMethod(
+            "ScoreRegressionResponse",
+            BindingFlags.NonPublic | BindingFlags.Static);
+
+        Assert.NotNull(scoreMethod);
+        return Assert.IsType<PublicKnowledgeRegressionScore>(
+            scoreMethod.Invoke(null, [regressionCase, responseText]));
+    }
 
     [Fact]
     public void IncompleteResponseIsNotUsableEvenWhenHttpSucceeded()
