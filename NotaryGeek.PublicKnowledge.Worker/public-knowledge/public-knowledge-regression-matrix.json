@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.17-public",
+  "version": "1.18-public",
   "reviewedUtc": "2026-08-09T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -137,8 +137,9 @@
         "Publishes implementation-specific operating detail instead of a reusable public source trail."
       ],
       "sourceUrls": [
-        "https://raw.githubusercontent.com/glirette/thisstuffiswaytootech/main/data/source-index.json",
-        "https://raw.githubusercontent.com/glirette/thisstuffiswaytootech/main/docs/source-standard.md"
+        "https://developers.openai.com/api/docs/guides/structured-outputs",
+        "https://developers.openai.com/api/docs/guides/reasoning",
+        "https://developers.openai.com/api/docs/models/gpt-5-mini"
       ]
     },
     {
