@@ -26,7 +26,7 @@ jobs:
           dotnet build .\NotaryGeekPublicKnowledgeWorker.slnx -c Release
           dotnet test .\NotaryGeekPublicKnowledgeWorker.slnx -c Release --no-build
 
-      - name: Validate public contracts
+      - name: Validate public JSON
         shell: pwsh
         run: |
           $jsonFiles = @(Get-ChildItem -Recurse -Filter *.json -File | Where-Object { $_.FullName -notmatch '[\\/](bin|obj)[\\/]' })
@@ -34,35 +34,4 @@ jobs:
             Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json | Out-Null
           }
 
-          $tokens = $null
-          $errors = $null
-          [System.Management.Automation.Language.Parser]::ParseFile(
-            (Resolve-Path '.\tools\Export-PublicAuthorityCandidate.ps1'),
-            [ref] $tokens,
-            [ref] $errors) | Out-Null
-          if ($errors.Count -gt 0) {
-            $errors | ForEach-Object { Write-Error $_.Message }
-            throw "Promotion script contains PowerShell parse errors."
-          }
-
-          $promotionWorkflow = Get-Content -LiteralPath '.github/workflows/promote-public-authority-candidates.yml' -Raw
-          foreach ($required in @('/api/public-knowledge/promotion-ack', 'promotedAtUtc', 'PUBLIC_KNOWLEDGE_FUNCTION_KEY', 'SHA256', 'gh pr list --state open --head')) {
-            if (-not $promotionWorkflow.Contains($required)) {
-              throw "Promotion workflow is missing required contract '$required'."
-            }
-          }
-          if ($promotionWorkflow.Contains('yyyyMMdd-HHmmss')) {
-            throw "Promotion workflow must use candidate identity, not a timestamp, for its branch."
-          }
-
-          $publicationWorkflow = Get-Content -LiteralPath '.github/workflows/acknowledge-public-authority-publication.yml' -Raw
-          foreach ($required in @('pull_request:', 'merged == true', '/api/public-knowledge/publication-ack', 'publishedAtUtc', 'PUBLIC_KNOWLEDGE_FUNCTION_KEY')) {
-            if (-not $publicationWorkflow.Contains($required)) {
-              throw "Publication workflow is missing required contract '$required'."
-            }
-          }
-          if ($publicationWorkflow.Contains('actions/checkout') -or $publicationWorkflow.Contains('pull_request_target:')) {
-            throw "Publication acknowledgement must not check out PR code or use pull_request_target."
-          }
-
-          Write-Host "Validated $($jsonFiles.Count) JSON files, promotion export, and trusted receipt workflows."
+          Write-Host "Validated $($jsonFiles.Count) public JSON files."

@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-law-section-corpus-v1",
   "id": "florida-chapter-117-2025-section-corpus",
   "title": "Florida Chapter 117 Notaries Public Section Corpus",
-  "version": "0.1-generated-official-text",
+  "version": "0.2-generated-official-text",
   "status": "official-text-captured-needs-freshness-review",
   "jurisdiction": {
     "country": "US",
@@ -66,8 +66,7 @@
   "sourceTextPreservationRule": "Each section record preserves official source text extracted from the Florida Senate Chapter 117 page separately from Notary Geek route-impact tags. Do not treat route-impact tags as controlling law.",
   "freshnessRule": "This corpus was generated from the 2025 Florida Senate statute page. Check current official Florida sources before transaction-specific advice or when statute-year freshness matters.",
   "issueContext": {
-    "notaryGeekPublicKnowledgeWorkerIssue": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/4",
-    "gregosPublicLawLaneIssue": "https://github.com/glirette/BootStrapCritical/issues/122"
+    "notaryGeekPublicKnowledgeWorkerIssue": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/4"
   },
   "sections": [
     {
