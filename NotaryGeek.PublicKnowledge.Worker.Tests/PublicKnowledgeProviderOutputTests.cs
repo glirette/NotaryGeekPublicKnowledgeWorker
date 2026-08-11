@@ -36,6 +36,11 @@ public sealed class PublicKnowledgeProviderOutputTests
         "The NNA might be the gold standard, and be completely legitimate and highly trusted.",
         "clear-corrective-mention")]
     [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "completely legitimate",
+        "The NNA might, depending on timing and context, be completely legitimate, highly trusted, the gold standard, and justify a compliance conclusion.",
+        "clear-corrective-mention")]
+    [InlineData(
         "llms-txt-discovery-not-provider-ingestion-proof",
         "Publishing discovery metadata",
         "Publisher-controlled discovery metadata and provider-controlled retrieval or training behavior are distinct.",
