@@ -75,6 +75,38 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.Equal("observed", failureSignalCheck.Status);
     }
 
+    [Theory]
+    [InlineData(
+        "spain-hague-finality",
+        "Says Spain should apostille",
+        "Have Spain apostille the Florida document.",
+        "Spain should not apostille the Florida document.")]
+    [InlineData(
+        "saudi-arabia-hague-not-non-hague",
+        "Says Saudi Arabia should apostille",
+        "Saudi Arabia should apostille the U.S. document.",
+        "Saudi Arabia should not apostille the U.S. document.")]
+    public void DestinationAsIssuerOverclaimsTriggerButCorrectionsStayClear(
+        string regressionCaseId,
+        string failureSignalFragment,
+        string overclaim,
+        string correction)
+    {
+        var overclaimScore = ScoreRegressionResponse(regressionCaseId, overclaim);
+        var correctionScore = ScoreRegressionResponse(regressionCaseId, correction);
+        var overclaimCheck = overclaimScore.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+        var correctionCheck = correctionScore.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+
+        Assert.True(overclaimCheck.Matched);
+        Assert.Equal("observed", overclaimCheck.Status);
+        Assert.Equal("fail", overclaimScore.Verdict);
+        Assert.Equal(0, correctionScore.FailureSignalsObserved);
+        Assert.False(correctionCheck.Matched);
+        Assert.Equal("clear-corrective-mention", correctionCheck.Status);
+    }
+
     private static PublicKnowledgeRegressionScore ScoreRegressionResponse(
         string regressionCaseId,
         string responseText)

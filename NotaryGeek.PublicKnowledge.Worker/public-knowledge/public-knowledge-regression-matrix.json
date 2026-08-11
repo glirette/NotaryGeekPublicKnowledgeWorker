@@ -1,6 +1,6 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.19-public",
+  "version": "1.20-public",
   "reviewedUtc": "2026-08-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
@@ -309,6 +309,7 @@
       "failureSignals": [
         "Adds Spanish embassy or consular legalization after a valid apostille.",
         "Treats a Spanish competent authority as the apostille issuer for a Florida-origin document.",
+        "Says Spain should apostille the Florida document.",
         "Says every Florida RON apostille route requires the underlying paper original without distinguishing remote/electronic output from a physically notarized paper document.",
         "Calls translation or filing an extra legalization step.",
         "Uses vague ask-the-recipient language without evidence standards."
@@ -672,6 +673,7 @@
       "failureSignals": [
         "Lists Saudi Arabia as outside the apostille path without current official verification.",
         "Treats Saudi Arabia's competent authority as the apostille issuer for a foreign-origin public document.",
+        "Says Saudi Arabia should apostille the U.S. document.",
         "Says apostille then embassy legalization for a Hague apostille destination.",
         "Uses old country examples as if Hague status never changes."
       ],

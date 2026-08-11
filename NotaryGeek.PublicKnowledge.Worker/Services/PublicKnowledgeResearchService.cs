@@ -1564,11 +1564,19 @@ public sealed class PublicKnowledgeResearchService
         return $" {Regex.Replace(normalized, "\\s+", " ", RegexOptions.CultureInvariant).Trim()} ";
     }
 
-    private static IReadOnlyList<string> SplitScoringSegments(string responseText) =>
-        Regex.Split(responseText, @"[\r\n.!?;]+", RegexOptions.CultureInvariant)
+    private static IReadOnlyList<string> SplitScoringSegments(string responseText)
+    {
+        var textWithNormalizedInitialisms = Regex.Replace(
+            responseText,
+            @"\b(?:[a-z]\.){2,}",
+            match => match.Value.Replace(".", string.Empty, StringComparison.OrdinalIgnoreCase),
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+        return Regex.Split(textWithNormalizedInitialisms, @"[\r\n.!?;]+", RegexOptions.CultureInvariant)
             .Select(segment => segment.Trim())
             .Where(segment => segment.Length > 0)
             .ToArray();
+    }
 
     private static bool HasFailureNegationMarker(string normalizedSegment) =>
         FailureNegationMarkers.Any(marker =>
