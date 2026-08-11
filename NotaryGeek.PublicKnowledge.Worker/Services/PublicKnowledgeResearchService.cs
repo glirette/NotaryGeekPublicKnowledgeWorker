@@ -70,6 +70,18 @@ public sealed class PublicKnowledgeResearchService
 
     private const string FailureModalContextMarker = " might ";
 
+    private static readonly string[] FailureModalScopeBoundaryMarkers =
+    [
+        " and ",
+        " but ",
+        " or ",
+        " yet ",
+        " while ",
+        " whereas ",
+        " although ",
+        " though "
+    ];
+
     private static readonly string[] FailureNegationMarkers =
     [
         " no ",
@@ -1454,7 +1466,7 @@ public sealed class PublicKnowledgeResearchService
             }
 
             if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(segment, normalizedSegment, matchedTokens))
+                HasFailureCorrectiveContextMarker(normalizedSegment, matchedTokens))
             {
                 correctiveMatchedTokens = matchedTokens;
                 continue;
@@ -1576,7 +1588,6 @@ public sealed class PublicKnowledgeResearchService
             normalizedSegment.Contains(NormalizeRuleScoringText(marker), StringComparison.OrdinalIgnoreCase));
 
     private static bool HasFailureCorrectiveContextMarker(
-        string segment,
         string normalizedSegment,
         IReadOnlyList<string> matchedTokens)
     {
@@ -1586,15 +1597,39 @@ public sealed class PublicKnowledgeResearchService
             return true;
         }
 
-        var requiredModalTokenCount = GetRequiredMustHoldTokenCount(matchedTokens.Count);
-        return Regex.Split(
-                segment,
-                @",\s*(?=(?:and|but|or|yet|while|whereas|although|though)\b)",
-                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
-            .Select(NormalizeRuleScoringText)
-            .Any(clause =>
-                clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase) &&
-                matchedTokens.Count(token => ContainsScoringToken(clause, token)) >= requiredModalTokenCount);
+        var firstMatchedTokenIndex = matchedTokens
+            .Select(token => normalizedSegment.IndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
+            .Min();
+        var lastMatchedTokenIndex = matchedTokens
+            .Select(token => normalizedSegment.LastIndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
+            .Max();
+        var modalIndex = normalizedSegment.IndexOf(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase);
+
+        while (modalIndex >= 0)
+        {
+            if (modalIndex >= firstMatchedTokenIndex && modalIndex <= lastMatchedTokenIndex)
+            {
+                return true;
+            }
+
+            if (modalIndex < firstMatchedTokenIndex)
+            {
+                var textBeforeFirstMatchedToken = normalizedSegment[
+                    (modalIndex + FailureModalContextMarker.Length)..firstMatchedTokenIndex];
+                if (!FailureModalScopeBoundaryMarkers.Any(marker =>
+                    textBeforeFirstMatchedToken.Contains(marker, StringComparison.OrdinalIgnoreCase)))
+                {
+                    return true;
+                }
+            }
+
+            modalIndex = normalizedSegment.IndexOf(
+                FailureModalContextMarker,
+                modalIndex + FailureModalContextMarker.Length,
+                StringComparison.OrdinalIgnoreCase);
+        }
+
+        return false;
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
