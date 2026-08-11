@@ -69,18 +69,8 @@ public sealed class PublicKnowledgeResearchService
     };
 
     private const string FailureModalContextMarker = " might ";
-
-    private static readonly string[] FailureModalScopeBoundaryMarkers =
-    [
-        " and ",
-        " but ",
-        " or ",
-        " yet ",
-        " while ",
-        " whereas ",
-        " although ",
-        " though "
-    ];
+    private const string FailureModalIndependentClauseBoundaryPattern =
+        @"\b(?:and|but|or|yet|while|whereas|although|though)\s+(?:a|an|the|this|that|these|those|i|we|you|he|she|it|they)(?:\s|$)";
 
     private static readonly string[] FailureNegationMarkers =
     [
@@ -1466,10 +1456,7 @@ public sealed class PublicKnowledgeResearchService
             }
 
             if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(
-                    normalizedSegment,
-                    NormalizeRuleScoringTextPreservingParentheticals(segment),
-                    matchedTokens))
+                HasFailureCorrectiveContextMarker(normalizedSegment, matchedTokens))
             {
                 correctiveMatchedTokens = matchedTokens;
                 continue;
@@ -1580,16 +1567,6 @@ public sealed class PublicKnowledgeResearchService
         return $" {Regex.Replace(normalized, "\\s+", " ", RegexOptions.CultureInvariant).Trim()} ";
     }
 
-    private static string NormalizeRuleScoringTextPreservingParentheticals(string text)
-    {
-        var lowered = text.ToLowerInvariant();
-        var normalized = Regex.Replace(lowered, "[^a-z0-9(),]+", " ", RegexOptions.CultureInvariant)
-            .Replace("(", " ( ", StringComparison.Ordinal)
-            .Replace(")", " ) ", StringComparison.Ordinal)
-            .Replace(",", " , ", StringComparison.Ordinal);
-        return $" {Regex.Replace(normalized, "\\s+", " ", RegexOptions.CultureInvariant).Trim()} ";
-    }
-
     private static IReadOnlyList<string> SplitScoringSegments(string responseText) =>
         Regex.Split(responseText, @"[\r\n.!?;]+", RegexOptions.CultureInvariant)
             .Select(segment => segment.Trim())
@@ -1602,7 +1579,6 @@ public sealed class PublicKnowledgeResearchService
 
     private static bool HasFailureCorrectiveContextMarker(
         string normalizedSegment,
-        string normalizedSegmentWithParentheticals,
         IReadOnlyList<string> matchedTokens)
     {
         if (FailureCorrectiveContextMarkers.Any(marker =>
@@ -1612,12 +1588,12 @@ public sealed class PublicKnowledgeResearchService
         }
 
         var firstMatchedTokenIndex = matchedTokens
-            .Select(token => normalizedSegmentWithParentheticals.IndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
+            .Select(token => normalizedSegment.IndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
             .Min();
         var lastMatchedTokenIndex = matchedTokens
-            .Select(token => normalizedSegmentWithParentheticals.LastIndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
+            .Select(token => normalizedSegment.LastIndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
             .Max();
-        var modalIndex = normalizedSegmentWithParentheticals.IndexOf(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase);
+        var modalIndex = normalizedSegment.IndexOf(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase);
 
         while (modalIndex >= 0)
         {
@@ -1628,46 +1604,24 @@ public sealed class PublicKnowledgeResearchService
 
             if (modalIndex < firstMatchedTokenIndex)
             {
-                var textBeforeFirstMatchedToken = RemoveParentheticalModifiers(
-                    normalizedSegmentWithParentheticals[
-                        (modalIndex + FailureModalContextMarker.Length)..firstMatchedTokenIndex]);
-                if (!FailureModalScopeBoundaryMarkers.Any(marker =>
-                    textBeforeFirstMatchedToken.Contains(marker, StringComparison.OrdinalIgnoreCase)))
+                var textBeforeFirstMatchedToken = normalizedSegment[
+                    (modalIndex + FailureModalContextMarker.Length)..firstMatchedTokenIndex];
+                if (!Regex.IsMatch(
+                    textBeforeFirstMatchedToken,
+                    FailureModalIndependentClauseBoundaryPattern,
+                    RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     return true;
                 }
             }
 
-            modalIndex = normalizedSegmentWithParentheticals.IndexOf(
+            modalIndex = normalizedSegment.IndexOf(
                 FailureModalContextMarker,
                 modalIndex + FailureModalContextMarker.Length,
                 StringComparison.OrdinalIgnoreCase);
         }
 
         return false;
-    }
-
-    private static string RemoveParentheticalModifiers(string text)
-    {
-        var result = new StringBuilder(text.Length);
-        var depth = 0;
-        foreach (var character in text)
-        {
-            if (character == '(')
-            {
-                depth++;
-            }
-            else if (character == ')')
-            {
-                depth = Math.Max(0, depth - 1);
-            }
-            else if (depth == 0)
-            {
-                result.Append(character);
-            }
-        }
-
-        return Regex.Replace(result.ToString(), ",[^,]*,", " ", RegexOptions.CultureInvariant);
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
