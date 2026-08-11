@@ -68,6 +68,8 @@ public sealed class PublicKnowledgeResearchService
         "without"
     };
 
+    private const string FailureModalContextMarker = " might ";
+
     private static readonly string[] FailureNegationMarkers =
     [
         " no ",
@@ -119,7 +121,6 @@ public sealed class PublicKnowledgeResearchService
         " misstate ",
         " misstates ",
         " misstated ",
-        " might ",
         " route confusion ",
         " route error ",
         " risk ",
@@ -1453,7 +1454,7 @@ public sealed class PublicKnowledgeResearchService
             }
 
             if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(normalizedSegment))
+                HasFailureCorrectiveContextMarker(segment, normalizedSegment, matchedTokens))
             {
                 correctiveMatchedTokens = matchedTokens;
                 continue;
@@ -1574,8 +1575,27 @@ public sealed class PublicKnowledgeResearchService
         FailureNegationMarkers.Any(marker =>
             normalizedSegment.Contains(NormalizeRuleScoringText(marker), StringComparison.OrdinalIgnoreCase));
 
-    private static bool HasFailureCorrectiveContextMarker(string normalizedSegment) =>
-        FailureCorrectiveContextMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
+    private static bool HasFailureCorrectiveContextMarker(
+        string segment,
+        string normalizedSegment,
+        IReadOnlyList<string> matchedTokens)
+    {
+        if (FailureCorrectiveContextMarkers.Any(marker =>
+            normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)))
+        {
+            return true;
+        }
+
+        var requiredModalTokenCount = GetRequiredMustHoldTokenCount(matchedTokens.Count);
+        return Regex.Split(
+                segment,
+                @",\s*(?=(?:and|but|or|yet|while|whereas|although|though)\b)",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .Select(NormalizeRuleScoringText)
+            .Any(clause =>
+                clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase) &&
+                matchedTokens.Count(token => ContainsScoringToken(clause, token)) >= requiredModalTokenCount);
+    }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {

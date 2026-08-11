@@ -26,6 +26,11 @@ public sealed class PublicKnowledgeProviderOutputTests
         "Adding resources might improve or dilute answers, but provider documentation, logs, or reproducible evidence is needed.",
         "clear-corrective-mention")]
     [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "A state might require an NNA background check or NNA certification.",
+        "clear-corrective-mention")]
+    [InlineData(
         "llms-txt-discovery-not-provider-ingestion-proof",
         "Publishing discovery metadata",
         "Publisher-controlled discovery metadata and provider-controlled retrieval or training behavior are distinct.",
@@ -62,6 +67,10 @@ public sealed class PublicKnowledgeProviderOutputTests
         "source-quality-term-context-not-invented-taxonomy",
         "relevant source-quality categories",
         "The relevant source-quality categories are geographic, performance, school, and cyber.")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "A state requires NNA background certification, and notaries might face penalties.")]
     public void DirectOverclaimsTriggerFailureSignals(
         string regressionCaseId,
         string failureSignalFragment,
