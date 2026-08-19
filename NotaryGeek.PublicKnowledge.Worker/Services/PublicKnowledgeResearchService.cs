@@ -1577,17 +1577,25 @@ public sealed class PublicKnowledgeResearchService
 
     private static string NormalizeFailureModalScoringText(string segment)
     {
-        var maskedParentheticalModal = Regex.Replace(
+        var maskedModal = Regex.Replace(
             segment,
             @",\s*(?:that|which|who|whom|whose)\b[^,]*\bmight\b[^,]*,",
-            match => Regex.Replace(
-                match.Value,
-                @"\bmight\b",
-                "maybe",
-                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant),
+            MaskFailureModal,
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-        return NormalizeRuleScoringText(maskedParentheticalModal);
+        maskedModal = Regex.Replace(
+            maskedModal,
+            @"\b(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+){1,4}might\s+(?:[a-z0-9]+\s+){1,3}(?=requires?|proves?\b)",
+            MaskFailureModal,
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        return NormalizeRuleScoringText(maskedModal);
     }
+
+    private static string MaskFailureModal(Match match) =>
+        Regex.Replace(
+            match.Value,
+            @"\bmight\b",
+            "maybe",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static IReadOnlyList<string> SplitScoringSegments(string responseText) =>
         Regex.Split(responseText, @"[\r\n.!?;]+", RegexOptions.CultureInvariant)
