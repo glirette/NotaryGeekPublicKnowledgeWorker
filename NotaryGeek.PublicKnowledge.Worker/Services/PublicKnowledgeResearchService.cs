@@ -70,9 +70,9 @@ public sealed class PublicKnowledgeResearchService
 
     private const string FailureModalContextMarker = " might ";
     private const string FailureModalIndependentClauseBoundaryPattern =
-        @"\b(?:and|but|or|yet|while|whereas|although|though)\s+" +
+        @"\b(?:and|but|or|yet|while|whereas|although|though|because)\s+" +
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
-        @"(?:(?!(?:and|but|or|yet|while|whereas|although|though)\b)[a-z0-9]+\s+){1,6}" +
+        @"(?:(?!(?:and|but|or|yet|while|whereas|although|though|because)\b)[a-z0-9]+\s+){1,6}" +
         @"(?:is|are|was|were|has|have|had|does|do|did|can|could|will|would|shall|should|must|may|might|" +
         @"requires?|required|proves?|proved|means?|meant|mandates?|mandated|states?|stated|claims?|claimed)\b";
 
@@ -1602,6 +1602,8 @@ public sealed class PublicKnowledgeResearchService
             .Order()
             .ToArray();
         var hasCorrectiveClause = false;
+        var hasUnhedgedMatchedClause = false;
+        var modalMatchedTokens = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (var index = 0; index < clauseStarts.Length; index++)
         {
@@ -1610,21 +1612,31 @@ public sealed class PublicKnowledgeResearchService
                 ? clauseStarts[index + 1]
                 : normalizedSegment.Length;
             var clause = normalizedSegment[clauseStart..clauseEnd];
-            var clauseMatchedTokenCount = matchedTokens.Count(token => ContainsScoringToken(clause, token));
-            if (clauseMatchedTokenCount < requiredTokenCount)
+            var clauseMatchedTokens = matchedTokens
+                .Where(token => ContainsScoringToken(clause, token))
+                .ToArray();
+            if (clauseMatchedTokens.Length == 0)
             {
                 continue;
             }
 
-            if (!clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase))
+            if (clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase))
+            {
+                modalMatchedTokens.UnionWith(clauseMatchedTokens);
+                hasCorrectiveClause |= clauseMatchedTokens.Length >= requiredTokenCount;
+                continue;
+            }
+
+            if (clauseMatchedTokens.Length >= requiredTokenCount)
             {
                 return false;
             }
 
-            hasCorrectiveClause = true;
+            hasUnhedgedMatchedClause = true;
         }
 
-        return hasCorrectiveClause;
+        return hasCorrectiveClause ||
+               (!hasUnhedgedMatchedClause && modalMatchedTokens.Count >= requiredTokenCount);
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
