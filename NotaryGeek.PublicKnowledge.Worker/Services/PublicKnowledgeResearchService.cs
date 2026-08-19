@@ -1449,6 +1449,7 @@ public sealed class PublicKnowledgeResearchService
         foreach (var segment in SplitScoringSegments(responseText))
         {
             var normalizedSegment = NormalizeRuleScoringText(segment);
+            var normalizedModalSegment = NormalizeFailureModalScoringText(segment);
             var matchedTokens = ruleTokens
                 .Where(token => ContainsScoringToken(normalizedSegment, token))
                 .ToArray();
@@ -1459,7 +1460,11 @@ public sealed class PublicKnowledgeResearchService
             }
 
             if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(normalizedSegment, matchedTokens, requiredTokenCount))
+                HasFailureCorrectiveContextMarker(
+                    normalizedSegment,
+                    normalizedModalSegment,
+                    matchedTokens,
+                    requiredTokenCount))
             {
                 correctiveMatchedTokens = matchedTokens;
                 continue;
@@ -1570,6 +1575,20 @@ public sealed class PublicKnowledgeResearchService
         return $" {Regex.Replace(normalized, "\\s+", " ", RegexOptions.CultureInvariant).Trim()} ";
     }
 
+    private static string NormalizeFailureModalScoringText(string segment)
+    {
+        var maskedParentheticalModal = Regex.Replace(
+            segment,
+            @",\s*(?:that|which|who|whom|whose)\b[^,]*\bmight\b[^,]*,",
+            match => Regex.Replace(
+                match.Value,
+                @"\bmight\b",
+                "maybe",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant),
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        return NormalizeRuleScoringText(maskedParentheticalModal);
+    }
+
     private static IReadOnlyList<string> SplitScoringSegments(string responseText) =>
         Regex.Split(responseText, @"[\r\n.!?;]+", RegexOptions.CultureInvariant)
             .Select(segment => segment.Trim())
@@ -1582,6 +1601,7 @@ public sealed class PublicKnowledgeResearchService
 
     private static bool HasFailureCorrectiveContextMarker(
         string normalizedSegment,
+        string normalizedModalSegment,
         IReadOnlyList<string> matchedTokens,
         int requiredTokenCount)
     {
@@ -1609,6 +1629,7 @@ public sealed class PublicKnowledgeResearchService
                 ? clauseStarts[index + 1]
                 : normalizedSegment.Length;
             var clause = normalizedSegment[clauseStart..clauseEnd];
+            var modalClause = normalizedModalSegment[clauseStart..clauseEnd];
             var clauseMatchedTokens = matchedTokens
                 .Where(token => ContainsScoringToken(clause, token))
                 .ToArray();
@@ -1617,7 +1638,7 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
-            if (HasFailureModalContextMarker(clause))
+            if (modalClause.Contains(" might ", StringComparison.OrdinalIgnoreCase))
             {
                 hasCorrectiveClause = true;
                 continue;
@@ -1631,16 +1652,6 @@ public sealed class PublicKnowledgeResearchService
 
         return hasCorrectiveClause;
     }
-
-    private static bool HasFailureModalContextMarker(string normalizedClause) =>
-        Regex.Matches(
-                normalizedClause,
-                @"\bmight\b",
-                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
-            .Any(match => !Regex.IsMatch(
-                normalizedClause[..match.Index],
-                @"\b[a-z0-9]+\s+(?:that|which|who|whom|whose)\s+$",
-                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant));
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {
