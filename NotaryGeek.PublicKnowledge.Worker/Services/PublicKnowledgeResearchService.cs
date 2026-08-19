@@ -70,7 +70,11 @@ public sealed class PublicKnowledgeResearchService
 
     private const string FailureModalContextMarker = " might ";
     private const string FailureModalIndependentClauseBoundaryPattern =
-        @"\b(?:and|but|or|yet|while|whereas|although|though)\s+(?:a|an|the|this|that|these|those|i|we|you|he|she|it|they)(?:\s|$)";
+        @"\b(?:and|but|or|yet|while|whereas|although|though)\s+" +
+        @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
+        @"(?:[a-z0-9]+\s+){1,6}" +
+        @"(?:is|are|was|were|has|have|had|does|do|did|can|could|will|would|shall|should|must|may|might|" +
+        @"requires?|required|proves?|proved|means?|meant|mandates?|mandated|states?|stated|claims?|claimed)\b";
 
     private static readonly string[] FailureNegationMarkers =
     [
@@ -1604,12 +1608,13 @@ public sealed class PublicKnowledgeResearchService
 
             if (modalIndex < firstMatchedTokenIndex)
             {
-                var textBeforeFirstMatchedToken = normalizedSegment[
-                    (modalIndex + FailureModalContextMarker.Length)..firstMatchedTokenIndex];
-                if (!Regex.IsMatch(
-                    textBeforeFirstMatchedToken,
+                var textAfterModal = normalizedSegment[(modalIndex + FailureModalContextMarker.Length)..];
+                var independentClause = Regex.Match(
+                    textAfterModal,
                     FailureModalIndependentClauseBoundaryPattern,
-                    RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                    RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+                var independentClauseIndex = modalIndex + FailureModalContextMarker.Length + independentClause.Index;
+                if (!independentClause.Success || independentClauseIndex >= firstMatchedTokenIndex)
                 {
                     return true;
                 }
