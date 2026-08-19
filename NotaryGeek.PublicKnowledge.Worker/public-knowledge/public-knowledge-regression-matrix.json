@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.18-public",
-  "reviewedUtc": "2026-08-09T00:00:00Z",
+  "version": "1.19-public",
+  "reviewedUtc": "2026-08-11T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -302,11 +302,13 @@
       "mustHold": [
         "Spain is treated as a 1961 Hague Apostille Convention destination.",
         "A proper apostille from the competent authority ends the legalization chain.",
+        "The apostille issuer is the competent authority of the State from which the public document emanates; Spain's authority list is not the issuer for a Florida-origin document.",
         "Document-output language distinguishes a paper notarization original from an official remote/electronic notarization output accepted by the competent authority.",
         "Translation, filing, originals, certified copies, and recipient formatting are separate from legalization."
       ],
       "failureSignals": [
         "Adds Spanish embassy or consular legalization after a valid apostille.",
+        "Treats a Spanish competent authority as the apostille issuer for a Florida-origin document.",
         "Says every Florida RON apostille route requires the underlying paper original without distinguishing remote/electronic output from a physically notarized paper document.",
         "Calls translation or filing an extra legalization step.",
         "Uses vague ask-the-recipient language without evidence standards."
@@ -314,7 +316,8 @@
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
         "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
-        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41"
+        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/"
       ]
     },
     {
@@ -336,7 +339,8 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
         "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
-        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41"
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41"
       ]
     },
     {
@@ -361,7 +365,8 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
         "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
-        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41"
+        "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41"
       ]
     },
     {
@@ -661,19 +666,19 @@
       "mustHold": [
         "Do not use Saudi Arabia as a stale non-Hague example.",
         "Check current HCCH Apostille Convention status for the transaction date.",
+        "Identify the State from which the public document emanates before naming the competent authority that can issue the apostille.",
         "If the destination is in the apostille path, do not add embassy or consular legalization after a valid apostille."
       ],
       "failureSignals": [
         "Lists Saudi Arabia as outside the apostille path without current official verification.",
+        "Treats Saudi Arabia's competent authority as the apostille issuer for a foreign-origin public document.",
         "Says apostille then embassy legalization for a Hague apostille destination.",
         "Uses old country examples as if Hague status never changes."
       ],
       "sourceUrls": [
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/apostille-hague-finality.json",
         "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
-        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41",
-        "https://www.hcch.net/en/states/authorities/details3/?aid=353",
-        "https://www.hcch.net/en/states/authorities/details3/?aid=1173"
+        "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41"
       ]
     },
     {

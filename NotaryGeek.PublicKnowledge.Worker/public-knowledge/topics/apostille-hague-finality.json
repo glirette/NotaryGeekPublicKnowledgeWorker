@@ -1,12 +1,45 @@
 {
   "schema": "notary-geek-public-knowledge-topic-v1",
   "id": "apostille-hague-finality",
-  "version": "0.1-public",
-  "reviewedUtc": "2026-06-07T00:00:00Z",
+  "version": "0.2-public",
+  "reviewedUtc": "2026-08-11T00:00:00Z",
   "title": "Hague apostille finality",
   "purpose": "Prevent mixing Hague apostille routes with non-apostille authentication and legalization chains.",
+  "notLegalAdvice": true,
+  "notOperationalPlaybook": true,
+  "publicOnly": true,
   "coreRule": "For destinations in the 1961 Hague Apostille Convention path, a proper apostille from the competent authority is the legalization certificate and ends the legalization chain.",
+  "conventionScopeRule": "The Convention applies to covered public documents executed in one Contracting State and produced in another. Article 1 excludes documents executed by diplomatic or consular agents and administrative documents dealing directly with commercial or customs operations.",
+  "certificateScopeRule": "Under Article 5, the apostille certifies the signature, the signer's capacity, and, where appropriate, the identity of the seal or stamp. It does not certify the underlying contents or guarantee recipient acceptance.",
+  "competentAuthorityRule": "The apostille must be issued by a competent authority of the State from which the public document emanates. A destination country's competent-authority page does not identify the issuer for a document created in another State.",
   "spainExample": "Spain is a Hague apostille destination. If a Florida-commissioned notary notarizes a new private document and Florida issues the apostille, no Spanish embassy or consular legalization should be added after that valid apostille.",
+  "saudiArabiaExample": "The current HCCH status table lists Saudi Arabia's accession on 8 April 2022 and entry into force on 7 December 2022. For a covered United States-origin public document, use the relevant United States competent authority; Saudi Arabia's designated authority issues apostilles for Saudi-origin public documents.",
+  "countryStatusExamples": [
+    {
+      "country": "Spain",
+      "statusAsReviewed": "The HCCH status table lists signature on 21 October 1976, ratification on 27 July 1978, and entry into force on 25 September 1978.",
+      "destinationUse": "Use the current status table to check whether a covered public document moving to Spain is in the Convention path for the transaction date.",
+      "competentAuthorityBoundary": "Spain's Article 6 authority page describes issuers for Spanish-origin public documents. It does not authorize a Spanish authority to apostille a Florida-origin document.",
+      "sourceIds": [
+        "hcch-apostille-status-table",
+        "hcch-apostille-convention-text",
+        "hcch-spain-competent-authority",
+        "florida-apostille-authority"
+      ]
+    },
+    {
+      "country": "Saudi Arabia",
+      "statusAsReviewed": "The HCCH status table lists accession on 8 April 2022 and entry into force on 7 December 2022.",
+      "destinationUse": "Use the current status table and any applicable relationship details to check whether a covered public document moving to Saudi Arabia is in the Convention path for the transaction date.",
+      "competentAuthorityBoundary": "Saudi Arabia's Article 6 authority page describes the issuer for Saudi-origin public documents. It does not authorize the Saudi authority to apostille a United States-origin document.",
+      "sourceIds": [
+        "hcch-apostille-status-table",
+        "hcch-apostille-convention-text",
+        "hcch-united-states-competent-authorities",
+        "hcch-saudi-arabia-competent-authority"
+      ]
+    }
+  ],
   "separateFromLegalization": [
     "translation",
     "certified translation",
@@ -24,5 +57,85 @@
     "uses stale country status without checking the current apostille path",
     "treats platform international support as proof of apostille finality"
   ],
-  "sourceQualityRule": "Check current Hague apostille status from official sources for the transaction date. Do not rely on stale lists or generic platform claims."
+  "officialSources": [
+    {
+      "id": "hcch-apostille-status-table",
+      "title": "Status table: 1961 Apostille Convention",
+      "publisher": "Hague Conference on Private International Law",
+      "sourceType": "official-convention-status-table",
+      "sourceRole": "destination-status-and-effective-date-check",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-08-11T00:00:00Z",
+      "visibleUpdate": "30 June 2026",
+      "routeUse": "Check current Contracting Party, ratification or accession, and entry-into-force metadata for the relevant transaction date.",
+      "boundary": "A country row alone does not prove that a particular document is covered, that every bilateral relationship is effective, that an apostille is genuine, or that a recipient will accept the document."
+    },
+    {
+      "id": "hcch-apostille-convention-text",
+      "title": "Convention of 5 October 1961 Abolishing the Requirement of Legalisation for Foreign Public Documents",
+      "publisher": "Hague Conference on Private International Law",
+      "sourceType": "official-convention-text",
+      "sourceRole": "controlling-convention-scope-and-certificate-rule",
+      "url": "https://www.hcch.net/en/instruments/conventions/full-text/?cid=41",
+      "checkedUtc": "2026-08-11T00:00:00Z",
+      "routeUse": "Articles 1, 3, 5, and 6 establish the covered-public-document boundary, origin-State competent authority, certificate scope, and authority-designation rule.",
+      "boundary": "The apostille certifies the signature, capacity, and seal or stamp described by the Convention. It does not certify the underlying document contents or guarantee recipient acceptance."
+    },
+    {
+      "id": "hcch-united-states-competent-authorities",
+      "title": "United States of America - Competent Authority (Art. 6)",
+      "publisher": "Hague Conference on Private International Law",
+      "sourceType": "official-competent-authority-record",
+      "sourceRole": "united-states-origin-authority-metadata",
+      "url": "https://www.hcch.net/en/states/authorities/details3/?aid=353",
+      "checkedUtc": "2026-08-11T00:00:00Z",
+      "visibleUpdate": "16 June 2026",
+      "routeUse": "Identify the appropriate origin authority for United States federal, state, court, and territorial public documents.",
+      "boundary": "This is United States origin-authority metadata. It is not Saudi Arabia authority metadata and does not by itself select an issuer without the document's actual public-official signature and origin."
+    },
+    {
+      "id": "florida-apostille-authority",
+      "title": "Authentications (Apostilles & Notarial Certifications)",
+      "publisher": "Florida Department of State, Division of Corporations",
+      "sourceType": "official-state-agency-guidance",
+      "sourceRole": "florida-origin-authority-and-routing-guidance",
+      "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+      "checkedUtc": "2026-08-11T00:00:00Z",
+      "routeUse": "Confirm that the Florida Secretary of State is Florida's competent authority and that a document signed by a notary in another state routes to that other state's authority.",
+      "boundary": "Use the live agency page for current document and submission requirements. This record does not promise acceptance, timing, price, or completion for a specific request."
+    },
+    {
+      "id": "hcch-spain-competent-authority",
+      "title": "Spain - Competent Authority (Art. 6)",
+      "publisher": "Hague Conference on Private International Law",
+      "sourceType": "official-competent-authority-record",
+      "sourceRole": "spain-origin-authority-metadata",
+      "url": "https://www.hcch.net/en/states/authorities/details3/?aid=346",
+      "checkedUtc": "2026-08-11T00:00:00Z",
+      "visibleUpdate": "17 June 2013",
+      "routeUse": "Identify the categories of Spanish authorities designated for Spanish-origin administrative, judicial, notarial, and other public documents.",
+      "boundary": "This is Spain origin-authority metadata. It does not make a Spanish authority the apostille issuer for a Florida-origin document. Recheck the live HCCH record and current Spanish official guidance before relying on operational details."
+    },
+    {
+      "id": "hcch-saudi-arabia-competent-authority",
+      "title": "Saudi Arabia - Competent Authority (Art. 6)",
+      "publisher": "Hague Conference on Private International Law",
+      "sourceType": "official-competent-authority-record",
+      "sourceRole": "saudi-arabia-origin-authority-metadata",
+      "url": "https://www.hcch.net/en/states/authorities/details3/?aid=1173",
+      "checkedUtc": "2026-08-11T00:00:00Z",
+      "visibleUpdate": "4 June 2026",
+      "routeUse": "Identify the designated competent authority for Saudi-origin public documents.",
+      "boundary": "This is Saudi Arabia origin-authority metadata. It does not make the Saudi authority the apostille issuer for a United States-origin document."
+    }
+  ],
+  "sourceQualityRule": "Check current Convention status, any applicable relationship details, document coverage, and the competent authority of the State from which the public document emanates. Do not rely on stale country lists, destination-authority pages as origin authority, generic platform claims, or recipient assumptions.",
+  "strictExclusions": [
+    "raw historical provider responses",
+    "customer or signer data",
+    "private context or internal operating details",
+    "legal advice for a specific document",
+    "recipient acceptance guarantees",
+    "service acceptance, pricing, timing, or liability-bearing commitments"
+  ]
 }
