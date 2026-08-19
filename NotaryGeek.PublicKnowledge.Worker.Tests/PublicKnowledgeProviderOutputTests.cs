@@ -42,6 +42,11 @@ public sealed class PublicKnowledgeProviderOutputTests
         "clear-corrective-mention")]
     [InlineData(
         "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "A state might require an NNA background check or a state certification from the NNA.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
         "completely legitimate",
         "The NNA might be the gold standard, and be completely legitimate and highly trusted.",
         "clear-corrective-mention")]
@@ -121,6 +126,10 @@ public sealed class PublicKnowledgeProviderOutputTests
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
         "A state requires NNA background certification because notaries might face penalties without it.")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "A state requires NNA background certification, and notaries who omit it might face penalties.")]
     public void DirectOverclaimsTriggerFailureSignals(
         string regressionCaseId,
         string failureSignalFragment,

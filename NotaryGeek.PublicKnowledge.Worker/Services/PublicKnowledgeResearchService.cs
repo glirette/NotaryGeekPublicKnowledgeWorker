@@ -72,9 +72,9 @@ public sealed class PublicKnowledgeResearchService
     private const string FailureModalIndependentClauseBoundaryPattern =
         @"\b(?:and|but|or|yet|while|whereas|although|though|because)\s+" +
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
-        @"(?:(?!(?:and|but|or|yet|while|whereas|although|though|because|that|which|who|whom|whose)\b)[a-z0-9]+\s+){1,6}" +
+        @"(?:(?!(?:and|but|or|yet|while|whereas|although|though|because|that|which|whom|whose)\b)[a-z0-9]+\s+){1,6}" +
         @"(?:is|are|was|were|has|have|had|does|do|did|can|could|will|would|shall|should|must|may|might|" +
-        @"requires?|proves?|means?|mandates?|states?|claims?)\b";
+        @"requires?|proves?|means?|mandates?|claims?)\b";
 
     private static readonly string[] FailureNegationMarkers =
     [
