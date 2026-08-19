@@ -1639,7 +1639,7 @@ public sealed class PublicKnowledgeResearchService
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
             .Any(match => !Regex.IsMatch(
                 normalizedClause[..match.Index],
-                @"\b(?:that|which|who|whom|whose)\s+$",
+                @"\b[a-z0-9]+\s+(?:that|which|who|whom|whose)\s+$",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant));
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
