@@ -68,7 +68,6 @@ public sealed class PublicKnowledgeResearchService
         "without"
     };
 
-    private const string FailureModalContextMarker = " might ";
     private const string FailureModalIndependentClauseBoundaryPattern =
         @"\b(?:and|but|or|yet|while|whereas|although|though|because)\s+" +
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
@@ -1618,7 +1617,7 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
-            if (clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase))
+            if (HasFailureModalContextMarker(clause))
             {
                 hasCorrectiveClause = true;
                 continue;
@@ -1632,6 +1631,16 @@ public sealed class PublicKnowledgeResearchService
 
         return hasCorrectiveClause;
     }
+
+    private static bool HasFailureModalContextMarker(string normalizedClause) =>
+        Regex.Matches(
+                normalizedClause,
+                @"\bmight\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .Any(match => !Regex.IsMatch(
+                normalizedClause[..match.Index],
+                @"\b(?:that|which|who|whom|whose)\s+$",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant));
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {

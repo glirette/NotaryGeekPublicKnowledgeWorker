@@ -148,6 +148,10 @@ public sealed class PublicKnowledgeProviderOutputTests
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
         "A state requires NNA background certification, and notaries which omit it might face penalties.")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "California state law, which might change, requires NNA background certification.")]
     public void DirectOverclaimsTriggerFailureSignals(
         string regressionCaseId,
         string failureSignalFragment,
