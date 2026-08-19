@@ -1602,8 +1602,6 @@ public sealed class PublicKnowledgeResearchService
             .Order()
             .ToArray();
         var hasCorrectiveClause = false;
-        var hasUnhedgedMatchedClause = false;
-        var modalMatchedTokens = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (var index = 0; index < clauseStarts.Length; index++)
         {
@@ -1622,8 +1620,7 @@ public sealed class PublicKnowledgeResearchService
 
             if (clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase))
             {
-                modalMatchedTokens.UnionWith(clauseMatchedTokens);
-                hasCorrectiveClause |= clauseMatchedTokens.Length >= requiredTokenCount;
+                hasCorrectiveClause = true;
                 continue;
             }
 
@@ -1631,12 +1628,9 @@ public sealed class PublicKnowledgeResearchService
             {
                 return false;
             }
-
-            hasUnhedgedMatchedClause = true;
         }
 
-        return hasCorrectiveClause ||
-               (!hasUnhedgedMatchedClause && modalMatchedTokens.Count >= requiredTokenCount);
+        return hasCorrectiveClause;
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
