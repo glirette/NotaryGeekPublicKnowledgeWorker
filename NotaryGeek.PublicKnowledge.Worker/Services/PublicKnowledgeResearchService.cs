@@ -74,7 +74,7 @@ public sealed class PublicKnowledgeResearchService
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
         @"(?:(?!(?:and|but|or|yet|while|whereas|although|though|because|that|which|who|whom|whose)\b)[a-z0-9]+\s+){1,6}" +
         @"(?:is|are|was|were|has|have|had|does|do|did|can|could|will|would|shall|should|must|may|might|" +
-        @"requires?|required|proves?|proved|means?|meant|mandates?|mandated|states?|stated|claims?|claimed)\b";
+        @"requires?|proves?|means?|mandates?|states?|claims?)\b";
 
     private static readonly string[] FailureNegationMarkers =
     [
