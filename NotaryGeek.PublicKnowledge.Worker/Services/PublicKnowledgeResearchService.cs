@@ -72,7 +72,7 @@ public sealed class PublicKnowledgeResearchService
     private const string FailureModalIndependentClauseBoundaryPattern =
         @"\b(?:and|but|or|yet|while|whereas|although|though)\s+" +
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
-        @"(?:[a-z0-9]+\s+){1,6}" +
+        @"(?:(?!(?:and|but|or|yet|while|whereas|although|though)\b)[a-z0-9]+\s+){1,6}" +
         @"(?:is|are|was|were|has|have|had|does|do|did|can|could|will|would|shall|should|must|may|might|" +
         @"requires?|required|proves?|proved|means?|meant|mandates?|mandated|states?|stated|claims?|claimed)\b";
 
@@ -1460,7 +1460,7 @@ public sealed class PublicKnowledgeResearchService
             }
 
             if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(normalizedSegment, matchedTokens))
+                HasFailureCorrectiveContextMarker(normalizedSegment, matchedTokens, requiredTokenCount))
             {
                 correctiveMatchedTokens = matchedTokens;
                 continue;
@@ -1583,7 +1583,8 @@ public sealed class PublicKnowledgeResearchService
 
     private static bool HasFailureCorrectiveContextMarker(
         string normalizedSegment,
-        IReadOnlyList<string> matchedTokens)
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
     {
         if (FailureCorrectiveContextMarkers.Any(marker =>
             normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)))
@@ -1591,42 +1592,39 @@ public sealed class PublicKnowledgeResearchService
             return true;
         }
 
-        var firstMatchedTokenIndex = matchedTokens
-            .Select(token => normalizedSegment.IndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
-            .Min();
-        var lastMatchedTokenIndex = matchedTokens
-            .Select(token => normalizedSegment.LastIndexOf($" {token} ", StringComparison.OrdinalIgnoreCase))
-            .Max();
-        var modalIndex = normalizedSegment.IndexOf(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase);
+        var clauseStarts = Regex.Matches(
+                normalizedSegment,
+                FailureModalIndependentClauseBoundaryPattern,
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .Select(match => match.Index)
+            .Prepend(0)
+            .Distinct()
+            .Order()
+            .ToArray();
+        var hasCorrectiveClause = false;
 
-        while (modalIndex >= 0)
+        for (var index = 0; index < clauseStarts.Length; index++)
         {
-            if (modalIndex >= firstMatchedTokenIndex && modalIndex <= lastMatchedTokenIndex)
+            var clauseStart = clauseStarts[index];
+            var clauseEnd = index + 1 < clauseStarts.Length
+                ? clauseStarts[index + 1]
+                : normalizedSegment.Length;
+            var clause = normalizedSegment[clauseStart..clauseEnd];
+            var clauseMatchedTokenCount = matchedTokens.Count(token => ContainsScoringToken(clause, token));
+            if (clauseMatchedTokenCount < requiredTokenCount)
             {
-                return true;
+                continue;
             }
 
-            if (modalIndex < firstMatchedTokenIndex)
+            if (!clause.Contains(FailureModalContextMarker, StringComparison.OrdinalIgnoreCase))
             {
-                var textAfterModal = normalizedSegment[(modalIndex + FailureModalContextMarker.Length)..];
-                var independentClause = Regex.Match(
-                    textAfterModal,
-                    FailureModalIndependentClauseBoundaryPattern,
-                    RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-                var independentClauseIndex = modalIndex + FailureModalContextMarker.Length + independentClause.Index;
-                if (!independentClause.Success || independentClauseIndex >= firstMatchedTokenIndex)
-                {
-                    return true;
-                }
+                return false;
             }
 
-            modalIndex = normalizedSegment.IndexOf(
-                FailureModalContextMarker,
-                modalIndex + FailureModalContextMarker.Length,
-                StringComparison.OrdinalIgnoreCase);
+            hasCorrectiveClause = true;
         }
 
-        return false;
+        return hasCorrectiveClause;
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
