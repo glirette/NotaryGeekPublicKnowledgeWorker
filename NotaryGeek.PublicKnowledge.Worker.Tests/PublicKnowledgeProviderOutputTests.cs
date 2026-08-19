@@ -53,6 +53,11 @@ public sealed class PublicKnowledgeProviderOutputTests
     [InlineData(
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
+        "Experts say that a state might conclude its law requires NNA background certification.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
         "A state that publishes guidance might require an NNA background check or NNA certification.",
         "clear-corrective-mention")]
     [InlineData(

@@ -1449,7 +1449,6 @@ public sealed class PublicKnowledgeResearchService
         foreach (var segment in SplitScoringSegments(responseText))
         {
             var normalizedSegment = NormalizeRuleScoringText(segment);
-            var normalizedModalSegment = NormalizeFailureModalScoringText(segment);
             var matchedTokens = ruleTokens
                 .Where(token => ContainsScoringToken(normalizedSegment, token))
                 .ToArray();
@@ -1459,6 +1458,7 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
+            var normalizedModalSegment = NormalizeFailureModalScoringText(segment, matchedTokens);
             if (HasFailureNegationMarker(normalizedSegment) ||
                 HasFailureCorrectiveContextMarker(
                     normalizedSegment,
@@ -1575,7 +1575,9 @@ public sealed class PublicKnowledgeResearchService
         return $" {Regex.Replace(normalized, "\\s+", " ", RegexOptions.CultureInvariant).Trim()} ";
     }
 
-    private static string NormalizeFailureModalScoringText(string segment)
+    private static string NormalizeFailureModalScoringText(
+        string segment,
+        IReadOnlyList<string> matchedTokens)
     {
         var maskedModal = Regex.Replace(
             segment,
@@ -1584,8 +1586,15 @@ public sealed class PublicKnowledgeResearchService
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         maskedModal = Regex.Replace(
             maskedModal,
-            @"\b(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+){1,4}might\s+(?:[a-z0-9]+\s+){1,3}(?=requires?|proves?\b)",
-            MaskFailureModal,
+            @"(?<antecedent>\b[a-z0-9]+(?:\s+[a-z0-9]+)?)\s+" +
+            @"(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+){1,4}might\s+(?:[a-z0-9]+\s+){1,3}" +
+            @"(?=requires?|proves?\b)",
+            match => matchedTokens.Any(token =>
+                ContainsScoringToken(
+                    NormalizeRuleScoringText(match.Groups["antecedent"].Value),
+                    token))
+                ? MaskFailureModal(match)
+                : match.Value,
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         return NormalizeRuleScoringText(maskedModal);
     }
