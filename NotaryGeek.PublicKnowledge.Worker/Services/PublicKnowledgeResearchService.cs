@@ -1458,7 +1458,10 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
-            var normalizedModalSegment = NormalizeFailureModalScoringText(segment, matchedTokens);
+            var normalizedModalSegment = NormalizeFailureModalScoringText(
+                segment,
+                matchedTokens,
+                requiredTokenCount);
             if (HasFailureNegationMarker(normalizedSegment) ||
                 HasFailureCorrectiveContextMarker(
                     normalizedSegment,
@@ -1577,26 +1580,60 @@ public sealed class PublicKnowledgeResearchService
 
     private static string NormalizeFailureModalScoringText(
         string segment,
-        IReadOnlyList<string> matchedTokens)
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
     {
         var maskedModal = Regex.Replace(
             segment,
             @",\s*(?:that|which|who|whom|whose)\b[^,]*\bmight\b[^,]*,",
-            MaskFailureModal,
+            match => HasUnhedgedFailureThresholdOutsideMatch(
+                segment,
+                match,
+                matchedTokens,
+                requiredTokenCount)
+                ? MaskFailureModal(match)
+                : match.Value,
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         maskedModal = Regex.Replace(
             maskedModal,
-            @"(?<antecedent>\b[a-z0-9]+(?:\s+[a-z0-9]+)?)\s+" +
-            @"(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+){1,4}might\s+(?:[a-z0-9]+\s+){1,3}" +
+            @"^\s*(?:although|though|while|whereas|because)\b[^,]*\bmight\b[^,]*,",
+            match => HasUnhedgedFailureThresholdOutsideMatch(
+                segment,
+                match,
+                matchedTokens,
+                requiredTokenCount)
+                ? MaskFailureModal(match)
+                : match.Value,
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        maskedModal = Regex.Replace(
+            maskedModal,
+            @"\b(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+){1,4}might\s+(?:[a-z0-9]+\s+){1,3}" +
             @"(?=requires?|proves?\b)",
-            match => matchedTokens.Any(token =>
-                ContainsScoringToken(
-                    NormalizeRuleScoringText(match.Groups["antecedent"].Value),
-                    token))
+            match => HasUnhedgedFailureThresholdOutsideMatch(
+                segment,
+                match,
+                matchedTokens,
+                requiredTokenCount)
                 ? MaskFailureModal(match)
                 : match.Value,
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         return NormalizeRuleScoringText(maskedModal);
+    }
+
+    private static bool HasUnhedgedFailureThresholdOutsideMatch(
+        string segment,
+        Match match,
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
+    {
+        var outsideMatch = string.Concat(
+            segment.AsSpan(0, match.Index),
+            new string(' ', match.Length),
+            segment.AsSpan(match.Index + match.Length));
+        var normalizedOutsideMatch = NormalizeRuleScoringText(outsideMatch);
+        return !normalizedOutsideMatch.Contains(" might ", StringComparison.OrdinalIgnoreCase) &&
+               matchedTokens.Count(token => ContainsScoringToken(normalizedOutsideMatch, token)) >=
+               requiredTokenCount;
     }
 
     private static string MaskFailureModal(Match match) =>
