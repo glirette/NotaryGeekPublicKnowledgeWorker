@@ -69,9 +69,9 @@ public sealed class PublicKnowledgeResearchService
     };
 
     private const string FailureModalIndependentClauseBoundaryPattern =
-        @"\b(?:and|but|or|yet|while|whereas|although|though|because)\s+" +
+        @"\b(?:and|but|yet|while|whereas|although|though|because)\s+" +
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
-        @"(?:(?!(?:and|but|or|yet|while|whereas|although|though|because)\b)[a-z0-9]+\s+)+?" +
+        @"(?:(?!(?:and|but|yet|while|whereas|although|though|because)\b)[a-z0-9]+\s+)+?" +
         @"(?:is|are|was|were|has|have|had|does|do|did|can|could|will|would|shall|should|must|may|might|" +
         @"requires?|proves?)\b";
 
@@ -1587,6 +1587,8 @@ public sealed class PublicKnowledgeResearchService
         [
             @",\s*(?:that|which|who|whom|whose)\b[^,]*\bmight\b[^,]*,",
             @"^\s*(?:although|though|while|whereas|because)\b[^,]*\bmight\b[^,]*,",
+            @"^[^,]*\bmight\b[^,]*,\s*(?=(?:and|but|or|yet|while|whereas|although|though|because)\b)",
+            @",\s*(?:and|but|or|yet|while|whereas|although|though|because)\b[^,]*\bmight\b[^,]*$",
             @"\b(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+)+?might\s+(?:[a-z0-9]+\s+)+?" +
             @"(?=requires?|proves?\b)"
         ];
@@ -1674,7 +1676,6 @@ public sealed class PublicKnowledgeResearchService
                 normalizedSegment,
                 FailureModalIndependentClauseBoundaryPattern,
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
-            .Where(match => !IsFailureObjectRelativeBoundary(match.Value))
             .Select(match => match.Index)
             .Prepend(0)
             .Distinct()
@@ -1712,14 +1713,6 @@ public sealed class PublicKnowledgeResearchService
 
         return hasCorrectiveClause;
     }
-
-    private static bool IsFailureObjectRelativeBoundary(string boundary) =>
-        Regex.IsMatch(
-            boundary,
-            @"^\s*or\b.*\b(?:that|which|who|whom|whose)\s+" +
-            @"(?:a|an|the|this|that|these|those|he|she|it|they|we|you|i)\s+" +
-            @".*\b(?:requires?|proves?)\b\s*$",
-            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {
