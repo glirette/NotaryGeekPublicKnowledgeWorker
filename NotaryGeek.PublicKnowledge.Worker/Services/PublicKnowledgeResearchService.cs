@@ -69,7 +69,8 @@ public sealed class PublicKnowledgeResearchService
     };
 
     private const string FailureModalIndependentClauseBoundaryPattern =
-        @"(?:\band\s+(?:(?:a|an|the|this|that|these|those)\s+)?(?:[a-z0-9]+\s+){1,3}|" +
+        @"(?:\band\s+(?:(?:a|an|the|this|that|these|those)\s+)?" +
+        @"(?:(?!(?:that|which|who|whom|whose)\b)[a-z0-9]+\s+){1,3}|" +
         @"\b(?:but|yet|while|whereas|although|though|because)\s+" +
         @"(?:(?:a|an|the|this|that|these|those)\s+)?" +
         @"(?:(?!(?:but|yet|while|whereas|although|though|because)\b)[a-z0-9]+\s+)+?)" +
