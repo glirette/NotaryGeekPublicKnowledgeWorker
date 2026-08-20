@@ -1392,11 +1392,14 @@ public sealed class PublicKnowledgeResearchService
         var mustHoldPassed = mustHoldChecks.Count(item => item.Matched);
         var failureSignalTotal = failureSignalChecks.Length;
         var failureSignalsObserved = failureSignalChecks.Count(item => item.Matched);
+        var failureSignalNeedsReview = failureSignalChecks.Any(item =>
+            string.Equals(item.Status, "ambiguous-modal-scope", StringComparison.Ordinal));
         var verdict = GetRegressionVerdict(
             hasResponse,
             mustHoldTotal,
             mustHoldPassed,
-            failureSignalsObserved);
+            failureSignalsObserved,
+            failureSignalNeedsReview);
 
         return new PublicKnowledgeRegressionScore(
             "notary-geek-public-knowledge-regression-score-v1",
@@ -1451,6 +1454,7 @@ public sealed class PublicKnowledgeResearchService
 
         var requiredTokenCount = GetRequiredFailureSignalTokenCount(ruleTokens.Count);
         IReadOnlyList<string> correctiveMatchedTokens = [];
+        IReadOnlyList<string> ambiguousMatchedTokens = [];
         foreach (var segment in SplitScoringSegments(responseText))
         {
             var normalizedSegment = NormalizeRuleScoringText(segment);
@@ -1463,12 +1467,23 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
+            if (HasFailureNegationMarker(normalizedSegment))
+            {
+                correctiveMatchedTokens = matchedTokens;
+                continue;
+            }
+
+            if (HasAmbiguousFailureModalScope(segment, normalizedSegment))
+            {
+                ambiguousMatchedTokens = matchedTokens;
+                continue;
+            }
+
             var normalizedModalSegment = NormalizeFailureModalScoringText(
                 segment,
                 matchedTokens,
                 requiredTokenCount);
-            if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(
+            if (HasFailureCorrectiveContextMarker(
                     normalizedSegment,
                     normalizedModalSegment,
                     matchedTokens,
@@ -1483,6 +1498,17 @@ public sealed class PublicKnowledgeResearchService
                 "observed",
                 true,
                 matchedTokens,
+                ruleTokens,
+                requiredTokenCount);
+        }
+
+        if (ambiguousMatchedTokens.Count > 0)
+        {
+            return BuildRuleCheck(
+                rule,
+                "ambiguous-modal-scope",
+                false,
+                ambiguousMatchedTokens,
                 ruleTokens,
                 requiredTokenCount);
         }
@@ -1522,7 +1548,8 @@ public sealed class PublicKnowledgeResearchService
         bool hasResponse,
         int mustHoldTotal,
         int mustHoldPassed,
-        int failureSignalsObserved)
+        int failureSignalsObserved,
+        bool failureSignalNeedsReview)
     {
         if (!hasResponse)
         {
@@ -1532,6 +1559,11 @@ public sealed class PublicKnowledgeResearchService
         if (failureSignalsObserved > 0)
         {
             return "fail";
+        }
+
+        if (failureSignalNeedsReview)
+        {
+            return "needs-review";
         }
 
         if (mustHoldTotal == 0)
@@ -1575,6 +1607,19 @@ public sealed class PublicKnowledgeResearchService
 
     private static bool ContainsScoringToken(string normalizedText, string token) =>
         normalizedText.Contains($" {token} ", StringComparison.OrdinalIgnoreCase);
+
+    private static bool HasAmbiguousFailureModalScope(
+        string segment,
+        string normalizedSegment) =>
+        !segment.Contains(',') &&
+        normalizedSegment.Contains(" might ", StringComparison.OrdinalIgnoreCase) &&
+        normalizedSegment.Contains(" and ", StringComparison.OrdinalIgnoreCase) &&
+        new[] { " that ", " which ", " who ", " whom ", " whose " }
+            .Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)) &&
+        (normalizedSegment.Contains(" require ", StringComparison.OrdinalIgnoreCase) ||
+         normalizedSegment.Contains(" requires ", StringComparison.OrdinalIgnoreCase) ||
+         normalizedSegment.Contains(" prove ", StringComparison.OrdinalIgnoreCase) ||
+         normalizedSegment.Contains(" proves ", StringComparison.OrdinalIgnoreCase));
 
     private static string NormalizeRuleScoringText(string text)
     {

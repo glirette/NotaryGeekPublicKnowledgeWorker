@@ -102,16 +102,6 @@ public sealed class PublicKnowledgeProviderOutputTests
         "clear-corrective-mention")]
     [InlineData(
         "nna-legitimacy-not-legal-authority",
-        "state requires an NNA background check or NNA certification",
-        "A state might require routine paperwork and an NNA certification for a state background check that lenders require for closings.",
-        "clear-corrective-mention")]
-    [InlineData(
-        "nna-legitimacy-not-legal-authority",
-        "state requires an NNA background check or NNA certification",
-        "A state might require routine paperwork and an NNA certification that is current for a state background check.",
-        "clear-corrective-mention")]
-    [InlineData(
-        "nna-legitimacy-not-legal-authority",
         "completely legitimate",
         "The NNA might be the gold standard, and be completely legitimate and highly trusted.",
         "clear-corrective-mention")]
@@ -182,10 +172,6 @@ public sealed class PublicKnowledgeProviderOutputTests
     [InlineData(
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
-        "Notaries might face penalties and California state law that applies requires NNA background certification.")]
-    [InlineData(
-        "nna-legitimacy-not-legal-authority",
-        "state requires an NNA background check or NNA certification",
         "Notaries might face penalties, and California state law requires NNA background certification.")]
     [InlineData(
         "nna-legitimacy-not-legal-authority",
@@ -250,6 +236,26 @@ public sealed class PublicKnowledgeProviderOutputTests
 
         Assert.True(failureSignalCheck.Matched);
         Assert.Equal("observed", failureSignalCheck.Status);
+    }
+
+    [Theory]
+    [InlineData("A state might require routine paperwork and an NNA certification for a state background check that lenders require for closings.")]
+    [InlineData("A state might require routine paperwork and an NNA certification that is current for a state background check.")]
+    [InlineData("A state might require routine paperwork and an NNA certification that lenders claim proves completion of a state background check.")]
+    [InlineData("Notaries might face penalties and California state law that applies requires NNA background certification.")]
+    [InlineData("Notaries might face penalties and California state law that the legislature wrote requires NNA background certification.")]
+    public void AmbiguousModalScopesRequireHumanReview(string responseText)
+    {
+        var score = ScoreRegressionResponse("nna-legitimacy-not-legal-authority", responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(
+                "state requires an NNA background check or NNA certification",
+                StringComparison.OrdinalIgnoreCase));
+
+        Assert.Equal(0, score.FailureSignalsObserved);
+        Assert.Equal("needs-review", score.Verdict);
+        Assert.False(failureSignalCheck.Matched);
+        Assert.Equal("ambiguous-modal-scope", failureSignalCheck.Status);
     }
 
     private static PublicKnowledgeRegressionScore ScoreRegressionResponse(
