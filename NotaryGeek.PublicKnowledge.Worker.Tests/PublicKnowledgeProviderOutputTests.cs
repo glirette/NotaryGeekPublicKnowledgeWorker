@@ -92,6 +92,11 @@ public sealed class PublicKnowledgeProviderOutputTests
         "clear-corrective-mention")]
     [InlineData(
         "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "A state might require routine paperwork or an NNA certification for a state background check that the lender requires for closings.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
         "completely legitimate",
         "The NNA might be the gold standard, and be completely legitimate and highly trusted.",
         "clear-corrective-mention")]
@@ -191,6 +196,10 @@ public sealed class PublicKnowledgeProviderOutputTests
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
         "California state law that notaries might discuss requires NNA background certification.")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "California state law that notaries working for large national mortgage lenders might discuss requires NNA background certification.")]
     [InlineData(
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",

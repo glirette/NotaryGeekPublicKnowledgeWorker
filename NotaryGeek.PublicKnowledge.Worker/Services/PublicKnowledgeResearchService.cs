@@ -1587,7 +1587,7 @@ public sealed class PublicKnowledgeResearchService
         [
             @",\s*(?:that|which|who|whom|whose)\b[^,]*\bmight\b[^,]*,",
             @"^\s*(?:although|though|while|whereas|because)\b[^,]*\bmight\b[^,]*,",
-            @"\b(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+){1,4}might\s+(?:[a-z0-9]+\s+){1,3}" +
+            @"\b(?:that|which|who|whom|whose)\s+(?:[a-z0-9]+\s+)+?might\s+(?:[a-z0-9]+\s+)+?" +
             @"(?=requires?|proves?\b)"
         ];
         var candidateMatches = candidatePatterns
@@ -1674,6 +1674,7 @@ public sealed class PublicKnowledgeResearchService
                 normalizedSegment,
                 FailureModalIndependentClauseBoundaryPattern,
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .Where(match => !IsFailureObjectRelativeBoundary(match.Value))
             .Select(match => match.Index)
             .Prepend(0)
             .Distinct()
@@ -1711,6 +1712,12 @@ public sealed class PublicKnowledgeResearchService
 
         return hasCorrectiveClause;
     }
+
+    private static bool IsFailureObjectRelativeBoundary(string boundary) =>
+        Regex.IsMatch(
+            boundary,
+            @"^\s*or\b.*\b(?:that|which|who|whom|whose)\b.*\b(?:requires?|proves?)\b\s*$",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {
