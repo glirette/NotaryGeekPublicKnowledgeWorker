@@ -171,6 +171,10 @@ public sealed class PublicKnowledgeProviderOutputTests
     [InlineData(
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
+        "Notaries might face penalties, or California state law that applies requires NNA background certification.")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
         "A state requires NNA background certification, and notaries might face penalties for missing that certification.")]
     [InlineData(
         "nna-legitimacy-not-legal-authority",

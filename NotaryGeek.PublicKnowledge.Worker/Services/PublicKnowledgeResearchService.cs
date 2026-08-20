@@ -1716,7 +1716,9 @@ public sealed class PublicKnowledgeResearchService
     private static bool IsFailureObjectRelativeBoundary(string boundary) =>
         Regex.IsMatch(
             boundary,
-            @"^\s*or\b.*\b(?:that|which|who|whom|whose)\b.*\b(?:requires?|proves?)\b\s*$",
+            @"^\s*or\b.*\b(?:that|which|who|whom|whose)\s+" +
+            @"(?:a|an|the|this|that|these|those|he|she|it|they|we|you|i)\s+" +
+            @".*\b(?:requires?|proves?)\b\s*$",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
