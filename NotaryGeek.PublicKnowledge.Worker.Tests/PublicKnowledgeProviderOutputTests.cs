@@ -249,6 +249,7 @@ public sealed class PublicKnowledgeProviderOutputTests
 
     [Theory]
     [InlineData("A state might require routine paperwork and an NNA certification for a state background check that lenders require for closings.")]
+    [InlineData("Depending on the jurisdiction, a state might require routine paperwork and an NNA certification for a state background check that lenders require for closings.")]
     [InlineData("A state might require routine paperwork and an NNA certification that lenders claim proves completion of a state background check.")]
     [InlineData("Notaries might face penalties and California state law that applies requires NNA background certification.")]
     [InlineData("Notaries might face penalties and California state law that the legislature wrote requires NNA background certification.")]

@@ -1473,7 +1473,7 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
-            if (HasAmbiguousFailureModalScope(segment, normalizedSegment))
+            if (HasAmbiguousFailureModalScope(segment))
             {
                 ambiguousMatchedTokens = matchedTokens;
                 continue;
@@ -1608,50 +1608,11 @@ public sealed class PublicKnowledgeResearchService
     private static bool ContainsScoringToken(string normalizedText, string token) =>
         normalizedText.Contains($" {token} ", StringComparison.OrdinalIgnoreCase);
 
-    private static bool HasAmbiguousFailureModalScope(
-        string segment,
-        string normalizedSegment)
-    {
-        if (segment.Contains(','))
-        {
-            return false;
-        }
-
-        var mightIndex = normalizedSegment.IndexOf(" might ", StringComparison.OrdinalIgnoreCase);
-        if (mightIndex < 0)
-        {
-            return false;
-        }
-
-        var andIndex = normalizedSegment.IndexOf(
-            " and ",
-            mightIndex + " might ".Length,
-            StringComparison.OrdinalIgnoreCase);
-        if (andIndex < 0)
-        {
-            return false;
-        }
-
-        string[] relativeMarkers = [" that ", " which ", " who ", " whom ", " whose "];
-        var relativeIndex = relativeMarkers
-            .Select(marker => normalizedSegment.IndexOf(
-                marker,
-                andIndex + " and ".Length,
-                StringComparison.OrdinalIgnoreCase))
-            .Where(index => index >= 0)
-            .DefaultIfEmpty(-1)
-            .Min();
-        if (relativeIndex < 0)
-        {
-            return false;
-        }
-
-        string[] predicateMarkers = [" require ", " requires ", " prove ", " proves "];
-        return predicateMarkers.Any(marker => normalizedSegment.IndexOf(
-            marker,
-            relativeIndex + 1,
-            StringComparison.OrdinalIgnoreCase) >= 0);
-    }
+    private static bool HasAmbiguousFailureModalScope(string segment) =>
+        Regex.IsMatch(
+            segment,
+            @"\bmight\b[^,]*\band\b[^,]*\b(?:that|which|who|whom|whose)\b[^,]*\b(?:requires?|proves?)\b",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static string NormalizeRuleScoringText(string text)
     {
