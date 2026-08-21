@@ -1473,7 +1473,17 @@ public sealed class PublicKnowledgeResearchService
                 continue;
             }
 
-            if (HasAmbiguousFailureModalScope(segment))
+            if (FailureCorrectiveContextMarkers.Any(marker =>
+                    normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)))
+            {
+                correctiveMatchedTokens = matchedTokens;
+                continue;
+            }
+
+            if (HasAmbiguousFailureModalScope(
+                    segment,
+                    matchedTokens,
+                    requiredTokenCount))
             {
                 ambiguousMatchedTokens = matchedTokens;
                 continue;
@@ -1608,11 +1618,22 @@ public sealed class PublicKnowledgeResearchService
     private static bool ContainsScoringToken(string normalizedText, string token) =>
         normalizedText.Contains($" {token} ", StringComparison.OrdinalIgnoreCase);
 
-    private static bool HasAmbiguousFailureModalScope(string segment) =>
-        Regex.IsMatch(
+    private static bool HasAmbiguousFailureModalScope(
+        string segment,
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
+    {
+        var match = Regex.Match(
             segment,
             @"\bmight\b[^,]*\band\b[^,]*\b(?:that|which|who|whom|whose)\b[^,]*\b(?:requires?|proves?)\b",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        return match.Success &&
+               !HasUnhedgedFailureThresholdOutsideMatches(
+                   segment,
+                   [match],
+                   matchedTokens,
+                   requiredTokenCount);
+    }
 
     private static string NormalizeRuleScoringText(string text)
     {
