@@ -1625,14 +1625,36 @@ public sealed class PublicKnowledgeResearchService
     {
         var match = Regex.Match(
             segment,
-            @"\bmight\b[^,]*\band\b[^,]*\b(?:that|which|who|whom|whose)\b[^,]*\b(?:requires?|proves?)\b",
+            @"\bmight\b(?:(?!\b(?:but|yet|while|whereas|although|though|because)\b)[^,])*" +
+            @"\band\b(?:(?!\b(?:but|yet|while|whereas|although|though|because)\b)[^,])*" +
+            @"\b(?:that|which|who|whom|whose)\b" +
+            @"(?:(?!\b(?:but|yet|while|whereas|although|though|because)\b)[^,])*" +
+            @"\b(?:requires?|proves?)\b",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         return match.Success &&
-               !HasUnhedgedFailureThresholdOutsideMatches(
+               !HasUnhedgedFailureThresholdOutsideAmbiguousMatch(
                    segment,
-                   [match],
+                   match,
                    matchedTokens,
                    requiredTokenCount);
+    }
+
+    private static bool HasUnhedgedFailureThresholdOutsideAmbiguousMatch(
+        string segment,
+        Match match,
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
+    {
+        var outsideMatch = segment.ToCharArray();
+        Array.Fill(outsideMatch, ' ', match.Index, match.Length);
+        return Regex.Split(
+                new string(outsideMatch),
+                @",|\b(?:but|yet|while|whereas|although|though|because)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .Select(NormalizeRuleScoringText)
+            .Any(clause =>
+                !clause.Contains(" might ", StringComparison.OrdinalIgnoreCase) &&
+                matchedTokens.Count(token => ContainsScoringToken(clause, token)) >= requiredTokenCount);
     }
 
     private static string NormalizeRuleScoringText(string text)
