@@ -1653,8 +1653,13 @@ public sealed class PublicKnowledgeResearchService
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
             .Select(NormalizeRuleScoringText)
             .Any(clause =>
-                !clause.Contains(" might ", StringComparison.OrdinalIgnoreCase) &&
-                matchedTokens.Count(token => ContainsScoringToken(clause, token)) >= requiredTokenCount);
+                (!clause.Contains(" might ", StringComparison.OrdinalIgnoreCase) &&
+                 matchedTokens.Count(token => ContainsScoringToken(clause, token)) >= requiredTokenCount) ||
+                HasUnhedgedFailureThresholdBeforeModal(
+                    clause,
+                    clause,
+                    matchedTokens,
+                    requiredTokenCount));
     }
 
     private static string NormalizeRuleScoringText(string text)
@@ -1752,20 +1757,13 @@ public sealed class PublicKnowledgeResearchService
         IReadOnlyList<string> matchedTokens,
         int requiredTokenCount)
     {
-        var mightIndex = normalizedModalSegment.IndexOf(" might ", StringComparison.OrdinalIgnoreCase);
-        var precedingAndIndex = mightIndex > 0
-            ? normalizedSegment.LastIndexOf(
-                " and ",
-                mightIndex,
-                StringComparison.OrdinalIgnoreCase)
-            : -1;
-        if (precedingAndIndex >= 0)
+        if (HasUnhedgedFailureThresholdBeforeModal(
+                normalizedSegment,
+                normalizedModalSegment,
+                matchedTokens,
+                requiredTokenCount))
         {
-            var precedingClause = $"{normalizedSegment[..precedingAndIndex]} ";
-            if (matchedTokens.Count(token => ContainsScoringToken(precedingClause, token)) >= requiredTokenCount)
-            {
-                return false;
-            }
+            return false;
         }
 
         if (FailureCorrectiveContextMarkers.Any(marker =>
@@ -1814,6 +1812,28 @@ public sealed class PublicKnowledgeResearchService
         }
 
         return hasCorrectiveClause;
+    }
+
+    private static bool HasUnhedgedFailureThresholdBeforeModal(
+        string normalizedSegment,
+        string normalizedModalSegment,
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
+    {
+        var mightIndex = normalizedModalSegment.IndexOf(" might ", StringComparison.OrdinalIgnoreCase);
+        var precedingAndIndex = mightIndex > 0
+            ? normalizedSegment.LastIndexOf(
+                " and ",
+                mightIndex,
+                StringComparison.OrdinalIgnoreCase)
+            : -1;
+        if (precedingAndIndex < 0)
+        {
+            return false;
+        }
+
+        var precedingClause = $"{normalizedSegment[..precedingAndIndex]} ";
+        return matchedTokens.Count(token => ContainsScoringToken(precedingClause, token)) >= requiredTokenCount;
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
