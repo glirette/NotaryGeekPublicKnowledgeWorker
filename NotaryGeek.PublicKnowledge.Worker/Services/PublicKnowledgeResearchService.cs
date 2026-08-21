@@ -1766,6 +1766,12 @@ public sealed class PublicKnowledgeResearchService
             return false;
         }
 
+        if (normalizedSegment.Contains(" whether ", StringComparison.OrdinalIgnoreCase) &&
+            normalizedSegment.Contains(" might ", StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
         if (FailureCorrectiveContextMarkers.Any(marker =>
             normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)))
         {
@@ -1828,6 +1834,12 @@ public sealed class PublicKnowledgeResearchService
                 StringComparison.OrdinalIgnoreCase)
             : -1;
         if (precedingAndIndex < 0)
+        {
+            return false;
+        }
+
+        var whetherIndex = normalizedSegment.IndexOf(" whether ", StringComparison.OrdinalIgnoreCase);
+        if (whetherIndex >= 0 && whetherIndex < precedingAndIndex)
         {
             return false;
         }
