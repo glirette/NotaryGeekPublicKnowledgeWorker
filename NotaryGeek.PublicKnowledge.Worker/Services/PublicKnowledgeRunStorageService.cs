@@ -1019,7 +1019,9 @@ public sealed class PublicKnowledgeRunStorageService
 
         if (score?.Verdict?.Equals("needs-review", StringComparison.OrdinalIgnoreCase) == true)
         {
-            return "Scorer found partial must-hold coverage and no observed failure signal.";
+            return HasAmbiguousModalScope(score)
+                ? "Scorer found ambiguous modal scope in a failure-signal pattern."
+                : "Scorer found partial must-hold coverage and no observed failure signal.";
         }
 
         if (string.IsNullOrWhiteSpace(score?.Verdict) ||
@@ -1053,7 +1055,9 @@ public sealed class PublicKnowledgeRunStorageService
 
         if (score?.Verdict?.Equals("needs-review", StringComparison.OrdinalIgnoreCase) == true)
         {
-            return "Review the missing must-hold checks; promote only if the answer is substantively correct despite surface scoring gaps.";
+            return HasAmbiguousModalScope(score)
+                ? "Review the ambiguous failure-signal rule; promote only after a human confirms whether the modal governs the flagged claim."
+                : "Review the missing must-hold checks; promote only if the answer is substantively correct despite surface scoring gaps.";
         }
 
         if (string.IsNullOrWhiteSpace(score?.Verdict) ||
@@ -1069,6 +1073,10 @@ public sealed class PublicKnowledgeRunStorageService
 
         return "No action needed.";
     }
+
+    private static bool HasAmbiguousModalScope(PublicKnowledgeRegressionScore? score) =>
+        score?.FailureSignalChecks.Any(check =>
+            check.Status.Equals("ambiguous-modal-scope", StringComparison.OrdinalIgnoreCase)) == true;
 
     private static ParsedProviderResponse ParseResponseText(string? responseText)
     {

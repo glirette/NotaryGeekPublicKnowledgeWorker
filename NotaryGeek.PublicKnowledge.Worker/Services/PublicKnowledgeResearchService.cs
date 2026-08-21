@@ -1610,16 +1610,48 @@ public sealed class PublicKnowledgeResearchService
 
     private static bool HasAmbiguousFailureModalScope(
         string segment,
-        string normalizedSegment) =>
-        !segment.Contains(',') &&
-        normalizedSegment.Contains(" might ", StringComparison.OrdinalIgnoreCase) &&
-        normalizedSegment.Contains(" and ", StringComparison.OrdinalIgnoreCase) &&
-        new[] { " that ", " which ", " who ", " whom ", " whose " }
-            .Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)) &&
-        (normalizedSegment.Contains(" require ", StringComparison.OrdinalIgnoreCase) ||
-         normalizedSegment.Contains(" requires ", StringComparison.OrdinalIgnoreCase) ||
-         normalizedSegment.Contains(" prove ", StringComparison.OrdinalIgnoreCase) ||
-         normalizedSegment.Contains(" proves ", StringComparison.OrdinalIgnoreCase));
+        string normalizedSegment)
+    {
+        if (segment.Contains(','))
+        {
+            return false;
+        }
+
+        var mightIndex = normalizedSegment.IndexOf(" might ", StringComparison.OrdinalIgnoreCase);
+        if (mightIndex < 0)
+        {
+            return false;
+        }
+
+        var andIndex = normalizedSegment.IndexOf(
+            " and ",
+            mightIndex + " might ".Length,
+            StringComparison.OrdinalIgnoreCase);
+        if (andIndex < 0)
+        {
+            return false;
+        }
+
+        string[] relativeMarkers = [" that ", " which ", " who ", " whom ", " whose "];
+        var relativeIndex = relativeMarkers
+            .Select(marker => normalizedSegment.IndexOf(
+                marker,
+                andIndex + " and ".Length,
+                StringComparison.OrdinalIgnoreCase))
+            .Where(index => index >= 0)
+            .DefaultIfEmpty(-1)
+            .Min();
+        if (relativeIndex < 0)
+        {
+            return false;
+        }
+
+        string[] predicateMarkers = [" require ", " requires ", " prove ", " proves "];
+        return predicateMarkers.Any(marker => normalizedSegment.IndexOf(
+            marker,
+            relativeIndex + 1,
+            StringComparison.OrdinalIgnoreCase) >= 0);
+    }
 
     private static string NormalizeRuleScoringText(string text)
     {
@@ -1716,6 +1748,22 @@ public sealed class PublicKnowledgeResearchService
         IReadOnlyList<string> matchedTokens,
         int requiredTokenCount)
     {
+        var mightIndex = normalizedModalSegment.IndexOf(" might ", StringComparison.OrdinalIgnoreCase);
+        var precedingAndIndex = mightIndex > 0
+            ? normalizedSegment.LastIndexOf(
+                " and ",
+                mightIndex,
+                StringComparison.OrdinalIgnoreCase)
+            : -1;
+        if (precedingAndIndex >= 0)
+        {
+            var precedingClause = $"{normalizedSegment[..precedingAndIndex]} ";
+            if (matchedTokens.Count(token => ContainsScoringToken(precedingClause, token)) >= requiredTokenCount)
+            {
+                return false;
+            }
+        }
+
         if (FailureCorrectiveContextMarkers.Any(marker =>
             normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase)))
         {

@@ -93,6 +93,11 @@ public sealed class PublicKnowledgeProviderOutputTests
     [InlineData(
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
+        "A state might require routine paperwork and an NNA certification that is current for a state background check.",
+        "clear-corrective-mention")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
         "A state might require routine paperwork or an NNA certification for a state background check that the lender requires for closings.",
         "clear-corrective-mention")]
     [InlineData(
@@ -225,6 +230,10 @@ public sealed class PublicKnowledgeProviderOutputTests
         "nna-legitimacy-not-legal-authority",
         "state requires an NNA background check or NNA certification",
         "A state requires NNA background certification, and notaries working for large national mortgage lenders might face penalties.")]
+    [InlineData(
+        "nna-legitimacy-not-legal-authority",
+        "state requires an NNA background check or NNA certification",
+        "California state law requires NNA background certification and that might worry notaries.")]
     public void DirectOverclaimsTriggerFailureSignals(
         string regressionCaseId,
         string failureSignalFragment,
@@ -234,13 +243,12 @@ public sealed class PublicKnowledgeProviderOutputTests
         var failureSignalCheck = score.FailureSignalChecks.Single(item =>
             item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
 
-        Assert.True(failureSignalCheck.Matched);
         Assert.Equal("observed", failureSignalCheck.Status);
+        Assert.True(failureSignalCheck.Matched);
     }
 
     [Theory]
     [InlineData("A state might require routine paperwork and an NNA certification for a state background check that lenders require for closings.")]
-    [InlineData("A state might require routine paperwork and an NNA certification that is current for a state background check.")]
     [InlineData("A state might require routine paperwork and an NNA certification that lenders claim proves completion of a state background check.")]
     [InlineData("Notaries might face penalties and California state law that applies requires NNA background certification.")]
     [InlineData("Notaries might face penalties and California state law that the legislature wrote requires NNA background certification.")]
@@ -522,6 +530,54 @@ public sealed class PublicKnowledgeProviderOutputTests
 
         Assert.Equal("authority-20260803-dailysourceingestion", morning);
         Assert.Equal(morning, retry);
+    }
+
+    [Fact]
+    public void NeedsGregReportExplainsAmbiguousModalScope()
+    {
+        var storedAtUtc = new DateTime(2026, 8, 21, 12, 0, 0, DateTimeKind.Utc);
+        var envelope = CreateStoredRun("regression", "notary", "test", storedAtUtc);
+        var ruleCheck = new PublicKnowledgeRegressionRuleCheck(
+            "state requires an NNA background check or NNA certification",
+            "ambiguous-modal-scope",
+            false,
+            3,
+            3,
+            ["state", "background", "certification"],
+            []);
+        var score = new PublicKnowledgeRegressionScore(
+            "notary-geek-public-knowledge-regression-score-v1",
+            "0.1-public",
+            "needs-review",
+            "deterministic-surface-triage-v1",
+            "Human review required.",
+            1,
+            1,
+            0,
+            1,
+            0,
+            [new PublicKnowledgeRegressionRuleCheck(
+                "must hold",
+                "passed",
+                true,
+                1,
+                1,
+                ["hold"],
+                [])],
+            [ruleCheck]);
+        envelope = envelope with
+        {
+            Result = envelope.Result with { RegressionScore = score }
+        };
+        var method = typeof(PublicKnowledgeRunStorageService).GetMethod(
+            "BuildNeedsGregItem",
+            BindingFlags.NonPublic | BindingFlags.Static);
+
+        Assert.NotNull(method);
+        var item = Assert.IsType<PublicKnowledgeNeedsGregItem>(method.Invoke(null, [envelope]));
+        Assert.Contains("ambiguous modal scope", item.Reason, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("ambiguous failure-signal", item.SuggestedNextAction, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("missing must-hold", item.SuggestedNextAction, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
