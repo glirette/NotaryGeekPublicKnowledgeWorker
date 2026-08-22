@@ -1766,8 +1766,10 @@ public sealed class PublicKnowledgeResearchService
             return false;
         }
 
-        if (normalizedSegment.Contains(" whether ", StringComparison.OrdinalIgnoreCase) &&
-            normalizedSegment.Contains(" might ", StringComparison.OrdinalIgnoreCase))
+        if (HasWhetherModalScope(
+                normalizedSegment,
+                matchedTokens,
+                requiredTokenCount))
         {
             return true;
         }
@@ -1818,6 +1820,29 @@ public sealed class PublicKnowledgeResearchService
         }
 
         return hasCorrectiveClause;
+    }
+
+    private static bool HasWhetherModalScope(
+        string normalizedSegment,
+        IReadOnlyList<string> matchedTokens,
+        int requiredTokenCount)
+    {
+        var whetherIndex = normalizedSegment.IndexOf(" whether ", StringComparison.OrdinalIgnoreCase);
+        var mightIndex = whetherIndex >= 0
+            ? normalizedSegment.IndexOf(
+                " might ",
+                whetherIndex + " whether ".Length,
+                StringComparison.OrdinalIgnoreCase)
+            : -1;
+        if (mightIndex < 0)
+        {
+            return false;
+        }
+
+        var beforeWhether = $"{normalizedSegment[..whetherIndex]} ";
+        var afterMight = $" {normalizedSegment[(mightIndex + " might ".Length)..]}";
+        return matchedTokens.Count(token => ContainsScoringToken(beforeWhether, token)) < requiredTokenCount &&
+               matchedTokens.Count(token => ContainsScoringToken(afterMight, token)) < requiredTokenCount;
     }
 
     private static bool HasUnhedgedFailureThresholdBeforeModal(
