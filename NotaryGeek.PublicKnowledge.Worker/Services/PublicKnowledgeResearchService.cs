@@ -1785,6 +1785,11 @@ public sealed class PublicKnowledgeResearchService
                 normalizedSegment,
                 FailureModalIndependentClauseBoundaryPattern,
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .Where(match => !IsCoordinatedPropositionModalBoundary(
+                normalizedSegment,
+                match.Index,
+                match.Value,
+                matchedTokens))
             .Select(match => match.Index)
             .Prepend(0)
             .Distinct()
@@ -1845,12 +1850,24 @@ public sealed class PublicKnowledgeResearchService
             ContainsScoringToken(beforeWhether, token));
         var afterMightStart = mightIndex + " might ".Length;
         var afterMight = normalizedSegment[afterMightStart..];
-        var outsideBoundary = matchedBeforeWhether > 0
+        var sharedSubjectBoundary = matchedBeforeWhether > 0
             ? Regex.Match(
                 afterMight,
                 @"\band\s+(?:requires|proves)\b",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
             : Match.Empty;
+        var independentBoundary = Regex.Matches(
+                afterMight,
+                FailureModalIndependentClauseBoundaryPattern,
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
+            .FirstOrDefault(match => !Regex.IsMatch(
+                match.Value,
+                @"^\s*and\s+(?:requires|proves)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)) ?? Match.Empty;
+        var outsideBoundary = new[] { sharedSubjectBoundary, independentBoundary }
+            .Where(match => match.Success)
+            .OrderBy(match => match.Index)
+            .FirstOrDefault() ?? Match.Empty;
         var afterWhetherProposition = outsideBoundary.Success
             ? $" {afterMight[outsideBoundary.Index..]}"
             : string.Empty;
@@ -1877,6 +1894,20 @@ public sealed class PublicKnowledgeResearchService
             return false;
         }
 
+        var precedingModalBoundary = Regex.Match(
+            normalizedSegment[precedingAndIndex..],
+            @"^\s*and\s+(?:[a-z0-9]+\s+){1,6}might\b",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        if (precedingModalBoundary.Success &&
+            IsCoordinatedPropositionModalBoundary(
+                normalizedSegment,
+                precedingAndIndex,
+                precedingModalBoundary.Value,
+                matchedTokens))
+        {
+            return false;
+        }
+
         var whetherIndex = normalizedSegment.IndexOf(" whether ", StringComparison.OrdinalIgnoreCase);
         if (whetherIndex >= 0 && whetherIndex < precedingAndIndex)
         {
@@ -1885,6 +1916,35 @@ public sealed class PublicKnowledgeResearchService
 
         var precedingClause = $"{normalizedSegment[..precedingAndIndex]} ";
         return matchedTokens.Count(token => ContainsScoringToken(precedingClause, token)) >= requiredTokenCount;
+    }
+
+    private static bool IsCoordinatedPropositionModalBoundary(
+        string normalizedSegment,
+        int boundaryIndex,
+        string boundaryText,
+        IReadOnlyList<string> matchedTokens)
+    {
+        if (!Regex.IsMatch(
+                normalizedSegment[..boundaryIndex],
+                @"\b(?:assertion|claim|idea|possibility|statement|suggestion)\s+that\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            return false;
+        }
+
+        var subjectMatch = Regex.Match(
+            boundaryText,
+            @"^\s*and\s+(?<subject>(?:[a-z0-9]+\s+){1,6})might\b",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        if (!subjectMatch.Success)
+        {
+            return false;
+        }
+
+        var subjectTokens = subjectMatch.Groups["subject"].Value
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        return subjectTokens.All(subjectToken =>
+            matchedTokens.Contains(subjectToken, StringComparer.OrdinalIgnoreCase));
     }
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
