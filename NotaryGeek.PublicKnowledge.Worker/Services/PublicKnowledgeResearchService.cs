@@ -1845,7 +1845,7 @@ public sealed class PublicKnowledgeResearchService
         var afterMight = normalizedSegment[afterMightStart..];
         var outsideBoundary = Regex.Match(
             afterMight,
-            @"\band\s+(?:requires?|proves?)\b",
+            @"\band\s+(?:requires|proves)\b",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         var afterWhetherProposition = outsideBoundary.Success
             ? $" {afterMight[outsideBoundary.Index..]}"
