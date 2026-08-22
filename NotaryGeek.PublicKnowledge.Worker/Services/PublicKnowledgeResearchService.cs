@@ -1841,8 +1841,16 @@ public sealed class PublicKnowledgeResearchService
         }
 
         var beforeWhether = $"{normalizedSegment[..whetherIndex]} ";
-        var afterMight = $" {normalizedSegment[(mightIndex + " might ".Length)..]}";
-        var outsideWhetherProposition = $"{beforeWhether}{afterMight}";
+        var afterMightStart = mightIndex + " might ".Length;
+        var afterMight = normalizedSegment[afterMightStart..];
+        var outsideBoundary = Regex.Match(
+            afterMight,
+            @"\band\s+(?:requires?|proves?)\b",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        var afterWhetherProposition = outsideBoundary.Success
+            ? $" {afterMight[outsideBoundary.Index..]}"
+            : string.Empty;
+        var outsideWhetherProposition = $"{beforeWhether}{afterWhetherProposition}";
         return matchedTokens.Count(token =>
             ContainsScoringToken(outsideWhetherProposition, token)) < requiredTokenCount;
     }
