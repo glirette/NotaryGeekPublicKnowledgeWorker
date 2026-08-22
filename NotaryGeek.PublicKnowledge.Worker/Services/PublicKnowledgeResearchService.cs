@@ -1766,12 +1766,13 @@ public sealed class PublicKnowledgeResearchService
             return false;
         }
 
-        if (HasWhetherModalScope(
-                normalizedSegment,
-                matchedTokens,
-                requiredTokenCount))
+        var whetherModalScope = GetWhetherModalScope(
+            normalizedSegment,
+            matchedTokens,
+            requiredTokenCount);
+        if (whetherModalScope.HasValue)
         {
-            return true;
+            return whetherModalScope.Value;
         }
 
         if (FailureCorrectiveContextMarkers.Any(marker =>
@@ -1822,7 +1823,7 @@ public sealed class PublicKnowledgeResearchService
         return hasCorrectiveClause;
     }
 
-    private static bool HasWhetherModalScope(
+    private static bool? GetWhetherModalScope(
         string normalizedSegment,
         IReadOnlyList<string> matchedTokens,
         int requiredTokenCount)
@@ -1836,13 +1837,14 @@ public sealed class PublicKnowledgeResearchService
             : -1;
         if (mightIndex < 0)
         {
-            return false;
+            return null;
         }
 
         var beforeWhether = $"{normalizedSegment[..whetherIndex]} ";
         var afterMight = $" {normalizedSegment[(mightIndex + " might ".Length)..]}";
-        return matchedTokens.Count(token => ContainsScoringToken(beforeWhether, token)) < requiredTokenCount &&
-               matchedTokens.Count(token => ContainsScoringToken(afterMight, token)) < requiredTokenCount;
+        var outsideWhetherProposition = $"{beforeWhether}{afterMight}";
+        return matchedTokens.Count(token =>
+            ContainsScoringToken(outsideWhetherProposition, token)) < requiredTokenCount;
     }
 
     private static bool HasUnhedgedFailureThresholdBeforeModal(
