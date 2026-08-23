@@ -119,6 +119,51 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.NotEqual("observed", failureSignalCheck.Status);
     }
 
+    [Theory]
+    [InlineData(
+        "spain-hague-finality",
+        "Spain should apostille",
+        "Have Spain apostille the Florida document.")]
+    [InlineData(
+        "saudi-arabia-hague-not-non-hague",
+        "Saudi Arabia apostille",
+        "Saudi Arabia should apostille the U.S. document.")]
+    public void ConciseDestinationAsIssuerClaimsTriggerFailure(
+        string regressionCaseId,
+        string failureSignalFragment,
+        string responseText)
+    {
+        var score = ScoreRegressionResponse(regressionCaseId, responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+
+        Assert.Equal("fail", score.Verdict);
+        Assert.True(failureSignalCheck.Matched);
+        Assert.Equal("observed", failureSignalCheck.Status);
+    }
+
+    [Theory]
+    [InlineData(
+        "spain-hague-finality",
+        "Spain should apostille",
+        "Spain should not apostille the Florida document; use the competent authority for the document's origin.")]
+    [InlineData(
+        "saudi-arabia-hague-not-non-hague",
+        "Saudi Arabia apostille",
+        "Saudi Arabia should not apostille the U.S. document; use the competent authority for the document's origin.")]
+    public void ExplicitOriginAuthorityCorrectionsDoNotTriggerFailure(
+        string regressionCaseId,
+        string failureSignalFragment,
+        string responseText)
+    {
+        var score = ScoreRegressionResponse(regressionCaseId, responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains(failureSignalFragment, StringComparison.OrdinalIgnoreCase));
+
+        Assert.False(failureSignalCheck.Matched);
+        Assert.Equal("clear-corrective-mention", failureSignalCheck.Status);
+    }
+
     private static PublicKnowledgeRegressionScore ScoreRegressionResponse(
         string regressionCaseId,
         string responseText)
