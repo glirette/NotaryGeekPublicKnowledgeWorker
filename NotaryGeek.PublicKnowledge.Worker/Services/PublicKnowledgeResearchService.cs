@@ -1453,7 +1453,7 @@ public sealed class PublicKnowledgeResearchService
             }
 
             if (HasFailureNegationMarker(normalizedSegment) ||
-                HasFailureCorrectiveContextMarker(normalizedSegment))
+                HasFailureCorrectiveContextMarker(rule, normalizedSegment))
             {
                 correctiveMatchedTokens = matchedTokens;
                 continue;
@@ -1574,8 +1574,15 @@ public sealed class PublicKnowledgeResearchService
         FailureNegationMarkers.Any(marker =>
             normalizedSegment.Contains(NormalizeRuleScoringText(marker), StringComparison.OrdinalIgnoreCase));
 
-    private static bool HasFailureCorrectiveContextMarker(string normalizedSegment) =>
-        FailureCorrectiveContextMarkers.Any(marker => normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
+    private static bool HasFailureCorrectiveContextMarker(string rule, string normalizedSegment) =>
+        FailureCorrectiveContextMarkers.Any(marker =>
+            (!string.Equals(marker, " might ", StringComparison.Ordinal) || !IsNnaStateRequirementFailureRule(rule)) &&
+            normalizedSegment.Contains(marker, StringComparison.OrdinalIgnoreCase));
+
+    private static bool IsNnaStateRequirementFailureRule(string rule) =>
+        rule.Contains(
+            "state requires an NNA background check or NNA certification",
+            StringComparison.OrdinalIgnoreCase);
 
     private static IEnumerable<string> ExtractHttpsUrls(string text)
     {
