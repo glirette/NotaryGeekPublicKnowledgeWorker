@@ -75,6 +75,50 @@ public sealed class PublicKnowledgeProviderOutputTests
         Assert.Equal("observed", failureSignalCheck.Status);
     }
 
+    [Theory]
+    [InlineData("A state might require an NNA background check or NNA certification.")]
+    [InlineData("Depending on the jurisdiction, a state might require an NNA background check or NNA certification.")]
+    [InlineData("It is unclear whether a state might require an NNA background check or NNA certification.")]
+    public void SpeculationDoesNotClearNnaStateRequirementFailure(string responseText)
+    {
+        var score = ScoreRegressionResponse("nna-legitimacy-not-legal-authority", responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains("state requires an NNA background check", StringComparison.OrdinalIgnoreCase));
+
+        Assert.Equal("fail", score.Verdict);
+        Assert.True(failureSignalCheck.Matched);
+        Assert.Equal("observed", failureSignalCheck.Status);
+    }
+
+    [Theory]
+    [InlineData("No state requires an NNA background check or NNA certification.")]
+    [InlineData("The claim that a state requires an NNA background check or NNA certification is wrong.")]
+    [InlineData("A lender might require an NNA background check, but no state requires NNA certification.")]
+    public void ExplicitCorrectionsClearNnaStateRequirementFailure(string responseText)
+    {
+        var score = ScoreRegressionResponse("nna-legitimacy-not-legal-authority", responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains("state requires an NNA background check", StringComparison.OrdinalIgnoreCase));
+
+        Assert.False(failureSignalCheck.Matched);
+        Assert.Equal("clear-corrective-mention", failureSignalCheck.Status);
+    }
+
+    [Fact]
+    public void CanonicalGovernmentRequirementCorrectionDoesNotTriggerFailure()
+    {
+        const string responseText =
+            "No government requires an NNA background check to obtain a notary commission. " +
+            "If evidence of such a requirement ever appears, investigate and challenge it immediately.";
+
+        var score = ScoreRegressionResponse("nna-legitimacy-not-legal-authority", responseText);
+        var failureSignalCheck = score.FailureSignalChecks.Single(item =>
+            item.Rule.Contains("state requires an NNA background check", StringComparison.OrdinalIgnoreCase));
+
+        Assert.False(failureSignalCheck.Matched);
+        Assert.NotEqual("observed", failureSignalCheck.Status);
+    }
+
     private static PublicKnowledgeRegressionScore ScoreRegressionResponse(
         string regressionCaseId,
         string responseText)
