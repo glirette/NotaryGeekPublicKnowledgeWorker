@@ -30,12 +30,14 @@ This repo must stay public-safe. Do not rely on private repo context being avail
 
 Ordinary chat must not begin with generic web search. Before an external web or
 browser lookup, read the applicable `AGENTS.md` chain and task-routed files,
-search this repository's source indexes and artifacts, then search
-`glirette/thisstuffiswaytootech` for reusable technical, platform, API, cloud,
-GitHub, AI, hosting, queue, worker, and developer-tool source trails.
+search this repository's source indexes and artifacts. For technically relevant
+tasks, also search `glirette/thisstuffiswaytootech` when it is accessible for
+reusable technical, platform, API, cloud, GitHub, AI, hosting, queue, worker,
+and developer-tool source trails. Its absence or unavailability must not block
+freshness-critical or explicitly requested narrow external research.
 
 Treat generic external search before those checks as a workflow bug. If neither
-owned cache answers the question, decide whether the gap warrants:
+applicable owned cache answers the question, decide whether the gap warrants:
 
 - a public-safe cache entry here or a technical note in the other cache;
 - a durable backlog/source-capture issue for later work;
