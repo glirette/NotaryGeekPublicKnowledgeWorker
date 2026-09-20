@@ -26,6 +26,30 @@ This repo must stay public-safe. Do not rely on private repo context being avail
 - Do not turn a public lead, AI answer, Reddit post, or vendor claim into authority by repetition.
 - Keep sensitive allegations out unless public sources support the exact claim and the wording is reviewable.
 
+## Repository-First External Research Gate
+
+Ordinary chat must not begin with generic web search. Before an external web or
+browser lookup, read the applicable `AGENTS.md` chain and task-routed files,
+search this repository's source indexes and artifacts. For technically relevant
+tasks, also search `glirette/thisstuffiswaytootech` when it is accessible for
+reusable technical, platform, API, cloud, GitHub, AI, hosting, queue, worker,
+and developer-tool source trails. Its absence or unavailability must not block
+freshness-critical or explicitly requested narrow external research.
+
+Treat generic external search before those checks as a workflow bug. If neither
+applicable owned cache answers the question, decide whether the gap warrants:
+
+- a public-safe cache entry here or a technical note in the other cache;
+- a durable backlog/source-capture issue for later work;
+- a Playwright/browser reproduction item for observed web behavior; or
+- no durable entry because the need is genuinely transient.
+
+If current external verification is not on the immediate critical path, queue
+the durable work instead of browsing in interactive chat. When freshness,
+sensitivity, observed behavior, or the explicit task requires a lookup now,
+search narrowly, prefer controlling official sources, preserve checked dates,
+and do not leave a reusable result only in chat.
+
 ## Code And Data Changes
 
 - Prefer structured JSON and source-index updates when the fact will feed AI, RAG, tests, pages, or answer correction.
