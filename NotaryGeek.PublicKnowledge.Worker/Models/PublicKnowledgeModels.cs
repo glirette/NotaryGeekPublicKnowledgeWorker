@@ -38,7 +38,9 @@ public sealed record PublicKnowledgeRunResult(
     PublicKnowledgeProviderEvidence? ProviderEvidence = null,
     PublicKnowledgeStructuredOutput? StructuredOutput = null,
     string RunKind = "regression",
-    string AuthorityLane = "notary")
+    string AuthorityLane = "notary",
+    string? RemoteManifestUrl = null,
+    string? FinalRemoteManifestUrl = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }
@@ -155,7 +157,8 @@ public sealed record PublicKnowledgeSourceResult(
     int StatusCode,
     string? ContentType,
     int CharacterCount,
-    string Note);
+    string Note,
+    string? FinalUrl = null);
 
 public sealed record PublicKnowledgeManifest(
     string Schema,

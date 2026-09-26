@@ -311,7 +311,8 @@ public sealed class PublicKnowledgeResearchService
         var sourceResults = new List<PublicKnowledgeSourceResult>();
         var sourceBodies = new List<SourceBody>();
 
-        var manifest = await LoadManifestAsync(warnings, cancellationToken);
+        var loadedManifest = await LoadManifestAsync(warnings, cancellationToken);
+        var manifest = loadedManifest.Manifest;
         var urls = SelectSourceUrls(manifest, requestedUrls, warnings);
         var client = CreateFetchClient();
         var selectedUrls = urls.Take(_knowledgeOptions.MaxSourcesPerRun).ToArray();
@@ -363,7 +364,9 @@ public sealed class PublicKnowledgeResearchService
             manifest,
             sourceResults.ToArray(),
             sourceBodies.ToArray(),
-            warnings.ToArray());
+            warnings.ToArray(),
+            loadedManifest.RemoteManifestUrl,
+            loadedManifest.FinalRemoteManifestUrl);
     }
 
     private async Task<PublicKnowledgeRunResult> RunWithPreparedSourcesAsync(
@@ -448,12 +451,14 @@ public sealed class PublicKnowledgeResearchService
                 preflightScore,
                 Provider: providerName,
                 RunKind: command.RunKind,
-                AuthorityLane: command.AuthorityLane);
+                AuthorityLane: command.AuthorityLane,
+                RemoteManifestUrl: preparedSources.RemoteManifestUrl,
+                FinalRemoteManifestUrl: preparedSources.FinalRemoteManifestUrl);
         }
 
         var fetchedSourceUrls = sourceBodies
             .Select(source => source.Url)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            .ToHashSet(StringComparer.Ordinal);
         var provider = await CallConfiguredProviderAsync(
             prompt,
             providerName,
@@ -496,7 +501,9 @@ public sealed class PublicKnowledgeResearchService
             ProviderEvidence: provider.Evidence,
             StructuredOutput: provider.StructuredOutput,
             RunKind: command.RunKind,
-            AuthorityLane: command.AuthorityLane);
+            AuthorityLane: command.AuthorityLane,
+            RemoteManifestUrl: preparedSources.RemoteManifestUrl,
+            FinalRemoteManifestUrl: preparedSources.FinalRemoteManifestUrl);
     }
 
     private static bool CommandsUseSameSourceSet(IReadOnlyList<PublicKnowledgeRunCommand> commands)
@@ -516,23 +523,29 @@ public sealed class PublicKnowledgeResearchService
         return client;
     }
 
-    private async Task<PublicKnowledgeManifest> LoadManifestAsync(
+    private async Task<LoadedManifest> LoadManifestAsync(
         List<string> warnings,
         CancellationToken cancellationToken)
     {
         var manifestUrl = _knowledgeOptions.PublicCorpusManifestUrl;
         var reason = string.Empty;
-        if (!string.IsNullOrWhiteSpace(manifestUrl) && IsAllowedPublicUrl(manifestUrl, out reason))
+        if (!string.IsNullOrWhiteSpace(manifestUrl) &&
+            AllowedSourceRedirects.TryValidate(manifestUrl, _knowledgeOptions.AllowedSourceHosts, out var manifestUri, out reason))
         {
             try
             {
                 var client = CreateFetchClient();
-                var json = await client.GetStringAsync(manifestUrl, cancellationToken);
-                return ParseManifest(json);
+                var fetched = await AllowedSourceRedirects.SendAsync(
+                    client, manifestUri!, _knowledgeOptions.AllowedSourceHosts, cancellationToken);
+                using var response = fetched.Response;
+                response.EnsureSuccessStatusCode();
+                var json = await response.Content.ReadAsStringAsync(cancellationToken);
+                return new LoadedManifest(ParseManifest(json), manifestUrl, fetched.FinalUri.AbsoluteUri);
             }
-            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException)
+            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException or SourceRedirectException &&
+                                       !cancellationToken.IsCancellationRequested)
             {
-                warnings.Add($"Remote manifest failed; using bundled manifest. Reason: {ex.Message}");
+                warnings.Add($"Remote manifest failed; using bundled manifest. Reason: {SafeFetchFailure(ex)}");
             }
         }
         else if (!string.IsNullOrWhiteSpace(manifestUrl))
@@ -544,11 +557,11 @@ public sealed class PublicKnowledgeResearchService
         if (!File.Exists(localPath))
         {
             warnings.Add("Bundled manifest was not found; using built-in defaults.");
-            return BuildDefaultManifest();
+            return new LoadedManifest(BuildDefaultManifest(), manifestUrl, null);
         }
 
         var localJson = await File.ReadAllTextAsync(localPath, cancellationToken);
-        return ParseManifest(localJson);
+        return new LoadedManifest(ParseManifest(localJson), manifestUrl, null);
     }
 
     private PublicKnowledgeManifest ParseManifest(string json)
@@ -674,38 +687,51 @@ public sealed class PublicKnowledgeResearchService
     {
         try
         {
-            using var response = await client.GetAsync(url, cancellationToken);
+            if (!AllowedSourceRedirects.TryValidate(url, _knowledgeOptions.AllowedSourceHosts, out var uri, out var reason))
+            {
+                return (new PublicKnowledgeSourceResult(url, false, 0, null, 0, reason), null);
+            }
+
+            var fetched = await AllowedSourceRedirects.SendAsync(
+                client, uri!, _knowledgeOptions.AllowedSourceHosts, cancellationToken);
+            using var response = fetched.Response;
+            var finalUrl = fetched.FinalUri.AbsoluteUri;
             var contentType = response.Content.Headers.ContentType?.ToString();
             var statusCode = (int)response.StatusCode;
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, $"HTTP {statusCode}"), null);
+                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, $"HTTP {statusCode}", finalUrl), null);
             }
 
             var bytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
             if (bytes.Length > _knowledgeOptions.MaxBytesPerSource)
             {
-                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, bytes.Length, $"Too large: {bytes.Length} bytes"), null);
+                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, bytes.Length, $"Too large: {bytes.Length} bytes", finalUrl), null);
             }
 
             var content = Encoding.UTF8.GetString(bytes);
             if (string.IsNullOrWhiteSpace(content))
             {
-                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, "Empty response"), null);
+                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, "Empty response", finalUrl), null);
             }
 
             var normalized = NormalizeSourceText(content, _knowledgeOptions.MaxCharactersPerSource, out var truncated);
             var note = truncated ? $"ok-truncated:{content.Length}->{normalized.Length}" : "ok";
-            var result = new PublicKnowledgeSourceResult(url, true, statusCode, contentType, normalized.Length, note);
-            return (result, new SourceBody(url, normalized));
+            var result = new PublicKnowledgeSourceResult(url, true, statusCode, contentType, normalized.Length, note, finalUrl);
+            return (result, new SourceBody(finalUrl, normalized));
         }
-        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException)
+        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or SourceRedirectException &&
+                                   !cancellationToken.IsCancellationRequested)
         {
-            _logger.LogWarning(ex, "Could not fetch public knowledge source {Url}.", url);
-            return (new PublicKnowledgeSourceResult(url, false, 0, null, 0, ex.Message), null);
+            _logger.LogWarning("Could not fetch public knowledge source: {Reason}.", SafeFetchFailure(ex));
+            return (new PublicKnowledgeSourceResult(url, false, 0, null, 0, SafeFetchFailure(ex)), null);
         }
     }
+
+    private static string SafeFetchFailure(Exception ex) => ex is SourceRedirectException
+        ? ex.Message
+        : ex is JsonException ? "Invalid source JSON." : "Source request failed.";
 
     private string BuildPrompt(
         PublicKnowledgeManifest manifest,
@@ -1088,27 +1114,7 @@ public sealed class PublicKnowledgeResearchService
 
     private bool IsAllowedPublicUrl(string url, out string reason)
     {
-        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
-        {
-            reason = "URL is not absolute.";
-            return false;
-        }
-
-        if (uri.Scheme != Uri.UriSchemeHttps)
-        {
-            reason = "Only HTTPS URLs are allowed.";
-            return false;
-        }
-
-        var allowedHosts = SplitList(_knowledgeOptions.AllowedSourceHosts);
-        if (!allowedHosts.Contains(uri.Host, StringComparer.OrdinalIgnoreCase))
-        {
-            reason = $"Host '{uri.Host}' is not allowlisted.";
-            return false;
-        }
-
-        reason = "allowed";
-        return true;
+        return AllowedSourceRedirects.TryValidate(url, _knowledgeOptions.AllowedSourceHosts, out _, out reason);
     }
 
     private static string ExtractOutputText(JsonElement root)
@@ -1296,7 +1302,7 @@ public sealed class PublicKnowledgeResearchService
         var normalizedFetchedUrls = fetchedSourceUrls
             .Select(NormalizeCitationUrl)
             .Where(url => !string.IsNullOrWhiteSpace(url))
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            .ToHashSet(StringComparer.Ordinal);
 
         var citationUrls = ExtractProviderCitationUrls(responseText, out var parseWarning);
         var warnings = citationUrls
@@ -1306,7 +1312,7 @@ public sealed class PublicKnowledgeResearchService
                 return string.IsNullOrWhiteSpace(normalizedUrl) || !normalizedFetchedUrls.Contains(normalizedUrl);
             })
             .Select(url => $"Provider cited URL not in fetched source list: {url}")
-            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Distinct(StringComparer.Ordinal)
             .ToArray();
 
         return string.IsNullOrWhiteSpace(parseWarning)
@@ -1347,11 +1353,15 @@ public sealed class PublicKnowledgeResearchService
                         return [];
                     }
 
-                    var urls = ExtractHttpsUrls(value).ToArray();
+                    // A structured citation URL is an exact resource identity, including
+                    // trailing slash and punctuation in its path or query.
+                    var urls = Uri.TryCreate(value, UriKind.Absolute, out var citationUri) &&
+                               citationUri.Scheme == Uri.UriSchemeHttps
+                        ? [value] : ExtractHttpsUrls(value).ToArray();
                     return urls.Length > 0 ? urls : [value];
                 })
                 .Where(item => !string.IsNullOrWhiteSpace(item))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Distinct(StringComparer.Ordinal)
                 .ToArray();
         }
         catch (JsonException)
@@ -1598,7 +1608,7 @@ public sealed class PublicKnowledgeResearchService
 
     private static string? NormalizeCitationUrl(string url)
     {
-        var trimmed = url.Trim().TrimEnd('.', ',', ';', ':', ')', ']', '}');
+        var trimmed = url.Trim();
         if (string.IsNullOrWhiteSpace(trimmed))
         {
             return null;
@@ -1620,11 +1630,6 @@ public sealed class PublicKnowledgeResearchService
             (builder.Scheme.Equals("http", StringComparison.OrdinalIgnoreCase) && builder.Port == 80))
         {
             builder.Port = -1;
-        }
-
-        if (builder.Path.Length > 1)
-        {
-            builder.Path = builder.Path.TrimEnd('/');
         }
 
         return builder.Uri.AbsoluteUri;
@@ -1702,7 +1707,14 @@ public sealed class PublicKnowledgeResearchService
         PublicKnowledgeManifest Manifest,
         IReadOnlyList<PublicKnowledgeSourceResult> SourceResults,
         IReadOnlyList<SourceBody> SourceBodies,
-        IReadOnlyList<string> Warnings);
+        IReadOnlyList<string> Warnings,
+        string? RemoteManifestUrl,
+        string? FinalRemoteManifestUrl);
+
+    private sealed record LoadedManifest(
+        PublicKnowledgeManifest Manifest,
+        string? RemoteManifestUrl,
+        string? FinalRemoteManifestUrl);
 
     private sealed record SourceFetchWorkItem(
         int Index,
