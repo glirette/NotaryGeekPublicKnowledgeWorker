@@ -275,11 +275,6 @@ public static class PublicKnowledgeProviderOutput
             builder.Port = -1;
         }
 
-        if (builder.Path.Length > 1)
-        {
-            builder.Path = builder.Path.TrimEnd('/');
-        }
-
         return builder.Uri.AbsoluteUri;
     }
 

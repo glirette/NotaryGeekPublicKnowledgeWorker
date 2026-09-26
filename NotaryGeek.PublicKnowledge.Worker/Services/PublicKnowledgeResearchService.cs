@@ -1353,7 +1353,11 @@ public sealed class PublicKnowledgeResearchService
                         return [];
                     }
 
-                    var urls = ExtractHttpsUrls(value).ToArray();
+                    // A structured citation URL is an exact resource identity, including
+                    // trailing slash and punctuation in its path or query.
+                    var urls = Uri.TryCreate(value, UriKind.Absolute, out var citationUri) &&
+                               citationUri.Scheme == Uri.UriSchemeHttps
+                        ? [value] : ExtractHttpsUrls(value).ToArray();
                     return urls.Length > 0 ? urls : [value];
                 })
                 .Where(item => !string.IsNullOrWhiteSpace(item))
@@ -1604,7 +1608,7 @@ public sealed class PublicKnowledgeResearchService
 
     private static string? NormalizeCitationUrl(string url)
     {
-        var trimmed = url.Trim().TrimEnd('.', ',', ';', ':', ')', ']', '}');
+        var trimmed = url.Trim();
         if (string.IsNullOrWhiteSpace(trimmed))
         {
             return null;
@@ -1626,11 +1630,6 @@ public sealed class PublicKnowledgeResearchService
             (builder.Scheme.Equals("http", StringComparison.OrdinalIgnoreCase) && builder.Port == 80))
         {
             builder.Port = -1;
-        }
-
-        if (builder.Path.Length > 1)
-        {
-            builder.Path = builder.Path.TrimEnd('/');
         }
 
         return builder.Uri.AbsoluteUri;

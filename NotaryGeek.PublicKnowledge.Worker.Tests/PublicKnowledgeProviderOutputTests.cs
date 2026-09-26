@@ -289,6 +289,19 @@ public sealed class PublicKnowledgeProviderOutputTests
     }
 
     [Fact]
+    public void CitationTrailingSlashMustMatchFetchedFinalUrl()
+    {
+        var now = DateTime.UtcNow;
+        var json = CreateValidResponse(now).Replace(SourceUrl, SourceUrl + "/", StringComparison.Ordinal);
+
+        var ok = PublicKnowledgeProviderOutput.TryValidate(
+            "completed", json, FetchedUrls(), now, 14, out _, out var reason);
+
+        Assert.False(ok);
+        Assert.Equal("provider_output_citations_invalid", reason);
+    }
+
+    [Fact]
     public void StaleCandidateIsRejected()
     {
         var now = DateTime.UtcNow;

@@ -1,4 +1,5 @@
 using System.Net;
+using System.Reflection;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using NotaryGeek.PublicKnowledge.Worker.Configuration;
@@ -235,6 +236,21 @@ public sealed class SourceRedirectTests
         Assert.Null(rejected.FinalManifestUrl);
         Assert.Contains("HTTPS", rejected.Status);
         Assert.Single(blockedHandler.Requests);
+    }
+
+    [Theory]
+    [InlineData("https://source.example/doc/")]
+    [InlineData("https://source.example/doc.")]
+    public void ResearchCitationWarningPreservesDistinctPaths(string citation)
+    {
+        var validate = typeof(PublicKnowledgeResearchService).GetMethod(
+            "ValidateProviderResponse", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(validate);
+        var warnings = Assert.IsAssignableFrom<IReadOnlyList<string>>(validate.Invoke(null,
+            ["{\"citations\":[\"" + citation + "\"]}", new HashSet<string>(StringComparer.Ordinal)
+            { "https://source.example/doc" }]));
+
+        Assert.Contains(warnings, warning => warning.Contains(citation, StringComparison.Ordinal));
     }
 
     private static int NextHop(Uri uri) => uri.AbsolutePath == "/start"
