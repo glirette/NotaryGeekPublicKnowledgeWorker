@@ -836,7 +836,7 @@ public sealed class PublicKnowledgeResearchService
         var reasoningEffort = authorityRun && !string.IsNullOrWhiteSpace(_openAiOptions.AuthorityReasoningEffort)
             ? _openAiOptions.AuthorityReasoningEffort
             : configuredReasoningEffort;
-        var maxAttempts = Math.Clamp(_openAiOptions.MaxProviderAttempts, 1, 2);
+        var maxAttempts = command.QueuedSingleAttempt ? 1 : Math.Clamp(_openAiOptions.MaxProviderAttempts, 1, 2);
         var totalInputTokens = 0;
         var totalOutputTokens = 0;
         var totalReasoningTokens = 0;
