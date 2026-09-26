@@ -41,7 +41,7 @@ public static class AllowedSourceRedirects
     public static async Task<(HttpResponseMessage Response, Uri FinalUri)> SendAsync(
         HttpClient client, Uri originalUri, string allowedSourceHosts, CancellationToken cancellationToken)
     {
-        var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var visited = new HashSet<string>(StringComparer.Ordinal);
         var current = originalUri;
         for (var hops = 0; ; hops++)
         {
@@ -50,7 +50,9 @@ public static class AllowedSourceRedirects
                 throw new SourceRedirectException(reason);
             }
 
-            if (!visited.Add(current.AbsoluteUri))
+            // Authority is case insensitive; HTTP path and query can be case sensitive.
+            var visitKey = $"{current.Scheme.ToLowerInvariant()}://{current.IdnHost.ToLowerInvariant()}:{current.Port}{current.PathAndQuery}";
+            if (!visited.Add(visitKey))
             {
                 throw new SourceRedirectException("Source redirect loop detected.");
             }

@@ -76,6 +76,20 @@ public sealed class SourceRedirectTests
     }
 
     [Fact]
+    public async Task DifferentPathCaseIsNotAFalseLoop()
+    {
+        const string original = "https://source.example/Doc";
+        const string final = "https://source.example/doc";
+        var handler = new MemoryHandler(uri => uri.AbsoluteUri == original ? Redirect("/doc") : Ok("document"));
+        using var client = new HttpClient(handler);
+        var fetched = await AllowedSourceRedirects.SendAsync(client, new Uri(original), Hosts, CancellationToken.None);
+        using var response = fetched.Response;
+
+        Assert.Equal(final, fetched.FinalUri.AbsoluteUri);
+        Assert.Equal(new[] { original, final }, handler.Requests);
+    }
+
+    [Fact]
     public async Task RedirectLimitAllowsFiveButNotSix()
     {
         var handler = new MemoryHandler(uri => Redirect($"/hop{NextHop(uri)}"));
@@ -149,6 +163,8 @@ public sealed class SourceRedirectTests
 
         var result = await service.RunAsync(DryRun(Start), CancellationToken.None);
         Assert.Contains(result.Warnings, warning => warning.Contains("allowlisted", StringComparison.OrdinalIgnoreCase));
+        Assert.Equal(manifestUrl, result.RemoteManifestUrl);
+        Assert.Null(result.FinalRemoteManifestUrl);
         Assert.DoesNotContain("blocked.example", handler.Requests.Select(u => new Uri(u).Host));
         Assert.True(result.Sources[0].Ok);
     }
@@ -173,6 +189,8 @@ public sealed class SourceRedirectTests
 
         var result = await service.RunAsync(DryRun(), CancellationToken.None);
         Assert.Single(result.Sources);
+        Assert.Equal(manifestUrl, result.RemoteManifestUrl);
+        Assert.Equal("https://source.example/manifest-v2", result.FinalRemoteManifestUrl);
         Assert.Equal("https://second.example/document", result.Sources[0].FinalUrl);
         Assert.Equal(new[] { manifestUrl, "https://source.example/manifest-v2", "https://second.example/document" },
             handler.Requests);

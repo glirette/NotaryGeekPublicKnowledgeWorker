@@ -38,7 +38,9 @@ public sealed record PublicKnowledgeRunResult(
     PublicKnowledgeProviderEvidence? ProviderEvidence = null,
     PublicKnowledgeStructuredOutput? StructuredOutput = null,
     string RunKind = "regression",
-    string AuthorityLane = "notary")
+    string AuthorityLane = "notary",
+    string? RemoteManifestUrl = null,
+    string? FinalRemoteManifestUrl = null)
 {
     public bool ProviderCalled => OpenAiCalled;
 }

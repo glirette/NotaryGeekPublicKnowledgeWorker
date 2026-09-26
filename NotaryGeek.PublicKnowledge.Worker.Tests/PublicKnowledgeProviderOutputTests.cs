@@ -275,6 +275,20 @@ public sealed class PublicKnowledgeProviderOutputTests
     }
 
     [Fact]
+    public void CitationPathCaseMustMatchFetchedFinalUrl()
+    {
+        var now = DateTime.UtcNow;
+        var differentPath = SourceUrl.Replace("structured-outputs", "Structured-outputs", StringComparison.Ordinal);
+        var json = CreateValidResponse(now).Replace(SourceUrl, differentPath, StringComparison.Ordinal);
+
+        var ok = PublicKnowledgeProviderOutput.TryValidate(
+            "completed", json, FetchedUrls(), now, 14, out _, out var reason);
+
+        Assert.False(ok);
+        Assert.Equal("provider_output_citations_invalid", reason);
+    }
+
+    [Fact]
     public void StaleCandidateIsRejected()
     {
         var now = DateTime.UtcNow;

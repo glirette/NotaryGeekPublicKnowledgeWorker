@@ -311,7 +311,8 @@ public sealed class PublicKnowledgeResearchService
         var sourceResults = new List<PublicKnowledgeSourceResult>();
         var sourceBodies = new List<SourceBody>();
 
-        var manifest = await LoadManifestAsync(warnings, cancellationToken);
+        var loadedManifest = await LoadManifestAsync(warnings, cancellationToken);
+        var manifest = loadedManifest.Manifest;
         var urls = SelectSourceUrls(manifest, requestedUrls, warnings);
         var client = CreateFetchClient();
         var selectedUrls = urls.Take(_knowledgeOptions.MaxSourcesPerRun).ToArray();
@@ -363,7 +364,9 @@ public sealed class PublicKnowledgeResearchService
             manifest,
             sourceResults.ToArray(),
             sourceBodies.ToArray(),
-            warnings.ToArray());
+            warnings.ToArray(),
+            loadedManifest.RemoteManifestUrl,
+            loadedManifest.FinalRemoteManifestUrl);
     }
 
     private async Task<PublicKnowledgeRunResult> RunWithPreparedSourcesAsync(
@@ -448,12 +451,14 @@ public sealed class PublicKnowledgeResearchService
                 preflightScore,
                 Provider: providerName,
                 RunKind: command.RunKind,
-                AuthorityLane: command.AuthorityLane);
+                AuthorityLane: command.AuthorityLane,
+                RemoteManifestUrl: preparedSources.RemoteManifestUrl,
+                FinalRemoteManifestUrl: preparedSources.FinalRemoteManifestUrl);
         }
 
         var fetchedSourceUrls = sourceBodies
             .Select(source => source.Url)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            .ToHashSet(StringComparer.Ordinal);
         var provider = await CallConfiguredProviderAsync(
             prompt,
             providerName,
@@ -496,7 +501,9 @@ public sealed class PublicKnowledgeResearchService
             ProviderEvidence: provider.Evidence,
             StructuredOutput: provider.StructuredOutput,
             RunKind: command.RunKind,
-            AuthorityLane: command.AuthorityLane);
+            AuthorityLane: command.AuthorityLane,
+            RemoteManifestUrl: preparedSources.RemoteManifestUrl,
+            FinalRemoteManifestUrl: preparedSources.FinalRemoteManifestUrl);
     }
 
     private static bool CommandsUseSameSourceSet(IReadOnlyList<PublicKnowledgeRunCommand> commands)
@@ -516,7 +523,7 @@ public sealed class PublicKnowledgeResearchService
         return client;
     }
 
-    private async Task<PublicKnowledgeManifest> LoadManifestAsync(
+    private async Task<LoadedManifest> LoadManifestAsync(
         List<string> warnings,
         CancellationToken cancellationToken)
     {
@@ -528,11 +535,12 @@ public sealed class PublicKnowledgeResearchService
             try
             {
                 var client = CreateFetchClient();
-                using var response = (await AllowedSourceRedirects.SendAsync(
-                    client, manifestUri!, _knowledgeOptions.AllowedSourceHosts, cancellationToken)).Response;
+                var fetched = await AllowedSourceRedirects.SendAsync(
+                    client, manifestUri!, _knowledgeOptions.AllowedSourceHosts, cancellationToken);
+                using var response = fetched.Response;
                 response.EnsureSuccessStatusCode();
                 var json = await response.Content.ReadAsStringAsync(cancellationToken);
-                return ParseManifest(json);
+                return new LoadedManifest(ParseManifest(json), manifestUrl, fetched.FinalUri.AbsoluteUri);
             }
             catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException or SourceRedirectException &&
                                        !cancellationToken.IsCancellationRequested)
@@ -549,11 +557,11 @@ public sealed class PublicKnowledgeResearchService
         if (!File.Exists(localPath))
         {
             warnings.Add("Bundled manifest was not found; using built-in defaults.");
-            return BuildDefaultManifest();
+            return new LoadedManifest(BuildDefaultManifest(), manifestUrl, null);
         }
 
         var localJson = await File.ReadAllTextAsync(localPath, cancellationToken);
-        return ParseManifest(localJson);
+        return new LoadedManifest(ParseManifest(localJson), manifestUrl, null);
     }
 
     private PublicKnowledgeManifest ParseManifest(string json)
@@ -1294,7 +1302,7 @@ public sealed class PublicKnowledgeResearchService
         var normalizedFetchedUrls = fetchedSourceUrls
             .Select(NormalizeCitationUrl)
             .Where(url => !string.IsNullOrWhiteSpace(url))
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            .ToHashSet(StringComparer.Ordinal);
 
         var citationUrls = ExtractProviderCitationUrls(responseText, out var parseWarning);
         var warnings = citationUrls
@@ -1304,7 +1312,7 @@ public sealed class PublicKnowledgeResearchService
                 return string.IsNullOrWhiteSpace(normalizedUrl) || !normalizedFetchedUrls.Contains(normalizedUrl);
             })
             .Select(url => $"Provider cited URL not in fetched source list: {url}")
-            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Distinct(StringComparer.Ordinal)
             .ToArray();
 
         return string.IsNullOrWhiteSpace(parseWarning)
@@ -1349,7 +1357,7 @@ public sealed class PublicKnowledgeResearchService
                     return urls.Length > 0 ? urls : [value];
                 })
                 .Where(item => !string.IsNullOrWhiteSpace(item))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Distinct(StringComparer.Ordinal)
                 .ToArray();
         }
         catch (JsonException)
@@ -1700,7 +1708,14 @@ public sealed class PublicKnowledgeResearchService
         PublicKnowledgeManifest Manifest,
         IReadOnlyList<PublicKnowledgeSourceResult> SourceResults,
         IReadOnlyList<SourceBody> SourceBodies,
-        IReadOnlyList<string> Warnings);
+        IReadOnlyList<string> Warnings,
+        string? RemoteManifestUrl,
+        string? FinalRemoteManifestUrl);
+
+    private sealed record LoadedManifest(
+        PublicKnowledgeManifest Manifest,
+        string? RemoteManifestUrl,
+        string? FinalRemoteManifestUrl);
 
     private sealed record SourceFetchWorkItem(
         int Index,
