@@ -155,7 +155,8 @@ public sealed record PublicKnowledgeSourceResult(
     int StatusCode,
     string? ContentType,
     int CharacterCount,
-    string Note);
+    string Note,
+    string? FinalUrl = null);
 
 public sealed record PublicKnowledgeManifest(
     string Schema,

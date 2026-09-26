@@ -130,8 +130,9 @@ public sealed class PublicKnowledgeSourceIndexService
             client.DefaultRequestHeaders.UserAgent.Clear();
             client.DefaultRequestHeaders.UserAgent.ParseAdd(_options.UserAgent);
 
-            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
-            using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            var fetched = await AllowedSourceRedirects.SendAsync(
+                client, uri!, _options.AllowedSourceHosts, cancellationToken);
+            using var response = fetched.Response;
             var statusCode = (int)response.StatusCode;
             if (response.StatusCode != HttpStatusCode.OK)
             {
@@ -139,7 +140,8 @@ public sealed class PublicKnowledgeSourceIndexService
                     generatedAtUtc,
                     manifestUrl,
                     normalizedJurisdiction,
-                    $"HTTP {statusCode}");
+                    $"HTTP {statusCode}",
+                    fetched.FinalUri.AbsoluteUri);
             }
 
             await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
@@ -150,7 +152,8 @@ public sealed class PublicKnowledgeSourceIndexService
                     generatedAtUtc,
                     manifestUrl,
                     normalizedJurisdiction,
-                    "Published law-source cache manifest could not be parsed.");
+                    "Published law-source cache manifest could not be parsed.",
+                    fetched.FinalUri.AbsoluteUri);
             }
 
             var selected = FilterPublishedSources(manifest.Sources, normalizedJurisdiction)
@@ -178,16 +181,17 @@ public sealed class PublicKnowledgeSourceIndexService
                 selected.Length,
                 selected.Count(item => item.NeedsReview),
                 selected.Count(item => item.IsFresh),
-                selected);
+                selected,
+                fetched.FinalUri.AbsoluteUri);
         }
-        catch (Exception ex) when (ex is (HttpRequestException or JsonException or TaskCanceledException) && !cancellationToken.IsCancellationRequested)
+        catch (Exception ex) when (ex is (HttpRequestException or JsonException or TaskCanceledException or SourceRedirectException) && !cancellationToken.IsCancellationRequested)
         {
-            _logger.LogWarning(ex, "Could not read published law-source cache manifest {ManifestUrl}.", manifestUrl);
+            _logger.LogWarning("Could not read published law-source cache manifest: {Reason}.", SafeFetchFailure(ex));
             return PublicLawSourceCacheStatusReport.Failed(
                 generatedAtUtc,
                 manifestUrl,
                 normalizedJurisdiction,
-                ex.Message);
+                SafeFetchFailure(ex));
         }
     }
 
@@ -216,11 +220,9 @@ public sealed class PublicKnowledgeSourceIndexService
                     reason);
             }
 
-            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
-            using var response = await client.SendAsync(
-                request,
-                HttpCompletionOption.ResponseHeadersRead,
-                cancellationToken);
+            var fetched = await AllowedSourceRedirects.SendAsync(
+                client, uri!, _options.AllowedSourceHosts, cancellationToken);
+            using var response = fetched.Response;
 
             var statusCode = (int)response.StatusCode;
             var ok = response.StatusCode is >= HttpStatusCode.OK and < HttpStatusCode.BadRequest;
@@ -235,12 +237,12 @@ public sealed class PublicKnowledgeSourceIndexService
                 ok,
                 statusCode,
                 response.Content.Headers.ContentType?.ToString(),
-                response.RequestMessage?.RequestUri?.ToString(),
+                fetched.FinalUri.AbsoluteUri,
                 ok ? "reachable" : $"HTTP {statusCode}");
         }
-        catch (Exception ex) when (ex is (HttpRequestException or TaskCanceledException) && !cancellationToken.IsCancellationRequested)
+        catch (Exception ex) when (ex is (HttpRequestException or TaskCanceledException or SourceRedirectException) && !cancellationToken.IsCancellationRequested)
         {
-            _logger.LogWarning(ex, "Could not check public law source {Url}.", source.Url);
+            _logger.LogWarning("Could not check public law source: {Reason}.", SafeFetchFailure(ex));
             return new PublicLawSourceHealthCheck(
                 jurisdiction.Id,
                 jurisdiction.State,
@@ -253,9 +255,12 @@ public sealed class PublicKnowledgeSourceIndexService
                 0,
                 null,
                 null,
-                ex.Message);
+                SafeFetchFailure(ex));
         }
     }
+
+    private static string SafeFetchFailure(Exception ex) => ex is SourceRedirectException
+        ? ex.Message : ex is JsonException ? "Invalid source JSON." : "Source request failed.";
 
     private static IEnumerable<PublicLawJurisdiction> FilterJurisdictions(
         IReadOnlyList<PublicLawJurisdiction> jurisdictions,
@@ -371,27 +376,7 @@ public sealed class PublicKnowledgeSourceIndexService
 
     private bool TryBuildAllowedPublicUri(string url, out Uri? uri, out string reason)
     {
-        if (!Uri.TryCreate(url, UriKind.Absolute, out uri))
-        {
-            reason = "URL is not absolute.";
-            return false;
-        }
-
-        if (!uri.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
-        {
-            reason = "Only HTTPS URLs are allowed.";
-            return false;
-        }
-
-        var allowedHosts = SplitList(_options.AllowedSourceHosts);
-        if (!allowedHosts.Contains(uri.Host, StringComparer.OrdinalIgnoreCase))
-        {
-            reason = $"Host '{uri.Host}' is not allowlisted.";
-            return false;
-        }
-
-        reason = "allowed";
-        return true;
+        return AllowedSourceRedirects.TryValidate(url, _options.AllowedSourceHosts, out uri, out reason);
     }
 
     private static IReadOnlyList<string> SplitList(string value) =>
@@ -517,13 +502,15 @@ public sealed record PublicLawSourceCacheStatusReport(
     int ReturnedSourceCount,
     int NeedsReviewCount,
     int FreshCount,
-    IReadOnlyList<PublicLawSourceCacheRecordStatus> Sources)
+    IReadOnlyList<PublicLawSourceCacheRecordStatus> Sources,
+    string? FinalManifestUrl = null)
 {
     public static PublicLawSourceCacheStatusReport Failed(
         DateTime generatedAtUtc,
         string manifestUrl,
         string? jurisdiction,
-        string status) =>
+        string status,
+        string? finalManifestUrl = null) =>
         new(
             "notary-geek-published-law-source-cache-status-v1",
             "0.1-public",
@@ -540,7 +527,8 @@ public sealed record PublicLawSourceCacheStatusReport(
             0,
             0,
             0,
-            []);
+            [],
+            finalManifestUrl);
 }
 
 public sealed record PublicLawSourceCacheRecordStatus(

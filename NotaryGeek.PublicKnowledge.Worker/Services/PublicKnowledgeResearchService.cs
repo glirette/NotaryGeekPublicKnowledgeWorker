@@ -522,17 +522,22 @@ public sealed class PublicKnowledgeResearchService
     {
         var manifestUrl = _knowledgeOptions.PublicCorpusManifestUrl;
         var reason = string.Empty;
-        if (!string.IsNullOrWhiteSpace(manifestUrl) && IsAllowedPublicUrl(manifestUrl, out reason))
+        if (!string.IsNullOrWhiteSpace(manifestUrl) &&
+            AllowedSourceRedirects.TryValidate(manifestUrl, _knowledgeOptions.AllowedSourceHosts, out var manifestUri, out reason))
         {
             try
             {
                 var client = CreateFetchClient();
-                var json = await client.GetStringAsync(manifestUrl, cancellationToken);
+                using var response = (await AllowedSourceRedirects.SendAsync(
+                    client, manifestUri!, _knowledgeOptions.AllowedSourceHosts, cancellationToken)).Response;
+                response.EnsureSuccessStatusCode();
+                var json = await response.Content.ReadAsStringAsync(cancellationToken);
                 return ParseManifest(json);
             }
-            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException)
+            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or JsonException or SourceRedirectException &&
+                                       !cancellationToken.IsCancellationRequested)
             {
-                warnings.Add($"Remote manifest failed; using bundled manifest. Reason: {ex.Message}");
+                warnings.Add($"Remote manifest failed; using bundled manifest. Reason: {SafeFetchFailure(ex)}");
             }
         }
         else if (!string.IsNullOrWhiteSpace(manifestUrl))
@@ -674,38 +679,51 @@ public sealed class PublicKnowledgeResearchService
     {
         try
         {
-            using var response = await client.GetAsync(url, cancellationToken);
+            if (!AllowedSourceRedirects.TryValidate(url, _knowledgeOptions.AllowedSourceHosts, out var uri, out var reason))
+            {
+                return (new PublicKnowledgeSourceResult(url, false, 0, null, 0, reason), null);
+            }
+
+            var fetched = await AllowedSourceRedirects.SendAsync(
+                client, uri!, _knowledgeOptions.AllowedSourceHosts, cancellationToken);
+            using var response = fetched.Response;
+            var finalUrl = fetched.FinalUri.AbsoluteUri;
             var contentType = response.Content.Headers.ContentType?.ToString();
             var statusCode = (int)response.StatusCode;
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, $"HTTP {statusCode}"), null);
+                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, $"HTTP {statusCode}", finalUrl), null);
             }
 
             var bytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
             if (bytes.Length > _knowledgeOptions.MaxBytesPerSource)
             {
-                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, bytes.Length, $"Too large: {bytes.Length} bytes"), null);
+                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, bytes.Length, $"Too large: {bytes.Length} bytes", finalUrl), null);
             }
 
             var content = Encoding.UTF8.GetString(bytes);
             if (string.IsNullOrWhiteSpace(content))
             {
-                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, "Empty response"), null);
+                return (new PublicKnowledgeSourceResult(url, false, statusCode, contentType, 0, "Empty response", finalUrl), null);
             }
 
             var normalized = NormalizeSourceText(content, _knowledgeOptions.MaxCharactersPerSource, out var truncated);
             var note = truncated ? $"ok-truncated:{content.Length}->{normalized.Length}" : "ok";
-            var result = new PublicKnowledgeSourceResult(url, true, statusCode, contentType, normalized.Length, note);
-            return (result, new SourceBody(url, normalized));
+            var result = new PublicKnowledgeSourceResult(url, true, statusCode, contentType, normalized.Length, note, finalUrl);
+            return (result, new SourceBody(finalUrl, normalized));
         }
-        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException)
+        catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or SourceRedirectException &&
+                                   !cancellationToken.IsCancellationRequested)
         {
-            _logger.LogWarning(ex, "Could not fetch public knowledge source {Url}.", url);
-            return (new PublicKnowledgeSourceResult(url, false, 0, null, 0, ex.Message), null);
+            _logger.LogWarning("Could not fetch public knowledge source: {Reason}.", SafeFetchFailure(ex));
+            return (new PublicKnowledgeSourceResult(url, false, 0, null, 0, SafeFetchFailure(ex)), null);
         }
     }
+
+    private static string SafeFetchFailure(Exception ex) => ex is SourceRedirectException
+        ? ex.Message
+        : ex is JsonException ? "Invalid source JSON." : "Source request failed.";
 
     private string BuildPrompt(
         PublicKnowledgeManifest manifest,
@@ -1088,27 +1106,7 @@ public sealed class PublicKnowledgeResearchService
 
     private bool IsAllowedPublicUrl(string url, out string reason)
     {
-        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
-        {
-            reason = "URL is not absolute.";
-            return false;
-        }
-
-        if (uri.Scheme != Uri.UriSchemeHttps)
-        {
-            reason = "Only HTTPS URLs are allowed.";
-            return false;
-        }
-
-        var allowedHosts = SplitList(_knowledgeOptions.AllowedSourceHosts);
-        if (!allowedHosts.Contains(uri.Host, StringComparer.OrdinalIgnoreCase))
-        {
-            reason = $"Host '{uri.Host}' is not allowlisted.";
-            return false;
-        }
-
-        reason = "allowed";
-        return true;
+        return AllowedSourceRedirects.TryValidate(url, _knowledgeOptions.AllowedSourceHosts, out _, out reason);
     }
 
     private static string ExtractOutputText(JsonElement root)
