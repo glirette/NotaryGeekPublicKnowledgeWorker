@@ -523,10 +523,13 @@ public sealed class PublicKnowledgeResearchFunction
 
         try
         {
-            await _storage.MarkQueuedRunRunningAsync(message, cancellationToken);
+            var beforeRunning = await _storage.ReadQueuedRunAsync(message.JobId, cancellationToken);
+            var queued = await _storage.MarkQueuedRunRunningAsync(message, cancellationToken);
 
             if (string.IsNullOrWhiteSpace(message.CaseId) && message.CaseIds.Count > 1)
             {
+                // Enqueue may be acknowledged ambiguously. Redelivery sends any missing children;
+                // the durable per-case reservation makes duplicates safe at the execution boundary.
                 foreach (var childCaseId in message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase))
                 {
                     await _queue.EnqueueAsync(message with { CaseId = childCaseId }, cancellationToken);
@@ -551,22 +554,93 @@ public sealed class PublicKnowledgeResearchFunction
                 return;
             }
 
-            var receipts = await RunStoredBatchAsync([regressionCase], message.Batch, message.Execute, message.Trigger, message.ProviderOverride, cancellationToken);
-            await _storage.CompleteQueuedRunAsync(message, receipts, cancellationToken);
-            var index = await _storage.SaveLatestIndexAsync(cancellationToken);
-            var digest = await _storage.SaveNeedsGregReportAsync(cancellationToken);
-            _logger.LogInformation(
-                "Public knowledge queued job {JobId} stored case {CaseId}; latest index has {RunCount} run(s); digest healthy={Healthy}; reviewCount={ReviewCount}.",
-                message.JobId,
-                caseId,
-                index.RunCount,
-                digest.Healthy,
-                digest.Items.Count);
+            // Envelopes created before durable reservations retain their terminal receipts.
+            // Their original provider operations must never be inferred safe to repeat.
+            if (queued.CaseFingerprints is null &&
+                queued.Receipts.Any(receipt => receipt.CaseId.Equals(caseId, StringComparison.OrdinalIgnoreCase)))
+                return;
+            var existingReceipt = queued.Receipts.FirstOrDefault(receipt =>
+                receipt.CaseId.Equals(caseId, StringComparison.OrdinalIgnoreCase));
+            if (existingReceipt is not null &&
+                existingReceipt.BlobName != PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId))
+                throw new InvalidOperationException("Queued case has conflicting existing receipt identity.");
+            if (PublicKnowledgeRunStorageService.HasUncertainLegacyExecution(beforeRunning))
+            {
+                _logger.LogWarning("Legacy queued case {CaseId} has uncertain prior execution; provider replay is blocked.", caseId);
+                return;
+            }
+
+            var admission = await _storage.AdmitCaseAsync(message, regressionCase, cancellationToken);
+            var evidenceBlobName = PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId);
+            var recorded = await _storage.ReadStoredRunAsync(evidenceBlobName, cancellationToken);
+            if (existingReceipt is not null && recorded is null)
+                throw new InvalidOperationException("Queued case receipt has missing immutable evidence.");
+            if (recorded is null && admission.Phase == "admitted")
+            {
+                var command = new PublicKnowledgeRunCommand(
+                    PublicKnowledgeExecutionPolicy.ShouldCallProvider(message.Trigger, GetRunKind(message.Batch), message.Execute),
+                    message.Trigger.Contains("timer", StringComparison.OrdinalIgnoreCase),
+                    regressionCase.Focus, regressionCase.SourceUrls, regressionCase.Id, regressionCase,
+                    message.ProviderOverride, GetRunKind(message.Batch), GetAuthorityLane(message.Batch),
+                    QueuedSingleAttempt: true);
+                var result = await _service.RunAsync(command, cancellationToken);
+                await _storage.SaveAsync(result, message.Trigger, message.Batch, message.SubmittedAtUtc,
+                    cancellationToken, PublicKnowledgeRunStorageService.GetCaseExecutionId(message, caseId));
+                recorded = await _storage.ReadStoredRunAsync(evidenceBlobName, cancellationToken);
+            }
+
+            if (recorded is null)
+            {
+                _logger.LogWarning("Queued case {CaseId} of job {JobId} has an unknown provider outcome; no retry is authorized.", caseId, message.JobId);
+                return;
+            }
+
+            if (recorded.CaseId != caseId || recorded.Batch != message.Batch || recorded.Trigger != message.Trigger ||
+                recorded.StoredAtUtc != message.SubmittedAtUtc || recorded.BlobName != evidenceBlobName)
+                throw new InvalidOperationException("Conflicting queued result evidence.");
+            if (recorded.Result.RegressionCaseId != caseId ||
+                !string.Equals(PublicKnowledgeRunStorageService.FingerprintCase(recorded.Result.RegressionCase!),
+                    PublicKnowledgeRunStorageService.FingerprintCase(regressionCase), StringComparison.Ordinal) ||
+                recorded.Result.RunKind != GetRunKind(message.Batch) ||
+                recorded.Result.AuthorityLane != GetAuthorityLane(message.Batch) ||
+                recorded.Result.Execute != PublicKnowledgeExecutionPolicy.ShouldCallProvider(
+                    message.Trigger, GetRunKind(message.Batch), message.Execute))
+                throw new InvalidOperationException("Conflicting queued result parameters.");
+
+            var receipt = await _storage.SaveAsync(recorded.Result, message.Trigger, message.Batch,
+                message.SubmittedAtUtc, cancellationToken,
+                PublicKnowledgeRunStorageService.GetCaseExecutionId(message, caseId));
+            var phase = await _storage.RecordCaseEvidenceAsync(message, regressionCase, admission, receipt.BlobName, cancellationToken);
+            await _storage.CompleteQueuedRunAsync(message, [receipt], cancellationToken);
+
+            // Derived publication can be retried from immutable evidence without provider execution.
+            if (!phase.CandidatesPublished)
+            {
+                if (recorded.Result.Ok && recorded.Result.RunKind.Equals("authority-generation", StringComparison.OrdinalIgnoreCase))
+                    await _promotion.SaveValidatedCandidatesAsync(recorded.Result,
+                        PublicKnowledgeRunStorageService.GetCaseExecutionId(message, caseId), cancellationToken);
+                phase = await _storage.MarkCasePublicationAsync(message, regressionCase, "candidates", cancellationToken);
+            }
+            if (!phase.IndexPublished)
+            {
+                await _storage.SaveLatestIndexAsync(cancellationToken);
+                phase = await _storage.MarkCasePublicationAsync(message, regressionCase, "index", cancellationToken);
+            }
+            if (!phase.DigestPublished)
+            {
+                await _storage.SaveNeedsGregReportAsync(cancellationToken);
+                await _storage.MarkCasePublicationAsync(message, regressionCase, "digest", cancellationToken);
+            }
+            await _storage.MarkQueuedCasePublishedAsync(message, caseId, cancellationToken);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Public knowledge queued job {JobId} failed.", message.JobId);
-            await _storage.FailQueuedRunCaseAsync(message, ex.Message, cancellationToken);
+            if (string.IsNullOrWhiteSpace(message.CaseId) && message.CaseIds.Count > 1)
+                throw;
+            // A failure at or after admission has an uncertain provider outcome. Preserve
+            // its reservation and any successful receipt; never turn it into a failed run.
+            throw;
         }
     }
 
@@ -805,7 +879,9 @@ public sealed class PublicKnowledgeResearchFunction
             submittedAtUtc,
             ProviderOverride: providerOverride,
             RunKind: GetRunKind(batch),
-            AuthorityLane: GetAuthorityLane(batch));
+            AuthorityLane: GetAuthorityLane(batch),
+            CaseFingerprints: cases.ToDictionary(item => item.Id,
+                PublicKnowledgeRunStorageService.FingerprintCase, StringComparer.OrdinalIgnoreCase));
 
         var envelope = await _storage.CreateQueuedRunAsync(parent, cancellationToken);
         if (envelope.Status.Equals("preparing", StringComparison.OrdinalIgnoreCase))

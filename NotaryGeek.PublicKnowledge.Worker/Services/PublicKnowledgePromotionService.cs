@@ -54,7 +54,7 @@ public sealed class PublicKnowledgePromotionService
         var saved = 0;
         foreach (var draft in result.StructuredOutput.Candidates)
         {
-            var candidateId = CreateCandidateId(destination, draft);
+            var candidateId = CreateCandidateId(destination, draft, evidence);
             var candidate = new PublicAuthorityCandidate(
                 candidateId,
                 destination,
@@ -68,10 +68,12 @@ public sealed class PublicKnowledgePromotionService
                 draft.DoesNotProve,
                 evidence);
             var blobName = $"promotion/candidates/{ToSafeSegment(destination)}/{candidateId}.json";
+            var expected = BinaryData.FromObjectAsJson(candidate, JsonOptions);
+            var blob = container.GetBlobClient(blobName);
             try
             {
-                await container.GetBlobClient(blobName).UploadAsync(
-                    BinaryData.FromObjectAsJson(candidate, JsonOptions),
+                await blob.UploadAsync(
+                    expected,
                     new BlobUploadOptions
                     {
                         Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },
@@ -82,7 +84,11 @@ public sealed class PublicKnowledgePromotionService
             }
             catch (RequestFailedException ex) when (ex.Status is 409 or 412)
             {
-                // Deterministic candidate IDs make duplicate daily selections a no-op.
+                var existing = await blob.DownloadContentAsync(cancellationToken);
+                using var actualDocument = JsonDocument.Parse(existing.Value.Content);
+                using var expectedDocument = JsonDocument.Parse(expected);
+                if (!JsonElement.DeepEquals(actualDocument.RootElement, expectedDocument.RootElement))
+                    throw new InvalidOperationException("Conflicting immutable promotion candidate.");
             }
         }
 
@@ -102,21 +108,16 @@ public sealed class PublicKnowledgePromotionService
         return container;
     }
 
-    private static string CreateCandidateId(string destination, PublicAuthorityCandidateDraft candidate)
+    private static string CreateCandidateId(string destination, PublicAuthorityCandidateDraft candidate,
+        PublicAuthorityGeneratorEvidence evidence)
     {
-        var canonical = string.Join("\n", new[]
-        {
-            destination.ToLowerInvariant(),
-            candidate.TopicId.Trim().ToLowerInvariant(),
-            candidate.Summary.Trim(),
-            string.Join("\n", candidate.Sources.Select(item => item.Url.Trim()).Order(StringComparer.OrdinalIgnoreCase))
-        });
+        var canonical = JsonSerializer.Serialize(new { destination, candidate, evidence }, JsonOptions);
         return Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(canonical))).ToLowerInvariant();
     }
 
     private static string GetDestination(string authorityLane) =>
         authorityLane.Equals("technical", StringComparison.OrdinalIgnoreCase)
-            ? "glirette/thisstuffiswaytootech"
+            ? "technical-review"
             : "glirette/NotaryGeekPublicKnowledgeWorker";
 
     private static string ToSafeSegment(string value) =>
