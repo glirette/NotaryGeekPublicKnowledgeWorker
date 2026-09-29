@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
   "version": "0.7-public",
-  "reviewedUtc": "2026-09-29T02:12:11.557Z",
+  "reviewedUtc": "2026-09-29T02:19:31.459Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -58,6 +58,30 @@
           "publisher": "Florida Department of State",
           "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
           "notes": "Official Florida Department of State apostille and notarial certification entry point. Use when the public-official signature to be authenticated is a Florida notary or Florida public official, and verify current submission requirements before transaction-specific advice."
+        },
+        {
+          "id": "fl-dos-apostille-accepted-documents",
+          "title": "Accepted Types of Documents",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Florida Department of State",
+          "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/accepted-documents/",
+          "notes": "Apostille route source checked 2026-09-29 UTC; processing dates are volatile."
+        },
+        {
+          "id": "fl-dos-apostille-faq",
+          "title": "Apostille and Notarial Requests FAQ",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Florida Department of State",
+          "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/faq/",
+          "notes": "Apostille route source checked 2026-09-29 UTC; processing dates are volatile."
+        },
+        {
+          "id": "fl-dos-processing-dates",
+          "title": "Document Processing Dates",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Florida Department of State",
+          "url": "https://dos.fl.gov/sunbiz/document-processing-dates/",
+          "notes": "Apostille route source checked 2026-09-29 UTC; processing dates are volatile."
         }
       ],
       "sectionCorpora": [
