@@ -25,6 +25,8 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 
 ## Current Files
 
+- [Public apostille reference coverage and standard](../apostille/README.md)
+- [Georgia apostille and Great Seal guide](../apostille/us-ga/README.md) — distinct issuing authorities and official-source conflict.
 - [Kansas apostille and authentication guide](../apostille/us-ks/README.md) — official source trail and document route pilot.
 - [Notary Law Source Index](notary-law-source-index.json)
 - [Florida Chapter 117, Florida Statutes, 2025 Section Corpus](us-fl/florida-chapter-117-2025.json)
