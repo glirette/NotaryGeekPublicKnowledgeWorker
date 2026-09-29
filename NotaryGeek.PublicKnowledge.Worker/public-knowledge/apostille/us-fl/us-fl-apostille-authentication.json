@@ -1,0 +1,251 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-fl-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:18:23.136Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "FL",
+    "name": "Florida"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "Florida Department of State public official/notary signature and document-category routes; no claim that every Florida RON output, recipient or document type is covered.",
+  "coreQuestion": "Which Florida issuing official or notary signed the actual document, and is this an original certified public record, a qualifying school record, or a full original notarial act?",
+  "routeFacts": [
+    {
+      "id": "authority",
+      "claim": "The Florida Secretary of State is the state's designated competent authority, with the Division of Corporations issuing apostilles and notarial certifications in Tallahassee. Apostille and outside-Convention notarial certification are distinct.",
+      "sourceIds": [
+        "fl-main",
+        "fl-faq",
+        "hcch-status"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "submission",
+      "claim": "Florida asks for its request form, original certified copy/certificate of status or full original notarization, a self-addressed stamped envelope or prepaid pre-addressed air bill with requestor as sender and recipient, and check/money order. Photocopies are not accepted; the office does not accept cash or credit cards.",
+      "sourceIds": [
+        "fl-main",
+        "fl-form"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "fee",
+      "claim": "The normal published fee is $10 per document. For documents certified by a Florida county Clerk of the Court when requesting apostille, the published charge is $20 per document ($10 apostille plus $10 Certificate of Incumbency).",
+      "sourceIds": [
+        "fl-main",
+        "fl-form"
+      ],
+      "evidence": "official-agency-fee"
+    },
+    {
+      "id": "birth-death",
+      "claim": "Florida's accepted-document page specifies a Bureau of Vital Statistics birth/death certificate signed by the State Registrar or a County Health Department certificate signed by the State Registrar. It flags limited information on pre-2004 birth records and directs requesters to check consular acceptance.",
+      "sourceIds": [
+        "fl-documents"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "marriage-divorce",
+      "claim": "The accepted-document page calls for a Bureau of Vital Statistics marriage/dissolution certificate signed by the State Registrar or a Clerk of County Courts, with issuing office fees separate from the apostille.",
+      "sourceIds": [
+        "fl-documents"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "school",
+      "claim": "Florida distinguishes public school/university transcripts signed by a school registrar or issuing official and notarized with full statement from private school/university printed transcripts attested as copies and signed by the student or custodian with a full notarial statement.",
+      "sourceIds": [
+        "fl-documents"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "public-copy-exclusion",
+      "claim": "Florida's accepted-document page says a Florida notary cannot attest copies of listed public records such as birth/death/marriage certificates, court-filed documents, already filed tax forms and public-school records. A private notarized copy is not the state-issued record route.",
+      "sourceIds": [
+        "fl-documents"
+      ],
+      "evidence": "official-agency-law-summary and Notary Geek route inference"
+    },
+    {
+      "id": "business-two-orders",
+      "claim": "For Florida Secretary of State certified copies and certificates of status, submit the original issued certification or request a new certificate/copy alongside apostille with separate fees and two separate checks or money orders.",
+      "sourceIds": [
+        "fl-documents"
+      ],
+      "evidence": "official-company-record-procedure"
+    },
+    {
+      "id": "walk-in",
+      "claim": "The Florida FAQ says no expedited service but allows Tallahassee walk-ins, most completed while waiting. It says documents are processed in received order; these statements are not a same-day guarantee for mail.",
+      "sourceIds": [
+        "fl-faq"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "queue",
+      "claim": "The Department's processing page updated September 28, 2026 listed apostille requests received September 2, 2026 and certification requests received September 21, 2026 as then being processed. This is a dated operational snapshot, not a future turnaround promise.",
+      "sourceIds": [
+        "fl-queue"
+      ],
+      "evidence": "official-agency-dated-status"
+    },
+    {
+      "id": "ron-output",
+      "claim": "The general apostille page requires an original notary signature, stamp, seal and full statement and rejects photocopies; it does not, in these cited pages, establish how a specific remotely notarized electronic original or paper printout is accepted. Obtain a direct current output-specific answer before claiming a RON apostille lane.",
+      "sourceIds": [
+        "fl-main",
+        "fl-documents"
+      ],
+      "evidence": "official-rule plus explicit research limit"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "vital",
+      "question": "Which office and official signed the certified birth/death/marriage/dissolution record?",
+      "route": "Use the State Registrar or specified clerk path in Florida guidance. Preserve the certified official output and confirm recipient requirements, including pre-2004 birth data limits.",
+      "sourceIds": [
+        "fl-documents"
+      ]
+    },
+    {
+      "id": "public-school",
+      "question": "Is this a Florida public school or university transcript signed by its registrar/issuing official?",
+      "route": "Obtain the official signed transcript with a full notarial statement at issuance; do not let a later private person print and notarize it as though it were the same route.",
+      "sourceIds": [
+        "fl-documents",
+        "fl-main"
+      ]
+    },
+    {
+      "id": "private-school",
+      "question": "Is this a Florida private school or university printed transcript?",
+      "route": "Follow the agency's distinct copy-attestation and student/custodian signature plus full notarial statement requirement.",
+      "sourceIds": [
+        "fl-documents"
+      ]
+    },
+    {
+      "id": "company",
+      "question": "Is the requested document a Florida Secretary of State certified copy or Certificate of Status?",
+      "route": "Use the original issued certification or request one; if ordering certification with the apostille, pay the two agency fees on two separate checks/money orders.",
+      "sourceIds": [
+        "fl-documents"
+      ]
+    },
+    {
+      "id": "clerk",
+      "question": "Was the document certified by a Florida county Clerk of the Court?",
+      "route": "Check the $20 apostille plus Certificate of Incumbency route and the actual clerk official's signature.",
+      "sourceIds": [
+        "fl-main"
+      ]
+    },
+    {
+      "id": "notarized-private",
+      "question": "Does an original private document bear a Florida notary's complete original act?",
+      "route": "Verify full English notarial statement, original signature/stamp/seal, and proper underlying notarial authority. Do not use notary copy attestation for enumerated public records; keep RON/e-output eligibility unresolved until confirmed.",
+      "sourceIds": [
+        "fl-main",
+        "fl-documents"
+      ]
+    },
+    {
+      "id": "federal-or-other-state",
+      "question": "Is this federal or signed/issued by another state?",
+      "route": "Use the designated federal/other-state authority instead of routing to Florida because of requester residence or a Florida courier.",
+      "sourceIds": [
+        "fl-main"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Verify current statute and Section 117 implications for the exact notarial act and copy category; the existing Florida Chapter 117 corpus is a research starting point and needs current-year freshness check.",
+    "Confirm directly whether the agency accepts the specific RON/electronic output or a paper printout and what constitutes the original; do not infer from provider ability.",
+    "Confirm the actual recipient's written requirements, current Convention applicability, translation, record age, and any further outside-Convention chain.",
+    "Recheck current form revision, fees, office hours, return labeling and apostille/certification queue before submission.",
+    "Determine separate issuing office procurement fees for the precise vital, clerk, school, or company record."
+  ],
+  "doNotInfer": [
+    "A Florida notary can certify a copy of a public birth, marriage or court record for apostille.",
+    "A school transcript printed by anyone becomes the official public-school registrar route after a later notarization.",
+    "$10 applies to a county Clerk-certified apostille request or includes the fee to obtain a company certified copy.",
+    "The state offers expedited mail service or its walk-in language guarantees an outcome.",
+    "A RON platform's valid Florida session proves the printed output is accepted as an original apostille document.",
+    "The apostille authenticates contents or guarantees receiving-country acceptance."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "relatedExistingCorpus": [
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json",
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json"
+  ],
+  "sourceNotes": "Official current pages and dated processing status checked September 29 UTC. Distinguish statute corpus from agency procedure, and public-school transcript from private-school copy attestation. RON acceptance remains an explicit question.",
+  "sources": [
+    {
+      "id": "fl-main",
+      "title": "Authentications (Apostilles & Notarial Certifications)",
+      "type": "official-agency-guidance",
+      "publisher": "Florida Department of State",
+      "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+      "checkedUtc": "2026-09-29T02:18:23.136Z"
+    },
+    {
+      "id": "fl-documents",
+      "title": "Accepted Types of Documents",
+      "type": "official-agency-guidance",
+      "publisher": "Florida Department of State",
+      "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/accepted-documents/",
+      "checkedUtc": "2026-09-29T02:18:23.136Z"
+    },
+    {
+      "id": "fl-faq",
+      "title": "Frequently Asked Questions",
+      "type": "official-agency-guidance",
+      "publisher": "Florida Department of State",
+      "url": "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/faq/",
+      "checkedUtc": "2026-09-29T02:18:23.136Z"
+    },
+    {
+      "id": "fl-queue",
+      "title": "Document Processing Dates",
+      "type": "official-agency-guidance",
+      "publisher": "Florida Department of State",
+      "url": "https://dos.fl.gov/sunbiz/document-processing-dates/",
+      "checkedUtc": "2026-09-29T02:18:23.136Z",
+      "pageUpdated": "2026-09-28"
+    },
+    {
+      "id": "fl-form",
+      "title": "Apostille or Notarial Certification Request",
+      "type": "official-agency-guidance",
+      "publisher": "Florida Department of State",
+      "url": "https://dos.fl.gov/media/702388/1-apostille_and_notarial_certificate_request_form-10-19-2023.pdf",
+      "checkedUtc": "2026-09-29T02:18:23.136Z"
+    },
+    {
+      "id": "hcch-status",
+      "title": "Apostille Convention status table",
+      "type": "official-treaty-status",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-09-29T02:18:23.136Z"
+    }
+  ]
+}
