@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.28-public",
-  "reviewedUtc": "2026-08-09T00:00:00Z",
+  "version": "1.29-public",
+  "reviewedUtc": "2026-09-29T01:50:29.041Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -13,6 +13,20 @@
     "conceptSpecific": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json"
   },
   "artifacts": [
+    {
+      "id": "us-ks-apostille-authentication",
+      "title": "Kansas Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Source-backed Kansas public-official-signature, document, submission, destination, return, and uncertainty route with human guide and claim-level source references.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/us-ks-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/README.md",
+      "supportingUrls": [
+        "https://sos.ks.gov/general-services/apostilles-authentications.html",
+        "https://www.sos.ks.gov/forms/administration/DC.pdf",
+        "https://sos.ks.gov/businesses/copies-and-certifications.html",
+        "https://sos.ks.gov/general-services/notary.html"
+      ]
+    },
     {
       "id": "notary-law-source-index",
       "title": "Notary Law Source Index",
