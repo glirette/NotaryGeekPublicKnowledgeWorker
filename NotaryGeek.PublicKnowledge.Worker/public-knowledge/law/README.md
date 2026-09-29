@@ -1,6 +1,6 @@
 # Public Law Source Index
 
-Reviewed: 2026-06-11
+Reviewed: 2026-09-29
 
 This folder is the beginning of the Notary Geek public law/source index.
 
@@ -25,6 +25,15 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 
 ## Current Files
 
+- [Public apostille reference coverage and standard](../apostille/README.md)
+- [California apostille and authentication guide](../apostille/us-ca/README.md) — birth/death signature exceptions and mail/counter routes.
+- [Delaware apostille and authentication guide](../apostille/us-de/README.md) — separately certified company filings, paper notarial boundary, and personal/commercial routes.
+- [Florida apostille and notarial certification guide](../apostille/us-fl/README.md) — vital, school, clerk, company, and notarized document routes.
+- [Georgia apostille and Great Seal guide](../apostille/us-ga/README.md) — distinct issuing authorities and official-source conflict.
+- [New York apostille and authentication guide](../apostille/us-ny/README.md) — NYSDOH, NYC Health, local issuer, school, DCJS, and notary branches.
+- [Wyoming apostille and authentication guide](../apostille/us-wy/README.md) — Business Division certification, official signature, school, and private-document split.
+- [Texas universal apostille guide](../apostille/us-tx/README.md) — recordable/private split, RON package, business certifying team, and current counter lanes.
+- [Kansas apostille and authentication guide](../apostille/us-ks/README.md) — official source trail and document route pilot.
 - [Notary Law Source Index](notary-law-source-index.json)
 - [Florida Chapter 117, Florida Statutes, 2025 Section Corpus](us-fl/florida-chapter-117-2025.json)
 - [Law Source Cache And Section Normalization](../topics/law-source-cache-and-section-normalization.json)

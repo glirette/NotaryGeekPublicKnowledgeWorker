@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.28-public",
-  "reviewedUtc": "2026-08-09T00:00:00Z",
+  "version": "1.38-public",
+  "reviewedUtc": "2026-09-29T02:52:22.795Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -13,6 +13,143 @@
     "conceptSpecific": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-citation-map.json"
   },
   "artifacts": [
+    {
+      "id": "apostille-reference-coverage",
+      "title": "Public Apostille Reference Coverage",
+      "kind": "coverage-and-publication-standard",
+      "use": "Truthful 50-state route-status register, separate federal/country work tracks, and source-backed publication quality gate.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/coverage.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
+      "supportingUrls": [
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "apostille-adversarial-review-2026-09-29",
+      "title": "Adversarial Review of Partial Apostille Route Pilots",
+      "kind": "source-and-route-review",
+      "use": "Dated wrong-authority, output, fee, timing, source-conflict and recipient-acceptance challenges for the six priority state pilots, with fixes, open evidence and a bounded merge-stage review gate.",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/adversarial-review-2026-09-29.md"
+    },
+    {
+      "id": "us-ny-apostille-authentication",
+      "title": "New York Apostille and Certificate of Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "NYSDOH, NYC Health, local vital issuer, school, DCJS and private notarized-document routes, county clerk stages, current submission and NYC address conflict.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ny/us-ny-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ny/README.md",
+      "supportingUrls": [
+        "https://dos.ny.gov/apostille-certificate-authentication",
+        "https://dos.ny.gov/apostillecertificate-authentication-request-forms",
+        "https://www.nyc.gov/site/doh/services/birth-death-records-birth.page"
+      ]
+    },
+    {
+      "id": "us-wy-apostille-authentication",
+      "title": "Wyoming Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Wyoming official signatures, Business Division-issued company certification and separate fees, school registrar notarial branch, Universal Certificate and mail/appointment rules.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-wy/us-wy-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-wy/README.md",
+      "supportingUrls": [
+        "https://sos.wyo.gov/services/authentication.aspx",
+        "https://sos.wyo.gov/Services/DocumentRequirements.aspx",
+        "https://sos.wyo.gov/Forms/Authentication/AuthenticationForm.pdf"
+      ]
+    },
+    {
+      "id": "us-tx-apostille-authentication",
+      "title": "Texas Universal Apostille: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Texas recordable/non-recordable split, certified-record age, RON ledger, business certifying-unit boundary, and dated mail/counter/bulk instructions.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-tx/us-tx-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-tx/README.md",
+      "supportingUrls": [
+        "https://www.sos.state.tx.us/authinfo.shtml",
+        "https://www.sos.state.tx.us/statdoc/request.shtml",
+        "https://www.sos.state.tx.us/statdoc/guides/apostilleguide.pdf"
+      ]
+    },
+    {
+      "id": "us-fl-apostille-authentication",
+      "title": "Florida Apostille and Notarial Certification: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Florida vital, school, Clerk, company, and notarial document branches; $10/$20 fee split, separate company certification payment, dated queue, and unresolved RON output.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-fl/us-fl-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-fl/README.md",
+      "supportingUrls": [
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/accepted-documents/",
+        "https://dos.fl.gov/sunbiz/document-processing-dates/"
+      ]
+    },
+    {
+      "id": "us-de-apostille-authentication",
+      "title": "Delaware Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Delaware individual filing certification, official record versus notarial output, remote/electronic exclusion, personal/commercial fee and submission split, and timing source conflict.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-de/us-de-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-de/README.md",
+      "supportingUrls": [
+        "https://corp.delaware.gov/apost_info/",
+        "https://corp.delaware.gov/submitting-non-commercial-documents-for-apostille-or-authentication/",
+        "https://corp.delaware.gov/regguide/"
+      ]
+    },
+    {
+      "id": "us-ca-apostille-authentication",
+      "title": "California Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "California vital-record signature exception; certified versus plain and private company records; mail/counter fees and dated queue; destination-neutral state Apostille output and unresolved certified e-output.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/README.md",
+      "supportingUrls": [
+        "https://www.sos.ca.gov/notary/request-apostille",
+        "https://www.sos.ca.gov/notary/apostille-faqs",
+        "https://www.sos.ca.gov/notary/processing-times"
+      ]
+    },
+    {
+      "id": "us-federal-apostille-authentication",
+      "title": "U.S. Federal-Origin Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-federal-route-pilot",
+      "use": "Official-source-backed authority split for federal agencies, federal court clerks, Passport Services consular vital records, and state-origin boundaries; current submission rules and unresolved issuer questions.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-federal/us-federal-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-federal/README.md",
+      "supportingUrls": [
+        "https://www.hcch.net/en/states/authorities/details3/?aid=353",
+        "https://travel.state.gov/en/replace-certify/authenticate-documents/apostille-certificate.html",
+        "https://travel.state.gov/en/replace-certify/authenticate-documents/request-services.html"
+      ]
+    },
+    {
+      "id": "us-ga-apostille-authentication",
+      "title": "Georgia Apostille and Great Seal: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Official-source-backed two-authority Georgia route, public/private document branches, conflict on walk-in status, and explicit output/recipient limits.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ga/us-ga-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ga/README.md",
+      "supportingUrls": [
+        "https://www.gsccca.org/notary-and-apostilles/apostilles/general-apostille-information",
+        "https://sos.ga.gov/page/great-seal-authentication-administrative-services",
+        "https://www.gsccca.org/docs/notary-documents/apostillerequestform.pdf",
+        "https://www.gsccca.org/learn/walk-in-service-suspended"
+      ]
+    },
+    {
+      "id": "us-ks-apostille-authentication",
+      "title": "Kansas Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Source-backed Kansas public-official-signature, document, submission, destination, return, and uncertainty route with human guide and claim-level source references.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/us-ks-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/README.md",
+      "supportingUrls": [
+        "https://sos.ks.gov/general-services/apostilles-authentications.html",
+        "https://www.sos.ks.gov/forms/administration/DC.pdf",
+        "https://sos.ks.gov/businesses/copies-and-certifications.html",
+        "https://sos.ks.gov/general-services/notary.html"
+      ]
+    },
     {
       "id": "notary-law-source-index",
       "title": "Notary Law Source Index",

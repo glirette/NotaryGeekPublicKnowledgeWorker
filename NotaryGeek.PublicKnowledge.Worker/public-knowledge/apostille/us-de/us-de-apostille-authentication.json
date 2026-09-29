@@ -1,0 +1,227 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-de-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:14:34.206Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "DE",
+    "name": "Delaware"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "Delaware public-official and notary signature route; distinct filed-company, personal, and outside-Convention branches. No service acceptance or deadline promise.",
+  "coreQuestion": "Is the authenticated signature on an individually certified Delaware filing, official Delaware State/County record, or Delaware notarial act, and is the purpose personal or commercial?",
+  "routeFacts": [
+    {
+      "id": "authority",
+      "claim": "The Delaware Division of Corporations can apostille or authenticate documents signed by a Delaware notary or Delaware public official, distinguishing Hague-destination apostille from non-Hague authentication; the latter may require additional U.S. Department of State authentication depending on the destination.",
+      "sourceIds": [
+        "de-overview",
+        "hcch-status"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "filed-document",
+      "claim": "For documents filed with Delaware Secretary of State, each filing must be separately certified for apostille. A bundle under one cover certification is unacceptable.",
+      "sourceIds": [
+        "de-overview",
+        "de-noncommercial"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "public-record",
+      "claim": "Publicly recorded documents must be official copies from the issuing Delaware State or County official and are not to be notarized in place of that official-copy route.",
+      "sourceIds": [
+        "de-overview"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "ron-exclusion",
+      "claim": "The Division expressly says it will not accept remotely or electronically notarized documents for apostille. An electronic/remote notarial act's validity elsewhere does not establish acceptance by this agency.",
+      "sourceIds": [
+        "de-overview",
+        "de-noncommercial"
+      ],
+      "evidence": "official-agency-output-exclusion"
+    },
+    {
+      "id": "foreign-language",
+      "claim": "A foreign-language document must include an English translation and both language versions must be notarized; the Division does not translate documents.",
+      "sourceIds": [
+        "de-overview",
+        "de-noncommercial"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "scope-exclusions",
+      "claim": "The Division lists out-of-state, federally signed/sealed, photocopied, foreign-issued, and documents for use within U.S. states as outside its apostille/authentication remit; its U.S.-states exclusion explicitly does not include territories and possessions.",
+      "sourceIds": [
+        "de-overview"
+      ],
+      "evidence": "official-agency-exclusions"
+    },
+    {
+      "id": "personal-fees",
+      "claim": "The dedicated non-commercial page describes a $30 discounted fee for personal-use documents presented simultaneously, while commercial or other non-personal documents cost $30 per document, with commercial expediting for an additional charge.",
+      "sourceIds": [
+        "de-noncommercial"
+      ],
+      "evidence": "official-agency-fees"
+    },
+    {
+      "id": "personal-mail-counter",
+      "claim": "Personal-use mail requests go to 401 Federal Street, Suite 4, Dover, with purpose and destination country in a cover memo. The page says mail is typically processed the same business day and returned first-class unless prepaid Priority USPS, FedEx, or UPS is provided. In-person hand delivery requires an appointment at 302-739-3077; personal requests are typically processed same business day.",
+      "sourceIds": [
+        "de-noncommercial"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "corporate-submission",
+      "claim": "The Division's general corporate request page requires a cover memo, destination country for apostille/gold seal, and payment. Credit cards must use its online document filing/certificate request service, not mail or walk-in; check payments must meet its stated U.S.-bank/U.S.-funds requirement.",
+      "sourceIds": [
+        "de-corporate-request"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "notary-standing",
+      "claim": "Some destinations require a notary Good Standing certificate to prove appointment; the Division tells requesters to check with the receiving territory or country before ordering.",
+      "sourceIds": [
+        "de-overview"
+      ],
+      "evidence": "official-agency-recipient-contingency"
+    },
+    {
+      "id": "timing-conflict",
+      "claim": "The Delaware FAQ says hand-delivered personal/adoption requests will be completed within two hours, while the dedicated non-commercial procedure says personal requests are typically processed on the same business day and require an appointment. Treat the more specific current procedure as the planning baseline and confirm any short-deadline claim directly.",
+      "sourceIds": [
+        "de-faq",
+        "de-noncommercial"
+      ],
+      "evidence": "official-page-wording-conflict plus Notary Geek caution"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "certified-business-filing",
+      "question": "Was the Delaware LLC/corporate filing issued by the Division as an individually certified document?",
+      "route": "Request separate certification for each filing before apostille. A registered-agent copy or one-cover certification does not meet the stated filing requirement; distinguish the record issuer from the company state named in a separate notarized affidavit.",
+      "sourceIds": [
+        "de-overview",
+        "de-corporate-request"
+      ],
+      "classification": "agency rule plus Notary Geek signature-route inference"
+    },
+    {
+      "id": "personal-vital-or-official",
+      "question": "Is it an official Delaware State/County copy for personal use?",
+      "route": "Present the official issued copy, not a private notarization over a public record. Confirm the personal-use fee category, purpose and destination on the cover memo, and return option.",
+      "sourceIds": [
+        "de-overview",
+        "de-noncommercial",
+        "de-faq"
+      ]
+    },
+    {
+      "id": "delaware-notary",
+      "question": "Does an original paper document bear a Delaware notarial act acceptable to the Division?",
+      "route": "Check notary commission/signature and destination. Remote or electronic notarization is expressly excluded for apostille by this Division; a notarized copy of a public record does not replace the issuing official's copy.",
+      "sourceIds": [
+        "de-overview",
+        "de-noncommercial"
+      ]
+    },
+    {
+      "id": "other-state-or-federal",
+      "question": "Is the signature actually from another state or a federal agency/court?",
+      "route": "Use the authority for that signature; Delaware incorporation, registered-agent address, or requester's address does not change the issuer of a separately signed document.",
+      "sourceIds": [
+        "de-overview"
+      ],
+      "classification": "agency exclusion plus Notary Geek inference"
+    },
+    {
+      "id": "non-hague",
+      "question": "Is the actual destination outside the Apostille Convention route?",
+      "route": "Start with Delaware authentication and verify any further State Department or consular step with the destination authority; do not describe apostille as a universal final step.",
+      "sourceIds": [
+        "de-overview",
+        "hcch-status"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Check the recipient's written requirements, Convention status, document age, translation, and any notary Good Standing requirement.",
+    "Resolve the FAQ two-hour hand-delivery wording against the dedicated page's same-business-day appointment wording before promising a deadline.",
+    "Determine the specific certificate type and fee for the actual corporate record; distinguish obtaining the certified record from its separate apostille fee.",
+    "Confirm agency treatment of any electronic official certified copy separately from its express bar on remotely/electronically notarized documents.",
+    "Recheck current fees, delivery carriers, appointment and expediting terms before submission."
+  ],
+  "doNotInfer": [
+    "Delaware incorporation makes every LLC-related private or out-of-state document eligible for a Delaware apostille.",
+    "A registered-agent copy is an individually certified state filing.",
+    "A remote or electronic Delaware notarization will be accepted for apostille because Delaware allows some electronic notarial acts.",
+    "A $30 personal bundle fee applies to commercial company-document orders.",
+    "The FAQ's two-hour line is a guaranteed in-person turnaround without appointment.",
+    "The apostille verifies document content or receiving-country acceptance."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "sourceNotes": "Existing source index already pointed to the Division; current agency pages were rechecked. Preserve the timing difference between the FAQ and dedicated procedure. Notary Geek signature and recipient inferences are labeled.",
+  "sources": [
+    {
+      "id": "de-overview",
+      "title": "Certifications, Apostilles and Authentication of Documents",
+      "type": "official-agency-guidance",
+      "publisher": "Delaware Division of Corporations",
+      "url": "https://corp.delaware.gov/apost_info/",
+      "checkedUtc": "2026-09-29T02:14:34.206Z"
+    },
+    {
+      "id": "de-noncommercial",
+      "title": "Submitting Non-Commercial Documents for Apostille or Authentication",
+      "type": "official-agency-guidance",
+      "publisher": "Delaware Division of Corporations",
+      "url": "https://corp.delaware.gov/submitting-non-commercial-documents-for-apostille-or-authentication/",
+      "checkedUtc": "2026-09-29T02:14:34.206Z"
+    },
+    {
+      "id": "de-corporate-request",
+      "title": "Submitting a Request",
+      "type": "official-agency-guidance",
+      "publisher": "Delaware Division of Corporations",
+      "url": "https://corp.delaware.gov/regguide/",
+      "checkedUtc": "2026-09-29T02:14:34.206Z"
+    },
+    {
+      "id": "de-faq",
+      "title": "Frequently Asked Questions",
+      "type": "official-agency-guidance",
+      "publisher": "Delaware Division of Corporations",
+      "url": "https://corp.delaware.gov/faqs/",
+      "checkedUtc": "2026-09-29T02:14:34.206Z"
+    },
+    {
+      "id": "hcch-status",
+      "title": "Apostille Convention status table",
+      "type": "official-treaty-status",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-09-29T02:14:34.206Z"
+    }
+  ]
+}

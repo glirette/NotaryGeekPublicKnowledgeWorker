@@ -1,0 +1,214 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-wy-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:24:47.389Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "WY",
+    "name": "Wyoming"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "Wyoming official signature, company record, school, private notarized document, and current form/submission distinctions; not an output/recipient or delivery guarantee.",
+  "coreQuestion": "Is this an issuing official's Wyoming record, a Business Division certified company document, a school registrar notarization, or a Wyoming notarial act on a private document?",
+  "routeFacts": [
+    {
+      "id": "authority",
+      "claim": "Wyoming SOS authenticates original signatures of specified Wyoming public officials or Wyoming notaries. It uses a Universal Certificate for Hague and non-Hague receiving countries, effective September 10, 2021; the destination route may still require more authentication for outside-Convention use.",
+      "sourceIds": [
+        "wy-requirements",
+        "wy-universal",
+        "hcch-status"
+      ],
+      "evidence": "official-agency-guidance plus destination-route limit"
+    },
+    {
+      "id": "official-signature",
+      "claim": "The document-requirements page lists Wyoming County Clerk/deputy, State Registrar/deputy, State Examiner or Wyoming notary acknowledgments and says all signatures must be original.",
+      "sourceIds": [
+        "wy-requirements"
+      ],
+      "evidence": "official-agency-document-rule"
+    },
+    {
+      "id": "business-issued",
+      "claim": "The July 1, 2026 request form says Wyoming business documents must be issued and certified by the Wyoming SOS Business Division; do not send printed business documents in place of Business Division-produced certified records.",
+      "sourceIds": [
+        "wy-form"
+      ],
+      "evidence": "official-form-company-record-rule"
+    },
+    {
+      "id": "business-fees-timing",
+      "claim": "The form adds a $20 certification charge for a good-standing/other business certificate or $10 for the first ten pages of certified articles on top of $20 per apostille; over ten pages need inquiry. Business Division document orders may take up to 15 business days for processing.",
+      "sourceIds": [
+        "wy-form"
+      ],
+      "evidence": "official-form-fee-and-estimate"
+    },
+    {
+      "id": "school",
+      "claim": "The current form says all educational records must be notarized by the school's Office Registrar/Notary Officer; this is narrower than a student printing a transcript and seeking unrelated notarial copy certification.",
+      "sourceIds": [
+        "wy-form"
+      ],
+      "evidence": "official-form-document-specific-rule plus Notary Geek inference"
+    },
+    {
+      "id": "private",
+      "claim": "The form describes other documents such as operating agreements and powers of attorney as requiring Wyoming notarial officer notarization, distinct from a Business Division certified company filing.",
+      "sourceIds": [
+        "wy-form"
+      ],
+      "evidence": "official-form-document-specific-rule"
+    },
+    {
+      "id": "request",
+      "claim": "Wyoming prefers mail via USPS/FedEx/UPS with request form, $20 per apostille/authentication and prepaid addressed return envelope/label; counter requests are appointment-only via 307-777-7370 or Apostilles@wyo.gov. Card payments are not accepted per the form.",
+      "sourceIds": [
+        "wy-main",
+        "wy-form"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "destination",
+      "claim": "The written request/form asks for receiving country. Wyoming calls its state output a Universal Certificate for both Hague and non-Hague destinations, but that form alone does not prove an outside-Convention consular chain or recipient acceptance is complete.",
+      "sourceIds": [
+        "wy-universal",
+        "wy-requirements",
+        "wy-form",
+        "hcch-status"
+      ],
+      "evidence": "official-agency-output plus Notary Geek destination inference"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "company-certificate",
+      "question": "Is the requested record a Wyoming Business Division good-standing or other business certificate?",
+      "route": "Order the Division-produced certified certificate and add its separate $20 certification fee plus $20 apostille fee; verify current processing/recipient requirements.",
+      "sourceIds": [
+        "wy-form"
+      ]
+    },
+    {
+      "id": "company-articles",
+      "question": "Are the requested articles an official certified copy from the Business Division?",
+      "route": "Order the certified copy ($10 first ten pages; ask for more) and separate $20 apostille. Do not mail a printed business filing as a replacement.",
+      "sourceIds": [
+        "wy-form"
+      ]
+    },
+    {
+      "id": "notarized-company-private",
+      "question": "Is this a private operating agreement signed/notarized by a Wyoming notarial officer rather than an official filing?",
+      "route": "Follow the Wyoming notary's actual signature route. The entity's formation state alone does not settle the signature's competent authority.",
+      "sourceIds": [
+        "wy-form",
+        "wy-requirements"
+      ],
+      "classification": "agency rule plus Notary Geek inference"
+    },
+    {
+      "id": "vital-court",
+      "question": "Which Wyoming official signed/certified this vital or court record?",
+      "route": "Obtain the issuing official's original-signed or certified record; check title and signature rather than notarizing a printout.",
+      "sourceIds": [
+        "wy-requirements",
+        "wy-form"
+      ]
+    },
+    {
+      "id": "education",
+      "question": "Did the school Office Registrar/Notary Officer notarize the educational record?",
+      "route": "Use the exact form requirement and ask the school for the official output. Do not treat an unaffiliated notarization as equivalent.",
+      "sourceIds": [
+        "wy-form"
+      ]
+    },
+    {
+      "id": "federal-other-state",
+      "question": "Is the issuer or official signature federal or from another state?",
+      "route": "Identify the other authority; a Wyoming company or requester does not make that signature Wyoming's.",
+      "sourceIds": [
+        "wy-requirements",
+        "wy-form"
+      ],
+      "classification": "Notary Geek authority inference"
+    }
+  ],
+  "openQuestions": [
+    "Confirm whether the particular recipient needs another federal/consular step for a non-Convention destination, even though Wyoming calls its state output a Universal Certificate.",
+    "Check whether a specific electronic notarial original or printout meets the current original-signature rule; the cited pages do not establish a general e-apostille lane.",
+    "Verify the exact current business record issuance route and total separate certification plus apostille fees, especially for long filings.",
+    "Recheck appointment, payment, return carrier, current form revision and Business Division processing estimate before a deadline.",
+    "Confirm the correct issuing office and public official for each vital, court, education, or county record and the recipient's document age/translation requirement."
+  ],
+  "doNotInfer": [
+    "An online printout of a Wyoming filing is a Business Division-produced certified copy.",
+    "A Wyoming LLC's private agreement signed before an out-of-state notary is apostilled by Wyoming merely because of formation state.",
+    "The $20 apostille fee includes a new business certificate or certified articles.",
+    "The 15-business-day business-document estimate is a guaranteed apostille/return timeline.",
+    "A Universal Certificate eliminates any outside-Convention chain or recipient-specific requirement.",
+    "An unrelated notary's certification substitutes for the school's Office Registrar/Notary Officer on educational records."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "relatedExistingCorpus": [
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json"
+  ],
+  "sourceNotes": "Form revision July 1, 2026 supplies company certificate and school exceptions absent from a generic page. State Universal Certificate wording is not final destination-chain proof. Existing DotNetMultisite Wyoming research should be checked before further expansion.",
+  "sources": [
+    {
+      "id": "wy-main",
+      "title": "Apostilles/Authentications",
+      "type": "official-agency-guidance",
+      "publisher": "Wyoming Secretary of State",
+      "url": "https://sos.wyo.gov/services/authentication.aspx",
+      "checkedUtc": "2026-09-29T02:24:47.389Z"
+    },
+    {
+      "id": "wy-requirements",
+      "title": "Document Requirements for Authentications",
+      "type": "official-agency-guidance",
+      "publisher": "Wyoming Secretary of State",
+      "url": "https://sos.wyo.gov/Services/DocumentRequirements.aspx",
+      "checkedUtc": "2026-09-29T02:24:47.389Z"
+    },
+    {
+      "id": "wy-universal",
+      "title": "I Need an Apostille or Signature Authorization",
+      "type": "official-agency-guidance",
+      "publisher": "Wyoming Secretary of State",
+      "url": "https://sos.wyo.gov/services/apostille_sigauthorization.aspx",
+      "checkedUtc": "2026-09-29T02:24:47.389Z"
+    },
+    {
+      "id": "wy-form",
+      "title": "Apostille/Authentication Request (revised July 1, 2026)",
+      "type": "official-agency-guidance",
+      "publisher": "Wyoming Secretary of State",
+      "url": "https://sos.wyo.gov/Forms/Authentication/AuthenticationForm.pdf",
+      "checkedUtc": "2026-09-29T02:24:47.389Z",
+      "formRevision": "2026-07-01"
+    },
+    {
+      "id": "hcch-status",
+      "title": "Apostille Convention status table",
+      "type": "official-treaty-status",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-09-29T02:24:47.389Z"
+    }
+  ]
+}

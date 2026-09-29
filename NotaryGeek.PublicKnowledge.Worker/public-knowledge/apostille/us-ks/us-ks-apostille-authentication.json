@@ -1,0 +1,206 @@
+{
+  "schema": "notary-geek-apostille-state-route-v1",
+  "id": "us-ks-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T01:50:29.041Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "KS",
+    "name": "Kansas"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "Public research for Kansas public-official and Kansas-notary signature routes. This record is not a service-acceptance, timing, recipient-acceptance, or electronic-output guarantee.",
+  "coreQuestion": "Whose public-official signature or certification is being authenticated, and which destination path applies?",
+  "routeFacts": [
+    {
+      "id": "signature-route",
+      "claim": "Kansas Secretary of State issues apostilles or authentications for Kansas documents bearing a Kansas public official's or Kansas notary's seal and signature.",
+      "sourceIds": [
+        "ks-sos-apostilles"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "destination-path",
+      "claim": "For countries in the 1961 Apostille Convention path, the Kansas office describes an apostille; for countries outside that path, it describes an authentication. Form DC requests the destination country.",
+      "sourceIds": [
+        "ks-sos-apostilles",
+        "ks-form-dc"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "submit-original-or-certified",
+      "claim": "Submit completed Form DC with the original document or a certified copy. A scan or ordinary printout is not represented as equivalent to the required document.",
+      "sourceIds": [
+        "ks-sos-apostilles",
+        "ks-form-dc"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "fee",
+      "claim": "The Kansas office lists $10 per document for apostille or authentication, effective March 2, 2026.",
+      "sourceIds": [
+        "ks-sos-apostilles",
+        "ks-form-dc"
+      ],
+      "effectiveDate": "2026-03-02",
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "processing",
+      "claim": "Form DC says certification requests are generally processed within 3–5 business days after receipt; this is an agency estimate, not a delivery or acceptance guarantee.",
+      "sourceIds": [
+        "ks-form-dc"
+      ],
+      "evidence": "official-application-form"
+    },
+    {
+      "id": "business-copies",
+      "claim": "Kansas provides free online file-stamped business copies, while certified copies and certificates of good standing are purchased online. Do not substitute a free file-stamped printout for an official certified copy when certification is required.",
+      "sourceIds": [
+        "ks-business-copies",
+        "ks-sos-apostilles"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "return",
+      "claim": "The Kansas page describes U.S. mail return and a FedEx option. Form DC permits a self-addressed prepaid envelope or supplied shipping label, including international shipping; its office-arranged FedEx Option 2 requires a U.S. physical return address and does not allow international shipping.",
+      "sourceIds": [
+        "ks-sos-apostilles",
+        "ks-form-dc"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "court-official",
+      "claim": "For Kansas court judgments, the court official's signature must be on file with the Secretary of State; Form DC asks for the printed name of the court official.",
+      "sourceIds": [
+        "ks-sos-apostilles",
+        "ks-form-dc"
+      ],
+      "evidence": "official-agency-guidance"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "kansas-vital-record",
+      "firstQuestion": "Is this a Kansas-issued vital record and do you have an official certified copy?",
+      "route": "Obtain a certified record from the Kansas Office of Vital Statistics or issuing authority before the Kansas certification request.",
+      "sourceIds": [
+        "ks-sos-apostilles"
+      ]
+    },
+    {
+      "id": "kansas-private-notarized",
+      "firstQuestion": "Was the private document notarized by a Kansas notary, and is the original or officially acceptable output available?",
+      "route": "Check the Kansas notarial certificate and document form, then the Kansas apostille/authentication path. RON output acceptance remains an open question in this record.",
+      "sourceIds": [
+        "ks-sos-apostilles",
+        "ks-notary"
+      ]
+    },
+    {
+      "id": "kansas-company-public-record",
+      "firstQuestion": "Is this an official Kansas company record rather than a privately signed company document?",
+      "route": "Use the Kansas official certified-copy or certificate-of-good-standing source as appropriate; distinguish those from a free file-stamped copy.",
+      "sourceIds": [
+        "ks-business-copies",
+        "ks-sos-apostilles"
+      ]
+    },
+    {
+      "id": "non-kansas-notary-on-kansas-subject",
+      "firstQuestion": "Does the document merely concern a Kansas person or company while the notarial act was performed by another state's notary?",
+      "route": "The Kansas subject or formation state alone does not establish Kansas as the apostille authority. Identify the authenticated public-official signature and research that authority's route.",
+      "sourceIds": [],
+      "classification": "Notary Geek route-first inference; see canonical model, not a Kansas agency statement"
+    }
+  ],
+  "openQuestions": [
+    "Kansas's apostille page does not expressly resolve whether a particular Kansas RON/electronic notarization output, printed electronic record, or e-apostille path is accepted. Check the current authority and exact output before claiming it is.",
+    "Check HCCH treaty status and any destination-specific bilateral/territorial applicability for the actual destination and transaction date.",
+    "Confirm recipient's written document, translation, freshness, and output requirements separately from Kansas certification.",
+    "Confirm current treatment of unusual court, federal, foreign-origin, school, or translated documents and any signature-on-file condition before submission."
+  ],
+  "doNotInfer": [
+    "A Kansas LLC always needs a Kansas apostille.",
+    "A PDF scan of a paper original meets the Kansas submission requirement.",
+    "A Kansas RON session automatically yields an apostillable output.",
+    "The 3–5 business-day estimate includes mail, courier, recipient review, or final delivery.",
+    "Office-arranged FedEx Option 2 ships internationally.",
+    "An apostille proves the underlying contents or recipient acceptance."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Hague Apostille Finality",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "sourceNotes": "Source text and Notary Geek interpretation are separated; source URLs and checked date identify the observation, not a promise that agency details remain unchanged.",
+  "sources": [
+    {
+      "id": "ks-sos-apostilles",
+      "title": "Apostilles & Authentications",
+      "type": "official-agency-guidance",
+      "publisher": "Kansas Secretary of State",
+      "url": "https://sos.ks.gov/general-services/apostilles-authentications.html",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
+      "supports": [
+        "signature-route",
+        "hague-vs-authentication",
+        "document-categories",
+        "submission",
+        "fee",
+        "return"
+      ]
+    },
+    {
+      "id": "ks-form-dc",
+      "title": "Request for Document Certification (Apostille/Authentication), Form DC",
+      "type": "official-application-form",
+      "publisher": "Kansas Secretary of State",
+      "url": "https://www.sos.ks.gov/forms/administration/DC.pdf",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
+      "formRevision": "2026-06-17",
+      "supports": [
+        "country-field",
+        "court-official-field",
+        "processing-estimate",
+        "return-options"
+      ]
+    },
+    {
+      "id": "ks-business-copies",
+      "title": "Copies & Certifications",
+      "type": "official-agency-guidance",
+      "publisher": "Kansas Secretary of State",
+      "url": "https://sos.ks.gov/businesses/copies-and-certifications.html",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
+      "supports": [
+        "business-record-source",
+        "free-file-stamped-copy-vs-certified-copy",
+        "certificate-of-good-standing"
+      ]
+    },
+    {
+      "id": "ks-notary",
+      "title": "Notary",
+      "type": "official-agency-guidance",
+      "publisher": "Kansas Secretary of State",
+      "url": "https://sos.ks.gov/general-services/notary.html",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
+      "supports": [
+        "kansas-ron-authority-context"
+      ]
+    }
+  ]
+}
