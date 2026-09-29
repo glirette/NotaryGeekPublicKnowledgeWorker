@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.5-public",
-  "reviewedUtc": "2026-08-04T03:28:23Z",
+  "version": "0.6-public",
+  "reviewedUtc": "2026-09-29T01:50:29.041Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -394,6 +394,56 @@
           "publisher": "Wyoming Secretary of State",
           "url": "https://sos.wyo.gov/services/notaries.aspx",
           "notes": "Official Wyoming Secretary of State notary entry point. Add statute/rule URLs in later passes."
+        }
+      ]
+    },
+    {
+      "id": "us-ks",
+      "country": "US",
+      "state": "KS",
+      "name": "Kansas",
+      "status": "apostille-pilot-official-sources-checked-notary-law-incomplete",
+      "apostilleRouteRecordUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/us-ks-apostille-authentication.json",
+      "authorityNotes": [
+        "The Kansas apostille pilot distinguishes Kansas notary/public-official signatures, destination path, original or certified-copy submission, court signature-on-file, and business certified-copy source.",
+        "The pilot does not resolve particular RON/electronic-output acceptance or a complete Kansas notary-law section corpus."
+      ],
+      "sources": [
+        {
+          "id": "ks-sos-apostilles",
+          "title": "Apostilles & Authentications",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Kansas Secretary of State",
+          "url": "https://sos.ks.gov/general-services/apostilles-authentications.html",
+          "checkedUtc": "2026-09-29T01:50:29.041Z",
+          "notes": "Official Kansas apostille/authentication entry point; fee, document categories, and submission details checked for pilot."
+        },
+        {
+          "id": "ks-form-dc",
+          "title": "Request for Document Certification (Apostille/Authentication), Form DC",
+          "sourceType": "official-application-form",
+          "publisher": "Kansas Secretary of State",
+          "url": "https://www.sos.ks.gov/forms/administration/DC.pdf",
+          "checkedUtc": "2026-09-29T01:50:29.041Z",
+          "notes": "Form DC revised June 17, 2026. Destination country, court official, return options, and general processing estimate; verify current form before submission."
+        },
+        {
+          "id": "ks-business-copies",
+          "title": "Copies & Certifications",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Kansas Secretary of State",
+          "url": "https://sos.ks.gov/businesses/copies-and-certifications.html",
+          "checkedUtc": "2026-09-29T01:50:29.041Z",
+          "notes": "Official business record source. Distinguish free file-stamped copies from purchased certified copies and certificates of good standing."
+        },
+        {
+          "id": "ks-notary",
+          "title": "Notary",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Kansas Secretary of State",
+          "url": "https://sos.ks.gov/general-services/notary.html",
+          "checkedUtc": "2026-09-29T01:50:29.041Z",
+          "notes": "Official Kansas notary/RON entry point; this source does not by itself prove apostille acceptance of a particular electronic output."
         }
       ]
     }
