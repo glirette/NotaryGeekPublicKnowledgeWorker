@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.35-public",
-  "reviewedUtc": "2026-09-29T02:23:47.401Z",
+  "version": "1.36-public",
+  "reviewedUtc": "2026-09-29T02:26:45.016Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-wy-apostille-authentication",
+      "title": "Wyoming Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Wyoming official signatures, Business Division-issued company certification and separate fees, school registrar notarial branch, Universal Certificate and mail/appointment rules.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-wy/us-wy-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-wy/README.md",
+      "supportingUrls": [
+        "https://sos.wyo.gov/services/authentication.aspx",
+        "https://sos.wyo.gov/Services/DocumentRequirements.aspx",
+        "https://sos.wyo.gov/Forms/Authentication/AuthenticationForm.pdf"
       ]
     },
     {
