@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.33-public",
-  "reviewedUtc": "2026-09-29T02:16:36.239Z",
+  "version": "1.34-public",
+  "reviewedUtc": "2026-09-29T02:20:21.501Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-fl-apostille-authentication",
+      "title": "Florida Apostille and Notarial Certification: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Florida vital, school, Clerk, company, and notarial document branches; $10/$20 fee split, separate company certification payment, dated queue, and unresolved RON output.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-fl/us-fl-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-fl/README.md",
+      "supportingUrls": [
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/",
+        "https://dos.fl.gov/sunbiz/other-services/apostille-notarial-certification/accepted-documents/",
+        "https://dos.fl.gov/sunbiz/document-processing-dates/"
       ]
     },
     {
