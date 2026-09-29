@@ -11,6 +11,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Artifact | Use | Preferred citation |
 | --- | --- | --- |
 | Public apostille reference coverage | 50-state coverage status and source-backed publication gate, with federal and destination work tracked separately | `apostille/coverage.json` · [guide](apostille/README.md) |
+| Delaware apostille and authentication pilot | Separately certified Delaware filings, public-record versus notarized private document, electronic/remote exclusion, and personal/commercial submission split | `apostille/us-de/us-de-apostille-authentication.json` · [guide](apostille/us-de/README.md) |
 | California apostille and authentication pilot | California vital-record signature exception, mail/counter fees and dated queue, destination-neutral state Apostille output | `apostille/us-ca/us-ca-apostille-authentication.json` · [guide](apostille/us-ca/README.md) |
 | U.S. federal-origin apostille and authentication pilot | Office of Authentications, federal court clerk, and consular vital-record authority branches, with current federal submission rules and open issuer questions | `apostille/us-federal/us-federal-apostille-authentication.json` · [guide](apostille/us-federal/README.md) |
 | Georgia apostille and Great Seal pilot | Two foreign-use authorities, document branches, and published walk-in conflict | `apostille/us-ga/us-ga-apostille-authentication.json` · [guide](apostille/us-ga/README.md) |
