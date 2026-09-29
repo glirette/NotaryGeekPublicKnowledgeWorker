@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
   "version": "0.7-public",
-  "reviewedUtc": "2026-09-29T02:25:50.951Z",
+  "reviewedUtc": "2026-09-29T02:47:54.502Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -219,6 +219,14 @@
           "publisher": "California Secretary of State",
           "url": "https://www.sos.ca.gov/notary/processing-times",
           "notes": "Volatile queue and counter estimates; page last updated September 28, 2026 and checked September 29, 2026."
+        },
+        {
+          "id": "ca-sos-business-records-request",
+          "title": "Business Entities Records Request",
+          "sourceType": "official-agency-records-guidance",
+          "publisher": "California Secretary of State",
+          "url": "https://www.sos.ca.gov/business-programs/business-entities/information-requests",
+          "notes": "Certified copies and certificates of status versus plain online copies and paper-only other-entity certified records; checked September 29, 2026 UTC."
         }
       ]
     },
