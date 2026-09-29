@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
   "version": "0.7-public",
-  "reviewedUtc": "2026-09-29T02:22:29.547Z",
+  "reviewedUtc": "2026-09-29T02:25:50.951Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -504,6 +504,30 @@
           "publisher": "Wyoming Secretary of State",
           "url": "https://sos.wyo.gov/services/notaries.aspx",
           "notes": "Official Wyoming Secretary of State notary entry point. Add statute/rule URLs in later passes."
+        },
+        {
+          "id": "wy-sos-apostille",
+          "title": "Apostilles/Authentications",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Wyoming Secretary of State",
+          "url": "https://sos.wyo.gov/services/authentication.aspx",
+          "notes": "Current apostille route source checked September 29, 2026 UTC; request form revised July 1, 2026."
+        },
+        {
+          "id": "wy-sos-document-requirements",
+          "title": "Document Requirements for Authentications",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Wyoming Secretary of State",
+          "url": "https://sos.wyo.gov/Services/DocumentRequirements.aspx",
+          "notes": "Current apostille route source checked September 29, 2026 UTC; request form revised July 1, 2026."
+        },
+        {
+          "id": "wy-sos-apostille-form",
+          "title": "Apostille/Authentication Request",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Wyoming Secretary of State",
+          "url": "https://sos.wyo.gov/Forms/Authentication/AuthenticationForm.pdf",
+          "notes": "Current apostille route source checked September 29, 2026 UTC; request form revised July 1, 2026."
         }
       ]
     },
