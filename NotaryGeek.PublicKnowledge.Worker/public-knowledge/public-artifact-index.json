@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.37-public",
-  "reviewedUtc": "2026-09-29T02:30:26.639Z",
+  "version": "1.38-public",
+  "reviewedUtc": "2026-09-29T02:52:22.795Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -23,6 +23,13 @@
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
       ]
+    },
+    {
+      "id": "apostille-adversarial-review-2026-09-29",
+      "title": "Adversarial Review of Partial Apostille Route Pilots",
+      "kind": "source-and-route-review",
+      "use": "Dated wrong-authority, output, fee, timing, source-conflict and recipient-acceptance challenges for the six priority state pilots, with fixes, open evidence and a bounded merge-stage review gate.",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/adversarial-review-2026-09-29.md"
     },
     {
       "id": "us-ny-apostille-authentication",
@@ -93,7 +100,7 @@
       "id": "us-ca-apostille-authentication",
       "title": "California Apostille and Authentication: Agent Route Guide",
       "kind": "apostille-state-route-pilot",
-      "use": "California public-official signature route, birth/death certified-copy signer exception, mail/counter fees, dated queue, and destination-neutral state output with recipient limitations.",
+      "use": "California vital-record signature exception; certified versus plain and private company records; mail/counter fees and dated queue; destination-neutral state Apostille output and unresolved certified e-output.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/README.md",
       "supportingUrls": [
