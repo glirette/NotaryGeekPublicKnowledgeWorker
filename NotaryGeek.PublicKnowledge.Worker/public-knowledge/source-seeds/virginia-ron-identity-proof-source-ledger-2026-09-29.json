@@ -14,7 +14,7 @@
   ],
   "sources": [
     {
-      "id": "va-2021-agency-code-pdf",
+      "id": "va-archival-agency-code-pdf",
       "type": "agency-hosted archival code PDF",
       "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/notary/Code-of-Virginia.pdf",
       "locator": "PDF pages 3-4, §47.1-2, electronic-notarization paragraph; page 10, §47.1-14",
@@ -93,7 +93,7 @@
     {
       "period": "historical pre-July-2024 source comparison",
       "basis": [
-        "va-2021-agency-code-pdf",
+        "va-archival-agency-code-pdf",
         "va-2024-chapter-832"
       ],
       "sourceObservation": "The older hosted copy and Chapter 832's marked amendment should be compared at the exact transaction date. Chapter 832 adds KBA as item (5); its express retroactivity clause addresses §47.1-20.1(B).",

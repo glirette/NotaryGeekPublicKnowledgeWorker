@@ -446,7 +446,7 @@
         "Treats provider help text as proof that a particular session met the law."
       ],
       "sourceUrls": [
-        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/virginia-ron-identity-proof-source-ledger-2026-09-29.json",
+        "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/pull/35",
         "https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0832+pdf=",
         "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
         "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number"
