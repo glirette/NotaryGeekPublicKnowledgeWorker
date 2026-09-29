@@ -1,0 +1,237 @@
+{
+  "schema": "notary-geek-apostille-state-route-v1",
+  "id": "us-ga-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T01:59:34.724Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "GA",
+    "name": "Georgia (U.S. state)",
+    "notToConfuseWith": "Georgia (country, GE)"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "Public Georgia-origin document research; two authority branches. No live submission, service acceptance, recipient acceptance, or deadline guarantee.",
+  "coreQuestion": "Is the destination in the Apostille Convention path, and which Georgia public-official signature or notarial act is being authenticated?",
+  "authorityBranches": [
+    {
+      "id": "hague-apostille",
+      "issuer": "Georgia Superior Court Clerks' Cooperative Authority (GSCCCA)",
+      "use": "Georgia-origin documents for Apostille Convention destinations, including use at a foreign embassy or consulate where the destination country participates.",
+      "sourceIds": [
+        "ga-gsccca-apostille"
+      ],
+      "notaryCountyCertification": "GSCCCA says no additional county certification is needed before a Georgia apostille for a notarized document."
+    },
+    {
+      "id": "outside-convention",
+      "issuer": "Georgia Secretary of State, Elections Division - Authentications",
+      "use": "Georgia-origin public documents for foreign use in destinations outside the Apostille Convention path; Great Seal certification.",
+      "sourceIds": [
+        "ga-sos-great-seal",
+        "ga-gsccca-apostille"
+      ],
+      "notaryCountyCertification": "For the Secretary of State's notary route, its guidance calls for certification by the Clerk of Superior Court in the notary's commissioning county; official public-record branches have separate requirements."
+    }
+  ],
+  "routeFacts": [
+    {
+      "id": "two-authorities",
+      "claim": "Georgia splits foreign-use certification by destination: GSCCCA issues Georgia apostilles for the Convention path; the Secretary of State handles Great Seal authentication for the outside-Convention path.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-sos-great-seal"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "county-cert-difference",
+      "claim": "GSCCCA says a notarized document does not need additional county certification before a Georgia apostille. The Secretary of State's Great Seal path requires a commissioning-county Clerk of Superior Court notary certification for notarized documents. Do not add the latter step to the former path.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-sos-great-seal"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "public-records",
+      "claim": "GSCCCA requires official certified copies with the issuing Georgia official's signature and seal for publicly recorded vital, court, and Corporations Division documents; those records are not notarized for the apostille route. It specifically permits certified corporate copies downloaded from the Corporations Division and printed digital certified divorce decrees from participating county eCertification programs.",
+      "sourceIds": [
+        "ga-gsccca-apostille"
+      ],
+      "evidence": "official-competent-authority-guidance"
+    },
+    {
+      "id": "ga-notarized",
+      "claim": "For Georgia-notarized private documents, GSCCCA calls for a properly completed notarial certificate, hand-signed ink signature matching the notary commission, exact date, and matching legible seal.",
+      "sourceIds": [
+        "ga-gsccca-apostille"
+      ],
+      "evidence": "official-competent-authority-guidance"
+    },
+    {
+      "id": "excluded",
+      "claim": "GSCCCA excludes out-of-state, signed-and-sealed federal, foreign-issued, outside-Convention-destination, and ordinary photocopied documents from its apostille route, subject to the separate properly notary-certified copy case it describes.",
+      "sourceIds": [
+        "ga-gsccca-apostille"
+      ],
+      "evidence": "official-competent-authority-guidance"
+    },
+    {
+      "id": "ga-apostille-fee",
+      "claim": "GSCCCA lists $3 per apostille document; its separate $2 domestic notary certification is not used with an apostille.",
+      "sourceIds": [
+        "ga-gsccca-apostille"
+      ],
+      "evidence": "official-competent-authority-guidance"
+    },
+    {
+      "id": "ga-great-seal-fee",
+      "claim": "The Georgia Secretary of State lists $10 per Great Seal document and a current service timeline of 3–5 business days.",
+      "sourceIds": [
+        "ga-sos-great-seal"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "ga-mail",
+      "claim": "GSCCCA's mail route calls for originals, destination country and contact details, payment, and a prepaid return envelope or computer-generated FedEx/UPS return airbill. It describes normal mail-in processing as 1–2 business days, excluding transit and downstream review.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-apostille-request-form"
+      ],
+      "evidence": "official-competent-authority-guidance"
+    },
+    {
+      "id": "walk-in-conflict",
+      "claim": "GSCCCA's general page says walk-in service is available, but a separate temporary notice still says service is suspended from April 16, 2026 and expected to resume July 1, 2026. The unresolved current status requires direct confirmation before anyone relies on walk-in handling.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-walk-in-notice"
+      ],
+      "evidence": "conflicting-official-pages",
+      "checkedUtc": "2026-09-29T01:59:34.724Z"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "public-vital-court",
+      "question": "Is the document an official Georgia public record or merely a scan?",
+      "route": "Use the issuing Georgia agency/court's certified copy with official signature and seal for the applicable foreign-use branch. Do not use a notary to convert a public record into a certified public record.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-sos-great-seal"
+      ]
+    },
+    {
+      "id": "corporations-division",
+      "question": "Is the authenticated signature on an official Georgia Corporations Division certified copy, or on a separately notarized private company document?",
+      "route": "For Hague apostilles GSCCCA accepts certified copies issued by the current Georgia Secretary of State, including downloads from its site. Great Seal guidance specifies different signature/form conditions; verify that branch before assuming the same output works.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-sos-great-seal"
+      ]
+    },
+    {
+      "id": "private-notarized",
+      "question": "Is there a Georgia notarial act and is the destination in or outside the Convention path?",
+      "route": "Hague: GSCCCA without an extra county notary certification. Outside-Convention: Secretary of State Great Seal route and commissioning-county clerk certification for notarized documents.",
+      "sourceIds": [
+        "ga-gsccca-apostille",
+        "ga-sos-great-seal"
+      ]
+    },
+    {
+      "id": "federal-or-out-of-state",
+      "question": "Is the document signed/sealed by a federal agency or a public official in another state?",
+      "route": "Do not send it to GSCCCA as a Georgia-origin apostille. Identify the authenticating official and route to the appropriate federal or other-state authority.",
+      "sourceIds": [
+        "ga-gsccca-apostille"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Check the actual destination's current Apostille Convention relationship with the United States through the official HCCH status table; a static agency country list can lag.",
+    "Resolve GSCCCA walk-in availability from a fresh authoritative confirmation before planning hand delivery; the two published pages conflict in their continuing presentation.",
+    "Verify the latest forms, fee, hours, accepted output, and return arrangements before submission; published normal processing is not a service guarantee.",
+    "Recipient document, translation, freshness, and output rules remain separate. A valid apostille does not prove contents or acceptance.",
+    "This record does not establish a Georgia RON/electronic-notary output route; GSCCCA's current general instructions specify ink-signed notarized documents, while expressly accepting some printed digital certified public records. Do not generalize one lane to the other."
+  ],
+  "doNotInfer": [
+    "The Georgia Secretary of State issues Georgia apostilles.",
+    "Every Georgia notarial apostille requires prior county clerk certification.",
+    "A Great Seal is an apostille with more steps.",
+    "A downloadable uncertified business search record qualifies as a certified corporate copy.",
+    "A printed digital certified divorce decree means every printed electronic notarization qualifies.",
+    "The general walk-in hours prove walk-in service is currently available.",
+    "The country of Georgia is the U.S. state of Georgia."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Outside Apostille Convention Path",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Recipient Evidence",
+    "Source-Quality Failure"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "sourceNotes": "Agency statements and Notary Geek route synthesis remain labeled separately. Conflicting official walk-in pages are preserved as unresolved.",
+  "sources": [
+    {
+      "id": "ga-gsccca-apostille",
+      "title": "General Apostille Information",
+      "type": "official-competent-authority-guidance",
+      "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+      "url": "https://www.gsccca.org/notary-and-apostilles/apostilles/general-apostille-information",
+      "checkedUtc": "2026-09-29T01:59:34.724Z",
+      "supports": [
+        "apostille-authority",
+        "hague-branch",
+        "documents",
+        "submission",
+        "fee",
+        "return",
+        "processing-estimate"
+      ]
+    },
+    {
+      "id": "ga-sos-great-seal",
+      "title": "Great Seal Authentication - Administrative Services",
+      "type": "official-agency-guidance",
+      "publisher": "Georgia Secretary of State",
+      "url": "https://sos.ga.gov/page/great-seal-authentication-administrative-services",
+      "checkedUtc": "2026-09-29T01:59:34.724Z",
+      "supports": [
+        "non-hague-authority",
+        "great-seal-submission",
+        "notary-county-certification",
+        "fee",
+        "processing-estimate"
+      ]
+    },
+    {
+      "id": "ga-apostille-request-form",
+      "title": "Apostille Request Form",
+      "type": "official-form-example",
+      "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+      "url": "https://www.gsccca.org/docs/notary-documents/apostillerequestform.pdf",
+      "checkedUtc": "2026-09-29T01:59:34.724Z",
+      "supports": [
+        "destination-and-contact-request"
+      ]
+    },
+    {
+      "id": "ga-walk-in-notice",
+      "title": "Walk-In Service Suspended",
+      "type": "official-temporary-service-notice",
+      "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+      "url": "https://www.gsccca.org/learn/walk-in-service-suspended",
+      "checkedUtc": "2026-09-29T01:59:34.724Z",
+      "supports": [
+        "conflicting-walk-in-status"
+      ]
+    }
+  ]
+}
