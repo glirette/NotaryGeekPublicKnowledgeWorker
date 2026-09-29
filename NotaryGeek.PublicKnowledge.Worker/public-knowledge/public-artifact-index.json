@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.34-public",
-  "reviewedUtc": "2026-09-29T02:20:21.501Z",
+  "version": "1.35-public",
+  "reviewedUtc": "2026-09-29T02:23:47.401Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-tx-apostille-authentication",
+      "title": "Texas Universal Apostille: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Texas recordable/non-recordable split, certified-record age, RON ledger, business certifying-unit boundary, and dated mail/counter/bulk instructions.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-tx/us-tx-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-tx/README.md",
+      "supportingUrls": [
+        "https://www.sos.state.tx.us/authinfo.shtml",
+        "https://www.sos.state.tx.us/statdoc/request.shtml",
+        "https://www.sos.state.tx.us/statdoc/guides/apostilleguide.pdf"
       ]
     },
     {
