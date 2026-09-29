@@ -1,6 +1,6 @@
 # Public Law Source Index
 
-Reviewed: 2026-09-28
+Reviewed: 2026-09-29
 
 This folder is the beginning of the Notary Geek public law/source index.
 
@@ -26,6 +26,7 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 ## Current Files
 
 - [Public apostille reference coverage and standard](../apostille/README.md)
+- [California apostille and authentication guide](../apostille/us-ca/README.md) — birth/death signature exceptions and mail/counter routes.
 - [Georgia apostille and Great Seal guide](../apostille/us-ga/README.md) — distinct issuing authorities and official-source conflict.
 - [Kansas apostille and authentication guide](../apostille/us-ks/README.md) — official source trail and document route pilot.
 - [Notary Law Source Index](notary-law-source-index.json)
