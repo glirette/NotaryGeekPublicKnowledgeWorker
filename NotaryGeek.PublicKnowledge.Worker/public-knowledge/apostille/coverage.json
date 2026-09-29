@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-reference-coverage-v1",
   "id": "apostille-reference-coverage",
-  "version": "0.2-public",
-  "reviewedUtc": "2026-09-29T02:07:04.044Z",
+  "version": "0.3-public",
+  "reviewedUtc": "2026-09-29T02:11:54.006Z",
   "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
   "scope": "Tracking coverage within this public corpus only. A source pointer, a separate DotNetMultisite page, and a researched route guide are different states of work; absence here does not mean no research exists elsewhere.",
   "sourceIndexPath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
@@ -59,9 +59,9 @@
       "state": "CA",
       "name": "California",
       "sourceIndexStatus": "source-pointers-present",
-      "routeStatus": "no-dedicated-state-route-published",
-      "routePath": null,
-      "checkedDate": null
+      "routeStatus": "reviewed-partial-pilot",
+      "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
+      "checkedDate": "2026-09-29"
     },
     {
       "country": "US",
