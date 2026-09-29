@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
   "version": "0.7-public",
-  "reviewedUtc": "2026-09-29T02:19:31.459Z",
+  "reviewedUtc": "2026-09-29T02:22:29.547Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -146,6 +146,30 @@
           "publisher": "Texas Secretary of State",
           "url": "https://www.sos.state.tx.us/statdoc/transcripts/ONV2HowtoPerformanOnlineNotarization-CC.pdf",
           "notes": "Public source for the Texas SOS online-training wording that identification requirements for online notarization are the same as for traditional notarization. Use this to avoid implying a separate Texas foreign-passport eligibility rule for online versus in-person notarization unless another current Texas source says so."
+        },
+        {
+          "id": "tx-sos-apostille",
+          "title": "Apostille/Authentication of Documents",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Texas Secretary of State",
+          "url": "https://www.sos.state.tx.us/authinfo.shtml",
+          "notes": "Current Texas apostille source checked September 29, 2026 UTC; verify volatile counter and form details."
+        },
+        {
+          "id": "tx-sos-request-universal",
+          "title": "Request a Universal Apostille",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Texas Secretary of State",
+          "url": "https://www.sos.state.tx.us/statdoc/request.shtml",
+          "notes": "Current Texas apostille source checked September 29, 2026 UTC; verify volatile counter and form details."
+        },
+        {
+          "id": "tx-sos-apostille-guide",
+          "title": "Apostille/Authentication Certificate Guide",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Texas Secretary of State",
+          "url": "https://www.sos.state.tx.us/statdoc/guides/apostilleguide.pdf",
+          "notes": "Current Texas apostille source checked September 29, 2026 UTC; verify volatile counter and form details."
         }
       ]
     },
