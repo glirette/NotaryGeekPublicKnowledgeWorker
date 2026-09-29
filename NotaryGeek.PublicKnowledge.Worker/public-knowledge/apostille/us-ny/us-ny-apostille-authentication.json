@@ -1,0 +1,245 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-ny-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:27:59.175Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "NY",
+    "name": "New York"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "New York state, NYC and local vital issuer routes plus education, DCJS, private notarial document and current NY DOS submission procedure; incomplete for business and court categories.",
+  "coreQuestion": "Who actually issued and signed this New York record, and which county-clerk certification step applies before the New York Department of State?",
+  "routeFacts": [
+    {
+      "id": "nys-doh-exception",
+      "claim": "Birth, death and marriage certificates issued by NYS Department of Health bearing Director of Vital Statistics or NYS Registrar signature may go to NY DOS without county clerk certification. 'New York State' wording or generic registrar title on a local record does not prove NYSDOH issuance.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-issuer-specific-rule"
+    },
+    {
+      "id": "nyc-vital",
+      "claim": "NYC Health birth/death records require long form and Letter of Exemplification, then New York County Clerk authentication before NY DOS. NYC records are not sent to the clerk of the borough of birth.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form",
+        "nyc-birth"
+      ],
+      "evidence": "official-issuer-specific-rule"
+    },
+    {
+      "id": "local-vital",
+      "claim": "Locally or county issued birth, death, marriage and divorce certificates require County Clerk certification in the county where the document was issued before NY DOS. Identify the actual issuing office, not just where an event happened.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-agency-guidance plus Notary Geek issuer inference"
+    },
+    {
+      "id": "school",
+      "claim": "An educational institution official must certify that the record is official or a true copy; the official's signature is notarized, and the notary signature then certified by the County Clerk where that notary is qualified.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "dcjs",
+      "claim": "A NYS DCJS background check needs the representative-signed cover letter with the check; that signature does not need notarization. Federal FBI checks follow federal authority instead.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "notary",
+      "claim": "For private documents such as powers of attorney, New York calls for notarization and County Clerk certification where the notary is qualified before NY DOS. This generic form sequence does not override the vital-record issuer exception.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-notarial-route"
+    },
+    {
+      "id": "fees-mail",
+      "claim": "NY DOS lists $10 per document and a completed current request form, with default first-class return or an accepted prepaid express shipping label; it rejects carrier labels billing the sender or credit card. USPS mail to PO Box 22001 in Albany; express carriers use physical 99 Washington Avenue address.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "walk-in",
+      "claim": "NY DOS says walk-in same-day service has resumed at NYC, Albany, Binghamton, Buffalo and Utica, capped at ten documents/customer. NYC and Albany accept drop-offs that are not prioritized. Its current NYC counter listing is 123 William Street, 2nd Floor.",
+      "sourceIds": [
+        "ny-dos"
+      ],
+      "evidence": "official-agency-operational-guidance"
+    },
+    {
+      "id": "address-conflict",
+      "claim": "NYC Health's embedded apostille Step 3 still lists a 19th-floor NY DOS NYC address/hours, while the live NY DOS apostille page and current form list 2nd Floor. Use NY DOS's live counter details and recheck before visiting.",
+      "sourceIds": [
+        "nyc-birth",
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-page-conflict plus Notary Geek current-source preference"
+    },
+    {
+      "id": "payment-change",
+      "claim": "The NY DOS page flags that credit-card requests must use the newest request form and include CVV; incomplete forms are returned. The fetched form is marked DOS-1917-f Rev. 02/24 and includes a CVV field, but recheck the live form before filing.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ],
+      "evidence": "official-agency-form-notice"
+    },
+    {
+      "id": "destination",
+      "claim": "NY DOS distinguishes apostille for Convention destinations from certificate of authentication outside it; the latter may need additional U.S. Department of State certification.",
+      "sourceIds": [
+        "ny-dos",
+        "hcch-status"
+      ],
+      "evidence": "official-agency-guidance"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "nys-doh",
+      "question": "Did NYSDOH actually issue the vital certificate and does it bear qualifying Director/NYS Registrar signature?",
+      "route": "Follow NYSDOH exception directly to NY DOS. Do not route solely from 'New York State' print or generic registrar wording.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ]
+    },
+    {
+      "id": "nyc-health",
+      "question": "Did NYC Health issue the record?",
+      "route": "Get long-form birth/death certificate plus Letter of Exemplification, authenticate pair with New York County Clerk, then submit to NY DOS.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form",
+        "nyc-birth"
+      ]
+    },
+    {
+      "id": "local",
+      "question": "Was a city/town/village/county official the issuer?",
+      "route": "Use County Clerk of county of issuance before NY DOS.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ]
+    },
+    {
+      "id": "school",
+      "question": "Did institution official certify the educational record and have that signature notarized?",
+      "route": "Then County Clerk certification of the notary where qualified, followed by NY DOS.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ]
+    },
+    {
+      "id": "dcjs",
+      "question": "Is this a NYS DCJS or federal FBI background check?",
+      "route": "For DCJS include representative signed cover letter and check, no notarization for that signature; FBI goes federal.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ]
+    },
+    {
+      "id": "private-notarial",
+      "question": "Is this a new private power of attorney or similar document?",
+      "route": "Get appropriate notarization, then County Clerk certification for notary's qualified county, then NY DOS.",
+      "sourceIds": [
+        "ny-dos",
+        "ny-form"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Confirm current NYSDOH vital-record ordering/forwarding procedure; its previously indexed page returned a 403 to this review and was not used for new operational claims.",
+    "Research NY DOS-issued company certificate and court-record categories from current primary sources before claiming comprehensive New York coverage.",
+    "Check the receiving institution's written record form, Letter of Exemplification, age, translation and Convention or outside-Convention continuation.",
+    "Recheck current state counter hours, address, form revision/CVV and fee/return requirements immediately before submission; NYC Health's embedded Step 3 location conflicts.",
+    "Confirm specific electronic notarization/output and County Clerk acceptance for the presented form; these general sources do not establish universal e-apostille eligibility."
+  ],
+  "doNotInfer": [
+    "All New York vital records need County Clerk certification.",
+    "Any record with New York State words was issued by NYSDOH.",
+    "NYC birth records go to a borough-specific clerk rather than New York County Clerk.",
+    "A generic form's notarial instructions make birth certificates privately notarizable or require them to be notarized.",
+    "NYC Health's embedded NY DOS 19th-floor counter instructions override the current NY DOS 2nd-floor page.",
+    "An apostille verifies the underlying facts or guarantees foreign recipient acceptance."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "relatedExistingCorpus": [
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/new-york-birth-certificate-apostille-route.json"
+  ],
+  "sourceNotes": "Builds on existing detailed NY birth-certificate issuer route reviewed August 2026, with September 29 current NY DOS/NYC pages. NYSDOH site blocked this review, so do not invent new NYSDOH operations. Explicitly preserve NYC Health embedded address conflict.",
+  "sources": [
+    {
+      "id": "ny-dos",
+      "title": "Apostille or Certificate of Authentication",
+      "type": "official-agency-guidance",
+      "publisher": "New York Department of State",
+      "url": "https://dos.ny.gov/apostille-certificate-authentication",
+      "checkedUtc": "2026-09-29T02:27:59.175Z"
+    },
+    {
+      "id": "ny-form",
+      "title": "Apostille/Certificate of Authentication Request",
+      "type": "official-agency-guidance",
+      "publisher": "New York Department of State",
+      "url": "https://dos.ny.gov/apostillecertificate-authentication-request-forms",
+      "checkedUtc": "2026-09-29T02:27:59.175Z"
+    },
+    {
+      "id": "nyc-birth",
+      "title": "NYC Health Birth Certificates",
+      "type": "official-agency-guidance",
+      "publisher": "NYC Health",
+      "url": "https://www.nyc.gov/site/doh/services/birth-death-records-birth.page",
+      "checkedUtc": "2026-09-29T02:27:59.175Z"
+    },
+    {
+      "id": "ny-clerk",
+      "title": "New York County Clerk's Office",
+      "type": "official-agency-guidance",
+      "publisher": "New York State Unified Court System",
+      "url": "https://www.nycourts.gov/courts/1st-judicial-district/new-york-county-clerks-office",
+      "checkedUtc": "2026-09-29T02:27:59.175Z"
+    },
+    {
+      "id": "hcch-status",
+      "title": "Apostille Convention status table",
+      "type": "official-treaty-status",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-09-29T02:27:59.175Z"
+    }
+  ]
+}
