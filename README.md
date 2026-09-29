@@ -22,6 +22,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Notary community briefing folder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md)
 - [Source-first notary training posture](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.md)
 - [Public apostille reference coverage and publication standard](NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md) — 50-state status map with separate federal and destination-country tracks.
+- [Florida apostille and notarial certification agent guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-fl/README.md) — official document-category routes, separate fees, and dated queue.
 - [Delaware apostille and authentication agent guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-de/README.md) — certified filing, output, and fee category branches.
 - [California apostille and authentication agent guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/README.md) — vital-record signer exceptions, mail/counter route, and dated operational facts.
 - [U.S. federal-origin apostille and authentication agent guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-federal/README.md) — federal agency, federal court, and consular vital-record authority branches with official sources and open questions.
