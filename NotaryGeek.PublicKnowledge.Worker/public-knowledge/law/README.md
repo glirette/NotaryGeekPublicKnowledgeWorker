@@ -27,6 +27,7 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 
 - [Public apostille reference coverage and standard](../apostille/README.md)
 - [California apostille and authentication guide](../apostille/us-ca/README.md) — birth/death signature exceptions and mail/counter routes.
+- [Delaware apostille and authentication guide](../apostille/us-de/README.md) — separately certified company filings, paper notarial boundary, and personal/commercial routes.
 - [Georgia apostille and Great Seal guide](../apostille/us-ga/README.md) — distinct issuing authorities and official-source conflict.
 - [Kansas apostille and authentication guide](../apostille/us-ks/README.md) — official source trail and document route pilot.
 - [Notary Law Source Index](notary-law-source-index.json)
