@@ -1,8 +1,8 @@
 # Apostille reference coverage and publication standard
 
-This register tracks the **public knowledge corpus**, not every Notary Geek page or unpublished research note. The [machine-readable coverage map](coverage.json) has all 50 U.S. state rows. As of September 28, 2026, [Kansas](us-ks/README.md) and [Georgia](us-ga/README.md) have **partial, dated route pilots**. Existing [law/source index](../law/notary-law-source-index.json) pointers for other states are leads, not completed apostille guides.
+This register tracks the **public knowledge corpus**, not every Notary Geek page or unpublished research note. The [machine-readable coverage map](coverage.json) has all 50 U.S. state rows. As of September 29, 2026, [Kansas](us-ks/README.md) and [Georgia](us-ga/README.md) have **partial, dated state route pilots**, and the separate [U.S. federal-origin guide](us-federal/README.md) has a partial pilot. Existing [law/source index](../law/notary-law-source-index.json) pointers for other states are leads, not completed apostille guides.
 
-The goal in [issue #33](https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33) is a free reference deep enough for an agent to research real document routes. We also need a federal-origin track and destination-country tracks; those are separate from the 50 state rows. The [HCCH Convention status table](https://www.hcch.net/en/instruments/conventions/status-table/?cid=41) is a starting source for treaty applicability, not a substitute for recipient instructions.
+The goal in [issue #33](https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33) is a free reference deep enough for an agent to research real document routes. The federal-origin track is separate from the 50 state rows. Destination-country tracks still need dedicated research and publication. The [HCCH Convention status table](https://www.hcch.net/en/instruments/conventions/status-table/?cid=41) is a starting source for treaty applicability, not a substitute for recipient instructions.
 
 ## What earns a published route
 
