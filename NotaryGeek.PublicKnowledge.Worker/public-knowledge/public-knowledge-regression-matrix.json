@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-knowledge-regression-matrix-v1",
-  "version": "1.20-public",
-  "reviewedUtc": "2026-08-23T00:00:00Z",
+  "version": "1.21-public",
+  "reviewedUtc": "2026-09-29T00:00:00Z",
   "purpose": "Public-safe regression prompts for Notary Geek route-first source-quality testing. These cases pressure-test route-first behavior, Hague apostille finality, recipient-evidence discipline, platform-last source quality, and public-source-layer positioning.",
   "publicOnlyPolicy": "Cases must use only public-safe issues and public source material. Do not place customer facts, private documents, Persona data, payment data, secrets, or private correspondence in this matrix.",
   "cases": [
@@ -424,6 +424,32 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/foreign-signer-destination-routing.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/platform-history-source-quality.json",
         "https://law.lis.virginia.gov/vacodefull/title47.1/"
+      ]
+    },
+    {
+      "id": "virginia-proof-no-kba-method-and-chapter-832-scope",
+      "focus": "A Virginia online notarization used Proof's no-SSN ID-and-selfie path without KBA before or after July 1, 2024. Does the selfie count as the statutory biometric route, and did the 2024 law retroactively authorize KBA?",
+      "purpose": "Test dated source comparison, the signer-certificate distinction, a missing second method and the exact subject of Chapter 832's retroactivity sentence without making a transaction-validity finding.",
+      "mustHold": [
+        "Begin with the transaction date, actual signer and notary evidence, and the official source version applicable to that date.",
+        "Compare Chapter 832's insertion of KBA as item (5) with its express retroactivity sentence naming §47.1-20.1(B); do not say the whole chapter or KBA addition is expressly retroactive.",
+        "Do not equate a selfie, liveness check or face comparison with a valid digital certificate accessed by biometric data or qualifying PIV held by the signer; do not substitute the notary's signing certificate.",
+        "If KBA did not run, request the actual second method under the two-method clause, or evidence of a separate personal-knowledge or qualifying credible-witness route, rather than assuming a Proof feature fills it.",
+        "Treat Proof help pages as provider workflow claims, not dated transaction outcomes or Virginia legal authority; mark platform method mapping unknown pending direct records.",
+        "Do not conclude a transaction was invalid or a provider noncompliant; identify the official sources and evidence needed for a qualified legal review."
+      ],
+      "failureSignals": [
+        "Uses the 2026 Code wording as proof of a pre-2024 method without a date comparison.",
+        "Converts Chapter 832's §47.1-20.1(B) retroactivity sentence into an express retroactive KBA authorization.",
+        "Says selfie/face match alone is the signer digital-certificate method.",
+        "Calls credential analysis plus no-SSN selfie two proven Virginia methods without a second method record.",
+        "Treats provider help text as proof that a particular session met the law."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/virginia-ron-identity-proof-source-ledger-2026-09-29.json",
+        "https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0832+pdf=",
+        "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
+        "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number"
       ]
     },
     {
