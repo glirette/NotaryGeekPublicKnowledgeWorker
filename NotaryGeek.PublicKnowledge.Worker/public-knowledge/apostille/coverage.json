@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-reference-coverage-v1",
   "id": "apostille-reference-coverage",
-  "version": "0.3-public",
-  "reviewedUtc": "2026-09-29T02:11:54.006Z",
+  "version": "0.4-public",
+  "reviewedUtc": "2026-09-29T02:15:39.931Z",
   "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
   "scope": "Tracking coverage within this public corpus only. A source pointer, a separate DotNetMultisite page, and a researched route guide are different states of work; absence here does not mean no research exists elsewhere.",
   "sourceIndexPath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
@@ -86,9 +86,9 @@
       "state": "DE",
       "name": "Delaware",
       "sourceIndexStatus": "source-pointers-present",
-      "routeStatus": "no-dedicated-state-route-published",
-      "routePath": null,
-      "checkedDate": null
+      "routeStatus": "reviewed-partial-pilot",
+      "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-de/us-de-apostille-authentication.json",
+      "checkedDate": "2026-09-29"
     },
     {
       "country": "US",
@@ -493,5 +493,45 @@
     "Review current conditions before transaction-specific reliance; corpus content does not accept service or promise timing."
   ],
   "canonicalModel": "https://notary.cx/notarial-routing-model.json",
-  "issueUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+  "issueUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33",
+  "priorityJurisdictions": {
+    "states": [
+      "CA",
+      "FL",
+      "TX",
+      "DE",
+      "WY",
+      "NY"
+    ],
+    "reason": "Deepen these six existing Notary Geek state research tracks before broadening state route coverage; a source pointer or partial pilot is not a completed jurisdiction.",
+    "existingResearch": {
+      "CA": [
+        "California Secretary of State source pointers",
+        "DotNetMultisite California notary/apostille research"
+      ],
+      "FL": [
+        "Florida Chapter 117 section corpus",
+        "Florida Department of State apostille source pointers",
+        "DotNetMultisite Florida research"
+      ],
+      "TX": [
+        "Texas notary statute/source pointers",
+        "DotNetMultisite Texas notary research"
+      ],
+      "DE": [
+        "Delaware Division of Corporations apostille source pointers",
+        "DotNetMultisite Delaware research"
+      ],
+      "WY": [
+        "Wyoming Secretary of State pointer",
+        "DotNetMultisite Wyoming company-record research"
+      ],
+      "NY": [
+        "New York official source pointers",
+        "New York birth certificate issuer-route topic",
+        "DotNetMultisite New York source trail"
+      ]
+    },
+    "deepeningGate": "Within each priority state, expand issuer-specific and document-category routes, exceptions, dated submission conditions, destination/recipient evidence, and explicit open questions from current official sources. Preserve existing research and do not mark complete from a general page."
+  }
 }
