@@ -30,6 +30,7 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 - [Delaware apostille and authentication guide](../apostille/us-de/README.md) — separately certified company filings, paper notarial boundary, and personal/commercial routes.
 - [Florida apostille and notarial certification guide](../apostille/us-fl/README.md) — vital, school, clerk, company, and notarized document routes.
 - [Georgia apostille and Great Seal guide](../apostille/us-ga/README.md) — distinct issuing authorities and official-source conflict.
+- [Wyoming apostille and authentication guide](../apostille/us-wy/README.md) — Business Division certification, official signature, school, and private-document split.
 - [Texas universal apostille guide](../apostille/us-tx/README.md) — recordable/private split, RON package, business certifying team, and current counter lanes.
 - [Kansas apostille and authentication guide](../apostille/us-ks/README.md) — official source trail and document route pilot.
 - [Notary Law Source Index](notary-law-source-index.json)
