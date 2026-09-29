@@ -1,0 +1,236 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-tx-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:21:21.311Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "TX",
+    "name": "Texas"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "Texas recordable/non-recordable, RON, company certifying-unit, and current universal Apostille submission routes; not a recipient acceptance or deadline promise.",
+  "coreQuestion": "Is the Texas document a recent official record, a non-recordable private item with a complete owner/notary statement, a RON output with ledger, or an SOS-issued business certificate handled by the corporate certifying team?",
+  "routeFacts": [
+    {
+      "id": "authority-output",
+      "claim": "Texas SOS issues a universal Apostille certificate that serves the state authentication function for any foreign destination, but non-Convention destinations need additional U.S. Department of State authentication under its guidance. Its label does not establish final recipient acceptance.",
+      "sourceIds": [
+        "tx-main",
+        "tx-faq",
+        "hcch-status"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "recordable",
+      "claim": "State/county recordable documents cannot be turned into certified copies by a notary. The request page requires original Texas issued or Texas certified copy, not a copy of a certified record, and says certified records must have been issued within the past five years.",
+      "sourceIds": [
+        "tx-main",
+        "tx-request"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "nonrecordable",
+      "claim": "A non-recordable private document needs issuer/signer typed or written content/intention statement and signature, properly notarized with an accurate certificate, notary seal/signature/date; multiple attachments must be listed and supplied.",
+      "sourceIds": [
+        "tx-main",
+        "tx-guide"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "identification-translations",
+      "claim": "A notarized copy of an identification document must belong to its owner/signer; a translation requires the translator's signed statement notarized and a copy or original of the translated document included.",
+      "sourceIds": [
+        "tx-main",
+        "tx-guide"
+      ],
+      "evidence": "official-document-specific-guidance"
+    },
+    {
+      "id": "ron-acceptance",
+      "claim": "Texas SOS explicitly says online notarization documents can be apostilled if presented with a notarization ledger giving signature date/time, document description and signer information, plus a true/accurate certificate identifying the electronic/online two-way audiovisual notarization. It cautions that the receiving country may reject RON despite state authentication.",
+      "sourceIds": [
+        "tx-main"
+      ],
+      "evidence": "official-agency-output-specific-guidance"
+    },
+    {
+      "id": "business-team",
+      "claim": "Original certified Texas SOS business/corporation filings such as a certificate of formation are handled through the Corporation Certifying Team, not the general Authentications unit; a separately notarized copy of a non-recordable business document follows the appropriate notarized private document route.",
+      "sourceIds": [
+        "tx-main",
+        "tx-guide",
+        "tx-faq"
+      ],
+      "evidence": "official-company-record-split"
+    },
+    {
+      "id": "fees",
+      "claim": "The Texas universal Apostille fee is $15 per document, or $10 for adoption documents with a $100 cap per child; adoption uses Form 2103. Ordinary mail uses Form 2102 with destination country.",
+      "sourceIds": [
+        "tx-request",
+        "tx-main"
+      ],
+      "evidence": "official-agency-fee-and-form"
+    },
+    {
+      "id": "counter-days",
+      "claim": "Current Austin counter at 400 West 15th Street provides Monday/Friday walk-in and Tuesday-Thursday appointment lanes, same-day requests capped at ten documents per individual/company/transaction. Counter same-day is a published service route, not a guaranteed acceptance for defective documents.",
+      "sourceIds": [
+        "tx-request"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "bulk-mail",
+      "claim": "More than ten documents may use a QR-registered drop box with published 72-hour processing; mailed requests are first-come and may take up to two weeks after receipt, with no pull from mail into counter service. Return shipping for drop-offs requires a prepaid labeled envelope.",
+      "sourceIds": [
+        "tx-request"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "notario-boundary",
+      "claim": "The office rejects documents with 'Notario Publico' language or notary assertions beyond authority; only a signer can make signer assertions such as authority in a power of attorney.",
+      "sourceIds": [
+        "tx-main"
+      ],
+      "evidence": "official-agency-rejection-guidance"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "vital-court-county",
+      "question": "Is the document an official state/county recordable item, when was the certified copy issued, and who signed it?",
+      "route": "Obtain original/official Texas certified output issued within five years. Do not use a notary certified copy of a recorded birth, marriage, divorce, court or similar record.",
+      "sourceIds": [
+        "tx-main",
+        "tx-request"
+      ]
+    },
+    {
+      "id": "private-notarized",
+      "question": "Is the private document non-recordable and accompanied by owner/issuer signed statement, attachments, and complete Texas notarization?",
+      "route": "Use the proper original notarial document and full attachment list. Do not let a notary attest a signer's legal authority or write signer assertions.",
+      "sourceIds": [
+        "tx-main",
+        "tx-guide"
+      ]
+    },
+    {
+      "id": "ron",
+      "question": "Does a Texas online notarial output have the required ledger and certificate language, and will the recipient accept online notarization?",
+      "route": "Use the agency's explicit RON package rule, then confirm the original/electronic presentation and recipient acceptance separately.",
+      "sourceIds": [
+        "tx-main",
+        "tx-request"
+      ]
+    },
+    {
+      "id": "company-certified",
+      "question": "Is it an SOS-filed company record or a private company document?",
+      "route": "For original certified SOS business filing, contact the Corporation Certifying Team. For a non-recordable business copy with company authority statement, follow the notarized document route instead.",
+      "sourceIds": [
+        "tx-main",
+        "tx-guide",
+        "tx-faq"
+      ]
+    },
+    {
+      "id": "adoption",
+      "question": "Is this part of international adoption proceedings?",
+      "route": "Use Form 2103, $10 per document and $100 cap per child; confirm all record and notarial requirements.",
+      "sourceIds": [
+        "tx-main",
+        "tx-request"
+      ]
+    },
+    {
+      "id": "nonhague",
+      "question": "Is destination outside the Convention path?",
+      "route": "Texas issues the same universal state certificate, but its guidance calls for subsequent U.S. State Department authentication; check any further destination/consular requirement.",
+      "sourceIds": [
+        "tx-main",
+        "tx-faq",
+        "hcch-status"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Verify the specific federal/consular continuation and written recipient acceptance for a non-Convention destination.",
+    "For Texas RON, verify the exact original/electronic presentation and ledger format with the office for the actual output and the recipient's RON policy.",
+    "Confirm current Austin appointment, walk-in and bulk rules, fee/payment, forms and mail return address before submission; business filing portal modernization around September 29, 2026 is date-sensitive.",
+    "Check the precise business certified-record procurement method and fee with the Corporation Certifying Team, separate from any private notarized company-document route.",
+    "Check current Government Code Chapter 406 and related rules for underlying notarial authority when the presented act or identity method is disputed."
+  ],
+  "doNotInfer": [
+    "A universal Texas Apostille ends outside-Convention legalization.",
+    "A notary can certify a copy of any Texas recordable public record.",
+    "Any RON result is apostille-ready without the ledger and required online notarial statement or recipient acceptance.",
+    "An SOS business certified filing is processed by the ordinary Authentications unit.",
+    "A document with more than ten items can receive same-day counter service by splitting the requester/company/transaction.",
+    "A mailed request can be upgraded by a courier's walk-in visit."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "relatedExistingCorpus": [
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/texas-foreign-passport-notary.json",
+    "NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json"
+  ],
+  "sourceNotes": "State calls the output universal Apostille; do not collapse state output with outside-Convention federal/consular route. Texas RON apostille package is affirmative but recipient acceptance remains separate. Current counter details are volatile.",
+  "sources": [
+    {
+      "id": "tx-main",
+      "title": "Apostille/Authentication of Documents",
+      "type": "official-agency-guidance",
+      "publisher": "Texas Secretary of State",
+      "url": "https://www.sos.state.tx.us/authinfo.shtml",
+      "checkedUtc": "2026-09-29T02:21:21.311Z"
+    },
+    {
+      "id": "tx-request",
+      "title": "Request a Universal Apostille",
+      "type": "official-agency-guidance",
+      "publisher": "Texas Secretary of State",
+      "url": "https://www.sos.state.tx.us/statdoc/request.shtml",
+      "checkedUtc": "2026-09-29T02:21:21.311Z"
+    },
+    {
+      "id": "tx-guide",
+      "title": "Apostille/Authentication Certificate Guide",
+      "type": "official-agency-guidance",
+      "publisher": "Texas Secretary of State",
+      "url": "https://www.sos.state.tx.us/statdoc/guides/apostilleguide.pdf",
+      "checkedUtc": "2026-09-29T02:21:21.311Z"
+    },
+    {
+      "id": "tx-faq",
+      "title": "Authentication of Documents FAQ",
+      "type": "official-agency-guidance",
+      "publisher": "Texas Secretary of State",
+      "url": "https://www.sos.state.tx.us/authfaqs.shtml",
+      "checkedUtc": "2026-09-29T02:21:21.311Z"
+    },
+    {
+      "id": "hcch-status",
+      "title": "Apostille Convention status table",
+      "type": "official-treaty-status",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-09-29T02:21:21.311Z"
+    }
+  ]
+}
