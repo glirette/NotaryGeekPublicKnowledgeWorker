@@ -1,8 +1,12 @@
 # Apostille reference coverage and publication standard
 
-This register tracks the **public knowledge corpus**, not every Notary Geek page or unpublished research note. The [machine-readable coverage map](coverage.json) has all 50 U.S. state rows. As of September 29, 2026, [California](us-ca/README.md), [Georgia](us-ga/README.md), and [Kansas](us-ks/README.md) have **partial, dated state route pilots**, and the separate [U.S. federal-origin guide](us-federal/README.md) has a partial pilot. Existing [law/source index](../law/notary-law-source-index.json) pointers for other states are leads, not completed apostille guides.
+This register tracks the **public knowledge corpus**, not every Notary Geek page or unpublished research note. The [machine-readable coverage map](coverage.json) has all 50 U.S. state rows. As of September 29, 2026 UTC, [California](us-ca/README.md), [Delaware](us-de/README.md), [Georgia](us-ga/README.md), and [Kansas](us-ks/README.md) have **partial, dated state route pilots**, and the separate [U.S. federal-origin guide](us-federal/README.md) has a partial pilot. Existing [law/source index](../law/notary-law-source-index.json) pointers for other states are leads, not completed apostille guides.
 
 The goal in [issue #33](https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33) is a free reference deep enough for an agent to research real document routes. The federal-origin track is separate from the 50 state rows. Destination-country tracks still need dedicated research and publication. The [HCCH Convention status table](https://www.hcch.net/en/instruments/conventions/status-table/?cid=41) is a starting source for treaty applicability, not a substitute for recipient instructions.
+
+## Depth-first state priority
+
+Deepen **California, Florida, Texas, Delaware, Wyoming, and New York** before expanding to additional state routes. These already have research or official source pointers in Notary Geek repositories, but none should be called complete from a general guide. The [coverage map](coverage.json) records the six-state priority and existing research leads. Georgia and Kansas remain useful pilots; their existence does not change this priority. The [New York birth-certificate issuer route](../topics/new-york-birth-certificate-apostille-route.json) is an existing deep starting point, not a finished all-document New York guide.
 
 ## What earns a published route
 
