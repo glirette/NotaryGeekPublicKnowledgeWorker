@@ -1,0 +1,21 @@
+# Proof Credential Analysis claim audit — draft research
+
+Checked 2026-09-29. [Proof's Credential Analysis article](https://support.proof.com/hc/en-us/articles/7903680953239-Credential-Analysis) displays “Updated August 26, 2026 15:32.” This note records claim locations and short paraphrases; Proof may revise its help pages. The accompanying JSON contains the claim-by-claim source matrix and proposed routing rules. This draft is for Greg's meaning review before customer-facing publication.
+
+## What the public sources establish
+
+Proof's article combines image capture, entered data, supported ID types, and an email/account collision under a four-row troubleshooting label. Clear live ID photos are a useful step. An email collision, however, is an account-binding problem on the article's own description; the public article does not show that the ID security-feature check failed. The opener says there are only four reasons, while its table says “most.” It gives no public denominator for the “single most common” photo-quality ranking or measured basis for the support response-time estimate. These claims remain attributed to Proof rather than disproved.
+
+[Proof's online notarization ID guide](https://support.proof.com/hc/en-us/articles/360057120014-Acceptable-Forms-of-ID-for-Online-Notarization) lists foreign passports with a machine-readable zone and says acceptable IDs depend on the notary's commissioning state. That conflicts with the Credential Analysis article's unqualified U.S.-only primary-ID list. The guide also says some states allow expired IDs, though a particular Proof product could impose a stricter technical rule. Its original physical-ID/live-capture rule is a provider rule; a passport book is not a physical card.
+
+[Proof's identity overview](https://support.proof.com/hc/en-us/articles/31945915880343-Identity-Verification-Overview) describes configured alternatives, including credential analysis plus selfie and multi-step combinations. [Its no-SSN instructions](https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number) describe an eligible alternative with U.S. address, ID photos and selfie photos. These sources do not establish that KBA always precedes credential analysis. [Identify's separate ID guide](https://support.proof.com/hc/en-us/articles/16031894139031-Acceptable-Forms-of-ID-for-Identify-Transactions) expressly excludes notarizations, and [Verify's overview](https://support.proof.com/hc/en-us/articles/28519849379991-Verify-Transactions-Overview) describes an agent-led product; product labels must remain separate.
+
+## A useful public explanation, pending review
+
+A Proof error is a prompt to identify the **stage and exact transaction route**. Ask for the displayed error without posting an ID or account details publicly. An unclear image may call for a fresh live capture; an account collision calls for account support; an ID-support question calls for the specific Proof product and the notary's state. None of those labels alone proves which notarial identity method ran, whether a signer was legally identified, or whether a recipient will accept the document. Notary Geek's [existing Proof/foreign-signer correction](https://notary.cx/proof-kba-foreign-signer-escrow.json) already separates platform KBA failure from legal impossibility; this audit adds product and troubleshooting precision without replacing that position.
+
+## Self-review and open evidence
+
+The strongest defense of Proof's page is that it intentionally simplifies a common workflow and that different articles describe different products. That may explain the wording; the page itself does not name a configuration that limits its categorical claims. We therefore label disputed product scope unresolved where necessary. We have no access to Proof's internal failure statistics, account event taxonomy or response-time records, and we make no prevalence, implementation or transaction-legality assertion. A later reviewer should recheck each help article's update date and the exact text before approving customer wording.
+
+No private signer, ID, account, payment or customer material appears here. No live Proof account or transaction was used.
