@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
-  "version": "0.6-public",
-  "reviewedUtc": "2026-09-29T01:50:29.041Z",
+  "version": "0.7-public",
+  "reviewedUtc": "2026-09-29T02:02:06.789Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -290,11 +290,12 @@
       "country": "US",
       "state": "GA",
       "name": "Georgia",
-      "status": "seed-official-sources-identified",
+      "status": "apostille-pilot-official-sources-checked-notary-law-incomplete",
       "authorityNotes": [
         "Georgia notary commissioning should not be described as a normal single statewide Secretary-of-State-style notary office without checking the Georgia source structure.",
         "The Georgia Superior Court Clerks' Cooperative Authority should not be characterized as merely a private association. Georgia Code section 15-6-94 describes the Authority as a public corporation and instrumentality, while GSCCCA's own overview describes a legislated mandate and statewide clerk-related projects.",
-        "For Georgia source-quality work, distinguish county-level notary commissioning, GSCCCA's public-authority role, apostille/authentication authority, and Georgia UPL sources instead of collapsing them into one generic state-agency label."
+        "For Georgia source-quality work, distinguish county-level notary commissioning, GSCCCA's public-authority role, apostille/authentication authority, and Georgia UPL sources instead of collapsing them into one generic state-agency label.",
+        "2026-09-28 route pilot distinguishes GSCCCA apostilles from Georgia Secretary of State Great Seal authentication; published GSCCCA walk-in pages conflict and require fresh confirmation."
       ],
       "sources": [
         {
@@ -352,8 +353,45 @@
           "publisher": "Supreme Court of Georgia / State Bar of Georgia",
           "url": "https://www.gabar.org/docs/default-source/programs-pdf/in-re-upl-advisory-opinion-2003-2-277-ga-472-%282003%29.pdf",
           "notes": "Official Georgia UPL source for deed-conveyance execution and real-estate closing role questions. Do not reduce this to a blanket slogan about loan signing; use it to separate notarial authority, market labels, attorney-only legal work, and witness/notary-only claims."
+        },
+        {
+          "id": "ga-gsccca-apostille",
+          "title": "General Apostille Information",
+          "sourceType": "official-competent-authority-guidance",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://www.gsccca.org/notary-and-apostilles/apostilles/general-apostille-information",
+          "checkedUtc": "2026-09-29T01:59:34.724Z",
+          "notes": "Source for Georgia apostille route pilot; consult current page/form before transaction-specific use."
+        },
+        {
+          "id": "ga-sos-great-seal",
+          "title": "Great Seal Authentication - Administrative Services",
+          "sourceType": "official-agency-guidance",
+          "publisher": "Georgia Secretary of State",
+          "url": "https://sos.ga.gov/page/great-seal-authentication-administrative-services",
+          "checkedUtc": "2026-09-29T01:59:34.724Z",
+          "notes": "Outside-Convention Great Seal authority and county clerk certification requirement for Georgia-notarized documents; distinguish from GSCCCA apostille route."
+        },
+        {
+          "id": "ga-apostille-request-form",
+          "title": "Apostille Request Form",
+          "sourceType": "official-form-example",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://www.gsccca.org/docs/notary-documents/apostillerequestform.pdf",
+          "checkedUtc": "2026-09-29T01:59:34.724Z",
+          "notes": "Source for Georgia apostille route pilot; consult current page/form before transaction-specific use."
+        },
+        {
+          "id": "ga-walk-in-notice",
+          "title": "Walk-In Service Suspended",
+          "sourceType": "official-temporary-service-notice",
+          "publisher": "Georgia Superior Court Clerks' Cooperative Authority",
+          "url": "https://www.gsccca.org/learn/walk-in-service-suspended",
+          "checkedUtc": "2026-09-29T01:59:34.724Z",
+          "notes": "Temporary closure notice still published after its stated July 1, 2026 expected reopening; conflicts with general walk-in page, so current availability is unresolved."
         }
-      ]
+      ],
+      "apostilleRouteRecordUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ga/us-ga-apostille-authentication.json"
     },
     {
       "id": "us-va",
