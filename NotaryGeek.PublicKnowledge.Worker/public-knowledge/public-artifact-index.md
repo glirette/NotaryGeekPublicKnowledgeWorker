@@ -10,6 +10,8 @@ Use it to find the smallest reliable citation target instead of crawling every p
 
 | Artifact | Use | Preferred citation |
 | --- | --- | --- |
+| Public apostille reference coverage | 50-state coverage status and source-backed publication gate, with federal and destination work tracked separately | `apostille/coverage.json` · [guide](apostille/README.md) |
+| Georgia apostille and Great Seal pilot | Two foreign-use authorities, document branches, and published walk-in conflict | `apostille/us-ga/us-ga-apostille-authentication.json` · [guide](apostille/us-ga/README.md) |
 | Kansas apostille and authentication pilot | Source-backed agent guide for Kansas document, signature, destination, submission, return, and uncertainty routes | `apostille/us-ks/us-ks-apostille-authentication.json` · [human guide](apostille/us-ks/README.md) |
 | Notary law source index | Starter official-source index for notary-law and notary-administration sources | `law/notary-law-source-index.json` |
 | Law source cache and section normalization | Public-safe posture for official-source cache records, preserved source text/excerpts, definitions, cross-references, route-impact fields, and freshness status | `topics/law-source-cache-and-section-normalization.json` |
