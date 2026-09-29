@@ -1,0 +1,203 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-ca-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:10:28.663Z",
+  "jurisdiction": {
+    "country": "US",
+    "state": "CA",
+    "name": "California"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "California public-official signature and document-origin route, mail versus counter procedure, and issuer exceptions; no transaction-specific acceptance or deadline assurance.",
+  "coreQuestion": "Whose signature is on the actual California document, and is the output an original or qualifying certified record for California Secretary of State authentication?",
+  "routeFacts": [
+    {
+      "id": "signature-route",
+      "claim": "The California Secretary of State authenticates California public officials' signatures for documents used outside the United States; its apostille confirms the signature, capacity, and seal when applicable, not the document's contents.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq"
+      ],
+      "evidence": "official-agency-guidance"
+    },
+    {
+      "id": "destination-output",
+      "claim": "California says it issues a single Apostille for documents used outside the United States regardless of destination country. That state output does not establish whether any receiving-country or consular step remains for a non-Convention destination.",
+      "sourceIds": [
+        "ca-faq",
+        "hcch-status"
+      ],
+      "evidence": "agency statement plus Notary Geek destination-route inference"
+    },
+    {
+      "id": "original-mail",
+      "claim": "A mailed document must bear a California public official signature or be an original notarized and/or certified document; photocopies are unacceptable. Mail requests go through Sacramento, with a destination-country cover sheet, $20 per Apostille, and a self-addressed return envelope.",
+      "sourceIds": [
+        "ca-request"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "mail-routing",
+      "claim": "The Secretary of State gives different Sacramento addresses for USPS and other carriers and says prepaid tracking postage is needed for tracked return; without it, the office returns by regular USPS mail. Sending overnight does not expedite processing after receipt.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "counter-fees",
+      "claim": "Sacramento and Los Angeles offer in-person same-day service, with a $20 Apostille fee plus a $6 special handling charge for each different public official's signature authenticated. The $6 charge applies to in-person requests, not mail; it is not necessarily $6 per document.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq"
+      ],
+      "evidence": "official-agency-procedure"
+    },
+    {
+      "id": "vital-signature-exception",
+      "claim": "For birth and death records, directly recognizable signatures include county clerks/deputies, county recorders/deputies, and State Registrar. A city/county health officer or local registrar signature may require county clerk certification or a newly issued certified copy from the county recorder or California Department of Public Health.",
+      "sourceIds": [
+        "ca-faq"
+      ],
+      "evidence": "official-agency-document-specific-guidance"
+    },
+    {
+      "id": "processing-status",
+      "claim": "The processing page updated September 28, 2026 reports Sacramento processing mail received September 14, 2026, while in-person Sacramento/Los Angeles requests are typically processed within 30 minutes after submission. These are a dated snapshot, not a prospective mail turnaround guarantee.",
+      "sourceIds": [
+        "ca-processing"
+      ],
+      "evidence": "official-agency-dated-operational-status"
+    },
+    {
+      "id": "los-angeles-current-location",
+      "claim": "The Los Angeles office currently flags temporary first-floor suite 1215 service due to an elevator outage while its general address remains Room 12513; mail is not accepted there. Confirm the current counter location before visiting.",
+      "sourceIds": [
+        "ca-request",
+        "ca-la-office"
+      ],
+      "evidence": "official-agency-operational-notice"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "birth-death",
+      "question": "Which public official signed the birth/death certified copy?",
+      "route": "If county clerk/recorder or State Registrar, follow the directly recognized signature path. For health officer/local registrar, check whether county clerk certification or a different certified copy is needed.",
+      "sourceIds": [
+        "ca-faq"
+      ]
+    },
+    {
+      "id": "notarized-private",
+      "question": "Is the document an original with a California notarial act, and which notary signature is to be authenticated?",
+      "route": "Use the California notary signature route; do not describe the apostille as validation of the private document's underlying facts.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq"
+      ]
+    },
+    {
+      "id": "other-state-or-federal",
+      "question": "Was the public record issued or notarized outside California, or issued by a federal agency?",
+      "route": "Identify the actual official signature and its designated authority before selecting a state/federal route. A California mailing address or requester does not make a foreign-origin official signature California's.",
+      "sourceIds": [
+        "ca-request",
+        "hcch-status"
+      ],
+      "classification": "Notary Geek inference"
+    },
+    {
+      "id": "mail",
+      "question": "Can the original/certified physical document and cover sheet be mailed to Sacramento?",
+      "route": "Use the carrier-specific Sacramento address, $20 per Apostille, and a return envelope with prepaid tracking postage if tracking is required. Overnight transport changes transit, not queue priority.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq"
+      ]
+    },
+    {
+      "id": "counter",
+      "question": "Can someone present the eligible original/certified document at Sacramento or Los Angeles?",
+      "route": "Check current office location/hours, destination-country cover sheet, $20 per Apostille, and $6 per different official signature. A third party can submit on someone's behalf.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq",
+        "ca-la-office"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Confirm current HCCH applicability and any destination/recipient legalization, translation, age-of-record, or document-type requirement for the actual transaction.",
+    "Check current mail receipt queue and counter location; the September 28 processing snapshot is volatile.",
+    "Confirm eligibility of any digital original, e-notarial output, printed electronic certified copy, or scan with the issuing authority and Secretary of State before converting output lanes.",
+    "Marriage, divorce, education, and business records need issuer- and signature-specific official source review before claiming comprehensive California category coverage.",
+    "Outside-Convention chain beyond California's single state Apostille needs destination-specific and federal/consular authority research."
+  ],
+  "doNotInfer": [
+    "A California Apostille proves the document's substantive content or guarantees recipient acceptance.",
+    "Any California birth or death certificate signature can be apostilled directly without checking the official's title.",
+    "The $6 counter charge applies to each document or to mailed requests.",
+    "An overnight mail package or prepaid return label speeds the agency's processing queue.",
+    "Los Angeles accepts mailed apostille requests.",
+    "California's use of one Apostille output for every foreign destination eliminates all additional outside-Convention requirements."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "sourceNotes": "California uses the word Apostille for every foreign destination; treaty applicability and recipient chain remain independent. Volatile office and queue claims are dated snapshots. Agency facts and Notary Geek inferences are labeled separately.",
+  "sources": [
+    {
+      "id": "ca-request",
+      "title": "Request an Apostille",
+      "type": "official-agency-procedure",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/notary/request-apostille",
+      "checkedUtc": "2026-09-29T02:10:28.663Z"
+    },
+    {
+      "id": "ca-faq",
+      "title": "Apostille Frequently Asked Questions",
+      "type": "official-agency-faq",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/notary/apostille-faqs",
+      "checkedUtc": "2026-09-29T02:10:28.663Z"
+    },
+    {
+      "id": "ca-processing",
+      "title": "Current Processing Dates",
+      "type": "official-agency-operational-status",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/notary/processing-times",
+      "checkedUtc": "2026-09-29T02:10:28.663Z",
+      "pageUpdated": "2026-09-28"
+    },
+    {
+      "id": "ca-la-office",
+      "title": "Los Angeles Office",
+      "type": "official-agency-office-status",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/business-programs/los-angeles-office",
+      "checkedUtc": "2026-09-29T02:10:28.663Z"
+    },
+    {
+      "id": "hcch-status",
+      "title": "Apostille Convention status table",
+      "type": "official-treaty-status",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "checkedUtc": "2026-09-29T02:10:28.663Z"
+    }
+  ]
+}
