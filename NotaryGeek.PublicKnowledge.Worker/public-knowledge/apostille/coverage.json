@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-reference-coverage-v1",
   "id": "apostille-reference-coverage",
-  "version": "0.1-public",
-  "reviewedUtc": "2026-09-29T02:01:30.008Z",
+  "version": "0.2-public",
+  "reviewedUtc": "2026-09-29T02:07:04.044Z",
   "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
   "scope": "Tracking coverage within this public corpus only. A source pointer, a separate DotNetMultisite page, and a researched route guide are different states of work; absence here does not mean no research exists elsewhere.",
   "sourceIndexPath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
@@ -472,8 +472,10 @@
   "otherJurisdictionTracks": [
     {
       "id": "us-federal",
-      "status": "not-yet-published-in-this-reference",
-      "boundary": "Federal signed-and-sealed documents have their own authority path; state records do not stand in for it."
+      "status": "reviewed-partial-pilot",
+      "boundary": "Federal signed-and-sealed documents have their own authority path; state records do not stand in for it.",
+      "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-federal/us-federal-apostille-authentication.json",
+      "checkedDate": "2026-09-29"
     },
     {
       "id": "destination-country",
