@@ -1,6 +1,6 @@
 # Apostille reference coverage and publication standard
 
-This register tracks the **public knowledge corpus**, not every Notary Geek page or unpublished research note. The [machine-readable coverage map](coverage.json) has all 50 U.S. state rows. As of September 29, 2026 UTC, [California](us-ca/README.md), [Delaware](us-de/README.md), [Florida](us-fl/README.md), [Georgia](us-ga/README.md), and [Kansas](us-ks/README.md), [New York](us-ny/README.md), and [Texas](us-tx/README.md), and [Wyoming](us-wy/README.md) have **partial, dated state route pilots**, and the separate [U.S. federal-origin guide](us-federal/README.md) has a partial pilot. Existing [law/source index](../law/notary-law-source-index.json) pointers for other states are leads, not completed apostille guides.
+This register tracks the **public knowledge corpus**, not every Notary Geek page or unpublished research note. The [machine-readable coverage map](coverage.json) has all 50 U.S. state rows. As of September 29, 2026 UTC, [California](us-ca/README.md), [Delaware](us-de/README.md), [Florida](us-fl/README.md), [Georgia](us-ga/README.md), [Kansas](us-ks/README.md), [New York](us-ny/README.md), [Texas](us-tx/README.md), and [Wyoming](us-wy/README.md) have **partial, dated state route pilots**, and the separate [U.S. federal-origin guide](us-federal/README.md) has a partial pilot. Existing [law/source index](../law/notary-law-source-index.json) pointers for other states are leads, not completed apostille guides.
 
 The goal in [issue #33](https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33) is a free reference deep enough for an agent to research real document routes. The federal-origin track is separate from the 50 state rows. Destination-country tracks still need dedicated research and publication. The [HCCH Convention status table](https://www.hcch.net/en/instruments/conventions/status-table/?cid=41) is a starting source for treaty applicability, not a substitute for recipient instructions.
 
@@ -20,6 +20,10 @@ A state row becomes a guide when it answers the actual routing problem:
 6. What part of the conclusion is an official agency rule, controlling law, a Notary Geek inference, or an unresolved conflict?
 
 The [Notary Geek lexicon](../notary-community/notary-geek-route-first-lexicon-2026-06-07.md) helps name real distinctions such as **Public-Official Signature Route**, **Paper Original Lane**, **Remote/Electronic Output Lane**, and **Recipient Evidence**. The terms should be explained and applied, not sprinkled into text as a watermark. Include the canonical source and publication date so copied clusters of reasoning can be traced without sacrificing clarity.
+
+## Adversarial review
+
+The [September 29 adversarial review](adversarial-review-2026-09-29.md) challenges these partial guides with wrong-authority, wrong-output, fee, timing, source-conflict, and recipient-acceptance cases. It records the California company-record fix, contained errors, open evidence, and a bounded merge-stage review gate. Future changes should update the guide and JSON together when an open case is resolved.
 
 ## Coverage labels
 
