@@ -11,6 +11,7 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Artifact | Use | Preferred citation |
 | --- | --- | --- |
 | Public apostille reference coverage | 50-state coverage status and source-backed publication gate, with federal and destination work tracked separately | `apostille/coverage.json` · [guide](apostille/README.md) |
+| Wyoming apostille and authentication pilot | Business Division issued/certified company records, additional fees, school registrar notarial requirement, appointment/mail lanes | `apostille/us-wy/us-wy-apostille-authentication.json` · [guide](apostille/us-wy/README.md) |
 | Texas universal apostille pilot | Recordable/private document split, RON ledger requirements, business certifying team, and mail/counter limits | `apostille/us-tx/us-tx-apostille-authentication.json` · [guide](apostille/us-tx/README.md) |
 | Florida apostille and notarial certification pilot | Vital/school/clerk/company document branches, distinct fees, dated processing queue, and RON output question | `apostille/us-fl/us-fl-apostille-authentication.json` · [guide](apostille/us-fl/README.md) |
 | Delaware apostille and authentication pilot | Separately certified Delaware filings, public-record versus notarized private document, electronic/remote exclusion, and personal/commercial submission split | `apostille/us-de/us-de-apostille-authentication.json` · [guide](apostille/us-de/README.md) |
