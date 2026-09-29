@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.32-public",
-  "reviewedUtc": "2026-09-29T02:13:03.098Z",
+  "version": "1.33-public",
+  "reviewedUtc": "2026-09-29T02:16:36.239Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-de-apostille-authentication",
+      "title": "Delaware Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "Delaware individual filing certification, official record versus notarial output, remote/electronic exclusion, personal/commercial fee and submission split, and timing source conflict.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-de/us-de-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-de/README.md",
+      "supportingUrls": [
+        "https://corp.delaware.gov/apost_info/",
+        "https://corp.delaware.gov/submitting-non-commercial-documents-for-apostille-or-authentication/",
+        "https://corp.delaware.gov/regguide/"
       ]
     },
     {
