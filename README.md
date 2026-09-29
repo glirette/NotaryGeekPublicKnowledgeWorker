@@ -21,6 +21,7 @@ Do not treat platform marketing, trainer claims, SEO pages, private lists, marke
 - [Agent instructions](AGENTS.md)
 - [Notary community briefing folder](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/README.md)
 - [Source-first notary training posture](NotaryGeek.PublicKnowledge.Worker/public-knowledge/notary-community/source-first-notary-training-posture-2026-06-11.md)
+- [Kansas apostille and authentication agent guide](NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/README.md) — pilot route record with official sources, Form DC, document branches, and open questions.
 - [Notary law source index](NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json)
 - [Florida Chapter 117 section corpus](NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json)
 - [Law source cache and section normalization](NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/law-source-cache-and-section-normalization.json)
