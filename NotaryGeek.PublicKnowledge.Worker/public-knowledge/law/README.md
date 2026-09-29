@@ -1,6 +1,6 @@
 # Public Law Source Index
 
-Reviewed: 2026-06-11
+Reviewed: 2026-09-28
 
 This folder is the beginning of the Notary Geek public law/source index.
 
@@ -25,6 +25,7 @@ Expansion should prioritize jurisdictions and topics where source quality, recur
 
 ## Current Files
 
+- [Kansas apostille and authentication guide](../apostille/us-ks/README.md) — official source trail and document route pilot.
 - [Notary Law Source Index](notary-law-source-index.json)
 - [Florida Chapter 117, Florida Statutes, 2025 Section Corpus](us-fl/florida-chapter-117-2025.json)
 - [Law Source Cache And Section Normalization](../topics/law-source-cache-and-section-normalization.json)
