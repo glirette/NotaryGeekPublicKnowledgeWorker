@@ -1,0 +1,257 @@
+{
+  "schema": "notary-geek-apostille-origin-route-v1",
+  "id": "us-federal-apostille-authentication",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:05:14.175Z",
+  "jurisdiction": {
+    "country": "US",
+    "originLevel": "federal"
+  },
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "status": "pilot-partial-coverage",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "scope": "U.S. federal-origin and federal-signature route distinctions; not a service acceptance, appointment eligibility, delivery or recipient guarantee.",
+  "coreQuestion": "Was the document issued by a federal agency, a federal court, or Passport Services Vital Records, and who is designated to authenticate that signature?",
+  "authorityBranches": [
+    {
+      "id": "federal-agency-document",
+      "authority": "U.S. Department of State Office of Authentications",
+      "route": "Apostille for applicable Convention destinations or authentication certificate for outside-Convention destinations, subject to document preparation and current procedure.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-apostille-preparation",
+        "state-authentication-preparation"
+      ]
+    },
+    {
+      "id": "federal-court-document",
+      "authority": "Clerk or Deputy Clerk of the issuing U.S. federal court is a designated Apostille Convention competent authority; Department of State guidance also includes federal court documents among examples to prepare for its service.",
+      "route": "Establish the issuing court and its own certification/apostille process before choosing between a court-issued apostille and any later State Department route. Do not claim one universal federal-court process from these two general pages.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-apostille-preparation"
+      ],
+      "classification": "official sources with distinct institutional scope"
+    },
+    {
+      "id": "consular-life-event-report",
+      "authority": "U.S. Department of State Bureau of Consular Affairs, Passport Services, Vital Records Section",
+      "route": "Use the Passport Services Vital Records path for apostilles on Consular Reports of Birth, Death, and Marriage; establish which record and request process applies.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-consular-vital-records"
+      ]
+    },
+    {
+      "id": "state-origin-boundary",
+      "authority": "Appropriate designated state, DC, or territorial competent authority",
+      "route": "A state-issued public record does not become a federal-origin record merely because it will be used abroad, mailed to Washington, D.C., or accompanied by a federal cover letter.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-apostille-preparation"
+      ],
+      "classification": "Notary Geek route synthesis from official authority division"
+    }
+  ],
+  "routeFacts": [
+    {
+      "id": "federal-office",
+      "claim": "HCCH designates the U.S. Department of State Office of Authentications for apostilles on documents issued by U.S. federal agencies.",
+      "sourceIds": [
+        "hcch-us-competent-authorities"
+      ],
+      "evidence": "official-treaty-competent-authority"
+    },
+    {
+      "id": "federal-court",
+      "claim": "HCCH separately designates clerks and deputy clerks of U.S. federal courts to issue apostilles on court-issued documents; federal court documents also appear in the State Department's preparation examples. Check the issuing court's exact process rather than assuming every federal court document follows a single mail route.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-apostille-preparation"
+      ],
+      "evidence": "official-sources-distinct-scope"
+    },
+    {
+      "id": "consular-records",
+      "claim": "HCCH separately identifies Passport Services Vital Records Section for apostilles on Consular Reports of Birth, Death and Marriage.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-consular-vital-records"
+      ],
+      "evidence": "official-treaty-competent-authority"
+    },
+    {
+      "id": "federal-examples",
+      "claim": "The State Department lists FBI background checks, federal court documents, USDA certifications, certificates of naturalization, IRS tax residency certifications, and other federal agency documents as examples that may need federal apostille preparation; example categories do not prove a particular presented output is eligible.",
+      "sourceIds": [
+        "state-apostille-preparation"
+      ],
+      "evidence": "official-federal-agency-guidance"
+    },
+    {
+      "id": "original-boundary",
+      "claim": "The State Department asks for an original or certified copy with legible official signature, printed name/title, agency seal, issuance date, and original seals/signatures; it says not to notarize the original federal document because that invalidates the federal-document path.",
+      "sourceIds": [
+        "state-apostille-preparation"
+      ],
+      "evidence": "official-federal-agency-guidance"
+    },
+    {
+      "id": "destination-branch",
+      "claim": "The State Department distinguishes apostille for Convention destinations from authentication certificate for destinations outside the Convention path.",
+      "sourceIds": [
+        "state-apostille-preparation",
+        "state-authentication-preparation"
+      ],
+      "evidence": "official-federal-agency-guidance"
+    },
+    {
+      "id": "submission",
+      "claim": "The September 1, 2026 State Department request page asks for Form DS-4194 naming the destination country, documents, and a $20 nonrefundable fee per document. Its mail return instructions allow prepaid USPS or UPS, expressly not FedEx for the return envelope.",
+      "sourceIds": [
+        "state-request-services"
+      ],
+      "evidence": "official-federal-agency-procedure"
+    },
+    {
+      "id": "processing",
+      "claim": "The State Department request page describes mail processing within five weeks after office receipt and routine walk-in drop-off/pick-up within seven business days; a same-day appointment is limited to qualifying immediate-family life-or-death travel emergencies. These are current published routes and estimates, not a private rush entitlement or overall delivery guarantee.",
+      "sourceIds": [
+        "state-request-services"
+      ],
+      "evidence": "official-federal-agency-procedure"
+    }
+  ],
+  "documentBranches": [
+    {
+      "id": "fbi",
+      "question": "Is the presented record an FBI-issued and properly signed/sealed federal background check, rather than a state/local police record or a separate notarized affidavit?",
+      "route": "Check the federal original/certified-output requirements and Office of Authentications process. Do not replace the FBI record with a notarized cover sheet and describe that as an apostille on the FBI record.",
+      "sourceIds": [
+        "state-apostille-preparation",
+        "hcch-us-competent-authorities"
+      ]
+    },
+    {
+      "id": "federal-court",
+      "question": "Which U.S. federal court issued the record and who signed/certified it?",
+      "route": "The federal court clerk is a designated competent authority; verify the issuing court's instructions and distinguish any State Department option or later outside-Convention chain.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-apostille-preparation"
+      ]
+    },
+    {
+      "id": "consular-birth-death-marriage",
+      "question": "Is this a Consular Report of Birth, Death, or Marriage and are you asking for a copy with an apostille?",
+      "route": "Start with Passport Services Vital Records rather than presuming the generic Office of Authentications mail route.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-consular-vital-records"
+      ]
+    },
+    {
+      "id": "state-record",
+      "question": "Was the record actually issued by a U.S. state, DC, or another U.S. jurisdiction?",
+      "route": "Use its designated jurisdictional authority for the state-origin Convention path; for outside-Convention use, separately check whether a state authentication and later federal authentication are required.",
+      "sourceIds": [
+        "hcch-us-competent-authorities",
+        "state-authentication-preparation"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "The issuing federal court's current direct apostille/certification procedure is court-specific and not established here.",
+    "The exact form and return procedure for a particular Consular Report must be checked with Passport Services Vital Records; DS-4194 is not assumed for that branch.",
+    "The presented electronic FBI or agency document's original/certified status and signature/seal form must be verified before treating a printout as acceptable.",
+    "Confirm current destination Convention applicability and recipient requirements from the HCCH and receiving authority, separately from the federal issuer.",
+    "State Department fees, return carriers, appointments, and processing are volatile; recheck the current request page before submission."
+  ],
+  "doNotInfer": [
+    "The Office of Authentications is the only U.S. authority for every federal document.",
+    "A state Secretary of State can apostille a federal FBI record because the requester lives in that state.",
+    "A notarized cover page converts a federal record into a state-certified federal record.",
+    "A Washington, D.C. apostille is a federal apostille.",
+    "A same-day private courier or walk-in request qualifies for the State Department's narrow emergency appointment.",
+    "A State Department apostille proves the content of the federal record or recipient acceptance."
+  ],
+  "lexicon": [
+    "Public-Official Signature Route",
+    "Paper Original Lane",
+    "Remote/Electronic Output Lane",
+    "Outside Apostille Convention Path",
+    "Recipient Evidence"
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "sourceNotes": "Official competent-authority designations, agency examples, and Notary Geek inferences are separate. HCCH and Department of State descriptions of federal court routes have distinct scope and require issuer-specific follow-up.",
+  "sources": [
+    {
+      "id": "hcch-us-competent-authorities",
+      "title": "United States of America - Competent Authority (Art. 6)",
+      "type": "official-treaty-competent-authority-record",
+      "publisher": "Hague Conference on Private International Law",
+      "url": "https://www.hcch.net/en/states/authorities/details3/?aid=353",
+      "checkedUtc": "2026-09-29T02:05:14.175Z",
+      "supports": [
+        "federal-agency-authority",
+        "consular-vital-record-authority",
+        "federal-court-clerk-authority",
+        "state-separation"
+      ]
+    },
+    {
+      "id": "state-apostille-preparation",
+      "title": "Prepare Document for an Apostille Certificate",
+      "type": "official-federal-agency-guidance",
+      "publisher": "U.S. Department of State",
+      "url": "https://travel.state.gov/en/replace-certify/authenticate-documents/apostille-certificate.html",
+      "checkedUtc": "2026-09-29T02:05:14.175Z",
+      "supports": [
+        "federal-example-documents",
+        "original-or-certified-copy",
+        "signature-and-seal",
+        "do-not-notarize-original"
+      ]
+    },
+    {
+      "id": "state-authentication-preparation",
+      "title": "Preparing a Document for an Authentication Certificate",
+      "type": "official-federal-agency-guidance",
+      "publisher": "U.S. Department of State",
+      "url": "https://travel.state.gov/content/travel/en/replace-certify-docs/authenticate-your-document/authentication-certificate-requirements.html",
+      "checkedUtc": "2026-09-29T02:05:14.175Z",
+      "supports": [
+        "outside-convention",
+        "state-origin-separate"
+      ]
+    },
+    {
+      "id": "state-request-services",
+      "title": "Request Authentication Services",
+      "type": "official-federal-agency-procedure",
+      "publisher": "U.S. Department of State",
+      "url": "https://travel.state.gov/en/replace-certify/authenticate-documents/request-services.html",
+      "checkedUtc": "2026-09-29T02:05:14.175Z",
+      "pageUpdated": "2026-09-01",
+      "supports": [
+        "ds-4194",
+        "fee",
+        "mail-return",
+        "processing",
+        "walk-in"
+      ]
+    },
+    {
+      "id": "state-consular-vital-records",
+      "title": "Requesting a Life Event Record as a U.S. Citizen",
+      "type": "official-consular-vital-record-guidance",
+      "publisher": "U.S. Department of State, Passport Services",
+      "url": "https://travel.state.gov/content/travel/en/replace-certify-docs/requesting-a-record.html",
+      "checkedUtc": "2026-09-29T02:05:14.175Z",
+      "supports": [
+        "consular-life-event-record-entry"
+      ]
+    }
+  ]
+}
