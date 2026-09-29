@@ -71,6 +71,22 @@
       "locator": "What You'll Need and Summary Checklist, checked 2026-09-29",
       "observation": "Proof describes five questions, four correct within two minutes, and information including a U.S. address and last four digits of SSN or ITIN to generate questions. The article does not prove KBA ran or passed for a specific signer.",
       "authority": "provider workflow claim only"
+    },
+    {
+      "id": "proof-accepted-id-types",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/360057120014-Acceptable-Forms-of-ID-for-Online-Notarization",
+      "locator": "ID Requirements at a Glance and Know the Approved Primary ID Types; updated May 14, 2026",
+      "observation": "Proof lists foreign passports with a machine-readable zone as generally accepted and says the conducting notary must follow state law. This documents possible credential intake, not the method combination or outcome of a Virginia transaction.",
+      "authority": "provider workflow claim only"
+    },
+    {
+      "id": "proof-digital-id",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/39023010591127-Digital-ID-for-Business-Organizations",
+      "locator": "Save Your Signers Time, Signers Opt In, and Future Transactions; updated June 11, 2026",
+      "observation": "Proof describes an optional organization-enabled saved Digital ID after four IAL2-compliant transactions and later MFA plus selfie. The article does not state that the signer uses a valid digital certificate accessed by biometrics or PIV/PIV-I for the Virginia statutory certificate item.",
+      "authority": "provider workflow claim only"
     }
   ],
   "methodBySourcePeriod": [
@@ -129,6 +145,20 @@
       "candidateStatutoryQuestion": "Did a qualifying KBA assessment actually run and pass on the transaction date, and what other listed method was used when the two-method clause is relied on?",
       "missingEvidence": "Dated KBA result and separate method evidence; do not treat provider help text as transaction proof.",
       "disposition": "unknown"
+    },
+    {
+      "claim": "Foreign passport accepted by Proof",
+      "providerEvidence": "proof-accepted-id-types",
+      "candidateStatutoryQuestion": "Does the presented foreign passport meet the actual transaction-date document and credential-analysis standards, and what separate identity method was used?",
+      "missingEvidence": "Dated passport capture/analysis outcome, notary review, applicable standards and independent second-method record.",
+      "disposition": "unknown"
+    },
+    {
+      "claim": "Proof Digital ID with MFA and selfie",
+      "providerEvidence": "proof-digital-id",
+      "candidateStatutoryQuestion": "Is this saved account identity tied to a qualifying Virginia method in the dated session, and if the signer-certificate item is asserted, what certificate was accessed and how?",
+      "missingEvidence": "Feature configuration, dated transaction mode, signer certificate subject/issuer and access/validation evidence or another official-method mapping; no private record in this corpus.",
+      "disposition": "unknown"
     }
   ],
   "openEvidenceRequests": [
@@ -145,6 +175,11 @@
     {
       "to": "Virginia legislative source reviewer",
       "request": "Confirm 2026 chapters 364/365 amendments and precise applicability dates for §47.1-2; independently assess Chapter 832's §47.1-20.1(B) retroactivity clause before legal conclusions.",
+      "status": "not_sent"
+    },
+    {
+      "to": "Proof documentation owner",
+      "request": "Reconcile the Credential Analysis help article's shorter U.S.-ID primary list with the Accepted Forms article's foreign-passport MRZ entry; state whether workflows vary by transaction or organization and provide dated version evidence.",
       "status": "not_sent"
     }
   ],
