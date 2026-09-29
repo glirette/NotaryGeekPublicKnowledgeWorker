@@ -1,0 +1,495 @@
+{
+  "schema": "notary-geek-apostille-reference-coverage-v1",
+  "id": "apostille-reference-coverage",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-09-29T02:01:30.008Z",
+  "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
+  "scope": "Tracking coverage within this public corpus only. A source pointer, a separate DotNetMultisite page, and a researched route guide are different states of work; absence here does not mean no research exists elsewhere.",
+  "sourceIndexPath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/notary-law-source-index.json",
+  "statusDefinitions": {
+    "sourceIndexStatus": {
+      "source-pointers-present": "At least one state source pointer exists in this repository's notary-law-source-index; this does not prove current apostille-route review.",
+      "not-yet-indexed-in-this-corpus": "No state jurisdiction entry exists in this repository's law source index."
+    },
+    "routeStatus": {
+      "reviewed-partial-pilot": "Dated guide and structured state route exist with explicit scope and open questions; state coverage is still incomplete.",
+      "no-dedicated-state-route-published": "No dedicated route guide and record published in this apostille reference."
+    }
+  },
+  "stateCount": 50,
+  "states": [
+    {
+      "country": "US",
+      "state": "AL",
+      "name": "Alabama",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "AK",
+      "name": "Alaska",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "AZ",
+      "name": "Arizona",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "AR",
+      "name": "Arkansas",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "CA",
+      "name": "California",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "CO",
+      "name": "Colorado",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "CT",
+      "name": "Connecticut",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "DE",
+      "name": "Delaware",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "FL",
+      "name": "Florida",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "GA",
+      "name": "Georgia",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "reviewed-partial-pilot",
+      "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ga/us-ga-apostille-authentication.json",
+      "checkedDate": "2026-09-28"
+    },
+    {
+      "country": "US",
+      "state": "HI",
+      "name": "Hawaii",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "ID",
+      "name": "Idaho",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "IL",
+      "name": "Illinois",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "IN",
+      "name": "Indiana",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "IA",
+      "name": "Iowa",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "KS",
+      "name": "Kansas",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "reviewed-partial-pilot",
+      "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ks/us-ks-apostille-authentication.json",
+      "checkedDate": "2026-09-28"
+    },
+    {
+      "country": "US",
+      "state": "KY",
+      "name": "Kentucky",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "LA",
+      "name": "Louisiana",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "ME",
+      "name": "Maine",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MD",
+      "name": "Maryland",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MA",
+      "name": "Massachusetts",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MI",
+      "name": "Michigan",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MN",
+      "name": "Minnesota",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MS",
+      "name": "Mississippi",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MO",
+      "name": "Missouri",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "MT",
+      "name": "Montana",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NE",
+      "name": "Nebraska",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NV",
+      "name": "Nevada",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NH",
+      "name": "New Hampshire",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NJ",
+      "name": "New Jersey",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NM",
+      "name": "New Mexico",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NY",
+      "name": "New York",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "NC",
+      "name": "North Carolina",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "ND",
+      "name": "North Dakota",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "OH",
+      "name": "Ohio",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "OK",
+      "name": "Oklahoma",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "OR",
+      "name": "Oregon",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "PA",
+      "name": "Pennsylvania",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "RI",
+      "name": "Rhode Island",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "SC",
+      "name": "South Carolina",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "SD",
+      "name": "South Dakota",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "TN",
+      "name": "Tennessee",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "TX",
+      "name": "Texas",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "UT",
+      "name": "Utah",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "VT",
+      "name": "Vermont",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "VA",
+      "name": "Virginia",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "WA",
+      "name": "Washington",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "WV",
+      "name": "West Virginia",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "WI",
+      "name": "Wisconsin",
+      "sourceIndexStatus": "not-yet-indexed-in-this-corpus",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    },
+    {
+      "country": "US",
+      "state": "WY",
+      "name": "Wyoming",
+      "sourceIndexStatus": "source-pointers-present",
+      "routeStatus": "no-dedicated-state-route-published",
+      "routePath": null,
+      "checkedDate": null
+    }
+  ],
+  "otherJurisdictionTracks": [
+    {
+      "id": "us-federal",
+      "status": "not-yet-published-in-this-reference",
+      "boundary": "Federal signed-and-sealed documents have their own authority path; state records do not stand in for it."
+    },
+    {
+      "id": "destination-country",
+      "status": "not-yet-published-in-this-reference",
+      "boundary": "A destination-specific record must use current HCCH applicability and official receiving-country/consular sources where relevant; a country name alone does not settle recipient requirements."
+    }
+  ],
+  "publicationGate": [
+    "Read existing Notary Geek source-index, routing-model, and relevant DotNetMultisite content before duplicating research.",
+    "Cite current official competent authority and source checked date for each changing form, fee, address, return rule, and processing estimate.",
+    "Separate agency source facts, controlling law, Notary Geek inference, and recipient evidence. Preserve conflicts and unknowns.",
+    "Show the public-official signature route, document-source branches, destination/treaty branch, physical/electronic output, and explicit exclusions.",
+    "Publish an agent-useful human explanation and matching machine-readable record; link both from manifest and artifact indexes.",
+    "A source pointer is not complete coverage. Do not generate a thin page merely to fill a state row.",
+    "Review current conditions before transaction-specific reliance; corpus content does not accept service or promise timing."
+  ],
+  "canonicalModel": "https://notary.cx/notarial-routing-model.json",
+  "issueUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+}
