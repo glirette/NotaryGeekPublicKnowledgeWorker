@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.30-public",
-  "reviewedUtc": "2026-09-29T02:02:06.789Z",
+  "version": "1.31-public",
+  "reviewedUtc": "2026-09-29T02:07:33.506Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-federal-apostille-authentication",
+      "title": "U.S. Federal-Origin Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-federal-route-pilot",
+      "use": "Official-source-backed authority split for federal agencies, federal court clerks, Passport Services consular vital records, and state-origin boundaries; current submission rules and unresolved issuer questions.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-federal/us-federal-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-federal/README.md",
+      "supportingUrls": [
+        "https://www.hcch.net/en/states/authorities/details3/?aid=353",
+        "https://travel.state.gov/en/replace-certify/authenticate-documents/apostille-certificate.html",
+        "https://travel.state.gov/en/replace-certify/authenticate-documents/request-services.html"
       ]
     },
     {
