@@ -2,7 +2,7 @@
   "schema": "notary-geek-apostille-state-route-v1",
   "id": "us-ks-apostille-authentication",
   "version": "0.1-public",
-  "reviewedUtc": "2026-09-29T00:00:00Z",
+  "reviewedUtc": "2026-09-29T01:50:29.041Z",
   "jurisdiction": {
     "country": "US",
     "state": "KS",
@@ -153,7 +153,7 @@
       "type": "official-agency-guidance",
       "publisher": "Kansas Secretary of State",
       "url": "https://sos.ks.gov/general-services/apostilles-authentications.html",
-      "checkedUtc": "2026-09-29T00:00:00Z",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
       "supports": [
         "signature-route",
         "hague-vs-authentication",
@@ -169,7 +169,7 @@
       "type": "official-application-form",
       "publisher": "Kansas Secretary of State",
       "url": "https://www.sos.ks.gov/forms/administration/DC.pdf",
-      "checkedUtc": "2026-09-29T00:00:00Z",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
       "formRevision": "2026-06-17",
       "supports": [
         "country-field",
@@ -184,7 +184,7 @@
       "type": "official-agency-guidance",
       "publisher": "Kansas Secretary of State",
       "url": "https://sos.ks.gov/businesses/copies-and-certifications.html",
-      "checkedUtc": "2026-09-29T00:00:00Z",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
       "supports": [
         "business-record-source",
         "free-file-stamped-copy-vs-certified-copy",
@@ -197,7 +197,7 @@
       "type": "official-agency-guidance",
       "publisher": "Kansas Secretary of State",
       "url": "https://sos.ks.gov/general-services/notary.html",
-      "checkedUtc": "2026-09-29T00:00:00Z",
+      "checkedUtc": "2026-09-29T01:50:29.041Z",
       "supports": [
         "kansas-ron-authority-context"
       ]
