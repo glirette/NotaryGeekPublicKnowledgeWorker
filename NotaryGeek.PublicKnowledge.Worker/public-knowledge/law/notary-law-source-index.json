@@ -2,7 +2,7 @@
   "schema": "notary-geek-public-law-source-index-v1",
   "id": "notary-law-source-index",
   "version": "0.7-public",
-  "reviewedUtc": "2026-09-29T02:02:06.789Z",
+  "reviewedUtc": "2026-09-29T02:12:11.557Z",
   "title": "Notary Law Source Index",
   "purpose": "Starter machine-readable index of official public notary-law and notary-administration sources. This index is meant to grow into a public source-navigation layer, not merely an answer-engine correction list.",
   "notLegalAdvice": true,
@@ -147,6 +147,30 @@
           "publisher": "California Secretary of State",
           "url": "https://www.sos.ca.gov/notary/handbook",
           "notes": "Official California notary handbook page. Verify current handbook year before relying on a handbook statement."
+        },
+        {
+          "id": "ca-sos-apostille-request",
+          "title": "Request an Apostille",
+          "sourceType": "official-agency-procedure",
+          "publisher": "California Secretary of State",
+          "url": "https://www.sos.ca.gov/notary/request-apostille",
+          "notes": "Current mail and in-person apostille routes, documents, cover sheet, fee, and return requirements; checked September 29, 2026."
+        },
+        {
+          "id": "ca-sos-apostille-faq",
+          "title": "Apostille Frequently Asked Questions",
+          "sourceType": "official-agency-guidance",
+          "publisher": "California Secretary of State",
+          "url": "https://www.sos.ca.gov/notary/apostille-faqs",
+          "notes": "California single Apostille output, birth/death official-signature exception, special handling examples, and third-party requester route; checked September 29, 2026."
+        },
+        {
+          "id": "ca-sos-apostille-processing",
+          "title": "Current Processing Dates",
+          "sourceType": "official-agency-operational-status",
+          "publisher": "California Secretary of State",
+          "url": "https://www.sos.ca.gov/notary/processing-times",
+          "notes": "Volatile queue and counter estimates; page last updated September 28, 2026 and checked September 29, 2026."
         }
       ]
     },
