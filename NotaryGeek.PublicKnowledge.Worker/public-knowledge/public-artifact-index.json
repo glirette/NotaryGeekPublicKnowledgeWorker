@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.31-public",
-  "reviewedUtc": "2026-09-29T02:07:33.506Z",
+  "version": "1.32-public",
+  "reviewedUtc": "2026-09-29T02:13:03.098Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-ca-apostille-authentication",
+      "title": "California Apostille and Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "California public-official signature route, birth/death certified-copy signer exception, mail/counter fees, dated queue, and destination-neutral state output with recipient limitations.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/README.md",
+      "supportingUrls": [
+        "https://www.sos.ca.gov/notary/request-apostille",
+        "https://www.sos.ca.gov/notary/apostille-faqs",
+        "https://www.sos.ca.gov/notary/processing-times"
       ]
     },
     {
