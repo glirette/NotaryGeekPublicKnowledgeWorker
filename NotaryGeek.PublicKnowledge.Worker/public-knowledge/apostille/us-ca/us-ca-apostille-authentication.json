@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-origin-route-v1",
   "id": "us-ca-apostille-authentication",
-  "version": "0.1-public",
-  "reviewedUtc": "2026-09-29T02:10:28.663Z",
+  "version": "0.2-public",
+  "reviewedUtc": "2026-09-29T02:46:54.566Z",
   "jurisdiction": {
     "country": "US",
     "state": "CA",
@@ -83,6 +83,32 @@
         "ca-la-office"
       ],
       "evidence": "official-agency-operational-notice"
+    },
+    {
+      "id": "company-certified-versus-plain",
+      "claim": "California SOS offers online certified copies and certificates of status for corporations, LLCs and LPs, while plain online printouts are a different, free category. A public-company record route starts with the actual SOS certification and official signature rather than a plain image or private custodian statement.",
+      "sourceIds": [
+        "ca-business-records",
+        "ca-request"
+      ],
+      "evidence": "official-agency-records guidance plus Notary Geek signature-route inference"
+    },
+    {
+      "id": "company-other-entity-types",
+      "claim": "For certified copies of filed entity records outside corporations, LLCs and LPs, California says the request must be on paper and the Business Programs Division's copy carries a manually placed certification stamp with date, Secretary signature, State seal, page count and deputy initials.",
+      "sourceIds": [
+        "ca-business-records"
+      ],
+      "evidence": "official-agency-records guidance"
+    },
+    {
+      "id": "company-private-boundary",
+      "claim": "The state says bylaws and operating agreements are maintained by the entity rather than filed with California SOS; their notarial signature route is distinct from an SOS-issued company certificate. Its online availability of a certified copy does not by itself establish that a self-printed output is acceptable for a mailed apostille, which requires an original/certified document and rejects photocopies.",
+      "sourceIds": [
+        "ca-business-records",
+        "ca-request"
+      ],
+      "evidence": "official-agency facts plus Notary Geek output-lane inference"
     }
   ],
   "documentBranches": [
@@ -131,14 +157,34 @@
         "ca-faq",
         "ca-la-office"
       ]
+    },
+    {
+      "id": "sos-business-certified",
+      "question": "Is the requested item an SOS-issued certified filing or certificate of status for a corporation, LLC or LP, rather than a plain downloaded image?",
+      "route": "Order the official certified copy/status certificate through bizfileOnline, then confirm the output format accepted for the apostille paper lane. Other entity types require paper certification with the Business Programs Division stamp.",
+      "sourceIds": [
+        "ca-business-records",
+        "ca-request"
+      ]
+    },
+    {
+      "id": "private-company-record",
+      "question": "Is this an operating agreement or bylaws maintained by the entity rather than a state filing?",
+      "route": "Follow the actual California notary signature if privately notarized, not the California SOS filing route; company status alone does not authenticate a private document.",
+      "sourceIds": [
+        "ca-business-records",
+        "ca-request"
+      ],
+      "classification": "Notary Geek route inference"
     }
   ],
   "openQuestions": [
     "Confirm current HCCH applicability and any destination/recipient legalization, translation, age-of-record, or document-type requirement for the actual transaction.",
     "Check current mail receipt queue and counter location; the September 28 processing snapshot is volatile.",
     "Confirm eligibility of any digital original, e-notarial output, printed electronic certified copy, or scan with the issuing authority and Secretary of State before converting output lanes.",
-    "Marriage, divorce, education, and business records need issuer- and signature-specific official source review before claiming comprehensive California category coverage.",
-    "Outside-Convention chain beyond California's single state Apostille needs destination-specific and federal/consular authority research."
+    "Marriage/divorce, education, court, and other issuer categories need further primary-source review; the California business-record branch now distinguishes certified SOS records from private company papers.",
+    "Outside-Convention chain beyond California's single state Apostille needs destination-specific and federal/consular authority research.",
+    "Confirm whether and how an online SOS certified copy or status certificate can be presented as the original/certified output in California's paper apostille process; do not treat a plain printout as a certified record."
   ],
   "doNotInfer": [
     "A California Apostille proves the document's substantive content or guarantees recipient acceptance.",
@@ -198,6 +244,19 @@
       "publisher": "Hague Conference on Private International Law",
       "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
       "checkedUtc": "2026-09-29T02:10:28.663Z"
+    },
+    {
+      "id": "ca-business-records",
+      "title": "Business Entities Records Request",
+      "type": "official-agency-records-guidance",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/business-programs/business-entities/information-requests",
+      "checkedUtc": "2026-09-29T02:46:54.566Z",
+      "supports": [
+        "certified-versus-plain-copy",
+        "entity-type-issuance",
+        "company-private-document-boundary"
+      ]
     }
   ]
 }
