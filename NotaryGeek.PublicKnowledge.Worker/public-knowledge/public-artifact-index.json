@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.36-public",
-  "reviewedUtc": "2026-09-29T02:26:45.016Z",
+  "version": "1.37-public",
+  "reviewedUtc": "2026-09-29T02:30:26.639Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
   "notLegalAdvice": true,
@@ -22,6 +22,19 @@
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/README.md",
       "supportingUrls": [
         "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/33"
+      ]
+    },
+    {
+      "id": "us-ny-apostille-authentication",
+      "title": "New York Apostille and Certificate of Authentication: Agent Route Guide",
+      "kind": "apostille-state-route-pilot",
+      "use": "NYSDOH, NYC Health, local vital issuer, school, DCJS and private notarized-document routes, county clerk stages, current submission and NYC address conflict.",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ny/us-ny-apostille-authentication.json",
+      "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ny/README.md",
+      "supportingUrls": [
+        "https://dos.ny.gov/apostille-certificate-authentication",
+        "https://dos.ny.gov/apostillecertificate-authentication-request-forms",
+        "https://www.nyc.gov/site/doh/services/birth-death-records-birth.page"
       ]
     },
     {
