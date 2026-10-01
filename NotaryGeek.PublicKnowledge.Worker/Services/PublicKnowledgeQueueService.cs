@@ -18,12 +18,19 @@ public sealed class PublicKnowledgeQueueService
     private readonly IConfiguration _configuration;
     private readonly PublicKnowledgeOptions _options;
 
+    private readonly QueueClient? _injectedClient;
+
     public PublicKnowledgeQueueService(
         IConfiguration configuration,
         IOptions<PublicKnowledgeOptions> options)
+        : this(configuration, options, null) { }
+
+    public PublicKnowledgeQueueService(IConfiguration configuration,
+        IOptions<PublicKnowledgeOptions> options, QueueClient? queue)
     {
         _configuration = configuration;
         _options = options.Value;
+        _injectedClient = queue;
     }
 
     public async Task EnqueueAsync(
@@ -47,6 +54,11 @@ public sealed class PublicKnowledgeQueueService
 
     private async Task<QueueClient> GetQueueAsync(CancellationToken cancellationToken)
     {
+        if (_injectedClient is not null)
+        {
+            await _injectedClient.CreateIfNotExistsAsync(cancellationToken: cancellationToken);
+            return _injectedClient;
+        }
         var connectionString = _configuration[_options.OutputStorageConnectionStringSetting];
         if (string.IsNullOrWhiteSpace(connectionString))
         {

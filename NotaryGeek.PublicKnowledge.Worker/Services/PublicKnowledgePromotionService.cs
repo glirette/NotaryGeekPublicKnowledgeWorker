@@ -21,12 +21,19 @@ public sealed class PublicKnowledgePromotionService
     private readonly IConfiguration _configuration;
     private readonly PublicKnowledgeOptions _options;
 
+    private readonly BlobContainerClient? _injectedClient;
+
     public PublicKnowledgePromotionService(
         IConfiguration configuration,
         IOptions<PublicKnowledgeOptions> options)
+        : this(configuration, options, null) { }
+
+    public PublicKnowledgePromotionService(IConfiguration configuration,
+        IOptions<PublicKnowledgeOptions> options, BlobContainerClient? container)
     {
         _configuration = configuration;
         _options = options.Value;
+        _injectedClient = container;
     }
 
     public async Task<int> SaveValidatedCandidatesAsync(
@@ -97,6 +104,11 @@ public sealed class PublicKnowledgePromotionService
 
     private async Task<BlobContainerClient> GetContainerAsync(CancellationToken cancellationToken)
     {
+        if (_injectedClient is not null)
+        {
+            await _injectedClient.CreateIfNotExistsAsync(PublicAccessType.None, cancellationToken: cancellationToken);
+            return _injectedClient;
+        }
         var connectionString = _configuration[_options.OutputStorageConnectionStringSetting];
         if (string.IsNullOrWhiteSpace(connectionString))
         {

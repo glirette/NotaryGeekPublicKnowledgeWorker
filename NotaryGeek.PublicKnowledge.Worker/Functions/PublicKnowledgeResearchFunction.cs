@@ -528,6 +528,11 @@ public sealed class PublicKnowledgeResearchFunction
 
             if (string.IsNullOrWhiteSpace(message.CaseId) && message.CaseIds.Count > 1)
             {
+                if (queued.CaseFingerprints is null && !queued.LegacyFanOutReady)
+                {
+                    _logger.LogWarning("Legacy queued batch has uncertain prior fan-out; child replay is blocked.");
+                    return;
+                }
                 // Enqueue may be acknowledged ambiguously. Redelivery sends any missing children;
                 // the durable per-case reservation makes duplicates safe at the execution boundary.
                 foreach (var childCaseId in message.CaseIds.Distinct(StringComparer.OrdinalIgnoreCase))
@@ -556,21 +561,28 @@ public sealed class PublicKnowledgeResearchFunction
 
             // Envelopes created before durable reservations retain their terminal receipts.
             // Their original provider operations must never be inferred safe to repeat.
-            if (queued.CaseFingerprints is null &&
-                queued.Receipts.Any(receipt => receipt.CaseId.Equals(caseId, StringComparison.OrdinalIgnoreCase)))
-                return;
             var existingReceipt = queued.Receipts.FirstOrDefault(receipt =>
                 receipt.CaseId.Equals(caseId, StringComparison.OrdinalIgnoreCase));
+            if (queued.CaseFingerprints is null && existingReceipt is not null &&
+                existingReceipt.BlobName != PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId))
+                return; // Preserve pre-reservation legacy receipts without guessing their execution identity.
             if (existingReceipt is not null &&
                 existingReceipt.BlobName != PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId))
                 throw new InvalidOperationException("Queued case has conflicting existing receipt identity.");
+            PublicKnowledgeRunStorageService.CaseExecution? legacyReservation = null;
             if (PublicKnowledgeRunStorageService.HasUncertainLegacyExecution(beforeRunning))
             {
-                _logger.LogWarning("Legacy queued case {CaseId} has uncertain prior execution; provider replay is blocked.", caseId);
-                return;
+                // An existing valid reservation can reconcile evidence, but this path must
+                // never create a fresh admission for uncertain pre-reservation legacy work.
+                legacyReservation = await _storage.ReadCaseExecutionAsync(message, regressionCase, cancellationToken);
+                if (legacyReservation is null)
+                {
+                    _logger.LogWarning("Legacy queued case {CaseId} has uncertain prior execution; provider replay is blocked.", caseId);
+                    return;
+                }
             }
 
-            var admission = await _storage.AdmitCaseAsync(message, regressionCase, cancellationToken);
+            var admission = legacyReservation ?? await _storage.AdmitCaseAsync(message, regressionCase, cancellationToken);
             var evidenceBlobName = PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId);
             var recorded = await _storage.ReadStoredRunAsync(evidenceBlobName, cancellationToken);
             if (existingReceipt is not null && recorded is null)

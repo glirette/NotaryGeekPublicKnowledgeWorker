@@ -62,8 +62,10 @@ public sealed class QueuedWorkerOrchestrationTests
         var calls = 0;
         var handler = new SyntheticHandler(request =>
         {
-            if (request.RequestUri!.Host == "source.example")
+            if (request.RequestUri!.AbsoluteUri == "https://source.example/document" && request.Method == HttpMethod.Get)
                 return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("public fixture") };
+            if (request.RequestUri.AbsoluteUri != "https://api.openai.com/v1/responses" || request.Method != HttpMethod.Post)
+                throw new InvalidOperationException("Unexpected synthetic provider request.");
             Interlocked.Increment(ref calls);
             return new HttpResponseMessage(HttpStatusCode.InternalServerError)
             {
@@ -92,6 +94,7 @@ public sealed class QueuedWorkerOrchestrationTests
     public async Task DuplicateAndConcurrentDeliveriesDoNotRepeatAmbiguousProviderResponse()
     {
         var connection = Environment.GetEnvironmentVariable("PK_TEST_STORAGE_CONNECTION")!;
+        LocalStorageSafety.RequireDisposableLoopback(connection);
         var caseId = "synthetic-queue-case";
         var regressionCase = new PublicKnowledgeRegressionCase(caseId, "public fixture", "queue fixture",
             ["source checked"], [], ["https://source.example/document"]);
@@ -115,8 +118,10 @@ public sealed class QueuedWorkerOrchestrationTests
         var calls = 0;
         var handler = new SyntheticHandler(request =>
         {
-            if (request.RequestUri!.Host == "source.example")
+            if (request.RequestUri!.AbsoluteUri == "https://source.example/document" && request.Method == HttpMethod.Get)
                 return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("public source") };
+            if (request.RequestUri.AbsoluteUri != "https://api.openai.com/v1/responses" || request.Method != HttpMethod.Post)
+                throw new InvalidOperationException("Unexpected synthetic provider request.");
             Interlocked.Increment(ref calls);
             return new HttpResponseMessage(HttpStatusCode.InternalServerError)
             {

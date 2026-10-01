@@ -114,6 +114,7 @@ public sealed class QueuedRunStorageAzuriteTests
         if (string.IsNullOrWhiteSpace(connection))
             throw new InvalidOperationException("Azurite connection must be present when an AzuriteFact is executed.");
 
+        LocalStorageSafety.RequireDisposableLoopback(connection);
         var containerName = $"pk-test-{Guid.NewGuid():N}";
         var options = new PublicKnowledgeOptions { OutputContainerName = containerName };
         var config = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>

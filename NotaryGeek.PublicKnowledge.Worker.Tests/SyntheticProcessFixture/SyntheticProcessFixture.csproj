@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>../obj/SyntheticProcessFixture/</BaseIntermediateOutputPath>
+    <BaseOutputPath>../bin/SyntheticProcessFixture/</BaseOutputPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>SyntheticProcessFixture</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs.fixture" />
+    <Compile Include="../SyntheticBlobStore.cs" Link="SyntheticBlobStore.cs" />
+    <Compile Include="../SyntheticQueuedFixture.cs" Link="SyntheticQueuedFixture.cs" />
+    <ProjectReference Include="../../NotaryGeek.PublicKnowledge.Worker/NotaryGeek.PublicKnowledge.Worker.csproj" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

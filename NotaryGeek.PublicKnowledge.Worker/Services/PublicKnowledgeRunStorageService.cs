@@ -25,14 +25,22 @@ public sealed class PublicKnowledgeRunStorageService
     private readonly PublicKnowledgeOptions _options;
     private readonly ILogger<PublicKnowledgeRunStorageService> _logger;
 
+    private readonly BlobContainerClient? _injectedContainer;
+
     public PublicKnowledgeRunStorageService(
         IConfiguration configuration,
         IOptions<PublicKnowledgeOptions> options,
         ILogger<PublicKnowledgeRunStorageService> logger)
+        : this(configuration, options, logger, null) { }
+
+    public PublicKnowledgeRunStorageService(
+        IConfiguration configuration, IOptions<PublicKnowledgeOptions> options,
+        ILogger<PublicKnowledgeRunStorageService> logger, BlobContainerClient? container)
     {
         _configuration = configuration;
         _options = options.Value;
         _logger = logger;
+        _injectedContainer = container;
     }
 
     public PublicKnowledgeRunStorageStatus GetStatus()
@@ -108,6 +116,9 @@ public sealed class PublicKnowledgeRunStorageService
                 etag = current.Value.Details.ETag;
                 var previous = current.Value.Content.ToObjectFromJson<PublicKnowledgeStoredRunEnvelope>(JsonOptions)
                     ?? throw new InvalidOperationException($"Malformed latest run at '{latestBlobName}'.");
+                ValidateStoredRun(previous);
+                if (previous.CaseId != envelope.CaseId || previous.LatestBlobName != latestBlobName)
+                    throw new InvalidOperationException("Latest run has conflicting case identity.");
                 if (previous.StoredAtUtc > envelope.StoredAtUtc ||
                     (previous.StoredAtUtc == envelope.StoredAtUtc &&
                      string.CompareOrdinal(previous.BlobName, envelope.BlobName) >= 0))
@@ -201,10 +212,7 @@ public sealed class PublicKnowledgeRunStorageService
              submittedFingerprint != FingerprintCase(regressionCase)))
             throw new InvalidOperationException("Queued regression case changed since submission.");
         // The full case snapshot binds source URLs, focus and scoring parameters to this identity.
-        var fingerprint = Hash(JsonSerializer.Serialize(new
-        {
-            message, regressionCase
-        }, JsonOptions));
+        var fingerprint = ExecutionFingerprint(message, regressionCase);
         var container = await GetContainerAsync(cancellationToken);
         var blob = container.GetBlobClient($"runs/executions/{Hash(message.JobId)}/{Hash(regressionCase.Id)}.json");
         var reservation = new CaseExecution(fingerprint, "provider-outcome-unknown", null, message.SubmittedAtUtc);
@@ -222,14 +230,59 @@ public sealed class PublicKnowledgeRunStorageService
             var current = await blob.DownloadContentAsync(cancellationToken);
             var previous = current.Value.Content.ToObjectFromJson<CaseExecution>(JsonOptions)
                 ?? throw new InvalidOperationException("Malformed case reservation.");
-            if (previous.Fingerprint != fingerprint)
-                throw new InvalidOperationException("Queued case identity has changed work parameters.");
+            ValidateCaseExecution(previous, message, regressionCase);
             return previous;
         }
     }
 
+    public async Task<CaseExecution?> ReadCaseExecutionAsync(
+        PublicKnowledgeQueuedRunMessage message, PublicKnowledgeRegressionCase regressionCase,
+        CancellationToken cancellationToken)
+    {
+        var container = await GetContainerAsync(cancellationToken);
+        try
+        {
+            var response = await container.GetBlobClient(
+                $"runs/executions/{Hash(message.JobId)}/{Hash(regressionCase.Id)}.json").DownloadContentAsync(cancellationToken);
+            var state = response.Value.Content.ToObjectFromJson<CaseExecution>(JsonOptions)
+                ?? throw new InvalidOperationException("Malformed case reservation.");
+            ValidateCaseExecution(state, message, regressionCase);
+            return state;
+        }
+        catch (RequestFailedException ex) when (ex.Status == 404) { return null; }
+    }
+
+    private static string ExecutionFingerprint(PublicKnowledgeQueuedRunMessage message,
+        PublicKnowledgeRegressionCase regressionCase) =>
+        Hash(JsonSerializer.Serialize(new { message, regressionCase }, JsonOptions));
+
+    private static void ValidateCaseExecution(CaseExecution state,
+        PublicKnowledgeQueuedRunMessage message, PublicKnowledgeRegressionCase regressionCase)
+    {
+        if (state.Fingerprint != ExecutionFingerprint(message, regressionCase) ||
+            state.ReservedAtUtc != message.SubmittedAtUtc)
+            throw new InvalidOperationException("Queued case identity has changed work parameters.");
+        var unknown = state.Phase == "provider-outcome-unknown";
+        var recorded = state.Phase == "evidence-recorded";
+        if ((!unknown && !recorded) ||
+            (unknown && (state.EvidenceBlobName is not null || state.CandidatesPublished || state.IndexPublished || state.DigestPublished)) ||
+            (recorded && state.EvidenceBlobName != GetCaseEvidenceBlobName(message, regressionCase.Id)) ||
+            (state.IndexPublished && !state.CandidatesPublished) || (state.DigestPublished && !state.IndexPublished))
+            throw new InvalidOperationException("Malformed or contradictory case reservation.");
+        // 'admitted' is an in-memory return value for the successful create-only caller,
+        // never a durable phase that can authorize provider execution after a restart.
+    }
+
     private static void ValidateQueuedIdentity(PublicKnowledgeQueuedRunEnvelope queued, PublicKnowledgeQueuedRunMessage message)
     {
+        if (queued.Schema != "notary-geek-public-knowledge-queued-run-v1" ||
+            queued.CaseIds is null || queued.Receipts is null ||
+            (queued.Status is not ("preparing" or "queued" or "running" or "publishing") &&
+             !IsTerminalQueuedRunStatus(queued.Status ?? "")) ||
+            (queued.CaseFingerprints is not null && IsTerminalQueuedRunStatus(queued.Status) &&
+             queued.CaseIds.Any(id => !queued.Receipts.Any(receipt =>
+                 receipt.CaseId.Equals(id, StringComparison.OrdinalIgnoreCase)))))
+            throw new InvalidOperationException("Malformed or contradictory queued job state.");
         if (queued.JobId != message.JobId || queued.Batch != message.Batch || queued.Trigger != message.Trigger ||
             queued.Execute != message.Execute || queued.SubmittedAtUtc != message.SubmittedAtUtc ||
             !string.Equals(queued.ProviderOverride, message.ProviderOverride, StringComparison.Ordinal) ||
@@ -253,7 +306,9 @@ public sealed class PublicKnowledgeRunStorageService
             var current = await blob.DownloadContentAsync(cancellationToken);
             var previous = current.Value.Content.ToObjectFromJson<CaseExecution>(JsonOptions)
                 ?? throw new InvalidOperationException("Malformed case reservation.");
-            if (previous.Fingerprint != admitted.Fingerprint ||
+            ValidateCaseExecution(previous, message, regressionCase);
+            if (blobName != GetCaseEvidenceBlobName(message, regressionCase.Id) ||
+                previous.Fingerprint != admitted.Fingerprint ||
                 (previous.EvidenceBlobName is not null && previous.EvidenceBlobName != blobName))
                 throw new InvalidOperationException("Conflicting case evidence.");
             if (previous.Phase == "evidence-recorded") return previous;
@@ -283,13 +338,14 @@ public sealed class PublicKnowledgeRunStorageService
             var response = await blob.DownloadContentAsync(cancellationToken);
             var prior = response.Value.Content.ToObjectFromJson<CaseExecution>(JsonOptions)
                 ?? throw new InvalidOperationException("Malformed case publication state.");
+            ValidateCaseExecution(prior, message, regressionCase);
             if (prior.EvidenceBlobName != GetCaseEvidenceBlobName(message, regressionCase.Id))
                 throw new InvalidOperationException("Publication has no matching immutable evidence.");
             var next = phase switch
             {
                 "candidates" => prior with { CandidatesPublished = true },
-                "index" => prior with { IndexPublished = true },
-                "digest" => prior with { DigestPublished = true },
+                "index" when prior.CandidatesPublished => prior with { IndexPublished = true },
+                "digest" when prior.IndexPublished => prior with { DigestPublished = true },
                 _ => throw new ArgumentOutOfRangeException(nameof(phase))
             };
             if (next == prior) return prior;
@@ -756,7 +812,11 @@ public sealed class PublicKnowledgeRunStorageService
                     item.CaseId, item.StoredAtUtc, item.BlobName));
                 if (!SnapshotIncludes(candidate, previous))
                     continue; // A pointer changed while we read the latest set. Rebuild it.
-                if (SnapshotIncludes(previous, candidate)) return prior;
+                if (SnapshotIncludes(previous, candidate))
+                {
+                    if (await IsCurrentSnapshotAsync(candidate, cancellationToken)) return prior;
+                    continue;
+                }
             }
             catch (RequestFailedException ex) when (ex.Status == 404) { }
 
@@ -769,7 +829,7 @@ public sealed class PublicKnowledgeRunStorageService
                         : new BlobRequestConditions { IfNoneMatch = ETag.All },
                     HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" }
                 }, cancellationToken);
-                return index;
+                if (await IsCurrentSnapshotAsync(candidate, cancellationToken)) return index;
             }
             catch (RequestFailedException ex) when (ex.Status is 409 or 412 && attempt < 9) { }
         }
@@ -862,7 +922,11 @@ public sealed class PublicKnowledgeRunStorageService
                 {
                     if (!SnapshotIncludes(report.SourceRuns!, prior.SourceRuns))
                         continue;
-                    if (SnapshotIncludes(prior.SourceRuns, report.SourceRuns!)) return prior;
+                    if (SnapshotIncludes(prior.SourceRuns, report.SourceRuns!))
+                    {
+                        if (await IsCurrentSnapshotAsync(report.SourceRuns!, cancellationToken)) return prior;
+                        continue;
+                    }
                 }
             }
             catch (RequestFailedException ex) when (ex.Status == 404) { }
@@ -876,7 +940,7 @@ public sealed class PublicKnowledgeRunStorageService
                         : new BlobRequestConditions { IfNoneMatch = ETag.All },
                     HttpHeaders = new BlobHttpHeaders { ContentType = "application/json; charset=utf-8" }
                 }, cancellationToken);
-                return report;
+                if (await IsCurrentSnapshotAsync(report.SourceRuns!, cancellationToken)) return report;
             }
             catch (RequestFailedException ex) when (ex.Status is 409 or 412 && attempt < 9) { }
         }
@@ -1028,27 +1092,47 @@ public sealed class PublicKnowledgeRunStorageService
                 continue;
             }
 
-            try
-            {
-                var client = container.GetBlobClient(blob.Name);
-                var response = await client.DownloadContentAsync(cancellationToken);
-                var envelope = response.Value.Content.ToObjectFromJson<PublicKnowledgeStoredRunEnvelope>(JsonOptions);
-                if (envelope is not null)
-                {
-                    envelopes.Add(envelope);
-                }
-            }
-            catch (Exception ex) when (ex is JsonException or Azure.RequestFailedException)
-            {
-                _logger.LogWarning(ex, "Could not read public knowledge latest run blob {BlobName}.", blob.Name);
-            }
+            // A listed but unreadable record is an incomplete observation, not an absent case.
+            // Propagate failure so publication stays pending and preserves the prior derived view.
+            var response = await container.GetBlobClient(blob.Name).DownloadContentAsync(cancellationToken);
+            var envelope = response.Value.Content.ToObjectFromJson<PublicKnowledgeStoredRunEnvelope>(JsonOptions)
+                ?? throw new InvalidOperationException("Malformed latest run record.");
+            ValidateStoredRun(envelope);
+            if (envelope.LatestBlobName != blob.Name)
+                throw new InvalidOperationException("Latest run record has conflicting pointer identity.");
+            envelopes.Add(envelope);
         }
 
         return envelopes;
     }
 
+    private static void ValidateStoredRun(PublicKnowledgeStoredRunEnvelope envelope)
+    {
+        if (envelope.Schema != "notary-geek-public-knowledge-stored-run-v1" ||
+            string.IsNullOrWhiteSpace(envelope.CaseId) || envelope.StoredAtUtc == default ||
+            string.IsNullOrWhiteSpace(envelope.BlobName) || !envelope.BlobName.StartsWith("runs/", StringComparison.Ordinal) ||
+            envelope.LatestBlobName != $"runs/latest/{ToSafeBlobSegment(envelope.CaseId)}.json" ||
+            envelope.Result is null || envelope.Result.Warnings is null || envelope.Result.Errors is null ||
+            envelope.Result.Sources is null || string.IsNullOrWhiteSpace(envelope.Result.Model) ||
+            (!string.IsNullOrWhiteSpace(envelope.Result.RegressionCaseId) && envelope.Result.RegressionCaseId != envelope.CaseId))
+            throw new InvalidOperationException("Malformed or contradictory stored run record.");
+    }
+
+    private async Task<bool> IsCurrentSnapshotAsync(IEnumerable<PublicKnowledgeRunReference> candidate,
+        CancellationToken cancellationToken)
+    {
+        var observed = (await ListLatestEnvelopesAsync(cancellationToken)).Select(item =>
+            new PublicKnowledgeRunReference(item.CaseId, item.StoredAtUtc, item.BlobName)).ToArray();
+        return SnapshotIncludes(candidate, observed) && SnapshotIncludes(observed, candidate);
+    }
+
     private async Task<BlobContainerClient> GetContainerAsync(CancellationToken cancellationToken)
     {
+        if (_injectedContainer is not null)
+        {
+            await _injectedContainer.CreateIfNotExistsAsync(PublicAccessType.None, cancellationToken: cancellationToken);
+            return _injectedContainer;
+        }
         var connectionString = GetConnectionString();
         if (string.IsNullOrWhiteSpace(connectionString))
         {
