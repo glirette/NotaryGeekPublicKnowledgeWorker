@@ -1,0 +1,2425 @@
+{
+  "schemaVersion": "1.1",
+  "auditId": "notarycam-virginia-claims-2026-10-02",
+  "title": "NotaryCam’s Virginia claims: law, dates and evidence",
+  "reviewedOn": "2026-10-02",
+  "article": {
+    "url": "https://www.notarycam.com/online-notary-virginia/",
+    "title": "Online Notary Virginia",
+    "retrievedOn": "2026-10-02",
+    "captureMethod": "Substantive article text, tables and FAQ available in the October 2 web extraction; repeated responsive text deduplicated. Adversarial rechecks used first-party indexed text after direct opens returned 403. Displayed date is not independently proven publication history. No raw HTML, complete versioned page capture or original-page hash was preserved.",
+    "displayedPublishedOn": "2026-07-15",
+    "evidenceManifestPath": "docs/evidence-analysis/notarycam-virginia-source-observation-2026-10-02.json",
+    "versionVerificationStatus": "incomplete: no full original-page snapshot"
+  },
+  "scope": "This is a case study within Notary Geek’s broader investigation of platform assurances, identity methods and industry reliance across states, including Texas. Virginia matters here because the reviewed page uses its history and asserted flexibility to sell confidence. The audit assesses substantive legal, historical, operational and comparative propositions in the article text, tables and FAQ available in the October 2 extraction. It separately marks related-source findings and historical interpretation. This is not proof of exhaustive coverage of a preserved page version. It does not claim Virginia is inherently the problem or that another state’s workflow is compliant by default. The broader inquiry requires a dated claim, controlling law and actual method evidence for each state.",
+  "assessment": "The article contains demonstrably false Virginia law summaries and unsupported compliance assurances. KBA was expressly added in July 2024. Platform operation, company size and private certification do not establish that a notarial act satisfies the law.",
+  "readerSummary": [
+    "Six reviewed representations contradict the cited authorities: the statutory section range, traditional-notary location, current state training requirement, Secretary platform-compliance review inference, categorical CA/KBA rule and traditional-record requirement. Unresolved session details do not turn these documented contradictions into merely unverified allegations.",
+    "Virginia is the case study, not the entire issue. The same evidence standard applies to Texas and every other state: identify the actual authority, transaction date, identity method and supporting record.",
+    "Virginia’s identity law is date-sensitive: RON from July 2012, credential analysis and the two-of-four structure from March 2021, and the express KBA method from July 1, 2024.",
+    "Current law permits personal knowledge, a qualifying credible witness, or at least two of five specified methods. Credential analysis plus KBA is one combination. No SSN-based exception makes an ordinary selfie comparison a substitute for the statutory requirements.",
+    "A provider may perform KBA, fingerprinting or other extra checks. Performing a check does not establish that the law required it, authorized it as the claimed statutory method, or was satisfied by it. The complete method must be mapped to the applicable dated authority and evidence.",
+    "Virginia does not provide an approved/supported-platform regime in the reviewed notary authorities. The notary is responsible for using compliant identity methods and technology and following the law. Individual electronic-notary registration and platform operation do not establish government platform approval; the Assurance Standard disclaims system-compliance determinations.",
+    "The traditional notary location row is wrong: § 47.1-13(B) permits compliant acts outside Virginia. Current electronic-notary certificate law separately requires the Virginia county or city where the notary physically was.",
+    "The article also misses the July 1, 2026 traditional-record requirement and treats July 1, 2027 education requirements as current.",
+    "NotaryCam’s MISMO listing is supported. MISMO’s stated certification scope excludes verification of compliance with a particular jurisdiction’s laws. Certification cannot supply the missing legal authority or session evidence.",
+    "False assurances can mislead buyers regardless of whether the publisher understood the law. The correction does not depend on proving intent. Market age, revenue and a familiar brand do not cure an incorrect claim."
+  ],
+  "procurementStandard": {
+    "title": "Company size and certification are not legal proof",
+    "position": "Notary Geek is small. Our standard is to identify the transaction, controlling law, effective date, identity method and supporting evidence before recommending a route. Buyers should apply that same standard to every provider, including us. Repeated marketing, market share and early entry cannot answer a statutory-authority question. A false assurance remains a problem even without evidence of deliberate deception. Greg Lirette’s criticism of this confidence-selling pattern as a scam concerns the false assurance being sold; calling the same pattern compliance theater does not answer the defect. Attribution to Notary Geek does not reduce the cited statute or official disclaimer to competing preferences; resolve the proposition from the evidence rather than market size.",
+    "checks": [
+      "Ask which notary, commission and physical location govern the act, and which law applied on the transaction date.",
+      "Ask for the actual statutory identity path and retained evidence. An interface showing a successful check does not identify the legal method by itself.",
+      "Keep private technical certification, state authorization, title-underwriter approval, contractual eligibility and individual-act compliance as separate questions. A contractual MISMO requirement may matter commercially; it does not amend the statute.",
+      "When a title or lending decision relies on a certification badge, request the written requirement, its issuer and scope, and the separate legal analysis. Do not assume all title companies apply an identical rule.",
+      "Ask for corrections to inaccurate public representations, with dates. Lack of proven intent is not a reason to leave a false legal assurance in place.",
+      "A disagreement over the word scam does not validate the underlying assurance. Claims that an objection is too technical, extreme or contrary to common practice must still be tested against the actual requirement.",
+      "Separate what checks occurred, what the law required or authorized on the date, and whether the complete method met its conditions. An optional statutory alternative need not be mandatory for every act; merely selecting or running a check does not establish that alternative."
+    ],
+    "sourceIds": [
+      "S01",
+      "S10",
+      "S11",
+      "P-mismo_scope"
+    ]
+  },
+  "timeline": [
+    {
+      "date": "2011-03-26",
+      "event": "HB 2318 / chapter 731 approved; its out-of-state jurisdiction amendment removed the prior Virginia-recordation-purpose wording.",
+      "sourceIds": [
+        "S02"
+      ]
+    },
+    {
+      "date": "2012-07-01",
+      "event": "HB 2318 audio-video provisions effective. Early identity paths were personal knowledge, conforming antecedent in-person proofing, or qualifying certificate-based access; not today's five-item menu.",
+      "sourceIds": [
+        "S02"
+      ]
+    },
+    {
+      "date": "2013-01-21",
+      "event": "Secretary published Assurance Standard v 1.0, including explicit disclaimer of technology compliance determinations.",
+      "sourceIds": [
+        "S11"
+      ]
+    },
+    {
+      "date": "2021-03-11",
+      "event": "Emergency HB 2064 / chapter 78 introduced two-of-four structure, credential-analysis and identity-proofing definitions, adopted-guidance route, and in-state electronic-certificate location wording.",
+      "sourceIds": [
+        "S04"
+      ]
+    },
+    {
+      "date": "2024-04-17",
+      "event": "HB 1372 / chapter 832 approved.",
+      "sourceIds": [
+        "S05"
+      ]
+    },
+    {
+      "date": "2024-07-01",
+      "event": "KBA definition and expressly enumerated fifth method effective under ordinary effective-date rule. This is roughly two years before the article, not fourteen years of an unchanged CA/KBA law.",
+      "sourceIds": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "date": "2024-07-01",
+      "event": "Chapter 832 makes only the § 47.1-20.1(B) validation provisions retroactive to earlier acts. It preserves challenges to records/transactions and other remedies, and excludes purported acts by unauthorized persons.",
+      "sourceIds": [
+        "S05",
+        "S34"
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "event": "Recordkeeping requirement expanded to nonelectronic notarial acts, with five-year retention; proof-of-commission requirement for seal purchase also effective.",
+      "sourceIds": [
+        "S14"
+      ]
+    },
+    {
+      "date": "2027-07-01",
+      "event": "Future instruction/examination requirement effective: initial instruction four hours; recommission instruction two hours; within preceding six months. Recommission instruction recurs.",
+      "sourceIds": [
+        "S13",
+        "S14"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Virginia Code § 47.1-2",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current statute",
+      "notes": ""
+    },
+    {
+      "id": "S02",
+      "title": "2011 Acts ch.731 / HB 2318",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?111+ful+CHAP0731+pdf=",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "approved 2011-03-26; audio-video provisions effective 2012-07-01",
+      "notes": ""
+    },
+    {
+      "id": "S03",
+      "title": "2020 Acts ch.902 / HB 1222",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?201+ful+CHAP0902+pdf=",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "approved 2020-04-09",
+      "notes": ""
+    },
+    {
+      "id": "S04",
+      "title": "2021 Special Session I Acts ch.78 / HB 2064",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0078+pdf=",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "approved and emergency-effective 2021-03-11",
+      "notes": ""
+    },
+    {
+      "id": "S05",
+      "title": "2024 Acts ch.832 / HB 1372",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0832+pdf=",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "approved 2024-04-17; ordinary effective date 2024-07-01; enactment clause 2 retroactivity limited to § 47.1-20.1(B)",
+      "notes": ""
+    },
+    {
+      "id": "S06",
+      "title": "Virginia Code § 1-214",
+      "url": "https://law.lis.virginia.gov/vacode/title1/chapter2.1/section1-214/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "ordinary July 1 effective-date and emergency-act rules",
+      "notes": ""
+    },
+    {
+      "id": "S07",
+      "title": "Virginia Code § 47.1-13",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-13/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current statute",
+      "notes": ""
+    },
+    {
+      "id": "S08",
+      "title": "Virginia Code § 47.1-16",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-16/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current statute",
+      "notes": ""
+    },
+    {
+      "id": "S09",
+      "title": "Virginia Code § 47.1-14",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-14/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current statute; paper-act record rule from 2026-07-01",
+      "notes": ""
+    },
+    {
+      "id": "S10",
+      "title": "Virginia Code § 47.1-7",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter2/section47.1-7/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current statute",
+      "notes": ""
+    },
+    {
+      "id": "S11",
+      "title": "Virginia Electronic Notarization Assurance Standard v 1.0",
+      "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/VAe-NotarizationStandard2013Version10.pdf",
+      "type": "official agency guidance (not a substitute for the statute)",
+      "checkedOn": "2026-10-02",
+      "locator": "published 2013-01-21; still linked by current Secretary eNotary page on 2026-10-02; printed page 4/PDF page 6 § 1.1(c); § 1.1(a) renewal/resubmission duty",
+      "notes": ""
+    },
+    {
+      "id": "S12",
+      "title": "Secretary: Learn About Becoming an eNotary",
+      "url": "https://www.commonwealth.virginia.gov/official-documents/notary-commissions/enotary/",
+      "type": "official agency guidance (not a substitute for the statute)",
+      "checkedOn": "2026-10-02",
+      "locator": "current official application guidance",
+      "notes": ""
+    },
+    {
+      "id": "S13",
+      "title": "Virginia Code § 47.1-5.2",
+      "url": "https://law.lis.virginia.gov/vacodeupdates/title47.1/section47.1-5.2/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "future law effective 2027-07-01",
+      "notes": ""
+    },
+    {
+      "id": "S14",
+      "title": "Secretary 2026 Notary Spotlight",
+      "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/notary/Notary-News-Letter-July-1-Changes-2026.pdf",
+      "type": "official agency guidance (not a substitute for the statute)",
+      "checkedOn": "2026-10-02",
+      "locator": "distinguishes 2026-07-01 journal/seal rules from 2027-07-01 education rules",
+      "notes": ""
+    },
+    {
+      "id": "S15",
+      "title": "Title 47.1 Chapter 2 official index",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter2/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "§ 47.1-6.1 followed by § 47.1-7; no §§ 47.1-6.2 through 6.7",
+      "notes": ""
+    },
+    {
+      "id": "S16",
+      "title": "Virginia Code § 47.1-19",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-19/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current $10 paper / $25 electronic notarial-act caps; limited agreed travel expense",
+      "notes": ""
+    },
+    {
+      "id": "S17",
+      "title": "Virginia Code § 47.1-12",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-12/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current enumerated notarial powers",
+      "notes": ""
+    },
+    {
+      "id": "S18",
+      "title": "Virginia Code § 64.2-403",
+      "url": "https://law.lis.virginia.gov/vacode/title64.2/chapter4/section64.2-403/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current will-execution rules",
+      "notes": ""
+    },
+    {
+      "id": "S19",
+      "title": "Virginia Code § 64.2-452",
+      "url": "https://law.lis.virginia.gov/vacode/title64.2/chapter4/section64.2-452/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "self-proving will affidavits distinct from execution",
+      "notes": ""
+    },
+    {
+      "id": "S20",
+      "title": "Virginia UETA, especially §§ 59.1-481 and 59.1-483",
+      "url": "https://law.lis.virginia.gov/vacodepopularnames/uniform-electronic-transactions-act/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current scope exclusions and consent requirements",
+      "notes": ""
+    },
+    {
+      "id": "S21",
+      "title": "Virginia Code § 64.2-1603",
+      "url": "https://law.lis.virginia.gov/vacode/title64.2/chapter16/section64.2-1603/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "power-of-attorney execution and acknowledgment",
+      "notes": ""
+    },
+    {
+      "id": "S22",
+      "title": "Virginia Code § 55.1-662",
+      "url": "https://law.lis.virginia.gov/vacode/title55.1/chapter6/section55.1-662/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "electronic land-record validity",
+      "notes": ""
+    },
+    {
+      "id": "S23",
+      "title": "Virginia Code § 55.1-663",
+      "url": "https://law.lis.virginia.gov/vacode/title55.1/chapter6/section55.1-663/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "clerk eRecording implementation and acceptance",
+      "notes": ""
+    },
+    {
+      "id": "S24",
+      "title": "Virginia Code § 17.1-223",
+      "url": "https://law.lis.virginia.gov/vacode/title17.1/chapter2/section17.1-223/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "recordation conditions; fallback paper-copy route",
+      "notes": ""
+    },
+    {
+      "id": "S25",
+      "title": "Maryland DLS 2016 HB 1111 fiscal/policy note",
+      "url": "https://mgaleg.maryland.gov/2016RS/fnotes/bil_0001/hb1111.pdf",
+      "type": "official legislative analysis",
+      "checkedOn": "2026-10-02",
+      "locator": "dated 2016-03-02; official legislative historical description of Virginia as first RON state",
+      "notes": ""
+    },
+    {
+      "id": "S26",
+      "title": "Virginia Code § 2.2-436",
+      "url": "https://law.lis.virginia.gov/vacode/title2.2/chapter4.3/section2.2-436/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current approval/publication framework for electronic-identity guidance",
+      "notes": ""
+    },
+    {
+      "id": "S27",
+      "title": "Virginia Code § 19.2-3.1",
+      "url": "https://law.lis.virginia.gov/vacode/title19.2/chapter1/section19.2-3.1/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "B 1-B 3 communication standards incorporated by § 47.1-2",
+      "notes": ""
+    },
+    {
+      "id": "S28",
+      "title": "Florida Statutes § 117.265",
+      "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&Search_String=&URL=0100-0199%2F0117%2FSections%2F0117.265.html",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "2026 text; online-notary location and alternate identity-method wording",
+      "notes": ""
+    },
+    {
+      "id": "S29",
+      "title": "New York Executive Law § 135-c",
+      "url": "https://www.nysenate.gov/legislation/laws/EXC/135-C",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "latest displayed revision 2023-07-07; current electronic-notary location; NY foreign-principal nexus clause",
+      "notes": ""
+    },
+    {
+      "id": "S30",
+      "title": "USCIS Completing Section 2 Employer Review and Attestation",
+      "url": "https://www.uscis.gov/i-9-central/completing-form-i-9/completing-section-2-employer-review-and-attestation",
+      "type": "official federal agency guidance",
+      "checkedOn": "2026-10-02",
+      "locator": "official search content retrieved; direct open returned 403; I-9 authorized representative does not affix notary seal",
+      "notes": ""
+    },
+    {
+      "id": "S31",
+      "title": "USCIS Remote Examination of Documents",
+      "url": "https://www.uscis.gov/i-9-central/remote-examination-of-documents",
+      "type": "official federal agency guidance",
+      "checkedOn": "2026-10-02",
+      "locator": "official search content retrieved; direct open returned 403; DHS alternative procedure and E-Verify conditions",
+      "notes": ""
+    },
+    {
+      "id": "S32",
+      "title": "Current complete Virginia Notary Act",
+      "url": "https://law.lis.virginia.gov/vacodefull/title47.1/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "searched full title for nexus/United States; no foreign-principal US-nexus condition located",
+      "notes": ""
+    },
+    {
+      "id": "S33",
+      "title": "Secretary 2024 Notary Handbook",
+      "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/notary/2024-Notary-Handbook.pdf",
+      "type": "official agency guidance (not a substitute for the statute)",
+      "checkedOn": "2026-10-02",
+      "locator": "historical 2024 handbook; some journal and jurisdiction language does not match later/current statutes",
+      "notes": ""
+    },
+    {
+      "id": "S34",
+      "title": "Virginia Code § 47.1-20.1",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-20.1/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current limited validation rule; preserve remedies and unauthorized-person exception",
+      "notes": ""
+    },
+    {
+      "id": "S35",
+      "title": "Virginia Code § 47.1-6.1",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter2/section47.1-6.1/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "Secretary develops electronic-notary standards with VITA assistance",
+      "notes": ""
+    },
+    {
+      "id": "S36",
+      "title": "Virginia Code § 47.1-8",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter2/section47.1-8/",
+      "type": "official statute or enacted legislation",
+      "checkedOn": "2026-10-02",
+      "locator": "current and future 2027 versions explicitly separated",
+      "notes": ""
+    },
+    {
+      "id": "P-article",
+      "title": "NotaryCam Virginia article",
+      "url": "https://www.notarycam.com/online-notary-virginia/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "Initial web-extracted text; adversarial rechecks via first-party index after direct 403. Textual section/row locators in findings; no retained original-page version.",
+      "notes": "Provider article is evidence of its representations, not proof of legal or operational compliance. Extracted text repeats much of its body; do not count repetition as independent evidence."
+    },
+    {
+      "id": "P-checkout",
+      "title": "NotaryCam current purchase options",
+      "url": "https://www.notarycam.com/notarize-now/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "full page retrieved by web open",
+      "notes": "Markets network real-estate closings from $199, service hours 7am–11pm Eastern, $35 single-seal option, $50 no-SSN add-on; other documents $25/seal with $79 no-US-SSN fee wording. The fee basis and whether the latter is additional are not resolved by this wording."
+    },
+    {
+      "id": "P-faq",
+      "title": "NotaryCam frequently asked questions",
+      "url": "https://www.notarycam.com/faq/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "full search-index result; direct open returned 403",
+      "notes": "Requirements list desktop/laptop, webcam/audio, Chrome and reliable high-speed connection. General 24/7 availability is separated from real-estate agents available 7am–11pm Eastern daily. Multiple signers and separate signing appointments are described. Busy periods can require scheduling the next appointment."
+    },
+    {
+      "id": "P-privacy",
+      "title": "NotaryCam privacy policy",
+      "url": "https://www.notarycam.com/privacy-policy/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "full relevant section in search result; direct open returned 403",
+      "notes": "Section II names Jumio and Persona and describes identity-document verification plus selfie/ID facial comparison, vendor-held biometric data and provider access to results. This is a capability/data-handling disclosure, not proof of a commissioned state or statutory method in an actual transaction."
+    },
+    {
+      "id": "P-terms",
+      "title": "NotaryCam terms of service",
+      "url": "https://www.notarycam.com/terms-of-service/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "full relevant sections in search result; direct open returned 403",
+      "notes": "Terms describe KBA as primary proofing and face-scan biometrics for some approved transactions, name Jumio/Persona, and describe consent and 30-day biometric retention instruction. Transaction-specific approval is not identified as Virginia government approval. Electronic-record consent specifies desktop/laptop and Chrome or Firefox, whereas the FAQ names Chrome."
+    },
+    {
+      "id": "P-services",
+      "title": "NotaryCam service offerings",
+      "url": "https://www.notarycam.com/services/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "full page retrieved by web open",
+      "notes": "Provider markets full-service RON, international service and 145-country coverage, staff notaries and identity verification. Its legal-eligibility caveat should accompany the geographical marketing."
+    },
+    {
+      "id": "P-software",
+      "title": "NotaryCam software licensing",
+      "url": "https://www.notarycam.com/software-services/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "search result",
+      "notes": "Software licensing supports in-house notaries and advertises no monthly minimum use, training access, tagging, billing and at least ten years of video/journal retention. These are product representations, not an independently tested operational service level."
+    },
+    {
+      "id": "P-security",
+      "title": "NotaryCam security representations",
+      "url": "https://www.notarycam.com/security/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "search snippets; direct open returned 403",
+      "notes": "Public materials carry SOC 2 Type 2 and NIST compliance badges. This audit obtained no current independent SOC report, audit period, opinion, scope or controls mapping and no NIST profile/assurance mapping. Related licensing page separately names IAL2; see P-licensing. Do not claim no assurance level is publicly identified."
+    },
+    {
+      "id": "P-mismo_directory",
+      "title": "MISMO certified RON provider directory",
+      "url": "https://www.mismo.org/events-education/certifications/emortgage-technology-certification/ron/certified-ron-providers",
+      "type": "private standards body — primary program source",
+      "checkedOn": "2026-10-02",
+      "locator": "official search result; direct open returned 403",
+      "notes": "Official certified RON providers directory includes NotaryCam."
+    },
+    {
+      "id": "P-mismo_company",
+      "title": "MISMO NotaryCam certification entry",
+      "url": "https://www.mismo.org/home/certifications/certification-list/notarycam",
+      "type": "private standards body — primary program source",
+      "checkedOn": "2026-10-02",
+      "locator": "official search result; direct open returned 403",
+      "notes": "Official certification directory has a NotaryCam company entry. Some certification details are images, not extracted text."
+    },
+    {
+      "id": "P-mismo_scope",
+      "title": "MISMO RON certification process and limits",
+      "url": "https://www.mismo.org/events-education/certifications/emortgage-technology-certification/ron",
+      "type": "private standards body — primary program source",
+      "checkedOn": "2026-10-02",
+      "locator": "full official text in search result",
+      "notes": "Certification reviews information, documents and a system demonstration against MISMO RON standards. MISMO expressly excludes verification of compliance with laws or requirements of a particular federal, state, county or other regulator."
+    },
+    {
+      "id": "P-huecu",
+      "title": "NotaryCam credit-union case study (2023)",
+      "url": "https://www.notarycam.com/case-study-harvard-university-employees-credit-union-2/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "full search-result content",
+      "notes": "Historical provider case study describes a negotiated $25 member signing price, a partnership beginning in 2021, international students, biometric proofing and customers without SSNs. It supports historical marketing of the workflow, but does not identify the commissioned states or session-level statutory methods. Do not treat its negotiated historical price as the current retail rate."
+    },
+    {
+      "id": "M03",
+      "title": "MISMO RON Questionnaire, Attestations, and Requested Documentation",
+      "url": "https://www.mismo.org/docs/mismolibraries/uploadedfiles/documents/mismo/emortgage-specs/new-ron-and-emortgage-docs/mismo-ron-questionnaire-attestations-and-requested-documentation.pdf",
+      "type": "certifier primary application material",
+      "checkedOn": "2026-10-02",
+      "locator": "Indexed first-page text and demonstration/attestation snippets retrieved; direct PDF open 403. No claim of full PDF examination.",
+      "notes": "No completed NotaryCam application or private assessor report obtained."
+    },
+    {
+      "id": "M04",
+      "title": "NotaryCam Certifies Compliance with MISMO RON Standards for Real Estate Transactions",
+      "url": "https://www.notarycam.com/notarycam-certifies-compliance-with-mismo-ron-standards-for-real-estate-transactions/",
+      "type": "provider primary announcement",
+      "checkedOn": "2026-10-02",
+      "locator": "Full relevant indexed text retrieved.",
+      "notes": "Displayed publication date: 2020-11-18"
+    },
+    {
+      "id": "M05",
+      "title": "ALTA: NotaryCam Receives MISMO RON Certification",
+      "url": "https://www.alta.org/news-and-publications/news/20201124-NotaryCam-Receives-MISMO-RON-Certification",
+      "type": "trade-association primary publication of the communication; provider quotation within it is attributable to the provider",
+      "checkedOn": "2026-10-02",
+      "locator": "Full direct webpage retrieved.",
+      "notes": "Displayed publication date: 2020-11-24"
+    },
+    {
+      "id": "S37",
+      "title": "Virginia Code § 47.1-21",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter4/section47.1-21/",
+      "type": "official statute",
+      "checkedOn": "2026-10-02",
+      "locator": "Commission term and expiration",
+      "notes": ""
+    },
+    {
+      "id": "S38",
+      "title": "Secretary 2026 Notary Handbook",
+      "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/notary/Notary-Handbook_Final_7.14.2026.pdf",
+      "type": "official agency guidance (not a substitute for the statute)",
+      "checkedOn": "2026-10-02",
+      "locator": "Cover says revised July 1, 2026; filename includes July 14. Printed pages 5, 8–9, 23–24.",
+      "notes": "Current handbook includes shorthand identity summaries and reproduces the two-of-five statute. Page 5 recognizes compliant out-of-state acts; page 9 retains a Virginia document-use limitation inconsistent with § 47.1-13(B). Reconcile both current agency summaries and controlling law."
+    },
+    {
+      "id": "S39",
+      "title": "Virginia IMSAC Identity Proofing and Verification Guidance IPV 1.0",
+      "url": "https://townhall.virginia.gov/l/GetFile.cfm?File=C%3A%5CTownHall%5Cdocroot%5CGuidanceDocs%5C1011%5CGDoc_IMSAC_6009_v1.pdf",
+      "type": "official published guidance; adoption history unresolved",
+      "checkedOn": "2026-10-02",
+      "locator": "Printed pages 14–16, particularly page 16 footnote 4; Town Hall guidance record 6009.",
+      "notes": "Discusses knowledge-based tests and biometrics within broader attribute-verification processes and remote registration. Town Hall metadata lists May 2, 2016 but retains proposal language. This is a possible authority-chain lead, not proof that Virginia notary law required those checks or that an adopted instrument authorized a provider’s actual method. Final adoption, applicability and full method compliance remain unresolved. Unresolved applicability establishes neither provider authorization nor a particular transaction defect."
+    },
+    {
+      "id": "S40",
+      "title": "Virginia Register volume 34 issue 16: identity-guidance listing",
+      "url": "https://register.dls.virginia.gov/vol34/iss16/v34i16.pdf",
+      "type": "official agency guidance listing",
+      "checkedOn": "2026-10-02",
+      "locator": "Printed pages 1589–1590, Secretary of Technology; revised identity-proofing guidance dated December 1, 2017.",
+      "notes": "Lists revised guidance conforming to NIST SP 800-63A. The linked revised VITA document was not obtained. Adoption, supersession and applicability require further verification before relying on it as transaction authority. Unresolved applicability establishes neither provider authorization nor a particular transaction defect."
+    },
+    {
+      "id": "P-licensing",
+      "title": "NotaryCam current software-licensing page",
+      "url": "https://www.notarycam.com/platform/software-licensing/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "First-party indexed text; direct open 403; FAQ on advantages of licensing.",
+      "notes": "Names NIST IAL2. This corrects the prior audit draft’s statement that no assurance level was identified; no actual assessment or configuration mapping was obtained."
+    },
+    {
+      "id": "M06",
+      "title": "MBA NewsLink: MISMO RON Certification — What You Need to Know",
+      "url": "https://newslink.mba.org/mba-newslinks/2020/september/mba-newslink-wednesday-sept-16-2020/scott-roller-mismo-ron-certification-what-you-need-to-know/",
+      "type": "contemporaneous interview: statements attributed to MISMO technology vice president",
+      "checkedOn": "2026-10-02",
+      "locator": "Displayed September 21, 2020; URL/issue path says September 16. Reviewer read answers attributed to Jonathan Kearns; later direct recheck returned 403.",
+      "notes": "Describes questionnaire/attestation, document and demonstration stages and distinguishes certification against MISMO standards from explicit certification of jurisdictional legal compliance. It is not the signed certification agreement or an MBA adjudication."
+    }
+  ],
+  "claims": [
+    {
+      "id": "VA01",
+      "section": "History and comparative claims",
+      "claim": "2011 enactment",
+      "classification": "supported",
+      "correction": "HB 2318 / chapter 731 was approved March 26, 2011. Distinguish enactment from the later operational effective date.",
+      "sourceIds": [
+        "S02"
+      ],
+      "articleLocations": [
+        "Opening; quick answer"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA02",
+      "section": "History and comparative claims",
+      "claim": "July 2012 effectiveness",
+      "classification": "supported",
+      "correction": "HB 2318's second enactment makes its audio-video provisions effective July 1, 2012.",
+      "sourceIds": [
+        "S02"
+      ],
+      "articleLocations": [
+        "Requirements table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA03",
+      "section": "History and comparative claims",
+      "claim": "First-state history",
+      "classification": "supported",
+      "correction": "Official Maryland legislative analysis identifies Virginia as the first state, effective July 1, 2012. This history does not establish current comparative reliability.",
+      "sourceIds": [
+        "S25"
+      ],
+      "articleLocations": [
+        "Title; opening; comparison"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA04",
+      "section": "History and comparative claims",
+      "claim": "Other-state influence",
+      "classification": "unsupported",
+      "correction": "Maryland's 2016 legislative note supports one concrete example. A claim about most states needs an identified population and state-by-state legislative evidence.",
+      "sourceIds": [
+        "S25"
+      ],
+      "articleLocations": [
+        "Opening"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA05",
+      "section": "History and comparative claims",
+      "claim": "Maturity establishes reliability",
+      "classification": "unsupported",
+      "correction": "Age does not establish fewer failures, errors, objections or re-executions. Comparative outcome claims need dated operational evidence; none is supplied by the legal sources.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Maturity sections; acceptance FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "PC09",
+        "PC10",
+        "PC11"
+      ]
+    },
+    {
+      "id": "VA06",
+      "section": "History and comparative claims",
+      "claim": "Statutory section range",
+      "classification": "false",
+      "correction": "The official Chapter 2 index includes § 47.1-6.1 then § 47.1-7. The cited 6.1-through-6.7 range does not exist.",
+      "sourceIds": [
+        "S15"
+      ],
+      "articleLocations": [
+        "Requirements table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization. Lack of a transaction inspection does not weaken the documented contradiction in this published legal representation; it limits conclusions about particular completed acts.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA07",
+      "section": "Notary and signer location",
+      "claim": "RON location",
+      "classification": "supported",
+      "correction": "Section 47.1-16(A) requires each Virginia electronic notarial certificate to identify the Virginia county or city where the electronic notary was physically located. Read with § 47.1-13(B), that specific provision supports the article’s location statement for electronic/RON acts. It should not be extended to traditional acts.",
+      "sourceIds": [
+        "S08"
+      ],
+      "articleLocations": [
+        "Location section; table; FAQ"
+      ],
+      "evidenceBoundary": "This is the reading supported by the specific current certificate text. No judicial decision resolving the interaction with the broader extraterritorial language was obtained.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA08",
+      "section": "Notary and signer location",
+      "claim": "Traditional location",
+      "classification": "false",
+      "correction": "§ 47.1-13(B) permits Virginia notaries to perform compliant acts outside Virginia. The old Virginia-recording-purpose limitation was removed in 2011.",
+      "sourceIds": [
+        "S07",
+        "S02",
+        "S38"
+      ],
+      "articleLocations": [
+        "Comparison table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization. Lack of a transaction inspection does not weaken the documented contradiction in this published legal representation; it limits conclusions about particular completed acts.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA09",
+      "section": "Notary and signer location",
+      "claim": "Remote signer location",
+      "classification": "supported",
+      "correction": "Virginia's remote appearance framework permits separation between signer and notary; Title 47.1 imposes no located-in-Virginia requirement on the remote principal. Receiving-law and document requirements remain separate.",
+      "sourceIds": [
+        "S01",
+        "S32"
+      ],
+      "articleLocations": [
+        "Location section; tables"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA10",
+      "section": "Notary and signer location",
+      "claim": "Foreign US nexus",
+      "classification": "unsupported",
+      "correction": "No categorical foreign-principal US-nexus condition was found in current Title 47.1. Require an actual Virginia authority or label it as a provider/recipient restriction. New York's express nexus condition must not be imported into Virginia.",
+      "sourceIds": [
+        "S32",
+        "S29"
+      ],
+      "articleLocations": [
+        "Location section; tables"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA11",
+      "section": "Notary and signer location",
+      "claim": "Florida/New York comparison",
+      "classification": "supported",
+      "correction": "Ordinary Florida online notaries and New York electronic notaries must be in their respective states. Florida separately addresses commissioners of deeds. This limited location comparison does not make the identity laws equivalent.",
+      "sourceIds": [
+        "S28",
+        "S29"
+      ],
+      "articleLocations": [
+        "RON location section; FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA12",
+      "section": "Commissioning, education and platform review",
+      "claim": "Additional notary credential",
+      "classification": "misleading",
+      "correction": "The underlying additional authorization is real: an existing Virginia notary registers and is commissioned as an electronic notary. Use the official eNotary terminology rather than implying a distinct statutory remote-endorsement category.",
+      "sourceIds": [
+        "S10",
+        "S12"
+      ],
+      "articleLocations": [
+        "Credential section; table; FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA13",
+      "section": "Commissioning, education and platform review",
+      "claim": "Present training requirement",
+      "classification": "false",
+      "correction": "As of the displayed publication date July 15, 2026 and review October 2, 2026, the new statutory education/exam requirement is future law, effective July 1, 2027. Provider training may be distinct.",
+      "sourceIds": [
+        "S13",
+        "S14",
+        "S36"
+      ],
+      "articleLocations": [
+        "Credential section; FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization. Lack of a transaction inspection does not weaken the documented contradiction in this published legal representation; it limits conclusions about particular completed acts.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA14",
+      "section": "Commissioning, education and platform review",
+      "claim": "One-time onboarding",
+      "classification": "incomplete",
+      "correction": "The body ties initial setup to the four-year commission cycle; preserve that qualification in the FAQ. Electronic-capability registration is resubmitted at renewal under Standard § 1.1(a). Updated technology requires notice within 90 days under § 47.1-7(C). From July 1, 2027, recommissioning instruction requirements also apply. Initial provider onboarding may occur once; recurring state duties remain.",
+      "sourceIds": [
+        "S11",
+        "S13",
+        "S10",
+        "S37"
+      ],
+      "articleLocations": [
+        "Credential/onboarding body paragraph: commission-cycle qualification",
+        "FAQ about the additional Virginia electronic-notary credential: shorter onboarding description"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA15",
+      "section": "Commissioning, education and platform review",
+      "claim": "State platform review",
+      "classification": "false",
+      "correction": "The article’s platform-review quality inference is false. Virginia’s reviewed notary authorities do not establish an approved/supported-platform regime. Standard § 1.1(c) disclaims Secretary system-compliance determinations and places responsibility on the notary to use compliant technology. An individual notary’s application approval is not platform approval. The notary must select and use a lawful identity method and compliant technology for the act. This does not mean no agency ever examines technology for any administrative purpose. Administrative examination does not substantiate the advertised inference of system-compliance approval.",
+      "sourceIds": [
+        "S11",
+        "S10",
+        "S12"
+      ],
+      "articleLocations": [
+        "Credential section"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization. Lack of a transaction inspection does not weaken the documented contradiction in this published legal representation; it limits conclusions about particular completed acts.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA16",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Mandatory CA/KBA pairing",
+      "classification": "false",
+      "correction": "The requirement/comparison tables and quick answer incorrectly present CA/KBA, with a no-SSN biometric alternative, as the Virginia identity rule. The body elsewhere correctly acknowledges other statutory methods; the summaries should agree with it. Current § 47.1-2 permits personal knowledge, an oath or affirmation from a qualifying credible witness, or at least two of five methods: (1) credential analysis of the specified unexpired government ID; (2) qualifying antecedent in-person proofing under the Federal Bridge Certification Authority specifications; (3) another method authorized by applicable adopted guidance, regulations or standards under § 2.2-436; (4) the specified valid digital certificate accessed by biometrics or interoperable PIV-card route; or (5) statutory KBA. Credential analysis plus KBA is one combination, not a universal requirement.",
+      "sourceIds": [
+        "S01",
+        "S38"
+      ],
+      "articleLocations": [
+        "Virginia-requirements table: identity verification row",
+        "RON/traditional comparison table: identity verification row",
+        "Quick answer: identity-method summary"
+      ],
+      "evidenceBoundary": "The false finding concerns the categorical summaries, not every paragraph. The body’s recognition of alternatives is relevant counterevidence, but does not cure contradictory prominent summaries. Lack of a transaction inspection does not weaken the documented contradiction in this published legal representation; it limits conclusions about particular completed acts.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA17",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "No-SSN biometric substitution",
+      "classification": "misleading",
+      "correction": "Missing an SSN creates no separate statutory biometric exception. Clause (c)(4) concerns a valid signer certificate accessed by biometrics or the qualifying PIV route; clause (c)(3) requires applicable adopted authority. Generic selfie/liveness alone does not identify either method. The article’s body itself asks providers to identify the statutory method; its categorical summaries should preserve that requirement. The privacy notice describes document verification as well as face comparison, so it does not establish that credential analysis is absent.",
+      "sourceIds": [
+        "S01",
+        "S11",
+        "S26",
+        "S38",
+        "S39",
+        "S40",
+        "P-privacy"
+      ],
+      "articleLocations": [
+        "Tables; FAQ; quick answer; platform advice"
+      ],
+      "evidenceBoundary": "This challenges the advertised legal shortcut. It does not establish that every biometric feature is unlawful, that credential analysis is absent, or which complete method was used in a session.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA18",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Credential-analysis independence",
+      "classification": "misleading",
+      "correction": "Law specifies independent affirmation of a government credential using public/proprietary data and Secretary standards. A separate vendor is a common implementation, not the definition's exact organizational requirement; the (c)(1) credential must be unexpired and bear face photo and signature.",
+      "sourceIds": [
+        "S04",
+        "S01"
+      ],
+      "articleLocations": [
+        "Credential-analysis section"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA19",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Credential security-feature checks",
+      "classification": "provider_claim",
+      "correction": "The listed document security-feature checks describe a technical implementation claim. The statute does not prescribe that particular list, but that does not refute the description. Identify what the actual service examines and retains; this audit did not test those checks.",
+      "sourceIds": [
+        "S04",
+        "S01"
+      ],
+      "articleLocations": [
+        "Credential-analysis section"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA20",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Credential-analysis timing",
+      "classification": "provider_claim",
+      "correction": "Earlier credential analysis can be part of a compliant workflow. Identification must still bind the result to the principal appearing at the act. This review did not test that binding or establish that the provider treats an earlier result alone as sufficient.",
+      "sourceIds": [
+        "S01",
+        "S09"
+      ],
+      "articleLocations": [
+        "Credential-analysis section"
+      ],
+      "evidenceBoundary": "Pre-session processing itself is not evidence of a defect. The sequencing and binding remain operational substantiation questions.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA21",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "KBA public-record definition",
+      "classification": "misleading",
+      "correction": "Statutory KBA may draw from public or private sources, with no prior answer supplied by the principal. It is not defined as exclusively US public records.",
+      "sourceIds": [
+        "S05"
+      ],
+      "articleLocations": [
+        "KBA section"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA22",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "KBA quiz numbers",
+      "classification": "supported",
+      "correction": "The article’s quiz minimum, score, timing and two further attempts within 48 hours align with the statute. The full minimum is five questions, at least five possible answers per question, 80% correct, two minutes, no more than two additional quizzes within 48 hours, and no more than 60% reuse of initial questions on later attempts. Statutory KBA can draw from public or private data; the principal must not have supplied the answers beforehand.",
+      "sourceIds": [
+        "S05"
+      ],
+      "articleLocations": [
+        "Requirements table; KBA section"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA23",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Provider stricter KBA",
+      "classification": "supported",
+      "correction": "Providers may impose narrower service policies, but should label them provider policy. Such policy neither changes the state minimum nor proves that alternative statutory routes are unavailable.",
+      "sourceIds": [
+        "S05"
+      ],
+      "articleLocations": [
+        "KBA section; table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA24",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "KBA on-camera workflow",
+      "classification": "provider_claim",
+      "correction": "The article expressly describes on-camera KBA timing as NotaryCam’s workflow. This is a provider implementation assertion; no signing session was tested. It should remain labeled as that provider’s process, rather than be generalized into a Virginia-wide legal rule.",
+      "sourceIds": [
+        "P-article",
+        "P-terms"
+      ],
+      "articleLocations": [
+        "KBA section"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "PC07"
+      ]
+    },
+    {
+      "id": "VA25",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "KBA failure stops notarization",
+      "classification": "provider_claim",
+      "correction": "A failed KBA result cannot satisfy the selected KBA route. Stopping that session may accurately describe a stricter provider policy; Virginia does not require the provider to offer every alternative. This is not a statewide rule excluding other independently satisfied identity routes.",
+      "sourceIds": [
+        "S01"
+      ],
+      "articleLocations": [
+        "KBA section"
+      ],
+      "evidenceBoundary": "No completed failed session was observed. The legal existence of other routes does not disprove the provider’s stop-on-failure policy.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA26",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "US records and nationality",
+      "classification": "misleading",
+      "correction": "Insufficient data can be a provider KBA eligibility issue; nationality and SSN status do not themselves select a Virginia legal method. Actual source coverage and provider support need separate evidence.",
+      "sourceIds": [
+        "S01"
+      ],
+      "articleLocations": [
+        "Biometric discussion; FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA27",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Longstanding biometric flexibility",
+      "classification": "incomplete",
+      "correction": "The early certificate/biometric route is real: it appeared in the 2011 enactment. That history does not establish generic selfie substitution. KBA became an expressly enumerated fifth method on July 1, 2024. That date alone does not decide whether an earlier workflow satisfied another then-authorized route, including qualifying antecedent proofing or, from 2021, an identity-proofing method authorized under § 2.2-436. Identify the dated authority and evidence for the complete method.",
+      "sourceIds": [
+        "S02",
+        "S05",
+        "S04",
+        "S26",
+        "S38",
+        "S39",
+        "S40"
+      ],
+      "articleLocations": [
+        "Biometric discussion; conclusion"
+      ],
+      "evidenceBoundary": "The article’s narrower claim of longstanding certificate-based flexibility has support. Extending that history to an unspecified contemporary biometric workflow requires additional evidence. A possible earlier route is not an established defense; the applicable authority and actual method must be shown.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA28",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Most-states KBA generalization",
+      "classification": "unsupported",
+      "correction": "No dated denominator, state inventory or treatment of personal knowledge/credible-witness/other exceptions is supplied. Do not replace it with an equally unsupported opposite generalization.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Identity section; FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA29",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Biometrics improve completion",
+      "classification": "unsupported",
+      "correction": "This operational outcome needs data plus a demonstrated lawful method. Biometric capability or successful software completion alone does not establish statutory compliance.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Signer experience; platform advice"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA30",
+      "section": "Records, format and personal appearance",
+      "claim": "Electronic record retention",
+      "classification": "supported",
+      "correction": "Electronic notarial records have a five-year minimum from transaction date. Preserve the distinction between required journal/conference records and an unsupported claim that every kind of platform data shares that retention rule.",
+      "sourceIds": [
+        "S09"
+      ],
+      "articleLocations": [
+        "Tables; retention FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA31",
+      "section": "Records, format and personal appearance",
+      "claim": "Journal per session",
+      "classification": "misleading",
+      "correction": "§ 47.1-14(C) requires a record for each notarial act, including prescribed particulars. A session containing multiple acts must not be reduced to an undifferentiated session-only record.",
+      "sourceIds": [
+        "S09"
+      ],
+      "articleLocations": [
+        "Tables; retention FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA32",
+      "section": "Records, format and personal appearance",
+      "claim": "Conference recording",
+      "classification": "supported",
+      "correction": "The required audio-video conference recording accompanies identification records for the remote act and five-year retention. The article's wording should not imply optional platform-only custody.",
+      "sourceIds": [
+        "S09",
+        "S11"
+      ],
+      "articleLocations": [
+        "Tables; retention FAQ"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA33",
+      "section": "Records, format and personal appearance",
+      "claim": "Traditional journal optional",
+      "classification": "false",
+      "correction": "Section 47.1-14(C) requires a record for each notarial act. Under subsection (D), records of nonelectronic acts performed on or after July 1, 2026 must be retained at least five years from the transaction date. The article’s traditional-record summary is wrong as of its displayed July 15 date.",
+      "sourceIds": [
+        "S14",
+        "S09",
+        "S38"
+      ],
+      "articleLocations": [
+        "Comparison table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization. Lack of a transaction inspection does not weaken the documented contradiction in this published legal representation; it limits conclusions about particular completed acts.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA34",
+      "section": "Records, format and personal appearance",
+      "claim": "Electronic format and tamper evidence",
+      "classification": "supported",
+      "correction": "An electronic act involves an electronic document; § 47.1-16(D) requires independently verifiable signature/seal attachment that evidences subsequent changes. A seal graphic alone does not supply this property.",
+      "sourceIds": [
+        "S08"
+      ],
+      "articleLocations": [
+        "Comparison table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA35",
+      "section": "Records, format and personal appearance",
+      "claim": "Physical appearance in-person",
+      "classification": "supported",
+      "correction": "For an ordinary in-person act, the signer appears physically before the notary. Remote appearance is the specifically authorized alternative; compare like-for-like without treating all electronic notarization as remote.",
+      "sourceIds": [
+        "S11"
+      ],
+      "articleLocations": [
+        "Comparison table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA36",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Permitted act types",
+      "classification": "supported",
+      "correction": "Acknowledgments, oaths/affirmations and copy certification are recognized acts. Copy certification is bounded: the statutory definition excludes public records and § 47.1-12 excludes court-custody documents.",
+      "sourceIds": [
+        "S17",
+        "S01"
+      ],
+      "articleLocations": [
+        "Document eligibility introduction"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA37",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Deeds and mortgages",
+      "classification": "supported",
+      "correction": "The document row is conditional and tells readers to confirm lender acceptance. Virginia supports compliant electronic land documents and notarizations; recordability still has content, format, fee and submission conditions. Those conditions are useful cautions, not a refutation of the qualified example.",
+      "sourceIds": [
+        "S22",
+        "S23",
+        "S24"
+      ],
+      "articleLocations": [
+        "Document table: deeds and mortgages row, including lender-confirmation qualification"
+      ],
+      "evidenceBoundary": "Supported with conditions. Broad comparative acceptance claims are reviewed separately in PC09; they should not be imported into this qualified row.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA38",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Loans and promissory notes",
+      "classification": "supported",
+      "correction": "The loan example is qualified by lender acceptance. An acknowledgment can be available; execution, negotiability and electronic-record rules still depend on the document and applicable law. The stated qualification should be preserved, and UETA should not be assumed to govern every instrument.",
+      "sourceIds": [
+        "S17",
+        "S20"
+      ],
+      "articleLocations": [
+        "Document table"
+      ],
+      "evidenceBoundary": "Supported as a conditional document example, not verification of every loan workflow or recipient decision.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA39",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Corporate/affidavit/commercial examples",
+      "classification": "supported",
+      "correction": "These are plausible categories for authorized notarial acts, conditional on the actual act, execution, authority and receiving requirements. Corporate authority and truth of substantive claims are not established merely by notarization.",
+      "sourceIds": [
+        "S17",
+        "S20"
+      ],
+      "articleLocations": [
+        "Document table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA40",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Powers of attorney",
+      "classification": "supported",
+      "correction": "The POA example directs readers to counsel and applicable requirements. Virginia permits acknowledgment of POA signatures under § 64.2-1603. Signing, recordability and recipient requirements remain separate conditions, not a contradiction of the qualified example.",
+      "sourceIds": [
+        "S21"
+      ],
+      "articleLocations": [
+        "Document table"
+      ],
+      "evidenceBoundary": "Supported with the article’s counsel and document-specific qualifications; no particular POA was evaluated.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA41",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Wills and trusts",
+      "classification": "misleading",
+      "correction": "The row includes counsel/witness qualifications, which matter. Nevertheless, listing wills and trusts as a RON document category can blur notarial acknowledgment or self-proving affidavits with will execution. Section 64.2-403 governs execution/witnessing; UETA § 59.1-481(b)(1) excludes creation and execution of wills, codicils and testamentary trusts. RON authority alone does not resolve those separate requirements. Not every trust is excluded and not every will-related notarization is forbidden.",
+      "sourceIds": [
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "articleLocations": [
+        "Document table"
+      ],
+      "evidenceBoundary": "The misleading assessment concerns the insufficiently separated categories despite the stated caveats; it is not an allegation that the article promises every will can be executed remotely.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA42",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "USCIS supporting documents",
+      "classification": "supported",
+      "correction": "The article's conditional receiving-agency check is appropriate. It establishes no universal USCIS notarization requirement or acceptance of every remotely notarized submission.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Document table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA43",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Court wet-ink restrictions",
+      "classification": "unverified",
+      "correction": "The article gives a conditional caution about court requirements, not a statewide prohibition. No named court, document or governing rule was established in this review. Check the applicable rule for the intended filing; do not assume either universal wet-ink requirements or universal RON acceptance.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Additional-review table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA44",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "Foreign-government acceptance",
+      "classification": "supported",
+      "correction": "A Virginia-valid notarial act does not itself establish compliance with a foreign receiving authority. The article appropriately says to verify the receiving requirements, without proving any particular country result.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Additional-review table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA45",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "I-9 as RON category",
+      "classification": "misleading",
+      "correction": "I-9 completion by an employer's authorized representative is not a notarial act; USCIS says not to affix a notary seal. Remote document examination is a separate DHS-authorized procedure with eligibility conditions.",
+      "sourceIds": [
+        "S30",
+        "S31"
+      ],
+      "articleLocations": [
+        "Additional-review table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA46",
+      "section": "Documents, execution and receiving requirements",
+      "claim": "State-law variations",
+      "classification": "supported",
+      "correction": "Virginia authority applies to the Virginia notary's act. Other states can have distinct identity, record and document rules; compliance, electronic execution, receiving-law recognition and commercial acceptance must remain separate questions.",
+      "sourceIds": [
+        "S07",
+        "S20"
+      ],
+      "articleLocations": [
+        "Document-section note; disclaimer"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA47",
+      "section": "Administration and fees",
+      "claim": "Regulating authority",
+      "classification": "supported",
+      "correction": "The Secretary commissions/registers electronic notaries and develops the relevant standards with VITA assistance. This administrative role does not imply state platform certification.",
+      "sourceIds": [
+        "S10",
+        "S35"
+      ],
+      "articleLocations": [
+        "Requirements table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA48",
+      "section": "Administration and fees",
+      "claim": "Electronic fee cap",
+      "classification": "supported",
+      "correction": "§ 47.1-19(B) caps the listed electronic notarial acts at $25. Do not equate this automatically with a platform's total transaction price or use it to imply unlimited ancillary notary fees.",
+      "sourceIds": [
+        "S16"
+      ],
+      "articleLocations": [
+        "Requirements table"
+      ],
+      "evidenceBoundary": "This is a review of the published representation, not a finding about a particular completed notarization.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA49",
+      "section": "Identity methods and the July 2024 change",
+      "claim": "Historical continuity inference",
+      "classification": "incomplete",
+      "correction": "The article does not expressly say KBA was authorized in 2012. Its maturity narrative can nevertheless obscure material identity-law changes: audio-video authority from July 1, 2012; credential analysis and the two-of-four structure from March 11, 2021; express KBA addition as method five from July 1, 2024. RON’s age does not establish an unchanged CA/KBA framework. This chronology does not determine whether a particular earlier process independently qualified under another then-authorized route.",
+      "sourceIds": [
+        "S02",
+        "S04",
+        "S05",
+        "S06",
+        "S26",
+        "S39",
+        "S40"
+      ],
+      "articleLocations": [
+        "Historical/identity sections read together: reviewer inference, not a located express KBA-date statement"
+      ],
+      "evidenceBoundary": "Supplemental historical analysis, not another literal false article quotation. No categorical earlier-act illegality or invalidity conclusion follows from the express-addition date; § 47.1-20.1(B) validation must be considered separately. The converse also does not follow: unresolved earlier-route evidence does not prove earlier compliance, and validation does not establish that original duties were met.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PC01",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Network exclusions",
+      "classification": "conflicting",
+      "correction": "Current purchase page explicitly offers real-estate closings using the network. A product-lane distinction may exist, but the article does not explain one. Request reconciliation rather than asserting that all network products are identical. Provider service boundaries must be checked against the current product lane; the published real-estate network offer conflicts with the unqualified exclusion.",
+      "sourceIds": [
+        "P-checkout",
+        "P-faq"
+      ],
+      "articleLocations": [
+        "Notary Capacity; platform selection"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC02",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Device compatibility",
+      "classification": "incomplete",
+      "correction": "The article’s broad device description should be reconciled with the FAQ’s desktop/laptop and Chrome guidance and the terms’ desktop/laptop and Chrome-or-Firefox wording. No tablet or mobile signing session was tested. Request the current browser/OS/device matrix for the applicable product; omission from the FAQ does not prove a device unsupported.",
+      "sourceIds": [
+        "P-faq",
+        "P-terms"
+      ],
+      "articleLocations": [
+        "Signer Experience; platform selection"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC03",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "MISMO certification",
+      "classification": "supported",
+      "correction": "Preserve this as a supported statement. MISMO certification is not Virginia approval or a determination that an individual session satisfies state law. NotaryCam is listed in MISMO’s certified RON directory; MISMO expressly limits the legal significance of its certification.",
+      "sourceIds": [
+        "P-mismo_directory",
+        "P-mismo_company",
+        "P-mismo_scope"
+      ],
+      "articleLocations": [
+        "Platform selection"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "MS01"
+      ]
+    },
+    {
+      "id": "PC04",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "SOC 2 assurance",
+      "classification": "unverified",
+      "correction": "Provider pages repeat the representation. No report or assurance-period details were obtained. Lack of public report access is not proof that an audit does not exist. Request the current SOC 2 report, covered system, examination period and exceptions. Do not infer state-law compliance from the badge. The unavailable report also supplies no affirmative basis in this review to assume compliance or a favorable assessment; if obtained, evaluate what its actual scope proves.",
+      "sourceIds": [
+        "P-security",
+        "P-software"
+      ],
+      "articleLocations": [
+        "Platform selection"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC05",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "NIST badge",
+      "classification": "unverified",
+      "correction": "The footer badge is generic, but NotaryCam’s software-licensing page separately names NIST IAL2. The claimed publication/revision, covered workflow/configuration and assessment/control mapping were not obtained. Neither a badge nor the named level establishes Virginia’s statutory identity route or government approval. The compliance assertion remains unverified, not disproved.",
+      "sourceIds": [
+        "P-security",
+        "P-licensing"
+      ],
+      "articleLocations": [
+        "Page footer badge"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true. Naming IAL2 corrects an omission in our draft; it does not verify the claim, prove Virginia-method compliance or weaken unrelated false-law findings.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC06",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Service models",
+      "classification": "provider_claim",
+      "correction": "The product catalog advertises licensing and notary service capacity. Actual availability and contractual responsibilities need a product-specific agreement. Distinguish licensed software for a customer’s own notaries from the provider’s separately supplied notary service.",
+      "sourceIds": [
+        "P-software",
+        "P-services"
+      ],
+      "articleLocations": [
+        "Platform selection"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC07",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "On-camera KBA",
+      "classification": "provider_claim",
+      "correction": "Public terms describe KBA as a primary route, but do not verify the article’s on-camera sequence. To substantiate the representation, identify the KBA provider, product/state/workflow version, quiz start and end relative to the live video session, binding of the result to the signer, and pass/fail, retry, time and question-reuse controls. A documented demonstration or redacted audit example would test the claim; this review did not perform a signing session.",
+      "sourceIds": [
+        "P-terms"
+      ],
+      "articleLocations": [
+        "KBA section"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "VA24"
+      ]
+    },
+    {
+      "id": "PC08",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Biometric workflow",
+      "classification": "provider_claim",
+      "correction": "The privacy disclosure describes identity-document verification and facial comparison through Jumio/Persona; purchase pages offer no-SSN categories. These are meaningful disclosures, but do not establish the commissioned state or complete statutory method in a particular session. Ask which separate listed method supplies the other part of a two-method route, or whether personal knowledge or a qualifying credible witness applies. This review does not infer that credential analysis is absent.",
+      "sourceIds": [
+        "P-privacy",
+        "P-terms",
+        "P-checkout",
+        "P-huecu"
+      ],
+      "articleLocations": [
+        "Biometrics sections and signer experience"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true. Missing session evidence supports neither transaction-specific noncompliance nor affirmative compliance, and does not erase the public-law contradictions or clear the provider assessment.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC09",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Acceptance advantage",
+      "classification": "unsupported",
+      "correction": "The article supplies no comparative acceptance dataset, sampling method or institution-specific policy supporting the ranking. State-law recognition and recipient operational acceptance are separate questions. Confirm acceptance with the actual lender, title underwriter and recording office. A framework’s age is not acceptance evidence for a specific transaction.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Maturity discussion and FAQ"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "VA05",
+        "PC10",
+        "PC11"
+      ]
+    },
+    {
+      "id": "PC10",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Operational advantage",
+      "classification": "unsupported",
+      "correction": "No controlled comparison or defined error/risk metrics establish a causal Virginia-wide performance advantage. Individual customer case studies cannot establish that general comparison. Evaluate measured completion times, failures, re-executions and escalation handling for the actual workflow.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Maturity discussion; operational benefits"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "VA05",
+        "PC09",
+        "PC11"
+      ]
+    },
+    {
+      "id": "PC11",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Resolved edge cases",
+      "classification": "unsupported",
+      "correction": "No operational evidence demonstrates that current identity, retention, recording or document edge cases are resolved for each provider. Request current evidence for the failure scenarios that matter to the transaction.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "articleLocations": [
+        "Maturity discussion; conclusion"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article",
+      "overlapsWith": [
+        "VA05",
+        "PC09",
+        "PC10"
+      ]
+    },
+    {
+      "id": "PC12",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Available capacity",
+      "classification": "unverified",
+      "correction": "FAQ acknowledges busy periods and later appointment scheduling. No Virginia-specific staffing, queue or service-level evidence was obtained. Published hours and a mature market do not establish immediate notary availability.",
+      "sourceIds": [
+        "P-faq"
+      ],
+      "articleLocations": [
+        "Notary Capacity"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC13",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Integration benefits",
+      "classification": "provider_claim",
+      "correction": "Tagging and software offerings are advertised. The general benefit is plausible but no particular integration or quantified impact was tested. Request a demonstration using the required documents and record how corrections are handled.",
+      "sourceIds": [
+        "P-software"
+      ],
+      "articleLocations": [
+        "Operational benefits; platform evaluation"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC14",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Fraud reduction",
+      "classification": "provider_claim",
+      "correction": "Multiple features and retained records are advertised. This audit did not measure fraud reduction, inspect session logs, or validate every retained field. Record the actual identity method and retain its supporting evidence; an audit-trail label alone does not establish it.",
+      "sourceIds": [
+        "P-privacy",
+        "P-terms",
+        "P-software"
+      ],
+      "articleLocations": [
+        "Audit trail and authentication discussion"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC15",
+      "section": "Provider capabilities and commercial assurances",
+      "claim": "Assignment controls",
+      "classification": "provider_claim",
+      "correction": "Provider advertises trained, vetted staff, but no current Virginia assignment-control or commission-validation evidence was obtained. The notary’s commission, authority, actual location and session evidence remain relevant regardless of who handles scheduling.",
+      "sourceIds": [
+        "P-services"
+      ],
+      "articleLocations": [
+        "Credentialing discussion and FAQ"
+      ],
+      "evidenceBoundary": "Published product claims were reviewed; no private assurance report or transaction was inspected. Unsupported is not a finding that the opposite is true.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PCX01",
+      "section": "Related provider disclosures",
+      "claim": "Current no-SSN pricing",
+      "classification": "provider_claim",
+      "correction": "Keep the real-estate $50 no-SSN add-on distinct from the other-document $79 no-US-SSN fee. Do not re-label the latter as an international-location fee or infer an unshown checkout total.",
+      "sourceIds": [
+        "P-checkout"
+      ],
+      "articleLocations": [
+        "Related provider pages; contextual finding"
+      ],
+      "evidenceBoundary": "Context from separately identified pages, not an additional quotation or assertion attributed to the Virginia article.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX02",
+      "section": "Related provider disclosures",
+      "claim": "International coverage",
+      "classification": "provider_claim",
+      "correction": "145-country marketing describes geographic service reach. It does not establish document eligibility, recognition by every foreign recipient, or compliance with every destination’s execution law.",
+      "sourceIds": [
+        "P-services",
+        "P-checkout"
+      ],
+      "articleLocations": [
+        "Related provider pages; contextual finding"
+      ],
+      "evidenceBoundary": "Context from separately identified pages, not an additional quotation or assertion attributed to the Virginia article.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX03",
+      "section": "Related provider disclosures",
+      "claim": "Historical international workflow",
+      "classification": "provider_claim",
+      "correction": "The 2023 credit-union case study supports historical use and marketing of biometrics for international borrowers, with a negotiated price. It supplies no transaction-level commissioned state or identity-method evidence.",
+      "sourceIds": [
+        "P-huecu"
+      ],
+      "articleLocations": [
+        "Related provider pages; contextual finding"
+      ],
+      "evidenceBoundary": "Context from separately identified pages, not an additional quotation or assertion attributed to the Virginia article.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX04",
+      "section": "Related provider disclosures",
+      "claim": "Provider retention promise versus state minimum",
+      "classification": "provider_claim",
+      "correction": "Software licensing advertises ten-year minimum video/journal retention. Keep this separate from any Virginia minimum and verify contractual access and exit arrangements.",
+      "sourceIds": [
+        "P-software"
+      ],
+      "articleLocations": [
+        "Related provider pages; contextual finding"
+      ],
+      "evidenceBoundary": "Context from separately identified pages, not an additional quotation or assertion attributed to the Virginia article.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "MS01",
+      "section": "MISMO and title-industry reliance: supplemental findings",
+      "claim": "Certification history",
+      "classification": "supported",
+      "correction": "NotaryCam appears in MISMO’s current certified RON provider directory. The 2020 provider announcement and ALTA item are historical evidence of the certification announcement. Preserve the certification fact. Distinguish a private standards credential from government approval and transaction-specific legal proof.",
+      "sourceIds": [
+        "P-mismo_directory",
+        "M04",
+        "M05"
+      ],
+      "articleLocations": [
+        "Related certification and trade-publication material; contextual finding"
+      ],
+      "evidenceBoundary": "The finding concerns the identified program materials, not proof of a particular completed act.",
+      "findingScope": "supplemental",
+      "overlapsWith": [
+        "PC03"
+      ]
+    },
+    {
+      "id": "MS02",
+      "section": "MISMO and title-industry reliance: supplemental findings",
+      "claim": "Attestation and review",
+      "classification": "supported",
+      "correction": "The current program requires application material, questionnaire/attestations, supporting documentation and a system demonstration. MISMO reviews submissions and demonstration artifacts, allows remediation and makes the certification decision. Calling the entire program pure self-certification would misdescribe the published process. Applicant attestations are inputs to a private standards review; they are not the whole process. The existence or rigor of this standards review does not rebut the specific legal misstatements identified elsewhere or expand MISMO’s stated scope.",
+      "sourceIds": [
+        "P-mismo_scope",
+        "M03",
+        "M06"
+      ],
+      "articleLocations": [
+        "Related certification and trade-publication material; contextual finding"
+      ],
+      "evidenceBoundary": "The finding concerns the identified program materials, not proof of a particular completed act. A real review process or applicant attestation supplies no jurisdiction-specific legal determination beyond the stated certification scope; absence of the private report is not evidence that it resolves the missing method.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "MS03",
+      "section": "MISMO and title-industry reliance: supplemental findings",
+      "claim": "Legal scope exclusion",
+      "classification": "supported",
+      "correction": "MISMO expressly excludes verification of compliance with particular federal, state, county or other governing-body laws, rules and requirements. The program measures its RON standards. A MISMO result cannot establish that a Virginia no-KBA session used an authorized identity method. The applicable authority and session record must establish that separately.",
+      "sourceIds": [
+        "P-mismo_scope",
+        "M06"
+      ],
+      "articleLocations": [
+        "Related certification and trade-publication material; contextual finding"
+      ],
+      "evidenceBoundary": "The finding concerns the identified program materials, not proof of a particular completed act.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "MS04",
+      "section": "MISMO and title-industry reliance: supplemental findings",
+      "claim": "Title-industry reassurance",
+      "classification": "misleading",
+      "correction": "NotaryCam’s November 18, 2020 certification announcement attributes broad confidence in secure, compliant remote mortgage closings to founder Rick Triola; ALTA’s November 24 item republishes it. The context is certification against MISMO standards. The audit’s concern is the inference that readers may treat that assurance as sufficient legal confidence, not an express promise that every transaction is valid. A contemporaneous September 2020 interview with MISMO’s technology vice president already distinguished standards certification from explicit certification of jurisdictional legal compliance. ALTA’s publication proves circulation of the attributed assurance, not its independent legal adjudication or actual reliance by a title company.",
+      "sourceIds": [
+        "M04",
+        "M05",
+        "P-mismo_scope",
+        "M06"
+      ],
+      "articleLocations": [
+        "Related certification and trade-publication material; contextual finding"
+      ],
+      "evidenceBoundary": "This is an identified interpretive concern. The signed 2020 agreement, completed NotaryCam application, assessor work and transaction records were not obtained. The current disclaimer alone does not establish every historical review step. The criticism does not depend on intent. Uncertainty about this assurance’s implication and actual audience reliance does not make the separately documented statutory contradictions uncertain. ALTA’s republication adds no independent verification of those statements.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "MS05",
+      "section": "MISMO and title-industry reliance: supplemental findings",
+      "claim": "Applicant state assertions",
+      "classification": "supported",
+      "correction": "The questionnaire asks applicants to identify states whose RON laws, rules and regulations their platform complies with, and asks about KBA providers/passing results and credential-analysis providers. That is applicant-supplied information. The current program disclaimer still limits what MISMO verifies. Do not collapse an applicant’s assertion of state compliance, MISMO’s private certification decision, state commissioning, and evidence of one completed transaction into one approval.",
+      "sourceIds": [
+        "M03",
+        "P-mismo_scope",
+        "M06"
+      ],
+      "articleLocations": [
+        "Related certification and trade-publication material; contextual finding"
+      ],
+      "evidenceBoundary": "Only indexed portions of the questionnaire were available. No completed NotaryCam application or private assessor report was obtained. A real review process or applicant attestation supplies no jurisdiction-specific legal determination beyond the stated certification scope; absence of the private report is not evidence that it resolves the missing method.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "VA50",
+      "section": "Additional table and workflow checks",
+      "claim": "Commission term",
+      "classification": "supported",
+      "correction": "Section 47.1-21 provides a four-year ordinary commission, subject to the title’s exceptions, with expiration in the fourth calendar year on the last day of the notary’s birth month. This does not make electronic capability registration permanent.",
+      "sourceIds": [
+        "S37"
+      ],
+      "articleLocations": [
+        "Credential / remote endorsement section"
+      ],
+      "evidenceBoundary": "Scope is the published statement and cited rule or product offering.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA51",
+      "section": "Additional table and workflow checks",
+      "claim": "In-person identity",
+      "classification": "incomplete",
+      "correction": "The table’s shorthand omits the qualifying credible-witness route and the statutory limits on acceptable identity documents. Physical presence alone does not dispense with satisfactory evidence under § 47.1-2.",
+      "sourceIds": [
+        "S01"
+      ],
+      "articleLocations": [
+        "Comparison table"
+      ],
+      "evidenceBoundary": "Scope is the published statement and cited rule or product offering.",
+      "findingScope": "article"
+    },
+    {
+      "id": "VA52",
+      "section": "Additional table and workflow checks",
+      "claim": "Traditional recording",
+      "classification": "supported",
+      "correction": "Title 47.1 imposes no general audio-video recording requirement for an ordinary traditional act. Keep this separate from the notarial-record requirement that became mandatory for nonelectronic acts on July 1, 2026.",
+      "sourceIds": [
+        "S09",
+        "S32"
+      ],
+      "articleLocations": [
+        "Comparison table"
+      ],
+      "evidenceBoundary": "Scope is the published statement and cited rule or product offering.",
+      "findingScope": "article"
+    },
+    {
+      "id": "PC16",
+      "section": "Additional table and workflow checks",
+      "claim": "Multiple signers",
+      "classification": "provider_claim",
+      "correction": "The provider FAQ advertises support for multiple signers, including separate signing appointments. That supports the product representation; no multi-signer session or appointment availability was tested.",
+      "sourceIds": [
+        "P-faq"
+      ],
+      "articleLocations": [
+        "Eligible-documents table: corporate resolutions and certifications"
+      ],
+      "evidenceBoundary": "Scope is the published statement and cited rule or product offering.",
+      "findingScope": "article"
+    }
+  ],
+  "limitations": [
+    "No completed signing, identity document, biometric template, private customer record or confidential audit report was inspected. A page error does not establish which method a particular notary used or the legal effect of a particular act. Conversely, the absence of those records does not establish compliant performance or turn a source-backed false legal representation into an unresolved transaction question.",
+    "No complete fifty-state identity-law survey was performed. The article’s broad interstate generalization is unsupported as presented, rather than replaced with the opposite generalization.",
+    "Private certification can have contractual or procurement significance. This audit does not claim it has no possible legal relevance; it establishes that the certification itself is not a state-law compliance determination.",
+    "Some provider, MISMO and USCIS pages were available through indexed official/first-party text while direct fetches returned 403. Access limitations are recorded per source; indexed content may lag.",
+    "The page’s authorship process and the motives or historical efforts of every competing provider were not established. The findings about false and unsupported claims stand on their sources independently of intent.",
+    "The article was reviewed on October 2, 2026. Later edits, actual product availability and any subsequent legislative changes require a new dated review.",
+    "This work is public source analysis, not a legal opinion on a customer’s transaction. It does not claim all prior acts are invalid. The limited validation rule and retained remedies in § 47.1-20.1 must be analyzed separately.",
+    "Entry totals count analytical findings, including supported propositions, overlaps and supplemental context; they are not counts of unique false article statements. VA24 and PC07 address the same KBA-timing representation from different analytical angles.",
+    "The original page version was not preserved. Article locations are textual section/row descriptions, not immutable paragraph identifiers. Reacquire a dated full-page capture before claiming exhaustive version-specific coverage; no hash of this audit authenticates the original webpage.",
+    "Express KBA enumeration in 2024 does not by itself determine whether an earlier implemented process qualified under another then-authorized method. Official identity guidance is a possible authority-chain lead; applicable adoption history and actual method compliance remain to be established. A factor’s use or mention in guidance does not prove it was required or legally sufficient."
+  ],
+  "relatedSources": [
+    {
+      "title": "Notarial Routing Model",
+      "url": "https://notary.cx/notarial-routing-model.html"
+    },
+    {
+      "title": "Source-quality routing layer",
+      "url": "https://notary.cx/source-quality-routing-layer.html"
+    },
+    {
+      "title": "Virginia biometric-method correction",
+      "url": "https://notary.cx/virginia-ron-biometrics-platform-myth.html"
+    },
+    {
+      "title": "No intent safe harbor: Notary Geek’s established source-quality position",
+      "url": "https://notary.cx/source-archive/vendor-no-intent-safe-harbor-authority-laundering-voice-note-2026-06-06.html"
+    },
+    {
+      "title": "Greg’s October 2 voice note: label disputes do not answer compliance defects",
+      "url": "https://notary.cx/source-archive/vendor-scam-label-dismissal-voice-note-2026-10-02.html"
+    }
+  ],
+  "correspondence": {
+    "status": "Correction request prepared as an unsent draft. No provider response is claimed."
+  },
+  "openVerificationQuestions": [
+    {
+      "id": "OVQ-KBA-01",
+      "question": "Does the actual NotaryCam KBA sequence match the article’s on-camera description?",
+      "status": "Unverified; Greg raised a specific concern on 2026-10-02. No contrary signing-session observation is asserted.",
+      "evidenceNeeded": [
+        "Applicable KBA provider, product, commissioned state and workflow version",
+        "Quiz start/end and live-video event timing",
+        "Result binding to the signer and statutory controls",
+        "Documented demonstration or redacted audit example without raw customer identity data"
+      ],
+      "relatedClaimIds": [
+        "VA24",
+        "PC07"
+      ]
+    },
+    {
+      "id": "OVQ-HISTORY-02",
+      "question": "Which earlier adopted identity-proofing instrument and complete method, if any, did the provider rely on?",
+      "status": "Unresolved; official IMSAC materials identify a possible authority chain but do not establish provider compliance. Its possibility supplies neither affirmative authority nor evidence that a particular act was defective; it does not clear the public assurance.",
+      "evidenceNeeded": [
+        "Final adoption, effective date and supersession history of the 2016/2017 guidance.",
+        "Applicable trust agreement and assurance profile.",
+        "Actual method mapping for the specified transaction date, including both methods where required."
+      ],
+      "relatedClaimIds": [
+        "VA17",
+        "VA27",
+        "VA49"
+      ]
+    }
+  ],
+  "investigationFrame": {
+    "primaryIssue": "Platform and industry assurances substituted for the applicable law and actual transaction evidence.",
+    "whyVirginiaHere": "The provider selected Virginia’s history and purported flexibility as a commercial assurance. This case study tests that assurance.",
+    "broaderScope": [
+      "Texas",
+      "Other commissioned states and advertised identity workflows"
+    ],
+    "texasFindingStatus": "A broader research lead; this Virginia-page audit does not purport to resolve Texas law or particular Texas sessions.",
+    "desiredOutcome": "Correct methods and technology under the governing law would remove the need to sell Virginia as a special compliance shortcut."
+  },
+  "counterarguments": [
+    {
+      "id": "CA01",
+      "objection": "You ignore alternative methods acknowledged in the article body.",
+      "response": "The body’s qualifications are preserved. The objection concerns contradictory categorical tables and quick answers; those should state the same complete rule.",
+      "sourceIds": [
+        "S01",
+        "P-article"
+      ],
+      "whatWouldChangeAssessment": [
+        "Consistent corrected wording across the body, summaries, tables and FAQ."
+      ],
+      "relatedClaimIds": [
+        "VA16",
+        "VA17"
+      ]
+    },
+    {
+      "id": "CA02",
+      "objection": "Express enumeration in 2024 does not prove all earlier KBA-assisted workflows unlawful.",
+      "response": "The express statutory addition is established. A provider’s earlier use of KBA does not prove that the law required it or that it satisfied a statutory method. A provider invoking a different earlier route must establish the authority then applicable and compliance with that complete method. Mention of a technology component in guidance is not that proof; the audit does not claim voluntary extra checks were prohibited. Unresolved adoption/applicability establishes neither affirmative authority nor a particular transaction defect. An optional authorized method need not be mandatory for every act.",
+      "sourceIds": [
+        "S02",
+        "S04",
+        "S05",
+        "S26",
+        "S39",
+        "S40"
+      ],
+      "whatWouldChangeAssessment": [
+        "Dated adopted instrument and supersession history.",
+        "Applicable trust/assurance profile and actual workflow mapping, including a second qualifying method where required.",
+        "For antecedent proofing, evidence of the qualifying in-person event and Federal Bridge conformity."
+      ],
+      "relatedClaimIds": [
+        "VA17",
+        "VA27",
+        "VA49"
+      ]
+    },
+    {
+      "id": "CA03",
+      "objection": "The Secretary’s handbook supports our interpretation.",
+      "response": "The current handbook is included as counterevidence and reliance context. It contains abbreviated and internally differing summaries; it does not amend controlling statutes or prove a session’s method. Possible reliance may concern separately established fault or remedy questions; it does not make a conflicting summary the controlling rule or erase the demonstrated discrepancy.",
+      "sourceIds": [
+        "S01",
+        "S07",
+        "S38"
+      ],
+      "whatWouldChangeAssessment": [
+        "Applicable controlling authority resolving the discrepancy.",
+        "Complete method evidence connecting the guidance to the transaction."
+      ],
+      "relatedClaimIds": [
+        "VA08",
+        "VA16",
+        "VA17"
+      ]
+    },
+    {
+      "id": "CA04",
+      "objection": "Virginia reviews the technology description in an eNotary application.",
+      "response": "Yes. Individual application review and certification are meaningful administrative steps. Standard § 1.1(c) nevertheless disclaims system-compliance determinations, so platform operation alone does not establish the advertised quality approval.",
+      "sourceIds": [
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "whatWouldChangeAssessment": [
+        "An agency instrument identifying the reviewed system/version, date and actual compliance-review scope."
+      ],
+      "relatedClaimIds": [
+        "VA15"
+      ]
+    },
+    {
+      "id": "CA05",
+      "objection": "The validation statute protects historical notarizations.",
+      "response": "Section 47.1-20.1(B) broadly protects against invalidation solely for a Title 47.1 duty or requirement failure; Chapter 832 makes that subsection retroactive. It does not insert KBA into the earlier methods list. Compliance, validity, transaction enforceability and retained remedies are separate questions. A method failure is not automatically an unauthorized-person case. Validation does not show that the original duty was met or that the marketing statement was correct.",
+      "sourceIds": [
+        "S05",
+        "S34"
+      ],
+      "whatWouldChangeAssessment": [
+        "Transaction-specific facts and analysis before alleging invalidity or a preserved remedy."
+      ],
+      "relatedClaimIds": [
+        "VA49"
+      ]
+    },
+    {
+      "id": "CA06",
+      "objection": "Our qualified examples and stricter workflow policies are being treated as universal legal promises.",
+      "response": "The audit has corrected those overstatements. Initial onboarding, pre-session processing, stop-on-failure policy and conditional deed/loan/POA examples are preserved as such. Will execution and I-9 verification still need to be distinguished from notarial authority. Those corrections do not change the separate false-law findings VA06, VA08, VA13, VA15, VA16 and VA33.",
+      "sourceIds": [
+        "S01",
+        "S10",
+        "S11",
+        "S18",
+        "S20",
+        "S30"
+      ],
+      "whatWouldChangeAssessment": [
+        "Precise product policy and current device/workflow documentation.",
+        "Document-specific execution and receiving requirements."
+      ],
+      "relatedClaimIds": [
+        "VA14",
+        "VA19",
+        "VA20",
+        "VA25",
+        "VA37",
+        "VA38",
+        "VA40",
+        "VA41",
+        "VA45"
+      ]
+    },
+    {
+      "id": "CA07",
+      "objection": "MISMO performs real review and matters to lenders and title companies.",
+      "response": "Agreed: it is more than pure self-certification and may have contractual significance. Its stated standards-review scope does not supply state-law authority or prove an individual act. Request the actual procurement requirement and separate legal-method analysis. The existence of a real standards review and a commercial preference do not rebut a specific legal misstatement.",
+      "sourceIds": [
+        "P-mismo_scope",
+        "M03",
+        "M06"
+      ],
+      "whatWouldChangeAssessment": [
+        "The specific written contractual requirement and covered product.",
+        "A separate dated statutory-method analysis and evidence for the act."
+      ],
+      "relatedClaimIds": [
+        "MS02",
+        "MS03",
+        "MS05"
+      ]
+    },
+    {
+      "id": "CA08",
+      "objection": "You apply today’s MISMO disclaimer retroactively to our 2020 certification.",
+      "response": "The September 2020 interview already states the standards-versus-law distinction. This supports the historical scope boundary without claiming to possess the signed agreement or completed provider assessment. The broad-assurance criticism remains an identified inference.",
+      "sourceIds": [
+        "M04",
+        "M05",
+        "M06"
+      ],
+      "whatWouldChangeAssessment": [
+        "The operative 2020 agreement and documented assessment scope.",
+        "Evidence of the particular legal conclusion or actual buyer reliance claimed."
+      ],
+      "relatedClaimIds": [
+        "MS04"
+      ]
+    },
+    {
+      "id": "CA09",
+      "objection": "Our identity vendors and IAL2 claim answer the biometric concern.",
+      "response": "The audit acknowledges document verification, face comparison and the named IAL2 level. These do not by themselves identify the applicable statutory method, publication revision, configuration or transaction evidence. Extra safeguards may be useful without constituting an independently sufficient method.",
+      "sourceIds": [
+        "S01",
+        "S26",
+        "P-privacy",
+        "P-licensing"
+      ],
+      "whatWouldChangeAssessment": [
+        "Claimed NIST publication/revision and assessed configuration.",
+        "Dated legal mapping and evidence for each required method, or the separate personal-knowledge/witness route."
+      ],
+      "relatedClaimIds": [
+        "VA17",
+        "PC05",
+        "PC08"
+      ]
+    },
+    {
+      "id": "CA10",
+      "objection": "You never observed a session, so you cannot say our KBA process is false.",
+      "response": "Correct: the on-camera sequence is classified as an untested provider claim, not an observed operational failure. A public legal-summary contradiction can be established separately. Greg’s concern remains an explicit question that a documented demonstration could answer. That concession is limited to actual performance in an unobserved session; it is not a concession that the separately evidenced legal-summary contradictions are speculative.",
+      "sourceIds": [
+        "P-article",
+        "P-terms"
+      ],
+      "whatWouldChangeAssessment": [
+        "Provider, product, commissioned state and workflow version.",
+        "Redacted or synthetic demonstration showing quiz/video timing, signer binding and result/retry controls."
+      ],
+      "relatedClaimIds": [
+        "VA24",
+        "PC07"
+      ]
+    },
+    {
+      "id": "CA11",
+      "objection": "Without deliberate criminal fraud, your criticism of selling false assurance fails.",
+      "response": "Greg’s stated usage concerns the false assurance sold; it does not turn on a claim of criminal intent. Test the representation against the applicable requirement. A separate legal cause of action may have its own elements; this audit does not claim to prove those or every participant’s motive. An unknown mental state supports neither knowing-fraud allegations nor a presumed-good-faith defense. Do not downgrade a supported false finding merely because the elements of a separate fraud claim have not been established.",
+      "sourceIds": [
+        "S01",
+        "S11",
+        "P-mismo_scope"
+      ],
+      "whatWouldChangeAssessment": [
+        "A source or method record that resolves the identified representation, rather than a dispute about the label alone."
+      ],
+      "relatedClaimIds": [
+        "VA15",
+        "VA16",
+        "MS04"
+      ]
+    },
+    {
+      "id": "CA12",
+      "objection": "Your count and capture suggest more certainty than the evidence permits.",
+      "response": "The ledger counts review entries, including supported statements, overlapping checks and supplemental analysis. It does not count unique errors. A complete original-page version was not preserved; textual locators and the observation manifest disclose that gap. The capture gap does not erase identified representations or their statutory contradictions; it limits exhaustive version-specific claims.",
+      "sourceIds": [
+        "P-article"
+      ],
+      "whatWouldChangeAssessment": [
+        "A dated complete source capture with provenance and original-content hash.",
+        "A reconciled source-to-finding inventory before claiming exhaustive version coverage."
+      ],
+      "relatedClaimIds": [
+        "VA14",
+        "VA24",
+        "PC07",
+        "VA49"
+      ]
+    }
+  ],
+  "interpretationRules": {
+    "purpose": "Each evidence limit applies to a particular question. Preserve both the established finding and its limit; do not use an unrelated uncertainty, hypothetical defense or credential to erase a documented contradiction. Revise a finding when relevant evidence answers it, and identify exactly what changed.",
+    "rules": [
+      {
+        "id": "IR01",
+        "risk": "Treating an unobserved signing session as a reason to dismiss a documented public legal error.",
+        "requiredReading": "No session inspection limits conclusions about a particular notary’s act. It does not undo the six source-backed contradictions identified in this review. Evaluate the published rule against the cited authority and date; evaluate a particular act against its separate record.",
+        "doesNotEstablish": "The audit does not prove a particular act defective, and lack of that proof does not establish that the published assurance is correct.",
+        "sourceIds": [
+          "S01",
+          "S07",
+          "S09",
+          "S11",
+          "S13",
+          "S15"
+        ],
+        "relatedClaimIds": [
+          "VA06",
+          "VA08",
+          "VA13",
+          "VA15",
+          "VA16",
+          "VA33"
+        ]
+      },
+      {
+        "id": "IR02",
+        "risk": "Turning a performed check into proof of law.",
+        "requiredReading": "A provider may use KBA, fingerprints, a selfie or additional checks. Identify whether the governing law required that check, whether it qualifies as the claimed statutory method, and whether the complete process satisfied that method. Technical operation and legal sufficiency are different propositions. An optional authorized method need not be universally mandatory.",
+        "doesNotEstablish": "A successful check, vendor name or assurance label alone proves neither statutory authorization nor compliance; voluntary additional checks are not thereby prohibited.",
+        "sourceIds": [
+          "S01",
+          "S26",
+          "P-privacy",
+          "P-licensing"
+        ],
+        "relatedClaimIds": [
+          "VA16",
+          "VA17",
+          "VA19",
+          "PC05",
+          "PC08"
+        ]
+      },
+      {
+        "id": "IR03",
+        "risk": "Treating a possible earlier route as an established historical defense.",
+        "requiredReading": "KBA was expressly added effective July 1, 2024. A provider asserting another earlier route must identify its then-applicable authority, adoption history and complete method evidence. The unresolved IMSAC chain is a research lead; mentioning KBA/biometrics in guidance does not establish that authority or the provider’s compliance.",
+        "doesNotEstablish": "Do not replace the proven express-addition date with an assumption of unchanged law. This record also does not prove that every earlier KBA-assisted act violated the law.",
+        "sourceIds": [
+          "S02",
+          "S04",
+          "S05",
+          "S26",
+          "S39",
+          "S40"
+        ],
+        "relatedClaimIds": [
+          "VA27",
+          "VA49"
+        ]
+      },
+      {
+        "id": "IR04",
+        "risk": "Using retroactive validation to claim that original duties were met or the criticism no longer matters.",
+        "requiredReading": "The validation rule concerns legal effect and preserves stated challenges/remedies. It does not establish what method ran, what the historical law required, whether a duty was met or whether a marketed legal rule was accurate.",
+        "doesNotEstablish": "Neither automatic invalidity nor automatic compliance follows. A commissioned notary’s method failure is not automatically an unauthorized-person case.",
+        "sourceIds": [
+          "S05",
+          "S34"
+        ],
+        "relatedClaimIds": [
+          "VA49"
+        ]
+      },
+      {
+        "id": "IR05",
+        "risk": "Using MISMO review, IAL2, SOC 2 or a title-market requirement as legal approval.",
+        "requiredReading": "Recognize the credential’s actual scope. MISMO performs standards review and excludes jurisdiction-specific legal verification; a named IAL2 level still needs version/configuration/assessment and statutory mapping. A procurement contract can require a credential without making it proof of the notarial method.",
+        "doesNotEstablish": "A private assessment not obtained by this review is neither disproved nor presumed favorable evidence for the missing legal proposition. Standards compliance, company reputation and transaction compliance are not interchangeable.",
+        "sourceIds": [
+          "P-mismo_scope",
+          "M03",
+          "M06",
+          "P-licensing",
+          "S01"
+        ],
+        "relatedClaimIds": [
+          "PC03",
+          "PC04",
+          "PC05",
+          "MS02",
+          "MS03",
+          "MS05"
+        ]
+      },
+      {
+        "id": "IR06",
+        "risk": "Letting a qualification elsewhere cure a contradictory categorical summary.",
+        "requiredReading": "Preserve accurate conditions where the article states them. The body’s alternative-method discussion does not make a table’s universal CA/KBA rule accurate. Application/technology-description review does not become Secretary platform-compliance approval.",
+        "doesNotEstablish": "This review does not call every sentence false or deny every administrative review. Neither concession answers the particular false assurance.",
+        "sourceIds": [
+          "P-article",
+          "S01",
+          "S10",
+          "S11"
+        ],
+        "relatedClaimIds": [
+          "VA15",
+          "VA16",
+          "VA17"
+        ]
+      },
+      {
+        "id": "IR07",
+        "risk": "Treating corrections to our draft or a count of supported entries as exoneration of the remaining findings.",
+        "requiredReading": "The review corrected onboarding, workflow-policy and qualified document examples and acknowledged NotaryCam’s IAL2 statement. Those repairs apply to those entries. Assess each remaining false finding on its own evidence; supported propositions do not cancel unrelated contradictions.",
+        "doesNotEstablish": "Seventy-seven entries are not seventy-seven errors, and there is no valid vote-count rule under which correct statements erase material false ones.",
+        "sourceIds": [
+          "P-article",
+          "S01",
+          "S10",
+          "S11",
+          "S21",
+          "P-licensing"
+        ],
+        "relatedClaimIds": [
+          "VA14",
+          "VA20",
+          "VA25",
+          "VA37",
+          "VA38",
+          "VA40",
+          "PC05",
+          "VA15",
+          "VA16"
+        ]
+      },
+      {
+        "id": "IR08",
+        "risk": "Using incomplete page capture to call independently identified contradictions unsupported.",
+        "requiredReading": "The missing original-page snapshot limits exhaustive version-specific coverage and publication-history claims. It does not erase the identified representations, including text supplied by the user and checked against retrieved first-party text, or their comparison with official authorities. A contrary dated capture should be examined proposition by proposition.",
+        "doesNotEstablish": "No complete forensic capture is claimed. A later correction does not by itself show that the earlier representation was accurate, and an audit hash does not authenticate the original page.",
+        "sourceIds": [
+          "P-article",
+          "S01",
+          "S11",
+          "S15"
+        ],
+        "relatedClaimIds": [
+          "VA06",
+          "VA15",
+          "VA16"
+        ]
+      },
+      {
+        "id": "IR09",
+        "risk": "Using intent, company size or widespread practice to avoid answering a false assurance.",
+        "requiredReading": "The source-quality objection concerns the accuracy of the assurance sold. It does not require a finding of criminal intent. Evaluate the representation and applicable law; familiarity, market share, early entry, commercial acceptance or the critic’s small size do not answer that question. Unknown intent does not establish either knowing deception or good faith.",
+        "doesNotEstablish": "The audit does not establish every actor’s motive or every competitor’s historical effort. That limit is not a defense of the identified false statement, and calling the pattern theater does not answer it.",
+        "sourceIds": [
+          "S01",
+          "S11",
+          "P-mismo_scope"
+        ],
+        "relatedClaimIds": [
+          "VA15",
+          "VA16",
+          "MS04"
+        ]
+      },
+      {
+        "id": "IR10",
+        "risk": "Treating official handbook shorthand as permission to ignore enacted requirements.",
+        "requiredReading": "The current handbook is relevant guidance and reliance context. When a summary conflicts with the controlling statute, identify and resolve the conflict rather than treating the summary’s official origin as proof that a statutory condition disappears.",
+        "doesNotEstablish": "The handbook does not itself establish a provider’s actual method or cure its public assertion. This finding does not deny the evidentiary value of agency guidance.",
+        "sourceIds": [
+          "S01",
+          "S07",
+          "S38"
+        ],
+        "relatedClaimIds": [
+          "VA08",
+          "VA16",
+          "VA17"
+        ]
+      },
+      {
+        "id": "IR11",
+        "risk": "Dismissing the issue as a Virginia technicality or assuming a different state solves it.",
+        "requiredReading": "Virginia is this provider-selected case study. A method condition can determine whether a marketed assurance is true. The same dated authority-and-method inquiry applies in Texas and other states; correct performance would remove the need to sell Virginia as a compliance shortcut.",
+        "doesNotEstablish": "The record does not establish a fifty-state violation, Texas compliance, or another provider’s fitness. A broader research gap does not diminish this page’s established errors.",
+        "sourceIds": [
+          "P-article",
+          "S01",
+          "S28",
+          "S29"
+        ],
+        "relatedClaimIds": [
+          "VA10",
+          "VA15",
+          "VA16",
+          "VA26"
+        ]
+      },
+      {
+        "id": "IR12",
+        "risk": "Reducing a false compliance assurance to harmless wording because no injury or deliberate deception was proved.",
+        "requiredReading": "The page presents legal rules and review/certification signals to guide platform selection. A source-backed contradiction in that guidance remains a substantive accuracy problem requiring correction. A possible editorial mistake, obsolete source or automated drafting process is an explanation to investigate, not proof the assurance was true.",
+        "doesNotEstablish": "This audit does not establish an injured customer, actual buyer reliance, liability or how the article was authored. Those separate questions do not need to be resolved before identifying and correcting the false representation.",
+        "sourceIds": [
+          "P-article",
+          "S01",
+          "S11"
+        ],
+        "relatedClaimIds": [
+          "VA15",
+          "VA16"
+        ]
+      }
+    ]
+  }
+}
