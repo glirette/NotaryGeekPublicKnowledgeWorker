@@ -24,7 +24,8 @@
     "The traditional notary location row is wrong: § 47.1-13(B) permits compliant acts outside Virginia. Current electronic-notary certificate law separately requires the Virginia county or city where the notary physically was.",
     "The article also misses the July 1, 2026 traditional-record requirement and treats July 1, 2027 education requirements as current.",
     "NotaryCam’s MISMO listing is supported. MISMO’s stated certification scope excludes verification of compliance with a particular jurisdiction’s laws. Certification cannot supply the missing legal authority or session evidence.",
-    "False assurances can mislead buyers regardless of whether the publisher understood the law. The correction does not depend on proving intent. Market age, revenue and a familiar brand do not cure an incorrect claim."
+    "False assurances can mislead buyers regardless of whether the publisher understood the law. The correction does not depend on proving intent. Market age, revenue and a familiar brand do not cure an incorrect claim.",
+    "The NIST agency logo is used as a compliance trust badge on the homepage and licensing page. Its presentation suggests official assurance that the image does not substantiate. Logo permission, conformity assessment, NIST endorsement and statutory compliance are separate questions; NIST does not operate a certification program for its Digital Identity Guidelines."
   ],
   "procurementStandard": {
     "title": "Company size and certification are not legal proof",
@@ -615,8 +616,8 @@
       "url": "https://www.notarycam.com/platform/software-licensing/",
       "type": "provider statement — evidence of representation",
       "checkedOn": "2026-10-02",
-      "locator": "First-party indexed text; direct open 403; FAQ on advantages of licensing.",
-      "notes": "Names NIST IAL2. This corrects the prior audit draft’s statement that no assurance level was identified; no actual assessment or configuration mapping was obtained."
+      "locator": "First-party indexed text and successful web extraction; direct raw HTML returned 403. FAQ on licensing advantages and footer TRUST section.",
+      "notes": "Names NIST IAL2. This corrects the prior audit draft’s statement that no assurance level was identified; no actual assessment or configuration mapping was obtained. The footer presents the NIST agency image beside SOC 2 and MISMO images; its extracted label is NIST Compliant and its image link resolves to P-nist-logo."
     },
     {
       "id": "M06",
@@ -626,6 +627,51 @@
       "checkedOn": "2026-10-02",
       "locator": "Displayed September 21, 2020; URL/issue path says September 16. Reviewer read answers attributed to Jonathan Kearns; later direct recheck returned 403.",
       "notes": "Describes questionnaire/attestation, document and demonstration stages and distinguishes certification against MISMO standards from explicit certification of jurisdictional legal compliance. It is not the signed certification agreement or an MBA adjudication."
+    },
+    {
+      "id": "P-home",
+      "title": "NotaryCam homepage trust footer",
+      "url": "https://www.notarycam.com/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "Web-extracted footer, TRUST section; image link resolved to P-nist-logo.",
+      "notes": "NIST Compliant image label appears beside SOC 2 and MISMO images. Search-service labels and link resolution were verified; raw DOM attributes were not."
+    },
+    {
+      "id": "P-nist-logo",
+      "title": "NIST agency logo hosted by NotaryCam",
+      "url": "https://www.notarycam.com/wp-content/uploads/2025/04/NIST-logo.jpg",
+      "type": "provider-hosted image — direct asset evidence",
+      "checkedOn": "2026-10-02",
+      "locator": "Public HTTP 200; visually inspected JPEG; 637 by 284 pixels; 28,748 bytes.",
+      "notes": "SHA-256 2598c5713b953ceb26d5d8ed4c58ff7586c925b416a1b40a1d833d772b838ef1. Image contains NIST agency identity and U.S. Department of Commerce, with no certification wording inside it. Homepage and licensing-footer image links resolve to this exact asset. URL date and Last-Modified do not establish first use."
+    },
+    {
+      "id": "G-commerce-symbols",
+      "title": "Commerce DAO 201-1: Symbols of the Department of Commerce",
+      "url": "https://www.commerce.gov/ogc/symbols-department-commerce",
+      "type": "official departmental policy",
+      "checkedOn": "2026-10-02",
+      "locator": "Effective August 5, 2021; sections 7.02–7.06; official indexed text retrieved, direct open 403.",
+      "notes": "Outside use requires approval and, for nonfederal users, a written license specifying manner, circumstances and period. Approval excludes actual or reasonably apparent improper endorsement; evaluation considers placement and proximity to other symbols. This is the applicable policy, not an agency determination about NotaryCam."
+    },
+    {
+      "id": "G-usa-logo",
+      "title": "USAGov: How to use government information and images",
+      "url": "https://www.usa.gov/government-copyright",
+      "type": "official federal guidance",
+      "checkedOn": "2026-10-02",
+      "locator": "Agency-logo and endorsement section; updated April 30, 2026; direct page retrieved.",
+      "notes": "Government agency logos and trademarks require permission. Government materials cannot be used to imply agency endorsement. General government-work copyright rules do not supply logo authorization."
+    },
+    {
+      "id": "N-identity-faq",
+      "title": "NIST Digital Identity Group implementation FAQ",
+      "url": "https://pages.nist.gov/800-63-4-Implementation-Resources/faqs/index.html",
+      "type": "official technical-program guidance",
+      "checkedOn": "2026-10-02",
+      "locator": "Updated September 30, 2026; SP 800-63A question about CSP certification and trusted referees; direct page retrieved.",
+      "notes": "NIST states that it does not operate a certification program for these Digital Identity Guidelines. This does not exclude independent conformity assessments or imply that no other NIST program has validation or certification marks."
     }
   ],
   "claims": [
@@ -1497,10 +1543,12 @@
       "section": "Provider capabilities and commercial assurances",
       "claim": "NIST badge",
       "classification": "unverified",
-      "correction": "The footer badge is generic, but NotaryCam’s software-licensing page separately names NIST IAL2. The claimed publication/revision, covered workflow/configuration and assessment/control mapping were not obtained. Neither a badge nor the named level establishes Virginia’s statutory identity route or government approval. The compliance assertion remains unverified, not disproved.",
+      "correction": "The footer badge is generic, but NotaryCam’s software-licensing page separately names NIST IAL2. The claimed publication/revision, covered workflow/configuration and assessment/control mapping were not obtained. Neither a badge nor the named level establishes Virginia’s statutory identity route or government approval. The compliance assertion remains unverified, not disproved. Separate finding PCX05 records confirmed agency-logo use on the homepage and licensing page, its misleading official-assurance presentation and the unresolved authorization question.",
       "sourceIds": [
         "P-security",
-        "P-licensing"
+        "P-licensing",
+        "P-nist-logo",
+        "N-identity-faq"
       ],
       "articleLocations": [
         "Page footer badge"
@@ -1891,6 +1939,26 @@
       ],
       "evidenceBoundary": "Scope is the published statement and cited rule or product offering.",
       "findingScope": "article"
+    },
+    {
+      "id": "PCX05",
+      "section": "Related provider disclosures",
+      "claim": "NIST agency logo presented as a compliance trust badge",
+      "classification": "misleading",
+      "correction": "NotaryCam’s homepage and licensing page place the NIST agency logo in a TRUST footer beside SOC 2 and MISMO badges, with the extracted image label NIST Compliant. Our assessment is that this combined presentation misleadingly suggests official assurance beyond a claim of conformity. Commerce DAO 201-1 requires outside-use approval and a written license, and specifically evaluates placement and proximity to other symbols for apparent improper endorsement. The NIST Digital Identity Group says it does not operate a certification program for these guidelines. Identify the authorization covering this display and separately the publication, revision, covered implementation and basis of any independent conformity assessment. A logo or IAL2 label establishes neither NIST certification nor notarial-law compliance.",
+      "sourceIds": [
+        "P-home",
+        "P-licensing",
+        "P-nist-logo",
+        "G-commerce-symbols",
+        "G-usa-logo",
+        "N-identity-faq"
+      ],
+      "articleLocations": [
+        "Related homepage and software-licensing page: TRUST footer; not independently recaptured on the Virginia article in this supplement."
+      ],
+      "evidenceBoundary": "Misleading is an editorial inference from the combined presentation, not a quotation claiming NotaryCam literally says NIST certified. The image itself contains no certification text. No logo license or agency decision about this display was obtained: unauthorized use is not established. That uncertainty does not establish authorization, endorsement or certification. Actual IAL2 conformity remains unverified, not disproved. Independent assessment is possible; other NIST programs have distinct validation marks. Extracted image labels and link resolution were verified, not raw DOM alt/title attributes.",
+      "findingScope": "supplemental"
     }
   ],
   "limitations": [
@@ -1959,6 +2027,20 @@
         "VA17",
         "VA27",
         "VA49"
+      ]
+    },
+    {
+      "id": "OVQ-NIST-03",
+      "question": "What authorization covers the NIST logo display, and what substantiates the separate conformity claim?",
+      "status": "Display confirmed on the homepage and licensing page; logo license, agency determination and implementation assessment not obtained.",
+      "evidenceNeeded": [
+        "Written logo license covering the displayed layout, scope and period, or the asserted applicable authorization",
+        "Exact NIST publication/revision and identity-service configuration covered by the conformity claim",
+        "Assessor identity, assessment scope/date and relevant control mapping; distinguish independent assessment from NIST certification"
+      ],
+      "relatedClaimIds": [
+        "PC05",
+        "PCX05"
       ]
     }
   ],
@@ -2198,6 +2280,26 @@
         "PC07",
         "VA49"
       ]
+    },
+    {
+      "id": "CA13",
+      "objection": "The logo merely identifies the standards publisher; compliance is not a claim of NIST certification, and permission may exist.",
+      "response": "The literal compliance label and possible independent conformity assessment are acknowledged. The criticism concerns the agency logo’s combined placement among commercial trust badges, which suggests official assurance beyond attribution. Commerce’s policy expressly considers placement and proximity. Permission was not established either way, and would not itself establish endorsement, NIST-operated digital-identity certification or notarial-law compliance. The identity FAQ rules out the NIST-operated certification inference for these guidelines, not independent assessment.",
+      "sourceIds": [
+        "P-home",
+        "P-licensing",
+        "P-nist-logo",
+        "G-commerce-symbols",
+        "N-identity-faq"
+      ],
+      "whatWouldChangeAssessment": [
+        "A license covering the exact use, and clear presentation identifying the claimed standard, revision, scope and independent assessment would warrant reassessing the presentation finding.",
+        "Removing or correcting the misleading trust presentation; any revised conformity claim requires its own evidence."
+      ],
+      "relatedClaimIds": [
+        "PC05",
+        "PCX05"
+      ]
     }
   ],
   "interpretationRules": {
@@ -2418,6 +2520,24 @@
         "relatedClaimIds": [
           "VA15",
           "VA16"
+        ]
+      },
+      {
+        "id": "IR13",
+        "risk": "Using possible logo permission, public-domain government works or possible conformity to dismiss the official-assurance concern.",
+        "requiredReading": "Evaluate the observed trust presentation separately from authorization and technical conformity. General government-work reuse does not authorize agency-logo use. Possible permission is not obtained permission; actual permission does not create endorsement. NIST’s lack of a Digital Identity Guidelines certification program does not disprove an independent assessment. Neither the logo nor an assessment supplies the statutory identity method.",
+        "doesNotEstablish": "The audit does not establish unauthorized logo use, a government enforcement decision or failed IAL2 conformity. Those limits do not turn the agency logo into proof of certification, approval or legal compliance.",
+        "sourceIds": [
+          "P-home",
+          "P-licensing",
+          "P-nist-logo",
+          "G-commerce-symbols",
+          "G-usa-logo",
+          "N-identity-faq"
+        ],
+        "relatedClaimIds": [
+          "PC05",
+          "PCX05"
         ]
       }
     ]
