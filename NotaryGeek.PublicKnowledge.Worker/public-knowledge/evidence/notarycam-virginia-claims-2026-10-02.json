@@ -25,7 +25,8 @@
     "The article also misses the July 1, 2026 traditional-record requirement and treats July 1, 2027 education requirements as current.",
     "NotaryCam’s MISMO listing is supported. MISMO’s stated certification scope excludes verification of compliance with a particular jurisdiction’s laws. Certification cannot supply the missing legal authority or session evidence.",
     "False assurances can mislead buyers regardless of whether the publisher understood the law. The correction does not depend on proving intent. Market age, revenue and a familiar brand do not cure an incorrect claim.",
-    "The NIST agency logo is used as a compliance trust badge on the homepage and licensing page. Its presentation suggests official assurance that the image does not substantiate. Logo permission, conformity assessment, NIST endorsement and statutory compliance are separate questions; NIST does not operate a certification program for its Digital Identity Guidelines."
+    "The NIST agency logo is used as a compliance trust badge on the homepage and licensing page. Its presentation suggests official assurance that the image does not substantiate. Logo permission, conformity assessment, NIST endorsement and statutory compliance are separate questions; NIST does not operate a certification program for its Digital Identity Guidelines.",
+    "The related security FAQ turns practices derived from NIST/SOC 2 into a strongest-controls assurance and adds continuous-security promises. Those conclusions are unsupported by the stated measures. Preserve the underlying practices as provider claims; request scoped evidence and correct the overstatement without requiring a breach first."
   ],
   "procurementStandard": {
     "title": "Company size and certification are not legal proof",
@@ -672,6 +673,42 @@
       "checkedOn": "2026-10-02",
       "locator": "Updated September 30, 2026; SP 800-63A question about CSP certification and trusted referees; direct page retrieved.",
       "notes": "NIST states that it does not operate a certification program for these Digital Identity Guidelines. This does not exclude independent conformity assessments or imply that no other NIST program has validation or certification marks."
+    },
+    {
+      "id": "P-why",
+      "title": "NotaryCam: Why NotaryCam security FAQ",
+      "url": "https://www.notarycam.com/why-notarycam/",
+      "type": "provider statement — evidence of representation",
+      "checkedOn": "2026-10-02",
+      "locator": "Security-measures FAQ; user-supplied passage corroborated by first-party indexed text and successful web extraction on October 2; initial direct open returned 403.",
+      "notes": "Describes practices derived from NIST/SOC 2, encryption, screening, training, monitoring, external audits and penetration testing; uses a strongest-controls superlative and continuous-security assurances. No report or implemented-control evidence was obtained. This is a related-page finding, not text attributed to the Virginia article."
+    },
+    {
+      "id": "N-csf2",
+      "title": "NIST Cybersecurity Framework 2.0 publication description",
+      "url": "https://www.nist.gov/publications/nist-cybersecurity-framework-csf-20",
+      "type": "official technical-framework source",
+      "checkedOn": "2026-10-02",
+      "locator": "Published February 26, 2024; abstract; direct page retrieved.",
+      "notes": "CSF 2.0 provides risk-management outcomes and does not prescribe how to achieve them. Cited to explain framework scope, not to assume that NotaryCam’s unspecified NIST reference means CSF 2.0 or that every NIST publication has the same scope."
+    },
+    {
+      "id": "A-tsc",
+      "title": "AICPA Trust Services Criteria, revised points of focus 2022",
+      "url": "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022",
+      "type": "standards body — primary assurance source",
+      "checkedOn": "2026-10-02",
+      "locator": "Public resource description retrieved; full download requires account access and was not obtained.",
+      "notes": "Describes criteria for evaluating and reporting on controls in attestation or consulting engagements. A criteria reference is distinct from evidence of a completed examination, its covered system, opinion and operating results."
+    },
+    {
+      "id": "A-soc-testimony",
+      "title": "AICPA testimony on cybersecurity issues affecting health benefit plans",
+      "url": "https://assets.ctfassets.net/rb9cdnjh59cm/QPkoCj9ZpAtz0hqaRf0fw/afec1a0e14d230926a9a0b1c91a46e0d/testimony-on-cybersecurity-issues-affecting-health-benefit-plans.pdf",
+      "type": "standards body — primary explanatory testimony",
+      "checkedOn": "2026-10-02",
+      "locator": "July 18, 2022; printed pages 4 and 6; full PDF retrieved.",
+      "notes": "AICPA testimony explains that mature security programs remain susceptible to breaches and describes Type 2 opinions in terms of a defined system, reasonable assurance, control effectiveness and tests. This is explanatory testimony, not legislation, a guarantee or an assessment of NotaryCam."
     }
   ],
   "claims": [
@@ -1527,10 +1564,11 @@
       "section": "Provider capabilities and commercial assurances",
       "claim": "SOC 2 assurance",
       "classification": "unverified",
-      "correction": "Provider pages repeat the representation. No report or assurance-period details were obtained. Lack of public report access is not proof that an audit does not exist. Request the current SOC 2 report, covered system, examination period and exceptions. Do not infer state-law compliance from the badge. The unavailable report also supplies no affirmative basis in this review to assume compliance or a favorable assessment; if obtained, evaluate what its actual scope proves.",
+      "correction": "Provider pages repeat the representation. No report or assurance-period details were obtained. Lack of public report access is not proof that an audit does not exist. Request the current SOC 2 report, covered system, examination period and exceptions. Do not infer state-law compliance from the badge. The unavailable report also supplies no affirmative basis in this review to assume compliance or a favorable assessment; if obtained, evaluate what its actual scope proves. The related security FAQ also claims external audits and penetration testing; PCX06–PCX08 distinguish those asserted practices from the stronger outcome assurances.",
       "sourceIds": [
         "P-security",
-        "P-software"
+        "P-software",
+        "P-why"
       ],
       "articleLocations": [
         "Platform selection"
@@ -1959,6 +1997,60 @@
       ],
       "evidenceBoundary": "Misleading is an editorial inference from the combined presentation, not a quotation claiming NotaryCam literally says NIST certified. The image itself contains no certification text. No logo license or agency decision about this display was obtained: unauthorized use is not established. That uncertainty does not establish authorization, endorsement or certification. Actual IAL2 conformity remains unverified, not disproved. Independent assessment is possible; other NIST programs have distinct validation marks. Extracted image labels and link resolution were verified, not raw DOM alt/title attributes.",
       "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX06",
+      "section": "Related provider disclosures",
+      "claim": "Framework-derived practices presented as ensuring the strongest security controls",
+      "classification": "misleading",
+      "correction": "The passage moves from practices derived from NIST and SOC 2 to assurance that the service meets the most stringent controls. Derivation does not establish implementation, assessed effectiveness or a defined highest control baseline. NIST is not one identified control set; specify the publication, revision and applicable profile. CSF 2.0, if that is intended, describes risk-management outcomes without prescribing their implementation. SOC 2 concerns scoped assurance against Trust Services Criteria; naming it does not supply the report. Our misleading classification addresses the unsupported leap in assurance. Identify the control baseline, system boundary, assessment and meaning of the superlative, or replace it with a scoped statement.",
+      "sourceIds": [
+        "P-why",
+        "N-csf2",
+        "A-tsc",
+        "P-licensing",
+        "A-soc-testimony"
+      ],
+      "articleLocations": [
+        "Related Why NotaryCam page: security-measures FAQ"
+      ],
+      "evidenceBoundary": "The passage does not literally claim NIST certification or identify CSF 2.0. A separate licensing page names IAL2; that does not identify the complete security baseline here. This review does not establish that practices were not derived from these sources, that no SOC 2 report exists or that every control is ineffective.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX07",
+      "section": "Related provider disclosures",
+      "claim": "Encryption and testing presented as continuous security assurance",
+      "classification": "unsupported",
+      "correction": "The surrounding FAQ links encryption to security at all times and external audits/testing to data always being secure. The stated measures do not establish those unqualified outcomes. Define the protected assets, threat scope, assessment period and residual limits. A scoped report or successful penetration test cannot by itself substantiate an unlimited future-security assurance. Correct the guarantee language without waiting for a demonstrated breach. AICPA’s explanatory testimony expressly recognizes that even mature cybersecurity programs remain susceptible to breaches.",
+      "sourceIds": [
+        "P-why",
+        "N-csf2",
+        "A-tsc",
+        "A-soc-testimony"
+      ],
+      "articleLocations": [
+        "Related Why NotaryCam page: security-measures FAQ"
+      ],
+      "evidenceBoundary": "No breach, exploitable defect, failed test or deficient encryption was observed. This finding concerns the unsupported breadth of the advertised assurance, not a determination that the platform is insecure. Marketing shorthand is not evidence of the asserted outcome.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX08",
+      "section": "Related provider disclosures",
+      "claim": "Security measures, external audits and penetration testing",
+      "classification": "provider_claim",
+      "correction": "Preserve the provider’s stated encryption, notary screening, training, monitoring, external auditing and penetration testing as representations. No implementation evidence or assessment report was inspected. Request the applicable control mapping and appropriately shared report or summary: assessor, date or period, covered system, criteria, exclusions, findings and remediation/retest status. Clarify which advertised audit is a SOC 2 examination; a generic external audit or penetration test is not interchangeable with one.",
+      "sourceIds": [
+        "P-why",
+        "A-tsc",
+        "A-soc-testimony"
+      ],
+      "articleLocations": [
+        "Related Why NotaryCam page: security-measures FAQ"
+      ],
+      "evidenceBoundary": "A report may be confidential. Nonpublication does not establish absence or failure; it also supplies no affirmative evidence in this review for a favorable opinion, highest-controls ranking or continuous-security guarantee. No customer records, credentials, exploit details or sensitive penetration-test payloads are requested.",
+      "findingScope": "supplemental"
     }
   ],
   "limitations": [
@@ -2041,6 +2133,23 @@
       "relatedClaimIds": [
         "PC05",
         "PCX05"
+      ]
+    },
+    {
+      "id": "OVQ-SECURITY-04",
+      "question": "What defined baseline and assessment support the security FAQ’s strongest-controls and continuous-security assurances?",
+      "status": "Representations confirmed; applicable control baseline, comparative measure and scoped assessment evidence not obtained.",
+      "evidenceNeeded": [
+        "Named publication/revision, applicable profile or control baseline and defined system boundary",
+        "SOC 2 report type, assessor, covered period, criteria and opinion/exceptions, through appropriate access or a non-sensitive summary",
+        "Audit and penetration-test scope/date plus remediation/retest status, without sensitive payloads or customer data",
+        "Corrected language explaining what the evidence establishes and its limits"
+      ],
+      "relatedClaimIds": [
+        "PC04",
+        "PCX06",
+        "PCX07",
+        "PCX08"
       ]
     }
   ],
@@ -2300,6 +2409,27 @@
         "PC05",
         "PCX05"
       ]
+    },
+    {
+      "id": "CA14",
+      "objection": "This is ordinary marketing shorthand, and confidential audit reports could substantiate the security program.",
+      "response": "Recognized practices and confidential examinations may support a real security program. That does not make a derived-practices statement evidence of a highest control baseline or a time-unlimited outcome. The FAQ names no specific baseline, comparative measure or assessment scope supporting those conclusions. The wording can be assessed without public access to sensitive reports or a demonstrated incident. A limited report can substantiate the proposition within its scope; it cannot be generalized into unlimited security or notarial-law compliance.",
+      "sourceIds": [
+        "P-why",
+        "N-csf2",
+        "A-tsc",
+        "A-soc-testimony"
+      ],
+      "whatWouldChangeAssessment": [
+        "A specific baseline and scope, with relevant control and assessment evidence, can substantiate a correspondingly limited security claim.",
+        "Replace unqualified strongest-controls and continuous-security assurances with accurate, scoped wording; provide a non-sensitive assessment summary or controlled report access where appropriate."
+      ],
+      "relatedClaimIds": [
+        "PC04",
+        "PCX06",
+        "PCX07",
+        "PCX08"
+      ]
     }
   ],
   "interpretationRules": {
@@ -2538,6 +2668,26 @@
         "relatedClaimIds": [
           "PC05",
           "PCX05"
+        ]
+      },
+      {
+        "id": "IR14",
+        "risk": "Treating framework-derived practices, a confidential report or absence of a known breach as proof of the advertised security outcome.",
+        "requiredReading": "Separate claimed practice, implemented control, scoped assessment and advertised outcome. Report confidentiality does not prove absence; it also does not permit inventing a favorable opinion or unlimited coverage. NIST is unspecified here, so do not silently select CSF 2.0 or IAL2 as the full security baseline. Recognize SOC 2’s assurance scope without reducing the objection to terminology. The overstatement can be corrected without first demonstrating a security incident.",
+        "doesNotEstablish": "The audit does not establish a breach, ineffective encryption, nonexistent audits or failed conformity. Even established security-control effectiveness would not itself prove the statutory identity method or notarial-law compliance.",
+        "sourceIds": [
+          "P-why",
+          "N-csf2",
+          "A-tsc",
+          "P-licensing",
+          "A-soc-testimony"
+        ],
+        "relatedClaimIds": [
+          "PC04",
+          "PC05",
+          "PCX06",
+          "PCX07",
+          "PCX08"
         ]
       }
     ]
