@@ -361,7 +361,7 @@
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json",
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/notarycam-virginia-claim-audit-2026-10-02.md",
       "supportingUrls": [
-        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
       ],
       "plannedPublicUrls": [
         "https://notary.cx/notarycam-virginia-claims.html",
@@ -376,8 +376,8 @@
       "kind": "generated-evidence-snapshot",
       "addedOn": "2026-10-02",
       "use": "Directly fetchable public projection of the authored dated claim review once publication is verified; carries classifications, official-source references and evidence limits.",
-      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-      "payloadSha256": "00891cfad268a68bf21f628a972719b1c7181f4574207b811aa8fecdc8297abf",
+      "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+      "payloadSha256": "6d18954413fb1a6cc789f146c3d3c58504e8f8341fa439cb4444e9801d071ab7",
       "publicationStatus": "public draft snapshot verified by unauthenticated exact-byte readback",
       "sourceOfTruthRule": "Generated exact-byte immutable export of the DotNetMultisite authored ledger; no independent edits. Source revision provenance and capture boundaries are recorded in the companion source seed.",
       "supportingUrls": [

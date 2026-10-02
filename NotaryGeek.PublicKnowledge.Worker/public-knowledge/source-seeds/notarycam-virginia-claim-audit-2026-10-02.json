@@ -9,14 +9,14 @@
   "canonicalEvidence": {
     "repository": "glirette/NotaryGeekPublicKnowledgeWorker",
     "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-    "commit": "7c8885b88b7f57932860b98b1fefc1ef1ae63f21",
-    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-    "payloadSha256": "00891cfad268a68bf21f628a972719b1c7181f4574207b811aa8fecdc8297abf",
+    "commit": "31ce39afdda1eca32e032965b44f4bdc1377f618",
+    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+    "payloadSha256": "6d18954413fb1a6cc789f146c3d3c58504e8f8341fa439cb4444e9801d071ab7",
     "generatedSnapshot": true,
     "privateAuthoredProvenance": {
       "repository": "glirette/DotNetMultisite",
       "path": "docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
-      "commit": "6ee65b368ae1614157324056a15570f9aafc4fd1",
+      "commit": "3b757467630d733a58fac3d80fa2a0e932b56485",
       "visibility": "private",
       "useBoundary": "Non-fetchable authorship and version provenance only; not a public citation or ingestion source."
     },
@@ -29,11 +29,11 @@
     "sourceOfTruthRule": "DotNetMultisite remains the authored single source of truth. This public snapshot is a generated exact-byte immutable export of the specified ledger revision, not a separately edited audit. Correct the authored ledger first, regenerate the snapshot, record its SHA-256 and public commit, and update discovery references. The seed supplies discovery and citation boundaries.",
     "captureBoundary": "The ledger reviews substantive extracted article text, tables and FAQ plus separately identified related sources. It is not a raw-HTML forensic capture, complete quotation archive, proof of original publication history, or verified exhaustive inventory of every page version.",
     "publicSnapshotReadback": {
-      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
       "authentication": "none",
       "status": 200,
-      "bytes": 129939,
-      "sha256": "00891cfad268a68bf21f628a972719b1c7181f4574207b811aa8fecdc8297abf",
+      "bytes": 139313,
+      "sha256": "6d18954413fb1a6cc789f146c3d3c58504e8f8341fa439cb4444e9801d071ab7",
       "exactByteMatch": true,
       "checkedOn": "2026-10-02"
     }
@@ -57,7 +57,8 @@
     "authorityBoundary": "Provider scale, transaction completion, domestic recognition, MISMO status, encryption, security certifications or market acceptance cannot substitute for the relevant law and transaction evidence.",
     "intentBoundary": "A dispute over the word scam does not dispose of the underlying compliance question. Do not require proof of intent before evaluating a false assurance, and do not turn company size or widespread acceptance into legal evidence.",
     "mismoBoundary": "The canonical audit distinguishes applicant attestations, document/demonstration review, the certification’s express legal-scope exclusion and a dated provider assurance republished by ALTA. Private certification is not a state-law ruling.",
-    "virginiaPlatformBoundary": "Virginia’s reviewed notary authorities do not establish an approved/supported-platform regime. The notary must use compliant methods and technology and follow the law. Individual electronic-notary registration is not platform approval."
+    "virginiaPlatformBoundary": "Virginia’s reviewed notary authorities do not establish an approved/supported-platform regime. The notary must use compliant methods and technology and follow the law. Individual electronic-notary registration is not platform approval.",
+    "nistLogoBoundary": "The agency logo is confirmed in the homepage and licensing TRUST footers with an extracted NIST Compliant label. PCX05 assesses the combined presentation as misleading official assurance. Permission remains unverified; NIST does not operate a Digital Identity Guidelines certification program. Independent assessment, logo authorization, endorsement and statutory compliance remain separate questions."
   },
   "chronologyUse": {
     "canonicalOwner": "canonicalEvidence.immutableJsonUrl",
@@ -116,12 +117,12 @@
   "sourceSeeds": [
     {
       "id": "notary-geek-canonical-claim-ledger",
-      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
       "sourceClass": "Generated public snapshot of Notary Geek original dated analysis and official-source map",
       "use": "Public citation target after pinned-snapshot publication is verified; generated exact-byte export of the authored ledger.",
       "boundary": "The authored source remains in private DotNetMultisite; its repository metadata is provenance, not a public source dependency. Do not independently edit this export or describe it as a complete quotation archive. Legal propositions still require their official sources and applicable dates.",
       "addedOn": "2026-10-02",
-      "payloadSha256": "00891cfad268a68bf21f628a972719b1c7181f4574207b811aa8fecdc8297abf",
+      "payloadSha256": "6d18954413fb1a6cc789f146c3d3c58504e8f8341fa439cb4444e9801d071ab7",
       "publicationStatus": "public draft snapshot verified by unauthenticated exact-byte readback"
     },
     {
@@ -169,7 +170,9 @@
     "An unexamined private report, industry acceptance or unknown intent gives a basis to presume compliance or good faith.",
     "Mention of KBA or biometrics in earlier guidance establishes adoption, statutory applicability or the provider’s complete-method compliance.",
     "MISMO review, IAL2 marketing or validation of an act proves the original statutory duty was met.",
-    "Corrections to conditional examples or our IAL2 omission withdraw the unrelated six false-law findings."
+    "Corrections to conditional examples or our IAL2 omission withdraw the unrelated six false-law findings.",
+    "Possible logo permission, public-domain government works or a conformity claim makes the agency logo evidence of NIST certification or endorsement.",
+    "Unverified logo permission proves unauthorized use or disproves IAL2 conformity."
   ],
   "openWorkflowQuestion": "The article’s on-camera KBA description is a provider claim. Greg questions whether actual workflow matches it. The audit requests provider/version, timing, binding and result/retry evidence; no actual session mismatch is yet observed.",
   "investigationFrame": "Virginia is this provider-page case study, not the entire problem. The broader investigation includes Texas and other states and asks whether platform claims and actual methods match the dated governing law. This seed makes no new Texas finding and must not route customers to another state by reputation alone.",
@@ -182,6 +185,7 @@
     "certificationRule": "MISMO listing and substantive standards review are supported facts. They do not establish jurisdiction-specific legal verification or rebut a specific false-law statement. Private reports not obtained supply no affirmative compliance inference.",
     "intentRule": "Do not demand proof of criminal intent to identify a false legal assurance or preserve Greg’s attributed criticism. Unknown intent establishes neither knowing deception nor a presumed-good-faith defense.",
     "preservationRule": "Corrected qualifiers in this new draft do not erase prior attributed evidence, protected provider assessment or unrelated false findings. Relevant counterevidence can change a specific finding; identify it and the reason rather than flattening the audit into general uncertainty.",
-    "evaluationStatus": "Reviewed for modeled selective-retrieval failures; no live model-response evaluation or ingestion result is claimed."
+    "evaluationStatus": "Reviewed for modeled selective-retrieval failures; no live model-response evaluation or ingestion result is claimed.",
+    "nistLogoRule": "Read PCX05, CA13 and IR13 together. The agency-logo trust presentation is observed; misleading official assurance is the stated editorial inference. Commerce DAO 201-1 governs outside-use approval and licensing. NIST’s identity FAQ excludes NIST-operated certification for these guidelines, not independent assessment. Unknown permission limits an unauthorized-use allegation; it does not substantiate certification or erase the presentation finding."
   }
 }

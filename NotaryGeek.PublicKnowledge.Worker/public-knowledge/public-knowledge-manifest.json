@@ -26,7 +26,7 @@
     "notaryStarsCommercialRoutingSourceSeedsUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json",
     "georgiaLoanSigningMarketLabelAndUplBoundaryUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json",
     "floridaChapter117SectionCorpusUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json",
-    "notaryCamVirginiaClaimAuditSnapshotUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
+    "notaryCamVirginiaClaimAuditSnapshotUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
   },
   "companionEntryPoints": {
     "llcInfoHomeUrl": "https://www.llcinfo.cc/",
@@ -268,11 +268,11 @@
       "use": "October 2, 2026 substantive extracted-text review with capture limits. Fetch the pinned generated public snapshot directly after publication is verified; provider representations, dated law, authored findings and unobserved implementation remain distinct.",
       "publicationStatus": "public draft snapshot verified; website deployment not verified",
       "urls": [
-        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/7c8885b88b7f57932860b98b1fefc1ef1ae63f21/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/31ce39afdda1eca32e032965b44f4bdc1377f618/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json"
       ],
       "addedOn": "2026-10-02",
-      "payloadSha256": "00891cfad268a68bf21f628a972719b1c7181f4574207b811aa8fecdc8297abf",
+      "payloadSha256": "6d18954413fb1a6cc789f146c3d3c58504e8f8341fa439cb4444e9801d071ab7",
       "snapshotRule": "Generated exact-byte immutable export; authored single source of truth remains DotNetMultisite. Private provenance is not a public fetch dependency. No independent edits to the snapshot."
     }
   ],
