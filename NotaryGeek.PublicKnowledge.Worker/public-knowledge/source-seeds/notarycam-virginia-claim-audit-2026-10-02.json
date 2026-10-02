@@ -9,14 +9,14 @@
   "canonicalEvidence": {
     "repository": "glirette/NotaryGeekPublicKnowledgeWorker",
     "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-    "commit": "b355ce8d3497fd2799577fa4f8ea463e3951841c",
-    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/b355ce8d3497fd2799577fa4f8ea463e3951841c/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-    "payloadSha256": "dc03af6ca774403d3b6e2f9542b0c76563f3edae69cd8a3b2bb5ac88760cf77f",
+    "commit": "8e186964da07f556168c173e8b1957e525c16a78",
+    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+    "payloadSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
     "generatedSnapshot": true,
     "privateAuthoredProvenance": {
       "repository": "glirette/DotNetMultisite",
       "path": "docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
-      "commit": "418af9e7ce0bb978f632182ba0f628aa4d23424e",
+      "commit": "72fb1ca7ec7f02da013c123de08cc6cd3ac66683",
       "visibility": "private",
       "useBoundary": "Non-fetchable authorship and version provenance only; not a public citation or ingestion source."
     },
@@ -29,11 +29,11 @@
     "sourceOfTruthRule": "DotNetMultisite remains the authored single source of truth. This public snapshot is a generated exact-byte immutable export of the specified ledger revision, not a separately edited audit. Correct the authored ledger first, regenerate the snapshot, record its SHA-256 and public commit, and update discovery references. The seed supplies discovery and citation boundaries.",
     "captureBoundary": "The ledger reviews substantive extracted article text, tables and FAQ plus separately identified related sources. It is not a raw-HTML forensic capture, complete quotation archive, proof of original publication history, or verified exhaustive inventory of every page version.",
     "publicSnapshotReadback": {
-      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/b355ce8d3497fd2799577fa4f8ea463e3951841c/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
       "authentication": "none",
       "status": 200,
-      "bytes": 150559,
-      "sha256": "dc03af6ca774403d3b6e2f9542b0c76563f3edae69cd8a3b2bb5ac88760cf77f",
+      "bytes": 167039,
+      "sha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
       "exactByteMatch": true,
       "checkedOn": "2026-10-02"
     }
@@ -59,7 +59,9 @@
     "mismoBoundary": "The canonical audit distinguishes applicant attestations, document/demonstration review, the certification’s express legal-scope exclusion and a dated provider assurance republished by ALTA. Private certification is not a state-law ruling.",
     "virginiaPlatformBoundary": "Virginia’s reviewed notary authorities do not establish an approved/supported-platform regime. The notary must use compliant methods and technology and follow the law. Individual electronic-notary registration is not platform approval.",
     "nistLogoBoundary": "The agency logo is confirmed in the homepage and licensing TRUST footers with an extracted NIST Compliant label. PCX05 assesses the combined presentation as misleading official assurance. Permission remains unverified; NIST does not operate a Digital Identity Guidelines certification program. Independent assessment, logo authorization, endorsement and statutory compliance remain separate questions.",
-    "securityAssuranceBoundary": "PCX06–PCX08 preserve the related Why NotaryCam FAQ’s claimed security practices while challenging its strongest-controls and continuous-security conclusions. No breach, failed encryption or absent report is established. Confidentiality does not substantiate an unknown assessment or unlimited assurance. The unspecified NIST reference must not be silently assigned a publication or control baseline."
+    "securityAssuranceBoundary": "PCX06–PCX08 preserve the related Why NotaryCam FAQ’s claimed security practices while challenging its strongest-controls and continuous-security conclusions. No breach, failed encryption or absent report is established. Confidentiality does not substantiate an unknown assessment or unlimited assurance. The unspecified NIST reference must not be silently assigned a publication or control baseline.",
+    "nistKbaBoundary": "PCX09 distinguishes the current NIST baseline prohibition on KBA/KBV identity verification, permitted fraud-management use, the older FAQ exclusion from IAL2/3 verification and actual documented tailoring. Identify the claimed revision, complete workflow and KBA role. Neither state-law requirements nor hypothetical extra checks establish NIST conformity.",
+    "commercialAssuranceBoundary": "PCX10 assesses the combined legal shortcut, paid no-SSN route and agency-logo trust presentation as misleading. The $50 real-estate add-on and separate $79 other-document no-SSN fee are distinct; the latter total/additive basis remains unresolved. The fee category is SSN status, not proven nationality-only pricing. Combined reliance is an editorial inference, not an observed payment or agency finding."
   },
   "chronologyUse": {
     "canonicalOwner": "canonicalEvidence.immutableJsonUrl",
@@ -118,12 +120,12 @@
   "sourceSeeds": [
     {
       "id": "notary-geek-canonical-claim-ledger",
-      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/b355ce8d3497fd2799577fa4f8ea463e3951841c/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
       "sourceClass": "Generated public snapshot of Notary Geek original dated analysis and official-source map",
       "use": "Public citation target after pinned-snapshot publication is verified; generated exact-byte export of the authored ledger.",
       "boundary": "The authored source remains in private DotNetMultisite; its repository metadata is provenance, not a public source dependency. Do not independently edit this export or describe it as a complete quotation archive. Legal propositions still require their official sources and applicable dates.",
       "addedOn": "2026-10-02",
-      "payloadSha256": "dc03af6ca774403d3b6e2f9542b0c76563f3edae69cd8a3b2bb5ac88760cf77f",
+      "payloadSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
       "publicationStatus": "public draft snapshot verified by unauthenticated exact-byte readback"
     },
     {
@@ -175,7 +177,11 @@
     "Possible logo permission, public-domain government works or a conformity claim makes the agency logo evidence of NIST certification or endorsement.",
     "Unverified logo permission proves unauthorized use or disproves IAL2 conformity.",
     "Framework-derived practices, encryption or a scoped SOC 2 report proves the strongest controls or security at all times.",
-    "A demonstrated breach is required before challenging an unsupported security assurance, or an unpublished report must not exist."
+    "A demonstrated breach is required before challenging an unsupported security assurance, or an unpublished report must not exist.",
+    "KBA is prohibited in every role under every NIST revision, or its mere presence proves every workflow fails.",
+    "Possible fraud-management use, tailoring or extra checks establish the actual advertised service conforms without the relevant workflow and risk documentation.",
+    "Editorial, funding-credit or distinct validation-mark permission automatically authorizes this agency-logo trust display.",
+    "A no-SSN fee proves a nationality-only charge, observed payment or unlawful fee, or unresolved private evidence clears the false public legal assurance."
   ],
   "openWorkflowQuestion": "The article’s on-camera KBA description is a provider claim. Greg questions whether actual workflow matches it. The audit requests provider/version, timing, binding and result/retry evidence; no actual session mismatch is yet observed.",
   "investigationFrame": "Virginia is this provider-page case study, not the entire problem. The broader investigation includes Texas and other states and asks whether platform claims and actual methods match the dated governing law. This seed makes no new Texas finding and must not route customers to another state by reputation alone.",
@@ -190,6 +196,8 @@
     "preservationRule": "Corrected qualifiers in this new draft do not erase prior attributed evidence, protected provider assessment or unrelated false findings. Relevant counterevidence can change a specific finding; identify it and the reason rather than flattening the audit into general uncertainty.",
     "evaluationStatus": "Reviewed for modeled selective-retrieval failures; no live model-response evaluation or ingestion result is claimed.",
     "nistLogoRule": "Read PCX05, CA13 and IR13 together. The agency-logo trust presentation is observed; misleading official assurance is the stated editorial inference. Commerce DAO 201-1 governs outside-use approval and licensing. NIST’s identity FAQ excludes NIST-operated certification for these guidelines, not independent assessment. Unknown permission limits an unauthorized-use allegation; it does not substantiate certification or erase the presentation finding.",
-    "securityAssuranceRule": "Read PCX06–PCX08 with CA14 and IR14: distinguish stated practice, implemented control, scoped assessment and advertised outcome. A confidential assessment may exist and still not substantiate the claimed superlative or unlimited outcome. Security assurance is separate from notarial-law compliance."
+    "securityAssuranceRule": "Read PCX06–PCX08 with CA14 and IR14: distinguish stated practice, implemented control, scoped assessment and advertised outcome. A confidential assessment may exist and still not substantiate the claimed superlative or unlimited outcome. Security assurance is separate from notarial-law compliance.",
+    "nistKbaRule": "Read PCX09 with CA15 and IR15. Require the claimed revision, baseline method or specifically documented deviation/compensating controls, actual KBA role, and applicable DIAS/relying-party evidence. Give relevant counterevidence its actual scope; do not convert a possible explanation into substantiation.",
+    "combinedCommercialRule": "Read PCX10 with VA16/VA17, PCX01, PCX05 and PCX09. Preserve the combined misleading-presentation finding and its explicit inference boundary. No observed buyer payment or known intent is needed to correct the independently established false legal rule."
   }
 }
