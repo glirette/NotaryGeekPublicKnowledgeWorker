@@ -1,0 +1,389 @@
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using Azure.Core.Pipeline;
+using Azure.Storage.Blobs;
+using Azure.Storage.Queues;
+using Azure.Storage.Queues.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+using NotaryGeek.PublicKnowledge.Worker.Configuration;
+using NotaryGeek.PublicKnowledge.Worker.Functions;
+using NotaryGeek.PublicKnowledge.Worker.Models;
+using NotaryGeek.PublicKnowledge.Worker.Services;
+
+namespace NotaryGeek.PublicKnowledge.Worker.Tests.W08ModelChecking;
+
+// Extends W02's socket-free SDK fixture boundary. Attribution: Notary Geek /
+// GoodWare LLC / Greg Lirette; see docs/w02-sdk-recovery-evidence.md and NOTICE.
+// This subprocess contains no storage authority, reservation model, or recovery
+// algorithm. All HTTP operations, including provider effects, cross the parent
+// pipe before a response is available. The parent owns the durable authority.
+internal static class W08Worker
+{
+    internal static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web);
+    internal static readonly DateTime FixtureTime = new(2026, 9, 26, 12, 0, 0, DateTimeKind.Utc);
+    internal const int MaxLineCharacters = 4 * 1024 * 1024;
+    internal const int MaxBodyBytes = 2 * 1024 * 1024;
+
+    public static async Task<int> Main(string[] args)
+    {
+        // A scheduler cannot accidentally leave a worker alive indefinitely.
+        using var lifetime = new CancellationTokenSource(TimeSpan.FromSeconds(120));
+        try
+        {
+            if (args.Length != 0) throw new InvalidOperationException("Configuration is one JSON stdin line; no command-line options.");
+            RequireNoAmbientCredentials();
+            var line = await ReadLineAsync(lifetime.Token);
+            var input = JsonSerializer.Deserialize<WorkerInput>(line, Json)
+                ?? throw new InvalidOperationException("Missing worker configuration.");
+            var cases = input.Cases ?? [FixtureCase()];
+            ValidateCases(cases);
+            var message = input.Message ?? MakeMessage(input, cases);
+            ValidateMessage(message);
+            var caseId = input.CaseId ?? message.CaseId ?? message.CaseIds[0];
+            // Orchestration must see missing/case-variant identities itself;
+            // fixture-side lookup must not preempt production validation.
+            var selectedCase = cases.SingleOrDefault(item => item.Id == caseId)
+                ?? (input.Operation is "run" or "running" or "read" ? cases[0] :
+                    throw new InvalidOperationException("The selected case is absent from the synthetic case matrix."));
+            var fixtureResult = input.Result ?? FixtureResult(message, selectedCase);
+            if (input.Operation == "describe")
+            {
+                EmitResult(true, new
+                {
+                    message, cases, syntheticResult = fixtureResult, providerResponse = ProviderResponse(),
+                    names = new
+                    {
+                        job = $"runs/jobs/{SafeSegment(message.JobId)}.json",
+                        execution = $"runs/executions/{Hash(message.JobId)}/{Hash(caseId)}.json",
+                        evidence = PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId),
+                        latest = $"runs/latest/{SafeSegment(caseId)}.json",
+                        index = "runs/latest-index.json", digest = "runs/latest-needs-greg.json"
+                    }
+                });
+                return 0;
+            }
+
+            using var fixture = new PipeFixture(cases, input.FixtureDirectory, lifetime);
+            var storage = fixture.Storage;
+            object? result;
+            switch (input.Operation)
+            {
+                case "create":
+                    result = await storage.CreateQueuedRunAsync(message, lifetime.Token); break;
+                case "run":
+                    await fixture.Worker.ProcessQueuedBatch(message, lifetime.Token);
+                    result = new { completed = true }; break;
+                case "read":
+                    result = await storage.ReadQueuedRunAsync(message.JobId, lifetime.Token); break;
+                case "running":
+                    result = await storage.MarkQueuedRunRunningAsync(message, lifetime.Token); break;
+                case "submitted":
+                    result = await storage.MarkQueuedRunSubmittedAsync(message.JobId, lifetime.Token); break;
+                case "save":
+                    result = await storage.SaveAsync(fixtureResult, message.Trigger, message.Batch,
+                        message.SubmittedAtUtc, lifetime.Token,
+                        PublicKnowledgeRunStorageService.GetCaseExecutionId(message, caseId)); break;
+                case "admit":
+                    result = await storage.AdmitCaseAsync(message, selectedCase, lifetime.Token); break;
+                case "execution":
+                    result = await storage.ReadCaseExecutionAsync(message, selectedCase, lifetime.Token); break;
+                case "record-evidence":
+                    var admitted = input.Execution ?? await storage.ReadCaseExecutionAsync(message, selectedCase, lifetime.Token)
+                        ?? throw new InvalidOperationException("record-evidence requires an existing reservation.");
+                    result = await storage.RecordCaseEvidenceAsync(message, selectedCase, admitted,
+                        input.BlobName ?? PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId), lifetime.Token); break;
+                case "mark-publication":
+                    result = await storage.MarkCasePublicationAsync(message, selectedCase,
+                        input.Phase ?? throw new InvalidOperationException("Missing publication phase."), lifetime.Token); break;
+                case "complete":
+                    var receipts = input.Receipts ?? (input.Receipt is not null ? [input.Receipt] :
+                        throw new InvalidOperationException("complete requires receipts from a production save."));
+                    result = await storage.CompleteQueuedRunAsync(message, receipts, lifetime.Token); break;
+                case "published":
+                    result = await storage.MarkQueuedCasePublishedAsync(message, caseId, lifetime.Token); break;
+                case "promote":
+                    result = await fixture.Promotion.SaveValidatedCandidatesAsync(fixtureResult,
+                        PublicKnowledgeRunStorageService.GetCaseExecutionId(message, caseId), lifetime.Token); break;
+                case "index":
+                    result = await storage.SaveLatestIndexAsync(lifetime.Token); break;
+                case "digest":
+                    result = await storage.SaveNeedsGregReportAsync(lifetime.Token); break;
+                case "read-stored":
+                    result = await storage.ReadStoredRunAsync(input.BlobName ??
+                        PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, caseId), lifetime.Token); break;
+                case "latest":
+                    result = await storage.ReadLatestAsync(caseId, lifetime.Token); break;
+                default:
+                    throw new InvalidOperationException("Unknown synthetic worker operation.");
+            }
+            EmitResult(true, result);
+            return 0;
+        }
+        catch (Exception exception)
+        {
+            // Null loggers keep stdout a JSON-lines protocol. Do not print a stack,
+            // environment, or user-supplied credential value on either channel.
+            Console.Out.WriteLine(JsonSerializer.Serialize(new
+            {
+                kind = "result", ok = false, errorType = exception.GetType().Name,
+                error = exception.Message
+            }, Json));
+            Console.Out.Flush();
+            return 2;
+        }
+    }
+
+    internal static async Task<string> ReadLineAsync(CancellationToken cancellationToken)
+    {
+        var line = await Console.In.ReadLineAsync(cancellationToken)
+            ?? throw new EndOfStreamException("The synthetic authority pipe closed.");
+        if (line.Length > MaxLineCharacters) throw new InvalidOperationException("Synthetic IPC line limit exceeded.");
+        return line;
+    }
+
+    private static void EmitResult(bool ok, object? result)
+    {
+        Console.Out.WriteLine(JsonSerializer.Serialize(new { kind = "result", ok, result }, Json));
+        Console.Out.Flush();
+    }
+
+    private static PublicKnowledgeRegressionCase FixtureCase(string id = "case-a") =>
+        new(id, "public fixture", "storage contract", ["source checked"], [], ["https://source.invalid/document"]);
+
+    private static PublicKnowledgeQueuedRunMessage MakeMessage(WorkerInput input, PublicKnowledgeRegressionCase[] cases)
+    {
+        var batch = input.Batch ?? "DailySourceIngestion";
+        return new(input.JobId ?? "job-w08", batch, "queued-batch", true, cases.Select(item => item.Id).ToArray(),
+            input.SubmittedAtUtc ?? FixtureTime, cases.Length == 1 ? cases[0].Id : null,
+            RunKind: batch == "Core" ? "regression" : "authority-generation",
+            AuthorityLane: batch == "TechnicalSourceIngestion" ? "technical" : "notary",
+            CaseFingerprints: input.Legacy ? null : cases.ToDictionary(item => item.Id,
+                PublicKnowledgeRunStorageService.FingerprintCase));
+    }
+
+    private static PublicKnowledgeStructuredOutput StructuredOutput() =>
+        new("source checked", [], [], [], [], [], [], ["https://source.invalid/document"],
+            [new("synthetic-topic", "Public fixture", "source checked", FixtureTime, true,
+                [new("https://source.invalid/document", "Fixture", "Synthetic publisher", "official-agency-page", FixtureTime, "source checked")],
+                ["source checked"], ["no real-service conclusion"])]);
+
+    private static object ProviderResponse() => new
+    {
+        status = "completed", model = "synthetic-model", output_text = JsonSerializer.Serialize(StructuredOutput(), Json),
+        usage = new { input_tokens = 3, output_tokens = 4 }
+    };
+
+    private static PublicKnowledgeRunResult FixtureResult(PublicKnowledgeQueuedRunMessage message,
+        PublicKnowledgeRegressionCase regressionCase) =>
+        new(true, message.Execute, true, false, "completed", FixtureTime, regressionCase.Focus,
+            regressionCase.Id, regressionCase, 1, 10, 3, "synthetic-model",
+            [new("https://source.invalid/document", true, 200, "text/plain", 46, "synthetic source")],
+            JsonSerializer.Serialize(StructuredOutput(), Json), "completed", "{\"input_tokens\":3,\"output_tokens\":4}", [], [],
+            Provider: "openai", ProviderEvidence: new("openai", "dedicated_public_source_key", "synthetic-model",
+                "completed", 1, 3, 4, 0, null, "synthetic-model"), StructuredOutput: StructuredOutput(),
+            RunKind: message.RunKind, AuthorityLane: message.AuthorityLane);
+
+    private static void ValidateCases(PublicKnowledgeRegressionCase[] cases)
+    {
+        if (cases.Length is < 1 or > 8 || cases.Select(item => item.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() != cases.Length)
+            throw new InvalidOperationException("Synthetic fixture requires one to eight distinct cases.");
+        foreach (var item in cases)
+            if (!IsIdentifier(item.Id) || item.SourceUrls.Count != 1 || item.SourceUrls[0] != "https://source.invalid/document")
+                throw new InvalidOperationException("Only generated synthetic case identities and source endpoints are accepted.");
+    }
+
+    private static void ValidateMessage(PublicKnowledgeQueuedRunMessage message)
+    {
+        if (!IsIdentifier(message.JobId) || message.CaseIds is null || message.CaseIds.Count is < 1 or > 8 ||
+            message.CaseIds.Any(id => !IsIdentifier(id)) ||
+            (message.CaseId is not null && !IsIdentifier(message.CaseId)) ||
+            message.Batch is not ("Core" or "DailySourceIngestion" or "TechnicalSourceIngestion") ||
+            message.ProviderOverride is not (null or "OpenAI" or "openai"))
+            throw new InvalidOperationException("Unsupported synthetic message configuration.");
+    }
+
+    private static bool IsIdentifier(string? value) => value is { Length: > 0 and <= 100 } &&
+        value.All(character => character is >= 'a' and <= 'z' or >= 'A' and <= 'Z' or >= '0' and <= '9' or '-' or '_');
+    private static string SafeSegment(string value) => value.Trim().ToLowerInvariant();
+    private static string Hash(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value))).ToLowerInvariant()[..32];
+
+    private static void RequireNoAmbientCredentials()
+    {
+        foreach (var name in new[]
+        {
+            "AZURE_CLIENT_ID", "AZURE_TENANT_ID", "AZURE_CLIENT_SECRET", "AZURE_CLIENT_CERTIFICATE_PATH",
+            "AZURE_FEDERATED_TOKEN_FILE", "MSI_ENDPOINT", "IDENTITY_ENDPOINT", "AZURE_STORAGE_CONNECTION_STRING",
+            "AZURE_STORAGE_KEY", "AZURE_STORAGE_SAS_TOKEN", "AzureWebJobsStorage", "PK_TEST_STORAGE_CONNECTION",
+            "OPENAI_API_KEY", "STRAICO_API_KEY"
+        })
+            if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable(name)))
+                throw new InvalidOperationException("Ambient credentials are forbidden in the W08 synthetic worker.");
+    }
+
+    private sealed record WorkerInput
+    {
+        public string Operation { get; init; } = "describe";
+        public PublicKnowledgeQueuedRunMessage? Message { get; init; }
+        public PublicKnowledgeRegressionCase[]? Cases { get; init; }
+        public string? JobId { get; init; }
+        public string? Batch { get; init; }
+        public string? CaseId { get; init; }
+        public DateTime? SubmittedAtUtc { get; init; }
+        public bool Legacy { get; init; }
+        public string? FixtureDirectory { get; init; }
+        public PublicKnowledgeRunResult? Result { get; init; }
+        public PublicKnowledgeRunStorageService.CaseExecution? Execution { get; init; }
+        public string? BlobName { get; init; }
+        public string? Phase { get; init; }
+        public PublicKnowledgeStoredRunReceipt? Receipt { get; init; }
+        public PublicKnowledgeStoredRunReceipt[]? Receipts { get; init; }
+    }
+
+    private sealed class PipeFixture : IDisposable
+    {
+        private readonly string _directory;
+        private readonly PipeHandler _handler;
+        private readonly HttpClient _client;
+        public PublicKnowledgeRunStorageService Storage { get; }
+        public PublicKnowledgePromotionService Promotion { get; }
+        public PublicKnowledgeResearchFunction Worker { get; }
+
+        public PipeFixture(PublicKnowledgeRegressionCase[] cases, string? fixtureDirectory, CancellationTokenSource lifetime)
+        {
+            _directory = fixtureDirectory ?? Path.Combine(Path.GetTempPath(), $"w08-worker-{Environment.ProcessId}-{Guid.NewGuid():N}");
+            if (Directory.Exists(_directory) || File.Exists(_directory))
+                throw new InvalidOperationException("Synthetic fixture directory must be new and disposable.");
+            Directory.CreateDirectory(_directory);
+            File.WriteAllText(Path.Combine(_directory, "matrix.json"), JsonSerializer.Serialize(new { cases }, Json));
+            File.WriteAllText(Path.Combine(_directory, "manifest.json"), "{\"sourceSets\":[]}");
+            var options = Options.Create(new PublicKnowledgeOptions
+            {
+                Enabled = true, LocalRegressionMatrixPath = Path.Combine(_directory, "matrix.json"),
+                LocalManifestPath = Path.Combine(_directory, "manifest.json"), AllowedSourceHosts = "source.invalid",
+                OutputContainerName = "fixture", PublicBaseUrl = "https://source.invalid", PublicCorpusManifestUrl = "",
+                SourceFreshnessDays = 36_500, SourceFetchConcurrency = 1
+            });
+            IConfiguration configuration = new ConfigurationBuilder().Build(); // No ambient configuration providers.
+            _handler = new PipeHandler(lifetime);
+            _client = new HttpClient(_handler, disposeHandler: false) { Timeout = TimeSpan.FromSeconds(110) };
+            var transport = new HttpClientTransport(_client);
+            var container = new BlobContainerClient(new Uri("https://storage.invalid/fixture"),
+                new BlobClientOptions { Transport = transport, Retry = { MaxRetries = 0 } });
+            var queue = new QueueClient(new Uri("https://queue.invalid/fixture"),
+                new QueueClientOptions { Transport = transport, Retry = { MaxRetries = 0 }, MessageEncoding = QueueMessageEncoding.Base64 });
+            Storage = new(configuration, options, NullLogger<PublicKnowledgeRunStorageService>.Instance, container);
+            Promotion = new(configuration, options, container);
+            var research = new PublicKnowledgeResearchService(new PipeFactory(_handler), options,
+                Options.Create(new OpenAiOptions
+                {
+                    BaseUrl = "https://provider.invalid", PublicSourceApiKey = "synthetic-only",
+                    Model = "synthetic-model", TimeoutSeconds = 110
+                }), Options.Create(new StraicoOptions()), NullLogger<PublicKnowledgeResearchService>.Instance);
+            Worker = new(research, Storage, new PublicKnowledgeQueueService(configuration, options, queue),
+                Promotion, options, NullLogger<PublicKnowledgeResearchFunction>.Instance);
+        }
+
+        public void Dispose()
+        {
+            _client.Dispose();
+            _handler.Dispose();
+            if (Directory.Exists(_directory)) Directory.Delete(_directory, recursive: true);
+        }
+    }
+
+    private sealed class PipeFactory(HttpMessageHandler handler) : IHttpClientFactory
+    {
+        public HttpClient CreateClient(string name) => new(handler, disposeHandler: false);
+    }
+
+    // HttpMessageHandler never opens a socket. Installed Azure SDK clients still
+    // serialize each request, parse each response, enforce conditional options,
+    // deserialize XML listings, and surface RequestFailedException themselves.
+    private sealed class PipeHandler(CancellationTokenSource lifetime) : HttpMessageHandler
+    {
+        private readonly SemaphoreSlim _serial = new(1, 1);
+        private int _nextId;
+
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            using var linked = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token, cancellationToken);
+            var token = linked.Token;
+            await _serial.WaitAsync(token);
+            try
+            {
+                var uri = request.RequestUri ?? throw new InvalidOperationException("Missing synthetic request URI.");
+                var kind = ValidateEndpoint(request, uri);
+                var body = request.Content is null ? [] : await request.Content.ReadAsByteArrayAsync(token);
+                if (body.Length > MaxBodyBytes) throw new InvalidOperationException("Synthetic HTTP request body limit exceeded.");
+                var headers = request.Headers.Concat(request.Content?.Headers ?? Enumerable.Empty<KeyValuePair<string, IEnumerable<string>>>())
+                    .Where(item => !item.Key.Equals("Authorization", StringComparison.OrdinalIgnoreCase))
+                    .ToDictionary(item => item.Key, item => string.Join(",", item.Value), StringComparer.OrdinalIgnoreCase);
+                var id = ++_nextId;
+                if (id > 1000) throw new InvalidOperationException("Synthetic HTTP request budget exhausted.");
+                Console.Out.WriteLine(JsonSerializer.Serialize(new
+                {
+                    id, kind, method = request.Method.Method, url = uri.AbsoluteUri, headers,
+                    body = Convert.ToBase64String(body)
+                }, Json));
+                Console.Out.Flush();
+                var line = await ReadLineAsync(token);
+                var reply = JsonSerializer.Deserialize<PipeReply>(line, Json)
+                    ?? throw new InvalidOperationException("Missing synthetic HTTP reply.");
+                if (reply.Id != id) throw new InvalidOperationException("Synthetic IPC reply identity mismatch.");
+                if (reply.Error == "cancel")
+                {
+                    lifetime.Cancel();
+                    token.ThrowIfCancellationRequested();
+                }
+                if (reply.Error is not null)
+                    throw new HttpRequestException("Synthetic authority reported a transport fault.");
+                if (reply.Status is < 100 or > 599) throw new InvalidOperationException("Invalid synthetic HTTP status.");
+                var responseBody = Convert.FromBase64String(reply.Body ?? "");
+                if (responseBody.Length > MaxBodyBytes) throw new InvalidOperationException("Synthetic HTTP reply body limit exceeded.");
+                var response = new HttpResponseMessage((HttpStatusCode)reply.Status)
+                {
+                    RequestMessage = request, Content = new ByteArrayContent(responseBody)
+                };
+                foreach (var (name, value) in reply.Headers ?? [])
+                    if (!response.Headers.TryAddWithoutValidation(name, value))
+                        response.Content.Headers.TryAddWithoutValidation(name, value);
+                return response;
+            }
+            finally { _serial.Release(); }
+        }
+
+        private static string ValidateEndpoint(HttpRequestMessage request, Uri uri)
+        {
+            if (!uri.IsAbsoluteUri || uri.Scheme != "https" || !uri.IsDefaultPort || uri.UserInfo.Length != 0 || uri.Fragment.Length != 0 ||
+                request.Headers.Contains("Proxy-Authorization") || request.Headers.Contains("Cookie"))
+                throw new InvalidOperationException("Synthetic transport rejects external endpoints and credentials.");
+            var queryKeys = uri.Query.TrimStart('?').Split('&', StringSplitOptions.RemoveEmptyEntries)
+                .Select(part => Uri.UnescapeDataString(part.Split('=', 2)[0]).ToLowerInvariant());
+            if (queryKeys.Any(key => key is "sig" or "sv" or "se" or "sp" or "spr" or "st" or "sip" or "srt" or "ss" or
+                "skoid" or "sktid" or "skt" or "ske" or "sks" or "skv"))
+                throw new InvalidOperationException("Synthetic transport rejects SAS credentials.");
+            if (uri.AbsoluteUri == "https://provider.invalid/v1/responses" && request.Method == HttpMethod.Post &&
+                request.Headers.Authorization?.Scheme == "Bearer" && request.Headers.Authorization.Parameter == "synthetic-only")
+                return "provider"; // Validated constant is omitted from parent IPC.
+            if (request.Headers.Contains("Authorization"))
+                throw new InvalidOperationException("Unexpected authorization in synthetic transport.");
+            if (uri.AbsoluteUri == "https://source.invalid/document" && request.Method == HttpMethod.Get) return "source";
+            if ((uri.AbsolutePath == "/fixture" || uri.AbsolutePath.StartsWith("/fixture/", StringComparison.Ordinal)) &&
+                uri.Host is "storage.invalid" or "queue.invalid")
+                return uri.Host == "storage.invalid" ? "storage" : "queue";
+            throw new InvalidOperationException("Unexpected synthetic HTTP endpoint.");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) _serial.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+
+    private sealed record PipeReply(int Id, int Status, Dictionary<string, string>? Headers, string? Body, string? Error);
+}

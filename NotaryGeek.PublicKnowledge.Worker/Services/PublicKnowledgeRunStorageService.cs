@@ -204,8 +204,8 @@ public sealed class PublicKnowledgeRunStorageService
         var queued = await ReadQueuedRunAsync(message.JobId, cancellationToken)
             ?? throw new InvalidOperationException("Queued job identity is missing.");
         ValidateQueuedIdentity(queued, message);
-        if (!queued.CaseIds.Contains(regressionCase.Id, StringComparer.OrdinalIgnoreCase) ||
-            !string.Equals(message.CaseId ?? regressionCase.Id, regressionCase.Id, StringComparison.OrdinalIgnoreCase))
+        if (!queued.CaseIds.Contains(regressionCase.Id, StringComparer.Ordinal) ||
+            !string.Equals(message.CaseId ?? regressionCase.Id, regressionCase.Id, StringComparison.Ordinal))
             throw new InvalidOperationException("Queued case is not part of the submitted job.");
         if (queued.CaseFingerprints is not null &&
             (!queued.CaseFingerprints.TryGetValue(regressionCase.Id, out var submittedFingerprint) ||
@@ -239,6 +239,9 @@ public sealed class PublicKnowledgeRunStorageService
         PublicKnowledgeQueuedRunMessage message, PublicKnowledgeRegressionCase regressionCase,
         CancellationToken cancellationToken)
     {
+        if (!message.CaseIds.Contains(regressionCase.Id, StringComparer.Ordinal) ||
+            !string.Equals(message.CaseId ?? regressionCase.Id, regressionCase.Id, StringComparison.Ordinal))
+            throw new InvalidOperationException("Queued case differs from the submitted identity.");
         var container = await GetContainerAsync(cancellationToken);
         try
         {
@@ -283,6 +286,9 @@ public sealed class PublicKnowledgeRunStorageService
              queued.CaseIds.Any(id => !queued.Receipts.Any(receipt =>
                  receipt.CaseId.Equals(id, StringComparison.OrdinalIgnoreCase)))))
             throw new InvalidOperationException("Malformed or contradictory queued job state.");
+        if (!string.IsNullOrWhiteSpace(message.CaseId) &&
+            !queued.CaseIds.Contains(message.CaseId, StringComparer.Ordinal))
+            throw new InvalidOperationException("Queued child is not part of the submitted job identity.");
         if (queued.JobId != message.JobId || queued.Batch != message.Batch || queued.Trigger != message.Trigger ||
             queued.Execute != message.Execute || queued.SubmittedAtUtc != message.SubmittedAtUtc ||
             !string.Equals(queued.ProviderOverride, message.ProviderOverride, StringComparison.Ordinal) ||

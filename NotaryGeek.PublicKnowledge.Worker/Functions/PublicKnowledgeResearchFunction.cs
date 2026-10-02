@@ -525,6 +525,10 @@ public sealed class PublicKnowledgeResearchFunction
         {
             var beforeRunning = await _storage.ReadQueuedRunAsync(message.JobId, cancellationToken);
             var queued = await _storage.MarkQueuedRunRunningAsync(message, cancellationToken);
+            // JSON object member order is not a work parameter. Use the durable
+            // envelope's ordering when hashing the existing execution identity.
+            // This also preserves fingerprints already recorded by older workers.
+            message = message with { CaseFingerprints = queued.CaseFingerprints };
 
             if (string.IsNullOrWhiteSpace(message.CaseId) && message.CaseIds.Count > 1)
             {
@@ -555,9 +559,12 @@ public sealed class PublicKnowledgeResearchFunction
                 !_service.TryGetRegressionCase(caseId, out var regressionCase) ||
                 regressionCase is null)
             {
-                await _storage.FailQueuedRunCaseAsync(message, $"No valid regression case was found for queued case '{caseId}'.", cancellationToken);
-                return;
+                // A stale catalog is not evidence that the admitted operation
+                // failed. Keep its reservation and any archived receipt intact.
+                throw new InvalidOperationException($"No valid regression case was found for queued case '{caseId}'.");
             }
+            if (!string.Equals(caseId, regressionCase.Id, StringComparison.Ordinal))
+                throw new InvalidOperationException("Queued case spelling differs from the submitted catalog identity.");
 
             // Envelopes created before durable reservations retain their terminal receipts.
             // Their original provider operations must never be inferred safe to repeat.

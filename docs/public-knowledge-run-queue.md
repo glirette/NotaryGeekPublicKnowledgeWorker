@@ -34,3 +34,12 @@ Legacy jobs with a completed receipt retain that result. Older `running` jobs wi
 New technical candidate evidence uses the neutral destination `technical-review` while retaining the `technical` authority lane. This changes its candidate ID and storage segment; earlier candidate blobs remain immutable and may coexist with a new candidate for the same public source. Reviewers should compare candidates before any separate promotion decision. Routing beyond this public review boundary remains outside this repository.
 
 Local executable SDK evidence and its limits: [W02 recovery evidence](w02-sdk-recovery-evidence.md).
+
+W08's concurrent-process observations require the exact submitted child/case
+spelling at the reservation boundary. A missing or changed catalog entry does not
+manufacture a new failed result or replace recorded evidence. Equivalent
+fingerprint-map member ordering is reconciled using the persisted job envelope's
+ordering. Existing reservation fingerprints are not migrated or rewritten.
+See [W08 bounded interleaving evidence](w08-interleaving-recovery-evidence.md) for
+the executable specification, actual-SDK pipe harness, minimized reproductions,
+fairness assumptions and explicit synthetic-consistency limits.
