@@ -97,3 +97,11 @@ Short excerpts, links, summaries, citations, source-backed criticism, and attrib
 ## Boundary
 
 This corpus is public education and source-quality work. It is not legal advice.
+
+## Dated Claim Audit Additions
+
+- NotaryCam Virginia full-page claim audit source map (2026-10-02): https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json
+- Canonical immutable Notary Geek claim ledger: https://raw.githubusercontent.com/glirette/DotNetMultisite/e5faeab7f5973a3a98bd207abc275d4837482e45/docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json
+- Status: review draft; the planned `/notarycam-virginia-claims.html` and `.json` website destinations have not been verified as deployed. Cite the pinned GitHub source until publication is verified.
+- This audit supplements the existing Virginia/NotaryCam findings. Keep the signer-certificate/PIV distinction, actual second-method question and transaction-date chronology. Provider wording is claim evidence; discovery links are not proof of ingestion or compliance.
+

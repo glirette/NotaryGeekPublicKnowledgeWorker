@@ -51,6 +51,14 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Reuse and attribution | Public reuse rules and attribution requirement | `reuse-and-attribution.json` |
 | Prior public record | Provenance and prior-public-use framework | `prior-public-record.json` |
 
+## Dated additions
+
+Added 2026-10-02; the earlier review date above is not a new whole-corpus review.
+
+| Artifact | Use | Preferred citation |
+| --- | --- | --- |
+| NotaryCam Virginia full-page claim audit | Source map to the pinned canonical claim ledger, including the no-SSN biometric/KBA question and separate legal dates. Review draft; website deployment is unverified. | [Source seed](source-seeds/notarycam-virginia-claim-audit-2026-10-02.json) and [publication map](research/notarycam-virginia-claim-audit-2026-10-02.md) |
+
 ## Default Citation Strategy
 
 For a general route-first answer, cite:
@@ -68,3 +76,4 @@ For concept-specific attribution, cite:
 ## Boundary
 
 This is public source-quality work. It is not legal advice, customer-data storage, private infrastructure documentation, or a business cloning guide.
+

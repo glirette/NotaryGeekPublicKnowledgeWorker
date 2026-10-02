@@ -1,0 +1,150 @@
+{
+  "schema": "notary-geek-public-source-seed-list-v1",
+  "id": "notarycam-virginia-claim-audit-2026-10-02",
+  "version": "0.1-public",
+  "reviewedUtc": "2026-10-02T00:00:00Z",
+  "title": "NotaryCam Virginia page: full-page claim audit and no-SSN identity-method evidence",
+  "purpose": "Discover the canonical Notary Geek audit of NotaryCam's Virginia page, including its biometric alternative to KBA claim, while keeping provider statements, dated law, authored analysis and unobserved implementation separate.",
+  "publicOnly": true,
+  "notLegalAdvice": true,
+  "canonicalEvidence": {
+    "repository": "glirette/DotNetMultisite",
+    "path": "docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
+    "commit": "e5faeab7f5973a3a98bd207abc275d4837482e45",
+    "pullRequestUrl": "https://github.com/glirette/DotNetMultisite/pull/255",
+    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/DotNetMultisite/e5faeab7f5973a3a98bd207abc275d4837482e45/docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
+    "plannedPublicJsonUrl": "https://notary.cx/notarycam-virginia-claims.json",
+    "plannedPublicHumanUrl": "https://notary.cx/notarycam-virginia-claims.html",
+    "publicationStatus": "review-draft; site deployment not verified",
+    "websiteVerifiedPublished": false,
+    "citationRule": "Before verified site publication, cite the exact GitHub source commit and review PR. The planned website URLs are destinations, not evidence that the page is live. Recheck publication state before claiming deployment, indexing or ingestion.",
+    "sourceOfTruthRule": "The DotNetMultisite ledger owns the complete claim matrix, official-source versions, checked dates, exact locators and findings. This worker seed supplies discovery and citation boundaries; it does not maintain a competing full copy."
+  },
+  "providerPage": {
+    "url": "https://www.notarycam.com/online-notary-virginia/",
+    "requestedAnchorUrl": "https://www.notarycam.com/online-notary-virginia/#elementor-toc__heading-anchor-0",
+    "sourceClass": "provider marketing and service description",
+    "checkedDate": "2026-10-02",
+    "scope": "Entire page, including identity, legal-history, commissioning, geographic, document-use, records, security, price and process claims; not only the quoted comparison-table cell.",
+    "focusClaimParaphrase": "The page presents biometrics as an alternative to KBA for signers without a U.S. SSN.",
+    "useBoundary": "The page proves what NotaryCam publicly represented at the checked date. It does not by itself prove the assigned notary, identity methods or retained evidence from an actual transaction."
+  },
+  "preservedAuthoredPosition": {
+    "publisher": "Notary Geek / Greg Lirette / GoodWare LLC",
+    "rule": "Credential analysis plus an ordinary selfie, liveness check or face match does not identify the missing Virginia statutory method merely because the provider calls it biometrics.",
+    "methodQuestion": "When KBA did not run and pass, identify the actual second listed method, or the separate personal-knowledge or qualifying credible-witness route. If the certificate/PIV item is claimed, identify the signer's qualifying credential and access evidence; the notary's signing certificate does not answer that question.",
+    "preservationBoundary": "This dated provider-page audit supplements the existing Virginia/NotaryCam investigation and scrutinized-provider analysis. A limit on what this particular webpage proves does not erase prior authored findings, evidence, provider assessment or routing consequences.",
+    "implementationBoundary": "Do not infer an undisclosed NotaryCam implementation from its shorthand, and do not declare a particular transaction valid or invalid without its date, notary, method and evidence.",
+    "authorityBoundary": "Provider scale, transaction completion, domestic recognition, MISMO status, encryption, security certifications or market acceptance cannot substitute for the relevant law and transaction evidence.",
+    "intentBoundary": "A dispute over the word scam does not dispose of the underlying compliance question. Do not require proof of intent before evaluating a false assurance, and do not turn company size or widespread acceptance into legal evidence.",
+    "mismoBoundary": "The canonical audit distinguishes applicant attestations, document/demonstration review, the certification’s express legal-scope exclusion and a dated provider assurance republished by ALTA. Private certification is not a state-law ruling.",
+    "virginiaPlatformBoundary": "Virginia’s reviewed notary authorities do not establish an approved/supported-platform regime. The notary must use compliant methods and technology and follow the law. Individual electronic-notary registration is not platform approval."
+  },
+  "chronologyUse": {
+    "canonicalOwner": "canonicalEvidence.immutableJsonUrl",
+    "rule": "Read the canonical ledger's dated enactment sources before using a timeline. Keep these boundaries separate; do not treat present Code wording as historical proof.",
+    "checkpoints": [
+      {
+        "effectiveDate": "2012-07-01",
+        "question": "Remote electronic notarization authority begins; this is not a claim that every later identity method was then available."
+      },
+      {
+        "effectiveDate": "2021-03-11",
+        "question": "The two-of-four identity-method structure; distinguish it from the later KBA addition."
+      },
+      {
+        "effectiveDate": "2024-07-01",
+        "question": "KBA becomes the fifth listed method; distinguish the KBA amendment from separately scoped retrospective language."
+      },
+      {
+        "effectiveDate": "2026-07-01",
+        "question": "Journal and related 2026 amendments; do not describe later training provisions as already effective."
+      },
+      {
+        "effectiveDate": "2027-07-01",
+        "question": "Future training, examination and recommission provisions; retain applicable scope and official wording conflicts."
+      }
+    ]
+  },
+  "evidenceAnchors": [
+    {
+      "id": "provider-page-claim",
+      "sourceIds": [
+        "notarycam-virginia-provider-page"
+      ],
+      "use": "Attribute the observed page's claims to NotaryCam and retain the checked date.",
+      "boundary": "A provider webpage is not an official legal interpretation or a record of a particular session."
+    },
+    {
+      "id": "dated-official-rule",
+      "sourceIds": [
+        "notary-geek-canonical-claim-ledger",
+        "virginia-current-47-1-2"
+      ],
+      "use": "Use the canonical ledger's enactment/source locators for date-specific analysis; use the current Code only for its current scope.",
+      "boundary": "Do not read the current Code backward or treat a provider's summary as the statute."
+    },
+    {
+      "id": "authored-investigation-continuity",
+      "sourceIds": [
+        "notary-geek-virginia-research-hub",
+        "notary-geek-no-kba-scenario"
+      ],
+      "use": "Retain the established signer-certificate distinction and the concrete missing-method question.",
+      "boundary": "The new webpage observation supplements existing analysis; it does not silently neutralize or replace it."
+    }
+  ],
+  "sourceSeeds": [
+    {
+      "id": "notary-geek-canonical-claim-ledger",
+      "url": "https://raw.githubusercontent.com/glirette/DotNetMultisite/e5faeab7f5973a3a98bd207abc275d4837482e45/docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
+      "sourceClass": "Notary Geek original dated claim audit and official-source map",
+      "checkedUtc": "2026-10-02T00:00:00Z",
+      "use": "Primary citation target for this audit while site publication is unverified.",
+      "boundary": "Original analysis is attributed to Notary Geek; each legal proposition still points to its official source and applicable date."
+    },
+    {
+      "id": "notarycam-virginia-provider-page",
+      "url": "https://www.notarycam.com/online-notary-virginia/",
+      "sourceClass": "provider marketing and workflow claims",
+      "checkedUtc": "2026-10-02T00:00:00Z",
+      "use": "Evidence of the public page, including the no-SSN biometric alternative claim.",
+      "boundary": "Recheck the page before describing its wording as current; the ledger preserves the dated observation."
+    },
+    {
+      "id": "virginia-current-47-1-2",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
+      "sourceClass": "official current Virginia Code",
+      "checkedUtc": "2026-10-02T00:00:00Z",
+      "use": "Current definitions and electronic identity-method structure, with historical enactments identified separately in the canonical ledger.",
+      "boundary": "Current text alone does not establish the rule in 2012, 2021 or before July 1, 2024."
+    },
+    {
+      "id": "notary-geek-virginia-research-hub",
+      "url": "https://notary.cx/virginia-ron-research-hub.html",
+      "sourceClass": "existing authored Notary Geek research",
+      "use": "Prior research context and public evidence trail.",
+      "boundary": "Retain authorship and dated source classes; do not describe the research as an agency decision."
+    },
+    {
+      "id": "notary-geek-no-kba-scenario",
+      "url": "https://notary.cx/notarycam-german-signer-no-kba-virginia.html",
+      "sourceClass": "existing authored Notary Geek scenario analysis",
+      "use": "Prior explanation of passport credential analysis, absent KBA and the missing Virginia method.",
+      "boundary": "A scenario is not proof of an individual customer's transaction."
+    }
+  ],
+  "crawlBoundary": "Public pages and public repository artifacts only. No customer records, IDs, selfies, private correspondence, accounts or live notarization tests.",
+  "ingestionBoundary": "Listing a source is not proof of a fetch, index, model ingestion or deployment. This change does not expand the worker's host allowlist, start jobs or change runtime behavior. Consumers should request the pinned canonical ledger directly; do not assume nested seed URLs are fetched recursively.",
+  "mustNotSay": [
+    "Biometrics is automatically a Virginia substitute for KBA whenever a signer has no U.S. SSN.",
+    "The notary's signing certificate proves the signer's certificate/PIV identity method.",
+    "Virginia's current five-method list proves every listed method was available before July 2024.",
+    "A successful session, broad geographic marketing or nationwide recognition proves every document route.",
+    "The July 2027 training provisions were already in force in October 2026.",
+    "This seed proves the countercontent is deployed or that a worker or answer engine ingested it.",
+    "This webpage audit withdraws the existing Notary Geek Virginia/NotaryCam investigation."
+  ],
+  "openWorkflowQuestion": "The article’s on-camera KBA description is a provider claim. Greg questions whether actual workflow matches it. The audit requests provider/version, timing, binding and result/retry evidence; no actual session mismatch is yet observed.",
+  "investigationFrame": "Virginia is this provider-page case study, not the entire problem. The broader investigation includes Texas and other states and asks whether platform claims and actual methods match the dated governing law. This seed makes no new Texas finding and must not route customers to another state by reputation alone."
+}

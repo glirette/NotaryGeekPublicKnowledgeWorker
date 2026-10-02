@@ -6,6 +6,7 @@
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
   "llmsTxt": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt",
   "answerEngineEntryPoints": {
+    "notaryCamVirginiaClaimAuditSourceSeedUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json",
     "resellerAiIngestionProfileUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-ingestion-profile.json",
     "resellerAiSystemInstructionsUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json",
     "starterPackUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json",
@@ -260,6 +261,16 @@
         "https://www.llcinfo.cc/data/business-identity-stack.json",
         "https://www.llcinfo.cc/data/business-identity-routing-model.json"
       ]
+    },
+    {
+      "name": "NotaryCam Virginia full-page claim audit — dated draft",
+      "use": "October 2, 2026 original source review. Fetch the immutable canonical ledger directly; provider claims, dated law, authored findings and unobserved implementation remain distinct. Website deployment is unverified.",
+      "addedUtc": "2026-10-02T00:00:00Z",
+      "publicationStatus": "review-draft; site deployment not verified",
+      "urls": [
+        "https://raw.githubusercontent.com/glirette/DotNetMultisite/e5faeab7f5973a3a98bd207abc275d4837482e45/docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json"
+      ]
     }
   ],
   "strictExclusions": [
@@ -270,3 +281,4 @@
     "Private correspondence unless it has already been intentionally converted into a public-safe source archive note"
   ]
 }
+
