@@ -189,7 +189,31 @@ dotnet build NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08InProce
 dotnet exec NotaryGeek.PublicKnowledge.Worker.Tests/bin/W08InProcessTests/Debug/net10.0/W08InProcessTests.dll
 ```
 
-Final commands and review are recorded in the PR checkpoint and evidence summaries.
+Final stable-source results are recorded in
+[`run-summary.json`](../NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/evidence/run-summary.json).
+All seven production execution groups report unchanged source during their runs.
+
+| Check | Observed result |
+| --- | --- |
+| Production fault/interleaving matrix | 58 passed; 26 actual SIGKILL schedules |
+| Concrete prefix search | 12 passed; 55 duplicate prefixes pruned; 608 locally nonconflicting choices not branched; 166 prefixes remain, truncated |
+| Extended causal schedules | 18 passed; 4 actual SIGKILL schedules |
+| Repaired production regressions | 4 passed; all 4 original-source failures reproduced and operation-minimized |
+| Source-bound replay | 1 core and 1 extended schedule passed |
+| Python primitive/model/runner checks | 31 passed, plus 9 adapter checks; 21 generated illegal histories rejected |
+| Solution build | Passed; one existing nullable warning |
+| Final standard solution test | VSTest aborted before tests: local communication socket denied |
+| Direct invocation of unchanged test cases | 131 passed, 0 failed, 5 original Azurite skips |
+
+[`model-summary.json`](../NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/evidence/model-summary.json)
+records the abstract exploration and negative controls.
+[`counterexamples.json`](../NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/evidence/counterexamples.json)
+records the four minimized original-source failures.
+[`production-traces.json.gz`](../NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/evidence/production-traces.json.gz)
+contains the complete sanitized schedule artifacts grouped by execution suite;
+decompress with Python's standard `gzip` module or `gzip -dc`. Hashes and byte counts
+are in the run summary. These artifacts retain identities, ETags, phases, scheduled
+actions and commit/response boundaries without raw request/provider payloads.
 
 Important limits:
 
@@ -218,8 +242,15 @@ findings. It repaired cleanup on startup/EOF failures, source-bound replay parsi
 fractional timestamp comparison, malformed immutable overwrite detection and
 successful-receipt omission checks. A preliminary matrix was rerun after unrelated
 harness changes made its source binding unstable; that preliminary run is not the
-final stable-source evidence. The PR checkpoint names any separately executed
-reviewer and the exact reviewed head; test passes are not independent model reviews.
+final stable-source evidence. A separate read-only reviewer ran with selected
+`gpt-6-astra` / `ultra` settings and reviewed local source head
+`28e531a410999cdbcea81f6d31560b2108040af0`, tree
+`d58d4d26452f379e3d992582fb542731cb33b396`. The reviewer inspected specification,
+fixture, repairs and result bindings and reported no material reliability defect;
+it did not independently rerun tests. Selection settings are recorded, not an
+independent attestation of backend model identity. Final evidence/documentation
+additions follow that review. The PR checkpoint maps the reviewed local tree to
+its published equivalent when connector publication changes commit metadata.
 
 All workers are owned local subprocesses. Cleanup kills/waits outstanding process
 groups, continues past individual cleanup failures and removes disposable state.

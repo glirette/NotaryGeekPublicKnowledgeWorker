@@ -1,0 +1,268 @@
+{
+  "broken_conditional_primitive": {
+    "description": "faulty conditional reservation grants again when identity already reserved",
+    "detected": {
+      "code": "admission_unique",
+      "detail": "conditional reservation granted twice",
+      "index": 1
+    },
+    "minimization": "deterministic failure-code-preserving delta debugging; 1-minimal, not globally shortest",
+    "minimized_history": [
+      {
+        "case": "a",
+        "fingerprint": "fp",
+        "granted": true,
+        "job": "j0",
+        "op": "admit",
+        "submitted_at": 1,
+        "worker": "w0"
+      },
+      {
+        "case": "a",
+        "fingerprint": "fp",
+        "granted": true,
+        "job": "j0",
+        "op": "admit",
+        "submitted_at": 1,
+        "worker": "w1"
+      }
+    ],
+    "original_history": [
+      {
+        "case": "a",
+        "fingerprint": "fp",
+        "granted": true,
+        "job": "j0",
+        "op": "admit",
+        "submitted_at": 1,
+        "worker": "w0"
+      },
+      {
+        "case": "a",
+        "fingerprint": "fp",
+        "granted": true,
+        "job": "j0",
+        "op": "admit",
+        "submitted_at": 1,
+        "worker": "w1"
+      }
+    ],
+    "schedule": [
+      "deliver",
+      "reserve",
+      "deliver",
+      "reserve"
+    ],
+    "states": 17,
+    "transitions": 33
+  },
+  "claim_limit": "finite abstraction and configured bounds only; no universal proof, external exactly-once claim, or global pointer/view transaction",
+  "equivalence": "worker permutation plus previously visited complete abstract states; no job/case/evidence/order identities removed",
+  "fairness": "faults cease; storage operations terminate; pointers quiesce; every recorded-evidence case receives a fair replay suffix",
+  "kind": "bounded-independent-abstract-model-evidence",
+  "liveness_scope": "finite fault-free recovery witnesses for every enumerated durable recovery projection; unknown reservations without evidence excluded",
+  "negative_histories": {
+    "candidate-marker-without-candidate": {
+      "minimized_events": 1,
+      "original_events": 6,
+      "violation": "phase_backing"
+    },
+    "completed-before-publication": {
+      "minimized_events": 1,
+      "original_events": 9,
+      "violation": "premature_ack"
+    },
+    "cross-case-receipt": {
+      "minimized_events": 1,
+      "original_events": 9,
+      "violation": "receipt_evidence"
+    },
+    "cross-job-evidence": {
+      "minimized_events": 6,
+      "original_events": 16,
+      "violation": "archive_immutable"
+    },
+    "fingerprint-drift": {
+      "minimized_events": 1,
+      "original_events": 3,
+      "violation": "archive_bound"
+    },
+    "index-marker-without-view": {
+      "minimized_events": 1,
+      "original_events": 9,
+      "violation": "phase_backing"
+    },
+    "latest-submitted-time-regression": {
+      "minimized_events": 8,
+      "original_events": 17,
+      "violation": "latest_order"
+    },
+    "latest-tie-identity-regression": {
+      "minimized_events": 8,
+      "original_events": 17,
+      "violation": "latest_order"
+    },
+    "latest-time-spoof": {
+      "minimized_events": 1,
+      "original_events": 9,
+      "violation": "latest_identity"
+    },
+    "marker-without-evidence": {
+      "minimized_events": 1,
+      "original_events": 3,
+      "violation": "phase_backing"
+    },
+    "overwrite-immutable-evidence": {
+      "minimized_events": 4,
+      "original_events": 9,
+      "violation": "archive_immutable"
+    },
+    "phase-regressed": {
+      "minimized_events": 1,
+      "original_events": 9,
+      "violation": "phase_order"
+    },
+    "phase-skipped": {
+      "minimized_events": 1,
+      "original_events": 4,
+      "violation": "phase_order"
+    },
+    "provider-after-crash-without-fresh-authority": {
+      "minimized_events": 1,
+      "original_events": 3,
+      "violation": "provider_authorized"
+    },
+    "retry-after-provider-uncertainty": {
+      "minimized_events": 3,
+      "original_events": 5,
+      "violation": "provider_once"
+    },
+    "success-downgrade": {
+      "minimized_events": 6,
+      "original_events": 9,
+      "violation": "receipt_monotonic"
+    },
+    "success-retarget": {
+      "minimized_events": 6,
+      "original_events": 9,
+      "violation": "receipt_monotonic"
+    },
+    "unacknowledged-admission-used": {
+      "minimized_events": 1,
+      "original_events": 2,
+      "violation": "provider_authorized"
+    },
+    "unknown-durable-phase": {
+      "minimized_events": 1,
+      "original_events": 9,
+      "violation": "schema"
+    },
+    "view-drops-observed-evidence": {
+      "minimized_events": 1,
+      "original_events": 13,
+      "violation": "view_complete"
+    },
+    "view-omits-listed-case": {
+      "minimized_events": 1,
+      "original_events": 19,
+      "violation": "view_complete"
+    }
+  },
+  "oracle_tests": 13,
+  "scenarios": {
+    "duplicate-delivery-one-case": {
+      "bounds": {
+        "crashes": 1,
+        "deliveries": 3,
+        "depth": 60,
+        "states": 50000,
+        "workers": 2
+      },
+      "counterexample": null,
+      "depth_limited": 0,
+      "equivalent_pruned": 1459,
+      "frontier_remaining": 0,
+      "liveness_maximum_suffix_steps": 17,
+      "liveness_projections_checked": 11,
+      "maximum_depth": 34,
+      "schedule": null,
+      "states": 968,
+      "stutter_pruned": 0,
+      "terminal_states": 17,
+      "transitions": 2426,
+      "truncated": false,
+      "violation": null
+    },
+    "two-cases-same-job": {
+      "bounds": {
+        "crashes": 1,
+        "deliveries": 3,
+        "depth": 60,
+        "states": 50000,
+        "workers": 2
+      },
+      "counterexample": null,
+      "depth_limited": 0,
+      "equivalent_pruned": 38372,
+      "frontier_remaining": 0,
+      "liveness_maximum_suffix_steps": 36,
+      "liveness_projections_checked": 199,
+      "maximum_depth": 58,
+      "schedule": null,
+      "states": 26191,
+      "stutter_pruned": 0,
+      "terminal_states": 59,
+      "transitions": 64562,
+      "truncated": false,
+      "violation": null
+    },
+    "two-jobs-latest-evidence-tie-break": {
+      "bounds": {
+        "crashes": 1,
+        "deliveries": 3,
+        "depth": 60,
+        "states": 50000,
+        "workers": 2
+      },
+      "counterexample": null,
+      "depth_limited": 0,
+      "equivalent_pruned": 24310,
+      "frontier_remaining": 0,
+      "liveness_maximum_suffix_steps": 34,
+      "liveness_projections_checked": 179,
+      "maximum_depth": 53,
+      "schedule": null,
+      "states": 16693,
+      "stutter_pruned": 0,
+      "terminal_states": 54,
+      "transitions": 41002,
+      "truncated": false,
+      "violation": null
+    },
+    "two-jobs-latest-submitted-time": {
+      "bounds": {
+        "crashes": 1,
+        "deliveries": 3,
+        "depth": 60,
+        "states": 50000,
+        "workers": 2
+      },
+      "counterexample": null,
+      "depth_limited": 0,
+      "equivalent_pruned": 24310,
+      "frontier_remaining": 0,
+      "liveness_maximum_suffix_steps": 34,
+      "liveness_projections_checked": 179,
+      "maximum_depth": 53,
+      "schedule": null,
+      "states": 16693,
+      "stutter_pruned": 0,
+      "terminal_states": 54,
+      "transitions": 41002,
+      "truncated": false,
+      "violation": null
+    }
+  },
+  "schedule_count_scope": "transitions count explored schedule-prefix edges, not all unpruned execution permutations",
+  "schema_version": 1
+}
