@@ -67,8 +67,9 @@ public static class AllowedSourceRedirects
 
             try
             {
-                // Read the raw header so a malformed Location cannot be mistaken for no redirect.
-                if (!response.Headers.TryGetValues("Location", out var values) ||
+                // Avoid typed-header parsing: it can turn an all-whitespace Location into
+                // an escaped relative path before the emptiness check sees it.
+                if (!response.Headers.NonValidated.TryGetValues("Location", out var values) ||
                     values.Count() != 1 || string.IsNullOrWhiteSpace(values.Single()) ||
                     !Uri.TryCreate(current, values.Single(), out var target) ||
                     !TryValidate(target.AbsoluteUri, allowedSourceHosts, out _, out reason))

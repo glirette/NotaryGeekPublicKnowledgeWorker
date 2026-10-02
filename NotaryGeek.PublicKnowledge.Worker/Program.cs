@@ -16,10 +16,7 @@ var host = new HostBuilder()
         services.Configure<StraicoOptions>(context.Configuration.GetSection("Straico"));
 
         services.AddHttpClient();
-        services.AddHttpClient(nameof(PublicKnowledgeResearchService))
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
-        services.AddHttpClient(nameof(PublicKnowledgeSourceIndexService))
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
+        services.AddPublicKnowledgeSourceHttpClients();
         services.AddSingleton<PublicKnowledgeResearchService>();
         services.AddSingleton<PublicKnowledgeSourceIndexService>();
         services.AddSingleton<PublicKnowledgeRunStorageService>();

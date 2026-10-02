@@ -1,0 +1,45 @@
+{
+  "startingHead": "3bb29f7ef42b636f32e04bc2a487123ec62e78a2",
+  "redirect": {
+    "Start": "https://source.example/start",
+    "Steps": [
+      {
+        "Status": 301,
+        "Locations": [
+          "   "
+        ]
+      }
+    ]
+  },
+  "pairs": [
+    {
+      "signature": "second-case-distinct-source-dropped",
+      "urls": [
+        "https://source.example/L",
+        "https://source.example/l"
+      ]
+    },
+    {
+      "signature": "second-case-distinct-source-dropped",
+      "urls": [
+        "https://source.example/?E",
+        "https://source.example/?e"
+      ]
+    },
+    {
+      "signature": "second-command-reuses-first-source",
+      "urls": [
+        "https://source.example/L",
+        "https://source.example/l"
+      ]
+    },
+    {
+      "signature": "second-command-reuses-first-source",
+      "urls": [
+        "https://source.example/?E",
+        "https://source.example/?e"
+      ]
+    }
+  ],
+  "reducerLimits": "step-deletion and coupled/single-character deletion; not global shortest URI"
+}

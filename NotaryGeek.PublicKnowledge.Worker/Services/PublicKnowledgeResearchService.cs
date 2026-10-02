@@ -511,7 +511,7 @@ public sealed class PublicKnowledgeResearchService
         var first = commands[0].RequestedUrls;
         return commands.All(command =>
             command.RequestedUrls.Count == first.Count &&
-            command.RequestedUrls.SequenceEqual(first, StringComparer.OrdinalIgnoreCase));
+            command.RequestedUrls.SequenceEqual(first, StringComparer.Ordinal));
     }
 
     private HttpClient CreateFetchClient()
@@ -675,9 +675,21 @@ public sealed class PublicKnowledgeResearchService
         }
 
         return urls
-            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .DistinctBy(SourceFetchIdentity, StringComparer.Ordinal)
             .Take(_knowledgeOptions.MaxSourcesPerRun)
             .ToArray();
+    }
+
+    // Preserve case-sensitive resources while deduplicating equivalent authorities. Invalid
+    // fetch shapes retain their own spelling so they cannot shadow an admissible source.
+    private string SourceFetchIdentity(string url)
+    {
+        if (!AllowedSourceRedirects.TryValidate(url, _knowledgeOptions.AllowedSourceHosts, out _, out _))
+        {
+            return "unvalidated:" + url;
+        }
+
+        return "validated:" + NormalizeCitationUrl(url);
     }
 
     private async Task<(PublicKnowledgeSourceResult Result, SourceBody? Body)> FetchSourceAsync(
