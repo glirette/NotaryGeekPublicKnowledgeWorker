@@ -13,9 +13,10 @@
     "versionVerificationStatus": "incomplete: no full original-page snapshot"
   },
   "scope": "This is a case study within Notary Geek’s broader investigation of platform assurances, identity methods and industry reliance across states, including Texas. Virginia matters here because the reviewed page uses its history and asserted flexibility to sell confidence. The audit assesses substantive legal, historical, operational and comparative propositions in the article text, tables and FAQ available in the October 2 extraction. It separately marks related-source findings and historical interpretation. This is not proof of exhaustive coverage of a preserved page version. It does not claim Virginia is inherently the problem or that another state’s workflow is compliant by default. The broader inquiry requires a dated claim, controlling law and actual method evidence for each state.",
-  "assessment": "The article contains demonstrably false Virginia law summaries and unsupported compliance assurances. KBA was expressly added in July 2024. Platform operation, company size and private certification do not establish that a notarial act satisfies the law.",
+  "assessment": "The article contains demonstrably false Virginia law summaries and unsupported compliance assurances. KBA was expressly added in July 2024. Platform operation, company size and private certification do not establish that a notarial act satisfies the law. The related commercial presentation combines no-SSN charges and biometric assurances with NIST agency-logo trust signals; this audit addresses that combined reliance concern as well as each underlying representation.",
   "readerSummary": [
     "Six reviewed representations contradict the cited authorities: the statutory section range, traditional-notary location, current state training requirement, Secretary platform-compliance review inference, categorical CA/KBA rule and traditional-record requirement. Unresolved session details do not turn these documented contradictions into merely unverified allegations.",
+    "NotaryCam markets a Virginia biometric route to international signers without U.S. SSNs, advertises no-SSN charges, and displays the NIST agency logo as a trust signal. The combined message invites paid reliance on a misleading legal shortcut. The $50 real-estate add-on and $79 other-document no-SSN fee must remain distinct; neither the fee nor the badge establishes the actual lawful method or NIST conformity.",
     "Virginia is the case study, not the entire issue. The same evidence standard applies to Texas and every other state: identify the actual authority, transaction date, identity method and supporting record.",
     "Virginia’s identity law is date-sensitive: RON from July 2012, credential analysis and the two-of-four structure from March 2021, and the express KBA method from July 1, 2024.",
     "Current law permits personal knowledge, a qualifying credible witness, or at least two of five specified methods. Credential analysis plus KBA is one combination. No SSN-based exception makes an ordinary selfie comparison a substitute for the statutory requirements.",
@@ -26,7 +27,8 @@
     "NotaryCam’s MISMO listing is supported. MISMO’s stated certification scope excludes verification of compliance with a particular jurisdiction’s laws. Certification cannot supply the missing legal authority or session evidence.",
     "False assurances can mislead buyers regardless of whether the publisher understood the law. The correction does not depend on proving intent. Market age, revenue and a familiar brand do not cure an incorrect claim.",
     "The NIST agency logo is used as a compliance trust badge on the homepage and licensing page. Its presentation suggests official assurance that the image does not substantiate. Logo permission, conformity assessment, NIST endorsement and statutory compliance are separate questions; NIST does not operate a certification program for its Digital Identity Guidelines.",
-    "The related security FAQ turns practices derived from NIST/SOC 2 into a strongest-controls assurance and adds continuous-security promises. Those conclusions are unsupported by the stated measures. Preserve the underlying practices as provider claims; request scoped evidence and correct the overstatement without requiring a breach first."
+    "The related security FAQ turns practices derived from NIST/SOC 2 into a strongest-controls assurance and adds continuous-security promises. Those conclusions are unsupported by the stated measures. Preserve the underlying practices as provider claims; request scoped evidence and correct the overstatement without requiring a breach first.",
+    "NIST’s current identity-proofing baseline prohibits KBA/KBV for identity verification. Its permitted fraud-management role does not make KBA an IAL2 verification method. Revision 3’s FAQ already excluded KBV as satisfying IAL2/IAL3 verification. Request the actual qualifying method, revision, configuration and any documented tailoring; neither state-law KBA use nor a NIST logo resolves that question."
   ],
   "procurementStandard": {
     "title": "Company size and certification are not legal proof",
@@ -709,6 +711,69 @@
       "checkedOn": "2026-10-02",
       "locator": "July 18, 2022; printed pages 4 and 6; full PDF retrieved.",
       "notes": "AICPA testimony explains that mature security programs remain susceptible to breaches and describes Type 2 opinions in terms of a defined system, reasonable assurance, control effectiveness and tests. This is explanatory testimony, not legislation, a guarantee or an assessment of NotaryCam."
+    },
+    {
+      "id": "N-logo-project",
+      "title": "NIST documentary funding opportunity: project-specific logo attribution",
+      "url": "https://www.nist.gov/system/files/documents/public_affairs/20160707-NIST-Documentary-Film-FFO.pdf",
+      "type": "official historical project terms",
+      "checkedOn": "2026-10-02",
+      "locator": "2016 funding opportunity, section I.4, printed page 8; PDF retrieved.",
+      "notes": "Required the recipient to credit NIST as funding sponsor and use its logo in the completed documentary and copies, but excluded the logo from derivative works. Concrete historical permitted use, not a current general license or permission for NotaryCam."
+    },
+    {
+      "id": "N-logo-editorial",
+      "title": "NIST CeramicAM Feedstock image: editorial reuse terms",
+      "url": "https://www.nist.gov/image/ceramicam-feedstock-nist-logo",
+      "type": "official asset-specific reuse terms",
+      "checkedOn": "2026-10-02",
+      "locator": "Image page and licensing terms; direct page retrieved.",
+      "notes": "This particular image containing a NIST logo is offered for editorial articles mentioning NIST with credit; stock-art use requires permission. Asset-specific terms do not authorize a commercial compliance badge or resolve all conceivable editorial/logo uses."
+    },
+    {
+      "id": "N-cmvp-marks",
+      "title": "NIST CMVP: use of validation logos and phrases",
+      "url": "https://csrc.nist.gov/Projects/cryptographic-module-validation-program/use-of-fips-140-2-logo-and-phrases",
+      "type": "official program-specific mark rules",
+      "checkedOn": "2026-10-02",
+      "locator": "FIPS 140-3/140-2 mark rules; direct page retrieved.",
+      "notes": "Eligible validated modules or products incorporating them may use prescribed validation marks under program rules, with certificate identification and a logo request. Those marks do not imply product endorsement and are distinct from the generic NIST agency logo."
+    },
+    {
+      "id": "N-proofing4",
+      "title": "NIST SP 800-63A-4: identity proofing and enrollment",
+      "url": "https://pages.nist.gov/800-63-4/sp800-63a.html",
+      "type": "official current technical requirements",
+      "checkedOn": "2026-10-02",
+      "locator": "Final Revision 4, published July 2025; sections 2.5.1 and 3.2.1 items 15–16; direct text retrieved.",
+      "notes": "Current baseline prohibits KBA/KBV for identity verification. It expressly permits KBV in fraud management; fraud measures used as compensating controls require documented deviations and DIAS disclosure to relying parties before integration. Collecting attributes for identity resolution is distinct from KBV."
+    },
+    {
+      "id": "N-dirm4",
+      "title": "NIST SP 800-63-4: tailoring and Digital Identity Acceptance Statements",
+      "url": "https://pages.nist.gov/800-63-4/sp800-63.html",
+      "type": "official current technical requirements",
+      "checkedOn": "2026-10-02",
+      "locator": "Sections 2.3.1 and 3.4.2–3.4.4; direct text retrieved.",
+      "notes": "KBA is not an acceptable secret for digital authentication. Tailoring permits documented compensating controls with rationale, comparability, residual risk and relying-party communication/acceptance. Supplemental and compensating controls are not evidence of unmodified baseline conformity."
+    },
+    {
+      "id": "N-proofing3",
+      "title": "NIST SP 800-63A: Revision 3 identity-proofing requirements",
+      "url": "https://pages.nist.gov/800-63-3/sp800-63a.html",
+      "type": "official historical technical requirements",
+      "checkedOn": "2026-10-02",
+      "locator": "Sections 5.3.2 and 9.3, plus IAL2 verification requirements; direct text retrieved.",
+      "notes": "Revision 3 restricted KBV sources, required an alternative, excluded static/publicly obtainable answers and imposed question/attempt controls. Its usability guidance advised avoiding KBV. Read with the official FAQ: these limited provisions did not make KBV sufficient for IAL2/IAL3 verification."
+    },
+    {
+      "id": "N-proofing3-faq",
+      "title": "NIST Revision 3 Digital Identity Guidelines FAQ",
+      "url": "https://pages.nist.gov/800-63-FAQ/",
+      "type": "official historical technical clarification",
+      "checkedOn": "2026-10-02",
+      "locator": "Dated March 3, 2022; Q-A4 and Q-B07; direct page retrieved.",
+      "notes": "Q-A4 states that KBV cannot satisfy IAL2/IAL3 verification requirements, though it may supplement evidence verification in a risk-based evaluation. Q-B07 distinguishes prohibited KBA authenticators from restricted proofing KBV. This FAQ interprets Revision 3, not Revision 4."
     }
   ],
   "claims": [
@@ -1581,12 +1646,14 @@
       "section": "Provider capabilities and commercial assurances",
       "claim": "NIST badge",
       "classification": "unverified",
-      "correction": "The footer badge is generic, but NotaryCam’s software-licensing page separately names NIST IAL2. The claimed publication/revision, covered workflow/configuration and assessment/control mapping were not obtained. Neither a badge nor the named level establishes Virginia’s statutory identity route or government approval. The compliance assertion remains unverified, not disproved. Separate finding PCX05 records confirmed agency-logo use on the homepage and licensing page, its misleading official-assurance presentation and the unresolved authorization question.",
+      "correction": "The footer badge is generic, but NotaryCam’s software-licensing page separately names NIST IAL2. The claimed publication/revision, covered workflow/configuration and assessment/control mapping were not obtained. Neither a badge nor the named level establishes Virginia’s statutory identity route or government approval. The compliance assertion remains unverified, not disproved. Separate finding PCX05 records confirmed agency-logo use on the homepage and licensing page, its misleading official-assurance presentation and the unresolved authorization question. PCX09 adds the specific KBA/KBV restriction and requires reconciliation of the advertised IAL2 workflow with the applicable NIST revision.",
       "sourceIds": [
         "P-security",
         "P-licensing",
         "P-nist-logo",
-        "N-identity-faq"
+        "N-identity-faq",
+        "N-proofing4",
+        "N-proofing3-faq"
       ],
       "articleLocations": [
         "Page footer badge"
@@ -1983,19 +2050,22 @@
       "section": "Related provider disclosures",
       "claim": "NIST agency logo presented as a compliance trust badge",
       "classification": "misleading",
-      "correction": "NotaryCam’s homepage and licensing page place the NIST agency logo in a TRUST footer beside SOC 2 and MISMO badges, with the extracted image label NIST Compliant. Our assessment is that this combined presentation misleadingly suggests official assurance beyond a claim of conformity. Commerce DAO 201-1 requires outside-use approval and a written license, and specifically evaluates placement and proximity to other symbols for apparent improper endorsement. The NIST Digital Identity Group says it does not operate a certification program for these guidelines. Identify the authorization covering this display and separately the publication, revision, covered implementation and basis of any independent conformity assessment. A logo or IAL2 label establishes neither NIST certification nor notarial-law compliance.",
+      "correction": "NotaryCam’s homepage and licensing page place the NIST agency logo in a TRUST footer beside SOC 2 and MISMO badges, with the extracted image label NIST Compliant. Our assessment is that this combined presentation misleadingly suggests official assurance beyond a claim of conformity. Commerce DAO 201-1 requires outside-use approval and a written license, and specifically evaluates placement and proximity to other symbols for apparent improper endorsement. The NIST Digital Identity Group says it does not operate a certification program for these guidelines. Identify the authorization covering this display and separately the publication, revision, covered implementation and basis of any independent conformity assessment. A logo or IAL2 label establishes neither NIST certification nor notarial-law compliance. Permitted uses are specific: approved outside-use license terms may cover a defined NIST relationship or project attribution. A historical NIST documentary funding opportunity expressly required recipients to include logo credit but barred it on derivative works. Asset-specific editorial permissions and separate CMVP validation marks do not authorize this agency-logo trust display. Identify the authorization covering the exact use; following publications or using validated cryptography does not itself grant it.",
       "sourceIds": [
         "P-home",
         "P-licensing",
         "P-nist-logo",
         "G-commerce-symbols",
         "G-usa-logo",
-        "N-identity-faq"
+        "N-identity-faq",
+        "N-logo-project",
+        "N-logo-editorial",
+        "N-cmvp-marks"
       ],
       "articleLocations": [
         "Related homepage and software-licensing page: TRUST footer; not independently recaptured on the Virginia article in this supplement."
       ],
-      "evidenceBoundary": "Misleading is an editorial inference from the combined presentation, not a quotation claiming NotaryCam literally says NIST certified. The image itself contains no certification text. No logo license or agency decision about this display was obtained: unauthorized use is not established. That uncertainty does not establish authorization, endorsement or certification. Actual IAL2 conformity remains unverified, not disproved. Independent assessment is possible; other NIST programs have distinct validation marks. Extracted image labels and link resolution were verified, not raw DOM alt/title attributes.",
+      "evidenceBoundary": "Misleading is an editorial inference from the combined presentation, not a quotation claiming NotaryCam literally says NIST certified. The image itself contains no certification text. No logo license or agency decision about this display was obtained: unauthorized use is not established. That uncertainty does not establish authorization, endorsement or certification. Actual IAL2 conformity remains unverified, not disproved. Independent assessment is possible; other NIST programs have distinct validation marks. Extracted image labels and link resolution were verified, not raw DOM alt/title attributes. Commerce’s outside-use policy is not treated here as a court ruling that every conceivable unlicensed editorial depiction is unlawful. The historical project and specific editorial image are examples of scoped permission, not evidence of NotaryCam permission.",
       "findingScope": "supplemental"
     },
     {
@@ -2051,6 +2121,59 @@
       ],
       "evidenceBoundary": "A report may be confidential. Nonpublication does not establish absence or failure; it also supplies no affirmative evidence in this review for a favorable opinion, highest-controls ranking or continuous-security guarantee. No customer records, credentials, exploit details or sensitive penetration-test payloads are requested.",
       "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX09",
+      "section": "Related provider disclosures",
+      "claim": "KBA marketing requires reconciliation with NIST and IAL2 assurances",
+      "classification": "incomplete",
+      "correction": "Current NIST SP 800-63A-4 section 2.5.1 expressly prohibits both KBA and KBV for identity verification; this is a baseline requirement, not merely a recommendation. Section 3.2.1 permits KBV for fraud management, and documented tailoring is addressed separately. Even Revision 3’s official FAQ says KBV cannot satisfy IAL2/IAL3 verification requirements, despite limited supplemental use. NotaryCam’s KBA descriptions, separate IAL2 claim and broader NIST assurances therefore require a revision-specific workflow explanation: which method performs baseline identity verification, or what specifically documented deviation and compensating controls are used, what role KBA serves, and what exact configuration is assessed? Identify any compensating controls, risk rationale, residual risk and DIAS disclosure, relying-party review and risk-acceptance determination. State-law authorization or requirement for KBA does not establish NIST approval, and NIST conformance alone does not establish a state-law notarial method.",
+      "sourceIds": [
+        "P-article",
+        "P-terms",
+        "P-licensing",
+        "P-why",
+        "N-proofing4",
+        "N-dirm4",
+        "N-proofing3",
+        "N-proofing3-faq"
+      ],
+      "articleLocations": [
+        "Cross-source comparison: provider KBA descriptions, licensing IAL2 assurance and Why NotaryCam NIST-derived practices"
+      ],
+      "evidenceBoundary": "The published sources establish a specific conformity question, not that every NotaryCam workflow fails. Generic derived-from-NIST language is narrower than full identity-guideline conformance; the separate IAL2 claim makes the identity requirements directly relevant. Additional fraud checks and documented tailoring are real possibilities but have not been shown for this provider. Do not silently invent another verification method or DIAS. Revision 4 is not applied retroactively; Revision 3 permitted tightly bounded supplementary KBV. A normal video notarization is not automatically NIST’s technically defined supervised-remote proofing.",
+      "findingScope": "supplemental"
+    },
+    {
+      "id": "PCX10",
+      "section": "Related provider disclosures",
+      "claim": "NIST trust presentation alongside paid no-SSN biometric assurances",
+      "classification": "misleading",
+      "correction": "The commercial message must be assessed together: NotaryCam promotes a Virginia biometric alternative for international signers lacking a U.S. SSN, advertises no-SSN charges, and presents the NIST agency logo and IAL2 language as trust signals. Its categorical Virginia identity rule is false and the advertised SSN-based biometric shortcut is misleading: the statute creates no such exception, and an ordinary face match does not identify the complete authorized method. The purchase page lists a $50 no-SSN real-estate add-on and, separately, a $79 no-US-SSN fee in the other-document category. Our assessment is that combining the deficient legal assurance with agency-logo trust presentation invites buyers to rely on a paid route whose legal and technical basis has not been substantiated by that presentation. Identify the actual statutory method, NIST revision/configuration and logo authorization; correct the combined message rather than treating each badge, fee and assertion as unrelated.",
+      "sourceIds": [
+        "P-article",
+        "P-checkout",
+        "P-licensing",
+        "P-home",
+        "P-nist-logo",
+        "P-privacy",
+        "S01",
+        "G-commerce-symbols",
+        "N-proofing4",
+        "N-proofing3-faq"
+      ],
+      "articleLocations": [
+        "Cross-source commercial presentation: Virginia article, purchase-page fee categories, homepage and licensing trust footers"
+      ],
+      "evidenceBoundary": "The combined reliance concern is an editorial inference from identified public pages. No particular buyer’s reliance, payment or transaction outcome was observed. The fees are advertised by SSN status, not proven to be a nationality-only or foreign-location charge; the total or additive basis of the $79 fee remains unresolved. The fee itself is not classified as unlawful. No knowing intent, absent logo permission, universal workflow defect or agency finding is asserted. These limits do not cure the separately established false legal rule or substantiate the paid route.",
+      "findingScope": "supplemental",
+      "overlapsWith": [
+        "VA16",
+        "VA17",
+        "PCX01",
+        "PCX05",
+        "PCX09"
+      ]
     }
   ],
   "limitations": [
@@ -2088,7 +2211,31 @@
     }
   ],
   "correspondence": {
-    "status": "Correction request prepared as an unsent draft. No provider response is claimed."
+    "status": "Markdown source inputs prepared for provider corrections and NIST logo/identity-assurance review; document production is backlogged. No generation, sending, provider or agency response, admission or determination is claimed.",
+    "nistRequest": {
+      "status": "Markdown source prepared; document production pending; unsent",
+      "purpose": "Review authorization of the exact agency-logo trust display and accuracy of NIST identity-assurance representations in the commercial context of Virginia biometric claims and no-SSN charges.",
+      "recipientOffice": "NIST Communications and Outreach / Public Inquiries, with Digital Identity Group technical routing",
+      "requestedOutcomes": [
+        "Confirm the authorization covering the exact display.",
+        "Review the identity-assurance representations and applicable scope or tailoring evidence.",
+        "Seek correction or removal through the appropriate process if use or claims are unauthorized or misleading."
+      ],
+      "relatedClaimIds": [
+        "VA16",
+        "VA17",
+        "PCX01",
+        "PCX05",
+        "PCX09",
+        "PCX10"
+      ]
+    },
+    "productionState": {
+      "markdownSourcePrepared": true,
+      "documentGenerationQueued": false,
+      "documentGenerated": false,
+      "sent": false
+    }
   },
   "openVerificationQuestions": [
     {
@@ -2126,13 +2273,16 @@
       "question": "What authorization covers the NIST logo display, and what substantiates the separate conformity claim?",
       "status": "Display confirmed on the homepage and licensing page; logo license, agency determination and implementation assessment not obtained.",
       "evidenceNeeded": [
-        "Written logo license covering the displayed layout, scope and period, or the asserted applicable authorization",
+        "Approval/license or other applicable authorization terms covering this exact NIST agency-logo trust display, its purpose, layout and period; unrelated project permission is insufficient",
         "Exact NIST publication/revision and identity-service configuration covered by the conformity claim",
-        "Assessor identity, assessment scope/date and relevant control mapping; distinguish independent assessment from NIST certification"
+        "Assessor identity, assessment scope/date and relevant control mapping; distinguish independent assessment from NIST certification",
+        "Actual role of KBA/KBV in the advertised IAL2 workflow and the method that satisfies identity verification",
+        "Any claimed compensating controls: documented rationale, comparability, residual risk, DIAS and relying-party disclosure, review, risk-acceptance determination and DIAS record; identify the revision and configuration"
       ],
       "relatedClaimIds": [
         "PC05",
-        "PCX05"
+        "PCX05",
+        "PCX09"
       ]
     },
     {
@@ -2393,13 +2543,16 @@
     {
       "id": "CA13",
       "objection": "The logo merely identifies the standards publisher; compliance is not a claim of NIST certification, and permission may exist.",
-      "response": "The literal compliance label and possible independent conformity assessment are acknowledged. The criticism concerns the agency logo’s combined placement among commercial trust badges, which suggests official assurance beyond attribution. Commerce’s policy expressly considers placement and proximity. Permission was not established either way, and would not itself establish endorsement, NIST-operated digital-identity certification or notarial-law compliance. The identity FAQ rules out the NIST-operated certification inference for these guidelines, not independent assessment.",
+      "response": "The literal compliance label and possible independent conformity assessment are acknowledged. The criticism concerns the agency logo’s combined placement among commercial trust badges, which suggests official assurance beyond attribution. Commerce’s policy expressly considers placement and proximity. Permission was not established either way, and would not itself establish endorsement, NIST-operated digital-identity certification or notarial-law compliance. The identity FAQ rules out the NIST-operated certification inference for these guidelines, not independent assessment. Approved project attribution, specifically licensed editorial assets and distinct validation marks are real permitted-use examples. None automatically licenses the generic agency logo for a commercial compliance presentation.",
       "sourceIds": [
         "P-home",
         "P-licensing",
         "P-nist-logo",
         "G-commerce-symbols",
-        "N-identity-faq"
+        "N-identity-faq",
+        "N-logo-project",
+        "N-logo-editorial",
+        "N-cmvp-marks"
       ],
       "whatWouldChangeAssessment": [
         "A license covering the exact use, and clear presentation identifying the claimed standard, revision, scope and independent assessment would warrant reassessing the presentation finding.",
@@ -2429,6 +2582,28 @@
         "PCX06",
         "PCX07",
         "PCX08"
+      ]
+    },
+    {
+      "id": "CA15",
+      "objection": "KBA is required by state law, was permitted in older NIST guidance, is only an extra fraud check, or is covered by tailoring.",
+      "response": "These are separate, testable propositions. State law does not rewrite a NIST conformity requirement. Revision 3 allowed constrained supplementary KBV, but NIST’s FAQ expressly says it cannot satisfy IAL2/IAL3 verification. Revision 4 bars KBA/KBV as baseline identity verification and separately permits fraud-management use. Its tailoring provisions require documented rationale, comparability, residual risk and relying-party disclosure, review, risk-acceptance determination and DIAS record. Show the baseline verification method or documented deviation and compensating controls, KBA role and any relevant DIAS; a hypothetical compliant configuration is not evidence that the advertised service uses it. Conversely, KBA’s presence alone does not disprove every workflow.",
+      "sourceIds": [
+        "P-licensing",
+        "N-proofing4",
+        "N-dirm4",
+        "N-proofing3",
+        "N-proofing3-faq"
+      ],
+      "whatWouldChangeAssessment": [
+        "A dated workflow and scoped assessment identifying the baseline verification method, or the specifically documented deviation and compensating controls, and KBA’s actual purpose.",
+        "The applicable revision and any actual tailoring/DIAS record, including required disclosure and relying-party acceptance, with accurate public scope."
+      ],
+      "relatedClaimIds": [
+        "PC05",
+        "PC07",
+        "PCX06",
+        "PCX09"
       ]
     }
   ],
@@ -2688,6 +2863,25 @@
           "PCX06",
           "PCX07",
           "PCX08"
+        ]
+      },
+      {
+        "id": "IR15",
+        "risk": "Weakening a NIST SHALL NOT to a preference, or using statutory KBA, terminology, an older revision or hypothetical extra checks as automatic conformity clearance.",
+        "requiredReading": "Read the current identity-verification restriction together with the distinct fraud-management permission and documented tailoring process. The rule names both KBV and KBA; renaming the quiz does not avoid it. Historical analysis must include Revision 3’s FAQ excluding KBV as satisfying IAL2/IAL3 verification. Identify the actual qualifying verification method and any compensating-control evidence rather than inventing them. Preserve the distinction between state-law notarial duties and voluntarily claimed technical conformity.",
+        "doesNotEstablish": "The baseline prohibition does not ban every use of knowledge questions or determine state-law validity. Permitted fraud checks and documented deviations do not by themselves prove the provider follows them, satisfy unmodified baseline verification, or authorize the NIST agency logo.",
+        "sourceIds": [
+          "N-proofing4",
+          "N-dirm4",
+          "N-proofing3",
+          "N-proofing3-faq",
+          "G-commerce-symbols"
+        ],
+        "relatedClaimIds": [
+          "PC05",
+          "PC07",
+          "PCX05",
+          "PCX09"
         ]
       }
     ]
