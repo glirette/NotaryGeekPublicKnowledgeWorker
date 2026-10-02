@@ -169,8 +169,27 @@ The final committed evidence records actual per-suite results and source hashes.
 
 The original full suite passed **131 / 0 failed / 5 skipped**. The original build
 had one existing nullable warning in queued-state validation; it is not reported
-as a new clean-warning result. Final commands and review are recorded in the PR
-checkpoint and evidence summaries.
+as a new clean-warning result. The final solution build passed with the same
+warning. Final standard `dotnet test` was attempted but VSTest aborted before
+test execution because its local communication socket was denied by the current
+environment. That aborted run is not reported as a passing test suite.
+
+`W08InProcessTests.csproj` provides a socket-free fallback for this unchanged
+suite: it discovers the actual Fact/InlineData cases and invokes their original
+methods and assertions sequentially, rejecting unsupported data/lifecycle
+features and checking exactly 136 cases. It passed **131 / 0 failed / 5 skipped**,
+including W02 and #27 regressions. It is direct-method evidence, not VSTest or a
+general substitute for the xUnit runner. Its first run exposed the runner's
+handling of `InlineData(null)`, corrected before the passing run. A later fallback
+build also reported two NuGet audit-source warnings when package audit metadata
+was unavailable; no package/version was changed.
+
+```bash
+dotnet build NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08InProcessTests.csproj -m:1 --nologo
+dotnet exec NotaryGeek.PublicKnowledge.Worker.Tests/bin/W08InProcessTests/Debug/net10.0/W08InProcessTests.dll
+```
+
+Final commands and review are recorded in the PR checkpoint and evidence summaries.
 
 Important limits:
 
