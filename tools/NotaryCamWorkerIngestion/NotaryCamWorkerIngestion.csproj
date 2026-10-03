@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeResearchService.cs" Link="Production/PublicKnowledgeResearchService.cs" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeProviderOutput.cs" Link="Production/PublicKnowledgeProviderOutput.cs" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeExecutionPolicy.cs" Link="Production/PublicKnowledgeExecutionPolicy.cs" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Models/PublicKnowledgeModels.cs" Link="Production/PublicKnowledgeModels.cs" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Configuration/PublicKnowledgeOptions.cs" Link="Production/PublicKnowledgeOptions.cs" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Configuration/OpenAiOptions.cs" Link="Production/OpenAiOptions.cs" />
+    <Compile Include="../../NotaryGeek.PublicKnowledge.Worker/Configuration/StraicoOptions.cs" Link="Production/StraicoOptions.cs" />
+  </ItemGroup>
+</Project>

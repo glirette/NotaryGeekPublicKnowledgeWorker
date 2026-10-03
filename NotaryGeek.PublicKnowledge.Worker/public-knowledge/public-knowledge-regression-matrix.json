@@ -942,6 +942,279 @@
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/common-customer-notary-route-matrix.json",
         "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/real-estate-defensible-online-transactions.json"
       ]
+    },
+    {
+      "id": "notarycam-audit-part-01",
+      "focus": "Review only dated NotaryCam audit findings VA01, VA02, VA03, VA04, VA05, VA06, VA07, VA08, VA09, VA10, VA11, VA12, VA13. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-01-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-01-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-02",
+      "focus": "Review only dated NotaryCam audit findings VA14, VA15, VA16, VA17. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-02-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-02-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-03",
+      "focus": "Review only dated NotaryCam audit findings VA18, VA19, VA20, VA21, VA22, VA23, VA24, VA25, VA26. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-03-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-03-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-04",
+      "focus": "Review only dated NotaryCam audit findings VA27, VA28, VA29, VA30, VA31, VA32, VA33, VA34, VA35, VA36, VA37. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-04-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-04-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-05",
+      "focus": "Review only dated NotaryCam audit findings VA38, VA39, VA40, VA41, VA42, VA43, VA44, VA45, VA46, VA47, VA48. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-05-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-05-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-06",
+      "focus": "Review only dated NotaryCam audit findings VA49, PC01, PC02, PC03. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-06-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-06-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-07",
+      "focus": "Review only dated NotaryCam audit findings PC04, PC05, PC06. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-07-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-07-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-08",
+      "focus": "Review only dated NotaryCam audit findings PC07, PC08, PC09, PC10, PC11, PC12, PC13. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-08-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-08-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-09",
+      "focus": "Review only dated NotaryCam audit findings PC14, PC15, PCX01, PCX02, PCX03, PCX04, MS01, MS02, MS03. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-09-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-09-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-10",
+      "focus": "Review only dated NotaryCam audit findings MS04, MS05, VA50, VA51, VA52, PC16. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-10-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-10-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-11",
+      "focus": "Review only dated NotaryCam audit findings PCX05, PCX06, PCX07. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-11-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-11-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-12",
+      "focus": "Review only dated NotaryCam audit findings PCX08, PCX09. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-12-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-12-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-13",
+      "focus": "Review only dated NotaryCam audit findings PCX10. Combine both record parts and all shared interpretation safeguards. Preserve each classification, correction, evidence boundary and source scope. Do not mistake the source catalog for freshly fetched official law or this part for complete audit coverage.",
+      "purpose": "Explicit bounded ingestion of complete dated claim records and all interpretation rules; discovery in the default manifest is not ingestion evidence.",
+      "mustHold": [
+        "Preserve each supplied finding's classification, correction, dated source scope and evidence boundary.",
+        "Apply all supplied interpretation safeguards; an unrelated unknown does not erase an established finding.",
+        "Distinguish Notary Geek analysis, provider representation and controlling official authority.",
+        "Limit coverage to this case's named claims and require current-source rechecking before acting."
+      ],
+      "failureSignals": [
+        "Invents a completed-session defect, knowing intent, unobserved logo permission decision or universal provider exoneration.",
+        "Treats source metadata as a current official-source fetch or one case as coverage of all 83 findings.",
+        "Uses badge, market share, hypothetical controls or absence of observed injury to erase a sourced contradiction."
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-13-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-13-records-2.json"
+      ]
     }
   ]
 }

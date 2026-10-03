@@ -1,0 +1,393 @@
+{
+  "schema": "notary-geek-audit-worker-package-v1",
+  "auditId": "notarycam-virginia-claims-2026-10-02",
+  "canonicalSnapshot": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+  "canonicalSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
+  "selection": "Explicit regression cases only. The default manifest's first-24 selection is unchanged and does not select this audit.",
+  "coverage": {
+    "claims": 83,
+    "interpretationRulesPerCase": 15,
+    "limitationsPerCase": 10,
+    "cases": 13,
+    "sourceCharacterLimit": 17000
+  },
+  "cases": [
+    {
+      "id": "notarycam-audit-part-01",
+      "claimIds": [
+        "VA01",
+        "VA02",
+        "VA03",
+        "VA04",
+        "VA05",
+        "VA06",
+        "VA07",
+        "VA08",
+        "VA09",
+        "VA10",
+        "VA11",
+        "VA12",
+        "VA13"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-01-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-01-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-02",
+      "claimIds": [
+        "VA14",
+        "VA15",
+        "VA16",
+        "VA17"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-02-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-02-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-03",
+      "claimIds": [
+        "VA18",
+        "VA19",
+        "VA20",
+        "VA21",
+        "VA22",
+        "VA23",
+        "VA24",
+        "VA25",
+        "VA26"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-03-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-03-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-04",
+      "claimIds": [
+        "VA27",
+        "VA28",
+        "VA29",
+        "VA30",
+        "VA31",
+        "VA32",
+        "VA33",
+        "VA34",
+        "VA35",
+        "VA36",
+        "VA37"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-04-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-04-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-05",
+      "claimIds": [
+        "VA38",
+        "VA39",
+        "VA40",
+        "VA41",
+        "VA42",
+        "VA43",
+        "VA44",
+        "VA45",
+        "VA46",
+        "VA47",
+        "VA48"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-05-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-05-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-06",
+      "claimIds": [
+        "VA49",
+        "PC01",
+        "PC02",
+        "PC03"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-06-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-06-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-07",
+      "claimIds": [
+        "PC04",
+        "PC05",
+        "PC06"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-07-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-07-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-08",
+      "claimIds": [
+        "PC07",
+        "PC08",
+        "PC09",
+        "PC10",
+        "PC11",
+        "PC12",
+        "PC13"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-08-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-08-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-09",
+      "claimIds": [
+        "PC14",
+        "PC15",
+        "PCX01",
+        "PCX02",
+        "PCX03",
+        "PCX04",
+        "MS01",
+        "MS02",
+        "MS03"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-09-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-09-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-10",
+      "claimIds": [
+        "MS04",
+        "MS05",
+        "VA50",
+        "VA51",
+        "VA52",
+        "PC16"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-10-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-10-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-11",
+      "claimIds": [
+        "PCX05",
+        "PCX06",
+        "PCX07"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-11-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-11-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-12",
+      "claimIds": [
+        "PCX08",
+        "PCX09"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-12-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-12-records-2.json"
+      ]
+    },
+    {
+      "id": "notarycam-audit-part-13",
+      "claimIds": [
+        "PCX10"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/safeguards.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-13-records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/case-13-records-2.json"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "safeguards.json",
+      "sha256": "7d2251741f6450b4c86684870407e99740ef8bb13285885e60938a5f85c5d899",
+      "utf8Bytes": 16443,
+      "utf16Characters": 16398
+    },
+    {
+      "path": "case-01-records-1.json",
+      "sha256": "13fcf37a095f7d04f2dafb9d86b6d79513da8a1dfc1ef0d518010e60d66908c1",
+      "utf8Bytes": 15937,
+      "utf16Characters": 15896
+    },
+    {
+      "path": "case-01-records-2.json",
+      "sha256": "ded04e9b9a12112e4abd562c1d4be8776a12e1fb7ed9daa3d3378d29ce569d1c",
+      "utf8Bytes": 15913,
+      "utf16Characters": 15880
+    },
+    {
+      "path": "case-02-records-1.json",
+      "sha256": "9c6a18871bc10440b2546b4784c6844854ea7ef68e290f965585d77bc76304da",
+      "utf8Bytes": 17018,
+      "utf16Characters": 16971
+    },
+    {
+      "path": "case-02-records-2.json",
+      "sha256": "4299f39abd70a5d13e90d3c117b205422d67618f62f55ae49a9c8b4ba1a46546",
+      "utf8Bytes": 16798,
+      "utf16Characters": 16751
+    },
+    {
+      "path": "case-03-records-1.json",
+      "sha256": "14825592a6c2b4390b14b0965438b78caed202b5e3b98c42732845e34725cf8e",
+      "utf8Bytes": 16388,
+      "utf16Characters": 16345
+    },
+    {
+      "path": "case-03-records-2.json",
+      "sha256": "5a713105e6974eaa67c8bb8388e2030e700f39528a89a448db1c0028825085e1",
+      "utf8Bytes": 16428,
+      "utf16Characters": 16388
+    },
+    {
+      "path": "case-04-records-1.json",
+      "sha256": "8763055c9871a90ccd9d0fe3142265e5e45b541a1a9bfa93aabe248915309e3b",
+      "utf8Bytes": 16746,
+      "utf16Characters": 16703
+    },
+    {
+      "path": "case-04-records-2.json",
+      "sha256": "fe23a792f8cd2281460ba950252df3186922382994f91d4acb879807611f082d",
+      "utf8Bytes": 16740,
+      "utf16Characters": 16703
+    },
+    {
+      "path": "case-05-records-1.json",
+      "sha256": "d92d2cf2372daa60543cb649cb1f4dfac06c97b97dd12c41f411ba60f52ff009",
+      "utf8Bytes": 15878,
+      "utf16Characters": 15843
+    },
+    {
+      "path": "case-05-records-2.json",
+      "sha256": "6f7bdd8d0ee2172e7550f69efd3fa56a937df5f74953f7a715657d90c05a9a0b",
+      "utf8Bytes": 15895,
+      "utf16Characters": 15856
+    },
+    {
+      "path": "case-06-records-1.json",
+      "sha256": "08162d39f746fc8560736808612b21d8ea151faefaded63867790796f24b6ba2",
+      "utf8Bytes": 15210,
+      "utf16Characters": 15168
+    },
+    {
+      "path": "case-06-records-2.json",
+      "sha256": "5be330b8ecbab0843d110037bdbbf0308d938e079684208582b90feb5eacf5bd",
+      "utf8Bytes": 15449,
+      "utf16Characters": 15401
+    },
+    {
+      "path": "case-07-records-1.json",
+      "sha256": "cf96ef5dace91c2dac2d0e816061ac334241882a093360fbe0733b7d34626cdb",
+      "utf8Bytes": 16228,
+      "utf16Characters": 16183
+    },
+    {
+      "path": "case-07-records-2.json",
+      "sha256": "c125e6890b64a732a42e9b3efd5dfd4805b5fb11f59c3ccc7b39bf06b05ad0be",
+      "utf8Bytes": 16445,
+      "utf16Characters": 16402
+    },
+    {
+      "path": "case-08-records-1.json",
+      "sha256": "17095becd1e7943bb8ee3f61d8040ea697b149b813cb226fd50b371013cc63b1",
+      "utf8Bytes": 16926,
+      "utf16Characters": 16874
+    },
+    {
+      "path": "case-08-records-2.json",
+      "sha256": "ae6767359728d20a643199b23f8b108ebb4b4d1b57b0f35c020beef9f1459192",
+      "utf8Bytes": 16897,
+      "utf16Characters": 16861
+    },
+    {
+      "path": "case-09-records-1.json",
+      "sha256": "54405eef43c68f9059930dfe8c8520bf22593a4e5992b64bd868acb2cd263b62",
+      "utf8Bytes": 16489,
+      "utf16Characters": 16452
+    },
+    {
+      "path": "case-09-records-2.json",
+      "sha256": "a8f5df0bfc809b537d661d2c5aca9cadb07d3859cc5e59edee4625440efb14e0",
+      "utf8Bytes": 16475,
+      "utf16Characters": 16428
+    },
+    {
+      "path": "case-10-records-1.json",
+      "sha256": "22227e71f1b94d0339d4c6f8b977f4908d2bec78c18d6ba15734ea60d3a7a14b",
+      "utf8Bytes": 15359,
+      "utf16Characters": 15306
+    },
+    {
+      "path": "case-10-records-2.json",
+      "sha256": "5cf7164e51a9e5864ea39f185674d47d1b1ceabf55146b59c4bbcc150028a1f5",
+      "utf8Bytes": 15328,
+      "utf16Characters": 15283
+    },
+    {
+      "path": "case-11-records-1.json",
+      "sha256": "5e7945bee42421ad428a39ffaa01519598ebfe524d67737e5ff9df128792584f",
+      "utf8Bytes": 16360,
+      "utf16Characters": 16320
+    },
+    {
+      "path": "case-11-records-2.json",
+      "sha256": "26c3c43b829b73b6d9b976f1c699faa1dfeae2158fc9210aa866c057ea2e128e",
+      "utf8Bytes": 16368,
+      "utf16Characters": 16330
+    },
+    {
+      "path": "case-12-records-1.json",
+      "sha256": "39237e0eeb39b5563d1dfea97a890b49a37a5694ae2bd3ef5439410d64755389",
+      "utf8Bytes": 14018,
+      "utf16Characters": 13984
+    },
+    {
+      "path": "case-12-records-2.json",
+      "sha256": "27410374c6d69c74ec2b99bdc2b0bbbb834b28cc285ba04471b684e228f87420",
+      "utf8Bytes": 14023,
+      "utf16Characters": 13979
+    },
+    {
+      "path": "case-13-records-1.json",
+      "sha256": "a151698d686984fc53c23eaa9568b48926c3e564d28996bfac407344e00232f5",
+      "utf8Bytes": 16358,
+      "utf16Characters": 16316
+    },
+    {
+      "path": "case-13-records-2.json",
+      "sha256": "18a160503359a168058b73340d86bbca7af2743d8f6aafeab70b018b66a884a0",
+      "utf8Bytes": 16306,
+      "utf16Characters": 16258
+    }
+  ]
+}
