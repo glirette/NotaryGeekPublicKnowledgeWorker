@@ -16,6 +16,7 @@ var host = new HostBuilder()
         services.Configure<StraicoOptions>(context.Configuration.GetSection("Straico"));
 
         services.AddHttpClient();
+        services.AddPublicKnowledgeSourceHttpClients();
         services.AddSingleton<PublicKnowledgeResearchService>();
         services.AddSingleton<PublicKnowledgeSourceIndexService>();
         services.AddSingleton<PublicKnowledgeRunStorageService>();

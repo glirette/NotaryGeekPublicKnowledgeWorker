@@ -1,0 +1,11 @@
+using System.Reflection;
+using NotaryGeek.PublicKnowledge.Worker.Tests;
+int ok=0,failed=0;
+foreach(var t in new[]{typeof(SourceRedirectTests), typeof(NotaryGeek.PublicKnowledge.Worker.Tests.W20SourceContracts.ContractExplorerTests), typeof(NotaryGeek.PublicKnowledge.Worker.Tests.W20SourceContracts.ConsumerContractTests)})
+foreach(var m in t.GetMethods().Where(m=>m.GetCustomAttribute<FactAttribute>()!=null||m.GetCustomAttribute<TheoryAttribute>()!=null)){
+ var cases=m.GetCustomAttributes<InlineDataAttribute>().Select(x=>x.Values).ToArray();
+ if(cases.Length==0)cases=[[]];
+ foreach(var row in cases){try{var r=m.Invoke(Activator.CreateInstance(t),row);if(r is Task task)await task;Console.WriteLine("PASS "+m.Name);ok++;}catch(Exception e){Console.WriteLine("FAIL "+m.Name+" "+(e.InnerException??e));failed++;}}
+}
+Console.WriteLine($"DIRECT-METHOD total: {ok} passed, {failed} failed (scratch assertion shim, not VSTest)");
+return failed==0?0:1;

@@ -1,0 +1,22 @@
+{
+  "reviewerConfiguration": "gpt-6.1-sol (accepted agent configuration; runtime identity not independently exposed)",
+  "reviewMode": "separate read-only source/diff/hash/log review; no test execution",
+  "result": "no remaining blocking source findings after corrections and addendum",
+  "sha256": {
+    "NotaryGeek.PublicKnowledge.Worker/Program.cs": "84a9cfe9b66a733e636782d667ed77e270635e6f27b6a77dace2285c1ef6d614",
+    "NotaryGeek.PublicKnowledge.Worker/Services/AllowedSourceRedirects.cs": "0b9dd94fefede1437b4aac864706b2b6e2f371829599616be4030f1e20c5c466",
+    "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeProviderOutput.cs": "60467def051248a5a4eb009d6d04d87a7511bb6aa8be4ad7cf3bcdfa4e760165",
+    "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeResearchService.cs": "fe806061d4a2f4b89ec87ba896d72faf2ae439ce4ea418b736950297f63cfcaa",
+    "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeSourceIndexService.cs": "ce4cd1e806c2b15b649d5626bac6f9dc1573ddfb3a999b6e129b0c19f2ac0f12",
+    "NotaryGeek.PublicKnowledge.Worker/Services/SourceHttpClientRegistration.cs": "370d907370837631f97a47d5a43fba04e22b34e9c623e305692cb062d2f14dc9",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/ConsumerContractTests.cs": "1acf7aa27bb8e91c015b18661b7033713c25ca46875adf34ab1fbe1a12768adb",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/ContractExplorerTests.cs": "5de4990291bfbdfa5e292a2d28c92b2970876937861879e5318fad406f690cb2",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/ContractOracle.cs": "6c1bbcbb8d18d3db920a632f423046337075a3e71f11568cef1e737448495962",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/Grammar.cs": "8c6d6da17eef28f54c39473df97602e97361b6fc24e20624c554fc8587806068",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/Reducer.cs": "3fdcc73fd71bfcd441130dd3bc24b922b8ab849b39a6935d15e4846c49726c0b",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/SyntheticSources.cs": "10899d04f2f803a2684849d424086be90c8779c417bd9fa3db6e7fe716f4221c",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/assertion-shim.cs.txt": "7625871117167b67fc52b52b220ce8b6085ab588c7798876a44c7a5993ac7c10",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/direct-main.cs.txt": "d23678b12493da1fe4453c11097ecab45010b7889e1f6d410d1268a9709943e4",
+    "NotaryGeek.PublicKnowledge.Worker.Tests/W20SourceContracts/run_direct.py": "c5ebb712c2c3872c3781171d38a16664848a14ff4bc9460dbe80b4c3bc848024"
+  }
+}

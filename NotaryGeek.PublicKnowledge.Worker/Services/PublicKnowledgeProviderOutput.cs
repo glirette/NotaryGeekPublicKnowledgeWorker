@@ -72,7 +72,7 @@ public static class PublicKnowledgeProviderOutput
             .Select(NormalizeUrl)
             .Where(item => item is not null)
             .Cast<string>()
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            .ToHashSet(StringComparer.Ordinal);
         if (output.Citations is null || output.Citations.Count == 0 ||
             output.Citations.Any(url => !IsAllowedCitation(url, normalizedFetchedUrls)))
         {
@@ -273,11 +273,6 @@ public static class PublicKnowledgeProviderOutput
         if (builder.Port == 443)
         {
             builder.Port = -1;
-        }
-
-        if (builder.Path.Length > 1)
-        {
-            builder.Path = builder.Path.TrimEnd('/');
         }
 
         return builder.Uri.AbsoluteUri;
