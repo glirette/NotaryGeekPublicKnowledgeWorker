@@ -97,3 +97,19 @@ Short excerpts, links, summaries, citations, source-backed criticism, and attrib
 ## Boundary
 
 This corpus is public education and source-quality work. It is not legal advice.
+
+## Dated Claim Audit Additions
+
+- NotaryCam Virginia substantive extracted-text claim review source map (2026-10-02): https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json
+- Generated immutable public audit snapshot: https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json
+- Snapshot SHA-256: 84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba. DotNetMultisite remains the authored single source of truth; the snapshot is a generated exact-byte export with no independent edits. Private authored provenance in the source seed is not a public citation or fetch dependency.
+- Status: public review draft snapshot verified by unauthenticated exact-byte readback; deployment of the planned `/notarycam-virginia-claims.html` and `.json` website destinations remains unverified.
+- Capture limits: substantive extracted article text, tables and FAQ with related sources labeled separately; no complete quotation archive, raw-HTML forensic capture, proven publication history or verified exhaustive inventory of every page version.
+- This audit supplements the existing Virginia/NotaryCam findings. Keep the signer-certificate/PIV distinction, actual second-method question and transaction-date chronology. Provider wording is claim evidence; discovery links are not proof of ingestion or compliance.
+
+- NIST logo supplement: PCX05/CA13/IR13 distinguish confirmed agency-logo use in commercial trust footers, misleading official-assurance presentation, unverified logo permission, independent conformity assessment and NIST’s absence of a Digital Identity Guidelines certification program. None establishes statutory compliance.
+
+- Security FAQ supplement: PCX06–PCX08/CA14/IR14 distinguish claimed security practices, scoped SOC 2 assurance and unsupported strongest-controls/continuous-security promises. Unknown private reports and no observed breach do not substantiate unlimited assurance; no operational failure is inferred.
+
+- NIST KBA supplement: PCX09/CA15/IR15 preserve revision-specific verification rules, permitted fraud-management use and actual documented tailoring. Hypothetical extra checks or a state-law KBA requirement do not establish NIST conformity.
+- Combined commercial assurance: PCX10 joins the Virginia no-SSN biometric shortcut, distinct advertised fee categories and agency-logo trust presentation. The misleading-reliance assessment is an explicit inference; no observed payment, nationality-only charge or agency decision is asserted.

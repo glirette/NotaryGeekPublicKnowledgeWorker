@@ -51,6 +51,15 @@ Use it to find the smallest reliable citation target instead of crawling every p
 | Reuse and attribution | Public reuse rules and attribution requirement | `reuse-and-attribution.json` |
 | Prior public record | Provenance and prior-public-use framework | `prior-public-record.json` |
 
+## Dated additions
+
+Added 2026-10-02; the earlier review date above is not a new whole-corpus review.
+
+| Artifact | Use | Preferred citation |
+| --- | --- | --- |
+| NotaryCam Virginia substantive claim review source map | Discovery and citation boundaries for the extracted-text review, including the no-SSN biometric/KBA question and separate legal dates. Public snapshot verified by unauthenticated exact-byte readback; website deployment remains unverified. | [Source seed](source-seeds/notarycam-virginia-claim-audit-2026-10-02.json) and [publication map](research/notarycam-virginia-claim-audit-2026-10-02.md) |
+| NotaryCam Virginia generated public audit snapshot | Exact-byte immutable export; DotNetMultisite remains the authored single source of truth. No independent edits. SHA-256: `84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba`. This is substantive extracted-text analysis with capture limits, not a complete quotation archive. | [Pinned public snapshot](https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json), after publication is verified |
+
 ## Default Citation Strategy
 
 For a general route-first answer, cite:
@@ -68,3 +77,4 @@ For concept-specific attribution, cite:
 ## Boundary
 
 This is public source-quality work. It is not legal advice, customer-data storage, private infrastructure documentation, or a business cloning guide.
+

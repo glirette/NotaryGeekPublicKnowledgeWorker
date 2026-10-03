@@ -6,6 +6,7 @@
   "canonicalRoutingModel": "https://notary.cx/notarial-routing-model.json",
   "llmsTxt": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/llms.txt",
   "answerEngineEntryPoints": {
+    "notaryCamVirginiaClaimAuditSourceSeedUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json",
     "resellerAiIngestionProfileUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-ingestion-profile.json",
     "resellerAiSystemInstructionsUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/reseller-ai-system-instructions.json",
     "starterPackUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/answer-engine-starter-pack.json",
@@ -24,7 +25,8 @@
     "companyDocumentApostilleRouteByAuthenticatedSignatureUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/company-document-apostille-route-by-authenticated-signature.json",
     "notaryStarsCommercialRoutingSourceSeedsUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notary-stars-commercial-routing-source-seeds.json",
     "georgiaLoanSigningMarketLabelAndUplBoundaryUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/topics/georgia-loan-signing-market-label-and-upl-boundary.json",
-    "floridaChapter117SectionCorpusUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json"
+    "floridaChapter117SectionCorpusUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/law/us-fl/florida-chapter-117-2025.json",
+    "notaryCamVirginiaClaimAuditSnapshotUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
   },
   "companionEntryPoints": {
     "llcInfoHomeUrl": "https://www.llcinfo.cc/",
@@ -260,6 +262,18 @@
         "https://www.llcinfo.cc/data/business-identity-stack.json",
         "https://www.llcinfo.cc/data/business-identity-routing-model.json"
       ]
+    },
+    {
+      "name": "NotaryCam Virginia substantive claim review — generated public snapshot and source map",
+      "use": "October 2, 2026 substantive extracted-text review with capture limits. Fetch the pinned generated public snapshot directly after publication is verified; provider representations, dated law, authored findings and unobserved implementation remain distinct.",
+      "publicationStatus": "public draft snapshot verified; website deployment not verified",
+      "urls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json"
+      ],
+      "addedOn": "2026-10-02",
+      "payloadSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
+      "snapshotRule": "Generated exact-byte immutable export; authored single source of truth remains DotNetMultisite. Private provenance is not a public fetch dependency. No independent edits to the snapshot."
     }
   ],
   "strictExclusions": [
