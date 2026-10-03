@@ -1,0 +1,307 @@
+{
+  "status": "passed",
+  "assertions": 2136,
+  "cases": 13,
+  "claims": 83,
+  "counterarguments": 15,
+  "interpretationRulesPerCase": 15,
+  "canonicalSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
+  "baseline": {
+    "selectedSources": 24,
+    "auditPositions": [
+      {
+        "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+        "position": 94
+      },
+      {
+        "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/source-seeds/notarycam-virginia-claim-audit-2026-10-02.json",
+        "position": 95
+      }
+    ],
+    "snapshotCharacters": 166725,
+    "claimsStart": 48460,
+    "interpretationRulesStart": 151693,
+    "normalizedCharacters": 20000,
+    "note": "ok-truncated:166725->20000"
+  },
+  "productionMethodCoverage": [
+    "SelectSourceUrls",
+    "FetchSourceAsync",
+    "NormalizeSourceText (through FetchSourceAsync)",
+    "BuildPrompt"
+  ],
+  "transport": "Synthetic in-memory HttpMessageHandler only; no DNS, sockets, source network or provider execution",
+  "runtimeScope": "Direct production-method harness, not Azure Functions host or full solution build",
+  "results": [
+    {
+      "Id": "notarycam-audit-part-01",
+      "claimIds": [
+        "VA01",
+        "VA02",
+        "VA03",
+        "VA04",
+        "VA05",
+        "VA06",
+        "VA07",
+        "VA08",
+        "VA09",
+        "VA10",
+        "VA11",
+        "VA12",
+        "VA13"
+      ],
+      "sources": 3,
+      "promptCharacters": 53339,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-02",
+      "claimIds": [
+        "VA14",
+        "VA15",
+        "VA16",
+        "VA17"
+      ],
+      "sources": 3,
+      "promptCharacters": 55231,
+      "maximumSourceCharacters": 16970,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-03",
+      "claimIds": [
+        "VA18",
+        "VA19",
+        "VA20",
+        "VA21",
+        "VA22",
+        "VA23",
+        "VA24",
+        "VA25",
+        "VA26"
+      ],
+      "sources": 3,
+      "promptCharacters": 54272,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-04",
+      "claimIds": [
+        "VA27",
+        "VA28",
+        "VA29",
+        "VA30",
+        "VA31",
+        "VA32",
+        "VA33",
+        "VA34",
+        "VA35",
+        "VA36",
+        "VA37"
+      ],
+      "sources": 3,
+      "promptCharacters": 54957,
+      "maximumSourceCharacters": 16702,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-05",
+      "claimIds": [
+        "VA38",
+        "VA39",
+        "VA40",
+        "VA41",
+        "VA42",
+        "VA43",
+        "VA44",
+        "VA45",
+        "VA46",
+        "VA47",
+        "VA48"
+      ],
+      "sources": 3,
+      "promptCharacters": 53250,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-06",
+      "claimIds": [
+        "PC01",
+        "PC02",
+        "PC03",
+        "VA49"
+      ],
+      "sources": 3,
+      "promptCharacters": 52078,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-07",
+      "claimIds": [
+        "PC04",
+        "PC05",
+        "PC06"
+      ],
+      "sources": 3,
+      "promptCharacters": 54088,
+      "maximumSourceCharacters": 16401,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-08",
+      "claimIds": [
+        "PC07",
+        "PC08",
+        "PC09",
+        "PC10",
+        "PC11",
+        "PC12",
+        "PC13"
+      ],
+      "sources": 3,
+      "promptCharacters": 55262,
+      "maximumSourceCharacters": 16873,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-09",
+      "claimIds": [
+        "MS01",
+        "MS02",
+        "MS03",
+        "PC14",
+        "PC15",
+        "PCX01",
+        "PCX02",
+        "PCX03",
+        "PCX04"
+      ],
+      "sources": 3,
+      "promptCharacters": 54423,
+      "maximumSourceCharacters": 16451,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-10",
+      "claimIds": [
+        "MS04",
+        "MS05",
+        "PC16",
+        "VA50",
+        "VA51",
+        "VA52"
+      ],
+      "sources": 3,
+      "promptCharacters": 52110,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-11",
+      "claimIds": [
+        "PCX05",
+        "PCX06",
+        "PCX07"
+      ],
+      "sources": 3,
+      "promptCharacters": 54156,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-12",
+      "claimIds": [
+        "PCX08",
+        "PCX09"
+      ],
+      "sources": 3,
+      "promptCharacters": 49462,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    },
+    {
+      "Id": "notarycam-audit-part-13",
+      "claimIds": [
+        "PCX10"
+      ],
+      "sources": 3,
+      "promptCharacters": 54066,
+      "maximumSourceCharacters": 16397,
+      "allBodiesComplete": true
+    }
+  ],
+  "productionSource": {
+    "commit": "56fed9286622038ad5c1cded7d629f60aff104f0",
+    "files": [
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeResearchService.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e62304b80fddb43e4dc813a40b2953db5923eab6",
+        "size": 68496,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/e62304b80fddb43e4dc813a40b2953db5923eab6"
+      },
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeProviderOutput.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "56b7977fb190d5d1558f0f86967c2a8270d49cbe",
+        "size": 11235,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/56b7977fb190d5d1558f0f86967c2a8270d49cbe"
+      },
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeExecutionPolicy.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c5beb9d461cc2119839562f2aaabeadc74588a44",
+        "size": 2523,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/c5beb9d461cc2119839562f2aaabeadc74588a44"
+      },
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Models/PublicKnowledgeModels.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7865123ad8204cf6056fc12e52b218699fc5bd4c",
+        "size": 7532,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/7865123ad8204cf6056fc12e52b218699fc5bd4c"
+      },
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Configuration/PublicKnowledgeOptions.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e1b3de8a55c6989a90cfa6c9c895ef7eb17710de",
+        "size": 2914,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/e1b3de8a55c6989a90cfa6c9c895ef7eb17710de"
+      },
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Configuration/OpenAiOptions.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "56effe073bdbe74162d2def708623e76c5c11708",
+        "size": 1015,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/56effe073bdbe74162d2def708623e76c5c11708"
+      },
+      {
+        "path": "NotaryGeek.PublicKnowledge.Worker/Configuration/StraicoOptions.cs",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c81677e757709c898cf712c1a7db59a9f1632f1f",
+        "size": 345,
+        "url": "https://api.github.com/repos/glirette/NotaryGeekPublicKnowledgeWorker/git/blobs/c81677e757709c898cf712c1a7db59a9f1632f1f"
+      }
+    ]
+  },
+  "sdkVersion": "10.0.401",
+  "validationDateUtc": "2026-10-03",
+  "limitations": [
+    "No full Azure Functions solution build: this change modifies only corpus data and a focused offline tool.",
+    "No external source fetch, provider/model execution, queue, deployment or production ingestion occurred.",
+    "Compile-only storage-envelope signature adapter does not instantiate storage.",
+    "The default first-24 source selection remains unchanged.",
+    "The generated main-branch artifact URLs are prospective until this draft is merged."
+  ]
+}

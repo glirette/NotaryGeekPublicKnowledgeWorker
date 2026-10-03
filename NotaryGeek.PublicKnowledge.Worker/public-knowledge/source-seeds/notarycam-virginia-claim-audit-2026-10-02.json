@@ -160,7 +160,7 @@
     }
   ],
   "crawlBoundary": "Public pages and public repository artifacts only. No customer records, IDs, selfies, private correspondence, accounts or live notarization tests.",
-  "ingestionBoundary": "Listing a source is not proof of a fetch, index, model ingestion or deployment. This change does not expand the worker host allowlist, start jobs or change runtime behavior. Consumers should request the pinned public snapshot directly after publication is verified; do not assume nested seed URLs are fetched recursively or private provenance is accessible.",
+  "ingestionBoundary": "Listing a source is not proof of a fetch, index, model ingestion or deployment. The default manifest-driven worker selects only the first 24 distinct URLs; the audit URLs at positions 94 and 95 are excluded. Explicitly requesting the full snapshot still truncates it before the claims at the worker's 20,000-character source bound. Use the 13 explicit bounded regression cases described in workerIngestion for complete claim coverage under current defaults. They do not change default selection, runtime budgets, host allowlists or scheduling. Nested seed URLs are not fetched recursively; private provenance is not an ingestion dependency.",
   "mustNotSay": [
     "Biometrics is automatically a Virginia substitute for KBA whenever a signer has no U.S. SSN.",
     "The notary's signing certificate proves the signer's certificate/PIV identity method.",
@@ -199,5 +199,27 @@
     "securityAssuranceRule": "Read PCX06–PCX08 with CA14 and IR14: distinguish stated practice, implemented control, scoped assessment and advertised outcome. A confidential assessment may exist and still not substantiate the claimed superlative or unlimited outcome. Security assurance is separate from notarial-law compliance.",
     "nistKbaRule": "Read PCX09 with CA15 and IR15. Require the claimed revision, baseline method or specifically documented deviation/compensating controls, actual KBA role, and applicable DIAS/relying-party evidence. Give relevant counterevidence its actual scope; do not convert a possible explanation into substantiation.",
     "combinedCommercialRule": "Read PCX10 with VA16/VA17, PCX01, PCX05 and PCX09. Preserve the combined misleading-presentation finding and its explicit inference boundary. No observed buyer payment or known intent is needed to correct the independently established false legal rule."
+  },
+  "workerIngestion": {
+    "packageUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/package.json",
+    "caseIds": [
+      "notarycam-audit-part-01",
+      "notarycam-audit-part-02",
+      "notarycam-audit-part-03",
+      "notarycam-audit-part-04",
+      "notarycam-audit-part-05",
+      "notarycam-audit-part-06",
+      "notarycam-audit-part-07",
+      "notarycam-audit-part-08",
+      "notarycam-audit-part-09",
+      "notarycam-audit-part-10",
+      "notarycam-audit-part-11",
+      "notarycam-audit-part-12",
+      "notarycam-audit-part-13"
+    ],
+    "selection": "Explicit regression cases; no claim of default-manifest audit coverage.",
+    "coverage": "All 83 complete claim records and all 15 counterarguments across the cases. Every case includes all 15 interpretation rules, all audit limitations and complete dated source metadata for each included claim, counterargument and rule. Other audit sections remain available in the unchanged full snapshot.",
+    "freshness": "Generated from the dated immutable audit, not live agency fetches. Recheck controlling official sources before use.",
+    "activation": "Prepared artifacts and offline validation do not establish publication of the new main URLs, running-worker ingestion, model uptake or scheduling."
   }
 }
