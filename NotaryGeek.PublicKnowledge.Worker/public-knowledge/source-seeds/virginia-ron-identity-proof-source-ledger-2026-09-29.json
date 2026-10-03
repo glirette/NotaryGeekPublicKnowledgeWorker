@@ -1,0 +1,194 @@
+{
+  "schema": "notary-geek-virginia-ron-identity-source-ledger-v1",
+  "id": "virginia-ron-identity-proof-source-ledger-2026-09-29",
+  "status": "research-source-ledger-review-draft",
+  "checkedDate": "2026-09-29",
+  "jurisdiction": "Virginia",
+  "scope": "Public-source observations for issue #31; no determination about any transaction, provider compliance, validity, or recipient acceptance.",
+  "approvalBoundary": "Meaning-bearing legal conclusions and customer guidance require Greg's approval before publication. This record is a source and evidence-request map.",
+  "sourceAuthorityOrder": [
+    "enacted Virginia text by transaction date",
+    "current codified Virginia text with amendment history",
+    "Secretary handbook or standards dated to the question",
+    "provider documentation as provider claim only"
+  ],
+  "sources": [
+    {
+      "id": "va-archival-agency-code-pdf",
+      "type": "agency-hosted archival code PDF",
+      "url": "https://www.commonwealth.virginia.gov/media/governorvirginiagov/secretary-of-the-commonwealth/pdf/notary/Code-of-Virginia.pdf",
+      "locator": "PDF pages 3-4, §47.1-2, electronic-notarization paragraph; page 10, §47.1-14",
+      "observation": "The hosted archival copy lists personal knowledge, antecedent in-person proofing to Federal Bridge specifications, and a valid digital certificate accessed by biometric data or PIV/PIV-I for the video/audio identity paragraph. Its publication/version date and supersession boundary require separate verification; it is not used alone as the controlling text for a particular transaction.",
+      "authority": "archival agency copy; date not established from filename"
+    },
+    {
+      "id": "va-2024-chapter-832",
+      "type": "enacted session law",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0832+pdf=",
+      "locator": "Chapter 832, approved April 17, 2024; §47.1-2 definition and identity paragraph; enactment clause 2 after §47.1-20.1",
+      "observation": "The chapter shows KBA as new item (5) in the two-method clause; the express retroactivity clause identifies subsection B of §47.1-20.1. It does not expressly name the KBA addition in that clause.",
+      "authority": "Virginia General Assembly enrolled chapter",
+      "caveat": "The effect on a particular earlier act, including any separate validation argument, is not decided in this ledger."
+    },
+    {
+      "id": "va-current-47-1-2",
+      "type": "current codified statute",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
+      "locator": "§47.1-2, definitions of credential analysis, identity proofing, KBA; electronic-notarization identity paragraph; historical citation at end",
+      "observation": "At the checked date the electronic-notarization paragraph offers personal knowledge, a qualifying credible witness, or identification by at least two of five listed methods. The list includes credential analysis, antecedent in-person proofing, a separately authorized guidance/standard method, a valid digital certificate accessed by biometric data or qualifying PIV, and KBA. The historical citation lists 2024 chapter 832 and 2026 chapters 364/365.",
+      "authority": "current Virginia Code",
+      "caveat": "Current wording is a snapshot, not proof of the wording or applicability on an earlier transaction date."
+    },
+    {
+      "id": "va-identity-standards-authority",
+      "type": "current codified statute",
+      "url": "https://law.lis.virginia.gov/vacode/2.2-436/",
+      "locator": "§2.2-436(A)-(B)",
+      "observation": "The section describes approval and publication of identity guidance documents. A specific alternate method under §47.1-2(c)(3) needs the actual dated adopted guidance, regulation, or standard; none is identified as authorizing Proof's workflow in this ledger.",
+      "authority": "Virginia Code"
+    },
+    {
+      "id": "proof-credential-analysis",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/7903680953239-Credential-Analysis",
+      "locator": "Credential Analysis, opening and How Credential Analysis works, checked 2026-09-29",
+      "observation": "Proof describes an automated government-ID check and notary visual comparison with the person on camera; this article says the check runs after KBA in the described flow. It does not identify a second Virginia-listed method for a no-KBA transaction.",
+      "authority": "provider workflow claim only",
+      "caveat": "Article can change and does not establish the exact configuration or outcome of a particular transaction."
+    },
+    {
+      "id": "proof-no-ssn",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number",
+      "locator": "steps 1-5 and eligibility note; article updated June 8, 2026",
+      "observation": "Proof describes an eligible alternative using a current or former U.S. address, ID photos and selfie photos before meeting a notary. The page does not name which Virginia-listed identity methods are completed for a particular no-SSN session.",
+      "authority": "provider workflow claim only"
+    },
+    {
+      "id": "proof-kba",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/10468298021271-Knowledge-Based-Authentication",
+      "locator": "What You'll Need and Summary Checklist, checked 2026-09-29",
+      "observation": "Proof describes five questions, four correct within two minutes, and information including a U.S. address and last four digits of SSN or ITIN to generate questions. The article does not prove KBA ran or passed for a specific signer.",
+      "authority": "provider workflow claim only"
+    },
+    {
+      "id": "proof-accepted-id-types",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/360057120014-Acceptable-Forms-of-ID-for-Online-Notarization",
+      "locator": "ID Requirements at a Glance and Know the Approved Primary ID Types; updated May 14, 2026",
+      "observation": "Proof lists foreign passports with a machine-readable zone as generally accepted and says the conducting notary must follow state law. This documents possible credential intake, not the method combination or outcome of a Virginia transaction.",
+      "authority": "provider workflow claim only"
+    },
+    {
+      "id": "proof-digital-id",
+      "type": "provider help article",
+      "url": "https://support.proof.com/hc/en-us/articles/39023010591127-Digital-ID-for-Business-Organizations",
+      "locator": "Save Your Signers Time, Signers Opt In, and Future Transactions; updated June 11, 2026",
+      "observation": "Proof describes an optional organization-enabled saved Digital ID after four IAL2-compliant transactions and later MFA plus selfie. The article does not state that the signer uses a valid digital certificate accessed by biometrics or PIV/PIV-I for the Virginia statutory certificate item.",
+      "authority": "provider workflow claim only"
+    }
+  ],
+  "methodBySourcePeriod": [
+    {
+      "period": "historical pre-July-2024 source comparison",
+      "basis": [
+        "va-archival-agency-code-pdf",
+        "va-2024-chapter-832"
+      ],
+      "sourceObservation": "The older hosted copy and Chapter 832's marked amendment should be compared at the exact transaction date. Chapter 832 adds KBA as item (5); its express retroactivity clause addresses §47.1-20.1(B).",
+      "uncertainty": "The older PDF's version date is unverified; obtain the official transaction-date Code or enrolled chapters before applying this period to an act."
+    },
+    {
+      "period": "2024 Chapter 832 enactment",
+      "basis": [
+        "va-2024-chapter-832"
+      ],
+      "sourceObservation": "The enacted chapter lists personal knowledge, qualifying credible witness, or at least two specified methods for its video/audio paragraph, with KBA newly included in the latter list.",
+      "uncertainty": "Do not infer a platform's actual methods or the legal effect on an earlier act from the enactment text alone."
+    },
+    {
+      "period": "current Code snapshot checked 2026-09-29",
+      "basis": [
+        "va-current-47-1-2",
+        "va-identity-standards-authority"
+      ],
+      "sourceObservation": "Current §47.1-2 contains the two-of-five clause, including KBA and the certificate/PIV item; its historical note references 2026 chapters 364 and 365.",
+      "uncertainty": "Inspect 2026 enacted amendments and Secretary guidance before assigning a precise effective-date boundary or claiming an alternate method under item (3)."
+    }
+  ],
+  "providerClaimMap": [
+    {
+      "claim": "ID credential analysis and visual match",
+      "providerEvidence": "proof-credential-analysis",
+      "candidateStatutoryQuestion": "Does the transaction's credential analysis satisfy item (1), including the applicable Secretary standards?",
+      "missingEvidence": "Dated transaction result, document type and validity, applicable standards and notary-visible result.",
+      "disposition": "unknown"
+    },
+    {
+      "claim": "No-SSN route using ID and selfie",
+      "providerEvidence": "proof-no-ssn",
+      "candidateStatutoryQuestion": "If KBA was absent, which distinct second listed method, qualifying witness, or personal knowledge was used?",
+      "missingEvidence": "Dated flow configuration and method-result record; if item (3) is claimed, identify the adopted guidance; if item (4), identify the signer's valid certificate/PIV and access event.",
+      "disposition": "unknown"
+    },
+    {
+      "claim": "Selfie, liveness or face matching is biometric",
+      "providerEvidence": "proof-no-ssn",
+      "candidateStatutoryQuestion": "Was there a signer-held valid digital certificate accessed by biometrics or qualifying PIV, as distinct from a selfie comparison and from the notary's signing certificate?",
+      "missingEvidence": "Certificate subject/issuer and validation chain, signer possession/access method, dated verification result; keep private identifying data out of this corpus.",
+      "disposition": "unknown"
+    },
+    {
+      "claim": "KBA can be used in Proof",
+      "providerEvidence": "proof-kba",
+      "candidateStatutoryQuestion": "Did a qualifying KBA assessment actually run and pass on the transaction date, and what other listed method was used when the two-method clause is relied on?",
+      "missingEvidence": "Dated KBA result and separate method evidence; do not treat provider help text as transaction proof.",
+      "disposition": "unknown"
+    },
+    {
+      "claim": "Foreign passport accepted by Proof",
+      "providerEvidence": "proof-accepted-id-types",
+      "candidateStatutoryQuestion": "Does the presented foreign passport meet the actual transaction-date document and credential-analysis standards, and what separate identity method was used?",
+      "missingEvidence": "Dated passport capture/analysis outcome, notary review, applicable standards and independent second-method record.",
+      "disposition": "unknown"
+    },
+    {
+      "claim": "Proof Digital ID with MFA and selfie",
+      "providerEvidence": "proof-digital-id",
+      "candidateStatutoryQuestion": "Is this saved account identity tied to a qualifying Virginia method in the dated session, and if the signer-certificate item is asserted, what certificate was accessed and how?",
+      "missingEvidence": "Feature configuration, dated transaction mode, signer certificate subject/issuer and access/validation evidence or another official-method mapping; no private record in this corpus.",
+      "disposition": "unknown"
+    }
+  ],
+  "openEvidenceRequests": [
+    {
+      "to": "Virginia Secretary / official guidance custodian",
+      "request": "Identify dated guidance, regulations or standards adopted under §2.2-436 for §47.1-2's alternate method, and versions effective for 2024-2026 transactions.",
+      "status": "not_sent"
+    },
+    {
+      "to": "Proof",
+      "request": "For a Virginia remote notarization with no KBA, identify the two method IDs (or personal-knowledge/credible-witness route), signer certificate/PIV evidence if item (4) is claimed, and the dated audit fields available to the notary. No customer records in the public reply.",
+      "status": "not_sent"
+    },
+    {
+      "to": "Virginia legislative source reviewer",
+      "request": "Confirm 2026 chapters 364/365 amendments and precise applicability dates for §47.1-2; independently assess Chapter 832's §47.1-20.1(B) retroactivity clause before legal conclusions.",
+      "status": "not_sent"
+    },
+    {
+      "to": "Proof documentation owner",
+      "request": "Reconcile the Credential Analysis help article's shorter U.S.-ID primary list with the Accepted Forms article's foreign-passport MRZ entry; state whether workflows vary by transaction or organization and provide dated version evidence.",
+      "status": "not_sent"
+    }
+  ],
+  "regressionIntent": [
+    "Do not turn a selfie into the valid digital-certificate method.",
+    "Do not treat a no-SSN workflow as a no-KBA legal method without a second route.",
+    "Do not read current statutory text into a historical transaction.",
+    "Distinguish the Chapter 832 KBA insertion from its separately worded retroactivity clause.",
+    "Treat actual platform implementation and transaction outcome as unknown until direct evidence exists."
+  ],
+  "privacy": "No private transaction, signer, identity, provider account, certificate serial, or customer record is included."
+}
