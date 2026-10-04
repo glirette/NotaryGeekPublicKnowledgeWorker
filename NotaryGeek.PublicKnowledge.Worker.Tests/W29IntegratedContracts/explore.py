@@ -181,6 +181,11 @@ def binding(worker,root):
     binaries={path.name:sha(path.read_bytes()) for path in sorted(worker.parent.glob('*')) if path.suffix in ('.dll','.json')}
     value={'files':files,'binaries':binaries};return {'digest':sha(json.dumps(value,sort_keys=True).encode()),**value}
 
+def require_baseline_failure(kind,failure):
+    expected={'selection':'wrong-source-reuse','path':'wrong-source-reuse',
+              'query':'wrong-source-reuse','whitespace':'unexpected-source-fetch'}
+    require((failure or {}).get('code')==expected[kind],'baseline-control-not-reproduced',kind)
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--dotnet',required=True);p.add_argument('--worker',type=Path,required=True);p.add_argument('--out',type=Path,required=True)
     p.add_argument('--suite',choices=['smoke','matrix','baseline','controls'],default='smoke');p.add_argument('--source-root',type=Path,default=HERE.parents[1]);p.add_argument('--only',help='One source recipe, for focused replay');p.add_argument('--mutant',choices=['archive','reservation']);a=p.parse_args()
@@ -198,6 +203,7 @@ def main():
     elif a.suite=='baseline':
         for kind,mode in [('selection','batch'),('path','batch'),('query','batch'),('whitespace','queued')]:
             plan=recipe(kind);r=execute(command,plan,mode=mode);runs.append(r)
+            require_baseline_failure(kind,r['failure'])
             if r['failure']:reductions.append(reduce_operations(command,plan,r['failure']['code'],mode=mode))
     elif a.suite=='controls':
         for control,code in [('repeat-effect','provider-repeated'),('archive-replace','immutable-overwrite')]:

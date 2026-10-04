@@ -1,10 +1,16 @@
 import copy,itertools,json,tempfile,unittest
 from pathlib import Path
 from oracle import SourceOracle,Violation
-from explore import recipe
+from explore import recipe,require_baseline_failure
 from w08_authority import Authority
 
 class OracleTests(unittest.TestCase):
+    def test_baseline_gate_rejects_infrastructure_failures(self):
+        for kind in ('selection','path','query','whitespace'):
+            for failure in (None,{'code':'RuntimeError'},{'code':'TimeoutError'}):
+                with self.assertRaisesRegex(Violation,'baseline-control-not-reproduced'):require_baseline_failure(kind,failure)
+        require_baseline_failure('path',{'code':'wrong-source-reuse'})
+        require_baseline_failure('whitespace',{'code':'unexpected-source-fetch'})
     def test_body_and_path_case_are_independent(self):
         p=recipe();o=SourceOracle(p['expected'])
         o.prompt('case-a','--- SOURCE: https://source.invalid/L\nW29_BODY_A_v1\n')
