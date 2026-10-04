@@ -1,0 +1,8 @@
+{
+  "control": "archive",
+  "path": "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeRunStorageService.cs",
+  "before": "75a57e82520130b10c1b3f8b4462c45556cdae0072a225a8e3f8c6cfcf31320f",
+  "after": "1f8f4ae997216ea4444e7e7d6197d7cd0760eb125e178cb7e75e29fe0fda6af1",
+  "old": "Conditions = new BlobRequestConditions { IfNoneMatch = ETag.All },",
+  "new": "Conditions = null,"
+}

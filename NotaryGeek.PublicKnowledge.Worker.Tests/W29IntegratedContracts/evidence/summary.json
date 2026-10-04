@@ -1,0 +1,86 @@
+{
+  "testedProductionIntegration": "7d21ab82f2f84948aaec9f88b704e3e4a20a9bd2",
+  "matrixSource": "7331a9ef5c7129eb8933c0839dc0491975e7d59f",
+  "matrix": {
+    "concreteSchedules": 69,
+    "failed": 0,
+    "processKills": 26,
+    "faultSchedules": 39,
+    "lostAckSchedules": 13,
+    "sourceChangedDuringRun": false,
+    "binding": "a7c11242658c8ba97aed7c90fac4db84f68b45ec89c558dd5daba9dab026451a"
+  },
+  "smallDomain": {
+    "exhaustiveConcreteSchedules": 6,
+    "equivalentSourceEffectProjections": 1
+  },
+  "baseline": {
+    "originalSource": "5cfa849c00ea31cd5e5cc8a7c2cf1bb99d9be6bb",
+    "expectedFailures": [
+      "wrong-source-reuse",
+      "wrong-source-reuse",
+      "wrong-source-reuse",
+      "unexpected-source-fetch"
+    ],
+    "subsetChecksPerReduction": 8,
+    "minimalOperations": [
+      1,
+      1,
+      1,
+      2
+    ]
+  },
+  "mutations": {
+    "archive": "immutable-overwrite",
+    "reservation": "provider-repeated"
+  },
+  "build": {
+    "fullSolution": "passed",
+    "errors": 0,
+    "warnings": [
+      "existing CS8604 in PublicKnowledgeRunStorageService.cs"
+    ]
+  },
+  "standardVSTest": {
+    "status": "aborted-before-tests",
+    "reason": "communication socket denied, SocketException 13",
+    "passed": null
+  },
+  "directMethods": {
+    "discovered": 150,
+    "passed": 145,
+    "failed": 0,
+    "skipped": 5,
+    "runner": "actual Fact/InlineData methods with xUnit assertions; not VSTest"
+  },
+  "python": {
+    "W29OracleTests": 8,
+    "W08PrimitiveModelRunnerTests": 31
+  },
+  "W08RecoveryRegressions": {
+    "passed": 4
+  },
+  "historicalArchives": {
+    "sourceHeads": [
+      "27097b551b75d2d64a9e3f1df26c61e73a3eb792",
+      "5cfa849c00ea31cd5e5cc8a7c2cf1bb99d9be6bb"
+    ],
+    "originalSourceGeneratedSyntheticArchives": true,
+    "unchangedBytes": true,
+    "recoveryFetches": 0,
+    "recoveryProviderEffects": 0
+  },
+  "earlierHarnessIssues": [
+    "Initial case recipe omitted purpose; production correctly rejected changed fingerprint.",
+    "Initial direct-runner count expression used invalid int(...) syntax; compilation failed then corrected.",
+    "Initial matrix attached publication faults to w0 although w1 could publish; unreached boundaries failed.",
+    "Initial interrupted-fetch/lost-source-reply oracle expectations were too strong; corrected from externally observed failures."
+  ],
+  "remainingGates": [
+    "standard VSTest on a permitted isolated supported runner",
+    "native transport/Functions host/Azure consistency and emulator not tested",
+    "candidate destination/activation remain separate review decisions"
+  ],
+  "noUniversalExactlyOnce": true,
+  "noGlobalPointerTransaction": true
+}

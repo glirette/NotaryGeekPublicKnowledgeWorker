@@ -118,3 +118,74 @@ remain outside these process tests.
 
 Final executed counts, source bindings, controls, review and remaining gates are
 recorded in the final evidence checkpoint accompanying this document.
+
+## Executed evidence (2026-10-04 UTC)
+
+[Machine-readable summary](../NotaryGeek.PublicKnowledge.Worker.Tests/W29IntegratedContracts/evidence/summary.json)
+and compressed JSON traces preserve decisions, fault stages, original/final source
+observations, input-body hashes, ETags, archive hashes and publication observations.
+They contain no raw provider responses. The original process databases were disposable.
+
+| Check | Result |
+| --- | --- |
+| Exact W20 patch applied to old #29 index | Entire tree equals integration tree `a98e567398801196460b338c15f2f0a01ca64c8c` |
+| Original #29 controls | Four expected failures: selection, path/query batch reuse, whitespace redirect |
+| Production reducer | Minima 1 / 1 / 1 / 2 operations; all eight subsets checked per case |
+| Coupled matrix | 69 passed, zero failed; 26 actual SIGKILLs and 13 lost-ack schedules |
+| Exhaustive small source domain | All six concrete schedules passed; one equal source/effect projection |
+| Precisely mutated production | Archive replacement and repeated provider effects both detected |
+| W02/W08 source-generated historical states | Both recovered; original archive hashes unchanged; zero refetch/provider effects |
+| Existing W08 recovery regressions | Four passed on combined production |
+| Full solution build | Passed, zero errors; one pre-existing CS8604 nullable warning |
+| Actual xUnit Fact/InlineData direct methods | 145 passed, zero failed, five original Azurite skips |
+| Standard VSTest | Aborted before tests: local communication socket denied (SocketException 13) |
+| Python checks | Eight W29 oracle/gate tests; 31 W08 primitive/model/runner tests passed |
+| Diff / Python compilation | Passed |
+
+The 69-schedule matrix ran at source `7331a9ef5c7129eb8933c0839dc0491975e7d59f`
+with unchanged start/end binding
+`a7c11242658c8ba97aed7c90fac4db84f68b45ec89c558dd5daba9dab026451a`.
+Subsequent source `d3de113dc44c4a3b499fd16c91e6d6fc3ea796e5` only tightened
+baseline expected-failure gating and added its negative test; all four baseline
+controls were rerun successfully. A later scratch project-generator option makes
+the already-tested direct runner reproducible. Neither change alters production,
+the worker, source oracle, matrix scheduling or recovery. Results remain attributed
+to the exact code that ran rather than being silently reassigned to a later commit.
+
+To reproduce the direct-method suite (separately from VSTest), use the same isolated
+launcher with these arguments:
+
+```bash
+python3 "$tests/build.py" --tests --out "$out/direct"
+"$sdk" build "$out/direct/DirectTests.csproj" -m:1 -p:UseSharedCompilation=false -p:NuGetAudit=false
+"$sdk" "$out/direct/bin/Debug/net10.0/DirectTests.dll" 150
+```
+
+Initial harness failures are retained as limitations of development evidence:
+a missing synthetic `purpose` changed a fingerprint; a runner count expression
+failed compilation; a fault tied to worker zero was not reached when worker one
+published first; interrupted fetches and lost source replies required failed-source
+expectations. These were fixture corrections, not production defect claims. The
+final source-bound matrix is green. No additional production integration defect was
+reproduced, so no repair beyond the exact W20 delta was made.
+
+## Independent review
+
+A separately spawned read-only reviewer (`/root/independent_review`) was not an
+author helper. Backend model identity was not verifiable; no model switch or paid
+review is claimed. It reviewed `7331a9ef5c7129eb8933c0839dc0491975e7d59f`
+(tree `d665edb6891cff3c566e8f935583ea5f120cf3c9`) and independently ran seven
+oracle tests, all six concrete source-pair schedules, a committed-provider-effect
+SIGKILL/replay, and a lost candidate-write acknowledgment/replay. It verified the
+exact dependency integration and found no production source correctness blocker.
+
+Its nonblocking baseline-gate finding was repaired at
+`d3de113dc44c4a3b499fd16c91e6d6fc3ea796e5` (tree
+`e05b65bb9be9f926641d1a54401e8d80a7fc94a9`). It independently reran all eight
+oracle tests, including rejection of infrastructure failures as expected controls,
+and `git diff --check`. Decision: approve with the documented validation limits.
+Its final evidence/documentation addendum is recorded in the PR checkpoint; this
+source review is not a standard-test, real-service, merge or activation approval.
+
+The reviewer inspected the author's full matrix, reductions and build logs; it did
+**not** independently rerun that entire matrix, full build or standard VSTest.

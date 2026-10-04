@@ -1,0 +1,78 @@
+{
+  "results": [
+    {
+      "case": "unknown-child",
+      "failure": null,
+      "provider_effects": 1,
+      "actions": 218,
+      "minimized_operations": null
+    },
+    {
+      "case": "legacy-catalog-casing",
+      "failure": null,
+      "provider_effects": 1,
+      "actions": 246,
+      "minimized_operations": null
+    },
+    {
+      "case": "missing-failed-catalog",
+      "failure": null,
+      "provider_effects": 1,
+      "actions": 218,
+      "minimized_operations": null
+    },
+    {
+      "case": "fingerprint-order",
+      "failure": null,
+      "provider_effects": 1,
+      "actions": 168,
+      "minimized_operations": null
+    }
+  ],
+  "source_changed_during_run": false,
+  "source_binding": {
+    "algorithm": "sha256",
+    "digest": "483696b69de1e1a6a11b028b5c5b1ea22bec440870b6636135f0b85f980d79a7",
+    "files": {
+      "NotaryGeek.PublicKnowledge.Worker/Configuration/OpenAiOptions.cs": "fb5d5ff703da962c9e5339152e228ff62c27e76f0fdfb7c53d4d9c7528d96553",
+      "NotaryGeek.PublicKnowledge.Worker/Configuration/PublicKnowledgeOptions.cs": "449822b8e083cc934e8c1c29f3f6c54dc6b90ff2e19dcbdf1365da322ef45b61",
+      "NotaryGeek.PublicKnowledge.Worker/Configuration/StraicoOptions.cs": "291c9ca040beb0a9f1bbed528949b74f5a50d25980567a83e0db37ad3a68b706",
+      "NotaryGeek.PublicKnowledge.Worker/Functions/PublicKnowledgeResearchFunction.cs": "98b68a392d93c2ef02453a796144a86d8abe933b4c1d5af7aa9ab3cd9217ad76",
+      "NotaryGeek.PublicKnowledge.Worker/Functions/PublicKnowledgeSourceIndexFunction.cs": "b92b6cbe1a4776888a6e6c45cb52f6e84502a0697aeaa4a9f8a69e9729661180",
+      "NotaryGeek.PublicKnowledge.Worker/Models/PublicKnowledgeModels.cs": "6da462c3d88799107d2d03a09212202a0b0a2a60d0151d96b46b6d535911e362",
+      "NotaryGeek.PublicKnowledge.Worker/NotaryGeek.PublicKnowledge.Worker.csproj": "590ddba4a8fa5f8b9f856122a6e5e55984e255d138ace9f7b2d521d89d54949c",
+      "NotaryGeek.PublicKnowledge.Worker/Program.cs": "84a9cfe9b66a733e636782d667ed77e270635e6f27b6a77dace2285c1ef6d614",
+      "NotaryGeek.PublicKnowledge.Worker/Services/AllowedSourceRedirects.cs": "0b9dd94fefede1437b4aac864706b2b6e2f371829599616be4030f1e20c5c466",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeExecutionPolicy.cs": "9fd48012592067d937f961132dc95c8d71d421af1451e52597a99f10eb7971e3",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgePromotionService.cs": "96078891bfc1df2ef29842fcd209f001643da09784ddad4eb83716b7566003be",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeProviderOutput.cs": "60467def051248a5a4eb009d6d04d87a7511bb6aa8be4ad7cf3bcdfa4e760165",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeQueueService.cs": "531be067ff9303dbf0e6dc83c514349b93b25884407515ddba4f156c2de07ee9",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeResearchService.cs": "17238503325a052a2f1fbe563a416027d21275eca507cad0a70af975a0d96080",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeRunStorageService.cs": "75a57e82520130b10c1b3f8b4462c45556cdae0072a225a8e3f8c6cfcf31320f",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeSourceIndexService.cs": "ce4cd1e806c2b15b649d5626bac6f9dc1573ddfb3a999b6e129b0c19f2ac0f12",
+      "NotaryGeek.PublicKnowledge.Worker/Services/SourceHttpClientRegistration.cs": "370d907370837631f97a47d5a43fba04e22b34e9c623e305692cb062d2f14dc9",
+      "NotaryGeek.PublicKnowledge.Worker/build/WorkerExtensionsBuildOverrides.targets": "91a7f0f55360f0200efd0bfa9a693282cb142ec747652d3d47520ebbd5a8ea72",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08InProcessTests.cs.fixture": "7a5cbbdf2c014f7a3d7770f5eb59d9e678c9aab3d1fab9d30624d9601681d872",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08InProcessTests.csproj": "c954b15e32a8eed607f8b15ed61d18196e6c237895c62bfd25f1ad1e53eb6401",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08Worker.cs.fixture": "6303d2b9413a129dd8df9ad36ded8ed7ff82bf100f3279799b2e8b844adc3e57",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08Worker.csproj": "c33bfb25610f8053d7e64d70aa1a01817e92b666861618bdcb5b75ccf9ab0997",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_authority.py": "db39555ddcbc8915ff6d02ff71736e423f7892cbbbf70b5d6e7fba69ccb383d5",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_authority_tests.py": "76bf21f6f6b60f2170eb1e77327663e7440a615b67a81afe523a2cb539e287ab",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_explore.py": "199897dfb132d41f79159c2287fbce1687ffad138e4c457a1b1d328e4bc4bc41",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_extended.py": "2ab40cb362e5979e36f29e0b971803207429a41b357a84c0cfab5d189526147b",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_model.py": "7d137897d668d766a4c6699fec070b4b55d3e9f6153e1ea645cf21e86d1ea290",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_model_tests.py": "1ab33f3a8706e8e99dd16a77e4ac0f909525f21cf51ae245adaf9314629af326",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_negative_control.py": "cc0961fe5847ffca9c2173c3b731327f04500311454f534f44d4b28a099b450b",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_regressions.py": "1d6d848f0f611a2401b9e23247b3d4b4be62497b0a2454ac2f104b7d45021306",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_runner_tests.py": "a1f95a7e0bd203d6513c93f9eaea6cd8d5dec54c938c5cfa5590ebdfc00d12f6",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_search.py": "1838f5e53da00d8af164b7139d9c9ce074df4d047383d4d7738d0d4540128841",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_trace_adapter.py": "85a23e58011e94d775f97fdeb6c137c17a2753cf4bbda282966913fca70cf28f"
+    },
+    "binaries": {
+      "W29Worker.dll": "2315153762c48b3f7f6817467340ace7db75fe2a23d7b0acb9856e06579cfae3",
+      "NotaryGeek.PublicKnowledge.Worker.dll": "9a21a199144056827cf640926b9f551463a7a47e0d03e66aef917dd8ff9a8ec7",
+      "W29Worker.deps.json": "eb8a392bc2972c108b91963fe1e54696d04062c1bb350bdefcd6402e2b063eae",
+      "W29Worker.runtimeconfig.json": "dd72603f49fc74ad956017904a955b25d7043d65291c0c7d033a2064e141622a"
+    }
+  }
+}
