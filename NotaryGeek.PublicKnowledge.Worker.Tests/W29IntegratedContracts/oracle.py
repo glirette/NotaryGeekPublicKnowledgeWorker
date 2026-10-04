@@ -37,6 +37,17 @@ class SourceOracle(Observer):
         latest=[v for n,v in records.items() if n.startswith('runs/latest/')]
         if not latest:return
         require('runs/latest-index.json' in records and 'runs/latest-needs-greg.json' in records,'derived-missing','views')
+        index=records['runs/latest-index.json'];digest=records['runs/latest-needs-greg.json']
+        identities={(v['caseId'],v['storedAtUtc'],v['blobName']) for v in latest}
+        require(index['runCount']==len(latest) and {(v['caseId'],v['storedAtUtc'],v['blobName']) for v in index['items']}==identities,'index-source-set','settled pointers')
+        require(digest['runCount']==len(latest) and {(v['caseId'],v['storedAtUtc'],v['blobName']) for v in digest['sourceRuns']}==identities,'digest-source-set','settled pointers')
+        by_case={v['caseId']:v['result'] for v in latest}
+        for item in index['items']:
+            result=by_case[item['caseId']]
+            require(all(item[k]==result[k] for k in ('ok','status','sourceCount','openAiCalled')),'index-result','archived fields')
+            structured=result.get('structuredOutput')
+            if structured:
+                require(item['summary']==structured['summary'] and item['citations']==structured['citations'],'index-citations','archived output')
         # Full bytes remain in disposable authority; publication evidence records hashes only.
         for v in latest:
             require(v['blobName'] in records,'latest-missing','archive')

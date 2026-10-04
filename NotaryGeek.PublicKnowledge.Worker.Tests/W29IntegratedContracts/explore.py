@@ -135,11 +135,15 @@ def execute(command,plan,mode='queued',fault=None,seed=0,policy='round-robin',pr
             # Derived records must exactly reflect recorded candidates, not current source text.
             snapshot=s.authority.snapshot()
             candidates=[json.loads(b.body) for n,b in snapshot.items() if n.startswith('promotion/candidates/')]
+            expected_candidates=[]
             for name in s.observer.archived:
                 value=json.loads(snapshot[name].body)['result'];drafts=(value.get('structuredOutput') or {}).get('candidates',[])
                 if value['ok'] and 'recover' in operations:
+                    expected_candidates.extend(drafts)
                     for draft in drafts:
                         require(any(all(c.get(k)==v for k,v in draft.items()) for c in candidates),'candidate-mismatch',value['regressionCaseId'])
+            if 'recover' in operations and mode=='queued':
+                require(len(candidates)==len(expected_candidates),'candidate-set','settled candidate count')
         except Exception as ex:failure={'code':getattr(ex,'code',type(ex).__name__),'detail':str(ex)}
         finally:
             result={'kind':plan.get('kind'),'mode':mode,'seed':seed,'policy':policy,'fault':fault,'operations':operations,'control':control,
@@ -172,7 +176,7 @@ def binding(worker,root):
     files={}
     for prefix,directory in [('production',root/'NotaryGeek.PublicKnowledge.Worker'),('harness',HERE),('W08',HERE.parent/'W08ModelChecking')]:
         for path in sorted(directory.rglob('*')):
-            if path.is_file() and not {'obj','bin','__pycache__','evidence'}.intersection(path.parts) and path.suffix in ('.cs','.fixture','.py','.csproj','.targets'):
+            if path.is_file() and not {'obj','bin','__pycache__','evidence'}.intersection(path.parts) and path.suffix in ('.cs','.fixture','.py','.csproj','.props','.targets'):
                 files[prefix+'/'+str(path.relative_to(directory))]=sha(path.read_bytes())
     binaries={path.name:sha(path.read_bytes()) for path in sorted(worker.parent.glob('*')) if path.suffix in ('.dll','.json')}
     value={'files':files,'binaries':binaries};return {'digest':sha(json.dumps(value,sort_keys=True).encode()),**value}

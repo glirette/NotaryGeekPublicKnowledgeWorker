@@ -29,6 +29,16 @@ class OracleTests(unittest.TestCase):
             v={'result':{'regressionCaseId':'case-a','sourceCount':1,'sources':[{'url':e['original'],'finalUrl':e['final'],'ok':True}]}}
             a.seed('runs/2026/a.json',json.dumps(v));o.check(a);a.seed('runs/2026/a.json',b'changed')
             with self.assertRaisesRegex(Violation,'immutable-overwrite'):o.check(a)
+    def test_settled_index_and_digest_missing_identities_fail(self):
+        for corrupt in ('index','digest'):
+            with tempfile.TemporaryDirectory() as d:
+                a=Authority(Path(d)/'a.sqlite');o=SourceOracle(recipe()['expected'])
+                identity={'caseId':'case-a','storedAtUtc':'2026-09-26T12:00:00Z','blobName':'runs/2026/a.json'}
+                result={'ok':True,'status':'completed','sourceCount':1,'openAiCalled':True,'structuredOutput':None}
+                latest=dict(identity,result=result);a.seed('runs/latest/case-a.json',json.dumps(latest));a.seed(identity['blobName'],json.dumps(latest))
+                a.seed('runs/latest-index.json',json.dumps({'runCount':1,'items':[] if corrupt=='index' else [dict(identity,**result)]}))
+                a.seed('runs/latest-needs-greg.json',json.dumps({'runCount':1,'sourceRuns':[] if corrupt=='digest' else [identity]}))
+                with self.assertRaisesRegex(Violation,corrupt+'-source-set'):o.settled(a)
     def test_exhaustive_two_fetch_projection_pruning(self):
         # Abstract domain only: two independent request/response pairs, each response after its request.
         traces=[t for t in itertools.permutations(('a-send','a-body','b-send','b-body')) if t.index('a-send')<t.index('a-body') and t.index('b-send')<t.index('b-body')]
