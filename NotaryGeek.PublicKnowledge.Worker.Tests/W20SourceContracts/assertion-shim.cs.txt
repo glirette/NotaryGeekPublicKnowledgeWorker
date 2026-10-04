@@ -1,0 +1,21 @@
+using System.Collections;
+namespace Xunit;
+[AttributeUsage(AttributeTargets.Method)] public sealed class FactAttribute:Attribute;
+[AttributeUsage(AttributeTargets.Method)] public sealed class TheoryAttribute:Attribute;
+[AttributeUsage(AttributeTargets.Method,AllowMultiple=true)] public sealed class InlineDataAttribute(params object?[]? values):Attribute {public object?[] Values=values??[null];}
+public static class Assert {
+ public static void True(bool b,string? message=null){if(!b)throw new Exception(message??"Expected true");}
+ public static void False(bool b)=>True(!b,"Expected false");
+ public static void Null(object? v)=>True(v is null,"Expected null");
+ public static void NotNull(object? v)=>True(v is not null,"Expected not null");
+ public static void Equal<T>(T a,T b){if(a is IEnumerable aa && b is IEnumerable bb && a is not string){True(aa.Cast<object>().SequenceEqual(bb.Cast<object>()),"Sequence mismatch");}else True(EqualityComparer<T>.Default.Equals(a,b),$"Expected {a}; got {b}");}
+ public static void Equal<T>(IEnumerable<T> a,IEnumerable<T> b)=>True(a.SequenceEqual(b),"Sequence mismatch");
+ public static void Contains(string a,string b,StringComparison c=StringComparison.Ordinal)=>True(b.Contains(a,c),$"Missing {a}");
+ public static void Contains<T>(IEnumerable<T> a,Predicate<T> b)=>True(a.Any(v=>b(v)),"Missing predicate");
+ public static void DoesNotContain(string a,string b)=>True(!b.Contains(a),$"Found {a}");
+ public static void DoesNotContain<T>(T a,IEnumerable<T> b)=>True(!b.Contains(a),$"Found {a}");
+ public static T Single<T>(IEnumerable<T> a){var v=a.ToArray();Equal(1,v.Length);return v[0];}
+ public static T IsAssignableFrom<T>(object? a){True(a is T);return (T)a!;}
+ public static async Task<T> ThrowsAsync<T>(Func<Task> f) where T:Exception{try{await f();}catch(T e){True(e.GetType()==typeof(T));return e;}throw new Exception("Expected "+typeof(T).Name);}
+ public static async Task<T> ThrowsAnyAsync<T>(Func<Task> f) where T:Exception{try{await f();}catch(T e){return e;}throw new Exception("Expected "+typeof(T).Name);}
+}
