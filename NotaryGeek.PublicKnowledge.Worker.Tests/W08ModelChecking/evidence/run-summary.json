@@ -1,0 +1,1486 @@
+{
+  "schema": "w08-local-execution-evidence-v1",
+  "reviewed_source_head": "28e531a410999cdbcea81f6d31560b2108040af0",
+  "reviewed_source_tree": "d58d4d26452f379e3d992582fb542731cb33b396",
+  "original_production_head": "27097b551b75d2d64a9e3f1df26c61e73a3eb792",
+  "source_binding": {
+    "algorithm": "sha256",
+    "digest": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de",
+    "files": {
+      "NotaryGeek.PublicKnowledge.Worker/Configuration/OpenAiOptions.cs": "fb5d5ff703da962c9e5339152e228ff62c27e76f0fdfb7c53d4d9c7528d96553",
+      "NotaryGeek.PublicKnowledge.Worker/Configuration/PublicKnowledgeOptions.cs": "449822b8e083cc934e8c1c29f3f6c54dc6b90ff2e19dcbdf1365da322ef45b61",
+      "NotaryGeek.PublicKnowledge.Worker/Configuration/StraicoOptions.cs": "291c9ca040beb0a9f1bbed528949b74f5a50d25980567a83e0db37ad3a68b706",
+      "NotaryGeek.PublicKnowledge.Worker/Functions/PublicKnowledgeResearchFunction.cs": "98b68a392d93c2ef02453a796144a86d8abe933b4c1d5af7aa9ab3cd9217ad76",
+      "NotaryGeek.PublicKnowledge.Worker/Functions/PublicKnowledgeSourceIndexFunction.cs": "b92b6cbe1a4776888a6e6c45cb52f6e84502a0697aeaa4a9f8a69e9729661180",
+      "NotaryGeek.PublicKnowledge.Worker/Models/PublicKnowledgeModels.cs": "6da462c3d88799107d2d03a09212202a0b0a2a60d0151d96b46b6d535911e362",
+      "NotaryGeek.PublicKnowledge.Worker/NotaryGeek.PublicKnowledge.Worker.csproj": "590ddba4a8fa5f8b9f856122a6e5e55984e255d138ace9f7b2d521d89d54949c",
+      "NotaryGeek.PublicKnowledge.Worker/Program.cs": "5cb9103c14286cdd9a7807b196266695c10719afd7dc05745d691058c3904620",
+      "NotaryGeek.PublicKnowledge.Worker/Services/AllowedSourceRedirects.cs": "553f6de51013b2e804b4a7e30c7bfb65849544625d97287f7b4089bcc26ea792",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeExecutionPolicy.cs": "9fd48012592067d937f961132dc95c8d71d421af1451e52597a99f10eb7971e3",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgePromotionService.cs": "96078891bfc1df2ef29842fcd209f001643da09784ddad4eb83716b7566003be",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeProviderOutput.cs": "60467def051248a5a4eb009d6d04d87a7511bb6aa8be4ad7cf3bcdfa4e760165",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeQueueService.cs": "531be067ff9303dbf0e6dc83c514349b93b25884407515ddba4f156c2de07ee9",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeResearchService.cs": "4e3eda24565d4f529de948df0d7e43159505d79e2514f469a85fc284cd4c2333",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeRunStorageService.cs": "75a57e82520130b10c1b3f8b4462c45556cdae0072a225a8e3f8c6cfcf31320f",
+      "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeSourceIndexService.cs": "ce4cd1e806c2b15b649d5626bac6f9dc1573ddfb3a999b6e129b0c19f2ac0f12",
+      "NotaryGeek.PublicKnowledge.Worker/build/WorkerExtensionsBuildOverrides.targets": "91a7f0f55360f0200efd0bfa9a693282cb142ec747652d3d47520ebbd5a8ea72",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08InProcessTests.cs.fixture": "7a5cbbdf2c014f7a3d7770f5eb59d9e678c9aab3d1fab9d30624d9601681d872",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08InProcessTests.csproj": "c954b15e32a8eed607f8b15ed61d18196e6c237895c62bfd25f1ad1e53eb6401",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08Worker.cs.fixture": "6303d2b9413a129dd8df9ad36ded8ed7ff82bf100f3279799b2e8b844adc3e57",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/W08Worker.csproj": "c33bfb25610f8053d7e64d70aa1a01817e92b666861618bdcb5b75ccf9ab0997",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_authority.py": "db39555ddcbc8915ff6d02ff71736e423f7892cbbbf70b5d6e7fba69ccb383d5",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_authority_tests.py": "76bf21f6f6b60f2170eb1e77327663e7440a615b67a81afe523a2cb539e287ab",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_explore.py": "199897dfb132d41f79159c2287fbce1687ffad138e4c457a1b1d328e4bc4bc41",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_extended.py": "2ab40cb362e5979e36f29e0b971803207429a41b357a84c0cfab5d189526147b",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_model.py": "7d137897d668d766a4c6699fec070b4b55d3e9f6153e1ea645cf21e86d1ea290",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_model_tests.py": "1ab33f3a8706e8e99dd16a77e4ac0f909525f21cf51ae245adaf9314629af326",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_negative_control.py": "cc0961fe5847ffca9c2173c3b731327f04500311454f534f44d4b28a099b450b",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_regressions.py": "1d6d848f0f611a2401b9e23247b3d4b4be62497b0a2454ac2f104b7d45021306",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_runner_tests.py": "a1f95a7e0bd203d6513c93f9eaea6cd8d5dec54c938c5cfa5590ebdfc00d12f6",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_search.py": "1838f5e53da00d8af164b7139d9c9ce074df4d047383d4d7738d0d4540128841",
+      "NotaryGeek.PublicKnowledge.Worker.Tests/W08ModelChecking/w08_trace_adapter.py": "85a23e58011e94d775f97fdeb6c137c17a2753cf4bbda282966913fca70cf28f"
+    },
+    "binaries": {
+      "W08Worker.dll": "0e18509786bebefc513f54c3a570f5030f7e0e839b5387981b66e501055dc932",
+      "NotaryGeek.PublicKnowledge.Worker.dll": "9d6e22530f5986f8290f0dc8c81501d16bf194e09304e7059256a9e67142e3f3",
+      "W08Worker.deps.json": "7543248ce2d8634f5b8d305d739d15824bc3fdfb6cca888aa77d7117d4b73b6e",
+      "W08Worker.runtimeconfig.json": "dd72603f49fc74ad956017904a955b25d7043d65291c0c7d033a2064e141622a"
+    }
+  },
+  "suites": {
+    "matrix-publish": {
+      "source_head": "28e531a410999cdbcea81f6d31560b2108040af0",
+      "source_changed_during_run": false,
+      "schedules": 58,
+      "failed": 0,
+      "results": [
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 17,
+          "fault": null,
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "reverse",
+          "seed": 17,
+          "fault": null,
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "round-robin",
+          "seed": 17,
+          "fault": null,
+          "failure": null,
+          "actions": 478,
+          "oracle_checks": 240,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "random",
+          "seed": 17,
+          "fault": null,
+          "failure": null,
+          "actions": 468,
+          "oracle_checks": 235,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "live-provider",
+          "policy": "serial",
+          "seed": 0,
+          "fault": null,
+          "failure": null,
+          "actions": 366,
+          "oracle_checks": 184,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "live-archive",
+          "policy": "serial",
+          "seed": 0,
+          "fault": null,
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "admission",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 359,
+          "oracle_checks": 180,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "admission",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 158,
+          "oracle_checks": 80,
+          "provider_effects": 0
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "admission",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 158,
+          "oracle_checks": 80,
+          "provider_effects": 0
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "admission",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 158,
+          "oracle_checks": 80,
+          "provider_effects": 0
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "provider",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 165,
+          "oracle_checks": 83,
+          "provider_effects": 0
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "provider",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 166,
+          "oracle_checks": 84,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "provider",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 394,
+          "oracle_checks": 198,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "provider",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 166,
+          "oracle_checks": 84,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "archive",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 169,
+          "oracle_checks": 85,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "archive",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 360,
+          "oracle_checks": 181,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "archive",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 360,
+          "oracle_checks": 181,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "archive",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 360,
+          "oracle_checks": 181,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "latest",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 363,
+          "oracle_checks": 182,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "latest",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 362,
+          "oracle_checks": 182,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "latest",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 362,
+          "oracle_checks": 182,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "latest",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 362,
+          "oracle_checks": 182,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "evidence-phase",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 379,
+          "oracle_checks": 190,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "evidence-phase",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 378,
+          "oracle_checks": 190,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "evidence-phase",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 378,
+          "oracle_checks": 190,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "evidence-phase",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 378,
+          "oracle_checks": 190,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "receipt",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 387,
+          "oracle_checks": 194,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "receipt",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "receipt",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "receipt",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 391,
+          "oracle_checks": 196,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 394,
+          "oracle_checks": 198,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 394,
+          "oracle_checks": 198,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 394,
+          "oracle_checks": 198,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate-phase",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 399,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate-phase",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate-phase",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "candidate-phase",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 399,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index-phase",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 409,
+          "oracle_checks": 205,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index-phase",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index-phase",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "index-phase",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 399,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest-phase",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 409,
+          "oracle_checks": 205,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest-phase",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest-phase",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "digest-phase",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 388,
+          "oracle_checks": 195,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "completion",
+            "stage": "request",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 397,
+          "oracle_checks": 199,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "completion",
+            "stage": "response",
+            "action": "kill"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "completion",
+            "stage": "response",
+            "action": "lost-response"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        },
+        {
+          "scenario": "duplicate",
+          "policy": "serial",
+          "seed": 0,
+          "fault": {
+            "worker": "w0",
+            "boundary": "completion",
+            "stage": "response",
+            "action": "cancel"
+          },
+          "failure": null,
+          "actions": 398,
+          "oracle_checks": 200,
+          "provider_effects": 1
+        }
+      ],
+      "scope": "bounded concrete schedules; no exhaustive distributed correctness claim",
+      "source_binding_sha256": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de"
+    },
+    "search-publish": {
+      "source_changed_during_run": false,
+      "schedules": 12,
+      "failed": 0,
+      "max_schedules": 12,
+      "prefix_depth": 70,
+      "duplicate_prefixes_pruned": 55,
+      "nonconflicting_choice_pairs_not_branched": 608,
+      "pending_prefixes": 166,
+      "truncated": true,
+      "results": [
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        },
+        {
+          "actions": 478,
+          "failure": null,
+          "oracle_checks": 240
+        }
+      ],
+      "limit": "bounded prefix search; pruning is local HTTP independence, not exhaustive distributed equivalence",
+      "source_binding_sha256": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de"
+    },
+    "extended-publish": {
+      "source_head": "28e531a410999cdbcea81f6d31560b2108040af0",
+      "source_changed_during_run": false,
+      "schedules": 18,
+      "failed": 0,
+      "results": [
+        {
+          "scenario": "independent-cases",
+          "failure": null,
+          "details": {
+            "independent_cases": 2,
+            "receipts": 2,
+            "completed": true
+          },
+          "actions": 446,
+          "provider_effects": 2,
+          "oracle_checks": 223,
+          "operation_counts": {
+            "create": 1,
+            "run": 4
+          }
+        },
+        {
+          "scenario": "legacy-fanout-request",
+          "failure": null,
+          "details": {
+            "legacy": true,
+            "kill_stage": "request",
+            "child_messages": 4,
+            "effects_after_duplicate_children": 2
+          },
+          "actions": 846,
+          "provider_effects": 2,
+          "oracle_checks": 423,
+          "operation_counts": {
+            "create": 1,
+            "run": 9
+          }
+        },
+        {
+          "scenario": "legacy-fanout-response",
+          "failure": null,
+          "details": {
+            "legacy": true,
+            "kill_stage": "response",
+            "child_messages": 5,
+            "effects_after_duplicate_children": 2
+          },
+          "actions": 1053,
+          "provider_effects": 2,
+          "oracle_checks": 527,
+          "operation_counts": {
+            "create": 1,
+            "run": 10
+          }
+        },
+        {
+          "scenario": "modern-fanout-request",
+          "failure": null,
+          "details": {
+            "legacy": false,
+            "kill_stage": "request",
+            "child_messages": 4,
+            "effects_after_duplicate_children": 2
+          },
+          "actions": 846,
+          "provider_effects": 2,
+          "oracle_checks": 423,
+          "operation_counts": {
+            "create": 1,
+            "run": 9
+          }
+        },
+        {
+          "scenario": "modern-fanout-response",
+          "failure": null,
+          "details": {
+            "legacy": false,
+            "kill_stage": "response",
+            "child_messages": 5,
+            "effects_after_duplicate_children": 2
+          },
+          "actions": 1053,
+          "provider_effects": 2,
+          "oracle_checks": 527,
+          "operation_counts": {
+            "create": 1,
+            "run": 10
+          }
+        },
+        {
+          "scenario": "save-older-newer",
+          "failure": null,
+          "details": {
+            "ordering": "older-newer",
+            "losing_write_status": 412,
+            "winner": "runs/2026/09/26/20260926T1202000000000Z-44f66641522dd0dbb8421a92f51b9767/case-a.json",
+            "archives_preserved": true
+          },
+          "actions": 18,
+          "provider_effects": 0,
+          "oracle_checks": 9,
+          "operation_counts": {
+            "save": 2
+          }
+        },
+        {
+          "scenario": "save-equal-time",
+          "failure": null,
+          "details": {
+            "ordering": "equal-time",
+            "losing_write_status": 412,
+            "winner": "runs/2026/09/26/20260926T1201000000000Z-71f26b087a8e166f3a4444a692935460/case-a.json",
+            "archives_preserved": true
+          },
+          "actions": 18,
+          "provider_effects": 0,
+          "oracle_checks": 9,
+          "operation_counts": {
+            "save": 2
+          }
+        },
+        {
+          "scenario": "save-stale-etag",
+          "failure": null,
+          "details": {
+            "ordering": "stale-etag",
+            "losing_write_status": 412,
+            "winner": "runs/2026/09/26/20260926T1202000000000Z-44f66641522dd0dbb8421a92f51b9767/case-a.json",
+            "archives_preserved": true
+          },
+          "actions": 26,
+          "provider_effects": 0,
+          "oracle_checks": 13,
+          "operation_counts": {
+            "save": 3
+          }
+        },
+        {
+          "scenario": "index-advance-after-commit",
+          "failure": null,
+          "details": {
+            "view": "index",
+            "pointer_advance": "after-derived-commit-before-reply",
+            "successful_view_writes": 2
+          },
+          "actions": 50,
+          "provider_effects": 0,
+          "oracle_checks": 25,
+          "operation_counts": {
+            "index": 1,
+            "save": 2
+          }
+        },
+        {
+          "scenario": "index-stale-etag",
+          "failure": null,
+          "details": {
+            "view": "index",
+            "stale_matching_etag_status": 412,
+            "recovered": true
+          },
+          "actions": 86,
+          "provider_effects": 0,
+          "oracle_checks": 43,
+          "operation_counts": {
+            "index": 3,
+            "save": 3
+          }
+        },
+        {
+          "scenario": "index-bounded-rebuild",
+          "failure": null,
+          "details": {
+            "view": "index",
+            "retries_observed": 10,
+            "bounded_failure": "InvalidOperationException",
+            "fair_recovery": true
+          },
+          "actions": 268,
+          "provider_effects": 0,
+          "oracle_checks": 134,
+          "operation_counts": {
+            "index": 2,
+            "save": 11
+          }
+        },
+        {
+          "scenario": "index-partial-list-failure",
+          "failure": null,
+          "details": {
+            "view": "index",
+            "failed_page": 2,
+            "prior_bytes_preserved": true,
+            "recovered": true
+          },
+          "actions": 75,
+          "provider_effects": 0,
+          "oracle_checks": 37,
+          "operation_counts": {
+            "index": 3,
+            "save": 2
+          }
+        },
+        {
+          "scenario": "digest-advance-after-commit",
+          "failure": null,
+          "details": {
+            "view": "digest",
+            "pointer_advance": "after-derived-commit-before-reply",
+            "successful_view_writes": 2
+          },
+          "actions": 50,
+          "provider_effects": 0,
+          "oracle_checks": 25,
+          "operation_counts": {
+            "digest": 1,
+            "save": 2
+          }
+        },
+        {
+          "scenario": "digest-stale-etag",
+          "failure": null,
+          "details": {
+            "view": "digest",
+            "stale_matching_etag_status": 412,
+            "recovered": true
+          },
+          "actions": 86,
+          "provider_effects": 0,
+          "oracle_checks": 43,
+          "operation_counts": {
+            "digest": 3,
+            "save": 3
+          }
+        },
+        {
+          "scenario": "digest-bounded-rebuild",
+          "failure": null,
+          "details": {
+            "view": "digest",
+            "retries_observed": 10,
+            "bounded_failure": "InvalidOperationException",
+            "fair_recovery": true
+          },
+          "actions": 268,
+          "provider_effects": 0,
+          "oracle_checks": 134,
+          "operation_counts": {
+            "digest": 2,
+            "save": 11
+          }
+        },
+        {
+          "scenario": "digest-partial-list-failure",
+          "failure": null,
+          "details": {
+            "view": "digest",
+            "failed_page": 2,
+            "prior_bytes_preserved": true,
+            "recovered": true
+          },
+          "actions": 75,
+          "provider_effects": 0,
+          "oracle_checks": 37,
+          "operation_counts": {
+            "digest": 3,
+            "save": 2
+          }
+        },
+        {
+          "scenario": "malformed-archive",
+          "failure": null,
+          "details": {
+            "rejected": "JsonException",
+            "corrupted_bytes_preserved": true,
+            "provider_effects": 0
+          },
+          "actions": 54,
+          "provider_effects": 0,
+          "oracle_checks": 0,
+          "operation_counts": {
+            "admit": 1,
+            "create": 1,
+            "run": 1,
+            "save": 1
+          }
+        },
+        {
+          "scenario": "candidate-conflict",
+          "failure": null,
+          "details": {
+            "rejected_replays": 2,
+            "candidate_bytes_preserved": true,
+            "evidence_bytes_preserved": true,
+            "successful_receipt_preserved": true,
+            "publication_pending": true
+          },
+          "actions": 148,
+          "provider_effects": 0,
+          "oracle_checks": 0,
+          "operation_counts": {
+            "admit": 1,
+            "create": 1,
+            "promote": 1,
+            "run": 2,
+            "save": 1
+          }
+        }
+      ],
+      "source_binding_sha256": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de"
+    },
+    "regressions-publish": {
+      "results": [
+        {
+          "case": "unknown-child",
+          "failure": null,
+          "provider_effects": 1,
+          "actions": 218,
+          "minimized_operations": null
+        },
+        {
+          "case": "legacy-catalog-casing",
+          "failure": null,
+          "provider_effects": 1,
+          "actions": 246,
+          "minimized_operations": null
+        },
+        {
+          "case": "missing-failed-catalog",
+          "failure": null,
+          "provider_effects": 1,
+          "actions": 218,
+          "minimized_operations": null
+        },
+        {
+          "case": "fingerprint-order",
+          "failure": null,
+          "provider_effects": 1,
+          "actions": 168,
+          "minimized_operations": null
+        }
+      ],
+      "source_changed_during_run": false,
+      "source_binding_sha256": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de"
+    },
+    "negative-publish": {
+      "results": [
+        {
+          "case": "unknown-child",
+          "failure": {
+            "code": "unknown-child-mutated-job",
+            "detail": "unknown-child-mutated-job: unsubmitted child altered prior receipts/status"
+          },
+          "provider_effects": 1,
+          "actions": 168,
+          "minimized_operations": [
+            "create",
+            "subject"
+          ]
+        },
+        {
+          "case": "legacy-catalog-casing",
+          "failure": {
+            "code": "provider-repeated",
+            "detail": "provider-repeated: ('job-w08', 'case-a')"
+          },
+          "provider_effects": 2,
+          "actions": 94,
+          "minimized_operations": [
+            "create",
+            "prepare",
+            "subject"
+          ]
+        },
+        {
+          "case": "missing-failed-catalog",
+          "failure": {
+            "code": "completion-before-phases",
+            "detail": "completion-before-phases: case-a"
+          },
+          "provider_effects": 1,
+          "actions": 163,
+          "minimized_operations": [
+            "create",
+            "prepare",
+            "subject"
+          ]
+        },
+        {
+          "case": "fingerprint-order",
+          "failure": {
+            "code": "equivalent-map-recovery-blocked",
+            "detail": "equivalent-map-recovery-blocked: InvalidOperationException"
+          },
+          "provider_effects": 1,
+          "actions": 70,
+          "minimized_operations": [
+            "create",
+            "prepare",
+            "subject"
+          ]
+        }
+      ],
+      "source_changed_during_run": false,
+      "original_production_head": "27097b551b75d2d64a9e3f1df26c61e73a3eb792",
+      "replaced_paths": [
+        "NotaryGeek.PublicKnowledge.Worker/Functions/PublicKnowledgeResearchFunction.cs",
+        "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeRunStorageService.cs"
+      ],
+      "exact_negative_controls_verified": true,
+      "source_binding_sha256": "a64873341c669f1e4eab475b15d4417a1dccb23514d2b28f4cc50710b56f6e7a"
+    },
+    "core-replay-publish": {
+      "source_head": "28e531a410999cdbcea81f6d31560b2108040af0",
+      "source_changed_during_run": false,
+      "schedules": 1,
+      "failed": 0,
+      "results": [
+        {
+          "scenario": "duplicate",
+          "policy": "round-robin",
+          "seed": 17,
+          "fault": null,
+          "failure": null,
+          "actions": 478,
+          "oracle_checks": 240,
+          "provider_effects": 1
+        }
+      ],
+      "scope": "bounded concrete schedules; no exhaustive distributed correctness claim",
+      "source_binding_sha256": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de"
+    },
+    "extended-replay-publish": {
+      "source_head": "28e531a410999cdbcea81f6d31560b2108040af0",
+      "source_changed_during_run": false,
+      "schedules": 1,
+      "failed": 0,
+      "results": [
+        {
+          "scenario": "legacy-fanout-response",
+          "failure": null,
+          "details": {
+            "legacy": true,
+            "kill_stage": "response",
+            "child_messages": 5,
+            "effects_after_duplicate_children": 2
+          },
+          "actions": 1053,
+          "provider_effects": 2,
+          "oracle_checks": 527,
+          "operation_counts": {
+            "create": 1,
+            "run": 10
+          }
+        }
+      ],
+      "source_binding_sha256": "18fe2827ad2a3ffe5430fd20c547b89769831432c6d3e9ac93030f9f74d962de"
+    }
+  },
+  "full_solution_build": {
+    "result": "passed",
+    "errors": 0,
+    "existing_nullable_warnings": 1
+  },
+  "original_vstest": {
+    "passed": 131,
+    "failed": 0,
+    "skipped": 5
+  },
+  "final_vstest": {
+    "result": "aborted-before-tests",
+    "reason": "VSTest local communication socket denied (SocketException 13)"
+  },
+  "final_direct_methods": {
+    "runner": "socket-free direct Fact/InlineData invocation; not VSTest",
+    "discovered": 136,
+    "passed": 131,
+    "failed": 0,
+    "skipped": 5,
+    "failures": []
+  },
+  "python_tests": {
+    "unittest_discovery": 31,
+    "trace_adapter": 9,
+    "failures": 0,
+    "abstract_illegal_histories": 21
+  },
+  "independent_review": {
+    "selected_model": "GPT-6 Astra",
+    "selected_reasoning": "ultra",
+    "identity_limit": "Backend identity not independently exposed; these are dispatch settings",
+    "source_head": "28e531a410999cdbcea81f6d31560b2108040af0",
+    "scope": "Read-only production diff, model/fixture seams, source/binary evidence readback and fallback addition; no independent test execution",
+    "findings": "No material reliability defect found within reviewed scope"
+  },
+  "trace_bundle": {
+    "file": "production-traces.json.gz",
+    "sha256": "5f29e1f7a635683fdab901053c93a8cfc4d50f8d70a7ba25a4fedd890886a335",
+    "compressed_bytes": 797863,
+    "uncompressed_bytes": 14749579
+  },
+  "source_changed_during_final_runs": false,
+  "activation_limits": [
+    "Five Azurite opt-in skips remain",
+    "Standard final VSTest blocked; direct-method runner evidence separately labeled",
+    "Synthetic protocol consistency only",
+    "Historical reservation map order divergent from saved envelope remains unresolved",
+    "No service queue leasing/deletion, unbounded distributed or real provider exactly-once proof"
+  ]
+}

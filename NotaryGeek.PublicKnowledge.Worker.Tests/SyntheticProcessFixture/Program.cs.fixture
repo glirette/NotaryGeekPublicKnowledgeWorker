@@ -1,0 +1,59 @@
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using NotaryGeek.PublicKnowledge.Worker.Models;
+using NotaryGeek.PublicKnowledge.Worker.Services;
+using NotaryGeek.PublicKnowledge.Worker.Tests;
+
+// Sequential process restart fixture. Persist synthetic protocol-store bodies at each
+// request boundary; never emulate provider admission or production recovery decisions.
+// The caller supplies a new, disposable directory. Not a concurrent file-store emulator.
+if (args.Length != 2 || args[0] is not ("interrupt" or "recover"))
+    throw new InvalidOperationException("Usage: interrupt|recover disposable-directory");
+Directory.CreateDirectory(args[1]);
+var statePath = Path.Combine(args[1], "blobs.json");
+var messagePath = Path.Combine(args[1], "message.json");
+var proofPath = Path.Combine(args[1], "archive.sha256");
+using var fixture = new SyntheticQueuedFixture();
+if (File.Exists(statePath))
+    foreach (var (name, body) in JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(statePath))!)
+        fixture.Store.Seed(name, Encoding.UTF8.GetString(Convert.FromBase64String(body)));
+var message = File.Exists(messagePath)
+    ? JsonSerializer.Deserialize<PublicKnowledgeQueuedRunMessage>(File.ReadAllText(messagePath), SyntheticQueuedFixture.Json)!
+    : fixture.Message("DailySourceIngestion");
+void Persist() => File.WriteAllText(statePath, JsonSerializer.Serialize(fixture.Store.Snapshot()
+    .ToDictionary(x => x.Key, x => Convert.ToBase64String(x.Value.Body))));
+fixture.Store.After = (request, token) => { if (request.IsWrite) Persist(); return Task.CompletedTask; };
+var archive = PublicKnowledgeRunStorageService.GetCaseEvidenceBlobName(message, "case-a");
+string ArchiveHash() => Convert.ToHexString(SHA256.HashData(fixture.Store.Snapshot()[archive].Body));
+if (args[0] == "interrupt")
+{
+    if (File.Exists(messagePath) || File.Exists(proofPath)) throw new InvalidOperationException("Requires a fresh directory.");
+    File.WriteAllText(messagePath, JsonSerializer.Serialize(message, SyntheticQueuedFixture.Json));
+    await fixture.Storage().CreateQueuedRunAsync(message, default);
+    fixture.Store.Fault = request => request.IsWrite && request.Name.StartsWith("promotion/candidates/")
+        ? SyntheticBlobStore.Error(503, "SyntheticInterruptedPublication") : null;
+    try { await fixture.Worker().ProcessQueuedBatch(message, default); }
+    catch (Azure.RequestFailedException ex) when (ex.Status == 503)
+    {
+        var job = (await fixture.Storage().ReadQueuedRunAsync(message.JobId, default))!;
+        if (fixture.ProviderCalls != 1 || job.Status != "publishing" || job.Receipts.Count != 1 || !job.Receipts[0].Ok)
+            throw new InvalidOperationException("Interrupted process failed its durable-state assertions.");
+        File.WriteAllText(proofPath, ArchiveHash()); Persist();
+        Console.WriteLine("EXPECTED INTERRUPTION: provider calls=1; successful immutable receipt preserved; publication pending.");
+        return 42;
+    }
+    throw new InvalidOperationException("Expected interruption did not occur.");
+}
+if (!File.Exists(proofPath)) throw new InvalidOperationException("Recovery requires the interrupted process evidence.");
+await fixture.Worker().ProcessQueuedBatch(message, default);
+await fixture.Worker().ProcessQueuedBatch(message, default);
+var recovered = (await fixture.Storage().ReadQueuedRunAsync(message.JobId, default))!;
+if (fixture.ProviderCalls != 0 || recovered.Status != "completed" || recovered.Receipts.Count != 1 ||
+    !recovered.Receipts[0].Ok || recovered.Receipts[0].BlobName != archive ||
+    ArchiveHash() != File.ReadAllText(proofPath) ||
+    fixture.Store.Snapshot().Keys.Count(x => x.StartsWith("promotion/candidates/")) != 1)
+    throw new InvalidOperationException("Fresh process failed its recovery/evidence assertions.");
+Persist();
+Console.WriteLine("RECOVERED: provider calls=0; archive SHA256 identical; one successful receipt/candidate; index/digest completed.");
+return 0;

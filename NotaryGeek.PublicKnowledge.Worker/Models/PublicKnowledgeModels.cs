@@ -11,7 +11,8 @@ public sealed record PublicKnowledgeRunCommand(
     PublicKnowledgeRegressionCase? RegressionCase,
     string? ProviderOverride = null,
     string RunKind = "regression",
-    string AuthorityLane = "notary");
+    string AuthorityLane = "notary",
+    bool QueuedSingleAttempt = false);
 
 public sealed record PublicKnowledgeRunResult(
     bool Ok,
@@ -78,7 +79,8 @@ public sealed record PublicKnowledgeQueuedRunMessage(
     string? CaseId = null,
     string? ProviderOverride = null,
     string RunKind = "regression",
-    string AuthorityLane = "notary");
+    string AuthorityLane = "notary",
+    IReadOnlyDictionary<string, string>? CaseFingerprints = null);
 
 public sealed record PublicKnowledgeProviderEvidence(
     string Provider,

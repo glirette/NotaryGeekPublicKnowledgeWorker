@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>../obj/W08InProcessTests/</BaseIntermediateOutputPath>
+    <BaseOutputPath>../bin/W08InProcessTests/</BaseOutputPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="W08InProcessTests.cs.fixture" />
+    <ProjectReference Include="../NotaryGeek.PublicKnowledge.Worker.Tests.csproj" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

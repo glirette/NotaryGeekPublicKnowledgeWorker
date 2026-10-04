@@ -1,0 +1,7 @@
+{
+  "method": "apply exact binary diff old-stack-base..W20 to old #29 index; compare complete tree",
+  "expectedTree": "a98e567398801196460b338c15f2f0a01ca64c8c",
+  "actualTree": "a98e567398801196460b338c15f2f0a01ca64c8c",
+  "equal": true,
+  "patchSha256": "f82ce380ad625f32a0c75921fe8fbb8c9aac3b1c6d3596724f12af86fd7e6595"
+}

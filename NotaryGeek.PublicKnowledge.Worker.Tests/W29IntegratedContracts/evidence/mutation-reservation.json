@@ -1,0 +1,8 @@
+{
+  "control": "reservation",
+  "path": "NotaryGeek.PublicKnowledge.Worker/Services/PublicKnowledgeRunStorageService.cs",
+  "before": "75a57e82520130b10c1b3f8b4462c45556cdae0072a225a8e3f8c6cfcf31320f",
+  "after": "a96be4d9f08b3efeb34194f8aa6703d96d1cb172f58057524309a13674534ef6",
+  "old": "ValidateCaseExecution(previous, message, regressionCase);\n            return previous;",
+  "new": "ValidateCaseExecution(previous, message, regressionCase);\n            return previous with { Phase = \"admitted\" };"
+}
