@@ -43,3 +43,12 @@ ordering. Existing reservation fingerprints are not migrated or rewritten.
 See [W08 bounded interleaving evidence](w08-interleaving-recovery-evidence.md) for
 the executable specification, actual-SDK pipe harness, minimized reproductions,
 fairness assumptions and explicit synthetic-consistency limits.
+
+W29 integrates the published W20 source-selection and redirect corrections with
+this replay contract. Source identity preserves path/query case, slash and escaped
+resource distinctions; equivalent redirect destinations do not erase original URLs.
+The queued reservation precedes source preparation. Once immutable evidence exists,
+recovery uses it without re-fetching a changed source or repeating a provider effect.
+This integration does not migrate historical evidence or certify old source content
+under new checks. See [W29 synthetic integration evidence](w29-source-replay-integration-evidence.md)
+for observed contracts, isolation, bounded exploration and remaining gates.

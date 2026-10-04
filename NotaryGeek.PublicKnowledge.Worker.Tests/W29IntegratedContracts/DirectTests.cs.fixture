@@ -1,0 +1,71 @@
+using System.Reflection;
+using System.Text.Json;
+using Xunit;
+using Xunit.Sdk;
+using NotaryGeek.PublicKnowledge.Worker.Tests;
+
+// A deliberately small fallback for this repository's parameterless Fact and
+// InlineData test classes. It runs their actual methods/assertions, not VSTest.
+// Unsupported lifecycle/data features fail instead of silently skipping work.
+if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PK_TEST_STORAGE_CONNECTION")))
+    throw new InvalidOperationException("The socket-free runner requires emulator tests to remain opt-in skips.");
+var assembly = typeof(SyntheticQueuedStorageTests).Assembly;
+var cases = new List<(Type Type, MethodInfo Method, object?[] Args, string? Skip)>();
+foreach (var type in assembly.GetTypes().OrderBy(t => t.FullName, StringComparer.Ordinal))
+{
+    foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                 .OrderBy(m => m.Name, StringComparer.Ordinal))
+    {
+        var fact = method.GetCustomAttribute<FactAttribute>();
+        if (fact is null) continue;
+        if (type.GetConstructor(Type.EmptyTypes) is null ||
+            type.GetInterfaces().Any(i => i.Name.StartsWith("IClassFixture") || i.Name == "IAsyncLifetime") ||
+            method.GetCustomAttributes<BeforeAfterTestAttribute>().Any() ||
+            type.GetCustomAttributes<BeforeAfterTestAttribute>().Any())
+            throw new InvalidOperationException("Unsupported test lifecycle; use the official runner.");
+        var data = method.GetCustomAttributes<DataAttribute>().ToArray();
+        if (data.Any(a => a is not InlineDataAttribute) || (fact is TheoryAttribute && data.Length == 0))
+            throw new InvalidOperationException("Unsupported theory data; use the official runner.");
+        if (data.Length == 0) cases.Add((type, method, [], fact.Skip));
+        else foreach (var attribute in data)
+            foreach (var row in attribute.GetData(method))
+                // InlineData(null) represents one null argument although the
+                // attribute's params array can itself be null.
+                cases.Add((type, method, row is null && method.GetParameters().Length == 1 ? [null] : row ?? [],
+                    fact.Skip ?? attribute.Skip));
+    }
+}
+// Explicit coverage guard for the unchanged W02/#27 suite at the reviewed head.
+if (cases.Count != int.Parse(args[0])) throw new InvalidOperationException($"Expected {args[0]} cases; discovered {cases.Count}.");
+var passed = 0;
+var skipped = 0;
+var failures = new List<object>();
+foreach (var item in cases)
+{
+    if (item.Skip is not null)
+    {
+        skipped++;
+        Console.WriteLine(JsonSerializer.Serialize(new { result = "skip", test = item.Type.Name + "." + item.Method.Name, reason = item.Skip }));
+        continue;
+    }
+    var instance = Activator.CreateInstance(item.Type)!;
+    try
+    {
+        var returned = item.Method.Invoke(instance, item.Args);
+        if (returned is Task task) await task.WaitAsync(TimeSpan.FromSeconds(30));
+        else if (item.Method.ReturnType != typeof(void)) throw new InvalidOperationException("Unsupported asynchronous return type.");
+        passed++;
+    }
+    catch (Exception exception)
+    {
+        var cause = exception is TargetInvocationException tie ? tie.InnerException! : exception;
+        failures.Add(new { test = item.Type.Name + "." + item.Method.Name, error = cause.GetType().Name, detail = cause.Message });
+    }
+    finally { (instance as IDisposable)?.Dispose(); }
+}
+Console.WriteLine(JsonSerializer.Serialize(new
+{
+    runner = "socket-free direct Fact/InlineData invocation; not VSTest",
+    discovered = cases.Count, passed, failed = failures.Count, skipped, failures
+}));
+return failures.Count == 0 && passed == int.Parse(args[0]) - 5 && skipped == 5 ? 0 : 1;
