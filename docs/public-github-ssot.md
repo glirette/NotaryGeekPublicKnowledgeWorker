@@ -56,4 +56,4 @@ The worker should eventually do more than run regression tests. The preferred im
 
 ## Rule
 
-The GitHub repo should contain only public-safe material. If a voice note, customer example, chat, or private email becomes useful, first convert it into a public-safe source archive note with names, contact data, payment data, IDs, document contents, and private facts removed.
+Follow [the public publication policy](publication-policy.md) before committing content or metadata. A converted source note must preserve public source support and omit private facts, internal-only repository and work identifiers, unsent correspondence and unpublished investigation plans. A full internal ledger is not automatically a public-safe export.
