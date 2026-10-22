@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-origin-route-v1",
   "id": "us-ca-apostille-authentication",
-  "version": "0.2-public",
-  "reviewedUtc": "2026-09-29T02:46:54.566Z",
+  "version": "0.3-public",
+  "reviewedUtc": "2026-10-22T00:00:00Z",
   "jurisdiction": {
     "country": "US",
     "state": "CA",
@@ -12,7 +12,7 @@
   "status": "pilot-partial-coverage",
   "publicOnly": true,
   "notLegalAdvice": true,
-  "scope": "California public-official signature and document-origin route, mail versus counter procedure, and issuer exceptions; no transaction-specific acceptance or deadline assurance.",
+  "scope": "Partial California routes: SOS company records and online-to-paper evidence gap, Superior Court divorce/judgment certification, issuer-prepared education records versus private statements, and submission constraints. No transaction-specific acceptance or deadline assurance.",
   "coreQuestion": "Whose signature is on the actual California document, and is the output an original or qualifying certified record for California Secretary of State authentication?",
   "routeFacts": [
     {
@@ -22,7 +22,9 @@
         "ca-request",
         "ca-faq"
       ],
-      "evidence": "official-agency-guidance"
+      "evidence": "official-agency-guidance",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Request page introduction; FAQ 1"
     },
     {
       "id": "destination-output",
@@ -31,7 +33,10 @@
         "ca-faq",
         "hcch-status"
       ],
-      "evidence": "agency statement plus Notary Geek destination-route inference"
+      "evidence": "agency statement plus Notary Geek destination-route inference",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "FAQ 2; HCCH status table (retained September 29 source date)",
+      "sourceFreshnessLimit": "California FAQ refreshed; treaty status retained from September 29 and must be checked for actual destination/date."
     },
     {
       "id": "original-mail",
@@ -39,7 +44,9 @@
       "sourceIds": [
         "ca-request"
       ],
-      "evidence": "official-agency-procedure"
+      "evidence": "official-agency-procedure",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "How to Request an Apostille by Mail, items 1–4"
     },
     {
       "id": "mail-routing",
@@ -48,7 +55,9 @@
         "ca-request",
         "ca-faq"
       ],
-      "evidence": "official-agency-procedure"
+      "evidence": "official-agency-procedure",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Mail carrier addresses and return postage; FAQ 7"
     },
     {
       "id": "counter-fees",
@@ -57,7 +66,9 @@
         "ca-request",
         "ca-faq"
       ],
-      "evidence": "official-agency-procedure"
+      "evidence": "official-agency-procedure",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Sacramento and Los Angeles in-person instructions; FAQ 6"
     },
     {
       "id": "vital-signature-exception",
@@ -65,15 +76,19 @@
       "sourceIds": [
         "ca-faq"
       ],
-      "evidence": "official-agency-document-specific-guidance"
+      "evidence": "official-agency-document-specific-guidance",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "FAQ 3"
     },
     {
       "id": "processing-status",
-      "claim": "The processing page updated September 28, 2026 reports Sacramento processing mail received September 14, 2026, while in-person Sacramento/Los Angeles requests are typically processed within 30 minutes after submission. These are a dated snapshot, not a prospective mail turnaround guarantee.",
+      "claim": "On October 22, 2026, the SOS processing page reported Sacramento processing apostille mail received October 14; counter requests were typically processed within 30 minutes after submission, with arrival by 4:30 p.m. advised for service. This replaces the September 28 snapshot, not a delivery promise.",
       "sourceIds": [
         "ca-processing"
       ],
-      "evidence": "official-agency-dated-operational-status"
+      "evidence": "official-agency-dated-operational-status",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Apostilles / Mail / In Person; last updated October 22, 2026"
     },
     {
       "id": "los-angeles-current-location",
@@ -82,7 +97,9 @@
         "ca-request",
         "ca-la-office"
       ],
-      "evidence": "official-agency-operational-notice"
+      "evidence": "official-agency-operational-notice",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Los Angeles temporary-service notice; Tips for Submission"
     },
     {
       "id": "company-certified-versus-plain",
@@ -91,7 +108,9 @@
         "ca-business-records",
         "ca-request"
       ],
-      "evidence": "official-agency-records guidance plus Notary Geek signature-route inference"
+      "evidence": "official-agency-records guidance plus Notary Geek signature-route inference",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Certificates, Copies, Status Reports and Processing Times"
     },
     {
       "id": "company-other-entity-types",
@@ -99,7 +118,9 @@
       "sourceIds": [
         "ca-business-records"
       ],
-      "evidence": "official-agency-records guidance"
+      "evidence": "official-agency-records guidance",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Note below Plain Copies"
     },
     {
       "id": "company-private-boundary",
@@ -108,7 +129,152 @@
         "ca-business-records",
         "ca-request"
       ],
-      "evidence": "official-agency facts plus Notary Geek output-lane inference"
+      "evidence": "official-agency facts plus Notary Geek output-lane inference",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Frequently Requested Information / Bylaws or Operating Agreements"
+    },
+    {
+      "id": "company-paper-procurement",
+      "claim": "The March 2026 paper order form includes Corp/LLC/LP/GP/LLP choices, certified filings and status certificates. Certified copies cost $5 per document; status certificates $5 each. Sacramento handles paper requests; mail orders return by mail; drop-off offers mail or pickup and a separate $10 per-entity handling fee. These are record-order charges, separate from apostille fees.",
+      "sourceIds": [
+        "ca-business-order"
+      ],
+      "evidence": "official-agency-guidance",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Form p1 items 1–4; p2 items 1/3/4; p3 Fees and Where to Submit"
+    },
+    {
+      "id": "company-online-presentation-unresolved",
+      "claim": "Online certification and verification are documented, but the reviewed public instructions do not specify whether an unaltered customer printout of that certified output is accepted for a paper apostille, or needs agency paper certification. No acceptance or rejection of that exact output is established. A verification code alone does not resolve presentation.",
+      "sourceIds": [
+        "ca-business-records",
+        "ca-bizfile-discovery",
+        "ca-request"
+      ],
+      "evidence": "Notary Geek bounded evidence-gap finding",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Business Records; Certified Copies (Online); apostille mail item 1"
+    },
+    {
+      "id": "company-supported-paper-alternative",
+      "claim": "The published paper order route can obtain an agency-issued certified record instead of relying on a customer printout. Preserve its complete certification, signature and seal, then use SOS apostille submission instructions for that actual output. The other-entity manual-stamp description must not be generalized to the form of every Corp/LLC/LP paper certificate.",
+      "sourceIds": [
+        "ca-business-order",
+        "ca-business-records",
+        "ca-request"
+      ],
+      "evidence": "Notary Geek route synthesis from official procedures",
+      "checkedDate": "2026-10-22",
+      "sourceLocator": "Paper order form; other-entity stamp note; apostille mail item 1"
+    },
+    {
+      "id": "education-issuer-package",
+      "claim": "UC Davis requires newly generated original transcripts/verifications; diploma requests instead use a copy authenticated and notarized through its Registrar. Berkeley likewise offers registrar notarization and identifies the California notary signature as the apostille target. These are institution-specific routes, not a statewide direct-registrar-signature rule.",
+      "sourceIds": [
+        "ca-education-ucdavis",
+        "ca-education-berkeley"
+      ],
+      "sourceLocator": "UC Davis Documents Available for Notarization; Berkeley Apostilles",
+      "evidence": "official-issuer-procedure",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "education-private-institution-chain",
+      "claim": "Caltech publishes a registrar certifying cover letter, notarization, and mailing to SOS with return to the requester. Use its Procedure for issuer preparation only; its opening description of apostille as true-copy certification does not displace SOS FAQ 1. No individual signer or specimen certificate was inspected.",
+      "sourceIds": [
+        "ca-education-caltech",
+        "ca-faq"
+      ],
+      "sourceLocator": "Caltech Procedure; SOS FAQ 1",
+      "evidence": "issuer procedure plus Notary Geek source-conflict resolution",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "education-notary-copy-boundary",
+      "claim": "The 2026 SOS handbook reproduces limited notary copy-certification authority, including powers of attorney, not general authority to certify diploma copies. Its tangible electronic-copy procedure under Government Code 27201.1 uses a custodian statement and jurat for recording; it does not establish an issuer-certified academic record or apostille printout eligibility.",
+      "sourceIds": [
+        "ca-notary-handbook-2026"
+      ],
+      "sourceLocator": "Printed pp17–19,31–32,44–45",
+      "evidence": "official handbook/statutory text plus Notary Geek scope inference",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "education-private-statement-boundary",
+      "claim": "A student or custodian statement notarized in California can only be described as that private statement: the apostille concerns the notary signature. It is not the registrar-certified transcript or diploma, even when attached to a copy. Recipient acceptance of a substitute must be separately established.",
+      "sourceIds": [
+        "ca-faq",
+        "ca-education-berkeley",
+        "ca-notary-handbook-2026"
+      ],
+      "sourceLocator": "SOS FAQ 1; Berkeley Apostilles; handbook copy-certification provisions",
+      "evidence": "Notary Geek signature-route inference",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "court-divorce-issuer",
+      "claim": "The divorce decree/judgment comes from the originating Superior Court. CDPH only holds a 1962–June 1984 Certificate of Record, not the decree; the CDC directory clarifies that this record does not establish finality. CDPH was available as official indexed text, with direct retrieval unsuccessful.",
+      "sourceIds": [
+        "ca-cdph-divorce",
+        "ca-cdc-divorce"
+      ],
+      "sourceLocator": "CDPH opening paragraphs; CDC Divorce State/County",
+      "evidence": "official issuer statement corroborated by federal directory; access limit",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "court-certification-vs-exemplification",
+      "claim": "Orange County describes a certified copy as bearing a dated Deputy Clerk signature and court seal/stamp; its exemplification is a separate document-listing form prepared by a deputy and signed by a Superior Court judge. A possible foreign-recipient request for exemplification is not a stated statewide SOS prerequisite.",
+      "sourceIds": [
+        "ca-orange-copy-faq",
+        "ca-faq"
+      ],
+      "sourceLocator": "Orange FAQ p2; SOS FAQ 1",
+      "evidence": "court procedure plus Notary Geek boundary inference",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "court-authentication-example",
+      "claim": "Stanislaus optional G003 (Rev 02/04), still listed in its official forms catalog, shows deputy-clerk copy attestation/seal, judge authentication of the deputy, then deputy-clerk authentication of the judge/seal. These are Superior Court officials, not an assumed County Clerk step. Indexed form text is an example, not a mandatory apostille chain.",
+      "sourceIds": [
+        "ca-stanislaus-g003",
+        "ca-stanislaus-catalog"
+      ],
+      "sourceLocator": "G003 three certificate blocks; catalog Civil/Family Law",
+      "evidence": "official court form via search index; bounded example",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "court-paper-order-return",
+      "claim": "Orange County allows certified-copy orders and describes mailed delivery for online, mail and telephone requests. Mail orders require document identification, payment and an addressed postage-paid envelope; restricted records retain access conditions. Online ordering does not establish self-printed court-document eligibility.",
+      "sourceIds": [
+        "ca-orange-records"
+      ],
+      "sourceLocator": "Requesting Copies / Copies of Documents",
+      "evidence": "court procedure plus Notary Geek output inference",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "court-processing-conflict",
+      "claim": "Orange County sources conflict: its undated copy FAQ says processing/mailing within 1–3 court days; its Family Law Records page says 30–45 days. No turnaround promise is adopted; confirm current issuer processing before relying on either.",
+      "sourceIds": [
+        "ca-orange-copy-faq",
+        "ca-orange-records"
+      ],
+      "sourceLocator": "FAQ p1 first question; Records page online/mail copy order guidance",
+      "evidence": "unresolved official-source conflict",
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "company-inbound-signatures-not-output",
+      "claim": "Business filing electronic/digital signature instructions govern filings submitted to SOS; they are not instructions approving or rejecting customer-printed SOS-certified outputs for apostille.",
+      "sourceIds": [
+        "ca-business-faq",
+        "ca-request"
+      ],
+      "sourceLocator": "Business FAQ Electronic Signatures / Digital Signatures; apostille mail item 1",
+      "checkedDate": "2026-10-22",
+      "evidence": "Notary Geek source-scope inference"
     }
   ],
   "documentBranches": [
@@ -161,10 +327,31 @@
     {
       "id": "sos-business-certified",
       "question": "Is the requested item an SOS-issued certified filing or certificate of status for a corporation, LLC or LP, rather than a plain downloaded image?",
-      "route": "Order the official certified copy/status certificate through bizfileOnline, then confirm the output format accepted for the apostille paper lane. Other entity types require paper certification with the Business Programs Division stamp.",
+      "route": "Identify certified filing versus status certificate. For online output, hold paper-presentation acceptance pending an output-specific SOS answer; do not infer it from verification. Supported alternative: request an agency-issued certified copy/certificate on the paper order form, preserve all certification pages, then submit that actual certified record for apostille.",
       "sourceIds": [
         "ca-business-records",
+        "ca-business-order",
+        "ca-bizfile-discovery",
         "ca-request"
+      ],
+      "issuer": "California Secretary of State, Business Programs Division",
+      "authenticatedSignature": "Official signature on the SOS certification, not the company officer signature within the filed document",
+      "acceptedOutput": "Agency-issued certified record; exact customer-printed online-certified output acceptance unresolved",
+      "intermediateCertification": "SOS record certification is required for the official-copy route; no private custodian notarization substituted",
+      "competentAuthority": "California Secretary of State, Notary Public Section",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Record procurement and apostille return are separate stages; paper orders mailed back or drop-off pickup as specified by the order form",
+      "decision": "official-paper-route-with-online-output-hold",
+      "unresolvedQuestionIds": [
+        "CA-Q1"
+      ],
+      "childBranchIds": [
+        "business-plain-image",
+        "business-online-certified",
+        "business-paper-certified"
       ]
     },
     {
@@ -176,15 +363,228 @@
         "ca-request"
       ],
       "classification": "Notary Geek route inference"
+    },
+    {
+      "id": "education-issuer-notarized",
+      "question": "Does the recipient require an institutional academic record, and does the issuing registrar offer an apostille preparation/notarization package?",
+      "route": "Obtain the issuer-prepared record/certification and original California notarial package; preserve attachments and submit through SOS. Follow the particular institution procedure, not a generic rule for every public or private school.",
+      "issuer": "Issuing institution/registrar; UC Davis, UC Berkeley and Caltech are documented examples",
+      "authenticatedSignature": "California notary signature on the issuer-prepared package; registrar certification supplies academic-record provenance",
+      "acceptedOutput": "Issuer-approved record or diploma copy with completed original notarial/certification package; a bare photocopy or emailed scan of notarization is not established as accepted",
+      "intermediateCertification": "Institution certification followed by California notarization in the cited examples; no county-clerk step is prescribed by those examples, and exceptional signer/output questions remain open",
+      "competentAuthority": "California Secretary of State, Notary Public Section",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "UC Davis offers mail or authorized pickup; Caltech describes forwarding to SOS and SOS return to requester. Confirm destination/return and any sealed-envelope requirement with issuer/recipient.",
+      "decision": "issuer-notarial-package-route",
+      "sourceIds": [
+        "ca-education-ucdavis",
+        "ca-education-berkeley",
+        "ca-education-caltech",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ]
+    },
+    {
+      "id": "education-private-statement",
+      "question": "Is the presented document the student/custodian statement rather than issuer certification?",
+      "route": "Label it as a private statement. Follow the California notary signature only if that is the requested document; do not substitute it for the issuer-certified academic record or imply recipient acceptance.",
+      "issuer": "Student or other declarant, not the academic records issuer",
+      "authenticatedSignature": "California notary signature on the private statement",
+      "acceptedOutput": "Original properly notarized statement; an attached academic copy retains its separate provenance",
+      "intermediateCertification": "Private declarant notarization does not supply registrar certification",
+      "competentAuthority": "California Secretary of State for the California notary signature",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Standard SOS return rules apply; separate recipient confirmation needed for a private-statement substitute",
+      "decision": "private-statement-only",
+      "sourceIds": [
+        "ca-faq",
+        "ca-request",
+        "ca-notary-handbook-2026"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ]
+    },
+    {
+      "id": "education-digital-or-direct",
+      "question": "Is the record only electronic, or is direct authentication of a school official signature proposed without notarization?",
+      "route": "Keep exact output and signer acceptance unresolved. Obtain issuer-specific and SOS instructions; use the documented registrar notarization/paper package where available. Online ordering, a verification code, or an institutional no-apostille-needed statement is not recipient evidence.",
+      "issuer": "Actual school/registrar identified on the record",
+      "authenticatedSignature": "Proposed school official signature or electronic certification must be identified; no universal direct route established",
+      "acceptedOutput": "Exact electronic-to-paper and direct-school-signature presentation unresolved",
+      "intermediateCertification": "Do not invent a county step or use a private copy statement as issuer certification",
+      "competentAuthority": "California SOS only for an eligible California public-official signature; other-state/federal issuer requires its own authority",
+      "submissionRouteIds": [],
+      "returnConstraint": "Resolve output before selecting mail/counter; check recipient sealed-record requirements separately",
+      "decision": "hold-for-output-and-signer-evidence",
+      "sourceIds": [
+        "ca-request",
+        "ca-education-berkeley",
+        "ca-education-ucdavis",
+        "ca-notary-handbook-2026"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ]
+    },
+    {
+      "id": "court-divorce-judgment",
+      "question": "Does the recipient need the actual California Superior Court decree/judgment and which certification/signature is on it?",
+      "route": "Order the specified filed judgment and attachments as a court-issued certified paper copy. Identify the court certifier, date, seal and completeness. If the actual signature/output is confirmed acceptable to SOS, submit the original court-certified package. If not established, resolve CA-Q2 before claiming the route is ready; do not substitute a private notarized copy.",
+      "issuer": "Originating California Superior Court; not CDPH for the decree",
+      "authenticatedSignature": "Named court official signing the certification or accepted court authentication package, not merely a party signature or the judge name printed in the underlying judgment",
+      "acceptedOutput": "Court-issued certified paper package; customer printout of an electronic court certification unresolved",
+      "intermediateCertification": "Court certification required for the certified-record route. Additional court countersignature/replacement or other intermediate step depends on actual SOS-recognized signer; no universal County Clerk requirement established.",
+      "competentAuthority": "California Secretary of State for the eligible California court-official signature; federal court records are separate",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Obtain court-issued package first. Orange online/mail/telephone orders are mailed; access restrictions and source timing conflict apply. SOS return is a separate stage.",
+      "decision": "court-paper-route-subject-to-signer-confirmation",
+      "sourceIds": [
+        "ca-cdph-divorce",
+        "ca-cdc-divorce",
+        "ca-orange-copy-faq",
+        "ca-orange-records",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ]
+    },
+    {
+      "id": "court-exemplification",
+      "question": "Is exemplification required by the recipient or specifically directed for the actual signature chain?",
+      "route": "Obtain the issuing court authentication/exemplification package when needed. Preserve each court attestation; inspect the final signer and resolve SOS recognition. Orange and Stanislaus illustrate different court products, not a uniform statewide mandate.",
+      "issuer": "Originating Superior Court",
+      "authenticatedSignature": "The specific court-official signature SOS will authenticate; identify it from the complete package",
+      "acceptedOutput": "Court-issued complete certification/exemplification with required signatures/seal; no self-printed equivalent established",
+      "intermediateCertification": "Stanislaus G003 example: deputy attestation -> judge authentication -> deputy authentication of judge. This is an optional local court form, not proof the chain is always needed or sufficient for SOS.",
+      "competentAuthority": "California Secretary of State for eligible California court-official signature",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Court procurement and SOS submission/return are separate; recipient may require exemplification independently of SOS authentication",
+      "decision": "conditional-court-authentication-package",
+      "sourceIds": [
+        "ca-orange-copy-faq",
+        "ca-stanislaus-g003",
+        "ca-stanislaus-catalog",
+        "ca-request",
+        "ca-faq"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ]
+    },
+    {
+      "sourceIds": [
+        "ca-business-records",
+        "ca-business-order",
+        "ca-bizfile-discovery",
+        "ca-request"
+      ],
+      "issuer": "California Secretary of State, Business Programs Division",
+      "authenticatedSignature": "Official signature on the SOS certification, not the company officer signature within the filed document",
+      "intermediateCertification": "SOS record certification is required for the official-copy route; no private custodian notarization substituted",
+      "competentAuthority": "California Secretary of State, Notary Public Section",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Record procurement and apostille return are separate stages; paper orders mailed back or drop-off pickup as specified by the order form",
+      "id": "business-plain-image",
+      "question": "Is this only a free business image, plain copy or ordinary printout without SOS certification?",
+      "decision": "obtain-official-certification",
+      "route": "Obtain the requested SOS-certified filing; do not promote a plain image or private copy statement into an official certification.",
+      "acceptedOutput": "Not yet an agency-certified record"
+    },
+    {
+      "sourceIds": [
+        "ca-business-records",
+        "ca-business-order",
+        "ca-bizfile-discovery",
+        "ca-request"
+      ],
+      "issuer": "California Secretary of State, Business Programs Division",
+      "authenticatedSignature": "Official signature on the SOS certification, not the company officer signature within the filed document",
+      "intermediateCertification": "SOS record certification is required for the official-copy route; no private custodian notarization substituted",
+      "competentAuthority": "California Secretary of State, Notary Public Section",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Record procurement and apostille return are separate stages; paper orders mailed back or drop-off pickup as specified by the order form",
+      "unresolvedQuestionIds": [
+        "CA-Q1"
+      ],
+      "id": "business-online-certified",
+      "question": "Is this the complete SOS online-certified output or a customer print of it?",
+      "decision": "hold-for-online-paper-presentation",
+      "route": "Preserve the complete certification and verification data; resolve CA-Q1 before asserting paper eligibility. Paper procurement is available, but neither automatic printout acceptance nor categorical rejection is established.",
+      "acceptedOutput": "Online-certified record; exact customer printout eligibility unresolved"
+    },
+    {
+      "sourceIds": [
+        "ca-business-records",
+        "ca-business-order",
+        "ca-bizfile-discovery",
+        "ca-request"
+      ],
+      "issuer": "California Secretary of State, Business Programs Division",
+      "authenticatedSignature": "Official signature on the SOS certification, not the company officer signature within the filed document",
+      "intermediateCertification": "SOS record certification is required for the official-copy route; no private custodian notarization substituted",
+      "competentAuthority": "California Secretary of State, Notary Public Section",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Record procurement and apostille return are separate stages; paper orders mailed back or drop-off pickup as specified by the order form",
+      "id": "business-paper-certified",
+      "question": "Is this the complete agency-issued paper certified copy or certificate?",
+      "decision": "inspect-agency-paper-then-submit",
+      "route": "Inspect actual certification/signature and all pages; submit through SOS only when the returned record fits its signed/certified-document requirements. No private notary copy statement substitutes for SOS certification.",
+      "acceptedOutput": "Actual agency-issued paper certified record, subject to document inspection"
+    },
+    {
+      "id": "education-notary-copy-certificate",
+      "question": "Did a California notary alone purport to certify the academic copy, without an issuer certification or separate lawful declarant statement?",
+      "route": "Do not treat the presented notary-only copy certification as an eligible academic-record package. Obtain the issuer certification/notarization route. Any lawful student/custodian declaration would be a newly prepared, different private document and requires separate recipient acceptance.",
+      "issuer": "Purported notary-only copy certificate; academic issuer provenance is missing",
+      "authenticatedSignature": "No supported academic copy-certification act established by the presented certificate",
+      "acceptedOutput": "Presented notary-only academic copy certification is not supported; replace through the issuer or a separately authorized lawful document route",
+      "intermediateCertification": "A notary stamp cannot supply absent issuer certification or create an unstated declarant affidavit",
+      "competentAuthority": "Do not submit as an established California apostille route",
+      "submissionRouteIds": [],
+      "returnConstraint": "Resolve the unsupported certificate before any agency submission",
+      "decision": "reject-and-replace-notary-copy-certification",
+      "sourceIds": [
+        "ca-notary-handbook-2026",
+        "ca-education-berkeley",
+        "ca-faq"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ]
     }
   ],
   "openQuestions": [
-    "Confirm current HCCH applicability and any destination/recipient legalization, translation, age-of-record, or document-type requirement for the actual transaction.",
-    "Check current mail receipt queue and counter location; the September 28 processing snapshot is volatile.",
-    "Confirm eligibility of any digital original, e-notarial output, printed electronic certified copy, or scan with the issuing authority and Secretary of State before converting output lanes.",
-    "Marriage/divorce, education, court, and other issuer categories need further primary-source review; the California business-record branch now distinguishes certified SOS records from private company papers.",
-    "Outside-Convention chain beyond California's single state Apostille needs destination-specific and federal/consular authority research.",
-    "Confirm whether and how an online SOS certified copy or status certificate can be presented as the original/certified output in California's paper apostille process; do not treat a plain printout as a certified record."
+    "Confirm current treaty applicability, destination/legalization and recipient requirements for the actual transaction; no recipient acceptance is established.",
+    "Recheck fees, forms, office notices and processing at use time; October 22 queue observations are not deadlines.",
+    "CA-Q1: Exact online-certified SOS company PDF to paper apostille presentation remains unresolved; published paper record procurement is available.",
+    "CA-Q2: Exact Superior Court signer recognition, any required intermediate chain and electronic court presentation remain output-specific questions.",
+    "CA-Q3: Direct school-official authentication and electronic education presentation remain unresolved; issuer-notarization examples are documented.",
+    "Marriage, other issuer categories, remote/electronic outputs beyond documented examples, and destination-specific outside-Convention chains remain incomplete."
   ],
   "doNotInfer": [
     "A California Apostille proves the document's substantive content or guarantees recipient acceptance.",
@@ -192,7 +592,18 @@
     "The $6 counter charge applies to each document or to mailed requests.",
     "An overnight mail package or prepaid return label speeds the agency's processing queue.",
     "Los Angeles accepts mailed apostille requests.",
-    "California's use of one Apostille output for every foreign destination eliminates all additional outside-Convention requirements."
+    "California's use of one Apostille output for every foreign destination eliminates all additional outside-Convention requirements.",
+    "A valid bizfile verification code makes a customer-printed certified PDF eligible for apostille.",
+    "A private bylaws document becomes an SOS filing because its company has a status certificate.",
+    "A California certificate about a foreign-qualified company authenticates the separate formation record issued by another state.",
+    "A notarized student education statement is the university certified record.",
+    "A registrar-approved diploma-copy input means a bare photocopy can be sent to SOS.",
+    "Every public-school registrar signature can be apostilled directly without notarization.",
+    "Government Code 27201.1 supplies general apostille eligibility for printed electronic records.",
+    "CDPH Certificate of Record is the divorce decree or establishes finality.",
+    "Every court judgment requires County Clerk certification or judge-signed exemplification.",
+    "Every court deputy signature is directly recognized by SOS.",
+    "Online court ordering establishes acceptance of a customer-printed electronically certified court record."
   ],
   "lexicon": [
     "Public-Official Signature Route",
@@ -202,7 +613,7 @@
     "Recipient Evidence"
   ],
   "canonicalModel": "https://notary.cx/notarial-routing-model.json",
-  "sourceNotes": "California uses the word Apostille for every foreign destination; treaty applicability and recipient chain remain independent. Volatile office and queue claims are dated snapshots. Agency facts and Notary Geek inferences are labeled separately.",
+  "sourceNotes": "Dated official agency procedures, issuer-specific examples, Notary Geek route inferences and unresolved questions are distinct. Selected sources were available only through official-page search indexes and are marked. Recipient acceptance and actual submission were not tested.",
   "sources": [
     {
       "id": "ca-request",
@@ -210,7 +621,9 @@
       "type": "official-agency-procedure",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/request-apostille",
-      "checkedUtc": "2026-09-29T02:10:28.663Z"
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "accessMethod": "direct-page-text"
     },
     {
       "id": "ca-faq",
@@ -218,7 +631,9 @@
       "type": "official-agency-faq",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/apostille-faqs",
-      "checkedUtc": "2026-09-29T02:10:28.663Z"
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "accessMethod": "direct-page-text"
     },
     {
       "id": "ca-processing",
@@ -226,8 +641,10 @@
       "type": "official-agency-operational-status",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/processing-times",
-      "checkedUtc": "2026-09-29T02:10:28.663Z",
-      "pageUpdated": "2026-09-28"
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "pageUpdated": "2026-10-22",
+      "effectiveDate": null,
+      "accessMethod": "direct-page-text"
     },
     {
       "id": "ca-la-office",
@@ -235,7 +652,9 @@
       "type": "official-agency-office-status",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/business-programs/los-angeles-office",
-      "checkedUtc": "2026-09-29T02:10:28.663Z"
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "accessMethod": "direct-page-text"
     },
     {
       "id": "hcch-status",
@@ -243,7 +662,8 @@
       "type": "official-treaty-status",
       "publisher": "Hague Conference on Private International Law",
       "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
-      "checkedUtc": "2026-09-29T02:10:28.663Z"
+      "checkedUtc": "2026-09-29T02:10:28.663Z",
+      "accessMethod": "retained-source-record; not refreshed in this increment"
     },
     {
       "id": "ca-business-records",
@@ -251,11 +671,330 @@
       "type": "official-agency-records-guidance",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/business-programs/business-entities/information-requests",
-      "checkedUtc": "2026-09-29T02:46:54.566Z",
+      "checkedUtc": "2026-10-22T00:00:00Z",
       "supports": [
         "certified-versus-plain-copy",
         "entity-type-issuance",
         "company-private-document-boundary"
+      ],
+      "effectiveDate": null,
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-business-order",
+      "title": "Business Entities Records – Order Form",
+      "type": "official-agency-procedure",
+      "publisher": "California Secretary of State",
+      "url": "https://bpd.cdn.sos.ca.gov/pdf/be-records-requests.pdf",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Pages 1–3; entity choices, copy/certificate requests, return and Sacramento submission",
+      "documentRevision": "03/2026",
+      "accessMethod": "direct-PDF-text"
+    },
+    {
+      "id": "ca-bizfile-discovery",
+      "title": "bizfile: Business Records",
+      "type": "official-agency-procedure",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/business-programs/bizfile",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Business Records items 1–4; separate Notary Public and Apostille links",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-education-ucdavis",
+      "title": "Notary Services",
+      "type": "official-issuer-procedure",
+      "publisher": "UC Davis Office of the University Registrar",
+      "url": "https://registrar.ucdavis.edu/records/notary",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Documents Available for Notarization; Delivery; Apostille & Certification Services",
+      "documentRevision": "Page updated 2025-09-08",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-education-berkeley",
+      "title": "Notary Services",
+      "type": "official-issuer-procedure",
+      "publisher": "UC Berkeley Office of the Registrar",
+      "url": "https://www.registrar.berkeley.edu/academic-records/notary-services/",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Documents eligible for notarization; Apostilles",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-education-caltech",
+      "title": "Apostille",
+      "type": "official-issuer-procedure",
+      "publisher": "Caltech Registrar",
+      "url": "https://registrar.caltech.edu/records/apostille",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Procedure (use for issuer process only; opening true-copy definition is not the SOS authentication rule)",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-notary-handbook-2026",
+      "title": "2026 Notary Public Handbook",
+      "type": "official-handbook-with-reproduced-statutes",
+      "publisher": "California Secretary of State",
+      "url": "https://notary.cdn.sos.ca.gov/forms/notary-handbook-current.pdf",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Printed pp17–19,31–32,44–45; Gov Code 8205(a)(4), 27201.1",
+      "documentRevision": "January 2026; current.pdf is a mutable URL",
+      "accessMethod": "direct-PDF-text"
+    },
+    {
+      "id": "ca-cdph-divorce",
+      "title": "Obtaining Copies of Divorce Records",
+      "type": "official-agency-records-guidance",
+      "publisher": "California Department of Public Health",
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Obtaining-Certified-Copies-of-Divorce-Records.aspx",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Opening document/issuer distinction",
+      "accessMethod": "official-page search-index text; direct retrieval returned 502"
+    },
+    {
+      "id": "ca-cdc-divorce",
+      "title": "Where to Write for Vital Records: California",
+      "type": "official-federal-directory",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/nchs/w2w/california.htm",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Divorce / State and County; use for record identity, not its stale fee",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-orange-copy-faq",
+      "title": "Online Family Law Copy Requests: Frequently Asked Questions",
+      "type": "official-court-procedure",
+      "publisher": "Superior Court of California, County of Orange",
+      "url": "https://www.occourts.org/system/files?file=fl_online_copywork_faqs.pdf",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Page 2 certification/exemplification; page 1 timing conflict",
+      "accessMethod": "direct PDF text",
+      "documentRevision": "undated"
+    },
+    {
+      "id": "ca-orange-records",
+      "title": "Family Law Records",
+      "type": "official-court-procedure",
+      "publisher": "Superior Court of California, County of Orange",
+      "url": "https://www.occourts.org/divisions/family-law/family-law-records",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Requesting Copies / Copies of Documents; sealed/confidential access",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-stanislaus-g003",
+      "title": "Certificate of Authentication, G003",
+      "type": "official-court-procedure",
+      "publisher": "Superior Court of California, County of Stanislaus",
+      "url": "https://www.stanislaus.courts.ca.gov/system/files/certificate_authentication.pdf",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Clerk attestation; judge certificate; clerk certificate; Optional Form",
+      "accessMethod": "official PDF search-index text; direct retrieval returned 403",
+      "documentRevision": "02/04"
+    },
+    {
+      "id": "ca-stanislaus-catalog",
+      "title": "Common Forms & Packets",
+      "type": "official-court-procedure",
+      "publisher": "Superior Court of California, County of Stanislaus",
+      "url": "https://www.stanislaus.courts.ca.gov/forms-filing/common-forms-packets",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Civil and Family Law G003 entries",
+      "accessMethod": "official-page search-index text"
+    },
+    {
+      "id": "ca-business-faq",
+      "title": "Business Entities Frequently Asked Questions",
+      "type": "official-agency-guidance",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/business-programs/business-entities/faqs",
+      "checkedUtc": "2026-10-22T00:00:00Z",
+      "effectiveDate": null,
+      "locator": "Electronic Signatures; Digital Signatures",
+      "accessMethod": "direct-page-text"
+    }
+  ],
+  "reviewDatePrecision": "day; source checks performed October 22, 2026, not a midnight observation",
+  "unresolvedQuestions": [
+    {
+      "id": "CA-Q1",
+      "status": "unresolved",
+      "agency": "California Secretary of State: Notary Public Section and Business Entities",
+      "question": "For a bizfileOnline-certified filing copy or certificate of status for a corporation, LLC or LP, will the Notary Public Section accept the customer-printed, complete unaltered PDF in its mail and counter apostille lanes? Which signature/certification pages, seal, verification identifier and printing conditions are required? If not, which agency-issued paper certification should be ordered on the March 2026 form?",
+      "supportedAlternative": "Use the published paper certified-record order procedure and preserve the agency certification; inspect the returned output before apostille submission.",
+      "sourceIds": [
+        "ca-business-records",
+        "ca-business-order",
+        "ca-bizfile-discovery",
+        "ca-request"
+      ],
+      "contactStatus": "question-prepared-not-sent"
+    },
+    {
+      "id": "CA-Q2",
+      "status": "unresolved",
+      "agency": "California SOS Notary Public Section and originating Superior Court",
+      "question": "For a paper Superior Court judgment certified by a named deputy clerk with date and court seal, can SOS authenticate that signature directly? If not, what exact court countersignature, replacement or intermediate certification is required? Is judge-signed exemplification an SOS requirement for this signer or solely a recipient requirement? Is any County Clerk step necessary? What specific paper presentation of electronically certified court records is accepted?",
+      "supportedAlternative": "Request the originating court certified paper record and identify its certifier; obtain an accepted court-issued signature chain when needed. Do not notarize a private photocopy as a substitute.",
+      "sourceIds": [
+        "ca-orange-copy-faq",
+        "ca-stanislaus-g003",
+        "ca-request"
+      ],
+      "contactStatus": "question-prepared-not-sent"
+    },
+    {
+      "id": "CA-Q3",
+      "status": "unresolved",
+      "agency": "California SOS Notary Public Section and issuing registrar",
+      "question": "Which California public-school registrar signatures, if any, are authenticated directly? For issuer-prepared notarized records, what original paper certification and attachments are required, and is any additional official certification needed for the identified signer? How should an electronically issued transcript/diploma be presented, and can the issuer supply a paper counterpart consistent with recipient sealed-envelope requirements?",
+      "supportedAlternative": "Use the issuing institution published registrar-certification/notarization route and original package; obtain recipient requirements separately.",
+      "sourceIds": [
+        "ca-request",
+        "ca-education-ucdavis",
+        "ca-education-berkeley",
+        "ca-education-caltech"
+      ],
+      "contactStatus": "question-prepared-not-sent"
+    }
+  ],
+  "companionEvidence": {
+    "sourceNotesPath": "source-notes-2026-10-22.md",
+    "adversarialCasesPath": "adversarial-cases-2026-10-22.json"
+  },
+  "requiredRouteInputs": [
+    "requestedDocumentIdentity",
+    "actualIssuer",
+    "certifyingOfficialNameAndTitle",
+    "signatureToAuthenticate",
+    "certificationAndAttachments",
+    "outputForm",
+    "destinationCountry",
+    "recipientRequirements"
+  ],
+  "submissionLanes": [
+    {
+      "id": "business-paper-order",
+      "purpose": "Record procurement, not apostille",
+      "mailAddress": "Secretary of State, BE Certification and Records, P.O. Box 944260, Sacramento, CA 94244-2600",
+      "dropOffAddress": "Secretary of State, 1500 11th Street, 3rd floor, Room 380, Sacramento, CA 95814",
+      "certifiedCopyFeeUSD": 5,
+      "certifiedCopyFeeUnit": "per document",
+      "statusCertificateFeeUSD": 5,
+      "dropOffHandlingFeeUSD": 10,
+      "dropOffHandlingFeeUnit": "per entity, separate and non-refundable",
+      "payment": "Check or money order payable to Secretary of State; no cash by mail",
+      "returnInstructions": "Mail orders return by mail; drop-off allows mail or pickup. Correspondence goes to check/money-order name and address where applicable.",
+      "sourceIds": [
+        "ca-business-order"
+      ],
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "mail",
+      "purpose": "Apostille after output and signer qualification",
+      "uspsAddress": "Notary Public Section, P.O. Box 942877, Sacramento, CA 94277-0001",
+      "otherCarrierAddress": "Notary Public Section, 1500 11th Street, 2nd Floor, Sacramento, CA 95814",
+      "feeUSD": 20,
+      "feeUnit": "per apostille",
+      "payment": "Check or money order payable to Secretary of State",
+      "requiredItems": [
+        "eligible signed/original notarized/certified document",
+        "cover sheet naming destination country",
+        "fee",
+        "self-addressed return envelope"
+      ],
+      "returnInstructions": "Prepaid postage for tracked return; otherwise regular USPS. No published international-carrier guarantee is inferred.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq"
+      ],
+      "checkedDate": "2026-10-22"
+    },
+    {
+      "id": "counter",
+      "purpose": "Apostille in person",
+      "sacramentoAddress": "1500 11th Street, 3rd Floor, Sacramento, CA 95814",
+      "losAngelesGeneralAddress": "300 South Spring Street, Room 12513, Los Angeles, CA 90013",
+      "losAngelesTemporaryLocation": "First-floor suite 1215 due to elevator outage; recheck before travel",
+      "feeUSD": 20,
+      "feeUnit": "per apostille",
+      "specialHandlingFeeUSD": 6,
+      "specialHandlingFeeUnit": "per different public official signature authenticated",
+      "payment": "Sacramento: Visa/Mastercard, check, money order or cash; Los Angeles: same except no cash",
+      "requiredItems": [
+        "eligible document",
+        "destination-country cover sheet",
+        "fees"
+      ],
+      "returnInstructions": "Same-day in-person service; source estimates are not delivery guarantees. Los Angeles accepts no mail.",
+      "sourceIds": [
+        "ca-request",
+        "ca-faq",
+        "ca-la-office"
+      ],
+      "checkedDate": "2026-10-22"
+    }
+  ],
+  "issuerExamples": [
+    {
+      "id": "uc-davis",
+      "branchId": "education-issuer-notarized",
+      "originalRequiredFor": [
+        "transcript",
+        "verification"
+      ],
+      "copyInputAllowedFor": [
+        "diploma, only through Registrar authentication/notarization"
+      ],
+      "returnInstructions": "Mail to designated recipient or authorized pickup; no in-person/rush notarization",
+      "scopeLimit": "UC Davis service only",
+      "sourceIds": [
+        "ca-education-ucdavis"
+      ]
+    },
+    {
+      "id": "uc-berkeley",
+      "branchId": "education-issuer-notarized",
+      "documents": [
+        "official transcript",
+        "verification",
+        "diploma or diploma photocopy"
+      ],
+      "authenticatedSignature": "California notary",
+      "scopeLimit": "UC Berkeley service only; issuer no-apostille expectation is not recipient acceptance",
+      "sourceIds": [
+        "ca-education-berkeley"
+      ]
+    },
+    {
+      "id": "caltech",
+      "branchId": "education-issuer-notarized",
+      "steps": [
+        "Registrar certifying cover letter",
+        "notarization",
+        "Registrar mails to SOS",
+        "SOS mails apostille to requester"
+      ],
+      "scopeLimit": "Caltech procedure only; no unseen signer or certificate is approved; SOS definition controls effect",
+      "sourceIds": [
+        "ca-education-caltech",
+        "ca-faq"
       ]
     }
   ]

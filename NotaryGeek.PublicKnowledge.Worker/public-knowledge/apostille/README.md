@@ -25,6 +25,8 @@ The [Notary Geek lexicon](../notary-community/notary-geek-route-first-lexicon-20
 
 The [September 29 adversarial review](adversarial-review-2026-09-29.md) challenges these partial guides with wrong-authority, wrong-output, fee, timing, source-conflict, and recipient-acceptance cases. It records the California company-record fix, contained errors, open evidence, and a bounded merge-stage review gate. Future changes should update the guide and JSON together when an open case is resolved.
 
+The [October 22 California increment](us-ca/README.md) deepens company-paper procurement, court certification and education issuer routes. Its [source notes](us-ca/source-notes-2026-10-22.md) and [17 wrong-turn cases](us-ca/adversarial-cases-2026-10-22.json) retain precise online-output and signer questions. The September 29 ledger remains a historical review; California is still partial, and the other pilots were not refreshed.
+
 ## Coverage labels
 
 - **Reviewed partial pilot:** human and JSON route exist with current source trail and open questions. It does **not** mean the state is complete.

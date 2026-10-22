@@ -1,0 +1,291 @@
+{
+  "schema": "notary-geek-apostille-content-cases-v1",
+  "id": "us-ca-route-cases-2026-10-22",
+  "checkedDate": "2026-10-22",
+  "routeRecord": "us-ca-apostille-authentication.json",
+  "purpose": "Source-linked human/JSON review cases; no production route engine or agency transaction is exercised.",
+  "cases": [
+    {
+      "id": "CA-20261022-01",
+      "input": "Free bizfile formation image printed and called certified.",
+      "expectedBranchId": "business-plain-image",
+      "expectedDecision": "obtain-official-certification",
+      "requiredFactIds": [
+        "company-certified-versus-plain"
+      ],
+      "mustNotConclude": [
+        "plain image is an SOS-certified record",
+        "notarized private copy supplies SOS certification"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-02",
+      "input": "Paid online-certified company PDF has a valid verification code and is printed at home.",
+      "expectedBranchId": "business-online-certified",
+      "expectedDecision": "hold-for-online-paper-presentation",
+      "requiredFactIds": [
+        "company-online-presentation-unresolved"
+      ],
+      "mustNotConclude": [
+        "code proves apostille print eligibility",
+        "every printed online-certified record is rejected"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q1"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-03",
+      "input": "Corp/LLC paper certification is said unavailable because general webpage emphasizes other entity types.",
+      "expectedBranchId": "business-paper-certified",
+      "expectedDecision": "inspect-agency-paper-then-submit",
+      "requiredFactIds": [
+        "company-paper-procurement",
+        "company-supported-paper-alternative"
+      ],
+      "mustNotConclude": [
+        "March 2026 form excludes Corp/LLC/LP",
+        "paper order automatically buys apostille"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-04",
+      "input": "Private bylaws attached to an SOS status certificate.",
+      "expectedBranchId": "private-company-record",
+      "expectedDecision": null,
+      "requiredFactIds": [
+        "company-private-boundary"
+      ],
+      "mustNotConclude": [
+        "bylaws are an SOS filing",
+        "status certificate authenticates bylaws"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-05",
+      "input": "Delaware formation certificate sent through California because company is qualified there.",
+      "expectedBranchId": "other-state-or-federal",
+      "expectedDecision": null,
+      "requiredFactIds": [
+        "signature-route"
+      ],
+      "mustNotConclude": [
+        "California qualification authenticates Delaware issuer signature"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-06",
+      "input": "CDPH Certificate of Record offered as final divorce decree.",
+      "expectedBranchId": "court-divorce-judgment",
+      "expectedDecision": "court-paper-route-subject-to-signer-confirmation",
+      "requiredFactIds": [
+        "court-divorce-issuer"
+      ],
+      "mustNotConclude": [
+        "CDPH record is the decree",
+        "CDPH record proves finality"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-07",
+      "input": "Superior Court copy signed by an unidentified deputy is assumed ready.",
+      "expectedBranchId": "court-divorce-judgment",
+      "expectedDecision": "court-paper-route-subject-to-signer-confirmation",
+      "requiredFactIds": [
+        "court-certification-vs-exemplification"
+      ],
+      "mustNotConclude": [
+        "every deputy signature is directly recognized",
+        "always add County Clerk certification"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-08",
+      "input": "Stanislaus G003 is treated as mandatory for all California judgments.",
+      "expectedBranchId": "court-exemplification",
+      "expectedDecision": "conditional-court-authentication-package",
+      "requiredFactIds": [
+        "court-authentication-example"
+      ],
+      "mustNotConclude": [
+        "G003 is statewide mandatory",
+        "final Superior Court deputy is County Clerk",
+        "G003 guarantees SOS acceptance"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-09",
+      "input": "Court order purchased online means buyer may print an image for apostille.",
+      "expectedBranchId": "court-divorce-judgment",
+      "expectedDecision": "court-paper-route-subject-to-signer-confirmation",
+      "requiredFactIds": [
+        "court-paper-order-return"
+      ],
+      "mustNotConclude": [
+        "online order proves self-print eligibility"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-10",
+      "input": "Student notarizes a statement that a transcript copy is true.",
+      "expectedBranchId": "education-private-statement",
+      "expectedDecision": "private-statement-only",
+      "requiredFactIds": [
+        "education-private-statement-boundary"
+      ],
+      "mustNotConclude": [
+        "statement is registrar-certified transcript",
+        "apostille proves grades"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-11",
+      "input": "UC Davis accepts diploma-copy input so a bare photocopy is sent to SOS.",
+      "expectedBranchId": "education-issuer-notarized",
+      "expectedDecision": "issuer-notarial-package-route",
+      "requiredFactIds": [
+        "education-issuer-package"
+      ],
+      "mustNotConclude": [
+        "copy input bypasses issuer certification/notarization"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-12",
+      "input": "Verified electronic diploma or public registrar signature is assumed directly apostillable.",
+      "expectedBranchId": "education-digital-or-direct",
+      "expectedDecision": "hold-for-output-and-signer-evidence",
+      "requiredFactIds": [
+        "education-issuer-package",
+        "education-notary-copy-boundary"
+      ],
+      "mustNotConclude": [
+        "verification establishes paper eligibility",
+        "all public registrars directly qualify",
+        "issuer no-apostille statement proves recipient acceptance"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-13",
+      "input": "Notary directly certifies diploma copy using the tangible-copy rule.",
+      "expectedBranchId": "education-notary-copy-certificate",
+      "expectedDecision": "reject-and-replace-notary-copy-certification",
+      "requiredFactIds": [
+        "education-notary-copy-boundary"
+      ],
+      "mustNotConclude": [
+        "27201.1 grants general academic copy certification or apostille eligibility",
+        "an absent student/custodian declaration may be assumed or silently created"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-14",
+      "input": "Orange PDF 1–3 days offered as current guaranteed court turnaround.",
+      "expectedBranchId": "court-divorce-judgment",
+      "expectedDecision": "court-paper-route-subject-to-signer-confirmation",
+      "requiredFactIds": [
+        "court-processing-conflict"
+      ],
+      "mustNotConclude": [
+        "ignore conflicting 30–45 day page",
+        "promise a deadline"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-15",
+      "input": "Business FAQ restrictions on filing electronic signatures used to reject all SOS online-certified printouts.",
+      "expectedBranchId": "business-online-certified",
+      "expectedDecision": "hold-for-online-paper-presentation",
+      "requiredFactIds": [
+        "company-inbound-signatures-not-output"
+      ],
+      "mustNotConclude": [
+        "inbound filing rule decides outbound apostille presentation"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q1"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-16",
+      "input": "Out-of-state transcript wrapped in California private statement becomes California issuer record.",
+      "expectedBranchId": "education-private-statement",
+      "expectedDecision": "private-statement-only",
+      "requiredFactIds": [
+        "education-private-statement-boundary",
+        "signature-route"
+      ],
+      "mustNotConclude": [
+        "California notary authenticates out-of-state registrar signature",
+        "private statement changes record issuer"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261022-17",
+      "input": "Caltech opening true-copy definition treated as controlling apostille effect.",
+      "expectedBranchId": "education-issuer-notarized",
+      "expectedDecision": "issuer-notarial-package-route",
+      "requiredFactIds": [
+        "education-private-institution-chain",
+        "signature-route"
+      ],
+      "mustNotConclude": [
+        "apostille certifies academic copy contents"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q3"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    }
+  ]
+}

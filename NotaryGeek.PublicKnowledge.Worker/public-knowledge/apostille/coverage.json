@@ -61,7 +61,8 @@
       "sourceIndexStatus": "source-pointers-present",
       "routeStatus": "reviewed-partial-pilot",
       "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
-      "checkedDate": "2026-09-29"
+      "checkedDate": "2026-10-22",
+      "coverageNote": "Partial increment: paper company procurement and online presentation hold, Superior Court certification/signature gate, issuer education notarization versus private statements."
     },
     {
       "country": "US",

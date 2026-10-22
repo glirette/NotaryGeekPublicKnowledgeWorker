@@ -100,14 +100,18 @@
       "id": "us-ca-apostille-authentication",
       "title": "California Apostille and Authentication: Agent Route Guide",
       "kind": "apostille-state-route-pilot",
-      "use": "California vital-record signature exception; certified versus plain and private company records; mail/counter fees and dated queue; destination-neutral state Apostille output and unresolved certified e-output.",
+      "use": "Partial California routes: company paper procurement with online-output hold, court certification/signature chains, issuer education packages versus private statements; dated sources and wrong-turn cases.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/README.md",
       "supportingUrls": [
         "https://www.sos.ca.gov/notary/request-apostille",
         "https://www.sos.ca.gov/notary/apostille-faqs",
-        "https://www.sos.ca.gov/notary/processing-times"
-      ]
+        "https://www.sos.ca.gov/notary/processing-times",
+        "https://bpd.cdn.sos.ca.gov/pdf/be-records-requests.pdf",
+        "https://www.occourts.org/system/files?file=fl_online_copywork_faqs.pdf",
+        "https://www.registrar.berkeley.edu/academic-records/notary-services/"
+      ],
+      "checkedDate": "2026-10-22"
     },
     {
       "id": "us-federal-apostille-authentication",
