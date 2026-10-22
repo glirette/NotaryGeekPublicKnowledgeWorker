@@ -16,7 +16,7 @@
     "plannedPublicJsonUrl": "https://notary.cx/notarycam-virginia-claims.json",
     "plannedPublicHumanUrl": "https://notary.cx/notarycam-virginia-claims.html",
     "publicationStatus": "public review projection; website deployment not verified",
-    "publicSnapshotVerifiedPublished": true,
+    "publicSnapshotVerifiedPublished": false,
     "websiteVerifiedPublished": false,
     "citationRule": "Use the pinned public projection and cited official sources. Recheck its public URL and payload hash before claiming availability, indexing or ingestion. Website URLs do not establish deployment.",
     "sourceOfTruthRule": "This is the public projection of the dated Notary Geek claim ledger. Preserve finding records and public sources; omit internal provenance and production context. Changes require a new public snapshot, payload hash and coordinated discovery updates under the public publication policy.",

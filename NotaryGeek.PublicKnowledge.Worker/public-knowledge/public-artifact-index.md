@@ -57,7 +57,7 @@ Added 2026-10-02; the earlier review date above is not a new whole-corpus review
 
 | Artifact | Use | Preferred citation |
 | --- | --- | --- |
-| NotaryCam Virginia substantive claim review source map | Discovery and citation boundaries for the extracted-text review, including the no-SSN biometric/KBA question and separate legal dates. Public snapshot verified by unauthenticated exact-byte readback; website deployment remains unverified. | [Source seed](source-seeds/notarycam-virginia-claim-audit-2026-10-02.json) and [publication map](research/notarycam-virginia-claim-audit-2026-10-02.md) |
+| NotaryCam Virginia substantive claim review source map | Discovery and citation boundaries for the extracted-text review, including the no-SSN biometric/KBA question and separate legal dates. Public snapshot byte integrity verified through authenticated GitHub connector readback; anonymous HTTP availability and website publication remain unverified. | [Source seed](source-seeds/notarycam-virginia-claim-audit-2026-10-02.json) and [publication map](research/notarycam-virginia-claim-audit-2026-10-02.md) |
 | NotaryCam Virginia generated public audit snapshot | Immutable public projection; finding records and public sources preserved, internal provenance and production context omitted. SHA-256: `17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858`. This is substantive extracted-text analysis with capture limits, not a complete quotation archive. | [Pinned public snapshot](https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/bb4554ed319dc886374352e36c1c4dbf95c76c1b/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json), after publication is verified |
 
 ## Default Citation Strategy
