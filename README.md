@@ -84,9 +84,7 @@ Do not repackage the Notary Geek Routing Model, source-quality layer, route-firs
 
 ## Public Boundary
 
-This corpus should contain public-safe source material, official source indexes, public correction records, public briefings, public JSON feeds, and source-quality definitions.
-
-It should not contain private customer data, private prompts, secrets, live keys, protected endpoint details, billing tactics, operational runbooks, or business-build playbooks.
+Follow [the public publication policy](docs/publication-policy.md), the shared rule for supported corrections, source provenance, generated exports and contribution review. Confirmed, source-backed corrections remain public. Internal-only repository and work identifiers are excluded from public content and metadata.
 
 ## Human Briefings
 

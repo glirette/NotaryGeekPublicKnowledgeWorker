@@ -6,7 +6,7 @@ The worker accepts bounded jobs for public-source research and regression checks
 
 ## Public Boundary
 
-Jobs must be reconstructable from public repository data and public sources. They must not contain:
+Follow [the public publication policy](publication-policy.md). Jobs must be reconstructable from public repository data and public sources. They must not contain:
 
 - customer, identity, payment, or private case data;
 - secrets, credentials, protected endpoints, or private storage locations;

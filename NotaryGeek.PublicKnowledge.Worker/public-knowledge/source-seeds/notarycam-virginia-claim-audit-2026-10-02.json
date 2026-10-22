@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-source-seed-list-v1",
   "id": "notarycam-virginia-claim-audit-2026-10-02",
-  "version": "0.2-public",
+  "version": "0.3-public",
   "title": "NotaryCam Virginia page: substantive claim review and no-SSN identity-method evidence",
   "purpose": "Discover the generated public snapshot of Notary Geek's substantive extracted-text review of NotaryCam's Virginia page, while keeping provider statements, dated law, authored analysis and unobserved implementation separate.",
   "publicOnly": true,
@@ -9,33 +9,23 @@
   "canonicalEvidence": {
     "repository": "glirette/NotaryGeekPublicKnowledgeWorker",
     "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-    "commit": "8e186964da07f556168c173e8b1957e525c16a78",
-    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-    "payloadSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
+    "commit": "bb4554ed319dc886374352e36c1c4dbf95c76c1b",
+    "immutableJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/bb4554ed319dc886374352e36c1c4dbf95c76c1b/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+    "payloadSha256": "17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858",
     "generatedSnapshot": true,
-    "privateAuthoredProvenance": {
-      "repository": "glirette/DotNetMultisite",
-      "path": "docs/evidence-analysis/notarycam-virginia-claims-2026-10-02.json",
-      "commit": "72fb1ca7ec7f02da013c123de08cc6cd3ac66683",
-      "visibility": "private",
-      "useBoundary": "Non-fetchable authorship and version provenance only; not a public citation or ingestion source."
-    },
     "plannedPublicJsonUrl": "https://notary.cx/notarycam-virginia-claims.json",
     "plannedPublicHumanUrl": "https://notary.cx/notarycam-virginia-claims.html",
-    "publicationStatus": "public draft snapshot verified; website deployment not verified",
-    "publicSnapshotVerifiedPublished": true,
+    "publicationStatus": "public review projection; website deployment not verified",
+    "publicSnapshotVerifiedPublished": false,
     "websiteVerifiedPublished": false,
-    "citationRule": "Use the pinned public snapshot after its publication is verified. The private authored repository is provenance only and must not be presented as publicly fetchable evidence. Planned website URLs do not establish deployment. Recheck the pinned public URL and payload hash before claiming availability, indexing or ingestion.",
-    "sourceOfTruthRule": "DotNetMultisite remains the authored single source of truth. This public snapshot is a generated exact-byte immutable export of the specified ledger revision, not a separately edited audit. Correct the authored ledger first, regenerate the snapshot, record its SHA-256 and public commit, and update discovery references. The seed supplies discovery and citation boundaries.",
+    "citationRule": "Use the pinned public projection and cited official sources. Recheck its public URL and payload hash before claiming availability, indexing or ingestion. Website URLs do not establish deployment.",
+    "sourceOfTruthRule": "This is the public projection of the dated Notary Geek claim ledger. Preserve finding records and public sources; omit internal provenance and production context. Changes require a new public snapshot, payload hash and coordinated discovery updates under the public publication policy.",
     "captureBoundary": "The ledger reviews substantive extracted article text, tables and FAQ plus separately identified related sources. It is not a raw-HTML forensic capture, complete quotation archive, proof of original publication history, or verified exhaustive inventory of every page version.",
-    "publicSnapshotReadback": {
-      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
-      "authentication": "none",
-      "status": 200,
-      "bytes": 167039,
-      "sha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
-      "exactByteMatch": true,
-      "checkedOn": "2026-10-02"
+    "projectionIntegrity": {
+      "bytes": 165222,
+      "sha256": "17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858",
+      "verification": "Exact bytes verified through GitHub connector readback; anonymous HTTP readback not established",
+      "gitBlobSha": "d364fd290fdc568df1ec10639c73150547112e7f"
     }
   },
   "providerPage": {
@@ -120,13 +110,13 @@
   "sourceSeeds": [
     {
       "id": "notary-geek-canonical-claim-ledger",
-      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/bb4554ed319dc886374352e36c1c4dbf95c76c1b/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json",
       "sourceClass": "Generated public snapshot of Notary Geek original dated analysis and official-source map",
-      "use": "Public citation target after pinned-snapshot publication is verified; generated exact-byte export of the authored ledger.",
-      "boundary": "The authored source remains in private DotNetMultisite; its repository metadata is provenance, not a public source dependency. Do not independently edit this export or describe it as a complete quotation archive. Legal propositions still require their official sources and applicable dates.",
+      "use": "Public citation target for the sanitized projection of the authored dated findings; verify the pinned payload before use.",
+      "boundary": "Cite the pinned public projection and controlling official sources with their applicable dates. It is authored analysis, not a complete quotation archive. Internal provenance and production context are omitted.",
       "addedOn": "2026-10-02",
-      "payloadSha256": "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba",
-      "publicationStatus": "public draft snapshot verified by unauthenticated exact-byte readback"
+      "payloadSha256": "17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858",
+      "publicationStatus": "public review projection; website deployment not verified"
     },
     {
       "id": "notarycam-virginia-provider-page",
@@ -160,7 +150,7 @@
     }
   ],
   "crawlBoundary": "Public pages and public repository artifacts only. No customer records, IDs, selfies, private correspondence, accounts or live notarization tests.",
-  "ingestionBoundary": "Listing a source is not proof of a fetch, index, model ingestion or deployment. This change does not expand the worker host allowlist, start jobs or change runtime behavior. Consumers should request the pinned public snapshot directly after publication is verified; do not assume nested seed URLs are fetched recursively or private provenance is accessible.",
+  "ingestionBoundary": "Listing a source is not proof of a fetch, index, model ingestion or deployment. This change does not expand the worker host allowlist, start jobs or change runtime behavior. Consumers should request the pinned public projection directly after publication is verified; do not assume nested seed URLs are fetched recursively.",
   "mustNotSay": [
     "Biometrics is automatically a Virginia substitute for KBA whenever a signer has no U.S. SSN.",
     "The notary's signing certificate proves the signer's certificate/PIV identity method.",
@@ -183,8 +173,8 @@
     "Editorial, funding-credit or distinct validation-mark permission automatically authorizes this agency-logo trust display.",
     "A no-SSN fee proves a nationality-only charge, observed payment or unlawful fee, or unresolved private evidence clears the false public legal assurance."
   ],
-  "openWorkflowQuestion": "The article’s on-camera KBA description is a provider claim. Greg questions whether actual workflow matches it. The audit requests provider/version, timing, binding and result/retry evidence; no actual session mismatch is yet observed.",
-  "investigationFrame": "Virginia is this provider-page case study, not the entire problem. The broader investigation includes Texas and other states and asks whether platform claims and actual methods match the dated governing law. This seed makes no new Texas finding and must not route customers to another state by reputation alone.",
+  "openWorkflowQuestion": "The article’s on-camera KBA description is a provider claim. Provider/version, timing, binding and result/retry evidence would be needed to verify actual workflow; no signing-session mismatch is asserted.",
+  "investigationFrame": "This provider-page case study applies the dated authority-and-method standard. It makes no finding about another state’s transactions and must not route customers to another state by reputation alone.",
   "reviewedOn": "2026-10-02",
   "interpretationContract": {
     "canonicalField": "interpretationRules",
