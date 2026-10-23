@@ -2,15 +2,15 @@
 
 Prepared: 2026-10-02
 
-Status: public draft snapshot verified by unauthenticated exact-byte readback; website deployment remains unverified
+Status: public review projection; website deployment and anonymous HTTP readback remain unverified
 
 Publisher: Notary Geek / Greg Lirette / GoodWare LLC
 
 The [structured source seed](../source-seeds/notarycam-virginia-claim-audit-2026-10-02.json) connects this corpus to a substantive extracted-text review of [NotaryCam's Virginia page](https://www.notarycam.com/online-notary-virginia/), including its tables and FAQ. Related product, pricing and certification sources are identified separately. The review includes the no-SSN biometric/KBA question and other legal-history, commissioning, location, document-use, records and process claims.
 
-The public citation target is the [pinned generated audit snapshot](https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json), once its publication is verified. Use it for assessed propositions, classifications, dated official-source references and evidence limits. It is not a complete quotation archive or raw-HTML forensic capture. Extracted text may duplicate or reorder responsive content; neither exhaustive full-page coverage nor original publication/edit history is established.
+The public citation target is the [pinned generated audit snapshot](https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/bb4554ed319dc886374352e36c1c4dbf95c76c1b/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json), once its publication is verified. Use it for assessed propositions, classifications, dated official-source references and evidence limits. It is not a complete quotation archive or raw-HTML forensic capture. Extracted text may duplicate or reorder responsive content; neither exhaustive full-page coverage nor original publication/edit history is established.
 
-DotNetMultisite remains the authored single source of truth. Its private source revision is `72fb1ca7ec7f02da013c123de08cc6cd3ac66683`; that identifier records provenance, not a publicly fetchable source dependency. The public snapshot is a generated exact-byte immutable export, with SHA-256 `84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba`. Do not independently edit it. Corrections belong in the authored ledger, followed by a regenerated export, a new public commit and updated citation/hash metadata. This note and the seed supply discovery and citation boundaries.
+The public projection preserves the dated audit’s finding records, official-source references, counterarguments and interpretation rules. Its SHA-256 is `17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858`. Internal provenance and correspondence-production context are omitted under the [public publication policy](../../../docs/publication-policy.md). Changes require a new public snapshot and coordinated citation/hash updates.
 
 ## The identity-method question stays concrete
 
@@ -76,4 +76,4 @@ PCX09, CA15 and IR15 require the advertised revision, complete workflow and actu
 
 The [Virginia article](https://www.notarycam.com/online-notary-virginia/) markets its biometric route to international signers without U.S. SSNs. The [purchase page](https://www.notarycam.com/notarize-now/) lists a $50 no-SSN real-estate add-on and a separate $79 no-US-SSN fee for other documents; the latter total/additive basis remains unresolved. The agency-logo trust display and IAL2 language reinforce confidence in the offering. PCX10 assesses the combined message as misleading because the [statute](https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/) supplies no SSN-based biometric exception and the actual authorized method remains necessary.
 
-This is an editorial inference about invited reliance, not proof of a particular buyer’s payment, nationality-only pricing, an unlawful fee, absent logo permission or an agency finding. Those limits do not erase the false categorical legal rule. Markdown source inputs for provider corrections and NIST review have been prepared; document production is backlogged, and no sending or response is claimed.
+This is an editorial inference about invited reliance, not proof of a particular buyer’s payment, nationality-only pricing, an unlawful fee, absent logo permission or an agency finding. Those limits do not erase the false categorical legal rule.
