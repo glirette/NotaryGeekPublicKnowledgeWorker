@@ -29,13 +29,7 @@ When possible, include:
 
 ## Public Boundary
 
-Do not submit:
-
-- customer documents;
-- IDs, selfies, SSNs, payment data, private addresses, or private messages;
-- private customer facts;
-- private emails unless converted into a public-safe source note;
-- secrets, keys, tokens, connection strings, or internal endpoint details.
+Follow [the public publication policy](docs/publication-policy.md) for contributions and PR discussions. It excludes internal-only work references as well as private data, and preserves supported public corrections. Run the publication checker before submitting.
 
 ## Tone
 

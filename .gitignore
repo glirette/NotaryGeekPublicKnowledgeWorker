@@ -9,3 +9,4 @@ local.settings.json
 *.zip
 artifacts/
 App_Data/
+__pycache__/

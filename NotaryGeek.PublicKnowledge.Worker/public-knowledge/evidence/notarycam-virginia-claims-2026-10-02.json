@@ -9,10 +9,9 @@
     "retrievedOn": "2026-10-02",
     "captureMethod": "Substantive article text, tables and FAQ available in the October 2 web extraction; repeated responsive text deduplicated. Adversarial rechecks used first-party indexed text after direct opens returned 403. Displayed date is not independently proven publication history. No raw HTML, complete versioned page capture or original-page hash was preserved.",
     "displayedPublishedOn": "2026-07-15",
-    "evidenceManifestPath": "docs/evidence-analysis/notarycam-virginia-source-observation-2026-10-02.json",
     "versionVerificationStatus": "incomplete: no full original-page snapshot"
   },
-  "scope": "This is a case study within Notary Geek’s broader investigation of platform assurances, identity methods and industry reliance across states, including Texas. Virginia matters here because the reviewed page uses its history and asserted flexibility to sell confidence. The audit assesses substantive legal, historical, operational and comparative propositions in the article text, tables and FAQ available in the October 2 extraction. It separately marks related-source findings and historical interpretation. This is not proof of exhaustive coverage of a preserved page version. It does not claim Virginia is inherently the problem or that another state’s workflow is compliant by default. The broader inquiry requires a dated claim, controlling law and actual method evidence for each state.",
+  "scope": "This is a dated public audit of platform assurances, identity methods and industry reliance. Virginia matters here because the reviewed page uses its history and asserted flexibility to sell confidence. The audit assesses substantive legal, historical, operational and comparative propositions in the article text, tables and FAQ available in the October 2 extraction. It separately marks related-source findings and historical interpretation. This is not proof of exhaustive coverage of a preserved page version. It does not claim Virginia is inherently the problem or that another state’s workflow is compliant by default. The broader inquiry requires a dated claim, controlling law and actual method evidence for each state.",
   "assessment": "The article contains demonstrably false Virginia law summaries and unsupported compliance assurances. KBA was expressly added in July 2024. Platform operation, company size and private certification do not establish that a notarial act satisfies the law. The related commercial presentation combines no-SSN charges and biometric assurances with NIST agency-logo trust signals; this audit addresses that combined reliance concern as well as each underlying representation.",
   "readerSummary": [
     "Six reviewed representations contradict the cited authorities: the statutory section range, traditional-notary location, current state training requirement, Secretary platform-compliance review inference, categorical CA/KBA rule and traditional-record requirement. Unresolved session details do not turn these documented contradictions into merely unverified allegations.",
@@ -2210,38 +2209,11 @@
       "url": "https://notary.cx/source-archive/vendor-scam-label-dismissal-voice-note-2026-10-02.html"
     }
   ],
-  "correspondence": {
-    "status": "Markdown source inputs prepared for provider corrections and NIST logo/identity-assurance review; document production is backlogged. No generation, sending, provider or agency response, admission or determination is claimed.",
-    "nistRequest": {
-      "status": "Markdown source prepared; document production pending; unsent",
-      "purpose": "Review authorization of the exact agency-logo trust display and accuracy of NIST identity-assurance representations in the commercial context of Virginia biometric claims and no-SSN charges.",
-      "recipientOffice": "NIST Communications and Outreach / Public Inquiries, with Digital Identity Group technical routing",
-      "requestedOutcomes": [
-        "Confirm the authorization covering the exact display.",
-        "Review the identity-assurance representations and applicable scope or tailoring evidence.",
-        "Seek correction or removal through the appropriate process if use or claims are unauthorized or misleading."
-      ],
-      "relatedClaimIds": [
-        "VA16",
-        "VA17",
-        "PCX01",
-        "PCX05",
-        "PCX09",
-        "PCX10"
-      ]
-    },
-    "productionState": {
-      "markdownSourcePrepared": true,
-      "documentGenerationQueued": false,
-      "documentGenerated": false,
-      "sent": false
-    }
-  },
   "openVerificationQuestions": [
     {
       "id": "OVQ-KBA-01",
       "question": "Does the actual NotaryCam KBA sequence match the article’s on-camera description?",
-      "status": "Unverified; Greg raised a specific concern on 2026-10-02. No contrary signing-session observation is asserted.",
+      "status": "Unverified; no contrary signing-session observation is asserted.",
       "evidenceNeeded": [
         "Applicable KBA provider, product, commissioned state and workflow version",
         "Quiz start/end and live-video event timing",
@@ -2306,11 +2278,6 @@
   "investigationFrame": {
     "primaryIssue": "Platform and industry assurances substituted for the applicable law and actual transaction evidence.",
     "whyVirginiaHere": "The provider selected Virginia’s history and purported flexibility as a commercial assurance. This case study tests that assurance.",
-    "broaderScope": [
-      "Texas",
-      "Other commissioned states and advertised identity workflows"
-    ],
-    "texasFindingStatus": "A broader research lead; this Virginia-page audit does not purport to resolve Texas law or particular Texas sessions.",
     "desiredOutcome": "Correct methods and technology under the governing law would remove the need to sell Virginia as a special compliance shortcut."
   },
   "counterarguments": [

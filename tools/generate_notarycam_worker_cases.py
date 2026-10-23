@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate bounded, explicit worker cases from the unmodified dated audit."""
+"""Generate bounded, explicit worker cases from the pinned public projection."""
 import argparse
 import hashlib
 import json
@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CORPUS = ROOT / "NotaryGeek.PublicKnowledge.Worker/public-knowledge"
 SOURCE = CORPUS / "evidence/notarycam-virginia-claims-2026-10-02.json"
 DEST = CORPUS / "evidence/notarycam-worker-2026-10-02"
-SHA = "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba"
+SHA = "17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858"
 BASE = "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-worker-2026-10-02/"
-PIN = "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/8e186964da07f556168c173e8b1957e525c16a78/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
+PIN = "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/bb4554ed319dc886374352e36c1c4dbf95c76c1b/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json"
 LIMIT = 17_000
 
 
@@ -25,7 +25,7 @@ def chars(text):
 
 def generate():
     raw = SOURCE.read_bytes()
-    assert len(raw) == 167039 and hashlib.sha256(raw).hexdigest() == SHA, "Canonical audit changed; review/regenerate a new dated package explicitly."
+    assert len(raw) == 165222 and hashlib.sha256(raw).hexdigest() == SHA, "Canonical audit changed; review/regenerate a new dated package explicitly."
     audit = json.loads(raw)
     common = {
         "schema": "notary-geek-audit-worker-part-v1",

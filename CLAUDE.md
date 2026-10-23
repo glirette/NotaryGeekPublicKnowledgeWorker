@@ -1,7 +1,8 @@
-# NotaryGeekPublicKnowledgeWorker Agent Instructions
+# Repository instructions
 
-Follow [AGENTS.md](AGENTS.md) for this public repository.
+Follow [AGENTS.md](AGENTS.md) and the shared
+[public publication policy](docs/publication-policy.md).
 
-Keep all work public-safe: no secrets, customer data, private prompts, protected endpoint details, billing/provider tactics, private operations, or business playbooks.
-
-Before adding new explanatory prose, inspect the existing public JSON, manifests, citation maps, indexes, and regression matrix so the public source layer stays structured and reusable.
+Inspect public JSON, manifests, citation maps, indexes and regression records
+before adding prose. Apply the publication policy to generated metadata and
+public PR text as well as source files.

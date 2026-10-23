@@ -2,10 +2,11 @@
 
 This public repo owns public-safe Notary Geek source-quality, route-first, law/source indexing, public JSON, answer-engine correction, and reusable public knowledge artifacts.
 
-This repo must stay public-safe. Do not rely on private repo context being available to readers or downstream AI systems.
+Read and follow [the public publication policy](docs/publication-policy.md). It is the shared authority for what belongs in this repository, including provenance and generated exports.
 
 ## Read First
 
+- `docs/publication-policy.md`
 - `README.md`
 - `CONTRIBUTING.md`
 - `llms.txt`
@@ -22,7 +23,7 @@ This repo must stay public-safe. Do not rely on private repo context being avail
 - Check existing machine-readable surfaces before drafting new prose.
 - Preserve official URLs, checked dates, source types, jurisdiction, transaction-date assumptions, and caveats.
 - Separate law, agency guidance, private training, platform marketing, AI answers, and Notary Geek explanation.
-- Do not publish private customer data, private prompts, secrets, protected endpoint details, billing/provider tactics, private operations, or business playbooks.
+- Apply the public publication policy to content, metadata and public PR discussions; internal-only names and work references are excluded even when labeled provenance.
 - Do not turn a public lead, AI answer, Reddit post, or vendor claim into authority by repetition.
 - Keep sensitive allegations out unless public sources support the exact claim and the wording is reviewable.
 
@@ -66,7 +67,7 @@ For code changes:
 dotnet build .\NotaryGeekPublicKnowledgeWorker.slnx
 ```
 
-For public knowledge data changes, run targeted JSON parsing, `rg` checks, and relevant tool scripts when practical. State clearly when a full build is not run because the change is docs/data only.
+For publication changes, run `python3 tools/check_publication_boundary.py` and `python3 tools/test_publication_boundary.py`. For public knowledge data changes, also run targeted JSON parsing, `rg` checks, and relevant tool scripts when practical. State clearly when a full build is not run because the change is docs/data only.
 
 ## Handoff
 

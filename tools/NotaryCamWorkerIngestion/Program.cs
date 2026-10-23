@@ -31,7 +31,24 @@ var promptMethod = type.GetMethod("BuildPrompt", BindingFlags.NonPublic | Bindin
 var sourceBodyType = type.GetNestedType("SourceBody", BindingFlags.NonPublic)!;
 var assertions = 0;
 void Check(bool ok, string message) { assertions++; if (!ok) throw new InvalidOperationException(message); }
-Check(auditBytes.Length == 167039 && Convert.ToHexStringLower(SHA256.HashData(auditBytes)) == "84021763580edfcd5c0bcb8560dfbc3e0e4b421c4b9bebc6d6c02c00b5ff14ba", "Canonical bytes changed");
+const string expectedSha = "17d2704d4725a1098f9be01c9424e949fb43dedcf2e49ca71c7aadd7e7bae858";
+const string expectedPin = "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/bb4554ed319dc886374352e36c1c4dbf95c76c1b/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/notarycam-virginia-claims-2026-10-02.json";
+Check(auditBytes.Length == 165222 && Convert.ToHexStringLower(SHA256.HashData(auditBytes)) == expectedSha, "Canonical bytes changed");
+void CheckBinding(JsonNode node, string location)
+{
+    Check(node["canonicalSnapshot"]?.GetValue<string>() == expectedPin && node["canonicalSha256"]?.GetValue<string>() == expectedSha, $"Projection binding differs: {location}");
+}
+CheckBinding(package, "package");
+var seed = JsonNode.Parse(File.ReadAllText(Path.Combine(corpus, "source-seeds/notarycam-virginia-claim-audit-2026-10-02.json")))!;
+Check(seed["canonicalEvidence"]!["immutableJsonUrl"]!.GetValue<string>() == expectedPin && seed["canonicalEvidence"]!["payloadSha256"]!.GetValue<string>() == expectedSha, "Source seed binding differs");
+Check(seed["workerIngestion"]!["caseIds"]!.AsArray().Select(n => n!.GetValue<string>()).SequenceEqual(cases.Select(c => c.Id)), "Source seed case discovery differs");
+foreach (var artifact in package["artifacts"]!.AsArray())
+{
+    var name = artifact!["path"]!.GetValue<string>();
+    Check(Path.GetFileName(name) == name, "Artifact path must be a filename");
+    var bytes = File.ReadAllBytes(Path.Combine(packageDir, name));
+    Check(Convert.ToHexStringLower(SHA256.HashData(bytes)) == artifact["sha256"]!.GetValue<string>() && bytes.Length == artifact["utf8Bytes"]!.GetValue<int>() && Encoding.UTF8.GetString(bytes).Length == artifact["utf16Characters"]!.GetValue<int>(), $"Artifact byte binding differs: {name}");
+}
 Check(knowledgeOptions.MaxSourcesPerRun == 24 && knowledgeOptions.MaxCharactersPerSource == 20000 && knowledgeOptions.MaxInputCharacters == 60000, "Reassess package against changed production defaults");
 var allUrls = manifest.SourceSets.SelectMany(s => s.Urls).Where(u => !string.IsNullOrWhiteSpace(u)).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
 var auditPositions = allUrls.Select((url, index) => new { url, position = index + 1 }).Where(x => x.url.Contains("notarycam-virginia", StringComparison.Ordinal)).ToArray();
@@ -73,7 +90,9 @@ foreach (var c in cases)
         var result = await Fetch(url);
         Check(result.Result.Ok && result.Result.Note == "ok", $"Source truncated: {url}");
         bodies.Add(result.Body);
-        nodes.Add(JsonNode.Parse(BodyText(result.Body))!);
+        var node = JsonNode.Parse(BodyText(result.Body))!;
+        CheckBinding(node, c.Id);
+        nodes.Add(node);
     }
     var command = new PublicKnowledgeRunCommand(false, false, c.Focus, c.SourceUrls, c.Id, c);
     var prompt = (string)promptMethod.Invoke(service, [manifest, command, bodies])!;
@@ -83,7 +102,10 @@ foreach (var c in cases)
     var guards = nodes.Single(n => n["kind"]!.GetValue<string>() == "shared-safeguards");
     Check(JsonNode.DeepEquals(guards["interpretationRules"], audit["interpretationRules"]), $"Rules changed: {c.Id}");
     Check(JsonNode.DeepEquals(guards["limitations"], audit["limitations"]), $"Limitations changed: {c.Id}");
+    Check(JsonNode.DeepEquals(guards["investigationFrame"], audit["investigationFrame"]), $"Investigation frame changed: {c.Id}");
     var recordParts = nodes.Where(n => n != guards).ToArray();
+    var contexts = recordParts.SelectMany(n => n["context"]!.AsArray()).ToArray();
+    Check(contexts.Length == 1 && JsonNode.DeepEquals(contexts[0]!["scope"], audit["scope"]), $"Scope changed: {c.Id}");
     var partClaims = recordParts.SelectMany(n => n["claims"]!.AsArray()).Select(n => n!).ToArray();
     var partArguments = recordParts.SelectMany(n => n["counterarguments"]!.AsArray()).Select(n => n!).ToArray();
     var partSources = recordParts.SelectMany(n => n["sources"]!.AsArray()).Select(n => n!).ToDictionary(n => n["id"]!.GetValue<string>());
