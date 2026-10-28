@@ -1,0 +1,202 @@
+{
+  "schema": "notary-geek-apostille-content-cases-v1",
+  "id": "us-ca-marriage-route-cases-2026-10-28",
+  "checkedDate": "2026-10-28",
+  "routeRecord": "us-ca-apostille-authentication.json",
+  "purpose": "Marriage source-linked human/JSON cases; no agency transaction, recipient acceptance or production route engine is exercised.",
+  "cases": [
+    {
+      "id": "CA-20261028-01",
+      "input": "License bought in San Mateo; ceremony in San Diego; requester chooses San Diego records by ceremony location.",
+      "expectedBranchId": "marriage-public-authorized",
+      "expectedDecision": "obtain-authorized-issuer-record-and-check-signer",
+      "requiredFactIds": [
+        "marriage-issuer-and-registration"
+      ],
+      "mustNotConclude": [
+        "ceremony county necessarily holds the record"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-02",
+      "input": "A courier relies on SOS third-party submission permission to order a confidential marriage certificate without entitlement.",
+      "expectedBranchId": "marriage-confidential-access",
+      "expectedDecision": "hold-for-confidential-record-access",
+      "requiredFactIds": [
+        "marriage-requester-not-submitter",
+        "marriage-copy-type-and-access"
+      ],
+      "mustNotConclude": [
+        "delivery permission grants record-access rights"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-03",
+      "input": "A parent uses the public-record family eligibility list to demand the adult child confidential marriage certificate.",
+      "expectedBranchId": "marriage-confidential-access",
+      "expectedDecision": "hold-for-confidential-record-access",
+      "requiredFactIds": [
+        "marriage-copy-type-and-access"
+      ],
+      "mustNotConclude": [
+        "parent status alone permits confidential access",
+        "a confidential informational copy is available"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-04",
+      "input": "A party obtains a confidential certified copy from the license-issuing County Clerk and is told CDPH must issue it instead.",
+      "expectedBranchId": "marriage-confidential-certified",
+      "expectedDecision": "restricted-clerk-record-and-signer-check",
+      "requiredFactIds": [
+        "marriage-issuer-and-registration",
+        "marriage-copy-type-and-access"
+      ],
+      "mustNotConclude": [
+        "CDPH holds confidential records"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-05",
+      "input": "A certified informational public marriage copy is called uncertified, or promised to become valid identification after apostille.",
+      "expectedBranchId": "marriage-informational",
+      "expectedDecision": "hold-for-informational-copy-and-recipient-evidence",
+      "requiredFactIds": [
+        "marriage-copy-type-and-access"
+      ],
+      "mustNotConclude": [
+        "informational means uncertified",
+        "apostille removes identity restriction",
+        "SOS categorically accepts or rejects every informational copy"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-06",
+      "input": "A Florida notary notarized the San Diego record application; the issued California marriage record is routed to Florida.",
+      "expectedBranchId": "marriage-public-authorized",
+      "expectedDecision": "obtain-authorized-issuer-record-and-check-signer",
+      "requiredFactIds": [
+        "marriage-application-not-certification"
+      ],
+      "mustNotConclude": [
+        "application notary state controls the resulting California official certificate"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-07",
+      "input": "A San Diego county-issued gold-seal confidential keepsake obtained with a notarized application is treated as the certified record.",
+      "expectedBranchId": "marriage-application-or-keepsake",
+      "expectedDecision": "replace-with-registered-certified-record",
+      "requiredFactIds": [
+        "marriage-nonrecord-output"
+      ],
+      "mustNotConclude": [
+        "county branding or gold seal proves certified-record status"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-08",
+      "input": "An intact San Mateo Clerk-Recorder authorized paper marriage certificate gets an automatic extra County Clerk step borrowed from the birth/death FAQ.",
+      "expectedBranchId": "marriage-san-mateo-paper",
+      "expectedDecision": "issuer-specific-direct-sos-route",
+      "requiredFactIds": [
+        "marriage-smc-direct-route"
+      ],
+      "mustNotConclude": [
+        "birth/death exception imposes a universal marriage countersignature",
+        "without additional documentation means no SOS cover sheet or fee"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-09",
+      "input": "An online marriage-record order receipt or scanned certificate is printed and declared eligible for apostille.",
+      "expectedBranchId": "marriage-online-or-private-copy",
+      "expectedDecision": "hold-or-obtain-issuer-paper",
+      "requiredFactIds": [
+        "marriage-nonrecord-output",
+        "marriage-cdph-apostille-preparation"
+      ],
+      "mustNotConclude": [
+        "online ordering establishes an accepted printable certificate"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-10",
+      "input": "CDPH apostille-purpose request and copy fee are treated as buying the complete apostille service.",
+      "expectedBranchId": "marriage-public-authorized",
+      "expectedDecision": "obtain-authorized-issuer-record-and-check-signer",
+      "requiredFactIds": [
+        "marriage-cdph-apostille-preparation"
+      ],
+      "mustNotConclude": [
+        "CDPH issues the SOS apostille",
+        "record procurement includes apostille fee"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-11",
+      "input": "A 2026 public marriage or an unavailable CDPH year is declared nonexistent because not in the state published range.",
+      "expectedBranchId": "marriage-public-authorized",
+      "expectedDecision": "obtain-authorized-issuer-record-and-check-signer",
+      "requiredFactIds": [
+        "marriage-cdph-availability"
+      ],
+      "mustNotConclude": [
+        "unavailable state range means no marriage",
+        "FAQ and dedicated page are identical"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261028-12",
+      "input": "A foreign-notarized apostilled application follows CDPH FAQ24 and is assumed acceptable for a San Mateo order.",
+      "expectedBranchId": "marriage-public-authorized",
+      "expectedDecision": "obtain-authorized-issuer-record-and-check-signer",
+      "requiredFactIds": [
+        "marriage-overseas-application-scope"
+      ],
+      "mustNotConclude": [
+        "one issuer overseas application instructions bind every county"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    }
+  ]
+}

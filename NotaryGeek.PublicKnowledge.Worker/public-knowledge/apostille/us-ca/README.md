@@ -1,8 +1,34 @@
 # California apostille and authentication: agent route guide
 
-**Reviewed October 22, 2026 · Partial California route pilot.** [Structured record](us-ca-apostille-authentication.json) · [dated source notes and questions](source-notes-2026-10-22.md) · [wrong-turn cases](adversarial-cases-2026-10-22.json) · [coverage map](../coverage.json)
+**Marriage and SOS submission reviewed October 28, 2026; earlier routes retain October 22 dates · Partial California route pilot.** [Structured record](us-ca-apostille-authentication.json) · [October 28 evidence](source-notes-2026-10-28.md) · [12 marriage cases](adversarial-cases-2026-10-28.json) · [October 22 evidence](source-notes-2026-10-22.md) · [17 earlier cases](adversarial-cases-2026-10-22.json) · [coverage map](../coverage.json)
 
 Start with the **Public-Official Signature Route**: identify the issuer, the signature to be authenticated, the actual output, and the recipient's requested document. California SOS authenticates California public-official signatures for foreign use. An apostille concerns signature, official capacity and seal, not the truth of the document's contents. The recipient's acceptance remains a separate question. [SOS request](https://www.sos.ca.gov/notary/request-apostille) · [FAQ 1](https://www.sos.ca.gov/notary/apostille-faqs)
+
+## Marriage records: access, copy type and certifying signature
+
+Start with the **registered marriage record** and the county that issued the license. A ceremony in a different county does not move the record there. Public records come from the license-issuing **County Recorder**; confidential records come from that **County Clerk**. CDPH provides public records for specified years and does not hold confidential marriages. [CDPH directory](https://www.cdph.ca.gov/Programs/CHSI/pages/county-registrars-and-recorders.aspx) (official indexed text) · [San Diego record instructions](https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/birth-death-marriage-certificate/marriage-certificate.html)
+
+| What is requested or presented? | Decision and next step |
+| --- | --- |
+| Authorized copy of a public marriage record | Establish eligibility with the custodian, then obtain the issuer-certified paper record. The apostille targets the **official certifying that copy**, not the wedding officiant or the notary on the copy application. JSON: `marriage-public-authorized`. |
+| Confidential marriage certificate | Use the license-issuing County Clerk. Access is limited to a party to the marriage or court-order entitlement; public-record family relationships do not automatically qualify. No confidential informational copy is available. JSON: `marriage-confidential-certified`. |
+| Courier or relative without confidential-record entitlement | Stop procurement until access is established. SOS permission to submit someone else's document does not grant permission to obtain their confidential record. JSON: `marriage-confidential-access`; no submission lane is offered at this stage. |
+| Certified informational public-marriage copy | It **is certified**, but cannot establish identity. Exact SOS presentation and recipient acceptance remain separate questions, **CA-Q4**. An apostille does not remove the informational restriction. Do not assert categorical apostille acceptance or rejection. JSON: `marriage-informational`. |
+| Intact San Mateo Clerk-Recorder authorized paper marriage certificate | San Mateo explicitly permits its Clerk-Recorder-issued marriage certificate to go directly to SOS without additional documentation. Apply the ordinary SOS request package below. Do not generalize this to unusual signers, informational copies, electronic outputs or all other counties. JSON: `marriage-san-mateo-paper`. |
+| License awaiting registration, application, or decorative keepsake | Obtain the registered certified record. San Diego's county-issued gold-seal keepsake is expressly a souvenir, even when its confidential mail application was notarized. JSON: `marriage-application-or-keepsake`. This does not decide the legal validity of a marriage whose record has not yet been registered. |
+| Scan, private photocopy or customer printout | Follow the issuer paper route or obtain exact presentation authority. Online ordering is not evidence of accepted electronic output; a new private statement is not the custodian's certified record. JSON: `marriage-online-or-private-copy`. |
+
+[Sacramento eligibility and copy types](https://ccr.saccounty.gov/us/en/marriage-certificates.html) · [SOS FAQ 5, third-party submission](https://www.sos.ca.gov/notary/apostille-faqs) · [San Mateo direct route](https://smcacre.gov/county-clerk-recorder/apostille-information) · [San Diego keepsake](https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/marriage-license-civil-ceremony/marriage-keepsake.html). Sacramento cites HSC 103526 and Family Code 509/511; current legislative pages were inaccessible during this review. These are narrow agency-procedure findings, not a complete statutory analysis.
+
+**Two different signatures:** the notarized applicant statement obtains an authorized copy; the issuing official certifies the resulting record. San Diego allows an out-of-California notary venue on its application. That does not change the returned California record's authority to the application notary's state. SOS FAQ 3's county-certification example expressly concerns **birth/death**, so it supplies no automatic extra marriage step.
+
+**A concrete paper path:** use San Mateo's [current linked application](https://smcacre.gov/media/1134/download?attachment=) and applicable notarized statement, identifying the marriage and license county. Its [ordering page](https://smcacre.gov/county-clerk-recorder/marriage-certificates) directs mail to **San Mateo County Clerk-Recorder, Attn: Vital Records, 555 County Center, 1st Floor, Redwood City, CA 94063**, with a return address and daytime phone. The linked form and [fee table](https://smcacre.gov/county-clerk-recorder/vital-records-fees) list **$19** for a general-public copy. Payment is by preprinted U.S.-bank check or money order payable to the Clerk-Recorder; return is regular mail or a supplied prepaid overnight envelope. Obtain the issued record, preserve its certification, then use the separate SOS submission and return package. No combined fee or deadline is implied.
+
+**Issuer-specific application rules matter overseas.** [CDPH FAQ 24](https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Frequently-Asked-Questions-%28FAQs%29.aspx) lists a foreign notary with an apostille as one option; San Mateo's ordering page excludes foreign-notary acknowledgments and specifies listed U.S. consular officials or a qualifying foreign court judge. These govern different offices' applications. Confirm the chosen custodian's rule before executing the application; neither rule determines the signature on the later marriage certificate.
+
+**CDPH alternative and limits:** FAQ 25 says to state “apostille” as the purpose of a certified-copy request and that further SOS instructions will follow. This is not a CDPH-issued apostille or combined service. The [dedicated marriage page](https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Obtaining-Certified-Copies-of-Marriage-Records.aspx) lists **1905–1999, 2001 and 2008–2025**; FAQ 8 instead lists **1905–1999 and 2008–2023**. Both were available only through official indexed text after direct retrieval failed. Confirm the year or use the license-issuing county; an absent year does not prove that no marriage record exists. CDPH's FAQ also says it does not supply digital/scanned/faxed vital-record images.
+
+The [October 28 notes](source-notes-2026-10-28.md) preserve these source scopes and unresolved **CA-Q4**: exact marriage certifier, informational-copy and electronic presentation. A supported issuer procedure is not approval of an unseen certificate, nor evidence of a foreign recipient's required copy type, translation or delivery condition.
 
 ## Company records: certification before presentation
 
@@ -63,7 +89,7 @@ The [2026 SOS Notary Public Handbook](https://notary.cdn.sos.ca.gov/forms/notary
 
 ## Submission and return after the document route is settled
 
-| Lane | Instructions checked October 22, 2026 |
+| Lane | Instructions checked October 28, 2026 |
 | --- | --- |
 | Mail to Sacramento | Eligible signed/original notarized/certified document, destination-country cover sheet, $20 per apostille by check/money order, and self-addressed return envelope. USPS: **Notary Public Section, P.O. Box 942877, Sacramento, CA 94277–0001**. Other carriers: **1500 11th Street, 2nd Floor, Sacramento, CA 95814**. Include prepaid tracked-return postage if needed; otherwise return is regular USPS. These are apostille addresses, not the BE record-order address. |
 | Sacramento counter | **1500 11th Street, 3rd Floor**. Same-day service; $20 per apostille plus $6 per different public official's signature authenticated; destination-country cover sheet. |
@@ -71,18 +97,19 @@ The [2026 SOS Notary Public Handbook](https://notary.cdn.sos.ca.gov/forms/notary
 
 [SOS request instructions](https://www.sos.ca.gov/notary/request-apostille) · [FAQ 4–7](https://www.sos.ca.gov/notary/apostille-faqs) · [LA notice](https://www.sos.ca.gov/business-programs/los-angeles-office). The $6 counter charge is per different official signature, not automatically per document. Third parties may submit. The general mail rule rejects photocopies; it does not, without more evidence, settle an intact online-certified PDF's paper presentation.
 
-The [processing page](https://www.sos.ca.gov/notary/processing-times), updated **October 22, 2026**, reported mail received **October 14** being processed. Counter submissions were typically processed within 30 minutes, with arrival by 4:30 p.m. advised for service. This replaces the retained September 28 snapshot; it is not an end-to-end deadline. Overnight carriage changes transit, not queue priority. Forms, fees, hours and notices require rechecking at use time.
+The [processing page](https://www.sos.ca.gov/notary/processing-times), checked **October 28, 2026** and updated **October 27**, reported mail received **October 16** being processed. Counter submissions were typically processed within 30 minutes, with arrival by 4:30 p.m. advised for service. The [October 22 notes](source-notes-2026-10-22.md) retain the earlier queue observation. Neither is an end-to-end deadline. Overnight carriage changes transit, not queue priority. Forms, fees, hours and notices require rechecking at use time.
 
 ## Destination, unresolved questions and limits
 
 California uses a single Apostille output for foreign destinations ([FAQ 2](https://www.sos.ca.gov/notary/apostille-faqs)). That output name does not resolve treaty applicability or a non-Convention legalization chain. Check current [HCCH applicability](https://www.hcch.net/en/instruments/conventions/status-table/?cid=41) for the actual destination/date; this increment did not refresh the retained September 29 treaty-source check. Obtain separate recipient evidence for document type, age, translation, sealed delivery and acceptance. No transaction-specific recipient evidence is supplied here.
 
-Prepared questions are recorded in full in the [source notes](source-notes-2026-10-22.md) and JSON `unresolvedQuestions`; none was sent:
+Public evidence questions are recorded in the [October 22 notes](source-notes-2026-10-22.md), [October 28 notes](source-notes-2026-10-28.md) and JSON `unresolvedQuestions`:
 
 - **CA-Q1:** Exact online-certified company PDF presentation in SOS mail/counter lanes, required certification/print conditions, and agency paper alternative.
 - **CA-Q2:** Exact Superior Court certifier/signature chain, any needed intermediate certification or exemplification, and accepted paper counterpart of an electronic court record.
 - **CA-Q3:** Direct school-official authentication, original issuer-notarial package requirements, electronic presentation and sealed delivery.
+- **CA-Q4:** Exact marriage certifier, any needed issuer certification, informational-copy and electronic presentation; separate recipient acceptance.
 
-This increment supplies supported preparation branches and explicit stopping points. It leaves marriage and other issuer categories, unproven electronic outputs, destination-specific legalization and recipient decisions incomplete. It neither closes California coverage nor changes the other state pilots. Source research and separate-agent review are not agency approval, a live submission test, or a legal opinion.
+These increments supply supported preparation branches and explicit stopping points. Marriage coverage remains limited to the documented issuer/copy routes; other issuer categories, unproven electronic outputs, destination-specific legalization and recipient decisions remain incomplete. California is still partial, and the other state pilots retain their prior dates. Source research and separate-agent review are not agency approval, a live submission test, or a legal opinion.
 
 The terminology and routing distinctions come from the [Notary Geek routing model](https://notary.cx/notarial-routing-model.json), [company-document signature route](../../topics/company-document-apostille-route-by-authenticated-signature.json), and [route-first lexicon](../../notary-community/notary-geek-route-first-lexicon-2026-06-07.md).

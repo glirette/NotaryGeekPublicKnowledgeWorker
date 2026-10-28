@@ -27,6 +27,8 @@ The [September 29 adversarial review](adversarial-review-2026-09-29.md) challeng
 
 The [October 22 California increment](us-ca/README.md) deepens company-paper procurement, court certification and education issuer routes. Its [source notes](us-ca/source-notes-2026-10-22.md) and [17 wrong-turn cases](us-ca/adversarial-cases-2026-10-22.json) retain precise online-output and signer questions. The September 29 ledger remains a historical review; California is still partial, and the other pilots were not refreshed.
 
+The [October 28 California marriage increment](us-ca/README.md#marriage-records-access-copy-type-and-certifying-signature) adds public/confidential access, authorized/informational copies and an issuer-specific paper route. Its [dated evidence](us-ca/source-notes-2026-10-28.md) and [12 cases](us-ca/adversarial-cases-2026-10-28.json) preserve output limits and source discrepancies; prior reviews and other states retain their dates.
+
 ## Coverage labels
 
 - **Reviewed partial pilot:** human and JSON route exist with current source trail and open questions. It does **not** mean the state is complete.

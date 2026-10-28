@@ -67,7 +67,7 @@ Use the exact claim in JSON with this map. “Inference” identifies the publis
 - **Conflicts:** Orange’s undated PDF says 1–3 court days, while the current records page says 30–45 days. The CDC directory’s fee differs from current CDPH indexed information; no CDPH fee is adopted. Caltech’s opening definition is broader than SOS FAQ 1; only its issuer procedure is used. The SOS October 22 queue observation replaces September 28, not a promised turnaround.
 - **Access:** CDPH direct retrieval returned 502; indexed official text was corroborated by the directly inspected CDC document distinction. Stanislaus G003 returned 403; its indexed text and current official catalog support a bounded example with its old revision shown. Bizfile portal retrieval returned 403; no portal output was inspected. These are research-access limits, not agency rejections.
 
-## Prepared agency questions — not sent
+## Unresolved agency evidence questions
 
 ### CA-Q1 — California Secretary of State: Notary Public Section and Business Entities
 

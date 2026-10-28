@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-origin-route-v1",
   "id": "us-ca-apostille-authentication",
-  "version": "0.3-public",
-  "reviewedUtc": "2026-10-22T00:00:00Z",
+  "version": "0.4-public",
+  "reviewedUtc": "2026-10-28T00:00:00Z",
   "jurisdiction": {
     "country": "US",
     "state": "CA",
@@ -12,7 +12,7 @@
   "status": "pilot-partial-coverage",
   "publicOnly": true,
   "notLegalAdvice": true,
-  "scope": "Partial California routes: SOS company records and online-to-paper evidence gap, Superior Court divorce/judgment certification, issuer-prepared education records versus private statements, and submission constraints. No transaction-specific acceptance or deadline assurance.",
+  "scope": "Partial California routes: public/confidential marriage records and copy eligibility; SOS company records and online-to-paper evidence gap; Superior Court divorce/judgment certification; issuer-prepared education records versus private statements. No transaction-specific acceptance or deadline assurance.",
   "coreQuestion": "Whose signature is on the actual California document, and is the output an original or qualifying certified record for California Secretary of State authentication?",
   "routeFacts": [
     {
@@ -23,7 +23,7 @@
         "ca-faq"
       ],
       "evidence": "official-agency-guidance",
-      "checkedDate": "2026-10-22",
+      "checkedDate": "2026-10-28",
       "sourceLocator": "Request page introduction; FAQ 1"
     },
     {
@@ -45,7 +45,7 @@
         "ca-request"
       ],
       "evidence": "official-agency-procedure",
-      "checkedDate": "2026-10-22",
+      "checkedDate": "2026-10-28",
       "sourceLocator": "How to Request an Apostille by Mail, items 1–4"
     },
     {
@@ -56,7 +56,7 @@
         "ca-faq"
       ],
       "evidence": "official-agency-procedure",
-      "checkedDate": "2026-10-22",
+      "checkedDate": "2026-10-28",
       "sourceLocator": "Mail carrier addresses and return postage; FAQ 7"
     },
     {
@@ -67,7 +67,7 @@
         "ca-faq"
       ],
       "evidence": "official-agency-procedure",
-      "checkedDate": "2026-10-22",
+      "checkedDate": "2026-10-28",
       "sourceLocator": "Sacramento and Los Angeles in-person instructions; FAQ 6"
     },
     {
@@ -82,13 +82,13 @@
     },
     {
       "id": "processing-status",
-      "claim": "On October 22, 2026, the SOS processing page reported Sacramento processing apostille mail received October 14; counter requests were typically processed within 30 minutes after submission, with arrival by 4:30 p.m. advised for service. This replaces the September 28 snapshot, not a delivery promise.",
+      "claim": "Checked October 28, 2026: the SOS page, updated October 27, reported processing apostille mail received October 16. Counter processing was typically within 30 minutes, with arrival by 4:30 p.m. advised. These are dated agency observations, not an end-to-end deadline.",
       "sourceIds": [
         "ca-processing"
       ],
       "evidence": "official-agency-dated-operational-status",
-      "checkedDate": "2026-10-22",
-      "sourceLocator": "Apostilles / Mail / In Person; last updated October 22, 2026"
+      "checkedDate": "2026-10-28",
+      "sourceLocator": "Apostilles / Mail / In Person; displayed update October 27, 2026"
     },
     {
       "id": "los-angeles-current-location",
@@ -98,7 +98,7 @@
         "ca-la-office"
       ],
       "evidence": "official-agency-operational-notice",
-      "checkedDate": "2026-10-22",
+      "checkedDate": "2026-10-28",
       "sourceLocator": "Los Angeles temporary-service notice; Tips for Submission"
     },
     {
@@ -275,6 +275,119 @@
       "sourceLocator": "Business FAQ Electronic Signatures / Digital Signatures; apostille mail item 1",
       "checkedDate": "2026-10-22",
       "evidence": "Notary Geek source-scope inference"
+    },
+    {
+      "id": "marriage-issuer-and-registration",
+      "claim": "Public marriage records follow the County Recorder in the county where the license was issued; confidential records follow that county Clerk. Ceremony location alone does not select the custodian. Obtain the registered record, not merely an uncompleted license or an application.",
+      "sourceIds": [
+        "ca-marriage-directory",
+        "ca-marriage-sd-record"
+      ],
+      "sourceLocator": "Directory / Marriage Records; San Diego opening and registration FAQ",
+      "evidence": "official-issuer-guidance plus Notary Geek document-identity distinction",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-cdph-availability",
+      "claim": "CDPH does not hold confidential marriages. Its dedicated public-marriage page lists 1905–1999, 2001 and 2008–2025, whereas FAQ 8 lists 1905–1999 and 2008–2023. These indexed observations differ. Confirm the event year or use the license-issuing county; neither an omitted year nor a failed search proves no marriage exists.",
+      "sourceIds": [
+        "ca-marriage-cdph",
+        "ca-vital-faq"
+      ],
+      "sourceLocator": "Dedicated page opening; FAQ 8",
+      "evidence": "official indexed guidance with unresolved availability discrepancy",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-copy-type-and-access",
+      "claim": "Authorized and informational public-marriage copies are both certified, but an informational copy cannot establish identity. Confidential copies are restricted to a party to the marriage or court order; no informational confidential copy is issued. Sacramento cites HSC 103526 and Family Code 509/511 for these distinctions.",
+      "sourceIds": [
+        "ca-marriage-sacramento"
+      ],
+      "sourceLocator": "Opening; Public Marriage Records; Confidential Marriage Records",
+      "evidence": "official-county-guidance citing statute; current code text not directly retrieved",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-requester-not-submitter",
+      "claim": "SOS permits third-party in-person apostille submission. That permission does not expand eligibility to obtain a confidential marriage certificate. A courier or relative must not borrow the public-record authorized-person list to obtain a confidential record.",
+      "sourceIds": [
+        "ca-faq",
+        "ca-marriage-sacramento"
+      ],
+      "sourceLocator": "SOS FAQ 5; Sacramento Confidential Marriage Records",
+      "evidence": "Notary Geek inference separating access from submission",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-application-not-certification",
+      "claim": "The notarized statement used to request an authorized copy establishes the applicant request, not certification of the issued marriage record. San Diego allows an out-of-California notary venue on that application. The resulting California record follows its issuing official signature, not the application notary state.",
+      "sourceIds": [
+        "ca-marriage-sd-record",
+        "ca-request"
+      ],
+      "sourceLocator": "San Diego By Mail; SOS introduction",
+      "evidence": "official-issuer procedure plus Notary Geek signature-route inference",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-smc-direct-route",
+      "claim": "San Mateo expressly permits its County Clerk-Recorder-issued marriage certificate to go directly to SOS without additional documentation. This supports that issuer paper route, not a statewide rule for every signer or informational/digital output. SOS FAQ 3 specifically addresses birth/death records, not a universal marriage countersignature requirement.",
+      "sourceIds": [
+        "ca-marriage-smc-apostille",
+        "ca-faq",
+        "ca-request"
+      ],
+      "sourceLocator": "San Mateo Birth and Death Certificates, marriage sentence; SOS FAQ 3; mail item 1",
+      "evidence": "issuer-specific instruction plus Notary Geek scope limit",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-smc-order-return",
+      "claim": "San Mateo accepts mailed certified-copy applications with the applicable notarized statement, return address and payment by preprinted U.S.-bank check or money order. Its current linked form and general-public fee table both list $19. Copies return by regular mail or a supplied prepaid overnight envelope. Record procurement is separate from SOS submission and return.",
+      "sourceIds": [
+        "ca-marriage-smc-order",
+        "ca-marriage-smc-form",
+        "ca-marriage-smc-fees",
+        "ca-request"
+      ],
+      "sourceLocator": "Marriage Certificates mail paragraphs; linked form pp1–3; fee table; SOS mail instructions",
+      "evidence": "official-issuer-procedure plus Notary Geek stage distinction",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-overseas-application-scope",
+      "claim": "CDPH FAQ 24 lists a foreign notary with an apostille as one application-notarization option. San Mateo marriage ordering instructions instead exclude acknowledgments by notaries outside the USA and specify listed U.S. consular officials or a qualifying foreign court judge. Obtain issuer-specific application instructions; do not transfer one office rule to another.",
+      "sourceIds": [
+        "ca-vital-faq",
+        "ca-marriage-smc-order"
+      ],
+      "sourceLocator": "CDPH FAQ 24; San Mateo overseas acknowledgment paragraph",
+      "evidence": "different issuer procedures; no statewide harmonization inferred",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-nonrecord-output",
+      "claim": "San Diego expressly labels its gold-seal marriage keepsake a souvenir, even though a confidential keepsake mail request needs a notarized statement. A keepsake, request application, scan or private copy is not the issuer-certified marriage record. Online ordering also does not establish apostille acceptance of a customer printout.",
+      "sourceIds": [
+        "ca-marriage-sd-keepsake",
+        "ca-marriage-sd-record",
+        "ca-request"
+      ],
+      "sourceLocator": "Keepsake souvenir notice; record ordering channels; SOS mail item 1",
+      "evidence": "official-issuer facts plus Notary Geek output distinction",
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "marriage-cdph-apostille-preparation",
+      "claim": "CDPH FAQ 25 instructs applicants to state apostille as the certified-copy request purpose and says further SOS instructions will follow. This does not say CDPH itself issues the apostille or that the record-order fee includes it. FAQ 5 says CDPH does not issue digital, scanned or faxed vital-record images.",
+      "sourceIds": [
+        "ca-vital-faq",
+        "ca-request"
+      ],
+      "sourceLocator": "FAQ 5 and 25; SOS mail instructions",
+      "evidence": "official-issuer guidance plus Notary Geek competent-authority distinction",
+      "checkedDate": "2026-10-28"
     }
   ],
   "documentBranches": [
@@ -576,15 +689,166 @@
       "unresolvedQuestionIds": [
         "CA-Q3"
       ]
+    },
+    {
+      "id": "marriage-public-authorized",
+      "question": "Is a registered public marriage record required, and is the requester eligible for an authorized copy?",
+      "route": "Use the license-issuing County Recorder, or CDPH for a confirmed available year. Ask for the certified marriage record for apostille use; inspect the certifier and complete paper output. Use the documented issuer route or confirm the exact signer before submission. An authorized copy does not establish recipient acceptance.",
+      "decision": "obtain-authorized-issuer-record-and-check-signer",
+      "issuer": "License-issuing County Recorder or CDPH-VR",
+      "authenticatedSignature": "Official certifier on the issued marriage record, not the applicant or application notary",
+      "acceptedOutput": "Issuer-issued certified paper marriage record; eligibility and actual signer/output must be established",
+      "intermediateCertification": "No blanket marriage county countersignature is established; San Mateo has a specific direct route",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-marriage-directory",
+        "ca-marriage-cdph",
+        "ca-vital-faq",
+        "ca-marriage-sacramento",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ]
+    },
+    {
+      "id": "marriage-confidential-certified",
+      "question": "Is the requester a party to the confidential marriage or entitled by court order?",
+      "route": "Obtain the certified record from the County Clerk where the license was issued, using that office access and application rules. CDPH does not hold it. If access is not established, use marriage-confidential-access; do not substitute a public-record eligibility rule. Inspect the issued certifier/output before the SOS stage.",
+      "decision": "restricted-clerk-record-and-signer-check",
+      "issuer": "County Clerk where the confidential license was issued",
+      "authenticatedSignature": "County Clerk or actual certifying official on the issued record",
+      "acceptedOutput": "Lawfully obtained issuer-certified paper confidential marriage record",
+      "intermediateCertification": "No informational confidential substitute; no blanket additional certification assumed",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-marriage-directory",
+        "ca-marriage-sacramento",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ]
+    },
+    {
+      "id": "marriage-confidential-access",
+      "question": "Is a third party trying to obtain a confidential certificate without the required entitlement?",
+      "route": "Stop record procurement until access is established through a party or applicable court order. Permission to deliver someone else document to SOS does not confer record-access rights.",
+      "decision": "hold-for-confidential-record-access",
+      "issuer": "County Clerk holding the confidential marriage",
+      "authenticatedSignature": "No certificate signature is yet available to authenticate",
+      "acceptedOutput": "No qualifying record supplied",
+      "intermediateCertification": "Resolve access before certification or apostille",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-marriage-sacramento",
+        "ca-faq"
+      ],
+      "unresolvedQuestionIds": []
+    },
+    {
+      "id": "marriage-informational",
+      "question": "Is this a certified informational public-marriage copy?",
+      "route": "Preserve its certified-but-nonidentity status. Confirm SOS treatment of this exact copy and signature separately from recipient acceptance. If an authorized copy is required, obtain it only through an eligible requester. Never promise that apostille removes the informational limitation.",
+      "decision": "hold-for-informational-copy-and-recipient-evidence",
+      "issuer": "Public marriage records custodian",
+      "authenticatedSignature": "Actual certifying official, if SOS accepts this output",
+      "acceptedOutput": "Certified informational copy is real certification; apostille eligibility of the exact presentation remains unqualified here",
+      "intermediateCertification": "Do not relabel it authorized, notarize away its restriction, or infer all informational copies are rejected",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-marriage-sacramento",
+        "ca-marriage-smc-apostille",
+        "ca-faq"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ]
+    },
+    {
+      "id": "marriage-san-mateo-paper",
+      "question": "Is this the intact San Mateo Clerk-Recorder-issued authorized paper certified marriage record?",
+      "route": "Use San Mateo published direct-to-SOS instruction after confirming record identity, access and actual certification. Send the complete issuer paper record through the normal SOS lane. Unusual signer, informational, or electronic output returns to CA-Q4.",
+      "decision": "issuer-specific-direct-sos-route",
+      "issuer": "San Mateo County Clerk-Recorder",
+      "authenticatedSignature": "Certifying County Clerk-Recorder official on that record",
+      "acceptedOutput": "Intact issuer-issued authorized paper certified marriage record, not an informational copy, self-print or keepsake",
+      "intermediateCertification": "San Mateo expressly says no additional documentation for its Clerk-Recorder marriage certificates; SOS cover sheet, fees and return items still apply",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-marriage-smc-apostille",
+        "ca-marriage-smc-form",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": []
+    },
+    {
+      "id": "marriage-application-or-keepsake",
+      "question": "Is the presented item only a license awaiting registration, request application, or decorative keepsake?",
+      "route": "Obtain the registered issuer-certified marriage record. County branding, a gold seal, or a notarized request does not transform the item into that record. This is a document-identity rejection, not a ruling on every possible separate notarized statement.",
+      "decision": "replace-with-registered-certified-record",
+      "issuer": "Issuer of the presented application, license or souvenir",
+      "authenticatedSignature": "Not the qualifying marriage-record certification",
+      "acceptedOutput": "No eligible certified marriage record established",
+      "intermediateCertification": "Complete registration/procurement; do not authenticate the application as the marriage certificate",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-marriage-sd-keepsake",
+        "ca-marriage-sd-record",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": []
+    },
+    {
+      "id": "marriage-online-or-private-copy",
+      "question": "Is only a scan, private photocopy or customer-printed download available?",
+      "route": "Use the issuer paper certified-copy route, or obtain exact SOS authority for the proposed electronic-to-paper presentation. A notary copy statement is a different document and cannot replace the requested issuer record.",
+      "decision": "hold-or-obtain-issuer-paper",
+      "issuer": "Actual records custodian must supply the official record",
+      "authenticatedSignature": "Official marriage-record certifier; a new private notary signature is a different route",
+      "acceptedOutput": "Ordinary photocopies are unacceptable under SOS mail instructions; electronic-output acceptance is not inferred from online ordering",
+      "intermediateCertification": "No private notarization substitutes for issuer certification",
+      "competentAuthority": "California Secretary of State for the qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Obtain the record through its issuer first; SOS return is a separate stage. Recipient acceptance and required delivery condition are not established.",
+      "sourceIds": [
+        "ca-request",
+        "ca-vital-faq",
+        "ca-marriage-smc-order"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q4"
+      ]
     }
   ],
   "openQuestions": [
     "Confirm current treaty applicability, destination/legalization and recipient requirements for the actual transaction; no recipient acceptance is established.",
-    "Recheck fees, forms, office notices and processing at use time; October 22 queue observations are not deadlines.",
+    "Recheck fees, forms, office notices and processing at use time; the October 28 observation of the October 27 queue page is not a deadline.",
     "CA-Q1: Exact online-certified SOS company PDF to paper apostille presentation remains unresolved; published paper record procurement is available.",
     "CA-Q2: Exact Superior Court signer recognition, any required intermediate chain and electronic court presentation remain output-specific questions.",
     "CA-Q3: Direct school-official authentication and electronic education presentation remain unresolved; issuer-notarization examples are documented.",
-    "Marriage, other issuer categories, remote/electronic outputs beyond documented examples, and destination-specific outside-Convention chains remain incomplete."
+    "CA-Q4: Exact marriage certifier, informational-copy and electronic-output acceptance remain qualified; other issuer categories and destination-specific outside-Convention chains are incomplete."
   ],
   "doNotInfer": [
     "A California Apostille proves the document's substantive content or guarantees recipient acceptance.",
@@ -603,7 +867,13 @@
     "CDPH Certificate of Record is the divorce decree or establishes finality.",
     "Every court judgment requires County Clerk certification or judge-signed exemplification.",
     "Every court deputy signature is directly recognized by SOS.",
-    "Online court ordering establishes acceptance of a customer-printed electronically certified court record."
+    "Online court ordering establishes acceptance of a customer-printed electronically certified court record.",
+    "Third-party SOS submission permission authorizes access to a confidential marriage record.",
+    "Informational public-marriage copies are uncertified, or an apostille removes their identity-use restriction.",
+    "A marriage-record application notarized outside California sends the resulting California certified record to that notary state.",
+    "A county-issued gold-seal keepsake is the certified marriage record.",
+    "SOS birth/death FAQ 3 imposes a universal marriage County Clerk intermediate step.",
+    "San Mateo direct paper route approves every informational, electronic or other-county marriage record."
   ],
   "lexicon": [
     "Public-Official Signature Route",
@@ -621,7 +891,7 @@
       "type": "official-agency-procedure",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/request-apostille",
-      "checkedUtc": "2026-10-22T00:00:00Z",
+      "checkedUtc": "2026-10-28T00:00:00Z",
       "effectiveDate": null,
       "accessMethod": "direct-page-text"
     },
@@ -631,7 +901,7 @@
       "type": "official-agency-faq",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/apostille-faqs",
-      "checkedUtc": "2026-10-22T00:00:00Z",
+      "checkedUtc": "2026-10-28T00:00:00Z",
       "effectiveDate": null,
       "accessMethod": "direct-page-text"
     },
@@ -641,8 +911,8 @@
       "type": "official-agency-operational-status",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/processing-times",
-      "checkedUtc": "2026-10-22T00:00:00Z",
-      "pageUpdated": "2026-10-22",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "pageUpdated": "2026-10-27",
       "effectiveDate": null,
       "accessMethod": "direct-page-text"
     },
@@ -652,7 +922,7 @@
       "type": "official-agency-office-status",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/business-programs/los-angeles-office",
-      "checkedUtc": "2026-10-22T00:00:00Z",
+      "checkedUtc": "2026-10-28T00:00:00Z",
       "effectiveDate": null,
       "accessMethod": "direct-page-text"
     },
@@ -827,9 +1097,119 @@
       "effectiveDate": null,
       "locator": "Electronic Signatures; Digital Signatures",
       "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-marriage-cdph",
+      "title": "Obtaining Certified Copies of Marriage Certificates",
+      "type": "official-issuer-guidance",
+      "publisher": "California Department of Public Health",
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Obtaining-Certified-Copies-of-Marriage-Records.aspx",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Public marriage availability; Mail In Request; confidential-record exclusion",
+      "accessMethod": "official-indexed-page-text; direct retrieval returned 502"
+    },
+    {
+      "id": "ca-marriage-directory",
+      "title": "County Registrar and Recorder Directory",
+      "type": "official-issuer-guidance",
+      "publisher": "California Department of Public Health",
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/pages/county-registrars-and-recorders.aspx",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Marriage Records",
+      "accessMethod": "official-indexed-page-text; direct retrieval returned 502"
+    },
+    {
+      "id": "ca-vital-faq",
+      "title": "Vital Records Frequently Asked Questions",
+      "type": "official-issuer-guidance",
+      "publisher": "California Department of Public Health",
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Frequently-Asked-Questions-%28FAQs%29.aspx",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "FAQ 5, 8, 11, 17, 23–25",
+      "accessMethod": "official-indexed-page-text; direct retrieval returned 502"
+    },
+    {
+      "id": "ca-marriage-sacramento",
+      "title": "Marriage Certificates",
+      "type": "official-issuer-guidance",
+      "publisher": "Sacramento County Clerk/Recorder",
+      "url": "https://ccr.saccounty.gov/us/en/marriage-certificates.html",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Public Marriage Records; Confidential Marriage Records; By Mail",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-marriage-smc-apostille",
+      "title": "Apostille Information",
+      "type": "official-issuer-guidance",
+      "publisher": "San Mateo County Assessor-County Clerk-Recorder",
+      "url": "https://smcacre.gov/county-clerk-recorder/apostille-information",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Birth and Death Certificates: sentence expressly including Clerk-Recorder marriage certificates",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-marriage-smc-order",
+      "title": "Marriage Certificates",
+      "type": "official-issuer-guidance",
+      "publisher": "San Mateo County Assessor-County Clerk-Recorder",
+      "url": "https://smcacre.gov/county-clerk-recorder/marriage-certificates",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Mail requests; county of license; payment and return; overseas acknowledgment restriction",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-marriage-smc-form",
+      "title": "Application for Certified Copy of Marriage Record",
+      "type": "official-issuer-guidance",
+      "publisher": "San Mateo County Assessor-County Clerk-Recorder",
+      "url": "https://smcacre.gov/media/1134/download?attachment=",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Pages 1–3: copy type, $19, applicant statement, mailing instructions",
+      "accessMethod": "direct-PDF-text; current link from marriage-certificates page; revision not stated"
+    },
+    {
+      "id": "ca-marriage-smc-fees",
+      "title": "Vital Records Fees",
+      "type": "official-issuer-guidance",
+      "publisher": "San Mateo County Assessor-County Clerk-Recorder",
+      "url": "https://smcacre.gov/county-clerk-recorder/vital-records-fees",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Marriage Certificate / general public",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-marriage-sd-record",
+      "title": "Marriage Certificate Request",
+      "type": "official-issuer-guidance",
+      "publisher": "San Diego County Assessor/Recorder/County Clerk",
+      "url": "https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/birth-death-marriage-certificate/marriage-certificate.html",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Opening distinction; Ordering Confidential Marriage Certificates; By Mail; registration FAQ",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-marriage-sd-keepsake",
+      "title": "Marriage Keepsake",
+      "type": "official-issuer-guidance",
+      "publisher": "San Diego County Assessor/Recorder/County Clerk",
+      "url": "https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/marriage-license-civil-ceremony/marriage-keepsake.html",
+      "checkedUtc": "2026-10-28T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Souvenir-only notice; confidential keepsake application",
+      "accessMethod": "direct-page-text"
     }
   ],
-  "reviewDatePrecision": "day; source checks performed October 22, 2026, not a midnight observation",
+  "reviewDatePrecision": "day; marriage and SOS submission sources checked October 28, 2026; other claims retain their individual checked dates",
   "unresolvedQuestions": [
     {
       "id": "CA-Q1",
@@ -842,8 +1222,7 @@
         "ca-business-order",
         "ca-bizfile-discovery",
         "ca-request"
-      ],
-      "contactStatus": "question-prepared-not-sent"
+      ]
     },
     {
       "id": "CA-Q2",
@@ -855,8 +1234,7 @@
         "ca-orange-copy-faq",
         "ca-stanislaus-g003",
         "ca-request"
-      ],
-      "contactStatus": "question-prepared-not-sent"
+      ]
     },
     {
       "id": "CA-Q3",
@@ -869,13 +1247,26 @@
         "ca-education-ucdavis",
         "ca-education-berkeley",
         "ca-education-caltech"
-      ],
-      "contactStatus": "question-prepared-not-sent"
+      ]
+    },
+    {
+      "id": "CA-Q4",
+      "status": "unresolved",
+      "agency": "California SOS Notary Public Section and issuing marriage-record custodian",
+      "question": "For the named marriage-record certifier and complete proposed output, is direct authentication available, or is a specific issuer countersignature or replacement required? Does SOS accept this certified informational copy or exact electronic-to-paper presentation? The separate recipient must establish whether that copy type and delivery form meet its requirements.",
+      "supportedAlternative": "Use a lawfully obtained issuer-issued authorized paper marriage certificate when that is the required record; San Mateo publishes a direct route for its Clerk-Recorder certificates. Other signer/output conditions remain subject to confirmation.",
+      "sourceIds": [
+        "ca-request",
+        "ca-marriage-smc-apostille",
+        "ca-marriage-sacramento"
+      ]
     }
   ],
   "companionEvidence": {
     "sourceNotesPath": "source-notes-2026-10-22.md",
-    "adversarialCasesPath": "adversarial-cases-2026-10-22.json"
+    "adversarialCasesPath": "adversarial-cases-2026-10-22.json",
+    "marriageSourceNotesPath": "source-notes-2026-10-28.md",
+    "marriageAdversarialCasesPath": "adversarial-cases-2026-10-28.json"
   },
   "requiredRouteInputs": [
     "requestedDocumentIdentity",
@@ -924,7 +1315,7 @@
         "ca-request",
         "ca-faq"
       ],
-      "checkedDate": "2026-10-22"
+      "checkedDate": "2026-10-28"
     },
     {
       "id": "counter",
@@ -948,7 +1339,27 @@
         "ca-faq",
         "ca-la-office"
       ],
-      "checkedDate": "2026-10-22"
+      "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "san-mateo-marriage-order",
+      "purpose": "Marriage record procurement, not apostille",
+      "mailAddress": "San Mateo County Clerk-Recorder, Attn: Vital Records, 555 County Center, 1st Floor, Redwood City, CA 94063",
+      "generalPublicCopyFeeUSD": 19,
+      "payment": "Preprinted U.S.-bank check or money order payable to San Mateo County Clerk-Recorder",
+      "requiredItems": [
+        "Correct application and copy type",
+        "Required access entitlement and applicable notarized applicant statement",
+        "Return address and daytime telephone number",
+        "Record-order payment"
+      ],
+      "returnInstructions": "Regular mail or supplied prepaid overnight return envelope; agency estimates are not guaranteed deadlines. Obtain issuer-specific instructions for an application executed outside the United States.",
+      "sourceIds": [
+        "ca-marriage-smc-order",
+        "ca-marriage-smc-form",
+        "ca-marriage-smc-fees"
+      ],
+      "checkedDate": "2026-10-28"
     }
   ],
   "issuerExamples": [
@@ -995,6 +1406,17 @@
       "sourceIds": [
         "ca-education-caltech",
         "ca-faq"
+      ]
+    },
+    {
+      "id": "san-mateo-marriage",
+      "branchId": "marriage-san-mateo-paper",
+      "procurementRouteId": "san-mateo-marriage-order",
+      "authenticatedSignature": "County Clerk-Recorder certifying official on issued paper marriage certificate",
+      "scopeLimit": "Issuer-specific direct route; informational and electronic outputs remain CA-Q4; no blanket notary-authentication rule adopted",
+      "sourceIds": [
+        "ca-marriage-smc-apostille",
+        "ca-marriage-smc-order"
       ]
     }
   ]
