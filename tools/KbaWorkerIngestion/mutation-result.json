@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "baseline": "passed",
+  "controls": [
+    {
+      "control": "research-matrix-byte-drift",
+      "rejected": true,
+      "expectedDiagnostic": "Pinned research bytes changed: kba-claim-source-matrix",
+      "artifactChecksumsRefreshed": false
+    },
+    {
+      "control": "research-proposal-byte-drift",
+      "rejected": true,
+      "expectedDiagnostic": "Pinned research bytes changed: kba-routing-proposal",
+      "artifactChecksumsRefreshed": false
+    },
+    {
+      "control": "generated-byte-drift",
+      "rejected": true,
+      "expectedDiagnostic": "Artifact byte binding differs: records-1.json",
+      "artifactChecksumsRefreshed": false
+    },
+    {
+      "control": "stale-part-binding",
+      "rejected": true,
+      "expectedDiagnostic": "Research binding differs",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "omitted-claim-qualification",
+      "rejected": true,
+      "expectedDiagnostic": "Complete record differs: claims/K09",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "wrong-valid-source-binding",
+      "rejected": true,
+      "expectedDiagnostic": "Complete record differs: claims/K01",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "changed-source-date",
+      "rejected": true,
+      "expectedDiagnostic": "Complete record differs: sources/nist-a4",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "omitted-refresh-qualification",
+      "rejected": true,
+      "expectedDiagnostic": "Complete context differs: matrix",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "changed-competing-interpretation",
+      "rejected": true,
+      "expectedDiagnostic": "Complete record differs: contraryInterpretations/C04",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "changed-expected-meaning",
+      "rejected": true,
+      "expectedDiagnostic": "Complete record differs: regressions/E04",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "changed-worker-expectation",
+      "rejected": true,
+      "expectedDiagnostic": "Worker expected meaning differs: kba-example-e04",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "wrong-case-sources",
+      "rejected": true,
+      "expectedDiagnostic": "Case source selection differs: kba-rule-r01",
+      "artifactChecksumsRefreshed": true
+    },
+    {
+      "control": "discovery-activation",
+      "rejected": true,
+      "expectedDiagnostic": "Discovery must remain unapplied",
+      "artifactChecksumsRefreshed": true
+    }
+  ]
+}

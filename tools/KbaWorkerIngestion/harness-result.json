@@ -1,0 +1,250 @@
+{
+  "status": "passed",
+  "assertions": 3854,
+  "cases": 29,
+  "claimsPerCase": 24,
+  "sourcesPerCase": 22,
+  "contraryInterpretationsPerCase": 4,
+  "rulesPerCase": 7,
+  "examplesPerCase": 22,
+  "researchBindings": {
+    "matrix": {
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/kba-claim-source-matrix-2026-10-30.json",
+      "sha256": "e77ca70072fad0bb1b6e2c3bae0648d73e5fff44e36831e29e62fec15dfa0a0e",
+      "utf8Bytes": 27486
+    },
+    "proposal": {
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/kba-routing-proposal-2026-10-30.json",
+      "sha256": "48241103f81e8a28a5281f6c7068e2539c0f92d17b21b997932826d90441a10d",
+      "utf8Bytes": 13634
+    }
+  },
+  "productionHashes": {
+    "Services/PublicKnowledgeResearchService.cs": "46815cfd1c8ad9ed3ee904e95806e7798482820d9cdf95a323ec3877bffe0494",
+    "Services/PublicKnowledgeProviderOutput.cs": "5b33a7c9831708d609685098c012cfd87f536c19eb5474dcdb82bf25bba792b8",
+    "Services/PublicKnowledgeExecutionPolicy.cs": "9fd48012592067d937f961132dc95c8d71d421af1451e52597a99f10eb7971e3",
+    "Models/PublicKnowledgeModels.cs": "836dc4a6295c7ad182b8bfa989d5d85bfc36d59dff2cad83f38cfff04a829cba",
+    "Configuration/PublicKnowledgeOptions.cs": "449822b8e083cc934e8c1c29f3f6c54dc6b90ff2e19dcbdf1365da322ef45b61",
+    "Configuration/OpenAiOptions.cs": "fb5d5ff703da962c9e5339152e228ff62c27e76f0fdfb7c53d4d9c7528d96553",
+    "Configuration/StraicoOptions.cs": "291c9ca040beb0a9f1bbed528949b74f5a50d25980567a83e0db37ad3a68b706"
+  },
+  "baseline": {
+    "note": "ok-truncated:27432-\u003E20000",
+    "normalizedCharacters": 20000,
+    "refreshQualificationsOmitted": true
+  },
+  "productionMethods": [
+    "ParseRegressionMatrix",
+    "SelectSourceUrls",
+    "FetchSourceAsync",
+    "NormalizeSourceText (through FetchSourceAsync)",
+    "BuildPrompt",
+    "EstimateTokens"
+  ],
+  "boundary": "Offline direct production-method input qualification only; not meaning approval, host qualification, live model-answer evaluation or publication availability.",
+  "results": [
+    {
+      "Id": "kba-rule-r01",
+      "promptCharacters": 42206,
+      "estimatedTokens": 10552,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-rule-r02",
+      "promptCharacters": 42182,
+      "estimatedTokens": 10546,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-rule-r03",
+      "promptCharacters": 42179,
+      "estimatedTokens": 10545,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-rule-r04",
+      "promptCharacters": 42168,
+      "estimatedTokens": 10542,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-rule-r05",
+      "promptCharacters": 42178,
+      "estimatedTokens": 10545,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-rule-r06",
+      "promptCharacters": 42170,
+      "estimatedTokens": 10543,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-rule-r07",
+      "promptCharacters": 42169,
+      "estimatedTokens": 10543,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e01",
+      "promptCharacters": 42200,
+      "estimatedTokens": 10550,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e02",
+      "promptCharacters": 42206,
+      "estimatedTokens": 10552,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e03",
+      "promptCharacters": 42200,
+      "estimatedTokens": 10550,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e04",
+      "promptCharacters": 42205,
+      "estimatedTokens": 10552,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e05",
+      "promptCharacters": 42189,
+      "estimatedTokens": 10548,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e06",
+      "promptCharacters": 42217,
+      "estimatedTokens": 10555,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e07",
+      "promptCharacters": 42214,
+      "estimatedTokens": 10554,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e08",
+      "promptCharacters": 42207,
+      "estimatedTokens": 10552,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e09",
+      "promptCharacters": 42197,
+      "estimatedTokens": 10550,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e10",
+      "promptCharacters": 42196,
+      "estimatedTokens": 10549,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e11",
+      "promptCharacters": 42187,
+      "estimatedTokens": 10547,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e12",
+      "promptCharacters": 42222,
+      "estimatedTokens": 10556,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e13",
+      "promptCharacters": 42201,
+      "estimatedTokens": 10551,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e14",
+      "promptCharacters": 42196,
+      "estimatedTokens": 10549,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e15",
+      "promptCharacters": 42219,
+      "estimatedTokens": 10555,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e16",
+      "promptCharacters": 42197,
+      "estimatedTokens": 10550,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e17",
+      "promptCharacters": 42216,
+      "estimatedTokens": 10554,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e18",
+      "promptCharacters": 42202,
+      "estimatedTokens": 10551,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e19",
+      "promptCharacters": 42220,
+      "estimatedTokens": 10555,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e20",
+      "promptCharacters": 42201,
+      "estimatedTokens": 10551,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e21",
+      "promptCharacters": 42201,
+      "estimatedTokens": 10551,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    },
+    {
+      "Id": "kba-example-e22",
+      "promptCharacters": 42203,
+      "estimatedTokens": 10551,
+      "maximumSourceCharacters": 12474,
+      "completeResearch": true
+    }
+  ]
+}
