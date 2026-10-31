@@ -1,8 +1,8 @@
 {
   "schema": "notary-geek-apostille-origin-route-v1",
   "id": "us-ca-apostille-authentication",
-  "version": "0.4-public",
-  "reviewedUtc": "2026-10-28T00:00:00Z",
+  "version": "0.5-public",
+  "reviewedUtc": "2026-10-31T00:00:00Z",
   "jurisdiction": {
     "country": "US",
     "state": "CA",
@@ -12,7 +12,7 @@
   "status": "pilot-partial-coverage",
   "publicOnly": true,
   "notLegalAdvice": true,
-  "scope": "Partial California routes: public/confidential marriage records and copy eligibility; SOS company records and online-to-paper evidence gap; Superior Court divorce/judgment certification; issuer-prepared education records versus private statements. No transaction-specific acceptance or deadline assurance.",
+  "scope": "Partial California routes: county no-record procurement, CDPH unsuccessful-search results and private single-status affidavits; public/confidential marriage records; SOS company records; Superior Court divorce/judgment certification; issuer-prepared education records. Exact output/signer gaps and recipient acceptance remain explicit.",
   "coreQuestion": "Whose signature is on the actual California document, and is the output an original or qualifying certified record for California Secretary of State authentication?",
   "routeFacts": [
     {
@@ -388,6 +388,105 @@
       "sourceLocator": "FAQ 5 and 25; SOS mail instructions",
       "evidence": "official-issuer guidance plus Notary Geek competent-authority distinction",
       "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "single-status-document-identity",
+      "claim": "A county no-record letter, CDPH CNPR and private eligibility affidavit are different evidence. The recipient determines its document requirements. An apostille authenticates official signature/capacity/seal; official capacity is not the applicant's legal capacity to marry.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-vital-faq",
+        "us-marriage-abroad",
+        "ca-faq"
+      ],
+      "sourceLocator": "County heading; CDPH FAQ 6–7; State Requirements/Affidavit; SOS FAQ 1",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-sd-procurement",
+      "claim": "San Diego publishes a Letter of No Record request using its marriage application, full name and date of birth, marked LNR. No sworn statement or notarization is required. Mail costs $19 per letter by check/money order; another person can request in person for someone abroad.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-single-status-sd-form"
+      ],
+      "sourceLocator": "By Mail and third-party FAQ; application p.1 LNR exception",
+      "evidence": "official-issuer-guidance",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-sd-scope",
+      "claim": "San Diego holds marriage records for licenses issued in that county. A no-record result depends on supplied information. The public LNR procedure does not specify all searched years, name variants or confidential indexes; neither their inclusion nor exclusion is established. Its broad single-status wording is not adopted as proof of statewide or worldwide absence.",
+      "sourceIds": [
+        "ca-marriage-sd-record",
+        "ca-single-status-sd",
+        "ca-single-status-sd-form"
+      ],
+      "sourceLocator": "Record opening/General Info/license-county FAQ; LNR opening; form p.1",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-cdph-limits",
+      "claim": "CDPH FAQ 6–7 defines CNPR as a certified unsuccessful search using application information; the fee is retained. A record not yet in its database can yield CNPR. CDPH does not maintain confidential marriages and has published year gaps. No reviewed procedure establishes a comprehensive person-wide single-status search.",
+      "sourceIds": [
+        "ca-vital-faq",
+        "ca-vital-availability",
+        "ca-marriage-cdph"
+      ],
+      "sourceLocator": "FAQ 6–7,22; Copies of Vital Records; marriage availability/confidential paragraph",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-letter-authentication-gap",
+      "claim": "The reviewed county application is not an issued-letter specimen. Exact no-record certifier, seal, paper output and any intermediate certification remain unresolved for San Diego LNR and CDPH CNPR. SOS general original-document rules do not approve an unseen letter or customer printout. Its birth/death exception and San Diego other signature services establish no automatic LNR step.",
+      "sourceIds": [
+        "ca-single-status-sd-form",
+        "ca-vital-faq",
+        "ca-request",
+        "ca-faq",
+        "ca-sd-signature-services"
+      ],
+      "sourceLocator": "Application pp.1–2; FAQ 7; SOS mail item 1 and FAQ 3; county signature-service sections",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-private-affidavit",
+      "claim": "A recipient-accepted private single-status affidavit remains the declarant's assertion. California jurat wording does not certify truth, accuracy or validity. For a lawful California notarization the apostille target is the California notary; a different jurisdiction's official signature does not become Californian through the signer's residence.",
+      "sourceIds": [
+        "ca-jurat-disclaimer",
+        "ca-request",
+        "ca-faq",
+        "us-marriage-abroad"
+      ],
+      "sourceLocator": "Jurat disclaimer; SOS authority opening and FAQ 1; Affidavit of eligibility to marry",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-positive-record",
+      "claim": "San Diego's letter confirming the existence of a confidential marriage is positive evidence, distinct from a Letter of No Record. A prior divorce judgment concerns a prior marriage and does not by itself establish absence of a later marriage or all requirements for a new marriage.",
+      "sourceIds": [
+        "ca-marriage-sd-record",
+        "ca-single-status-sd-form",
+        "us-marriage-abroad"
+      ],
+      "sourceLocator": "Confidential section; application p.1; Requirements for marriage abroad",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
+    },
+    {
+      "id": "single-status-fees-and-return",
+      "claim": "San Diego LNR procurement and SOS authentication are separate stages and fees. VIT720 asks for return name/address and contact details; published LNR material supplies no tracked-return or end-to-end deadline guarantee. SOS separately requires its eligible document, destination cover, fee and return arrangements.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-single-status-sd-form",
+        "ca-request"
+      ],
+      "sourceLocator": "County By Mail; form p.2; SOS mail items 1–4",
+      "evidence": "official guidance plus Notary Geek route inference",
+      "checkedDate": "2026-10-31"
     }
   ],
   "documentBranches": [
@@ -840,6 +939,176 @@
       "unresolvedQuestionIds": [
         "CA-Q4"
       ]
+    },
+    {
+      "id": "single-status-san-diego-order",
+      "question": "Does the recipient require a San Diego issuer no-record search letter?",
+      "route": "Use the published LNR request. The available lane obtains the county result only. After receipt, use single-status-san-diego-letter before any SOS submission.",
+      "decision": "procure-county-result-not-apostille-ready",
+      "issuer": "San Diego Recorder/County Clerk",
+      "authenticatedSignature": "Resulting letter's actual official certifier, not the applicant",
+      "acceptedOutput": "County-issued result requested; actual certification/output still to be checked",
+      "intermediateCertification": "No notarization of this LNR application is required",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [
+        "san-diego-no-record-order"
+      ],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-single-status-sd-form"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ]
+    },
+    {
+      "id": "single-status-san-diego-letter",
+      "question": "Is an issued San Diego Letter of No Record presented?",
+      "route": "Retain the searched identifiers and stated limits. Resolve CA-Q5 before treating the signature/output as ready for SOS. Recipient must accept this county search scope.",
+      "decision": "hold-for-no-record-signer-and-scope",
+      "issuer": "San Diego Recorder/County Clerk",
+      "authenticatedSignature": "Actual letter certifier; name/title not established by the application",
+      "acceptedOutput": "Intact issuer-issued letter; exact accepted SOS paper form not established",
+      "intermediateCertification": "No automatic county-clerk stage; obtain letter-specific issuer/SOS direction",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-single-status-sd-form",
+        "ca-marriage-sd-record",
+        "ca-request",
+        "ca-faq"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ]
+    },
+    {
+      "id": "single-status-cdph-cnpr",
+      "question": "Is a CDPH Certificate of No Public Record presented or requested as statewide single status?",
+      "route": "Classify an existing CNPR as the unsuccessful application-based search described by CDPH. Do not invent a broad single-status order route; resolve CA-Q6. When the recipient asks for the researched county letter, use its specific procurement route.",
+      "decision": "hold-for-cnpr-scope-and-output",
+      "issuer": "California Department of Public Health Vital Records",
+      "authenticatedSignature": "Actual CNPR certifier; not established in reviewed public material",
+      "acceptedOutput": "Certified CNPR described by FAQ; exact signer and accepted paper presentation unresolved",
+      "intermediateCertification": "No birth/death-specific certification rule is imported",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "ca-vital-faq",
+        "ca-vital-availability",
+        "ca-marriage-cdph",
+        "ca-request",
+        "ca-faq"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q6"
+      ]
+    },
+    {
+      "id": "single-status-private-affidavit",
+      "question": "Does the recipient accept a personal eligibility statement and is the actual notarization Californian?",
+      "route": "Keep it labeled as a private affidavit. After lawful California notarization and recipient-document requirements are established, use the original notarized package and ordinary SOS lane. This is not an issuer marriage search or proof of the statement's truth.",
+      "decision": "conditional-private-statement-route",
+      "issuer": "Private declarant; California notary performs the notarial act",
+      "authenticatedSignature": "California notary signature",
+      "acceptedOutput": "Original lawfully notarized statement with complete certificate and attachments",
+      "intermediateCertification": "No universal additional county stage is established by SOS general instructions; resolve any actual certificate defect or exceptional signer before submission",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [
+        "mail",
+        "counter"
+      ],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "ca-jurat-disclaimer",
+        "ca-request",
+        "ca-faq",
+        "us-marriage-abroad"
+      ],
+      "unresolvedQuestionIds": []
+    },
+    {
+      "id": "single-status-output-copy",
+      "question": "Is the item only an application, scan, verification screen or customer printout of a no-record result?",
+      "route": "Obtain the actual issuer result and precise output instructions. A downloaded application or new private notarial statement cannot be relabeled the official letter.",
+      "decision": "hold-or-obtain-issued-no-record-output",
+      "issuer": "Custodian must issue its own result",
+      "authenticatedSignature": "Issuer certifier remains unidentified on a mere application or copy",
+      "acceptedOutput": "Ordinary photocopy unacceptable; exact electronic-to-paper eligibility unresolved",
+      "intermediateCertification": "Issuer replacement or specific SOS presentation authority needed",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "ca-single-status-sd-form",
+        "ca-request",
+        "ca-vital-faq"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5",
+        "CA-Q6"
+      ]
+    },
+    {
+      "id": "single-status-confidential-confirmation",
+      "question": "Is the item a letter confirming a confidential marriage exists?",
+      "route": "Classify as positive confirmation; it is neither a no-record letter nor the restricted certified marriage record. If a certified record is required, apply existing marriage-confidential-access and marriage-confidential-certified branches.",
+      "decision": "reject-no-record-classification",
+      "issuer": "San Diego Recorder/County Clerk",
+      "authenticatedSignature": "Actual confirmation-letter certifier; no apostille route established here",
+      "acceptedOutput": "Positive confirmation letter is not the requested no-record evidence",
+      "intermediateCertification": "Obtain the correct requested document; no substitution through notarization",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "ca-marriage-sd-record",
+        "ca-single-status-sd-form"
+      ],
+      "unresolvedQuestionIds": []
+    },
+    {
+      "id": "single-status-prior-divorce",
+      "question": "Is a prior divorce judgment offered as proof of present unmarried status?",
+      "route": "For a California court judgment requested as termination evidence, use the existing court-divorce-judgment branch. Other jurisdictions' courts follow their actual issuing authority, not California residence. Separately establish the recipient's present-status requirements; no absence-of-later-marriage inference follows.",
+      "decision": "route-termination-record-separately",
+      "issuer": "Originating court for the judgment",
+      "authenticatedSignature": "Actual court certifier under the existing court route",
+      "acceptedOutput": "Court-issued certified judgment, when requested; not a comprehensive present-status certificate",
+      "intermediateCertification": "Existing court signature/output questions remain CA-Q2",
+      "competentAuthority": "California Secretary of State only for a qualifying California official signature",
+      "submissionRouteIds": [],
+      "returnConstraint": "Issuer procurement and SOS return are separate. Preserve the issued package; recipient acceptance, required record age and delivery form must be established separately.",
+      "sourceIds": [
+        "us-marriage-abroad",
+        "ca-request"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ]
+    },
+    {
+      "id": "single-status-recipient-mismatch",
+      "question": "Does the recipient require issuer search evidence while only a private affidavit is offered?",
+      "route": "Hold substitution and obtain the recipient-requested issuer evidence through its documented route, or explicit recipient acceptance of a different document. No SOS submission lane is offered while the document mismatch remains.",
+      "decision": "hold-for-recipient-document-mismatch",
+      "issuer": "Private declarant is not the requested records custodian",
+      "authenticatedSignature": "A notary signature does not replace the requested issuer certification",
+      "acceptedOutput": "No recipient-accepted substitute established",
+      "intermediateCertification": "Further notarization or apostille does not cure the document-identity mismatch",
+      "competentAuthority": "California SOS authenticates qualifying signatures but does not decide recipient document acceptance",
+      "submissionRouteIds": [],
+      "returnConstraint": "Resolve requested document identity before arranging authentication or return.",
+      "sourceIds": [
+        "us-marriage-abroad",
+        "ca-faq",
+        "ca-jurat-disclaimer"
+      ],
+      "unresolvedQuestionIds": []
     }
   ],
   "openQuestions": [
@@ -848,7 +1117,9 @@
     "CA-Q1: Exact online-certified SOS company PDF to paper apostille presentation remains unresolved; published paper record procurement is available.",
     "CA-Q2: Exact Superior Court signer recognition, any required intermediate chain and electronic court presentation remain output-specific questions.",
     "CA-Q3: Direct school-official authentication and electronic education presentation remain unresolved; issuer-notarization examples are documented.",
-    "CA-Q4: Exact marriage certifier, informational-copy and electronic-output acceptance remain qualified; other issuer categories and destination-specific outside-Convention chains are incomplete."
+    "CA-Q4: Exact marriage certifier, informational-copy and electronic-output acceptance remain qualified; other issuer categories and destination-specific outside-Convention chains are incomplete.",
+    "CA-Q5: San Diego LNR search coverage and exact issued certifier/paper presentation remain unresolved; procurement is documented separately.",
+    "CA-Q6: A comprehensive CDPH single-status search service and exact CNPR apostille chain are not established."
   ],
   "doNotInfer": [
     "A California Apostille proves the document's substantive content or guarantees recipient acceptance.",
@@ -873,7 +1144,11 @@
     "A marriage-record application notarized outside California sends the resulting California certified record to that notary state.",
     "A county-issued gold-seal keepsake is the certified marriage record.",
     "SOS birth/death FAQ 3 imposes a universal marriage County Clerk intermediate step.",
-    "San Mateo direct paper route approves every informational, electronic or other-county marriage record."
+    "San Mateo direct paper route approves every informational, electronic or other-county marriage record.",
+    "A county no-record letter or CDPH CNPR establishes never-married or present worldwide marital status.",
+    "An apostille's reference to official capacity establishes the holder's capacity to marry.",
+    "San Diego requires notarization of its LNR application, or its $19 fee includes apostille.",
+    "Confidential indexes and all name/year variants are included or excluded in a San Diego LNR without evidence."
   ],
   "lexicon": [
     "Public-Official Signature Route",
@@ -891,9 +1166,10 @@
       "type": "official-agency-procedure",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/request-apostille",
-      "checkedUtc": "2026-10-28T00:00:00Z",
+      "checkedUtc": "2026-10-31T00:00:00Z",
       "effectiveDate": null,
-      "accessMethod": "direct-page-text"
+      "accessMethod": "direct-page-text",
+      "latestReviewScope": "Single-status/no-record claims identified in October 31 source notes; earlier claim-level dates are retained."
     },
     {
       "id": "ca-faq",
@@ -901,9 +1177,10 @@
       "type": "official-agency-faq",
       "publisher": "California Secretary of State",
       "url": "https://www.sos.ca.gov/notary/apostille-faqs",
-      "checkedUtc": "2026-10-28T00:00:00Z",
+      "checkedUtc": "2026-10-31T00:00:00Z",
       "effectiveDate": null,
-      "accessMethod": "direct-page-text"
+      "accessMethod": "direct-page-text",
+      "latestReviewScope": "Single-status/no-record claims identified in October 31 source notes; earlier claim-level dates are retained."
     },
     {
       "id": "ca-processing",
@@ -1104,10 +1381,11 @@
       "type": "official-issuer-guidance",
       "publisher": "California Department of Public Health",
       "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Obtaining-Certified-Copies-of-Marriage-Records.aspx",
-      "checkedUtc": "2026-10-28T00:00:00Z",
+      "checkedUtc": "2026-10-31T00:00:00Z",
       "effectiveDate": null,
       "sourceLocator": "Public marriage availability; Mail In Request; confidential-record exclusion",
-      "accessMethod": "official-indexed-page-text; direct retrieval returned 502"
+      "accessMethod": "official-indexed-page-text; direct retrieval returned 502",
+      "latestReviewScope": "Single-status/no-record claims identified in October 31 source notes; earlier claim-level dates are retained."
     },
     {
       "id": "ca-marriage-directory",
@@ -1126,10 +1404,11 @@
       "type": "official-issuer-guidance",
       "publisher": "California Department of Public Health",
       "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Frequently-Asked-Questions-%28FAQs%29.aspx",
-      "checkedUtc": "2026-10-28T00:00:00Z",
+      "checkedUtc": "2026-10-31T00:00:00Z",
       "effectiveDate": null,
       "sourceLocator": "FAQ 5, 8, 11, 17, 23–25",
-      "accessMethod": "official-indexed-page-text; direct retrieval returned 502"
+      "accessMethod": "official-indexed-page-text; direct retrieval returned 502",
+      "latestReviewScope": "Single-status/no-record claims identified in October 31 source notes; earlier claim-level dates are retained."
     },
     {
       "id": "ca-marriage-sacramento",
@@ -1192,10 +1471,11 @@
       "type": "official-issuer-guidance",
       "publisher": "San Diego County Assessor/Recorder/County Clerk",
       "url": "https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/birth-death-marriage-certificate/marriage-certificate.html",
-      "checkedUtc": "2026-10-28T00:00:00Z",
+      "checkedUtc": "2026-10-31T00:00:00Z",
       "effectiveDate": null,
       "sourceLocator": "Opening distinction; Ordering Confidential Marriage Certificates; By Mail; registration FAQ",
-      "accessMethod": "direct-page-text"
+      "accessMethod": "direct-page-text",
+      "latestReviewScope": "Single-status/no-record claims identified in October 31 source notes; earlier claim-level dates are retained."
     },
     {
       "id": "ca-marriage-sd-keepsake",
@@ -1206,6 +1486,74 @@
       "checkedUtc": "2026-10-28T00:00:00Z",
       "effectiveDate": null,
       "sourceLocator": "Souvenir-only notice; confidential keepsake application",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-single-status-sd",
+      "title": "Single Status Affidavit (Letter of No Record)",
+      "type": "official-issuer-guidance",
+      "publisher": "San Diego County Assessor/Recorder/County Clerk",
+      "url": "https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/birth-death-marriage-certificate/single-status-affidavit.html",
+      "checkedUtc": "2026-10-31T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "By Mail; In Person; third-party request FAQ",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "ca-single-status-sd-form",
+      "title": "VIT720 marriage certificate, confirmation or no-record application",
+      "type": "official-issuer-guidance",
+      "publisher": "San Diego County Assessor/Recorder/County Clerk",
+      "url": "https://www.sdarcc.gov/content/dam/arcc/recorder-county-clerk/forms/vitals/Marriage%20Certificate%20Application%20In%20Person%20and%20Mail_20251231.pdf",
+      "checkedUtc": "2026-10-31T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Pages 1–2; LNR exception, supplied-information limit and return fields; Rev. 12/31/2025",
+      "accessMethod": "direct-pdf-text",
+      "revisionDate": "2025-12-31"
+    },
+    {
+      "id": "ca-vital-availability",
+      "title": "Vital Records Important Information",
+      "type": "official-agency-guidance",
+      "publisher": "California Department of Public Health",
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Important-Information.aspx",
+      "checkedUtc": "2026-10-31T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Copies of Vital Records; unavailable database record and first six months",
+      "accessMethod": "official-page-indexed-text; direct retrieval returned 502"
+    },
+    {
+      "id": "ca-jurat-disclaimer",
+      "title": "Jurats",
+      "type": "official-agency-guidance",
+      "publisher": "California Secretary of State",
+      "url": "https://www.sos.ca.gov/notary/jurats",
+      "checkedUtc": "2026-10-31T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Required identity-only disclaimer and Government Code 8202 reference",
+      "accessMethod": "direct-page-text"
+    },
+    {
+      "id": "us-marriage-abroad",
+      "title": "Marriage",
+      "type": "official-agency-guidance",
+      "publisher": "U.S. Department of State",
+      "url": "https://travel.state.gov/en/international-travel/living-abroad/marriage.html",
+      "checkedUtc": "2026-10-31T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Requirements for marriage abroad; Affidavit of eligibility to marry",
+      "accessMethod": "direct-page-text",
+      "pageUpdated": "2025-08-10"
+    },
+    {
+      "id": "ca-sd-signature-services",
+      "title": "Signature Authentication of Public Health Officer and Notary Publics",
+      "type": "official-agency-guidance",
+      "publisher": "San Diego County Assessor/Recorder/County Clerk",
+      "url": "https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/signature-authentication.html",
+      "checkedUtc": "2026-10-31T00:00:00Z",
+      "effectiveDate": null,
+      "sourceLocator": "Public Health Officer and Notary Public sections; no LNR-specific chain",
       "accessMethod": "direct-page-text"
     }
   ],
@@ -1260,13 +1608,41 @@
         "ca-marriage-smc-apostille",
         "ca-marriage-sacramento"
       ]
+    },
+    {
+      "id": "CA-Q5",
+      "status": "unresolved",
+      "agency": "San Diego Recorder/County Clerk and California SOS Notary Public Section",
+      "question": "Which indexes, date ranges, names/aliases and confidential-record classes does the LNR search cover, and what registration lag/limits does its issued text state? Which official title, signature and seal appear? Does SOS accept that intact paper output directly, or require identified intermediate certification? Are any electronic copies or customer printouts accepted?",
+      "supportedAlternative": "Use the published county LNR procurement route when the recipient wants that search scope; retain the issued result and hold SOS submission until exact signer/output is resolved.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-single-status-sd-form",
+        "ca-marriage-sd-record",
+        "ca-request"
+      ]
+    },
+    {
+      "id": "CA-Q6",
+      "status": "unresolved",
+      "agency": "CDPH Vital Records and California SOS Notary Public Section",
+      "question": "Does CDPH offer a person-based no-marriage search distinct from an unsuccessful certified-copy application? If so, what years, identifiers and record classes, application, fee, attestation, certifier and paper output apply? For an actual CNPR, what signature and intermediate certification does SOS require, including any electronic-to-paper conditions?",
+      "supportedAlternative": "Read an existing CNPR only within its documented search limits. Use the specifically researched county procurement procedure if that is the recipient-requested evidence; a private affidavit is a separate recipient-dependent route.",
+      "sourceIds": [
+        "ca-vital-faq",
+        "ca-vital-availability",
+        "ca-marriage-cdph",
+        "ca-request"
+      ]
     }
   ],
   "companionEvidence": {
     "sourceNotesPath": "source-notes-2026-10-22.md",
     "adversarialCasesPath": "adversarial-cases-2026-10-22.json",
     "marriageSourceNotesPath": "source-notes-2026-10-28.md",
-    "marriageAdversarialCasesPath": "adversarial-cases-2026-10-28.json"
+    "marriageAdversarialCasesPath": "adversarial-cases-2026-10-28.json",
+    "singleStatusSourceNotesPath": "source-notes-2026-10-31.md",
+    "singleStatusAdversarialCasesPath": "adversarial-cases-2026-10-31.json"
   },
   "requiredRouteInputs": [
     "requestedDocumentIdentity",
@@ -1276,7 +1652,8 @@
     "certificationAndAttachments",
     "outputForm",
     "destinationCountry",
-    "recipientRequirements"
+    "recipientRequirements",
+    "recordSearchJurisdictionDatesNamesAndCoverageWhenApplicable"
   ],
   "submissionLanes": [
     {
@@ -1360,6 +1737,27 @@
         "ca-marriage-smc-fees"
       ],
       "checkedDate": "2026-10-28"
+    },
+    {
+      "id": "san-diego-no-record-order",
+      "purpose": "County search-result procurement only; not apostille submission",
+      "mailAddress": "San Diego Recorder/County Clerk, ATTN: Vital Records, P.O. Box 121750, San Diego, CA 92112-1750",
+      "feeUSD": 19,
+      "feeUnit": "per Letter of No Record",
+      "payment": "Mail: check or money order payable to San Diego Recorder/County Clerk; form also uses San Diego County Recorder. No cash by mail.",
+      "requiredItems": [
+        "Current marriage application marked Letter of No Record or LNR",
+        "Full name and date of birth as directed by LNR page",
+        "Return name/address and contact details requested by form",
+        "County fee; no sworn statement or notarization required for LNR"
+      ],
+      "inPerson": "Published locations include downtown San Diego, Chula Vista, Santee and San Marcos; not Kearny Mesa. No appointment; another person can request for someone abroad. Form asks in-person requesters for photo ID. Recheck office hours before travel.",
+      "returnInstructions": "Form provides return fields; LNR-specific tracking, foreign return and processing guarantees are not established. Obtain issued result before separate signature/output check and SOS stage.",
+      "sourceIds": [
+        "ca-single-status-sd",
+        "ca-single-status-sd-form"
+      ],
+      "checkedDate": "2026-10-31"
     }
   ],
   "issuerExamples": [

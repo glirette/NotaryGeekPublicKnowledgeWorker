@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-apostille-reference-coverage-v1",
   "id": "apostille-reference-coverage",
-  "version": "0.8-public",
+  "version": "0.9-public",
   "reviewedUtc": "2026-09-29T02:29:13.175Z",
   "publisher": "Notary Geek / GoodWare LLC / Greg Lirette",
   "scope": "Tracking coverage within this public corpus only. A source pointer, a separate DotNetMultisite page, and a researched route guide are different states of work; absence here does not mean no research exists elsewhere.",
@@ -61,8 +61,8 @@
       "sourceIndexStatus": "source-pointers-present",
       "routeStatus": "reviewed-partial-pilot",
       "routePath": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
-      "checkedDate": "2026-10-28",
-      "coverageNote": "Partial: marriage public/confidential access, copy types and issuer paper route; company, court and education branches retained with output/signer questions. Marriage/SOS submission checked October 28; prior routes retain their own dates."
+      "checkedDate": "2026-10-31",
+      "coverageNote": "Partial: single-status county procurement, CDPH CNPR limits and private affidavits checked October 31; exact no-record signer/output remains open. Marriage, company, court and education branches retain their claim dates. No transaction acceptance."
     },
     {
       "country": "US",

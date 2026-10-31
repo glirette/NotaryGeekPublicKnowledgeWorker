@@ -36,3 +36,5 @@ The [October 28 California marriage increment](us-ca/README.md#marriage-records-
 - **Not indexed:** no state entry yet in this repository's law/source index. Other Notary Geek repositories may contain useful research; search them before authoring.
 
 A shallow state page is not progress. Extend existing source research, preserve conflicts, and keep working until a professional can follow the route back to the relevant authority. Public information does not constitute a service acceptance or deadline promise.
+
+The [October 31 California single-status increment](us-ca/README.md#single-status-no-record-result-or-private-assertion) distinguishes county no-record procurement, CDPH unsuccessful-search evidence and private affidavits. Its [source notes](us-ca/source-notes-2026-10-31.md) and [16 cases](us-ca/adversarial-cases-2026-10-31.json) preserve precise signer, output and search-scope gaps; no-record evidence does not prove comprehensive marital status.

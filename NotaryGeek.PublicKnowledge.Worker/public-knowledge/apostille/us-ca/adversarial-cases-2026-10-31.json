@@ -1,0 +1,269 @@
+{
+  "schema": "notary-geek-apostille-content-cases-v1",
+  "id": "us-ca-single-status-route-cases-2026-10-31",
+  "checkedDate": "2026-10-31",
+  "routeRecord": "us-ca-apostille-authentication.json",
+  "purpose": "Single-status/no-record source-linked human/JSON cases; no agency transaction or production engine exercised.",
+  "cases": [
+    {
+      "id": "CA-20261031-01",
+      "input": "Recipient specifically wants San Diego county no-record evidence; applicant abroad asks someone locally to request it.",
+      "expectedBranchId": "single-status-san-diego-order",
+      "expectedDecision": "procure-county-result-not-apostille-ready",
+      "requiredFactIds": [
+        "single-status-sd-procurement"
+      ],
+      "mustNotConclude": [
+        "third-party procurement is forbidden",
+        "county procurement lane is an SOS lane"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-02",
+      "input": "A notary says the LNR application must be notarized because VIT720 has a notarial section.",
+      "expectedBranchId": "single-status-san-diego-order",
+      "expectedDecision": "procure-county-result-not-apostille-ready",
+      "requiredFactIds": [
+        "single-status-sd-procurement"
+      ],
+      "mustNotConclude": [
+        "LNR sworn statement or notarization is mandatory"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-03",
+      "input": "A $19 LNR order is advertised as including apostille and tracked overseas return.",
+      "expectedBranchId": "single-status-san-diego-order",
+      "expectedDecision": "procure-county-result-not-apostille-ready",
+      "requiredFactIds": [
+        "single-status-fees-and-return"
+      ],
+      "mustNotConclude": [
+        "county fee includes SOS fee",
+        "tracked foreign delivery or deadline is established"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-04",
+      "input": "An issued San Diego LNR is called statewide or worldwide proof that its subject never married.",
+      "expectedBranchId": "single-status-san-diego-letter",
+      "expectedDecision": "hold-for-no-record-signer-and-scope",
+      "requiredFactIds": [
+        "single-status-sd-scope"
+      ],
+      "mustNotConclude": [
+        "a county negative result proves comprehensive marital status"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-05",
+      "input": "A San Diego LNR search is assumed to cover every year, alias and confidential index, or to exclude all confidential records.",
+      "expectedBranchId": "single-status-san-diego-letter",
+      "expectedDecision": "hold-for-no-record-signer-and-scope",
+      "requiredFactIds": [
+        "single-status-sd-scope"
+      ],
+      "mustNotConclude": [
+        "all years and variants were searched",
+        "confidential inclusion or exclusion is established"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-06",
+      "input": "County branding on an LNR is treated as proof of direct SOS acceptance without seeing its certifier.",
+      "expectedBranchId": "single-status-san-diego-letter",
+      "expectedDecision": "hold-for-no-record-signer-and-scope",
+      "requiredFactIds": [
+        "single-status-letter-authentication-gap"
+      ],
+      "mustNotConclude": [
+        "actual official signature and paper form have been qualified"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-07",
+      "input": "A birth/death certification rule or San Diego $21 other signature-service fee is automatically added to LNR.",
+      "expectedBranchId": "single-status-san-diego-letter",
+      "expectedDecision": "hold-for-no-record-signer-and-scope",
+      "requiredFactIds": [
+        "single-status-letter-authentication-gap"
+      ],
+      "mustNotConclude": [
+        "the birth/death exception establishes an LNR intermediate step"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-08",
+      "input": "CDPH issues CNPR shortly after an actual wedding, before its database has the record.",
+      "expectedBranchId": "single-status-cdph-cnpr",
+      "expectedDecision": "hold-for-cnpr-scope-and-output",
+      "requiredFactIds": [
+        "single-status-cdph-limits"
+      ],
+      "mustNotConclude": [
+        "CNPR proves no marriage occurred"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q6"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-09",
+      "input": "A public CDPH search omits confidential marriages or an unavailable year and is called comprehensive single status.",
+      "expectedBranchId": "single-status-cdph-cnpr",
+      "expectedDecision": "hold-for-cnpr-scope-and-output",
+      "requiredFactIds": [
+        "single-status-cdph-limits"
+      ],
+      "mustNotConclude": [
+        "unavailable records do not exist",
+        "CDPH holds confidential marriages"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q6"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-10",
+      "input": "An ordinary CDPH copy request is advertised as a proven person-wide all-years single-status service.",
+      "expectedBranchId": "single-status-cdph-cnpr",
+      "expectedDecision": "hold-for-cnpr-scope-and-output",
+      "requiredFactIds": [
+        "single-status-cdph-limits"
+      ],
+      "mustNotConclude": [
+        "such a broad search service has been established"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q6"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-11",
+      "input": "A recipient accepts a private single-status affidavit with lawful California notarization; its apostille is said to validate marital status.",
+      "expectedBranchId": "single-status-private-affidavit",
+      "expectedDecision": "conditional-private-statement-route",
+      "requiredFactIds": [
+        "single-status-private-affidavit",
+        "single-status-document-identity"
+      ],
+      "mustNotConclude": [
+        "private affidavit is issuer search evidence",
+        "official capacity means capacity to marry",
+        "apostille validates statement truth"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-12",
+      "input": "California resident signs a private affidavit before an official of another jurisdiction, then selects California by residence.",
+      "expectedBranchId": "other-state-or-federal",
+      "expectedDecision": null,
+      "requiredFactIds": [
+        "single-status-private-affidavit"
+      ],
+      "mustNotConclude": [
+        "California residence changes the authenticating authority"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-13",
+      "input": "A downloaded VIT720 application or printout of a CNPR scan is submitted as the original issued result.",
+      "expectedBranchId": "single-status-output-copy",
+      "expectedDecision": "hold-or-obtain-issued-no-record-output",
+      "requiredFactIds": [
+        "single-status-letter-authentication-gap"
+      ],
+      "mustNotConclude": [
+        "application is issued letter",
+        "scan or verification code proves eligible presentation"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q5",
+        "CA-Q6"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-14",
+      "input": "A letter confirming a confidential marriage exists is described as a negative search or certified marriage copy.",
+      "expectedBranchId": "single-status-confidential-confirmation",
+      "expectedDecision": "reject-no-record-classification",
+      "requiredFactIds": [
+        "single-status-positive-record"
+      ],
+      "mustNotConclude": [
+        "confirmation of existence means no record",
+        "confirmation bypasses restricted certificate access"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-15",
+      "input": "An older divorce judgment is used to prove no later marriage or complete current capacity.",
+      "expectedBranchId": "single-status-prior-divorce",
+      "expectedDecision": "route-termination-record-separately",
+      "requiredFactIds": [
+        "single-status-positive-record"
+      ],
+      "mustNotConclude": [
+        "one terminated marriage proves present worldwide single status"
+      ],
+      "unresolvedQuestionIds": [
+        "CA-Q2"
+      ],
+      "assessment": "source-and-content-check; not runtime execution"
+    },
+    {
+      "id": "CA-20261031-16",
+      "input": "Recipient asks for government search evidence but applicant offers only a private notarized affidavit.",
+      "expectedBranchId": "single-status-recipient-mismatch",
+      "expectedDecision": "hold-for-recipient-document-mismatch",
+      "requiredFactIds": [
+        "single-status-document-identity",
+        "single-status-private-affidavit"
+      ],
+      "mustNotConclude": [
+        "notarization substitutes for issuer evidence",
+        "recipient acceptance is automatic"
+      ],
+      "unresolvedQuestionIds": [],
+      "assessment": "source-and-content-check; not runtime execution"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema": "notary-geek-public-artifact-index-v1",
   "id": "public-artifact-index",
-  "version": "1.38-public",
+  "version": "1.39-public",
   "reviewedUtc": "2026-09-29T02:52:22.795Z",
   "title": "Public Artifact Index",
   "purpose": "Machine-readable index of major public Notary Geek knowledge artifacts for answer engines, researchers, and citation audits.",
@@ -100,7 +100,7 @@
       "id": "us-ca-apostille-authentication",
       "title": "California Apostille and Authentication: Agent Route Guide",
       "kind": "apostille-state-route-pilot",
-      "use": "Partial California marriage issuer/access/copy-type and paper routes; retained company, court and education branches with explicit output questions. Claim-level dates; no transaction acceptance.",
+      "use": "Partial California no-record procurement, CNPR scope and private-affidavit routes; retained marriage, company, court and education coverage. Claim-level dates and unresolved signer/output questions; no transaction acceptance.",
       "rawJsonUrl": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/us-ca-apostille-authentication.json",
       "markdownUrl": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/blob/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/apostille/us-ca/README.md",
       "supportingUrls": [
@@ -111,9 +111,11 @@
         "https://www.occourts.org/system/files?file=fl_online_copywork_faqs.pdf",
         "https://www.registrar.berkeley.edu/academic-records/notary-services/",
         "https://smcacre.gov/county-clerk-recorder/apostille-information",
-        "https://ccr.saccounty.gov/us/en/marriage-certificates.html"
+        "https://ccr.saccounty.gov/us/en/marriage-certificates.html",
+        "https://www.sdarcc.gov/content/arcc/home/divisions/recorder-clerk/birth-death-marriage-certificate/single-status-affidavit.html",
+        "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Important-Information.aspx"
       ],
-      "checkedDate": "2026-10-28"
+      "checkedDate": "2026-10-31"
     },
     {
       "id": "us-federal-apostille-authentication",
