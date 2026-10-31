@@ -1,0 +1,644 @@
+{
+  "schema": "notary-geek-public-knowledge-regression-matrix-v1",
+  "version": "kba-proposal-2026-10-30",
+  "reviewedUtc": "2026-10-30",
+  "purpose": "Explicit KBA input proposal; not registered in the shared regression matrix.",
+  "publicOnlyPolicy": "Public research and synthetic examples only.",
+  "cases": [
+    {
+      "id": "kba-rule-r01",
+      "focus": "Review dated KBA routing proposal R01: KBA called legally permitted, gold standard or NIST-compliant. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Separate law from assurance; identify revision and verification vs supplemental fraud role"
+      ],
+      "failureSignals": [
+        "Permission establishes best practice",
+        "NIST makes KBA universally illegal"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-rule-r02",
+      "focus": "Review dated KBA routing proposal R02: No questions or signer lacks SSN/ITIN. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Distinguish generation, answers, lockout, capture and account error",
+        "Check U.S.-address history and configured eligibility",
+        "Ask sender about enabled alternative or accepted different/in-person route"
+      ],
+      "failureSignals": [
+        "No SSN means identity cannot be verified",
+        "No-SSN checkbox works for everyone",
+        "Invent an address or obtain ITIN just to feed quiz"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-rule-r03",
+      "focus": "Review dated KBA routing proposal R03: Virginia no-KBA or selfie proposed. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Use transaction-date law",
+        "Identify personal knowledge, qualifying witness or distinct listed-method combination",
+        "For certificate/PIV establish signer credential/access; for adopted method name authority/version"
+      ],
+      "failureSignals": [
+        "Selfie alone is statutory certificate method",
+        "Notary signing certificate proves signer credential",
+        "Current KBA item cures earlier method automatically",
+        "Duty defect automatically voids act"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-rule-r04",
+      "focus": "Review dated KBA routing proposal R04: Failure or retry advice. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Use dedicated threshold as attributed instructions and disclose scoring conflict",
+        "Notify sender; no manual unlock promise",
+        "Separate provider once-only claim from statutory reuse ceiling",
+        "Publish no quiz answers or identity records"
+      ],
+      "failureSignals": [
+        "Any one wrong answer always fails",
+        "Unlimited retries are available",
+        "Retry permission proves exploitable recycling"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-rule-r05",
+      "focus": "Review dated KBA routing proposal R05: Provider or recipient alternative. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Separate ID support, method completion, required record and recipient/output acceptance",
+        "Keep agent products separate from notarization",
+        "Do not manufacture personal knowledge"
+      ],
+      "failureSignals": [
+        "Passport support guarantees all steps",
+        "Escrow platform preference is statute",
+        "Verification report is notarial certificate"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-rule-r06",
+      "focus": "Review dated KBA routing proposal R06: Data source characterized. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Attribute product-specific credit-history wording",
+        "Keep public/proprietary/non-credit categories separate",
+        "Leave supplier and FCRA classification unresolved without evidence"
+      ],
+      "failureSignals": [
+        "Every KBA is ordinary credit report",
+        "No consent screen proves no credit input or duties",
+        "Proof uses LexisNexis because that vendor sells KBA"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-rule-r07",
+      "focus": "Review dated KBA routing proposal R07: Notary Geek help offered. Use all three complete research parts. Preserve qualifications and competing interpretations; do not decide transaction validity.",
+      "purpose": "Proposed offline regression input; research meaning remains pending review.",
+      "mustHold": [
+        "Use published intake for document/location/ID/destination/recipient review",
+        "Describe current offering conditionally",
+        "Separate additional service possibilities from existing offerings"
+      ],
+      "failureSignals": [
+        "Guarantee pass, deadline, country coverage or recipient acceptance",
+        "Every biometric alternative is superior",
+        "Proposed package is already sold"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e01",
+      "focus": "Review synthetic KBA example E01: Virginia allows KBA, so it is the best method. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "reject-equivalence",
+        "Separate permission and assurance.",
+        "Separate law from assurance; identify revision and verification vs supplemental fraud role"
+      ],
+      "failureSignals": [
+        "Permission establishes best practice",
+        "NIST makes KBA universally illegal"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e02",
+      "focus": "Review synthetic KBA example E02: NIST bans KBA, so all Virginia KBA acts are illegal. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "reject-universal-ban",
+        "Scope standard and law separately.",
+        "Separate law from assurance; identify revision and verification vs supplemental fraud role"
+      ],
+      "failureSignals": [
+        "Permission establishes best practice",
+        "NIST makes KBA universally illegal"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e03",
+      "focus": "Review synthetic KBA example E03: No SSN means this person cannot be identified. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "route-eligibility",
+        "Check lawful alternative and product conditions.",
+        "Distinguish generation, answers, lockout, capture and account error",
+        "Check U.S.-address history and configured eligibility",
+        "Ask sender about enabled alternative or accepted different/in-person route"
+      ],
+      "failureSignals": [
+        "No SSN means identity cannot be verified",
+        "No-SSN checkbox works for everyone",
+        "Invent an address or obtain ITIN just to feed quiz"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e04",
+      "focus": "Review synthetic KBA example E04: Never had a U.S. address; no-SSN checkbox fixes it. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "address-condition-unmet",
+        "No such route established by no-SSN page.",
+        "Distinguish generation, answers, lockout, capture and account error",
+        "Check U.S.-address history and configured eligibility",
+        "Ask sender about enabled alternative or accepted different/in-person route"
+      ],
+      "failureSignals": [
+        "No SSN means identity cannot be verified",
+        "No-SSN checkbox works for everyone",
+        "Invent an address or obtain ITIN just to feed quiz"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e05",
+      "focus": "Review synthetic KBA example E05: Valid ITIN but no quiz means fraud. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "no-question-generation",
+        "Sparse records/pool exhaustion are documented possibilities.",
+        "Distinguish generation, answers, lockout, capture and account error",
+        "Check U.S.-address history and configured eligibility",
+        "Ask sender about enabled alternative or accepted different/in-person route"
+      ],
+      "failureSignals": [
+        "No SSN means identity cannot be verified",
+        "No-SSN checkbox works for everyone",
+        "Invent an address or obtain ITIN just to feed quiz"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e06",
+      "focus": "Review synthetic KBA example E06: Selfie plus passport automatically equals Virginia two methods. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "missing-method-mapping",
+        "Selfie does not become signer certificate/PIV.",
+        "Use transaction-date law",
+        "Identify personal knowledge, qualifying witness or distinct listed-method combination",
+        "For certificate/PIV establish signer credential/access; for adopted method name authority/version"
+      ],
+      "failureSignals": [
+        "Selfie alone is statutory certificate method",
+        "Notary signing certificate proves signer credential",
+        "Current KBA item cures earlier method automatically",
+        "Duty defect automatically voids act"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e07",
+      "focus": "Review synthetic KBA example E07: Notary signing certificate proves signer certificate method. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "wrong-certificate-subject",
+        "Require signer credential and access evidence.",
+        "Use transaction-date law",
+        "Identify personal knowledge, qualifying witness or distinct listed-method combination",
+        "For certificate/PIV establish signer credential/access; for adopted method name authority/version"
+      ],
+      "failureSignals": [
+        "Selfie alone is statutory certificate method",
+        "Notary signing certificate proves signer credential",
+        "Current KBA item cures earlier method automatically",
+        "Duty defect automatically voids act"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e08",
+      "focus": "Review synthetic KBA example E08: June 2024 act can use current KBA item retroactively. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "transaction-date-law",
+        "Separate insertion and validation; no validity ruling.",
+        "Use transaction-date law",
+        "Identify personal knowledge, qualifying witness or distinct listed-method combination",
+        "For certificate/PIV establish signer credential/access; for adopted method name authority/version"
+      ],
+      "failureSignals": [
+        "Selfie alone is statutory certificate method",
+        "Notary signing certificate proves signer credential",
+        "Current KBA item cures earlier method automatically",
+        "Duty defect automatically voids act"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e09",
+      "focus": "Review synthetic KBA example E09: Support can unlock the quiz before closing. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "no-manual-unlock-promise",
+        "Notify sender and assess accepted fallback.",
+        "Use dedicated threshold as attributed instructions and disclose scoring conflict",
+        "Notify sender; no manual unlock promise",
+        "Separate provider once-only claim from statutory reuse ceiling",
+        "Publish no quiz answers or identity records"
+      ],
+      "failureSignals": [
+        "Any one wrong answer always fails",
+        "Unlimited retries are available",
+        "Retry permission proves exploitable recycling"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e10",
+      "focus": "Review synthetic KBA example E10: One wrong answer out of five always fails. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "scoring-source-conflict",
+        "Dedicated 4/5 guide conflicts with general guide.",
+        "Use dedicated threshold as attributed instructions and disclose scoring conflict",
+        "Notify sender; no manual unlock promise",
+        "Separate provider once-only claim from statutory reuse ceiling",
+        "Publish no quiz answers or identity records"
+      ],
+      "failureSignals": [
+        "Any one wrong answer always fails",
+        "Unlimited retries are available",
+        "Retry permission proves exploitable recycling"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e11",
+      "focus": "Review synthetic KBA example E11: Retry forever until pool repeats. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "reject-unlimited-retry",
+        "Limits/exhaustion documented; exploit not observed.",
+        "Use dedicated threshold as attributed instructions and disclose scoring conflict",
+        "Notify sender; no manual unlock promise",
+        "Separate provider once-only claim from statutory reuse ceiling",
+        "Publish no quiz answers or identity records"
+      ],
+      "failureSignals": [
+        "Any one wrong answer always fails",
+        "Unlimited retries are available",
+        "Retry permission proves exploitable recycling"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e12",
+      "focus": "Review synthetic KBA example E12: Foreign passport accepted, so never-U.S.-footprint signer will pass. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "credential-vs-route",
+        "ID support differs from data availability/settings.",
+        "Distinguish generation, answers, lockout, capture and account error",
+        "Check U.S.-address history and configured eligibility",
+        "Ask sender about enabled alternative or accepted different/in-person route",
+        "Separate ID support, method completion, required record and recipient/output acceptance",
+        "Keep agent products separate from notarization",
+        "Do not manufacture personal knowledge"
+      ],
+      "failureSignals": [
+        "No SSN means identity cannot be verified",
+        "No-SSN checkbox works for everyone",
+        "Invent an address or obtain ITIN just to feed quiz",
+        "Passport support guarantees all steps",
+        "Escrow platform preference is statute",
+        "Verification report is notarial certificate"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e13",
+      "focus": "Review synthetic KBA example E13: Escrow names Proof, so Virginia requires Proof. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "recipient-policy-separate",
+        "Obtain written alternative acceptance; no promise.",
+        "Separate ID support, method completion, required record and recipient/output acceptance",
+        "Keep agent products separate from notarization",
+        "Do not manufacture personal knowledge"
+      ],
+      "failureSignals": [
+        "Passport support guarantees all steps",
+        "Escrow platform preference is statute",
+        "Verification report is notarial certificate"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e14",
+      "focus": "Review synthetic KBA example E14: Verify recording means document notarized. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "wrong-product",
+        "Agent verification is not proof of notarial act.",
+        "Separate ID support, method completion, required record and recipient/output acceptance",
+        "Keep agent products separate from notarization",
+        "Do not manufacture personal knowledge"
+      ],
+      "failureSignals": [
+        "Passport support guarantees all steps",
+        "Escrow platform preference is statute",
+        "Verification report is notarial certificate"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e15",
+      "focus": "Review synthetic KBA example E15: No credit permission screen proves no credit data or FCRA duties. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "unsupported-data-and-law-inference",
+        "Interface does not settle source mix or legal classification.",
+        "Attribute product-specific credit-history wording",
+        "Keep public/proprietary/non-credit categories separate",
+        "Leave supplier and FCRA classification unresolved without evidence"
+      ],
+      "failureSignals": [
+        "Every KBA is ordinary credit report",
+        "No consent screen proves no credit input or duties",
+        "Proof uses LexisNexis because that vendor sells KBA"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e16",
+      "focus": "Review synthetic KBA example E16: LexisNexis sells KBA, so it supplies Proof. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "supplier-unresolved",
+        "Commercial example is not supplier linkage.",
+        "Attribute product-specific credit-history wording",
+        "Keep public/proprietary/non-credit categories separate",
+        "Leave supplier and FCRA classification unresolved without evidence"
+      ],
+      "failureSignals": [
+        "Every KBA is ordinary credit report",
+        "No consent screen proves no credit input or duties",
+        "Proof uses LexisNexis because that vendor sells KBA"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e17",
+      "focus": "Review synthetic KBA example E17: Notary Geek guarantees foreign passport and escrow acceptance. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "conditional-service-only",
+        "Offering requires route review.",
+        "Use published intake for document/location/ID/destination/recipient review",
+        "Describe current offering conditionally",
+        "Separate additional service possibilities from existing offerings"
+      ],
+      "failureSignals": [
+        "Guarantee pass, deadline, country coverage or recipient acceptance",
+        "Every biometric alternative is superior",
+        "Proposed package is already sold"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e18",
+      "focus": "Review synthetic KBA example E18: Paid notary I just met can say personally known. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "no-manufactured-familiarity",
+        "Need actual statutory familiarity or lawful different route.",
+        "Use transaction-date law",
+        "Identify personal knowledge, qualifying witness or distinct listed-method combination",
+        "For certificate/PIV establish signer credential/access; for adopted method name authority/version",
+        "Separate ID support, method completion, required record and recipient/output acceptance",
+        "Keep agent products separate from notarization",
+        "Do not manufacture personal knowledge"
+      ],
+      "failureSignals": [
+        "Selfie alone is statutory certificate method",
+        "Notary signing certificate proves signer credential",
+        "Current KBA item cures earlier method automatically",
+        "Duty defect automatically voids act",
+        "Passport support guarantees all steps",
+        "Escrow platform preference is statute",
+        "Verification report is notarial certificate"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e19",
+      "focus": "Review synthetic KBA example E19: Quiz supplements independent A-4 verification for fraud screening. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "potentially-permitted-role",
+        "Do not condemn all knowledge questions; check actual role.",
+        "Separate law from assurance; identify revision and verification vs supplemental fraud role"
+      ],
+      "failureSignals": [
+        "Permission establishes best practice",
+        "NIST makes KBA universally illegal"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e20",
+      "focus": "Review synthetic KBA example E20: Duty defect automatically voids a Virginia act. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "validity-unresolved",
+        "Account for validation law, remedies and unauthorized-actor limit.",
+        "Use transaction-date law",
+        "Identify personal knowledge, qualifying witness or distinct listed-method combination",
+        "For certificate/PIV establish signer credential/access; for adopted method name authority/version"
+      ],
+      "failureSignals": [
+        "Selfie alone is statutory certificate method",
+        "Notary signing certificate proves signer credential",
+        "Current KBA item cures earlier method automatically",
+        "Duty defect automatically voids act"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e21",
+      "focus": "Review synthetic KBA example E21: No KBA means every biometric workflow is safer. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "alternative-needs-assessment",
+        "Assess actual controls and accessibility; no measured superiority.",
+        "Use published intake for document/location/ID/destination/recipient review",
+        "Describe current offering conditionally",
+        "Separate additional service possibilities from existing offerings"
+      ],
+      "failureSignals": [
+        "Guarantee pass, deadline, country coverage or recipient acceptance",
+        "Every biometric alternative is superior",
+        "Proposed package is already sold"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    },
+    {
+      "id": "kba-example-e22",
+      "focus": "Review synthetic KBA example E22: Virginia permits 60% reuse, so Proof repeats 60%. Use all three complete research parts and its named rules. Preserve the expected disposition and meaning as proposed, not an adjudicated result.",
+      "purpose": "Proposed synthetic meaning regression; input qualification does not evaluate an answer.",
+      "mustHold": [
+        "reuse-policy-vs-observation",
+        "Legal ceiling is not observed provider configuration.",
+        "Use dedicated threshold as attributed instructions and disclose scoring conflict",
+        "Notify sender; no manual unlock promise",
+        "Separate provider once-only claim from statutory reuse ceiling",
+        "Publish no quiz answers or identity records"
+      ],
+      "failureSignals": [
+        "Any one wrong answer always fails",
+        "Unlimited retries are available",
+        "Retry permission proves exploitable recycling"
+      ],
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+        "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+      ]
+    }
+  ]
+}

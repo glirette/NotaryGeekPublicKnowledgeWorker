@@ -1,0 +1,55 @@
+{
+  "schema": "notary-geek-kba-worker-discovery-proposal-v1",
+  "notApplied": true,
+  "status": "proposal-only-not-registered",
+  "researchBindings": {
+    "matrix": {
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/kba-claim-source-matrix-2026-10-30.json",
+      "sha256": "e77ca70072fad0bb1b6e2c3bae0648d73e5fff44e36831e29e62fec15dfa0a0e",
+      "utf8Bytes": 27486
+    },
+    "proposal": {
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/kba-routing-proposal-2026-10-30.json",
+      "sha256": "48241103f81e8a28a5281f6c7068e2539c0f92d17b21b997932826d90441a10d",
+      "utf8Bytes": 13634
+    }
+  },
+  "proposedCaseIds": [
+    "kba-rule-r01",
+    "kba-rule-r02",
+    "kba-rule-r03",
+    "kba-rule-r04",
+    "kba-rule-r05",
+    "kba-rule-r06",
+    "kba-rule-r07",
+    "kba-example-e01",
+    "kba-example-e02",
+    "kba-example-e03",
+    "kba-example-e04",
+    "kba-example-e05",
+    "kba-example-e06",
+    "kba-example-e07",
+    "kba-example-e08",
+    "kba-example-e09",
+    "kba-example-e10",
+    "kba-example-e11",
+    "kba-example-e12",
+    "kba-example-e13",
+    "kba-example-e14",
+    "kba-example-e15",
+    "kba-example-e16",
+    "kba-example-e17",
+    "kba-example-e18",
+    "kba-example-e19",
+    "kba-example-e20",
+    "kba-example-e21",
+    "kba-example-e22"
+  ],
+  "proposedRegressionInput": "regression-inputs.json",
+  "proposedSourceUrls": [
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+    "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/main/NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json"
+  ],
+  "activationBoundary": "Future reviewed integration only. Shared manifests, default first-24 selection and runtime limits are unchanged. URLs on main are prospective until publication there; local qualification does not establish HTTP availability or live ingestion."
+}

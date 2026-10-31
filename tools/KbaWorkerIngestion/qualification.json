@@ -1,0 +1,85 @@
+{
+  "schema": "notary-geek-kba-input-qualification-v1",
+  "checkedDate": "2026-10-31",
+  "researchCommit": "e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d",
+  "approachCommit": "07959e7b074c0c48fa3b1d120f83fa9c2f6d2085",
+  "sdk": {
+    "version": "10.0.401",
+    "url": "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz",
+    "publishedSha512": "51c8b999af9e8dd9998c9edc5944e19a90788862068acd38694e098889054ce8c23d4f0c5cccfa16bf187d044562359e5ee69a9f8ad0bbe913ba90311fbce25b",
+    "sha512Matched": true,
+    "metadataUrl": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/10.0/releases.json"
+  },
+  "checks": {
+    "generator": "passed deterministic byte check",
+    "focusedRestore": "passed with NuGet package sources cleared",
+    "focusedBuild": "passed; zero warnings/errors",
+    "fullSolutionBuild": "passed; zero warnings/errors",
+    "existingTests": {
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0
+    },
+    "originalResearchValidation": "passed; six mutation controls rejected",
+    "mutationControls": {
+      "passed": 13
+    },
+    "publicationChecker": {
+      "commit": "5deafd015029752b8619e9f9e7cae55151516f18",
+      "path": "tools/check_publication_boundary.py",
+      "selfTestsPassed": 11,
+      "scope": "New KBA ingestion and case paths only; manual review also required"
+    }
+  },
+  "sourceFiles": [
+    {
+      "path": "tools/KbaWorkerIngestion/generate.py",
+      "sha256": "41580d90790a291572cdfd60d03e531e4cde207f20f151a5e7aa76d0b4df4cc6"
+    },
+    {
+      "path": "tools/KbaWorkerIngestion/test_mutations.py",
+      "sha256": "1f98e8425237efd68e8253aa0963d04f37d3c11344edc6c1caf2e31469879ef7"
+    },
+    {
+      "path": "tools/KbaWorkerIngestion/Program.cs",
+      "sha256": "8315b246d4f3a3e2cb7a65493b543dc5b359413e6c3712861c6226f7f08267a1"
+    },
+    {
+      "path": "tools/KbaWorkerIngestion/StorageEnvelopeAdapter.cs",
+      "sha256": "ae9e74a0eec69f3c1ec945813bc03f2799662b1f9bfbc8044ac09e3d90f51ae8"
+    },
+    {
+      "path": "tools/KbaWorkerIngestion/KbaWorkerIngestion.csproj",
+      "sha256": "3b4a0fa045ab774fce3768ee5de6cdd6eadb8de9b3b54008e4b23cbdd53a880d"
+    },
+    {
+      "path": "tools/KbaWorkerIngestion/README.md",
+      "sha256": "8f9609522bc68570a9166752a379e0f4327ab227c3b8293b6a84ad9baba73a7f"
+    },
+    {
+      "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/discovery-proposal.json",
+      "sha256": "8538d98425d7be82a86b1f1e5ae7c0877830c08fbabdb6b7096f3b859b71e78a"
+    },
+    {
+      "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/package.json",
+      "sha256": "38bda736f66bd42cbd89ac141e50f282278a4623b1597e077def06b0107bead7"
+    },
+    {
+      "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-1.json",
+      "sha256": "a1663fd16ef4198cb8341448dbf89d583fd9bd61517470efb54cb844dae232b1"
+    },
+    {
+      "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-2.json",
+      "sha256": "3261cd899b70b7d136a580b847d0846e0af2f9bf673034d9f26e5541bbc157f7"
+    },
+    {
+      "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/records-3.json",
+      "sha256": "199d84c7efbe16832d67a1e5171d0213883c82089b1e719d7b7414cf6c1d00e3"
+    },
+    {
+      "path": "NotaryGeek.PublicKnowledge.Worker/public-knowledge/evidence/kba-worker-2026-10-30/regression-inputs.json",
+      "sha256": "f2202ce2ed847e9c67a0fd22df1dccb63d49e0450a0157c3c044a577c6942b55"
+    }
+  ],
+  "limits": "Offline production-method input qualification. Research meaning/customer-guidance approval, live answer quality, legal outcome, current-source freshness and publication availability remain unqualified."
+}

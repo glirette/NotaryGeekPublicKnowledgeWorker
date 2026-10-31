@@ -1,0 +1,62 @@
+{
+  "schema": "notary-geek-kba-worker-package-v1",
+  "researchBindings": {
+    "matrix": {
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/kba-claim-source-matrix-2026-10-30.json",
+      "sha256": "e77ca70072fad0bb1b6e2c3bae0648d73e5fff44e36831e29e62fec15dfa0a0e",
+      "utf8Bytes": 27486
+    },
+    "proposal": {
+      "url": "https://raw.githubusercontent.com/glirette/NotaryGeekPublicKnowledgeWorker/e4c31b4a0b3c2f223978dcb06c6af64f6bb4385d/NotaryGeek.PublicKnowledge.Worker/public-knowledge/research/kba-routing-proposal-2026-10-30.json",
+      "sha256": "48241103f81e8a28a5281f6c7068e2539c0f92d17b21b997932826d90441a10d",
+      "utf8Bytes": 13634
+    }
+  },
+  "partNames": [
+    "records-1.json",
+    "records-2.json",
+    "records-3.json"
+  ],
+  "sourceCharacterLimit": 17000,
+  "coverage": {
+    "claims": 24,
+    "sources": 22,
+    "contraryInterpretations": 4,
+    "rules": 7,
+    "examples": 22,
+    "cases": 29,
+    "completeResearchPerCase": true
+  },
+  "artifacts": [
+    {
+      "path": "records-1.json",
+      "sha256": "a1663fd16ef4198cb8341448dbf89d583fd9bd61517470efb54cb844dae232b1",
+      "utf8Bytes": 12334,
+      "utf16Characters": 12322
+    },
+    {
+      "path": "records-2.json",
+      "sha256": "3261cd899b70b7d136a580b847d0846e0af2f9bf673034d9f26e5541bbc157f7",
+      "utf8Bytes": 12492,
+      "utf16Characters": 12475
+    },
+    {
+      "path": "records-3.json",
+      "sha256": "199d84c7efbe16832d67a1e5171d0213883c82089b1e719d7b7414cf6c1d00e3",
+      "utf8Bytes": 12486,
+      "utf16Characters": 12458
+    },
+    {
+      "path": "regression-inputs.json",
+      "sha256": "f2202ce2ed847e9c67a0fd22df1dccb63d49e0450a0157c3c044a577c6942b55",
+      "utf8Bytes": 44491,
+      "utf16Characters": 44491
+    },
+    {
+      "path": "discovery-proposal.json",
+      "sha256": "8538d98425d7be82a86b1f1e5ae7c0877830c08fbabdb6b7096f3b859b71e78a",
+      "utf8Bytes": 2464,
+      "utf16Characters": 2464
+    }
+  ]
+}
