@@ -1,0 +1,606 @@
+{
+  "schema": "notary-geek-kba-research-v1",
+  "id": "kba-claim-source-matrix-2026-10-30",
+  "status": "public-research-draft-for-greg-meaning-review",
+  "checkedDate": "2026-10-30",
+  "jurisdiction": "NIST technical guidance; Virginia law; product-specific Proof and Notary Geek documentation",
+  "scope": "Public-source research only; no customer cases, transactions, supplier attribution, universal illegality or measured failure-rate claim.",
+  "sources": [
+    {
+      "id": "nist-a4",
+      "type": "technical-standard",
+      "title": "NIST SP 800-63A-4",
+      "url": "https://pages.nist.gov/800-63-4/sp800-63a.html",
+      "locator": "§2.4.2; §3.2.1(15)–(16); §4.2.6",
+      "version": "2025 final; displayed HTML 2025-08-26",
+      "authorityBoundary": "Technical requirements within this revision; not a notary statute",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "nist-final",
+      "type": "publication-record",
+      "title": "NIST final publication record",
+      "url": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+      "locator": "Document History; publication parts",
+      "version": "final 2025-07-31",
+      "authorityBoundary": "Revision identity and scope",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "gao",
+      "type": "government-audit",
+      "title": "GAO-19-288",
+      "url": "https://www.gao.gov/products/gao-19-288",
+      "locator": "What GAO Found; alternative-method limitations",
+      "version": "published 2019-05-17; released 2019-06-14",
+      "authorityBoundary": "Historical federal study; not RON or Proof telemetry",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "ln-qa",
+      "type": "provider-product",
+      "title": "LexisNexis InstantID Q&A",
+      "url": "https://risk.lexisnexis.com/products/instantid-q-and-a",
+      "locator": "Leverage Identity Insight; optional question types; final data-quality/FCRA disclaimer",
+      "version": "undated mutable page",
+      "authorityBoundary": "Commercial example; does not identify Proof’s supplier",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-kba",
+      "type": "provider-help",
+      "title": "Proof Knowledge-Based Authentication",
+      "url": "https://support.proof.com/hc/en-us/articles/10468298021271-Knowledge-Based-Authentication",
+      "locator": "What You’ll Need; If You Don’t Pass; No questions were generated; Still unsure",
+      "version": "updated 2026-09-01 22:12",
+      "authorityBoundary": "Documented KBA-path instructions; not measured performance",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-no-ssn",
+      "type": "provider-help",
+      "title": "Proof Verify Your Identity Without a Social Security Number",
+      "url": "https://support.proof.com/hc/en-us/articles/36549115702295-Verify-Your-Identity-Without-a-Social-Security-Number",
+      "locator": "Opening eligibility; steps 1–5; warning",
+      "version": "updated 2026-06-08 14:18",
+      "authorityBoundary": "Conditional workflow; not statutory-method evidence",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-overview",
+      "type": "provider-help",
+      "title": "Proof Identity Verification Overview",
+      "url": "https://support.proof.com/hc/en-us/articles/31945915880343-Identity-Verification-Overview",
+      "locator": "Methods; personal knowledge restrictions; checklist",
+      "version": "updated 2026-04-28 22:01",
+      "authorityBoundary": "Product, organization and state configuration",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-failed",
+      "type": "provider-help",
+      "title": "Proof Identity Verification Failed? Here’s What to Do",
+      "url": "https://support.proof.com/hc/en-us/articles/42960658744983-Identity-Verification-Failed-Here-s-What-to-Do",
+      "locator": "§4 KBA; §5 expired session; Fallbacks",
+      "version": "mutable page; no update time relied on",
+      "authorityBoundary": "Troubleshooting claims; contains scoring conflict",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-ca",
+      "type": "provider-help",
+      "title": "Proof Credential Analysis",
+      "url": "https://support.proof.com/hc/en-us/articles/7903680953239-Credential-Analysis",
+      "locator": "Opening sequence; Fix 1–4; support section",
+      "version": "updated 2026-08-26 15:32",
+      "authorityBoundary": "Credential/account troubleshooting; separate existing audit preserved",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-id",
+      "type": "provider-help",
+      "title": "Proof Acceptable Forms of ID for Online Notarization",
+      "url": "https://support.proof.com/hc/en-us/articles/360057120014-Acceptable-Forms-of-ID-for-Online-Notarization",
+      "locator": "At a Glance; Approved Primary ID Types; state-law caveat",
+      "version": "updated 2026-05-14 21:09",
+      "authorityBoundary": "ID support does not prove completion of other identity steps",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "proof-verify",
+      "type": "provider-help",
+      "title": "Proof Verify Transactions Overview",
+      "url": "https://support.proof.com/hc/en-us/articles/28519849379991-Verify-Transactions-Overview",
+      "locator": "Audience; enablement; Tools Available; Process Overview",
+      "version": "updated 2026-08-07 22:11",
+      "authorityBoundary": "Separate agent-verification product",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-2021",
+      "type": "enacted-law",
+      "title": "Virginia 2021 Special Session I Chapter 78",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0078+pdf=",
+      "locator": "§47.1-2 electronic paragraph; emergency clause 2",
+      "version": "approved 2021-03-11",
+      "authorityBoundary": "Dated two-of-four text preceding KBA addition",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-2024",
+      "type": "enacted-law",
+      "title": "Virginia 2024 Chapter 832",
+      "url": "https://legacylis.virginia.gov/cgi-bin/legp604.exe?241+ful+CHAP0832+pdf=",
+      "locator": "§47.1-2 KBA definition/item (5); enactment clause 2",
+      "version": "approved 2024-04-17",
+      "authorityBoundary": "KBA insertion and separately scoped retrospective clause",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-effective",
+      "type": "constitution",
+      "title": "Virginia Constitution Article IV §13",
+      "url": "https://law.lis.virginia.gov/constitution/article4/section13/",
+      "locator": "Regular-session effective-date rule",
+      "version": "current retrieved text",
+      "authorityBoundary": "July 1 default subject to specified exceptions",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-current",
+      "type": "codified-law",
+      "title": "Virginia §47.1-2",
+      "url": "https://law.lis.virginia.gov/vacode/title47.1/chapter1/section47.1-2/",
+      "locator": "KBA; personal knowledge; electronic satisfactory-evidence paragraph",
+      "version": "Code displayed 2026-10-30",
+      "authorityBoundary": "Current snapshot; dated law required for earlier acts",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-record",
+      "type": "codified-law",
+      "title": "Virginia §47.1-14",
+      "url": "https://law.lis.virginia.gov/vacode/47.1-14/",
+      "locator": "A–D; recording and other-ID notation in C",
+      "version": "retrieved text; page displayed 2026-09-17",
+      "authorityBoundary": "Care and statutory records; distinguish extra recommended evidence",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-validation",
+      "type": "codified-law",
+      "title": "Virginia §47.1-20.1",
+      "url": "https://law.lis.virginia.gov/vacode/47.1-20.1/",
+      "locator": "B; unauthorized-actor limitation",
+      "version": "retrieved text; page displayed 2026-10-21",
+      "authorityBoundary": "Validity/remedies boundary; not proof duties were met",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "va-guidance",
+      "type": "codified-law",
+      "title": "Virginia §2.2-436",
+      "url": "https://law.lis.virginia.gov/vacode/2.2-436/",
+      "locator": "A–B adoption and publication",
+      "version": "retrieved text; page displayed 2026-10-24",
+      "authorityBoundary": "Authority mechanism; no specific flow authorization established",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "ng-kba",
+      "type": "publisher-explanation",
+      "title": "Notary Geek KBA data-source explanation",
+      "url": "https://notarygeek.net/ron-kba-public-record-proprietary-record.html",
+      "locator": "Terminology; NIST source role; retry discussion",
+      "version": "maintained authored page",
+      "authorityBoundary": "Existing position; not independent legal/product authority",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "ng-proof",
+      "type": "publisher-explanation",
+      "title": "Notary Geek Proof/foreign-signer/escrow explanation",
+      "url": "https://notarygeek.net/proof-kba-foreign-signer-escrow.html",
+      "locator": "Short answer; Three separate questions; KYC distinction",
+      "version": "maintained authored page",
+      "authorityBoundary": "Existing route-first position; not transaction proof",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "ng-no-ssn",
+      "type": "publisher-offering",
+      "title": "Notary Geek no-SSN identity check",
+      "url": "https://notarygeek.net/no-ssn-required-online-notary.html",
+      "locator": "Short answer; How to start; Why no SSN",
+      "version": "maintained public page",
+      "authorityBoundary": "Published offering; no live service qualification",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    },
+    {
+      "id": "ng-passport",
+      "type": "publisher-offering",
+      "title": "Notary Geek passport support outside the U.S.",
+      "url": "https://notarygeek.net/supported-passports-by-notary-geek-for-people-not-inside-the-united-states.html",
+      "locator": "Before you start; What happens after upload",
+      "version": "maintained public page",
+      "authorityBoundary": "Conditional intake and route review; not universal acceptance",
+      "checkedDate": "2026-10-30",
+      "retrieval": "Public-source text retrieved; no complete forensic snapshot"
+    }
+  ],
+  "claims": [
+    {
+      "id": "K01",
+      "epistemicStatus": "documented-requirement",
+      "layer": "technical-assurance",
+      "claim": "A-4 excludes KBV/KBA from identity verification while permitting KBV in fraud management.",
+      "sourceIds": [
+        "nist-a4",
+        "nist-final"
+      ],
+      "evidenceLimit": "Purpose matters; no worldwide prohibition on every knowledge question.",
+      "proposedMeaning": "Do not count supplemental screening as this revision’s verification method."
+    },
+    {
+      "id": "K02",
+      "epistemicStatus": "documented-risk",
+      "layer": "technical-assurance",
+      "claim": "GAO identified breached personal data as material attackers could use to answer KBV questions.",
+      "sourceIds": [
+        "gao"
+      ],
+      "evidenceLimit": "Historical federal study; no Proof/RON exploit or failure rate measured.",
+      "proposedMeaning": "Knowledge can be available to someone other than its subject."
+    },
+    {
+      "id": "K03",
+      "epistemicStatus": "attributed-product-claim",
+      "layer": "provider-configuration",
+      "claim": "LexisNexis describes proprietary linking, non-credit content, commercial/regulated sources and optional shared-secret/customer questions.",
+      "sourceIds": [
+        "ln-qa"
+      ],
+      "evidenceLimit": "Optional question types are not for new account/benefits enrollment. No Proof supplier linkage established; proprietary is not synonymous with publicly searchable.",
+      "proposedMeaning": "Identify engine and source categories before generalizing."
+    },
+    {
+      "id": "K04",
+      "epistemicStatus": "attributed-product-claim",
+      "layer": "provider-configuration",
+      "claim": "Proof describes third-party questions from credit history and public records, generally needing six months of U.S. credit history.",
+      "sourceIds": [
+        "proof-kba"
+      ],
+      "evidenceLimit": "Supplier, exact data mix and accuracy not established.",
+      "proposedMeaning": "Attribute credit-history wording to this product; do not infer a credit score, hard inquiry or ordinary credit report."
+    },
+    {
+      "id": "K05",
+      "epistemicStatus": "documented-limitation",
+      "layer": "provider-configuration",
+      "claim": "Proof says valid SSN/ITIN holders may get no questions because records are sparse or available questions exhausted.",
+      "sourceIds": [
+        "proof-kba"
+      ],
+      "evidenceLimit": "No population failure percentage or nationality rule supplied.",
+      "proposedMeaning": "Separate no questions from wrong answers and fraud."
+    },
+    {
+      "id": "K06",
+      "epistemicStatus": "attributed-product-claim",
+      "layer": "provider-configuration",
+      "claim": "Proof documents 4/5 in two minutes, immediate first retry, then 24/48-hour waits from first attempt, and no manual support unlock.",
+      "sourceIds": [
+        "proof-kba"
+      ],
+      "evidenceLimit": "Published instructions, not tested behavior or every state’s retry law.",
+      "proposedMeaning": "Notify sender and confirm route before more attempts."
+    },
+    {
+      "id": "K07",
+      "epistemicStatus": "editorial-inference",
+      "layer": "technical-assurance",
+      "claim": "Repeated attempts may expose more of a finite question pool; documented limits constrain attempts.",
+      "sourceIds": [
+        "proof-kba",
+        "gao"
+      ],
+      "evidenceLimit": "No observed repetition, answer feedback, attack success or unlimited retry demonstrated.",
+      "proposedMeaning": "Retain bounded risk without claiming a proven easy bypass."
+    },
+    {
+      "id": "K08",
+      "epistemicStatus": "source-conflict",
+      "layer": "provider-configuration",
+      "claim": "Proof’s general failure guide says any wrong answer fails; its dedicated KBA guide says 4/5 passes.",
+      "sourceIds": [
+        "proof-failed",
+        "proof-kba"
+      ],
+      "evidenceLimit": "Help-text conflict does not identify actual scoring behavior.",
+      "proposedMeaning": "Use dedicated threshold as attributed guidance and seek reconciliation."
+    },
+    {
+      "id": "K09",
+      "epistemicStatus": "attributed-product-claim",
+      "layer": "provider-configuration",
+      "claim": "Proof’s eligible no-SSN/no-ITIN route uses ID/selfie photos and requires a current or previous U.S. address.",
+      "sourceIds": [
+        "proof-no-ssn"
+      ],
+      "evidenceLimit": "Conditional eligibility; no never-U.S.-address route established.",
+      "proposedMeaning": "No SSN does not mean no U.S.-footprint condition."
+    },
+    {
+      "id": "K10",
+      "epistemicStatus": "documented-limitation",
+      "layer": "provider-configuration",
+      "claim": "Proof’s overview makes methods depend on product/settings/notary state; KBA troubleshooting points to in-person fallback.",
+      "sourceIds": [
+        "proof-overview",
+        "proof-kba"
+      ],
+      "evidenceLimit": "An alternative may not be enabled on an existing invitation.",
+      "proposedMeaning": "Eligible alternative is a different route, not a manual unlock promise."
+    },
+    {
+      "id": "K11",
+      "epistemicStatus": "attributed-product-claim",
+      "layer": "provider-configuration",
+      "claim": "Proof lists foreign MRZ passports for online notarization.",
+      "sourceIds": [
+        "proof-id"
+      ],
+      "evidenceLimit": "ID support alone establishes neither quiz generation nor second statutory method.",
+      "proposedMeaning": "Separate supported credential from completed verification."
+    },
+    {
+      "id": "K12",
+      "epistemicStatus": "documented-law",
+      "layer": "legal-permission",
+      "claim": "Virginia’s 2021 Chapter 78 had personal knowledge, credible witness or at least two of four listed methods; no express KBA item.",
+      "sourceIds": [
+        "va-2021"
+      ],
+      "evidenceLimit": "Do not use this list for older acts or assume separately adopted authorization without its source.",
+      "proposedMeaning": "Use transaction-date law and preserve existing ledger."
+    },
+    {
+      "id": "K13",
+      "epistemicStatus": "documented-law",
+      "layer": "legal-permission",
+      "claim": "Chapter 832 added KBA as item (5), effective July 1, 2024 under the ordinary constitutional rule; its retrospective clause names §47.1-20.1(B).",
+      "sourceIds": [
+        "va-2024",
+        "va-effective"
+      ],
+      "evidenceLimit": "Textual timeline, not a decision invalidating earlier acts.",
+      "proposedMeaning": "Separate KBA insertion from validation arguments."
+    },
+    {
+      "id": "K14",
+      "epistemicStatus": "documented-law",
+      "layer": "legal-permission",
+      "claim": "Current Virginia permits personal knowledge, qualifying credible witness or at least two listed methods, with KBA an option in that route.",
+      "sourceIds": [
+        "va-current"
+      ],
+      "evidenceLimit": "Permitted combinations need not be available in every product.",
+      "proposedMeaning": "Permission proves neither best practice, NIST conformity nor execution."
+    },
+    {
+      "id": "K15",
+      "epistemicStatus": "documented-law",
+      "layer": "legal-permission",
+      "claim": "The certificate/PIV item names a valid digital certificate accessed by biometrics or qualifying PIV, not standalone selfie.",
+      "sourceIds": [
+        "va-current"
+      ],
+      "evidenceLimit": "No particular Proof signer credential/access evidence obtained.",
+      "proposedMeaning": "Ask for actual second method; distinguish signer and notary certificates."
+    },
+    {
+      "id": "K16",
+      "epistemicStatus": "unresolved",
+      "layer": "legal-permission",
+      "claim": "The Virginia-listed method completing a particular Proof no-KBA session is not established here.",
+      "sourceIds": [
+        "va-current",
+        "va-guidance",
+        "proof-no-ssn"
+      ],
+      "evidenceLimit": "Screenshots and IAL2 labels do not supply statutory mapping.",
+      "proposedMeaning": "Require dated authority and completed method results."
+    },
+    {
+      "id": "K17",
+      "epistemicStatus": "documented-law",
+      "layer": "legal-permission",
+      "claim": "Virginia §47.1-14 requires care and a notarial record; the video/audio route requires recording and other-identification notation.",
+      "sourceIds": [
+        "va-record"
+      ],
+      "evidenceLimit": "Statutory minimum fields differ from additional recommended evidence.",
+      "proposedMeaning": "Retain lawful protected records; publish no identity records or quiz answers."
+    },
+    {
+      "id": "K18",
+      "epistemicStatus": "documented-law",
+      "layer": "legal-permission",
+      "claim": "§47.1-20.1(B) limits invalidation solely for notary duty failures, preserves challenges/remedies and excludes unauthorized actors.",
+      "sourceIds": [
+        "va-validation"
+      ],
+      "evidenceLimit": "No transaction validity determination.",
+      "proposedMeaning": "A method concern is neither automatic voidness nor compliance clearance."
+    },
+    {
+      "id": "K19",
+      "epistemicStatus": "editorial-inference",
+      "layer": "recipient-requirements",
+      "claim": "A recipient’s approved-platform requirement may remain a practical barrier when another lawful route exists.",
+      "sourceIds": [
+        "ng-proof",
+        "proof-failed"
+      ],
+      "evidenceLimit": "No recipient-specific requirement or rejection obtained.",
+      "proposedMeaning": "Seek written document/output acceptance; promise no platform switch."
+    },
+    {
+      "id": "K20",
+      "epistemicStatus": "documented-product-scope",
+      "layer": "provider-configuration",
+      "claim": "Proof Verify is an organization-enabled agent-verification product; its report/recording does not itself prove a notarial act.",
+      "sourceIds": [
+        "proof-verify"
+      ],
+      "evidenceLimit": "No live session or account inspected.",
+      "proposedMeaning": "Do not substitute agent verification for notarization automatically."
+    },
+    {
+      "id": "K21",
+      "epistemicStatus": "publisher-stated-offering",
+      "layer": "service-boundary",
+      "claim": "Notary Geek publicly describes eligible outside-U.S. passport intake without SSN/ITIN/KBA, with document/location/destination review.",
+      "sourceIds": [
+        "ng-no-ssn",
+        "ng-passport"
+      ],
+      "evidenceLimit": "Public descriptions checked; no live acceptance, timing, price or result tested.",
+      "proposedMeaning": "Use maintained intake/support and confirm route before commitment."
+    },
+    {
+      "id": "K22",
+      "epistemicStatus": "editorial-correction",
+      "layer": "source-quality",
+      "claim": "Retain public/proprietary-record terminology with Proof’s explicit credit-history wording as a product-specific qualification.",
+      "sourceIds": [
+        "ng-kba",
+        "proof-kba",
+        "ln-qa"
+      ],
+      "evidenceLimit": "No supplier contract or independent FCRA classification examined. LexisNexis’s own product disclaimer is not Proof’s classification.",
+      "proposedMeaning": "Do not infer source mix or legal duties from absence of visible consent/freeze friction."
+    },
+    {
+      "id": "K23",
+      "epistemicStatus": "editorial-inference",
+      "layer": "technical-assurance",
+      "claim": "KBA replacements also need assessment of evidence, spoofing resistance, access barriers and redress.",
+      "sourceIds": [
+        "gao",
+        "nist-a4"
+      ],
+      "evidenceLimit": "No head-to-head RON experiment performed.",
+      "proposedMeaning": "Do not label every biometric implementation superior or accessible."
+    },
+    {
+      "id": "K24",
+      "epistemicStatus": "source-distinction",
+      "layer": "provider-configuration",
+      "claim": "Proof says each available question is used once per person; Virginia permits up to 60% initial-question reuse on additional quizzes.",
+      "sourceIds": [
+        "proof-kba",
+        "va-current"
+      ],
+      "evidenceLimit": "Different policy statements; no observed repetition or provider breach of statutory ceiling established.",
+      "proposedMeaning": "A permissible reuse maximum is not observed provider recycling."
+    }
+  ],
+  "measuredFacts": {
+    "transactionSamples": 0,
+    "liveProviderTransactions": 0,
+    "empiricalFailureRate": null,
+    "empiricalAttackSuccessRate": null,
+    "note": "Published quiz parameters and documentation observations are not effectiveness measurements."
+  },
+  "sourceRefreshLimits": [
+    "Original notary.cx HTML/JSON endpoints were inaccessible through retrieval; authored explanations were read at corresponding notarygeek.net paths.",
+    "2026 Chapters 364/365 links returned JavaScript shells. Current Code was read directly; no complete 2026 amendment comparison claimed.",
+    "Chapter 832 plain endpoint initially returned database unavailable; +pdf= returned enacted text. No full forensic capture claimed.",
+    "No dated adopted §2.2-436 authority for the specific no-KBA flow was established. Missing mapping evidence does not establish no such authority exists.",
+    "Mutable sources require refresh before customer publication; displayed update times are provider metadata, not proven version histories."
+  ],
+  "contraryInterpretations": [
+    {
+      "id": "C01",
+      "argument": "Dynamic proprietary questions, limits and additional checks can be useful layered fraud controls.",
+      "concession": "Yes; data may be difficult to obtain and NIST permits fraud-management KBV.",
+      "response": "This does not establish A-4 identity verification or measured product effectiveness.",
+      "sourceIds": [
+        "ln-qa",
+        "proof-kba",
+        "nist-a4"
+      ]
+    },
+    {
+      "id": "C02",
+      "argument": "A properly performed Virginia KBA combination can be lawful despite NIST.",
+      "concession": "Yes; statutory permission and technical assurance answer different questions.",
+      "response": "Require dated combination, care and records; permission does not rank methods.",
+      "sourceIds": [
+        "va-current",
+        "va-record",
+        "nist-a4"
+      ]
+    },
+    {
+      "id": "C03",
+      "argument": "Proof has no-SSN, personal-knowledge, witness and agent options, so foreign signers are not universally excluded.",
+      "concession": "Correct; universal exclusion would overreach.",
+      "response": "Eligibility, address condition, enablement, statutory mapping and recipient acceptance remain specific.",
+      "sourceIds": [
+        "proof-no-ssn",
+        "proof-overview",
+        "proof-verify"
+      ]
+    },
+    {
+      "id": "C04",
+      "argument": "Validation law can preserve an act despite a duty defect.",
+      "concession": "Material counter-law, not a cosmetic caveat.",
+      "response": "No validity/remedies ruling; preservation of an act and proof of compliance differ.",
+      "sourceIds": [
+        "va-validation",
+        "va-2024"
+      ]
+    }
+  ],
+  "existingPublicReferences": [
+    {
+      "issue": 32,
+      "url": "https://github.com/glirette/NotaryGeekPublicKnowledgeWorker/issues/32"
+    },
+    {
+      "pullRequest": 35,
+      "head": "37c63d3b25693635e2a378424e8542d00bf2560f",
+      "use": "read-only Virginia ledger"
+    },
+    {
+      "pullRequest": 36,
+      "head": "bcec990e1cfb862d10caa9f35011ca774d5840c6",
+      "use": "read-only Proof audit"
+    }
+  ]
+}

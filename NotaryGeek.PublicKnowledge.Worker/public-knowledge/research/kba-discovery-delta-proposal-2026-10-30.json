@@ -1,0 +1,33 @@
+{
+  "schema": "notary-geek-discovery-delta-proposal-v1",
+  "status": "proposal-only-not-applied",
+  "checkedDate": "2026-10-30",
+  "prerequisites": [
+    "Greg reviews meaning",
+    "Refresh mutable sources",
+    "Coordinate shared-discovery owners and use integrated immutable commit"
+  ],
+  "proposedArtifacts": [
+    {
+      "id": "kba-research-2026-10-30",
+      "claimMatrix": "research/kba-claim-source-matrix-2026-10-30.json",
+      "humanExplanation": "research/kba-explanation-2026-10-30.md",
+      "routingProposal": "research/kba-routing-proposal-2026-10-30.json",
+      "use": "KBA source quality, conditional alternatives and Virginia/NIST boundaries"
+    }
+  ],
+  "proposedTargets": [
+    "public-knowledge-manifest.json",
+    "public-artifact-index.json",
+    "answer-engine-citation-map.json",
+    "public-knowledge-regression-matrix.json"
+  ],
+  "notApplied": true,
+  "existingArticleCorrectionProposal": [
+    "Qualify general not-credit-history shorthand with Proof-specific wording.",
+    "Bound retry critique with documented limits and pool claims.",
+    "Use SHALL NOT for A-4 verification rule; preserve fraud-management role.",
+    "Keep no-SSN route’s U.S.-address condition visible."
+  ],
+  "urlBoundary": "No prospective main or website URL asserted live; no activation request."
+}
